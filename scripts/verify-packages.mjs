@@ -12,7 +12,10 @@ const out = path.join(root, 'release/preview'); await mkdir(out, { recursive: tr
 const scratch = await mkdtemp(path.join(tmpdir(), 'experiment-packed-consumer-'));
 const screenshots = '/tmp/experiment-kit-preview'; await mkdir(screenshots, { recursive: true });
 const manifest = JSON.parse(await readFile(path.join(root,'package.json'),'utf8'));
-const run = (command,args,cwd=scratch) => { const result=spawnSync(command,args,{cwd,encoding:'utf8',maxBuffer:10_000_000,env:{...process.env,npm_config_audit:'false',npm_config_fund:'false'}}); if(result.error||result.status) throw new Error(`${command} ${args.join(' ')}\n${result.error??result.stderr}\n${result.stdout}`); return result.stdout; };
+// npm ci may cache tarballs without package metadata. Exercise a real first install
+// with an isolated cache, rather than relying on the maintainer's warmed registry cache.
+const consumerCache = path.join(scratch, '.npm-cache');
+const run = (command,args,cwd=scratch) => { const result=spawnSync(command,args,{cwd,encoding:'utf8',maxBuffer:10_000_000,env:{...process.env,npm_config_cache:consumerCache,npm_config_audit:'false',npm_config_fund:'false'}}); if(result.error||result.status) throw new Error(`${command} ${args.join(' ')}\n${result.error??result.stderr}\n${result.stdout}`); return result.stdout; };
 const packages=[]; let server, browser;
 try {
   for(const name of ['core','player','agent']) {
@@ -24,7 +27,7 @@ try {
   }
   await cp(path.join(root,'examples/consumer'),scratch,{recursive:true});
   await writeFile(path.join(scratch,'package.json'),JSON.stringify({private:true,type:'module',dependencies:Object.fromEntries([...packages.map(p=>[p.name,`file:${path.join(out,p.file)}`]),['react',manifest.dependencies.react],['react-dom',manifest.dependencies['react-dom']]]),devDependencies:{vite:manifest.devDependencies.vite}}));
-  run('npm',['install','--offline','--ignore-scripts','--no-audit','--no-fund']);
+  run('npm',['install','--ignore-scripts','--no-audit','--no-fund']);
   run(process.execPath,['--input-type=module','-e',"await import('@experiment-kit/core/declarative'); await import('@experiment-kit/player'); await import('@experiment-kit/agent'); if(globalThis.window || globalThis.document) throw new Error('Unexpected DOM globals');"]);
   run('npm',['exec','vite','build']);
   const dist=path.join(scratch,'dist');
@@ -94,5 +97,5 @@ try {
     await page.evaluate(()=>window.consumer.dispose());checks.push(result);await page.setViewportSize({width:1440,height:1000});
   }
   if(errors.length)throw new Error(errors.join('\n'));
-  const evidence={version:manifest.version,createdAt:new Date().toISOString(),node:process.version,platform:process.platform,arch:process.arch,browser:browser.version(),packages,checks,performance:performanceEvidence,ssrImport:'passed',installation:'Fresh directory, npm install --offline --ignore-scripts, local tarballs; no repository aliases.',csp:'self scripts/workers, no eval or external network',dependencyBudget:{gzipBytes:compressed,maxGzipBytes:180000,assets:sizes},screenshots,publication:'Not published. Registry ownership, external trials and public smoke tests remain open.'};await writeFile(path.join(out,'package-evidence.json'),JSON.stringify(evidence,null,2)+'\n');process.stdout.write(JSON.stringify(evidence,null,2)+'\n');
+  const evidence={version:manifest.version,createdAt:new Date().toISOString(),node:process.version,platform:process.platform,arch:process.arch,browser:browser.version(),packages,checks,performance:performanceEvidence,ssrImport:'passed',installation:'Fresh directory and isolated empty npm cache; npm install --ignore-scripts with local tarballs and pinned React/ReactDOM/Vite; no repository aliases.',csp:'self scripts/workers, no eval or external network',dependencyBudget:{gzipBytes:compressed,maxGzipBytes:180000,assets:sizes},screenshots,publication:'Not published. Registry ownership, external trials and public smoke tests remain open.'};await writeFile(path.join(out,'package-evidence.json'),JSON.stringify(evidence,null,2)+'\n');process.stdout.write(JSON.stringify(evidence,null,2)+'\n');
 } finally { await browser?.close();if(server)await new Promise(resolve=>server.close(resolve));await rm(scratch,{recursive:true,force:true}); }

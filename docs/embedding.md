@@ -8,7 +8,7 @@ npm run build:packages
 npm run verify:packages
 ```
 
-The last command packs core, player, and agent; installs all three tarballs into a fresh temporary application; runs a production build without repository aliases; verifies SSR imports; and exercises React and DOM consumers under a self-only worker/script CSP. Evidence and tarballs are in `release/preview/`. Browser screenshots go to `/tmp/experiment-kit-preview/`.
+The last command packs core, player, and agent; installs all three tarballs into a fresh temporary application with an isolated, initially empty npm cache; runs a production build without repository aliases; verifies SSR imports; and exercises React and DOM consumers under a self-only worker/script CSP. Installation may fetch dependency metadata and pinned dependencies from npm; playback remains local. Evidence and tarballs are in `release/preview/`. Browser screenshots go to `/tmp/experiment-kit-preview/`.
 
 Install those exact three tarballs in your application, alongside React and ReactDOM. All package versions must match. The imperative surface uses React internally; React applications share the host's peer runtime.
 

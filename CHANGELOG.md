@@ -6,6 +6,7 @@
 - Made the studio the default site entry, added a public preview guide and explicit gallery route, and preserved legacy experiment/embed/capture links and startup snapshots.
 - Standardized preview publishing tags, prepared read-only CI artifact retention, and added archive-integrity and nested-path production smoke checks. npm publishing and hosting are deferred.
 - Prepared the initial source-only commit: include release-integrity tests, normalize source/lockfile line endings, exclude generated output and local credentials, and record commit provenance in preview evidence.
+- Made packed-consumer verification use a normal install with an isolated empty npm cache, so clean CI does not depend on registry metadata from the maintainer's machine. Peer checks and exact dependency versions remain enforced.
 
 - Added a versioned declarative document grammar, bounded expression interpreter, dimension/shape checks, immutable datasets, and browser-worker sessions.
 - Added guarded candidate creation and semantic revision, retry deduplication, cancellation, exact boundary playback, preview isolation, portable artifacts, and retained comparison definitions.
