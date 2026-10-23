@@ -1,0 +1,175 @@
+import type { CheckSuite } from '@experiment-kit/core';
+
+/** Fixed reference assertions; execution and value evaluation occur in the browser worker. */
+export const checks: CheckSuite = {
+  "id": "linear-map-reference",
+  "version": "1.0.0",
+  "author": "Experiment Kit specification reference cases and transparent derived fixtures",
+  "provenance": "reference",
+  "cases": [
+    {
+      "id": "identity",
+      "label": "Identity leaves a nonaxis point unchanged",
+      "time": 0,
+      "expected": {
+        "point.output": [
+          1.25,
+          -0.75
+        ],
+        "basis.i": [
+          1,
+          0
+        ],
+        "basis.j": [
+          0,
+          1
+        ],
+        "matrix.area": 1,
+        "matrix.determinant": 1
+      },
+      "parameters": {
+        "a": 1,
+        "b": 0,
+        "c": 0,
+        "d": 1,
+        "x": 1.25,
+        "y": -0.75
+      }
+    },
+    {
+      "id": "scaling",
+      "label": "2 \u00d7 3 scaling has area six",
+      "time": 0,
+      "expected": {
+        "matrix.area": 6,
+        "matrix.determinant": 6,
+        "point.output": [
+          2,
+          3
+        ]
+      },
+      "parameters": {
+        "a": 2,
+        "b": 0,
+        "c": 0,
+        "d": 3
+      }
+    },
+    {
+      "id": "shear",
+      "label": "Shear preserves area",
+      "time": 0,
+      "expected": {
+        "matrix.area": 1,
+        "point.output": [
+          3,
+          1
+        ],
+        "basis.i": [
+          1,
+          0
+        ],
+        "basis.j": [
+          2,
+          1
+        ]
+      },
+      "parameters": {
+        "a": 1,
+        "b": 2,
+        "c": 0,
+        "d": 1
+      }
+    },
+    {
+      "id": "reflection",
+      "label": "Reflection reverses orientation without negative area",
+      "time": 0,
+      "expected": {
+        "matrix.determinant": -1,
+        "matrix.area": 1,
+        "matrix.orientation": -1,
+        "point.output": [
+          -1,
+          1
+        ]
+      },
+      "parameters": {
+        "a": -1,
+        "b": 0,
+        "c": 0,
+        "d": 1
+      }
+    },
+    {
+      "id": "singular",
+      "label": "Singular map collapses area",
+      "time": 0,
+      "expected": {
+        "matrix.determinant": 0,
+        "matrix.area": 0,
+        "matrix.orientation": 0,
+        "point.output": [
+          3,
+          4.5
+        ]
+      },
+      "parameters": {
+        "a": 1,
+        "b": 2,
+        "c": 1.5,
+        "d": 3
+      }
+    },
+    {
+      "id": "quarter-turn",
+      "label": "Counterclockwise 90\u00b0 rotation",
+      "time": 0,
+      "expected": {
+        "point.output": [
+          0,
+          1
+        ],
+        "matrix.area": 1
+      },
+      "parameters": {
+        "a": 0,
+        "b": -1,
+        "c": 1,
+        "d": 0,
+        "x": 1,
+        "y": 0
+      }
+    },
+    {
+      "id": "nonaxis",
+      "label": "Nonsymmetric matrix and nonaxis point detect transposition",
+      "time": 0,
+      "expected": {
+        "point.output": [
+          -0.5,
+          1.5
+        ],
+        "basis.i": [
+          1,
+          0.5
+        ],
+        "basis.j": [
+          2,
+          -1
+        ],
+        "matrix.determinant": -2
+      },
+      "parameters": {
+        "a": 1,
+        "b": 2,
+        "c": 0.5,
+        "d": -1,
+        "x": 1.25,
+        "y": -0.875
+      }
+    }
+  ]
+};
+
+export default checks;

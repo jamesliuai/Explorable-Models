@@ -1,0 +1,10 @@
+# Definition identities include exact source and lockfile bytes.
+* text=auto eol=lf
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.woff binary
+*.woff2 binary
+*.tgz binary
+*.zip binary

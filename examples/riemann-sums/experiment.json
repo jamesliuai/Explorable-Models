@@ -1,0 +1,144 @@
+{
+  "schemaVersion": "1.0",
+  "id": "riemann-sums",
+  "title": "Riemann sums",
+  "description": "Approximate a signed integral with finite rectangles.",
+  "question": "How does a finite sum approach an integral?",
+  "kind": "parametric",
+  "parameters": {
+    "count": {
+      "type": "number",
+      "label": "Rectangles",
+      "default": 20,
+      "min": 1,
+      "max": 200,
+      "step": 1,
+      "unit": "1",
+      "advanced": false,
+      "integer": true
+    },
+    "rule": {
+      "type": "string",
+      "label": "Sampling rule",
+      "default": "midpoint",
+      "options": [
+        {
+          "value": "right",
+          "label": "Right endpoint"
+        },
+        {
+          "value": "midpoint",
+          "label": "Midpoint"
+        }
+      ]
+    },
+    "integrand": {
+      "type": "string",
+      "label": "Function",
+      "default": "square",
+      "options": [
+        {
+          "value": "square",
+          "label": "x\u00b2 on [0, 1]"
+        },
+        {
+          "value": "signed",
+          "label": "x on [\u22121, 1]"
+        }
+      ]
+    }
+  },
+  "quantities": {
+    "sum.estimate": {
+      "label": "Signed estimate",
+      "type": "scalar",
+      "unit": "1",
+      "dimension": "dimensionless",
+      "description": "Finite sum of signed rectangle areas."
+    },
+    "sum.exact": {
+      "label": "Exact signed integral",
+      "type": "scalar",
+      "unit": "1",
+      "dimension": "dimensionless",
+      "description": "Analytic reference integral."
+    },
+    "sum.error": {
+      "label": "Signed error",
+      "type": "scalar",
+      "unit": "1",
+      "dimension": "dimensionless",
+      "description": "Estimate minus exact integral."
+    },
+    "sum.unsignedEstimate": {
+      "label": "Unsigned estimate",
+      "type": "scalar",
+      "unit": "1",
+      "dimension": "dimensionless",
+      "description": "Sum of rectangle area magnitudes."
+    },
+    "sum.unsignedExact": {
+      "label": "Exact unsigned area",
+      "type": "scalar",
+      "unit": "1",
+      "dimension": "dimensionless",
+      "description": "Area ignoring the sign of the integrand."
+    },
+    "sum.width": {
+      "label": "Rectangle width",
+      "type": "scalar",
+      "unit": "1",
+      "dimension": "dimensionless",
+      "description": "Uniform subinterval width."
+    }
+  },
+  "assumptions": [
+    "Subintervals have equal width.",
+    "The displayed rectangles use the selected right endpoint or midpoint."
+  ],
+  "limitations": [
+    "This benchmark only implements x\u00b2 on [0,1] and x on [\u22121,1].",
+    "Finite sums approximate an integral; they do not certify convergence for arbitrary functions."
+  ],
+  "sources": [
+    {
+      "title": "OpenStax Calculus 2 \u00b7 1.2 The Definite Integral",
+      "url": "https://openstax.org/books/calculus-volume-2/pages/1-2-the-definite-integral"
+    }
+  ],
+  "capabilities": [
+    "inspect",
+    "sample",
+    "compare",
+    "checkpoint",
+    "selection",
+    "export",
+    "capture",
+    "verify"
+  ],
+  "review": {
+    "status": "unreviewed",
+    "scope": "Technical reference checks only. Independent subject review and learner evaluation have not been completed."
+  },
+  "concept": "A signed integral can cancel above- and below-axis contributions while geometric area remains positive.",
+  "misconception": "An integral always equals unsigned area.",
+  "tags": [
+    "Mathematics",
+    "Calculus",
+    "Extension benchmark"
+  ],
+  "geometry": {
+    "rectangles": {
+      "shape": "points2",
+      "unit": "1",
+      "coordinateFrame": "cartesian",
+      "maxElements": 1600
+    },
+    "curve": {
+      "shape": "polyline2",
+      "unit": "1",
+      "coordinateFrame": "cartesian",
+      "maxElements": 202
+    }
+  }
+}

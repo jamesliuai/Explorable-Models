@@ -1,0 +1,95 @@
+[
+  {
+    "id": "oscillator",
+    "type": "scene2d",
+    "label": "Oscillator displacement",
+    "bindings": [
+      {
+        "id": "mass",
+        "property": "x",
+        "quantityId": "body.position"
+      },
+      {
+        "id": "displacement",
+        "property": "path",
+        "geometryId": "displacement"
+      }
+    ],
+    "bounds": {
+      "x": [
+        -3.3,
+        3.3
+      ],
+      "y": [
+        -1,
+        1
+      ]
+    }
+  },
+  {
+    "id": "energy",
+    "type": "plot",
+    "label": "Oscillator energy",
+    "bindings": [
+      {
+        "id": "potential",
+        "property": "value",
+        "quantityId": "energy.potential"
+      },
+      {
+        "id": "kinetic",
+        "property": "value",
+        "quantityId": "energy.kinetic"
+      }
+    ]
+  },
+  {
+    "id": "oscillator-equation",
+    "type": "equation",
+    "label": "Harmonic motion",
+    "bindings": [
+      {
+        "id": "position",
+        "property": "substitution",
+        "quantityId": "body.position"
+      },
+      {
+        "id": "omega",
+        "property": "substitution",
+        "quantityId": "oscillation.omega"
+      }
+    ],
+    "template": "x(t)=A\\cos(\\omega t)",
+    "symbols": {
+      "x(t)": "body.position",
+      "\\omega": "oscillation.omega"
+    }
+  },
+  {
+    "id": "values",
+    "type": "table",
+    "label": "Current values",
+    "bindings": [
+      {
+        "id": "body-position",
+        "property": "value",
+        "quantityId": "body.position"
+      },
+      {
+        "id": "body-velocity",
+        "property": "value",
+        "quantityId": "body.velocity"
+      },
+      {
+        "id": "body-acceleration",
+        "property": "value",
+        "quantityId": "body.acceleration"
+      },
+      {
+        "id": "energy-total",
+        "property": "value",
+        "quantityId": "energy.total"
+      }
+    ]
+  }
+]

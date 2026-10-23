@@ -1,0 +1,16 @@
+{
+  "bytes": 524288,
+  "parameters": 64,
+  "quantities": 128,
+  "datasets": 8,
+  "rowsPerDataset": 5000,
+  "datasetCells": 20000,
+  "columns": 16,
+  "series": 32,
+  "samplesPerSeries": 2000,
+  "totalSamples": 10000,
+  "totalOperations": 2000000,
+  "views": 16,
+  "marks": 256,
+  "groupDepth": 8
+}

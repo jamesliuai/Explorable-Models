@@ -1,0 +1,30 @@
+name: Reproducible toolkit bug
+description: Report a runtime, authoring, rendering, integration, or artifact failure.
+body:
+  - type: markdown
+    attributes:
+      value: "For security issues, use the maintainer's configured private reporting channel. Do not include credentials, personal data, or private documents."
+  - type: input
+    id: version
+    attributes:
+      label: Package version and candidate hash
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Minimal document and reproduction steps
+      description: Include the operation, expected behavior, actual behavior, and whether accepted state was preserved.
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Host, browser, OS, and device
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Diagnostics and sanitized evidence
+      description: Include error code, document path, and exact revisions when available.

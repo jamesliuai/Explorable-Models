@@ -1,0 +1,25 @@
+node_modules/
+dist/
+coverage/
+playwright-report/
+test-results/
+.experiment-kit/
+*.tgz
+.DS_Store
+
+/release/
+public/source/
+public/source-manifest.json
+
+# Local credentials and preview connections never belong in the public repository.
+.env
+.env.*
+!.env.example
+.npmrc
+*.pem
+*.key
+.experiment-kit-session.json
+local-bridge.js
+.codex/
+.agents/
+.aws/

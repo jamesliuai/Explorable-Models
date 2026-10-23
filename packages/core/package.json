@@ -1,0 +1,54 @@
+{
+  "name": "@experiment-kit/core",
+  "version": "0.2.0-preview.1",
+  "description": "Validated, inspectable analytical experiments for browsers and agent tools.",
+  "type": "module",
+  "license": "MIT",
+  "sideEffects": [
+    "./dist/declarative/document-worker.js"
+  ],
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./schemas": {
+      "types": "./dist/schemas.d.ts",
+      "import": "./dist/schemas.js"
+    },
+    "./package.json": "./package.json",
+    "./declarative": {
+      "types": "./dist/declarative/index.d.ts",
+      "import": "./dist/declarative/index.js"
+    },
+    "./document-worker": "./dist/declarative/document-worker.js"
+  },
+  "files": [
+    "dist",
+    "src",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "prepack": "npm run build"
+  },
+  "publishConfig": {
+    "access": "public",
+    "tag": "preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jamesliuai/Explorable-Models.git",
+    "directory": "packages/core"
+  },
+  "homepage": "https://github.com/jamesliuai/Explorable-Models#readme",
+  "bugs": {
+    "url": "https://github.com/jamesliuai/Explorable-Models/issues"
+  }
+}

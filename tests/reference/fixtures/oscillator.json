@@ -1,0 +1,63 @@
+{
+  "id": "oscillator-reference",
+  "version": "1.0.0",
+  "author": "Experiment Kit specification reference cases and transparent derived fixtures",
+  "provenance": "reference",
+  "cases": [
+    {
+      "id": "release",
+      "label": "Initial displacement with zero velocity",
+      "time": 0,
+      "expected": {
+        "body.position": 1,
+        "body.velocity": 0,
+        "body.acceleration": -4,
+        "energy.total": 2
+      }
+    },
+    {
+      "id": "quarter-period",
+      "label": "Quarter-period phase",
+      "time": 0.7853981633974483,
+      "expected": {
+        "body.position": 0,
+        "body.velocity": -2,
+        "energy.kinetic": 2,
+        "energy.potential": 0
+      }
+    },
+    {
+      "id": "half-period",
+      "label": "Half-period phase",
+      "time": 1.5707963267948966,
+      "expected": {
+        "body.position": -1,
+        "body.velocity": 0,
+        "energy.potential": 2
+      }
+    },
+    {
+      "id": "full-period",
+      "label": "Full-period return",
+      "time": 3.141592653589793,
+      "expected": {
+        "body.position": 1,
+        "body.velocity": 0,
+        "energy.total": 2
+      }
+    },
+    {
+      "id": "zero-amplitude",
+      "label": "Zero amplitude is stationary",
+      "time": 1,
+      "expected": {
+        "body.position": 0,
+        "body.velocity": 0,
+        "energy.total": 0
+      },
+      "parameters": {
+        "amplitude": 0
+      }
+    }
+  ]
+}

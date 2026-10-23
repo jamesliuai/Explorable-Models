@@ -1,0 +1,93 @@
+[
+  {
+    "id": "frequencies",
+    "type": "frequency",
+    "label": "Expected frequencies",
+    "bindings": [
+      {
+        "id": "count-truePositive",
+        "property": "count",
+        "quantityId": "count.truePositive"
+      },
+      {
+        "id": "count-falsePositive",
+        "property": "count",
+        "quantityId": "count.falsePositive"
+      },
+      {
+        "id": "count-falseNegative",
+        "property": "count",
+        "quantityId": "count.falseNegative"
+      },
+      {
+        "id": "count-trueNegative",
+        "property": "count",
+        "quantityId": "count.trueNegative"
+      }
+    ],
+    "description": "Four expected groups, with both positive groups forming the flagged population. Fractional expected counts are preserved."
+  },
+  {
+    "id": "probability-equation",
+    "type": "equation",
+    "label": "Bayes\u2019 theorem",
+    "bindings": [
+      {
+        "id": "posterior",
+        "property": "substitution",
+        "quantityId": "probability.posterior"
+      },
+      {
+        "id": "true-positive-count",
+        "property": "numerator",
+        "quantityId": "count.truePositive"
+      },
+      {
+        "id": "flagged-count",
+        "property": "denominator",
+        "quantityId": "count.flagged"
+      }
+    ],
+    "template": "P(D\\mid +)=\\frac{ps}{ps+(1-p)f}",
+    "symbols": {
+      "P(D\\mid +)": "probability.posterior"
+    }
+  },
+  {
+    "id": "values",
+    "type": "table",
+    "label": "Expected count table",
+    "bindings": [
+      {
+        "id": "count-truePositive",
+        "property": "value",
+        "quantityId": "count.truePositive"
+      },
+      {
+        "id": "count-falsePositive",
+        "property": "value",
+        "quantityId": "count.falsePositive"
+      },
+      {
+        "id": "count-falseNegative",
+        "property": "value",
+        "quantityId": "count.falseNegative"
+      },
+      {
+        "id": "count-trueNegative",
+        "property": "value",
+        "quantityId": "count.trueNegative"
+      },
+      {
+        "id": "count-flagged",
+        "property": "value",
+        "quantityId": "count.flagged"
+      },
+      {
+        "id": "probability-posterior",
+        "property": "value",
+        "quantityId": "probability.posterior"
+      }
+    ]
+  }
+]

@@ -1,0 +1,1056 @@
+[
+  {
+    "name": "visualization_discover",
+    "description": "Get the v2 scope, limits, mutation guards, optional compact example, and honest capture/review availability.",
+    "inputSchema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "includeExample": {
+          "type": "boolean"
+        },
+        "includeSchema": {
+          "type": "boolean"
+        }
+      },
+      "required": []
+    },
+    "outputSchema": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": [
+            "ok",
+            "data"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "ok": {
+              "const": true
+            },
+            "data": {}
+          }
+        },
+        {
+          "type": "object",
+          "required": [
+            "ok",
+            "diagnostics"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "ok": {
+              "const": false
+            },
+            "diagnostics": {
+              "type": "array",
+              "maxItems": 20,
+              "items": {
+                "type": "object",
+                "required": [
+                  "code",
+                  "path",
+                  "message"
+                ],
+                "properties": {
+                  "code": {
+                    "type": "string"
+                  },
+                  "path": {
+                    "type": "string"
+                  },
+                  "message": {
+                    "type": "string"
+                  },
+                  "recovery": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "name": "visualization_create",
+    "description": "Normalize and evaluate a declarative document as a candidate. Accepted state remains unchanged until commit. Schema/computation checks are author checks, not scientific review.",
+    "inputSchema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "document": {
+          "type": "object",
+          "description": "VisualizationDocument 2.0. Call visualization_discover with includeSchema:true for the complete JSON Schema and field limits."
+        },
+        "guard": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "sessionId",
+            "expectedVersion",
+            "operationId"
+          ],
+          "properties": {
+            "sessionId": {
+              "type": "string"
+            },
+            "expectedVersion": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "expectedRunId": {
+              "type": "string"
+            },
+            "operationId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128
+            },
+            "origin": {
+              "enum": [
+                "human",
+                "agent",
+                "host"
+              ]
+            }
+          }
+        }
+      },
+      "required": [
+        "document",
+        "guard"
+      ]
+    },
+    "outputSchema": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": [
+            "ok",
+            "data"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "ok": {
+              "const": true
+            },
+            "data": {}
+          }
+        },
+        {
+          "type": "object",
+          "required": [
+            "ok",
+            "diagnostics"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "ok": {
+              "const": false
+            },
+            "diagnostics": {
+              "type": "array",
+              "maxItems": 20,
+              "items": {
+                "type": "object",
+                "required": [
+                  "code",
+                  "path",
+                  "message"
+                ],
+                "properties": {
+                  "code": {
+                    "type": "string"
+                  },
+                  "path": {
+                    "type": "string"
+                  },
+                  "message": {
+                    "type": "string"
+                  },
+                  "recovery": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "name": "visualization_revise",
+    "description": "Prepare an atomic semantic edit batch against the accepted document, using stable IDs. Each set replaces one object; presentation replaces presentation settings.",
+    "inputSchema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "edits": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 100,
+          "items": {
+            "oneOf": [
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "op": {
+                    "const": "set"
+                  },
+                  "collection": {
+                    "enum": [
+                      "parameters",
+                      "quantities",
+                      "datasets",
+                      "series"
+                    ]
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "value": {}
+                },
+                "required": [
+                  "op",
+                  "collection",
+                  "id",
+                  "value"
+                ]
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "op": {
+                    "const": "remove"
+                  },
+                  "collection": {
+                    "enum": [
+                      "parameters",
+                      "quantities",
+                      "datasets",
+                      "series"
+                    ]
+                  },
+                  "id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "op",
+                  "collection",
+                  "id"
+                ]
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "op": {
+                    "const": "setView"
+                  },
+                  "view": {
+                    "type": "object"
+                  }
+                },
+                "required": [
+                  "op",
+                  "view"
+                ]
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "op": {
+                    "const": "removeView"
+                  },
+                  "id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "op",
+                  "id"
+                ]
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "op": {
+                    "const": "setMark"
+                  },
+                  "viewId": {
+                    "type": "string"
+                  },
+                  "mark": {
+                    "type": "object"
+                  }
+                },
+                "required": [
+                  "op",
+                  "viewId",
+                  "mark"
+                ]
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "op": {
+                    "const": "removeMark"
+                  },
+                  "viewId": {
+                    "type": "string"
+                  },
+                  "id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "op",
+                  "viewId",
+                  "id"
+                ]
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "op": {
+                    "const": "presentation"
+                  },
+                  "value": {
+                    "type": "object"
+                  }
+                },
+                "required": [
+                  "op",
+                  "value"
+                ]
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "op": {
+                    "const": "metadata"
+                  },
+                  "title": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "op"
+                ]
+              }
+            ]
+          }
+        },
+        "guard": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "sessionId",
+            "expectedVersion",
+            "operationId"
+          ],
+          "properties": {
+            "sessionId": {
+              "type": "string"
+            },
+            "expectedVersion": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "expectedRunId": {
+              "type": "string"
+            },
+            "operationId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128
+            },
+            "origin": {
+              "enum": [
+                "human",
+                "agent",
+                "host"
+              ]
+            }
+          }
+        }
+      },
+      "required": [
+        "edits",
+        "guard"
+      ]
+    },
+    "outputSchema": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": [
+            "ok",
+            "data"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "ok": {
+              "const": true
+            },
+            "data": {}
+          }
+        },
+        {
+          "type": "object",
+          "required": [
+            "ok",
+            "diagnostics"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "ok": {
+              "const": false
+            },
+            "diagnostics": {
+              "type": "array",
+              "maxItems": 20,
+              "items": {
+                "type": "object",
+                "required": [
+                  "code",
+                  "path",
+                  "message"
+                ],
+                "properties": {
+                  "code": {
+                    "type": "string"
+                  },
+                  "path": {
+                    "type": "string"
+                  },
+                  "message": {
+                    "type": "string"
+                  },
+                  "recovery": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "name": "visualization_inspect",
+    "description": "Inspect committed state, mutation guards, quantities and bounded series summaries, or a candidate made through this tool set.",
+    "inputSchema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "candidateId": {
+          "type": "string"
+        },
+        "includeDocument": {
+          "type": "boolean"
+        },
+        "quantityIds": {
+          "type": "array",
+          "maxItems": 64,
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": []
+    },
+    "outputSchema": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": [
+            "ok",
+            "data"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "ok": {
+              "const": true
+            },
+            "data": {}
+          }
+        },
+        {
+          "type": "object",
+          "required": [
+            "ok",
+            "diagnostics"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "ok": {
+              "const": false
+            },
+            "diagnostics": {
+              "type": "array",
+              "maxItems": 20,
+              "items": {
+                "type": "object",
+                "required": [
+                  "code",
+                  "path",
+                  "message"
+                ],
+                "properties": {
+                  "code": {
+                    "type": "string"
+                  },
+                  "path": {
+                    "type": "string"
+                  },
+                  "message": {
+                    "type": "string"
+                  },
+                  "recovery": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "name": "visualization_commit",
+    "description": "Atomically activate a validated candidate only if its base version is still current. A presentation-only change preserves run and time.",
+    "inputSchema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "candidateId": {
+          "type": "string"
+        },
+        "guard": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "sessionId",
+            "expectedVersion",
+            "operationId"
+          ],
+          "properties": {
+            "sessionId": {
+              "type": "string"
+            },
+            "expectedVersion": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "expectedRunId": {
+              "type": "string"
+            },
+            "operationId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128
+            },
+            "origin": {
+              "enum": [
+                "human",
+                "agent",
+                "host"
+              ]
+            }
+          }
+        }
+      },
+      "required": [
+        "candidateId",
+        "guard"
+      ]
+    },
+    "outputSchema": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": [
+            "ok",
+            "data"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "ok": {
+              "const": true
+            },
+            "data": {}
+          }
+        },
+        {
+          "type": "object",
+          "required": [
+            "ok",
+            "diagnostics"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "ok": {
+              "const": false
+            },
+            "diagnostics": {
+              "type": "array",
+              "maxItems": 20,
+              "items": {
+                "type": "object",
+                "required": [
+                  "code",
+                  "path",
+                  "message"
+                ],
+                "properties": {
+                  "code": {
+                    "type": "string"
+                  },
+                  "path": {
+                    "type": "string"
+                  },
+                  "message": {
+                    "type": "string"
+                  },
+                  "recovery": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "name": "visualization_discard",
+    "description": "Discard a retained candidate without changing the accepted document.",
+    "inputSchema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "candidateId": {
+          "type": "string"
+        },
+        "guard": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "sessionId",
+            "expectedVersion",
+            "operationId"
+          ],
+          "properties": {
+            "sessionId": {
+              "type": "string"
+            },
+            "expectedVersion": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "expectedRunId": {
+              "type": "string"
+            },
+            "operationId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128
+            },
+            "origin": {
+              "enum": [
+                "human",
+                "agent",
+                "host"
+              ]
+            }
+          }
+        }
+      },
+      "required": [
+        "candidateId",
+        "guard"
+      ]
+    },
+    "outputSchema": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": [
+            "ok",
+            "data"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "ok": {
+              "const": true
+            },
+            "data": {}
+          }
+        },
+        {
+          "type": "object",
+          "required": [
+            "ok",
+            "diagnostics"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "ok": {
+              "const": false
+            },
+            "diagnostics": {
+              "type": "array",
+              "maxItems": 20,
+              "items": {
+                "type": "object",
+                "required": [
+                  "code",
+                  "path",
+                  "message"
+                ],
+                "properties": {
+                  "code": {
+                    "type": "string"
+                  },
+                  "path": {
+                    "type": "string"
+                  },
+                  "message": {
+                    "type": "string"
+                  },
+                  "recovery": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "name": "visualization_operate",
+    "description": "Apply a guarded operation. Parameters restart at zero; preview is tentative; seek clamps to the exact end; step advances one declared time step.",
+    "inputSchema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "action": {
+          "enum": [
+            "parameters",
+            "preview",
+            "cancel_preview",
+            "seek",
+            "step",
+            "play",
+            "pause",
+            "select"
+          ]
+        },
+        "parameters": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "number"
+          }
+        },
+        "time": {
+          "type": "number",
+          "minimum": 0
+        },
+        "selection": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "guard": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "sessionId",
+            "expectedVersion",
+            "operationId"
+          ],
+          "properties": {
+            "sessionId": {
+              "type": "string"
+            },
+            "expectedVersion": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "expectedRunId": {
+              "type": "string"
+            },
+            "operationId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128
+            },
+            "origin": {
+              "enum": [
+                "human",
+                "agent",
+                "host"
+              ]
+            }
+          }
+        }
+      },
+      "required": [
+        "action",
+        "guard"
+      ]
+    },
+    "outputSchema": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": [
+            "ok",
+            "data"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "ok": {
+              "const": true
+            },
+            "data": {}
+          }
+        },
+        {
+          "type": "object",
+          "required": [
+            "ok",
+            "diagnostics"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "ok": {
+              "const": false
+            },
+            "diagnostics": {
+              "type": "array",
+              "maxItems": 20,
+              "items": {
+                "type": "object",
+                "required": [
+                  "code",
+                  "path",
+                  "message"
+                ],
+                "properties": {
+                  "code": {
+                    "type": "string"
+                  },
+                  "path": {
+                    "type": "string"
+                  },
+                  "message": {
+                    "type": "string"
+                  },
+                  "recovery": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "name": "visualization_save",
+    "description": "Return a portable artifact with exact definitions and retained comparison runs. Host storage is explicit; a pending preview blocks saving.",
+    "inputSchema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {},
+      "required": []
+    },
+    "outputSchema": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": [
+            "ok",
+            "data"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "ok": {
+              "const": true
+            },
+            "data": {}
+          }
+        },
+        {
+          "type": "object",
+          "required": [
+            "ok",
+            "diagnostics"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "ok": {
+              "const": false
+            },
+            "diagnostics": {
+              "type": "array",
+              "maxItems": 20,
+              "items": {
+                "type": "object",
+                "required": [
+                  "code",
+                  "path",
+                  "message"
+                ],
+                "properties": {
+                  "code": {
+                    "type": "string"
+                  },
+                  "path": {
+                    "type": "string"
+                  },
+                  "message": {
+                    "type": "string"
+                  },
+                  "recovery": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "name": "visualization_restore",
+    "description": "Validate an exact-runtime v2 artifact and all retained definitions before creating a new run. Invalid imports preserve accepted state.",
+    "inputSchema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "artifact": {
+          "type": "object"
+        },
+        "guard": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "sessionId",
+            "expectedVersion",
+            "operationId"
+          ],
+          "properties": {
+            "sessionId": {
+              "type": "string"
+            },
+            "expectedVersion": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "expectedRunId": {
+              "type": "string"
+            },
+            "operationId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128
+            },
+            "origin": {
+              "enum": [
+                "human",
+                "agent",
+                "host"
+              ]
+            }
+          }
+        }
+      },
+      "required": [
+        "artifact",
+        "guard"
+      ]
+    },
+    "outputSchema": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": [
+            "ok",
+            "data"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "ok": {
+              "const": true
+            },
+            "data": {}
+          }
+        },
+        {
+          "type": "object",
+          "required": [
+            "ok",
+            "diagnostics"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "ok": {
+              "const": false
+            },
+            "diagnostics": {
+              "type": "array",
+              "maxItems": 20,
+              "items": {
+                "type": "object",
+                "required": [
+                  "code",
+                  "path",
+                  "message"
+                ],
+                "properties": {
+                  "code": {
+                    "type": "string"
+                  },
+                  "path": {
+                    "type": "string"
+                  },
+                  "message": {
+                    "type": "string"
+                  },
+                  "recovery": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+]

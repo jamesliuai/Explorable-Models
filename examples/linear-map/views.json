@@ -1,0 +1,99 @@
+[
+  {
+    "id": "plane",
+    "type": "scene2d",
+    "label": "Transformed plane",
+    "bindings": [
+      {
+        "id": "unit-square",
+        "property": "path",
+        "geometryId": "referenceSquare"
+      },
+      {
+        "id": "mapped-square",
+        "property": "path",
+        "geometryId": "transformedSquare"
+      },
+      {
+        "id": "basis-i",
+        "property": "vector",
+        "quantityId": "basis.i"
+      },
+      {
+        "id": "basis-j",
+        "property": "vector",
+        "quantityId": "basis.j"
+      },
+      {
+        "id": "input-point",
+        "property": "position",
+        "quantityId": "point.input"
+      },
+      {
+        "id": "output-point",
+        "property": "position",
+        "quantityId": "point.output"
+      }
+    ],
+    "description": "Matrix columns define the moved basis; the unit square becomes a parallelogram."
+  },
+  {
+    "id": "map-equation",
+    "type": "equation",
+    "label": "Matrix multiplication",
+    "bindings": [
+      {
+        "id": "input-value",
+        "property": "substitution",
+        "quantityId": "point.input"
+      },
+      {
+        "id": "output-value",
+        "property": "substitution",
+        "quantityId": "point.output"
+      }
+    ],
+    "template": "\\mathbf{y}=A\\mathbf{x}",
+    "symbols": {
+      "\\mathbf{x}": "point.input",
+      "\\mathbf{y}": "point.output"
+    }
+  },
+  {
+    "id": "values",
+    "type": "table",
+    "label": "Current values",
+    "bindings": [
+      {
+        "id": "matrix-determinant",
+        "property": "value",
+        "quantityId": "matrix.determinant"
+      },
+      {
+        "id": "matrix-area",
+        "property": "value",
+        "quantityId": "matrix.area"
+      },
+      {
+        "id": "basis-i",
+        "property": "value",
+        "quantityId": "basis.i"
+      },
+      {
+        "id": "basis-j",
+        "property": "value",
+        "quantityId": "basis.j"
+      },
+      {
+        "id": "point-input",
+        "property": "value",
+        "quantityId": "point.input"
+      },
+      {
+        "id": "point-output",
+        "property": "value",
+        "quantityId": "point.output"
+      }
+    ]
+  }
+]

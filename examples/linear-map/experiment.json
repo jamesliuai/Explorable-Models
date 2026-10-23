@@ -1,0 +1,237 @@
+{
+  "schemaVersion": "1.0",
+  "id": "linear-map",
+  "title": "Linear transformations",
+  "description": "Move the basis. Watch a whole plane follow.",
+  "question": "How does a matrix change shape, area, and orientation?",
+  "kind": "parametric",
+  "parameters": {
+    "a": {
+      "type": "number",
+      "label": "Matrix a",
+      "default": 1,
+      "min": -3,
+      "max": 3,
+      "step": 0.1,
+      "unit": "1",
+      "advanced": false
+    },
+    "b": {
+      "type": "number",
+      "label": "Matrix b",
+      "default": 1,
+      "min": -3,
+      "max": 3,
+      "step": 0.1,
+      "unit": "1",
+      "advanced": false
+    },
+    "c": {
+      "type": "number",
+      "label": "Matrix c",
+      "default": 0,
+      "min": -3,
+      "max": 3,
+      "step": 0.1,
+      "unit": "1",
+      "advanced": false
+    },
+    "d": {
+      "type": "number",
+      "label": "Matrix d",
+      "default": 1,
+      "min": -3,
+      "max": 3,
+      "step": 0.1,
+      "unit": "1",
+      "advanced": false
+    },
+    "x": {
+      "type": "number",
+      "label": "Input x",
+      "default": 1,
+      "min": -3,
+      "max": 3,
+      "step": 0.1,
+      "unit": "1",
+      "advanced": false
+    },
+    "y": {
+      "type": "number",
+      "label": "Input y",
+      "default": 1,
+      "min": -3,
+      "max": 3,
+      "step": 0.1,
+      "unit": "1",
+      "advanced": false
+    }
+  },
+  "quantities": {
+    "matrix.entries": {
+      "label": "Matrix A",
+      "type": "vector",
+      "unit": "1",
+      "dimension": "dimensionless",
+      "description": "Row-major storage [a, b, c, d]; acts on column vectors.",
+      "entityId": "matrix",
+      "vectorLength": 4
+    },
+    "matrix.determinant": {
+      "label": "Signed determinant",
+      "type": "scalar",
+      "unit": "1",
+      "dimension": "dimensionless",
+      "description": "Signed area scale ad \u2212 bc.",
+      "entityId": "matrix"
+    },
+    "matrix.area": {
+      "label": "Geometric area scale",
+      "type": "scalar",
+      "unit": "1",
+      "dimension": "dimensionless",
+      "description": "Nonnegative area scale |det(A)|.",
+      "entityId": "matrix"
+    },
+    "matrix.orientation": {
+      "label": "Orientation",
+      "type": "scalar",
+      "unit": "1",
+      "dimension": "dimensionless",
+      "description": "+1 preserved, \u22121 reversed, 0 collapsed.",
+      "entityId": "matrix"
+    },
+    "basis.i": {
+      "label": "Transformed first basis vector",
+      "type": "vector",
+      "unit": "1",
+      "dimension": "dimensionless",
+      "description": "First column (a,c).",
+      "entityId": "basis",
+      "vectorLength": 2
+    },
+    "basis.j": {
+      "label": "Transformed second basis vector",
+      "type": "vector",
+      "unit": "1",
+      "dimension": "dimensionless",
+      "description": "Second column (b,d).",
+      "entityId": "basis",
+      "vectorLength": 2
+    },
+    "point.input": {
+      "label": "Input point",
+      "type": "vector",
+      "unit": "1",
+      "dimension": "dimensionless",
+      "description": "Column vector before the transformation.",
+      "entityId": "point",
+      "vectorLength": 2
+    },
+    "point.output": {
+      "label": "Output point",
+      "type": "vector",
+      "unit": "1",
+      "dimension": "dimensionless",
+      "description": "A times the input column vector.",
+      "entityId": "point",
+      "vectorLength": 2
+    },
+    "point.outputX": {
+      "label": "Output x",
+      "type": "scalar",
+      "unit": "1",
+      "dimension": "dimensionless",
+      "description": "Output x",
+      "entityId": "point"
+    },
+    "point.outputY": {
+      "label": "Output y",
+      "type": "scalar",
+      "unit": "1",
+      "dimension": "dimensionless",
+      "description": "Output y",
+      "entityId": "point"
+    }
+  },
+  "assumptions": [
+    "The 2 \u00d7 2 matrix acts on column vectors.",
+    "Matrix entries are stored row-major: [a, b, c, d].",
+    "The grid uses an orthonormal Cartesian basis."
+  ],
+  "limitations": [
+    "Only linear maps of a two-dimensional plane are modeled.",
+    "No eigenvector claim is made; a 90\u00b0 rotation has no nonzero real eigenvector.",
+    "Near-zero determinants are displayed numerically without declaring an invertible map exactly singular."
+  ],
+  "sources": [
+    {
+      "title": "MIT OpenCourseWare \u00b7 Area, Volume and the Determinant",
+      "url": "https://ocw.mit.edu/ans7870/18/18.013a/textbook/HTML/chapter04/section01.html"
+    }
+  ],
+  "capabilities": [
+    "inspect",
+    "sample",
+    "compare",
+    "checkpoint",
+    "selection",
+    "export",
+    "capture",
+    "verify"
+  ],
+  "review": {
+    "status": "unreviewed",
+    "scope": "Technical reference checks only. Independent subject review and learner evaluation have not been completed."
+  },
+  "concept": "The columns of a matrix are the transformed basis vectors; its determinant gives signed area scale.",
+  "misconception": "The rows are the moved basis vectors, or a negative determinant means a negative geometric area.",
+  "tags": [
+    "Mathematics",
+    "Linear algebra"
+  ],
+  "geometry": {
+    "referenceSquare": {
+      "shape": "polyline2",
+      "unit": "1",
+      "coordinateFrame": "cartesian",
+      "maxElements": 10
+    },
+    "transformedSquare": {
+      "shape": "polyline2",
+      "unit": "1",
+      "coordinateFrame": "cartesian",
+      "maxElements": 10
+    }
+  },
+  "entities": [
+    {
+      "id": "matrix",
+      "label": "Transformation matrix",
+      "quantityIds": [
+        "matrix.entries",
+        "matrix.determinant",
+        "matrix.area",
+        "matrix.orientation"
+      ]
+    },
+    {
+      "id": "basis",
+      "label": "Basis vectors",
+      "quantityIds": [
+        "basis.i",
+        "basis.j"
+      ]
+    },
+    {
+      "id": "point",
+      "label": "Linked input and output point",
+      "quantityIds": [
+        "point.input",
+        "point.output",
+        "point.outputX",
+        "point.outputY"
+      ]
+    }
+  ]
+}

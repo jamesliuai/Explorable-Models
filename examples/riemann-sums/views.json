@@ -1,0 +1,78 @@
+[
+  {
+    "id": "rectangles",
+    "type": "scene2d",
+    "label": "Signed rectangles",
+    "bindings": [
+      {
+        "id": "rectangle-corners",
+        "property": "points",
+        "geometryId": "rectangles"
+      },
+      {
+        "id": "function-curve",
+        "property": "path",
+        "geometryId": "curve"
+      }
+    ],
+    "description": "Positive and negative rectangle heights contribute signed areas.",
+    "bounds": {
+      "x": [
+        -1.15,
+        1.15
+      ],
+      "y": [
+        -1.15,
+        1.15
+      ]
+    }
+  },
+  {
+    "id": "sum-equation",
+    "type": "equation",
+    "label": "Finite sum",
+    "bindings": [
+      {
+        "id": "estimate",
+        "property": "substitution",
+        "quantityId": "sum.estimate"
+      }
+    ],
+    "template": "S_n=\\sum_{i=1}^n f(x_i^*)\\Delta x",
+    "symbols": {
+      "S_n": "sum.estimate"
+    }
+  },
+  {
+    "id": "values",
+    "type": "table",
+    "label": "Integral values",
+    "bindings": [
+      {
+        "id": "sum-estimate",
+        "property": "value",
+        "quantityId": "sum.estimate"
+      },
+      {
+        "id": "sum-exact",
+        "property": "value",
+        "quantityId": "sum.exact"
+      },
+      {
+        "id": "sum-error",
+        "property": "value",
+        "quantityId": "sum.error"
+      },
+      {
+        "id": "sum-unsignedEstimate",
+        "property": "value",
+        "quantityId": "sum.unsignedEstimate"
+      },
+      {
+        "id": "sum-unsignedExact",
+        "property": "value",
+        "quantityId": "sum.unsignedExact"
+      }
+    ]
+  }
+]

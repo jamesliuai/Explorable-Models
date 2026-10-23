@@ -1,0 +1,157 @@
+{
+  "schemaVersion": "1.0",
+  "id": "oscillator",
+  "title": "Analytical oscillator",
+  "description": "Watch displacement, velocity, and energy stay in phase.",
+  "question": "Where does the energy go as a spring oscillates?",
+  "kind": "analytic",
+  "parameters": {
+    "amplitude": {
+      "type": "number",
+      "label": "Amplitude",
+      "default": 1,
+      "min": 0,
+      "max": 3,
+      "step": 0.1,
+      "unit": "m",
+      "advanced": false
+    },
+    "mass": {
+      "type": "number",
+      "label": "Mass",
+      "default": 1,
+      "min": 0.1,
+      "max": 10,
+      "step": 0.1,
+      "unit": "kg",
+      "advanced": false
+    },
+    "stiffness": {
+      "type": "number",
+      "label": "Spring stiffness",
+      "default": 4,
+      "min": 0.1,
+      "max": 20,
+      "step": 0.1,
+      "unit": "N/m",
+      "advanced": false
+    },
+    "periods": {
+      "type": "number",
+      "label": "Observation periods",
+      "default": 3,
+      "min": 1,
+      "max": 10,
+      "step": 1,
+      "unit": "1",
+      "advanced": true,
+      "integer": true
+    }
+  },
+  "quantities": {
+    "body.position": {
+      "label": "Displacement",
+      "type": "scalar",
+      "unit": "m",
+      "dimension": "length",
+      "description": "Displacement"
+    },
+    "body.velocity": {
+      "label": "Velocity",
+      "type": "scalar",
+      "unit": "m/s",
+      "dimension": "length time\u207b\u00b9",
+      "description": "Velocity"
+    },
+    "body.acceleration": {
+      "label": "Acceleration",
+      "type": "scalar",
+      "unit": "m/s\u00b2",
+      "dimension": "length time\u207b\u00b2",
+      "description": "Acceleration"
+    },
+    "oscillation.omega": {
+      "label": "Angular frequency",
+      "type": "scalar",
+      "unit": "rad/s",
+      "dimension": "time\u207b\u00b9",
+      "description": "Angular frequency"
+    },
+    "oscillation.period": {
+      "label": "Period",
+      "type": "scalar",
+      "unit": "s",
+      "dimension": "time",
+      "description": "Period"
+    },
+    "energy.potential": {
+      "label": "Spring potential energy",
+      "type": "scalar",
+      "unit": "J",
+      "dimension": "mass length\u00b2 time\u207b\u00b2",
+      "description": "Spring potential energy"
+    },
+    "energy.kinetic": {
+      "label": "Kinetic energy",
+      "type": "scalar",
+      "unit": "J",
+      "dimension": "mass length\u00b2 time\u207b\u00b2",
+      "description": "Kinetic energy"
+    },
+    "energy.total": {
+      "label": "Total energy",
+      "type": "scalar",
+      "unit": "J",
+      "dimension": "mass length\u00b2 time\u207b\u00b2",
+      "description": "Total energy"
+    }
+  },
+  "assumptions": [
+    "An ideal mass on a linear spring is released from rest at displacement A.",
+    "There is no damping or forcing.",
+    "Motion is evaluated analytically as A cos(\u03c9t), with \u03c9 = \u221a(k/m)."
+  ],
+  "limitations": [
+    "This is an analytical benchmark, not a stateful numerical solver.",
+    "The terminal event ends the observation window, not the physical motion."
+  ],
+  "sources": [
+    {
+      "title": "OpenStax University Physics 1 \u00b7 15.1 Simple Harmonic Motion",
+      "url": "https://openstax.org/books/university-physics-volume-1/pages/15-1-simple-harmonic-motion"
+    }
+  ],
+  "capabilities": [
+    "inspect",
+    "sample",
+    "compare",
+    "checkpoint",
+    "selection",
+    "export",
+    "capture",
+    "verify",
+    "play",
+    "pause",
+    "seek",
+    "step"
+  ],
+  "review": {
+    "status": "unreviewed",
+    "scope": "Technical reference checks only. Independent subject review and learner evaluation have not been completed."
+  },
+  "concept": "Kinetic and elastic potential energy exchange while phase determines position and velocity.",
+  "misconception": "Energy conservation alone proves that an oscillator has the correct phase.",
+  "tags": [
+    "Physics",
+    "Oscillations",
+    "Extension benchmark"
+  ],
+  "geometry": {
+    "displacement": {
+      "shape": "polyline2",
+      "unit": "m",
+      "coordinateFrame": "cartesian",
+      "maxElements": 4
+    }
+  }
+}

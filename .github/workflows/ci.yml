@@ -1,0 +1,41 @@
+name: Validate Explorable Models
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+concurrency:
+  group: preview-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium firefox webkit
+      - name: Verify and package the local preview
+        run: npm run release:preview
+      - name: Retain verified preview artifacts
+        uses: actions/upload-artifact@v7
+        with:
+          name: explorable-models-preview
+          path: release/preview/
+          if-no-files-found: error
+          retention-days: 14
+      - name: Retain diagnostics
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: preview-diagnostics
+          path: |
+            /tmp/experiment-kit-final-verification/
+            /tmp/experiment-kit-playwright/
+            /tmp/experiment-kit-public-preview/
+          if-no-files-found: ignore
+          retention-days: 7

@@ -1,0 +1,235 @@
+{
+  "schemaVersion": "1.0",
+  "id": "base-rates",
+  "title": "Base rates",
+  "description": "A good detector can still raise mostly false alarms.",
+  "question": "If a part is flagged, how likely is it actually defective?",
+  "kind": "parametric",
+  "parameters": {
+    "prevalence": {
+      "type": "number",
+      "label": "Defect rate",
+      "default": 0.01,
+      "min": 0,
+      "max": 1,
+      "step": 0.001,
+      "unit": "1",
+      "advanced": false,
+      "display": {
+        "unit": "%",
+        "scale": 100,
+        "decimals": 1
+      }
+    },
+    "sensitivity": {
+      "type": "number",
+      "label": "Sensitivity",
+      "default": 0.9,
+      "min": 0,
+      "max": 1,
+      "step": 0.01,
+      "unit": "1",
+      "advanced": false,
+      "display": {
+        "unit": "%",
+        "scale": 100,
+        "decimals": 1
+      }
+    },
+    "falsePositiveRate": {
+      "type": "number",
+      "label": "False positive rate",
+      "default": 0.05,
+      "min": 0,
+      "max": 1,
+      "step": 0.001,
+      "unit": "1",
+      "advanced": false,
+      "display": {
+        "unit": "%",
+        "scale": 100,
+        "decimals": 1
+      }
+    },
+    "population": {
+      "type": "number",
+      "label": "Population",
+      "default": 10000,
+      "min": 1,
+      "max": 1000000,
+      "step": 1,
+      "unit": "parts",
+      "advanced": true,
+      "integer": true
+    }
+  },
+  "quantities": {
+    "count.population": {
+      "label": "All parts",
+      "type": "scalar",
+      "unit": "parts",
+      "dimension": "count",
+      "description": "Expected count, which may be fractional.",
+      "entityId": "population"
+    },
+    "count.defective": {
+      "label": "Defective parts",
+      "type": "scalar",
+      "unit": "parts",
+      "dimension": "count",
+      "description": "Expected count, which may be fractional.",
+      "entityId": "defective"
+    },
+    "count.nondefective": {
+      "label": "Nondefective parts",
+      "type": "scalar",
+      "unit": "parts",
+      "dimension": "count",
+      "description": "Expected count, which may be fractional.",
+      "entityId": "nondefective"
+    },
+    "count.truePositive": {
+      "label": "True positives",
+      "type": "scalar",
+      "unit": "parts",
+      "dimension": "count",
+      "description": "Expected count, which may be fractional.",
+      "entityId": "flagged"
+    },
+    "count.falsePositive": {
+      "label": "False positives",
+      "type": "scalar",
+      "unit": "parts",
+      "dimension": "count",
+      "description": "Expected count, which may be fractional.",
+      "entityId": "flagged"
+    },
+    "count.falseNegative": {
+      "label": "False negatives",
+      "type": "scalar",
+      "unit": "parts",
+      "dimension": "count",
+      "description": "Expected count, which may be fractional.",
+      "entityId": "unflagged"
+    },
+    "count.trueNegative": {
+      "label": "True negatives",
+      "type": "scalar",
+      "unit": "parts",
+      "dimension": "count",
+      "description": "Expected count, which may be fractional.",
+      "entityId": "unflagged"
+    },
+    "count.flagged": {
+      "label": "All flagged parts",
+      "type": "scalar",
+      "unit": "parts",
+      "dimension": "count",
+      "description": "Expected count, which may be fractional.",
+      "entityId": "flagged"
+    },
+    "count.unflagged": {
+      "label": "Unflagged parts",
+      "type": "scalar",
+      "unit": "parts",
+      "dimension": "count",
+      "description": "Expected count, which may be fractional.",
+      "entityId": "unflagged"
+    },
+    "probability.flagged": {
+      "label": "Probability of a flag",
+      "type": "scalar",
+      "unit": "1",
+      "dimension": "dimensionless",
+      "description": "P(+) = p s + (1 \u2212 p) f.",
+      "entityId": "flagged"
+    },
+    "probability.posterior": {
+      "label": "Defect given a flag",
+      "type": "scalar",
+      "unit": "1",
+      "dimension": "dimensionless",
+      "description": "P(D | +): probability of a defect among flagged parts, undefined if no part can be flagged.",
+      "entityId": "flagged"
+    }
+  },
+  "assumptions": [
+    "p is the defect rate; sensitivity is P(+ | D); the false positive rate is P(+ | not D).",
+    "Counts are expectations, not outcomes from a random sample.",
+    "Every part is classified as flagged or unflagged."
+  ],
+  "limitations": [
+    "This factory example does not model dependence between repeated tests.",
+    "Expected counts can be fractional; display rounding does not alter calculations.",
+    "Conditional probability is undefined when the flagged event has probability zero."
+  ],
+  "sources": [
+    {
+      "title": "OpenStax Principles of Data Science \u00b7 3.4 Probability Theory",
+      "url": "https://openstax.org/books/principles-data-science/pages/3-4-probability-theory"
+    }
+  ],
+  "capabilities": [
+    "inspect",
+    "sample",
+    "compare",
+    "checkpoint",
+    "selection",
+    "export",
+    "capture",
+    "verify"
+  ],
+  "review": {
+    "status": "unreviewed",
+    "scope": "Technical reference checks only. Independent subject review and learner evaluation have not been completed."
+  },
+  "concept": "The base rate changes the balance of true and false positives in the flagged population.",
+  "misconception": "P(defective | flagged) equals the sensitivity P(flagged | defective).",
+  "tags": [
+    "Statistics",
+    "Probability"
+  ],
+  "entities": [
+    {
+      "id": "population",
+      "label": "All parts",
+      "quantityIds": [
+        "count.population"
+      ]
+    },
+    {
+      "id": "defective",
+      "label": "Defective parts",
+      "quantityIds": [
+        "count.defective"
+      ]
+    },
+    {
+      "id": "nondefective",
+      "label": "Nondefective parts",
+      "quantityIds": [
+        "count.nondefective"
+      ]
+    },
+    {
+      "id": "flagged",
+      "label": "Flagged population",
+      "quantityIds": [
+        "count.truePositive",
+        "count.falsePositive",
+        "count.flagged",
+        "probability.flagged",
+        "probability.posterior"
+      ]
+    },
+    {
+      "id": "unflagged",
+      "label": "Unflagged population",
+      "quantityIds": [
+        "count.falseNegative",
+        "count.trueNegative",
+        "count.unflagged"
+      ]
+    }
+  ]
+}

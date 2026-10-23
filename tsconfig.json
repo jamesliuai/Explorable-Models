@@ -1,0 +1,59 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": [
+      "ES2022",
+      "DOM",
+      "DOM.Iterable",
+      "WebWorker"
+    ],
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "jsx": "react-jsx",
+    "strict": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "allowImportingTsExtensions": true,
+    "noEmit": true,
+    "types": [
+      "vite/client",
+      "node",
+      "vitest/globals"
+    ],
+    "baseUrl": ".",
+    "paths": {
+      "@experiment-kit/core": [
+        "packages/core/src/index.ts"
+      ],
+      "@experiment-kit/examples": [
+        "examples/browser.ts"
+      ],
+      "@experiment-kit/player": [
+        "packages/player/src/public.ts"
+      ],
+      "@experiment-kit/core/declarative": [
+        "packages/core/src/declarative/index.ts"
+      ],
+      "@experiment-kit/agent": [
+        "packages/agent/src/index.ts"
+      ],
+      "@experiment-kit/core/document-worker": [
+        "packages/core/src/declarative/document-worker.ts"
+      ]
+    }
+  },
+  "include": [
+    "packages",
+    "examples",
+    "tests",
+    "vite.config.ts",
+    "vitest.config.ts",
+    "playwright.config.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "**/dist"
+  ]
+}

@@ -1,0 +1,155 @@
+[
+  {
+    "id": "rolling-side",
+    "type": "scene2d",
+    "label": "Side view",
+    "bindings": [
+      {
+        "id": "body-center",
+        "property": "position",
+        "quantityId": "body.position"
+      },
+      {
+        "id": "body-mark",
+        "property": "rotation",
+        "quantityId": "body.rotation"
+      },
+      {
+        "id": "ramp-line",
+        "property": "path",
+        "geometryId": "ramp"
+      },
+      {
+        "id": "friction-arrow",
+        "property": "vector",
+        "quantityId": "force.frictionVector",
+        "transform": {
+          "kind": "scale",
+          "factor": 0.15,
+          "disclosure": "Force arrows are scaled 0.15 metres per newton for legibility."
+        }
+      },
+      {
+        "id": "normal-arrow",
+        "property": "vector",
+        "quantityId": "force.normalVector",
+        "transform": {
+          "kind": "scale",
+          "factor": 0.15,
+          "disclosure": "Force arrows are scaled 0.15 metres per newton for legibility."
+        }
+      },
+      {
+        "id": "gravity-arrow",
+        "property": "vector",
+        "quantityId": "force.gravityVector",
+        "transform": {
+          "kind": "scale",
+          "factor": 0.15,
+          "disclosure": "Force arrows are scaled 0.15 metres per newton for legibility."
+        }
+      }
+    ],
+    "description": "A marked body rolls down the incline. Clockwise rotation is negative about world Z."
+  },
+  {
+    "id": "rolling-3d",
+    "type": "scene3d",
+    "label": "Spatial view",
+    "bindings": [
+      {
+        "id": "mesh-center",
+        "property": "position",
+        "quantityId": "body.position"
+      },
+      {
+        "id": "mesh-mark",
+        "property": "rotationZ",
+        "quantityId": "body.rotation"
+      }
+    ],
+    "description": "The same center and orientation with an orbitable camera and distinct mass distributions."
+  },
+  {
+    "id": "energy",
+    "type": "plot",
+    "label": "Energy partition",
+    "bindings": [
+      {
+        "id": "potential",
+        "property": "value",
+        "quantityId": "energy.potential"
+      },
+      {
+        "id": "translation",
+        "property": "value",
+        "quantityId": "energy.translational"
+      },
+      {
+        "id": "rotation",
+        "property": "value",
+        "quantityId": "energy.rotational"
+      }
+    ],
+    "description": "Potential energy converts to translation and rotation."
+  },
+  {
+    "id": "motion-equation",
+    "type": "equation",
+    "label": "Rolling acceleration",
+    "bindings": [
+      {
+        "id": "acceleration-value",
+        "property": "substitution",
+        "quantityId": "body.acceleration"
+      },
+      {
+        "id": "inertia-value",
+        "property": "substitution",
+        "quantityId": "body.kappa"
+      }
+    ],
+    "template": "a = \\frac{g\\sin\\theta}{1+\\kappa}",
+    "symbols": {
+      "a": "body.acceleration",
+      "\\kappa": "body.kappa"
+    }
+  },
+  {
+    "id": "values",
+    "type": "table",
+    "label": "Current values",
+    "bindings": [
+      {
+        "id": "body-acceleration",
+        "property": "value",
+        "quantityId": "body.acceleration"
+      },
+      {
+        "id": "body-distance",
+        "property": "value",
+        "quantityId": "body.distance"
+      },
+      {
+        "id": "body-speed",
+        "property": "value",
+        "quantityId": "body.speed"
+      },
+      {
+        "id": "body-angularSpeed",
+        "property": "value",
+        "quantityId": "body.angularSpeed"
+      },
+      {
+        "id": "force-friction",
+        "property": "value",
+        "quantityId": "force.friction"
+      },
+      {
+        "id": "force-minCoefficient",
+        "property": "value",
+        "quantityId": "force.minCoefficient"
+      }
+    ]
+  }
+]

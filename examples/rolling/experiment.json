@@ -1,0 +1,354 @@
+{
+  "schemaVersion": "1.0",
+  "id": "rolling",
+  "title": "Rolling bodies",
+  "description": "Same ramp. Different mass distributions. A race explained by rotational inertia.",
+  "question": "Why does a solid sphere reach the bottom before a hoop?",
+  "kind": "analytic",
+  "parameters": {
+    "bodyType": {
+      "type": "string",
+      "label": "Body type",
+      "default": "sphere",
+      "options": [
+        {
+          "value": "sphere",
+          "label": "Solid sphere"
+        },
+        {
+          "value": "shell",
+          "label": "Spherical shell"
+        },
+        {
+          "value": "cylinder",
+          "label": "Solid cylinder"
+        },
+        {
+          "value": "hoop",
+          "label": "Hoop"
+        }
+      ]
+    },
+    "incline": {
+      "type": "number",
+      "label": "Incline",
+      "default": 0.5235987755982988,
+      "min": 0,
+      "max": 0.7853981633974483,
+      "step": 0.017453292519943295,
+      "unit": "rad",
+      "advanced": false,
+      "display": {
+        "unit": "\u00b0",
+        "scale": 57.29577951308232,
+        "decimals": 1
+      }
+    },
+    "mass": {
+      "type": "number",
+      "label": "Mass",
+      "default": 1,
+      "min": 0.1,
+      "max": 10,
+      "step": 0.1,
+      "unit": "kg",
+      "advanced": true
+    },
+    "radius": {
+      "type": "number",
+      "label": "Radius",
+      "default": 0.2,
+      "min": 0.05,
+      "max": 0.5,
+      "step": 0.01,
+      "unit": "m",
+      "advanced": true
+    },
+    "length": {
+      "type": "number",
+      "label": "Ramp length",
+      "default": 4,
+      "min": 1,
+      "max": 8,
+      "step": 0.1,
+      "unit": "m",
+      "advanced": true
+    }
+  },
+  "quantities": {
+    "body.kappa": {
+      "label": "Inertia factor \u03ba",
+      "type": "scalar",
+      "unit": "1",
+      "dimension": "dimensionless",
+      "description": "Inertia factor \u03ba",
+      "entityId": "body"
+    },
+    "body.inertia": {
+      "label": "Moment of inertia",
+      "type": "scalar",
+      "unit": "kg\u00b7m\u00b2",
+      "dimension": "mass length\u00b2",
+      "description": "Moment of inertia",
+      "entityId": "body"
+    },
+    "body.acceleration": {
+      "label": "Acceleration",
+      "type": "scalar",
+      "unit": "m/s\u00b2",
+      "dimension": "length time\u207b\u00b2",
+      "description": "Acceleration along the downhill tangent.",
+      "entityId": "body"
+    },
+    "body.distance": {
+      "label": "Distance down ramp",
+      "type": "scalar",
+      "unit": "m",
+      "dimension": "length",
+      "description": "Distance down ramp",
+      "entityId": "body"
+    },
+    "body.speed": {
+      "label": "Speed",
+      "type": "scalar",
+      "unit": "m/s",
+      "dimension": "length time\u207b\u00b9",
+      "description": "Nonnegative center-of-mass speed.",
+      "entityId": "body"
+    },
+    "body.angularSpeed": {
+      "label": "Angular speed",
+      "type": "scalar",
+      "unit": "rad/s",
+      "dimension": "time\u207b\u00b9",
+      "description": "Nonnegative angular speed magnitude.",
+      "entityId": "body"
+    },
+    "body.rotation": {
+      "label": "Signed rotation",
+      "type": "scalar",
+      "unit": "rad",
+      "dimension": "dimensionless",
+      "description": "Accumulated angle about positive world Z.",
+      "entityId": "body",
+      "signConvention": "Clockwise/downhill is negative."
+    },
+    "body.position": {
+      "label": "Center position",
+      "type": "vector",
+      "unit": "m",
+      "dimension": "length",
+      "description": "Ground-frame center coordinates, X right, Y up, Z out of view.",
+      "entityId": "body",
+      "vectorLength": 3
+    },
+    "body.velocity": {
+      "label": "Velocity vector",
+      "type": "vector",
+      "unit": "m/s",
+      "dimension": "length time\u207b\u00b9",
+      "description": "Ground-frame center velocity.",
+      "entityId": "body",
+      "vectorLength": 3
+    },
+    "body.angularVelocity": {
+      "label": "Angular velocity vector",
+      "type": "vector",
+      "unit": "rad/s",
+      "dimension": "time\u207b\u00b9",
+      "description": "Ground-frame angular velocity.",
+      "entityId": "body",
+      "vectorLength": 3
+    },
+    "force.friction": {
+      "label": "Static friction",
+      "type": "scalar",
+      "unit": "N",
+      "dimension": "mass length time\u207b\u00b2",
+      "description": "Uphill static-friction magnitude for this release-from-rest model.",
+      "entityId": "forces"
+    },
+    "force.normal": {
+      "label": "Normal force",
+      "type": "scalar",
+      "unit": "N",
+      "dimension": "mass length time\u207b\u00b2",
+      "description": "Normal force",
+      "entityId": "forces"
+    },
+    "force.gravity": {
+      "label": "Weight",
+      "type": "scalar",
+      "unit": "N",
+      "dimension": "mass length time\u207b\u00b2",
+      "description": "Weight",
+      "entityId": "forces"
+    },
+    "force.minCoefficient": {
+      "label": "Required static coefficient",
+      "type": "scalar",
+      "unit": "1",
+      "dimension": "dimensionless",
+      "description": "Minimum static-friction coefficient needed for ideal rolling.",
+      "entityId": "forces"
+    },
+    "force.frictionVector": {
+      "label": "Static friction vector",
+      "type": "vector",
+      "unit": "N",
+      "dimension": "mass length time\u207b\u00b2",
+      "description": "Points uphill, opposite the downhill tangent.",
+      "entityId": "forces",
+      "vectorLength": 3
+    },
+    "force.normalVector": {
+      "label": "Normal force vector",
+      "type": "vector",
+      "unit": "N",
+      "dimension": "mass length time\u207b\u00b2",
+      "description": "Points outward from the incline.",
+      "entityId": "forces",
+      "vectorLength": 3
+    },
+    "force.gravityVector": {
+      "label": "Gravity vector",
+      "type": "vector",
+      "unit": "N",
+      "dimension": "mass length time\u207b\u00b2",
+      "description": "Points vertically downward.",
+      "entityId": "forces",
+      "vectorLength": 3
+    },
+    "energy.potential": {
+      "label": "Potential energy",
+      "type": "scalar",
+      "unit": "J",
+      "dimension": "mass length\u00b2 time\u207b\u00b2",
+      "description": "Potential energy above the final center height.",
+      "entityId": "energy"
+    },
+    "energy.translational": {
+      "label": "Translational energy",
+      "type": "scalar",
+      "unit": "J",
+      "dimension": "mass length\u00b2 time\u207b\u00b2",
+      "description": "Translational energy",
+      "entityId": "energy"
+    },
+    "energy.rotational": {
+      "label": "Rotational energy",
+      "type": "scalar",
+      "unit": "J",
+      "dimension": "mass length\u00b2 time\u207b\u00b2",
+      "description": "Rotational energy",
+      "entityId": "energy"
+    },
+    "energy.total": {
+      "label": "Total energy",
+      "type": "scalar",
+      "unit": "J",
+      "dimension": "mass length\u00b2 time\u207b\u00b2",
+      "description": "Total energy",
+      "entityId": "energy"
+    },
+    "event.arrivalTime": {
+      "label": "Arrival time",
+      "type": "scalar",
+      "unit": "s",
+      "dimension": "time",
+      "description": "Undefined for a horizontal ramp; finite otherwise.",
+      "entityId": "body"
+    }
+  },
+  "assumptions": [
+    "Rigid bodies start from rest on a straight, fixed incline.",
+    "Static friction is sufficient to maintain rolling without slipping.",
+    "Gravity is constant at 9.81 m/s\u00b2; drag and rolling resistance are omitted.",
+    "World X is right, Y up, and Z points out of the side view."
+  ],
+  "limitations": [
+    "This is an ideal rolling model, not a general prediction of real-world rolling.",
+    "The experiment ends at ramp arrival with nonzero speed retained; impact and subsequent motion are not modeled.",
+    "Friction is not an adjustable coefficient: its required minimum is reported."
+  ],
+  "sources": [
+    {
+      "title": "OpenStax University Physics 1 \u00b7 11.1 Rolling Motion",
+      "url": "https://openstax.org/books/university-physics-volume-1/pages/11-1-rolling-motion"
+    }
+  ],
+  "capabilities": [
+    "inspect",
+    "sample",
+    "compare",
+    "checkpoint",
+    "selection",
+    "export",
+    "capture",
+    "verify",
+    "play",
+    "pause",
+    "seek",
+    "step"
+  ],
+  "review": {
+    "status": "unreviewed",
+    "scope": "Technical reference checks only. Independent subject review and learner evaluation have not been completed."
+  },
+  "concept": "Mass distribution determines how gravitational energy is split between translation and rotation.",
+  "misconception": "A heavier body must accelerate faster, or static friction always opposes the velocity of the center.",
+  "tags": [
+    "Physics",
+    "Mechanics"
+  ],
+  "geometry": {
+    "ramp": {
+      "shape": "polyline3",
+      "unit": "m",
+      "coordinateFrame": "world",
+      "maxElements": 6
+    }
+  },
+  "entities": [
+    {
+      "id": "body",
+      "label": "Rolling body",
+      "quantityIds": [
+        "body.kappa",
+        "body.inertia",
+        "body.acceleration",
+        "body.distance",
+        "body.speed",
+        "body.angularSpeed",
+        "body.rotation",
+        "body.position",
+        "body.velocity",
+        "body.angularVelocity",
+        "event.arrivalTime"
+      ]
+    },
+    {
+      "id": "forces",
+      "label": "Forces on the body",
+      "quantityIds": [
+        "force.friction",
+        "force.normal",
+        "force.gravity",
+        "force.minCoefficient",
+        "force.frictionVector",
+        "force.normalVector",
+        "force.gravityVector"
+      ]
+    },
+    {
+      "id": "energy",
+      "label": "Energy partition",
+      "quantityIds": [
+        "energy.potential",
+        "energy.translational",
+        "energy.rotational",
+        "energy.total"
+      ]
+    }
+  ]
+}

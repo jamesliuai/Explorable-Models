@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "target": "ES2022", "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "module": "NodeNext", "moduleResolution": "NodeNext", "jsx": "react-jsx",
+    "strict": true, "skipLibCheck": true, "esModuleInterop": true,
+    "declaration": true, "declarationMap": true, "emitDeclarationOnly": true,
+    "outDir": "dist", "rootDir": "src", "noEmitOnError": true,
+    "types": ["react", "react-dom"]
+  },
+  "include": ["src/public.ts"]
+}

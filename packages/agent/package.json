@@ -1,0 +1,44 @@
+{
+  "name": "@experiment-kit/agent",
+  "version": "0.2.0-preview.1",
+  "description": "Provider-neutral declarative visualization tools and a scoped host relay.",
+  "type": "module",
+  "license": "MIT",
+  "sideEffects": false,
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "dependencies": {
+    "@experiment-kit/core": "0.2.0-preview.1"
+  },
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "prepack": "npm run build"
+  },
+  "publishConfig": {
+    "access": "public",
+    "tag": "preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jamesliuai/Explorable-Models.git",
+    "directory": "packages/agent"
+  },
+  "homepage": "https://github.com/jamesliuai/Explorable-Models#readme",
+  "bugs": {
+    "url": "https://github.com/jamesliuai/Explorable-Models/issues"
+  }
+}
