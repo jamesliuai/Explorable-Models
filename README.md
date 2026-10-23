@@ -1,46 +1,152 @@
 # Explorable Models
 
-A small TypeScript toolkit for interactive explanations that remain inspectable, reproducible, and portable. Models, diagrams, plots, equations, accessible values, and agent commands share one authoritative state.
+**An agent-first TypeScript toolkit for interactive scientific visualizations.**
 
-Public project: [jamesliuai/Explorable-Models](https://github.com/jamesliuai/Explorable-Models). The project was originally called Experiment Kit; `@experiment-kit/*`, the `experiment-kit` CLI, storage keys, and artifact schemas retain their technical names for compatibility. npm namespace ownership remains unconfirmed.
+Explorable Models turns explicit mathematical models and data into interactive scenes, plots, equations, and tables. Agents can discover the available capabilities, compose a visualization, inspect its computed values, and revise it through structured tools. Developers can embed the same visualization in a React or plain-DOM application.
 
-The project includes a browser player, a dependency-free core SDK, a local CLI, and a stdio MCP adapter. Playback needs no AI connection or account.
+Every model-driven view and agent inspection reads from the same committed model state. Move a point, change a parameter, or advance time, and the diagram, numerical readouts, and equations stay connected to the quantities they represent.
 
-## Agent-first developer preview
+The toolkit includes a dependency-free core, an embeddable browser player, provider-neutral agent tools, and a local CLI with MCP adapters. Playback requires no AI connection or account. Your application owns the agent connection, authentication, navigation, and persistence.
 
-The `0.2.0-preview.1` candidate adds schema 2.0 editable documents, isolated browser sessions, React and plain-DOM surfaces, bounded expressions/data, and provider-neutral authoring tools. The composition studio opens at `/` (also `/agent.html`); `/guide.html` explains the preview. The existing gallery is at `/gallery.html`, and existing `?experiment=…`, embed/capture links, and downloaded v1 startup snapshots still select the legacy player.
+> **Developer preview:** `0.2.0-preview.1` is available from this source repository. Build local package tarballs to use it in another application; npm publication and a hosted demo are deferred. See the [preview contract](docs/agent-first-contract.md) for the supported scope.
+
+## What you can build
+
+Compose linked 2D scenes, line and scatter plots, bars, shaded regions, equations, value panels, and tables. Add bounded parameter controls, draggable points with exact numeric alternatives, analytical playback, and comparisons between retained runs.
+
+The studio includes eight editable examples:
+
+| Example | Explore |
+| --- | --- |
+| Waves | Amplitude, frequency, and the exact value at a probe |
+| Coordinate geometry | Triangle side lengths, area, and degenerate cases |
+| Projectile motion | Trajectory, position, and velocity through the exact impact time |
+| Linear transformations | Matrix action, basis vectors, determinant, and area |
+| Riemann sums | A closed-form midpoint approximation and its signed error |
+| Oscillators | Analytical displacement, velocity, and phase |
+| Supplied data | Observations alongside an explicitly defined model curve |
+| Probability | Base rates, expected frequencies, and conditional probability |
+
+These presets are ordinary editable documents built from the public primitives. The separate source-based gallery includes five TypeScript experiments, including a rolling-body model with 2D and 3D views.
+
+The declarative preview supports analytical and parametric models with bounded expressions and numeric datasets. General 3D, numerical differential-equation solvers, stochastic simulation, and arbitrary generated JavaScript are outside that API.
+
+## Quick start
+
+Requires **Node.js 22.12 or newer**.
+
+```sh
+git clone https://github.com/jamesliuai/Explorable-Models.git
+cd Explorable-Models
+npm ci
+npm run dev
+```
+
+Open [localhost:5173](http://127.0.0.1:5173) for the composition studio. Choose a preset, adjust its parameters, and inspect the document and computed values. The preview guide is at `/guide.html`; the source-based gallery is at `/gallery.html`.
+
+Install Chromium before using the CLI's browser-backed commands or running browser tests:
+
+```sh
+npx playwright install chromium
+```
+
+## Author with an agent
+
+Agent-first means authoring is a structured API: tools expose schemas, expression capabilities, resource limits, computed state, and repair diagnostics. An agent can create and revise declarative documents without generating application code or automating the UI.
+
+The workflow is explicit:
+
+1. **Discover** the document grammar and supported capabilities with `visualization_discover`.
+2. **Inspect** the current session and mutation guards with `visualization_inspect`.
+3. **Create or revise** a candidate with `visualization_create` or `visualization_revise`.
+4. **Commit** the validated candidate with `visualization_commit`.
+5. **Operate, inspect, and save** the accepted visualization through the same session.
+
+Edits target stable quantity, series, view, and mark IDs. Mutations carry version guards so stale agent calls cannot silently overwrite newer user changes. Failed candidates preserve the last accepted visualization. Validation checks schema, references, and computation; scientific correctness still needs independent evidence.
+
+For a compatible MCP host, configure the local declarative adapter using the absolute path to your checkout:
+
+```json
+{
+  "mcpServers": {
+    "explorable-models": {
+      "command": "node",
+      "args": [
+        "/absolute/path/to/Explorable-Models/packages/cli/bin/experiment-kit.mjs",
+        "mcp-document"
+      ]
+    }
+  }
+}
+```
+
+This starts a browser-backed session for document authoring and computational inspection. It has no mounted visual surface or screenshot tool. To show the visualization in your own application, use the embedded player and `@experiment-kit/agent`, with the host authorizing calls to the browser session.
+
+See [document authoring](docs/declarative-authoring.md), the [agent package](packages/agent/README.md), and the [CLI/MCP reference](docs/tooling.md) for document examples, transport integration, and the full tool contract.
+
+## Embed in an application
+
+Build and verify the local packages from the repository root:
 
 ```sh
 npm run build:packages
 npm run verify:packages
 ```
 
-These commands produce and test local tarballs in `release/preview/`; they do not publish packages. Start with [embedding](docs/embedding.md), [document authoring](docs/declarative-authoring.md), and the [preview contract](docs/agent-first-contract.md). The [release evidence record](docs/agent-first-release-status.md) distinguishes completed checks from the external trials, independent review, and publishing work required for a supported release.
+The verification command creates and tests package tarballs in `release/preview/`. Install those matching tarballs in your application as described in the [embedding guide](docs/embedding.md).
 
-## Run the player
+In a browser client entry, create a session, commit a preset, and mount it into a dedicated container:
 
-Requires Node.js 22.12 or newer.
+```ts
+import { createPreset, createVisualizationSession } from '@experiment-kit/core/declarative';
+import { mountVisualization } from '@experiment-kit/player';
 
-```sh
-npm ci
-npx playwright install chromium
-npm run dev
+const session = await createVisualizationSession();
+const guard = () => {
+  const state = session.getState();
+  return {
+    sessionId: session.id,
+    expectedVersion: state.version,
+    ...(state.run ? { expectedRunId: state.run.id } : {}),
+    operationId: crypto.randomUUID(),
+    origin: 'host' as const,
+  };
+};
+
+const candidate = await session.createCandidate(createPreset('wave'), guard());
+await session.commitCandidate(candidate.id, guard());
+
+const surface = mountVisualization(document.querySelector('#visualization')!, { session });
+
+// When the host tears down this visualization:
+// surface.unmount();
+// session.dispose();
 ```
 
-Open `http://127.0.0.1:5173` for the studio, or `/gallery.html` for the legacy browser player:
+React applications can render `<VisualizationSurface session={session} />` from `@experiment-kit/player`. The imperative DOM API uses React internally and provides a ShadowRoot for style isolation. Each session owns its worker and state; multiple surfaces can share a session. The [embedding guide](docs/embedding.md) covers lifecycle, worker configuration, persistence, and SVG export.
 
-- **Rolling bodies:** four mass distributions, accurate signed rotation, forces, energy partition, time-aligned comparison, 2D and orbitable 3D.
-- **Linear transformations:** matrix presets, draggable and exact point controls, basis vectors, signed determinant, and geometric area.
-- **Base rates:** expected frequencies, a conditioning diagram, exact contingency table, probability tree, and explicit undefined results.
-- **Extension examples:** Riemann sums and an analytical oscillator, using the same core contract.
+## Keep the model and the view connected
 
-Save, import, restore, and compare runs in the player. Open **Model & checks** for assumptions, full values, quantitative checks, and machine-readable state. Browser storage is a convenience; download snapshots for durable storage.
+The runtime makes the relationship between computation, interaction, and rendering explicit:
 
-## Author an experiment
+- **One committed frame.** Scientific values come from model quantities evaluated in a browser worker. Renderers bind to those values and apply presentation transforms.
+- **Separate model and presentation changes.** Committing parameters or model edits starts a new run. Styling and layout edits preserve scientific state. Preview gestures remain tentative until committed or cancelled.
+- **Explicit undefined values.** Invalid mathematical results carry a status and reason. Missing data stays missing, and plotted lines leave gaps at missing samples.
+- **Reproducible artifacts.** Saved artifacts record exact revisions and runtime identities. Incompatible restores fail explicitly. Hosts own durable storage.
+- **Inspectable assumptions and checks.** Documents and source bundles expose assumptions and limitations. Author checks and independent reference fixtures retain distinct provenance.
+
+## Author custom TypeScript models
+
+For source-based experiments, the retained schema 1.0 workflow provides pure TypeScript models, declared view bindings, model documentation, and author checks:
 
 ```sh
 npm run kit -- init my-experiment --template linear-map
 npm run kit -- dev my-experiment
+```
+
+After stopping the development server, validate, inspect, capture, or export the experiment:
+
+```sh
 npm run kit -- check my-experiment
 npm run kit -- verify my-experiment
 npm run kit -- inspect my-experiment
@@ -48,67 +154,40 @@ npm run kit -- capture my-experiment --out frame.png
 npm run kit -- export my-experiment --out exports/my-experiment --zip
 ```
 
-`model.ts` computes values. `experiment.json` declares parameters, quantities, units, and capabilities. `views.json` binds trusted renderers. `checks.ts`, `fixtures.json`, and `model.md` explain what is checked and under which assumptions. Start with an example; see [the authoring guide](docs/authoring.md) and [CLI/MCP reference](docs/tooling.md).
+Authored model and check code runs in a browser worker, never in privileged CLI Node. This workflow supports trusted local authors; it is not a hostile-code hosting sandbox. See [TypeScript authoring](docs/authoring.md) for the source contract and [tooling](docs/tooling.md) for its MCP adapter.
 
-The CLI never imports candidate model/check code into privileged Node. It uses a fixed build pipeline and a dedicated browser worker for authored execution. Source edits are built as candidates; failed checks preserve the last working revision. The first release assumes trusted local authors and is not a public hostile-code hosting sandbox.
+Schema 1.0 source artifacts and schema 2.0 declarative documents have separate contracts. Keep existing snapshots with their original player and runtime; there is no silent migration between them.
 
-## Connect an agent
-
-Use absolute paths in your host's MCP configuration:
-
-```json
-{
-  "mcpServers": {
-    "experiment-kit": {
-      "command": "node",
-      "args": ["/absolute/path/to/experiment-kit/packages/cli/bin/experiment-kit.mjs", "mcp", "/absolute/path/to/my-experiment"]
-    }
-  }
-}
-```
-
-The tools expose describe, inspect, create_run, command, sample, compare, checkpoint, capture, verify, and activate_revision. A live development session can be targeted explicitly through an authenticated loopback bridge. See the tooling reference for session IDs and guarded mutations.
-
-## Build and share
-
-```sh
-npm run build
-npm run preview
-npm run build:sdk
-npm run release
-```
-
-`dist/` is a self-contained gallery with local fonts/assets, source, and content-addressed definitions. Serve it over HTTP using any static host; direct `file://` loading is not supported. `?experiment=linear-map&embed=1` provides an embeddable player. Production browser exports preserve the selected state in the downloaded bundle. CLI exports require passing quantitative checks and include the exact source, lockfile, hashes, and report.
-
-`npm run release` creates the local distribution tarball. It does not publish to npm or deploy a website. Technical package names remain provisional until npm ownership is confirmed. See [release packaging](docs/release.md).
-
-For the complete local preview artifacts, run `npm run release:preview`. This runs the required suites, builds/installs the tarballs, creates the static archive, checks every deliverable/asset hash, and exercises the actual site archive under a nested URL path. The source repository is the public developer preview; npm publication and website hosting are deferred. Generated `dist/`, `release/`, dependencies, and local session files are excluded from Git. The CI workflow verifies the pushed commit and retains downloadable artifacts with source-revision metadata; it has no publish/deploy job.
-
-`npm run preflight:public` reports remaining metadata for future package/website publication; add `-- --packages` for the npm ownership gate. Those deferred metadata decisions do not block source-repository contributions. See [the public preview handoff](docs/public-preview-handoff.md).
-
-## Check the project
+## Build, verify, and share
 
 ```sh
 npm run typecheck
 npm test
+npm run build
 npm run test:browser
 npm run verify:gallery
 ```
 
-Tests cover independent numerical fixtures, invariants, deliberately wrong calculations, worker timeouts, strict schemas, conflicts, preview isolation, incompatible snapshots, live source activation, MCP interoperability, portable exports, responsive UI, and accessibility checks. See [the acceptance record](docs/acceptance.md) for evidence and boundaries.
+`npm run build` produces the studio and gallery in `dist/`, with local assets and model definitions. Use `npm run preview` to inspect the production build, or serve it over HTTP on a static host. Direct `file://` loading is unsupported. The source-based player supports iframe embedding through `?experiment=linear-map&embed=1`; CLI exports include source, revision hashes, and check reports.
 
-Technical checks are not a scientific certification or a learning study. The reference models have documented derivations and automated checks; independent human subject review, assistive-technology user sessions, and the proposed comparative authoring study remain open release-validation work.
+For the complete local preview distribution, `npm run release:preview` runs the verification pipeline and packages the libraries and static site. It does not publish to npm or deploy a website. See [release packaging](docs/release.md) and the [preview handoff](docs/public-preview-handoff.md).
 
-## Repository
+Tests cover numerical reference fixtures, state transitions, boundary and undefined cases, worker failures, guarded edits, snapshots, agent tools, exports, and browser interactions. Automated checks do not establish independent scientific review, accessibility certification, or learning efficacy. The [acceptance record](docs/acceptance.md) and [preview evidence](docs/agent-first-release-status.md) document completed checks and remaining validation work.
+
+## Repository and documentation
 
 | Path | Purpose |
 | --- | --- |
-| `packages/core` | Public types, validation, identity, commands, snapshots, worker execution |
-| `packages/player` | React shell and trusted SVG/Three.js renderers |
-| `packages/cli` | Fixed compilation, browser coordinator, capture/export, stdio MCP |
-| `examples` | Five complete source bundles and worker registries |
-| `tests/reference` | Acceptance fixtures outside candidate source folders |
-| `tests/core`, `tests/cli`, `tests/browser` | Runtime, tooling, and learner workflows |
-| `docs` | Architecture, authoring, security, evidence, and distribution |
+| [`packages/core`](packages/core) | TypeScript contracts, document validation, expressions, worker evaluation, and session state |
+| [`packages/player`](packages/player) | Embeddable React and DOM surfaces, studio, and source-based gallery |
+| [`packages/agent`](packages/agent) | Provider-neutral tool schemas, executor, and session relay |
+| [`packages/cli`](packages/cli) | Local authoring, browser coordination, MCP adapters, capture, and export |
+| [`examples`](examples) | Source experiments, embedding consumers, and host integrations |
+| [`tests/reference`](tests/reference) | Independent acceptance fixtures outside candidate source bundles |
+| [`docs`](docs) | Authoring, embedding, architecture, contracts, and release evidence |
 
-MIT licensed. See [third-party notices](THIRD_PARTY_NOTICES.md) and [contribution requirements](CONTRIBUTING.md).
+For implementation details, start with the [architecture](docs/architecture.md) and [agent-first contract](docs/agent-first-contract.md). For changes and new examples, see [Contributing](CONTRIBUTING.md).
+
+The project was originally called Experiment Kit. Package names (`@experiment-kit/*`), the `experiment-kit` CLI, and existing artifact identifiers retain their technical names for compatibility; npm namespace ownership remains unconfirmed.
+
+MIT licensed. See [LICENSE](LICENSE) and [third-party notices](THIRD_PARTY_NOTICES.md).
