@@ -1,0 +1,237 @@
+{
+  "provenance": "Engineering reference values derived separately from the candidate expressions using closed-form special-angle cases, Euclidean geometry, and elementary frequency counts. No independent human scientific review.",
+  "cases": {
+    "projectile": [
+      {
+        "params": {
+          "angle": 45,
+          "speed": 10,
+          "height": 0
+        },
+        "expected": {
+          "range": 10.19367991845056,
+          "apex": 2.54841997961264,
+          "flight": 1.4416040391163047
+        }
+      },
+      {
+        "params": {
+          "angle": 30,
+          "speed": 20,
+          "height": 0
+        },
+        "expected": {
+          "range": 35.311943069701876,
+          "apex": 5.09683995922528,
+          "flight": 2.038735983690112
+        }
+      }
+    ],
+    "forces": [
+      {
+        "params": {
+          "angle": 30,
+          "mass": 2,
+          "friction": 0
+        },
+        "expected": {
+          "normal": 16.991418422250685,
+          "resistance": 0,
+          "acceleration": 4.905
+        }
+      },
+      {
+        "params": {
+          "angle": 0,
+          "mass": 2,
+          "friction": 0.8
+        },
+        "expected": {
+          "normal": 19.62,
+          "resistance": 0,
+          "acceleration": 0
+        }
+      },
+      {
+        "params": {
+          "angle": 30,
+          "mass": 2,
+          "friction": 0.8
+        },
+        "expected": {
+          "normal": 16.991418422250685,
+          "resistance": 9.81,
+          "acceleration": 0
+        }
+      }
+    ],
+    "waves": [
+      {
+        "params": {
+          "phase": 0,
+          "a": 1,
+          "b": 1
+        },
+        "expected": {
+          "resultant": 2,
+          "fraction": 100
+        }
+      },
+      {
+        "params": {
+          "phase": 180,
+          "a": 1,
+          "b": 1
+        },
+        "expected": {
+          "resultant": 0,
+          "fraction": 0
+        }
+      },
+      {
+        "params": {
+          "phase": 90,
+          "a": 0.75,
+          "b": 1
+        },
+        "expected": {
+          "resultant": 1.25,
+          "fraction": 71.42857142857143
+        }
+      },
+      {
+        "params": {
+          "phase": 0,
+          "a": 0,
+          "b": 0
+        },
+        "expected": {
+          "resultant": 0,
+          "fraction": null
+        }
+      }
+    ],
+    "light": [
+      {
+        "params": {
+          "angle": 30,
+          "n1": 1,
+          "n2": 1.5
+        },
+        "expected": {
+          "transmitted": 19.47122063449069,
+          "ratio": 0.6666666666666666
+        }
+      },
+      {
+        "params": {
+          "angle": 50,
+          "n1": 1.5,
+          "n2": 1
+        },
+        "expected": {
+          "transmitted": null,
+          "refracted": null,
+          "ratio": 1.5
+        }
+      },
+      {
+        "params": {
+          "angle": 42,
+          "n1": 1.5,
+          "n2": 1.5
+        },
+        "expected": {
+          "transmitted": 42,
+          "ratio": 1
+        }
+      }
+    ],
+    "matrix": [
+      {
+        "params": {
+          "stretch": 1,
+          "shear": 0.5,
+          "vertical": 2
+        },
+        "expected": {
+          "determinant": 2,
+          "area": 2,
+          "corner": [
+            1.5,
+            2
+          ]
+        }
+      },
+      {
+        "params": {
+          "stretch": -1,
+          "shear": 0.5,
+          "vertical": 2
+        },
+        "expected": {
+          "determinant": -2,
+          "area": 2,
+          "corner": [
+            -0.5,
+            2
+          ]
+        }
+      },
+      {
+        "params": {
+          "stretch": 0,
+          "shear": 0.8,
+          "vertical": 1.2
+        },
+        "expected": {
+          "determinant": 0,
+          "area": 0,
+          "corner": [
+            0.8,
+            1.2
+          ]
+        }
+      }
+    ],
+    "probability": [
+      {
+        "params": {
+          "prevalence": 1,
+          "sensitivity": 90,
+          "falseAlarm": 5
+        },
+        "expected": {
+          "trueFlags": 9,
+          "falseFlags": 49.5,
+          "precision": 15.384615384615385,
+          "missed": 1
+        }
+      },
+      {
+        "params": {
+          "prevalence": 30,
+          "sensitivity": 90,
+          "falseAlarm": 0
+        },
+        "expected": {
+          "trueFlags": 270,
+          "falseFlags": 0,
+          "precision": 100
+        }
+      },
+      {
+        "params": {
+          "prevalence": 0,
+          "sensitivity": 0,
+          "falseAlarm": 0
+        },
+        "expected": {
+          "trueFlags": 0,
+          "falseFlags": 0,
+          "precision": null
+        }
+      }
+    ]
+  }
+}

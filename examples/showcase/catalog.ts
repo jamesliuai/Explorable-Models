@@ -1,0 +1,26 @@
+import type { ExampleId } from './models';
+export interface Exhibit {
+  id: ExampleId; nav: string; prompt: string; answer: string; subtitle: string; takeaway: string;
+  metrics: { id: string; label: string; unit?: string; digits?: number; color: string }[];
+  presets: { label: string; params: Record<string, number> }[];
+}
+export const exhibits: Exhibit[] = [
+  { id: 'projectile', nav: 'Flight', prompt: 'What makes a projectile travel farther?', answer: 'Speed, angle, and launch height all matter. Follow one flight and see how its velocity changes, even while horizontal motion stays steady.', subtitle: 'Change the launch. Follow position and velocity all the way to impact.', takeaway: 'At equal launch and landing heights, 45° gives the greatest range for a fixed speed. A raised launch changes that optimum.',
+    metrics: [{ id: 'range', label: 'Horizontal range', unit: 'm', color: 'teal' }, { id: 'apex', label: 'Apex height', unit: 'm', color: 'amber' }, { id: 'flight', label: 'Flight time', unit: 's', color: 'violet' }],
+    presets: [{ label: 'Low & fast', params: { angle: 20, speed: 25, height: 0 } }, { label: 'High arc', params: { angle: 75, speed: 18, height: 0 } }] },
+  { id: 'forces', nav: 'Forces', prompt: 'Why does a block sometimes stay on a slope?', answer: 'Friction adjusts to oppose the downhill pull—until it reaches its limit. The free-body diagram shows the forces acting on the block.', subtitle: 'Tilt the ramp. Find the moment friction is no longer enough.', takeaway: 'Adding mass scales every force equally, so it does not change the sliding threshold or the acceleration in this model.',
+    metrics: [{ id: 'normal', label: 'Normal force', unit: 'N', color: 'blue' }, { id: 'resistance', label: 'Friction force', unit: 'N', color: 'amber' }, { id: 'acceleration', label: 'Downhill acceleration', unit: 'm/s²', color: 'teal' }],
+    presets: [{ label: 'Held by friction', params: { angle: 20, friction: .6 } }, { label: 'Slippery slope', params: { angle: 35, friction: .1 } }] },
+  { id: 'waves', nav: 'Waves', prompt: 'Can two waves add up to nothing?', answer: 'Yes. Equal waves can reinforce or cancel each other, depending on their relative phase. The bottom trace is the point-by-point sum.', subtitle: 'Shift the phase. Watch reinforcement turn into cancellation.', takeaway: 'At 180°, equal amplitudes cancel everywhere. Unequal amplitudes leave a residual wave equal to their difference.',
+    metrics: [{ id: 'resultant', label: 'Resultant amplitude', unit: 'cm', color: 'teal' }, { id: 'phaseDegrees', label: 'Relative phase', unit: '°', digits: 0, color: 'violet' }, { id: 'fraction', label: 'Of aligned amplitude', unit: '%', digits: 1, color: 'blue' }],
+    presets: [{ label: 'Reinforce', params: { a: 1, b: 1, phase: 0 } }, { label: 'Cancel', params: { a: 1, b: 1, phase: 180 } }] },
+  { id: 'light', nav: 'Light', prompt: 'Can light get trapped inside a material?', answer: 'At a sufficiently steep angle, light going from a higher refractive index to a lower one has no propagating refracted ray. It reflects back inside.', subtitle: 'Bend a ray—or cross the boundary into total internal reflection.', takeaway: 'A larger refractive index means a lower light speed. Entering a higher-index medium bends the ray toward the normal.',
+    metrics: [{ id: 'transmitted', label: 'Refracted angle', unit: '°', digits: 1, color: 'teal' }, { id: 'ratio', label: 'Speed ratio v₂ / v₁', unit: '×', color: 'violet' }],
+    presets: [{ label: 'Air → glass', params: { n1: 1, n2: 1.5, angle: 42 } }, { label: 'Total reflection', params: { n1: 1.5, n2: 1, angle: 50 } }] },
+  { id: 'matrix', nav: 'Matrices', prompt: 'What does a matrix actually do to space?', answer: 'Its columns tell you where the two basis vectors go. Every point follows the same rule, turning a square into a parallelogram—or collapsing it to a line.', subtitle: 'Stretch, shear, reverse, or collapse a plane.', takeaway: 'Shear changes the shape but not the area. A zero determinant collapses area; a negative determinant reverses orientation.',
+    metrics: [{ id: 'determinant', label: 'Signed determinant', color: 'violet' }, { id: 'area', label: 'Image of unit area', unit: 'units²', color: 'teal' }, { id: 'corner', label: 'Image of (1, 1)', digits: 2, color: 'amber' }],
+    presets: [{ label: 'Reverse', params: { stretch: -1, vertical: 1, shear: .5 } }, { label: 'Collapse', params: { stretch: 0, vertical: 1.2, shear: .8 } }] },
+  { id: 'probability', nav: 'Probability', prompt: 'If a sensor flags a part, is it probably faulty?', answer: 'That depends on how common faults are. Even a small false-alarm rate can swamp the correct flags when faulty parts are rare.', subtitle: 'Start with 1,000 parts. Then look only at the flagged ones.', takeaway: 'The detection rate is P(flag | faulty). The question here is the reverse: P(faulty | flag). The base rate connects them.',
+    metrics: [{ id: 'trueFlags', label: 'Correct flags', digits: 1, color: 'teal' }, { id: 'falseFlags', label: 'False flags', digits: 1, color: 'amber' }, { id: 'precision', label: 'Faulty among flags', unit: '%', digits: 1, color: 'violet' }],
+    presets: [{ label: 'Rare faults', params: { prevalence: 1, sensitivity: 90, falseAlarm: 5 } }, { label: 'Common faults', params: { prevalence: 30, sensitivity: 90, falseAlarm: 5 } }] },
+];

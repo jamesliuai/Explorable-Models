@@ -1,0 +1,12 @@
+{
+  "provenance": "Engineering reference values, derived separately from the candidate document using torque balance and the uniform-rod end moment of inertia. Not independent human scientific review.",
+  "derivation": "I = mL²/3, torque magnitude = mgL sin(theta)/2. Thus alpha = 3g sin(theta)/(2L), and a_cm = 3g sin(theta)/4. Cartesian y points upward.",
+  "cases": [
+    { "params": { "angle": 0, "length": 2, "gravity": 9.81 }, "alpha": 0, "tangential": 0, "tip": [0, -2], "acceleration": [0, 0] },
+    { "params": { "angle": 30, "length": 2, "gravity": 10 }, "alpha": 3.75, "tangential": 3.75, "tip": [1, -1.7320508075688772], "acceleration": [-3.247595264191645, -1.875] },
+    { "params": { "angle": 45, "length": 2, "gravity": 9.81 }, "alpha": 5.202538142580024, "tangential": 5.202538142580024, "tip": [1.4142135623730951, -1.4142135623730951], "acceleration": [-3.67875, -3.67875] },
+    { "params": { "angle": 90, "length": 0.5, "gravity": 20 }, "alpha": 60, "tangential": 15, "tip": [0.5, 0], "acceleration": [0, -15] },
+    { "params": { "angle": 90, "length": 3, "gravity": 20 }, "alpha": 10, "tangential": 15, "tip": [3, 0], "acceleration": [0, -15] },
+    { "params": { "angle": 45, "length": 3, "gravity": 0 }, "alpha": 0, "tangential": 0, "tip": [2.121320343559643, -2.121320343559643], "acceleration": [0, 0] }
+  ]
+}

@@ -3,6 +3,7 @@ dist/
 coverage/
 playwright-report/
 test-results/
+local-captures/
 .experiment-kit/
 *.tgz
 .DS_Store

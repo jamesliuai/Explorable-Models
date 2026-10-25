@@ -1,0 +1,92 @@
+{
+  "capturedAt": "2026-10-25T05:48:43.425Z",
+  "browser": "156.0.8078.4",
+  "method": "Chromium native 3× device-resolution PNG; no upscaling or reconstruction",
+  "refresh": "Run npm run build and npm run preview, then node scripts/capture-showcase.mjs --readme. Inspect the refreshed README images before committing.",
+  "records": [
+    {
+      "file": "projectile.png",
+      "width": 3348,
+      "height": 2709,
+      "url": "http://127.0.0.1:4173/showcase.html?example=projectile",
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "deviceScaleFactor": 3,
+      "parameters": [
+        {
+          "label": "Launch angle exact value",
+          "value": "50"
+        },
+        {
+          "label": "Launch speed exact value",
+          "value": "18"
+        },
+        {
+          "label": "Launch height exact value",
+          "value": "1"
+        }
+      ],
+      "metrics": "Horizontal range\n33.34 m\nApex height\n10.69 m\nFlight time\n2.88 s",
+      "time": "0.81 / 2.88 s",
+      "sourceCapture": "local-captures/showcase/projectile-card@3x.png"
+    },
+    {
+      "file": "matrix.png",
+      "width": 3348,
+      "height": 2637,
+      "url": "http://127.0.0.1:4173/showcase.html?example=matrix",
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "deviceScaleFactor": 3,
+      "parameters": [
+        {
+          "label": "Horizontal stretch exact value",
+          "value": "1.4"
+        },
+        {
+          "label": "Shear exact value",
+          "value": "0.8"
+        },
+        {
+          "label": "Vertical stretch exact value",
+          "value": "1.2"
+        }
+      ],
+      "metrics": "Signed determinant\n1.68\nImage of unit area\n1.68 units²\nImage of (1, 1)\n(2.20, 1.20)",
+      "time": null,
+      "sourceCapture": "local-captures/showcase/matrix-card@3x.png"
+    },
+    {
+      "file": "probability.png",
+      "width": 3348,
+      "height": 2559,
+      "url": "http://127.0.0.1:4173/showcase.html?example=probability",
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "deviceScaleFactor": 3,
+      "parameters": [
+        {
+          "label": "Faulty parts exact value",
+          "value": "1"
+        },
+        {
+          "label": "Fault detection rate exact value",
+          "value": "90"
+        },
+        {
+          "label": "False-alarm rate exact value",
+          "value": "5"
+        }
+      ],
+      "metrics": "Correct flags\n9.0\nFalse flags\n49.5\nFaulty among flags\n15.4 %",
+      "time": null,
+      "sourceCapture": "local-captures/showcase/probability-card@3x.png"
+    }
+  ]
+}

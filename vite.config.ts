@@ -19,5 +19,7 @@ export default defineConfig({
     gallery: fileURLToPath(new URL('./gallery.html', import.meta.url)),
     studio: fileURLToPath(new URL('./agent.html', import.meta.url)),
     guide: fileURLToPath(new URL('./guide.html', import.meta.url)),
+    hingedRod: fileURLToPath(new URL('./hinged-rod.html', import.meta.url)),
+    showcase: fileURLToPath(new URL('./showcase.html', import.meta.url)),
   } } },
 });
