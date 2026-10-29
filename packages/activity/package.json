@@ -24,7 +24,9 @@
     "schema",
     "fixtures",
     "README.md",
-    "LICENSE"
+    "LICENSE",
+    "rust/Cargo.toml",
+    "rust/src"
   ],
   "engines": {
     "node": ">=22.12.0"

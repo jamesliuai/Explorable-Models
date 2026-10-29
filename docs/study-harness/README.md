@@ -169,6 +169,8 @@ lockfile sha256 and the Node version. In the host application:
 2. Check each tarball's sha256 against `manifest.json`. Install with an isolated, empty npm cache and
    `--ignore-scripts`. `examples/study-harness-tauri/scripts/install-packed.mjs` does both and records the installed
    identities.
+The activity tarball also includes `rust/Cargo.toml` and `rust/src/` next to `schema/`. Native hosts can extract those exact packed files into a versioned vendor directory and use the Rust validator with a relative Cargo path, without a machine-specific source checkout. Keep the tarball and its manifest together; do not edit extracted sources. `validate_bytes` bounds raw bytes before JSON parsing as well as checking the shared data limits.
+
 3. Peer dependencies: `react` and `react-dom` (`>=18.3.1 <20`). `@explorable-models/activity` is an optional peer of
    `@explorable-models/player`, but it is required when you import `@explorable-models/player/activity`. `three@0.186.1` is a
    peer of `@explorable-models/player-3d`; install it only if you load spatial activities.

@@ -30,6 +30,7 @@ for (const name of PACKAGES) {
   const files = result.files.map(file => file.path);
   for (const required of ['LICENSE', 'README.md', 'package.json']) if (!files.includes(required)) throw new Error(`${name}: missing ${required}`);
   if (files.some(file => /(^|\/)(\.env|\.git|node_modules|target)(\/|$)/.test(file))) throw new Error(`${name}: forbidden path in tarball`);
+  if (name === 'activity') for (const required of ['rust/Cargo.toml', 'rust/src/lib.rs', 'schema/index.json']) if (!files.includes(required)) throw new Error(`${name}: missing native contract file ${required}`);
   const bytes = await readFile(path.join(out, result.filename));
   packed.push({ name: result.name, version: result.version, file: result.filename, sha256: createHash('sha256').update(bytes).digest('hex'), integrity: result.integrity, bytes: bytes.length, files: files.length });
 }

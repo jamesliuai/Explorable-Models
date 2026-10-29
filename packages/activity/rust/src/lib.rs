@@ -228,6 +228,11 @@ pub fn validate(contract: &str, value: &Value) -> Result<(), Vec<String>> {
 
 /// Validates that `bytes` are JSON and a valid `contract`.
 pub fn validate_bytes(contract: &str, bytes: &[u8]) -> Result<Value, Vec<String>> {
+    // Bound raw IPC bytes before JSON allocation/traversal. Whitespace and escaped strings count too.
+    let limits = data_limits(contract).ok_or_else(|| vec!["unknown contract name".to_owned()])?;
+    if bytes.len() as u64 > limits.max_bytes {
+        return Err(vec!["input exceeds raw byte limit".to_owned()]);
+    }
     let value: Value = serde_json::from_slice(bytes).map_err(|_| vec!["input is not valid JSON".to_owned()])?;
     validate(contract, &value).map(|()| value)
 }
@@ -249,6 +254,14 @@ mod tests {
         for name in indexed {
             assert!(data_limits(name).is_some());
         }
+    }
+
+    #[test]
+    fn oversized_raw_bytes_are_refused_before_parsing() {
+        let limit = data_limits("study-harness.activity-lookup-request").unwrap().max_bytes;
+        let bytes = vec![b' '; limit as usize + 1];
+        assert_eq!(validate_bytes("study-harness.activity-lookup-request", &bytes).unwrap_err(), vec!["input exceeds raw byte limit"]);
+        assert_eq!(validate_bytes("unknown", b"{}").unwrap_err(), vec!["unknown contract name"]);
     }
 
     #[test]
