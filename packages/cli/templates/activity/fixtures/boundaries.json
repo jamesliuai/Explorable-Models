@@ -1,0 +1,10 @@
+{
+  "contract": "experiment-kit.boundary-cases",
+  "version": "1.0",
+  "cases": [
+    { "id": "zero-slope", "label": "Slope 0 with intercept 1", "rationale": "The root is mathematically undefined (no crossing); it must be reported as undefined, not as zero.", "params": { "m": 0, "b": 1 }, "expect": { "outcome": "undefined", "statuses": { "root": "undefined:NO_ROOT" } } },
+    { "id": "zero-line", "label": "Slope 0 with intercept 0", "rationale": "Every x is a root; no single value exists.", "params": { "m": 0, "b": 0 }, "expect": { "outcome": "undefined", "statuses": { "root": "undefined:EVERY_X_IS_A_ROOT" } } },
+    { "id": "constraint-edge", "label": "m·p + b = 10 exactly", "rationale": "The coupled constraint is inclusive at 10.", "params": { "m": 3, "b": -5, "p": 5 }, "expect": { "outcome": "valid" } },
+    { "id": "constraint-beyond", "label": "m·p + b = 10.5", "rationale": "Just past the inclusive bound: rejected before evaluation.", "params": { "m": 3, "b": -4.5, "p": 5 }, "expect": { "outcome": "out-of-domain" } }
+  ]
+}

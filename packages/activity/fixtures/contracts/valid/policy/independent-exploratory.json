@@ -1,0 +1,89 @@
+{
+  "contract": "study-harness.host-policy",
+  "expect": "valid",
+  "why": "Exploratory policy with an active independent task and sampling.",
+  "value": {
+    "contract": "study-harness.host-policy",
+    "schemaVersion": "1.0",
+    "policyId": "policy-unit-4",
+    "revision": 5,
+    "issuedAt": "2026-10-26T10:15:30.250+01:00",
+    "expiresAt": null,
+    "revoked": false,
+    "mode": "exploratory",
+    "approved": [
+      {
+        "template": {
+          "templateId": "quadratic-descent-regimes",
+          "version": "1.0.0",
+          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+        },
+        "model": {
+          "modelId": "quadratic-descent",
+          "version": "1.0.0",
+          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+        }
+      },
+      {
+        "template": {
+          "templateId": "vector-orientation-explore",
+          "version": "1.2.0",
+          "digest": "sha256:4864e5dfb8e0dc5f543604855a7846b00801bfb97931e47fcf75eaccb70e3b57"
+        },
+        "model": {
+          "modelId": "vector-orientation",
+          "version": "1.0.0",
+          "digest": "sha256:86d4baefcc949c683671165445b18f1211b6db294977432135f5842038522264"
+        }
+      }
+    ],
+    "allowedTools": [
+      "discover",
+      "inspect.learner",
+      "operate.presentation",
+      "summarize",
+      "save",
+      "sample",
+      "compose.exploratory"
+    ],
+    "visibleGroups": [
+      "g-plot",
+      "g-landscape",
+      "g-controls",
+      "g-alternatives"
+    ],
+    "permittedControls": [
+      "x0"
+    ],
+    "export": {
+      "learnerSnapshot": true,
+      "capture": false,
+      "backup": true
+    },
+    "inspection": {
+      "developer": false,
+      "tutor": "learner-visible",
+      "teacher": false
+    },
+    "independentTask": {
+      "active": true,
+      "taskRef": "task-regime-quiz-2",
+      "permittedTools": [
+        "inspect.learner",
+        "operate.presentation"
+      ],
+      "neutralScaffold": [
+        "g-plot",
+        "g-landscape"
+      ]
+    },
+    "sampling": {
+      "allowed": true,
+      "maxPositions": 50
+    },
+    "exploratory": {
+      "allowed": true,
+      "maxParametersOverride": 2
+    }
+  }
+}

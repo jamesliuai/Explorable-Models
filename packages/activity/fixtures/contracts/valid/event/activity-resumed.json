@@ -1,0 +1,32 @@
+{
+  "contract": "study-harness.interaction-event",
+  "expect": "valid",
+  "why": "Valid activity.resumed event.",
+  "value": {
+    "contract": "study-harness.interaction-event",
+    "schemaVersion": "1.0",
+    "eventId": "evt-0033",
+    "activityId": "act-quadratic-0001",
+    "sequence": 33,
+    "operationId": "op-33",
+    "actor": {
+      "kind": "learner",
+      "binding": "surface-main"
+    },
+    "type": "activity.resumed",
+    "revisions": {
+      "scientific": {
+        "modelDigest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901",
+        "runId": "run-0002",
+        "version": 5
+      },
+      "presentation": 2,
+      "activity": 3,
+      "hostSession": 4,
+      "policy": 3
+    },
+    "payload": {},
+    "monotonicMs": 9266.5,
+    "causes": []
+  }
+}

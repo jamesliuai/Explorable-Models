@@ -1,0 +1,78 @@
+Two vectors in space — stage explore-cross (explore)
+Instruction: Once the cross product u × v is shown as well, change u and v, swap their order and compare its direction and length with the angle between them.
+Review notice: Reference-checked; no independent subject review
+Revealed by the host for this stage: angle-dot, angle-arc, dot-values, cross, cross-drawing, cross-values
+
+Current values:
+x component of u: 2. y component of u: 1. z component of u: 0. x component of v: 1. y component of v: 2. z component of v: 2. Length of u: 2.236. Length of v: 3. Dot product: 4. Angle between u and v: 53.4°. Relationship of u and v: oblique. Length of the cross product: 5.385.
+
+View space:
+Two vectors in space
+3D view. 3D view. Shows Vectors u and v from the origin, each labelled with its name; Arc marking the angle θ between u and v; Cross product u × v at true scale; Direction of u × v (length 1, not to scale).
+Reference-checked; no independent subject review
+
+View plane-xy:
+Two vectors in space
+Top view: xy plane. Top view: xy plane. Shows u and v projected onto the xy plane, each labelled with its name.
+Reference-checked; no independent subject review
+
+View plane-xz:
+Two vectors in space
+Front view: xz plane. Front view: xz plane. Shows u and v projected onto the xz plane, each labelled with its name.
+Reference-checked; no independent subject review
+
+View plane-yz:
+Two vectors in space
+Side view: yz plane. Side view: yz plane. Shows u and v projected onto the yz plane, each labelled with its name.
+Reference-checked; no independent subject review
+
+View readouts:
+Two vectors in space
+Values. Values. Length of u: 2.236; Length of v: 3; Dot product: 4; Angle between u and v: 53.4°; Relationship of u and v: oblique; Length of the cross product: 5.385.
+Values:
+- Length of u: 2.236
+- Length of v: 3
+- Dot product: 4
+- Angle between u and v: 53.4°
+- Relationship of u and v: oblique
+- Length of the cross product: 5.385
+Reference-checked; no independent subject review
+
+View vector-table:
+Two vectors in space
+Vector table. Vector table. Table with 4 rows.
+Vector table (4 of 4 rows):
+Quantity	Value	Unit
+Vector u	(2, 1, 0)	
+Vector v	(1, 2, 2)	
+Cross product	(2, -4, 3)	
+Direction of the cross product	(0.3714, -0.7428, 0.5571)	
+Reference-checked; no independent subject review
+
+View projection-table:
+Two vectors in space
+Projection table. Projection table. Table with 6 rows.
+Projection table (6 of 6 rows):
+Quantity	Value	Unit
+u projected onto the xy plane	(2, 1)	
+v projected onto the xy plane	(1, 2)	
+u projected onto the xz plane	(2, 0)	
+v projected onto the xz plane	(1, 2)	
+u projected onto the yz plane	(1, 0)	
+v projected onto the yz plane	(2, 2)	
+Reference-checked; no independent subject review
+
+View rules:
+Two vectors in space
+Rules. Rules. Dot product: u·v = u_x·v_x + u_y·v_y + u_z·v_z = |u|·|v|·cos θ; Angle between u and v: cos θ = (u·v)/(|u|·|v|), with 0 ≤ θ ≤ π; θ is undefined when u or v is the zero vector; Dot product now: u·v = 4; Angle now: θ = 53.4°; Cross product: u × v = (u_y·v_z − u_z·v_y, u_z·v_x − u_x·v_z, u_x·v_y − u_y·v_x); Length of the cross product: |u × v| = |u|·|v|·sin θ; Right-handed frame: e_x × e_y = e_z (right-handed frame), and v × u = −(u × v); Cross product now: u × v = (2, -4, 3), |u × v| = 5.385; Direction of the cross product now: n̂ = (u × v)/|u × v| = (0.3714, -0.7428, 0.5571).
+Equations:
+- Dot product: u·v = u_x·v_x + u_y·v_y + u_z·v_z = |u|·|v|·cos θ
+- Angle between u and v: cos θ = (u·v)/(|u|·|v|), with 0 ≤ θ ≤ π; θ is undefined when u or v is the zero vector
+- Dot product now: u·v = 4
+- Angle now: θ = 53.4°
+- Cross product: u × v = (u_y·v_z − u_z·v_y, u_z·v_x − u_x·v_z, u_x·v_y − u_y·v_x)
+- Length of the cross product: |u × v| = |u|·|v|·sin θ
+- Right-handed frame: e_x × e_y = e_z (right-handed frame), and v × u = −(u × v)
+- Cross product now: u × v = (2, -4, 3), |u × v| = 5.385
+- Direction of the cross product now: n̂ = (u × v)/|u × v| = (0.3714, -0.7428, 0.5571)
+Reference-checked; no independent subject review

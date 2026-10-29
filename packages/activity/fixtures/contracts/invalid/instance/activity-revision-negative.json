@@ -1,0 +1,52 @@
+{
+  "contract": "study-harness.activity-instance",
+  "expect": "invalid",
+  "why": "Revisions are non-negative.",
+  "value": {
+    "contract": "study-harness.activity-instance",
+    "schemaVersion": "1.0",
+    "activityId": "act-quadratic-0001",
+    "objectiveIds": [
+      "obj-descent-regimes"
+    ],
+    "hostSessionId": "session-7f3a",
+    "hostSessionRevision": 4,
+    "template": {
+      "templateId": "quadratic-descent-regimes",
+      "version": "1.0.0",
+      "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+    },
+    "model": {
+      "modelId": "quadratic-descent",
+      "version": "1.0.0",
+      "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+    },
+    "initialParameters": {
+      "a": 1,
+      "eta": 0.5,
+      "x0": 8
+    },
+    "mode": "approved",
+    "stage": {
+      "id": "predict",
+      "enteredAtSequence": 3
+    },
+    "activityRevision": -1,
+    "policy": {
+      "policyId": "policy-unit-4",
+      "revision": 3
+    },
+    "context": {
+      "kind": "instructional"
+    },
+    "responses": [],
+    "allowedActions": [
+      "operate.parameters",
+      "operate.presentation",
+      "request-reveal",
+      "save"
+    ],
+    "persistence": "saved",
+    "closed": false
+  }
+}

@@ -1,0 +1,1232 @@
+{
+  "schema": "study-harness.native-spike.evidence/1",
+  "generatedAt": "2026-10-26T07:17:17.201Z",
+  "generator": "examples/study-harness-tauri/scripts/run-spike.mjs",
+  "scope": "W12 early native feasibility spike on one macOS machine. Not a support claim for other OS versions, Windows or Linux.",
+  "verdict": {
+    "overall": "pass",
+    "requiredChecks": 23,
+    "requiredSatisfied": 23,
+    "problems": [],
+    "diagnosticProbes": [
+      "environment: info",
+      "katex-string-innerhtml: expected-block",
+      "png-capture-svg-embedded-font: pass",
+      "png-capture-foreignobject-html: fail",
+      "png-capture-foreignobject-katex: fail",
+      "offscreen-canvas-worker: pass",
+      "webgl: info",
+      "animation-frame: info"
+    ]
+  },
+  "host": {
+    "macOS": {
+      "productName": "macOS",
+      "productVersion": "26.6.2",
+      "buildVersion": "25G83",
+      "darwin": "25.6.0"
+    },
+    "hardware": {
+      "model": "Mac15,13",
+      "cpu": "Apple M3",
+      "logicalCpus": 8,
+      "memoryBytes": 17179869184,
+      "arch": "arm64"
+    },
+    "systemWebKit": {
+      "safariShortVersion": "26.6.2",
+      "safariBundleVersion": "21624.5.1.11.3",
+      "webKitFrameworkVersion": "21624.5.1.11.3"
+    }
+  },
+  "toolchain": {
+    "rustc": "rustc 1.95.0 (59807616e 2026-04-14)",
+    "cargo": "cargo 1.95.0 (f2d3ce0bd 2026-03-21)",
+    "node": "v22.22.3",
+    "npm": "10.9.8",
+    "xcode": "Xcode 26.4.1; Build version 17E202"
+  },
+  "versions": {
+    "cargoLock": {
+      "objc2-web-kit": "0.3.2",
+      "serde": "1.0.229",
+      "serde_json": "1.0.154",
+      "tao": "0.37.2",
+      "tauri": "2.12.5",
+      "tauri-build": "2.7.4",
+      "tauri-codegen": "2.7.4",
+      "tauri-macros": "2.7.4",
+      "tauri-runtime": "2.12.2",
+      "tauri-runtime-wry": "2.12.3",
+      "tauri-utils": "2.10.2",
+      "wry": "0.57.1"
+    },
+    "npm": {
+      "@tauri-apps/cli": "2.12.4",
+      "@tauri-apps/api": "2.12.4",
+      "vite": "8.3.5",
+      "typescript": "5.9.3",
+      "katex": "0.19.0"
+    }
+  },
+  "app": {
+    "bundle": "examples/study-harness-tauri/src-tauri/target/release/bundle/macos/StudyHarnessReference.app",
+    "executable": "examples/study-harness-tauri/src-tauri/target/release/bundle/macos/StudyHarnessReference.app/Contents/MacOS/study-harness-reference",
+    "executableSha256": "e499fc96d25c1dda31a4282c758831ac13b8cdfa582c69232f4281b6a7db125c",
+    "executableBytes": 9715504,
+    "infoPlistSha256": "0a74ea131ff1128de00d43097c87299e9d856c7eab83410aa93296a8248eb397",
+    "bundleIdentifier": "dev.experimentkit.studyharness.reference",
+    "bundleVersion": "0.0.0",
+    "minimumSystemVersion": "13.0",
+    "codesign": {
+      "signature": "adhoc",
+      "identifier": "study_harness_reference-d85f8bda96217e92",
+      "format": "app bundle with Mach-O thin (arm64)",
+      "teamIdentifier": "not set",
+      "flags": "0x20002(adhoc,linker-signed)",
+      "verifyStrictStatus": 1,
+      "verifyOutput": "~/Documents/ChatGPT/stem_visualization/examples/study-harness-tauri/src-tauri/target/release/bundle/macos/StudyHarnessReference.app: code has no resources but signature indicates they must be present"
+    },
+    "build": {
+      "invoked": true,
+      "reason": "--rebuild",
+      "command": "npx tauri build --bundles app --no-sign",
+      "durationMs": 17762
+    },
+    "devUrlConfigured": false,
+    "frontendDist": "../dist"
+  },
+  "webview": {
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko)",
+    "appleWebKitToken": "605.1.15",
+    "nativeWebviewVersion": "21624.5.1.11.3",
+    "origin": "tauri://localhost",
+    "isSecureContext": true
+  },
+  "csp": {
+    "configured": "default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' blob:; font-src 'self'; connect-src 'self' ipc:; worker-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'; object-src 'none'",
+    "nativeConfiguredCsp": "default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' blob:; font-src 'self'; connect-src 'self' ipc:; worker-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'; object-src 'none'",
+    "workerScriptCsp": "default-src 'none'; script-src 'self'; connect-src 'self'",
+    "workerScriptCspMechanism": "on_web_resource_request hook adds this header to bundled JavaScript responses that carry no CSP; Tauri itself attaches the configured CSP only to HTML responses.",
+    "tauriAddedScriptHashes": "Tauri appends one sha256 source per bundled .js/.mjs file in frontendDist to script-src; the hash list changes with every frontend build.",
+    "directiveOrder": "Tauri serializes the policy from a hash map, so directive order in the header differs from the configured string and between runs.",
+    "effectiveHeader": "worker-src 'self'; frame-ancestors 'none'; font-src 'self'; script-src 'self' 'sha256-Wa7EbxUcBVYbzc5HBzHueNG4lPSTb2evCg4BQ+IgzaM=' 'sha256-e8j9dyK5x+g9XDfcx/BzdEwrgpIYztFx4ovPxekkK8Q=' 'sha256-eTJ36X2Utde8YJrBzqhnMQVKWoW2IMOeLBtIIKr0SX0=' 'sha256-hUHSyTdp3zv7xPfCYv0IxsIu1gLx1xr44XBsk6eBtEY='; base-uri 'none'; default-src 'none'; connect-src 'self' ipc:; style-src 'self'; form-action 'none'; img-src 'self' blob:; object-src 'none'",
+    "meta": null,
+    "violationPolicies": [
+      "img-src 'self' blob:; connect-src 'self' ipc:; object-src 'none'; frame-ancestors 'none'; default-src 'none'; worker-src 'self'; style-src 'self'; script-src 'self' 'sha256-Wa7EbxUcBVYbzc5HBzHueNG4lPSTb2evCg4BQ+IgzaM=' 'sha256-e8j9dyK5x+g9XDfcx/BzdEwrgpIYztFx4ovPxekkK8Q=' 'sha256-eTJ36X2Utde8YJrBzqhnMQVKWoW2IMOeLBtIIKr0SX0=' 'sha256-hUHSyTdp3zv7xPfCYv0IxsIu1gLx1xr44XBsk6eBtEY='; font-src 'self'; base-uri 'none'; form-action 'none'"
+    ],
+    "freezePrototype": true,
+    "dangerousDisableAssetCspModification": false
+  },
+  "permissions": {
+    "appManifestCommands": [
+      "spike_report"
+    ],
+    "registeredCommands": [
+      "spike_report",
+      "spike_forbidden"
+    ],
+    "capability": {
+      "$schema": "../gen/schemas/desktop-schema.json",
+      "identifier": "main-window-spike",
+      "description": "The main window may call only the spike_report application command. No core or plugin permissions are granted.",
+      "local": true,
+      "windows": [
+        "main"
+      ],
+      "permissions": [
+        "allow-spike-report"
+      ]
+    },
+    "forbiddenCommand": {
+      "details": {
+        "command": "spike_forbidden",
+        "error": "Command spike_forbidden not allowed by ACL"
+      },
+      "durationMs": 2,
+      "id": "command-forbidden-rejected",
+      "status": "expected-block",
+      "summary": "spike_forbidden rejected: Command spike_forbidden not allowed by ACL"
+    },
+    "pluginCommand": {
+      "details": {
+        "command": "plugin:app|version",
+        "error": "Command plugin:app|version not allowed by ACL"
+      },
+      "durationMs": 1,
+      "id": "plugin-command-rejected",
+      "status": "expected-block",
+      "summary": "plugin:app|version rejected: Command plugin:app|version not allowed by ACL"
+    },
+    "forbiddenCommandExecutedNative": false,
+    "validationUnknownKey": {
+      "details": {},
+      "durationMs": 2,
+      "id": "report-validation-rejects-unknown-key",
+      "status": "expected-block",
+      "summary": "rejected: invalid args `results` for command `spike_report`: unknown field `unexpectedKey`, expected one of `schema`, `runId`, `userAgent`, `origin`, `href`, `isSecureContext`, `startedAt`, `durationMs`, `probes`, `csp`, `violations`, `requestLog`, `resourceOrigins`, `captures`"
+    },
+    "validationOversized": {
+      "details": {},
+      "durationMs": 1,
+      "id": "report-validation-rejects-oversized",
+      "status": "expected-block",
+      "summary": "rejected: invalid spike report: probe summary exceeds 512 characters"
+    },
+    "rejectedReportsBeforeAcceptance": 1
+  },
+  "network": {
+    "staticDistScan": {
+      "filesScanned": 67,
+      "references": [
+        {
+          "url": "http://www.w3.org/2000/svg",
+          "files": [
+            "dist/assets/index-CheBHV0w.js"
+          ],
+          "classification": "XML namespace identifier (never fetched)"
+        },
+        {
+          "url": "http://www.w3.org/1998/Math/MathML",
+          "files": [
+            "dist/assets/index-CheBHV0w.js"
+          ],
+          "classification": "XML namespace identifier (never fetched)"
+        },
+        {
+          "url": "http://www.w3.org/1999/xhtml",
+          "files": [
+            "dist/assets/index-CheBHV0w.js"
+          ],
+          "classification": "XML namespace identifier (never fetched)"
+        },
+        {
+          "url": "https://remote.invalid/study-harness-spike-probe",
+          "files": [
+            "dist/assets/index-CheBHV0w.js"
+          ],
+          "classification": "deliberate CSP negative probe / untrusted-TeX fixture (RFC 6761 reserved name)"
+        },
+        {
+          "url": "https://remote.invalid/x",
+          "files": [
+            "dist/assets/index-CheBHV0w.js"
+          ],
+          "classification": "deliberate CSP negative probe / untrusted-TeX fixture (RFC 6761 reserved name)"
+        },
+        {
+          "url": "http://ipc.localhost",
+          "files": [
+            "dist/assets/index-CheBHV0w.js"
+          ],
+          "classification": "Tauri IPC origin listed in the probe allowlist"
+        }
+      ],
+      "unexpected": []
+    },
+    "runtimeResourceOrigins": [
+      "ipc://localhost",
+      "tauri://localhost"
+    ],
+    "runtimeRequestLog": [
+      "tauri://localhost/data/probe-data.json",
+      "tauri://localhost/assets/KaTeX_Main-Regular-B22Nviop.woff2",
+      "tauri://localhost/assets/KaTeX_Main-Regular-B22Nviop.woff2",
+      "tauri://localhost/assets/KaTeX_Math-Italic-t53AETM-.woff2",
+      "https://remote.invalid/study-harness-spike-probe",
+      "ipc://localhost/spike_forbidden",
+      "ipc://localhost/plugin%3Aapp%7Cversion",
+      "tauri://localhost/index.html",
+      "ipc://localhost/spike_report",
+      "ipc://localhost/spike_report",
+      "tauri://localhost/index.html"
+    ],
+    "note": "The only remote-origin request issued is the deliberate remote-connect-negative probe to https://remote.invalid/ (reserved name), which CSP connect-src blocks before any network activity."
+  },
+  "captures": [
+    {
+      "probeId": "png-capture-svg",
+      "file": "docs/study-harness/evidence/native-spike-captures/png-capture-svg.png",
+      "width": 640,
+      "height": 320,
+      "bytes": 20563,
+      "sha256": "de70eba2a95cac7359ba3ede107f36fe909788f5208cb8cf550bc0993325d028",
+      "reportedSha256": "de70eba2a95cac7359ba3ede107f36fe909788f5208cb8cf550bc0993325d028",
+      "hashVerified": true,
+      "pngSignature": true
+    },
+    {
+      "probeId": "png-capture-svg-embedded-font",
+      "file": "docs/study-harness/evidence/native-spike-captures/png-capture-svg-embedded-font.png",
+      "width": 640,
+      "height": 320,
+      "bytes": 20995,
+      "sha256": "f8cb88d36927366b8cbad4243bc6e1755a45bb48d19ffe48ef6c8a687e38a205",
+      "reportedSha256": "f8cb88d36927366b8cbad4243bc6e1755a45bb48d19ffe48ef6c8a687e38a205",
+      "hashVerified": true,
+      "pngSignature": true
+    },
+    {
+      "probeId": "png-capture-katex-canvas",
+      "file": "docs/study-harness/evidence/native-spike-captures/png-capture-katex-canvas.png",
+      "width": 422,
+      "height": 132,
+      "bytes": 9374,
+      "sha256": "cd0d1f62e572c1793cd56cdf21f61b67d6ad86cc35c7d87ee588d01706603f6b",
+      "reportedSha256": "cd0d1f62e572c1793cd56cdf21f61b67d6ad86cc35c7d87ee588d01706603f6b",
+      "hashVerified": true,
+      "pngSignature": true
+    }
+  ],
+  "probes": [
+    {
+      "details": {
+        "baseURI": "tauri://localhost",
+        "crossOriginIsolated": false,
+        "devicePixelRatio": 2,
+        "earlyScriptBootedAtMs": 6,
+        "hardwareConcurrency": 8,
+        "hasFocus": false,
+        "href": "tauri://localhost",
+        "isSecureContext": true,
+        "language": "en-US",
+        "objectPrototypeFrozen": true,
+        "origin": "tauri://localhost",
+        "protocol": "tauri:",
+        "sharedArrayBuffer": false,
+        "tauriGlobalApiPresent": false,
+        "tauriInternalsPresent": true,
+        "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko)",
+        "viewport": "958x1173",
+        "visibilityState": "visible"
+      },
+      "durationMs": 2,
+      "id": "environment",
+      "status": "info",
+      "summary": "tauri://localhost secure=true"
+    },
+    {
+      "details": {
+        "violations": [
+          {
+            "blocked": "eval",
+            "directive": "script-src"
+          }
+        ]
+      },
+      "durationMs": 21,
+      "id": "eval-negative",
+      "status": "expected-block",
+      "summary": "EvalError: Refused to evaluate a string as JavaScript because 'unsafe-eval' or 'trusted-types-eval' is not an allowed source of script in the following Content Security Policy directive: \"script-src 'self' 'sha256-Wa7EbxUcBVYbzc5HBzHueNG4lPSTb2evCg4BQ+IgzaM=' 'sha256-e8j9dyK5x+g9XDfcx/BzdEwrgpIYztFx4ovPxekkK8Q=' 'sha256-eTJ36X2Utde8YJrBzqhnMQVKWoW2IMOeLBtIIKr0SX0=' 'sha256-hUHSyTdp3zv7xPfCYv0IxsIu"
+    },
+    {
+      "details": {
+        "cssomApplied": true,
+        "parsedApplied": false,
+        "setAttributeApplied": false,
+        "violations": [
+          {
+            "blocked": "inline",
+            "directive": "style-src-attr"
+          },
+          {
+            "blocked": "inline",
+            "directive": "style-src-attr"
+          }
+        ]
+      },
+      "durationMs": 21,
+      "id": "inline-style-attr-negative",
+      "status": "expected-block",
+      "summary": "parsed style attr applied=false, setAttribute style applied=false, CSSOM style applied=true"
+    },
+    {
+      "details": {
+        "constructionPattern": "new Worker(new URL('./probe-worker.ts', import.meta.url), { type: 'module' })",
+        "importMetaUrl": "tauri://localhost/assets/probe-worker-XGSuYKUV.js",
+        "sameOriginAsPage": true,
+        "workerIsSecureContext": true,
+        "workerLocation": "tauri://localhost/assets/probe-worker-XGSuYKUV.js"
+      },
+      "durationMs": 23,
+      "id": "module-worker",
+      "status": "pass",
+      "summary": "module worker ran from tauri://localhost/assets/probe-worker-XGSuYKUV.js"
+    },
+    {
+      "details": {
+        "chunkUrl": "tauri://localhost/assets/worker-lazy-i_zBBMgK.js"
+      },
+      "durationMs": 0,
+      "id": "worker-dynamic-import",
+      "status": "pass",
+      "summary": "dynamic import() of a split chunk from the worker: value=6"
+    },
+    {
+      "details": {
+        "digest": "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad",
+        "uuid": "3e9b0586-98de-485c-9711-f1d2ed8231b6",
+        "workerIsSecureContext": true
+      },
+      "durationMs": 0,
+      "id": "web-crypto-worker",
+      "status": "pass",
+      "summary": "worker digest matches, randomUUID valid"
+    },
+    {
+      "details": {
+        "detail": "new Function rejected in worker: EvalError: Refused to evaluate a string as JavaScript because 'unsafe-eval' or 'trusted-types-eval' is not an allowed source of script in the following Content Security Policy directive: \"script-src 'self'\".\n",
+        "evalBlocked": true
+      },
+      "durationMs": 0,
+      "id": "worker-csp",
+      "status": "expected-block",
+      "summary": "dynamic code blocked inside the worker"
+    },
+    {
+      "details": {
+        "outcome": "error",
+        "violations": [
+          {
+            "blocked": "blob",
+            "directive": "worker-src"
+          }
+        ]
+      },
+      "durationMs": 1,
+      "id": "blob-worker-negative",
+      "status": "expected-block",
+      "summary": "blob: worker failed with error event"
+    },
+    {
+      "details": {
+        "digest": "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad",
+        "getRandomValuesNonZero": true,
+        "isSecureContext": true,
+        "uuid": "305b6de8-624e-4fc0-b6d4-df54f2919f1c"
+      },
+      "durationMs": 1,
+      "id": "web-crypto-main",
+      "status": "pass",
+      "summary": "digest matches, randomUUID valid v4"
+    },
+    {
+      "details": {
+        "accessControlAllowOrigin": "tauri://localhost",
+        "contentType": "application/json",
+        "status": 200,
+        "url": "tauri://localhost/data/probe-data.json",
+        "workerFetch": "fetch 200 application/json samples=5"
+      },
+      "durationMs": 1,
+      "id": "local-data-fetch",
+      "status": "pass",
+      "summary": "page fetch 200 (5 samples), worker fetch ok"
+    },
+    {
+      "details": {
+        "checkResult": true,
+        "faceStatuses": [
+          "SpikeLocalSerif:loaded"
+        ],
+        "fallbackWidth": 345.65625,
+        "fontUrl": "tauri://localhost/assets/KaTeX_Main-Regular-B22Nviop.woff2",
+        "localWidth": 266.2720031738281
+      },
+      "durationMs": 6,
+      "id": "local-font",
+      "status": "pass",
+      "summary": "faces=1 loaded=true width local=266.3 fallback=345.7"
+    },
+    {
+      "details": {
+        "api": "katex.render (DOM nodes, styles applied through CSSOM)",
+        "baseHeightPx": 26,
+        "katexVersion": "0.19.0",
+        "options": {
+          "maxExpand": 1000,
+          "maxSize": 20,
+          "output": "htmlAndMathml",
+          "trust": false
+        },
+        "strutHeightPx": 9.375,
+        "strutSelector": ".katex-strut, .strut",
+        "styledElements": 28,
+        "violations": []
+      },
+      "durationMs": 36,
+      "id": "katex-dom",
+      "status": "pass",
+      "summary": "html=true mathml=true strutHeight=9.38px baseHeight=26.00px untrustedHrefAnchor=false"
+    },
+    {
+      "details": {
+        "api": "katex.renderToString + innerHTML",
+        "domStrutHeightPx": 9.375,
+        "strutHeightPx": 0,
+        "styleAttributesInMarkup": 28,
+        "violations": [
+          {
+            "blocked": "inline",
+            "directive": "style-src-attr"
+          },
+          {
+            "blocked": "inline",
+            "directive": "style-src-attr"
+          },
+          {
+            "blocked": "inline",
+            "directive": "style-src-attr"
+          },
+          {
+            "blocked": "inline",
+            "directive": "style-src-attr"
+          },
+          {
+            "blocked": "inline",
+            "directive": "style-src-attr"
+          },
+          {
+            "blocked": "inline",
+            "directive": "style-src-attr"
+          },
+          {
+            "blocked": "inline",
+            "directive": "style-src-attr"
+          },
+          {
+            "blocked": "inline",
+            "directive": "style-src-attr"
+          },
+          {
+            "blocked": "inline",
+            "directive": "style-src-attr"
+          },
+          {
+            "blocked": "inline",
+            "directive": "style-src-attr"
+          },
+          {
+            "blocked": "inline",
+            "directive": "style-src-attr"
+          },
+          {
+            "blocked": "inline",
+            "directive": "style-src-attr"
+          },
+          {
+            "blocked": "inline",
+            "directive": "style-src-attr"
+          },
+          {
+            "blocked": "inline",
+            "directive": "style-src-attr"
+          },
+          {
+            "blocked": "inline",
+            "directive": "style-src-attr"
+          },
+          {
+            "blocked": "inline",
+            "directive": "style-src-attr"
+          },
+          {
+            "blocked": "inline",
+            "directive": "style-src-attr"
+          },
+          {
+            "blocked": "inline",
+            "directive": "style-src-attr"
+          },
+          {
+            "blocked": "inline",
+            "directive": "style-src-attr"
+          },
+          {
+            "blocked": "inline",
+            "directive": "style-src-attr"
+          },
+          {
+            "blocked": "inline",
+            "directive": "style-src-attr"
+          },
+          {
+            "blocked": "inline",
+            "directive": "style-src-attr"
+          },
+          {
+            "blocked": "inline",
+            "directive": "style-src-attr"
+          },
+          {
+            "blocked": "inline",
+            "directive": "style-src-attr"
+          },
+          {
+            "blocked": "inline",
+            "directive": "style-src-attr"
+          },
+          {
+            "blocked": "inline",
+            "directive": "style-src-attr"
+          },
+          {
+            "blocked": "inline",
+            "directive": "style-src-attr"
+          },
+          {
+            "blocked": "inline",
+            "directive": "style-src-attr"
+          }
+        ]
+      },
+      "durationMs": 28,
+      "id": "katex-string-innerhtml",
+      "status": "expected-block",
+      "summary": "renderToString + innerHTML lost 28 inline style attributes under CSP (strut 0.00px vs DOM 9.38px)"
+    },
+    {
+      "details": {
+        "faces": [
+          "KaTeX_Main/normal/400:loaded",
+          "KaTeX_Math/italic/400:loaded"
+        ]
+      },
+      "durationMs": 0,
+      "id": "katex-fonts",
+      "status": "pass",
+      "summary": "KaTeX_Main=true KaTeX_Math italic=true (2 faces touched)"
+    },
+    {
+      "details": {
+        "pathLength": 325.6356506347656,
+        "rendering": "createElementNS + presentation attributes",
+        "textHeight": 28.21875,
+        "textWidth": 195.96875
+      },
+      "durationMs": 1,
+      "id": "svg-render",
+      "status": "pass",
+      "summary": "text bbox 196.0x28.2, path length 325.6"
+    },
+    {
+      "details": {
+        "drawAttempts": 1,
+        "height": 320,
+        "nonWhitePixels": 8921,
+        "path": "XMLSerializer -> Blob(image/svg+xml) -> blob: URL -> <img> -> canvas.drawImage -> toDataURL/toBlob",
+        "pixelSha256Prefix": "2ef86fa1a8919495c5f4f66833dfb1eb",
+        "pngBytes": 20563,
+        "pngSha256": "de70eba2a95cac7359ba3ede107f36fe909788f5208cb8cf550bc0993325d028",
+        "pngSignatureOk": true,
+        "taintError": null,
+        "tainted": false,
+        "width": 640
+      },
+      "durationMs": 27,
+      "id": "png-capture-svg",
+      "status": "pass",
+      "summary": "PNG 20563 bytes, 8921 non-white px"
+    },
+    {
+      "details": {
+        "drawAttempts": 1,
+        "embeddedFontBytes": 35055,
+        "height": 320,
+        "nonWhitePixels": 9173,
+        "note": "SVG-as-image documents cannot use page web fonts; fonts must be embedded as data: URIs inside the SVG.",
+        "pixelSha256Prefix": "4b5e4038a257b8269dfc4b37b83a89bd",
+        "pngBytes": 20995,
+        "pngSha256": "f8cb88d36927366b8cbad4243bc6e1755a45bb48d19ffe48ef6c8a687e38a205",
+        "pngSignatureOk": true,
+        "rasterDiffersFromPlainCapture": true,
+        "taintError": null,
+        "tainted": false,
+        "width": 640
+      },
+      "durationMs": 18,
+      "id": "png-capture-svg-embedded-font",
+      "status": "pass",
+      "summary": "embedded data: font in SVG image changed the raster vs. the plain capture"
+    },
+    {
+      "details": {
+        "drawAttempts": 1,
+        "height": 160,
+        "nonWhitePixels": 0,
+        "pixelSha256Prefix": "",
+        "pngBytes": 0,
+        "pngSha256": "",
+        "pngSignatureOk": false,
+        "taintError": "SecurityError: The operation is insecure.",
+        "tainted": true,
+        "width": 480
+      },
+      "durationMs": 2,
+      "id": "png-capture-foreignobject-html",
+      "status": "fail",
+      "summary": "canvas tainted by foreignObject: SecurityError: The operation is insecure."
+    },
+    {
+      "details": {
+        "drawAttempts": 1,
+        "embeddedFonts": [
+          "KaTeX_Main-Regular",
+          "KaTeX_Math-Italic"
+        ],
+        "height": 180,
+        "nonWhitePixels": 0,
+        "pixelSha256Prefix": "",
+        "pngBytes": 0,
+        "pngSha256": "",
+        "pngSignatureOk": false,
+        "svgBytes": 80851,
+        "taintError": "SecurityError: The operation is insecure.",
+        "tainted": true,
+        "width": 720
+      },
+      "durationMs": 14,
+      "id": "png-capture-foreignobject-katex",
+      "status": "fail",
+      "summary": "canvas tainted by KaTeX foreignObject: SecurityError: The operation is insecure."
+    },
+    {
+      "details": {
+        "approach": "DOM walk: fillText per KaTeX text node with computed font, border rules as rects, inline SVG via blob: image, clipped to overflow ancestor",
+        "cssHeight": 66,
+        "cssWidth": 211,
+        "drawAttempts": 1,
+        "glyphRuns": 13,
+        "height": 132,
+        "nonWhitePixels": 4225,
+        "pixelSha256Prefix": "6afcfa74404374a99c554515a23f51f3",
+        "pngBytes": 9374,
+        "pngSha256": "cd0d1f62e572c1793cd56cdf21f61b67d6ad86cc35c7d87ee588d01706603f6b",
+        "pngSignatureOk": true,
+        "rules": 1,
+        "svgParts": 1,
+        "taintError": null,
+        "tainted": false,
+        "width": 422
+      },
+      "durationMs": 9,
+      "id": "png-capture-katex-canvas",
+      "status": "pass",
+      "summary": "13 glyph runs, 1 rules, 1 SVG parts repainted; PNG 9374 bytes"
+    },
+    {
+      "details": {
+        "violations": [
+          {
+            "blocked": "data",
+            "directive": "img-src"
+          }
+        ]
+      },
+      "durationMs": 21,
+      "id": "png-data-url-negative",
+      "status": "expected-block",
+      "summary": "data: image rejected (Error: image failed to load)"
+    },
+    {
+      "details": {
+        "offscreen2d": "convertToBlob image/png",
+        "offscreenWebgl2": "webgl2 context created on OffscreenCanvas in worker"
+      },
+      "durationMs": 0,
+      "id": "offscreen-canvas-worker",
+      "status": "pass",
+      "summary": "OffscreenCanvas 2d PNG 241 bytes; worker webgl2 available"
+    },
+    {
+      "details": {
+        "functional": true,
+        "maxTextureSize": 16384,
+        "readPixels": [
+          0,
+          128,
+          255,
+          255
+        ],
+        "renderer": "WebKit WebGL",
+        "shadingLanguage": "WebGL GLSL ES 3.00",
+        "unmaskedRenderer": "Apple GPU",
+        "vendor": "WebKit",
+        "version": "WebGL 2.0",
+        "webgl2": true
+      },
+      "durationMs": 6,
+      "id": "webgl",
+      "status": "info",
+      "summary": "WebGL2 available, clear/readPixels ok"
+    },
+    {
+      "details": {
+        "elapsedMs": 509,
+        "frames": 31,
+        "hasFocus": false,
+        "visibilityState": "visible"
+      },
+      "durationMs": 509,
+      "id": "animation-frame",
+      "status": "info",
+      "summary": "31 frames in 509 ms (60.9 fps), visibility=visible"
+    },
+    {
+      "details": {
+        "note": "Deliberate negative probe; .invalid is reserved and never resolves.",
+        "target": "https://remote.invalid/study-harness-spike-probe",
+        "violations": [
+          {
+            "blocked": "https://remote.invalid/study-harness-spike-probe",
+            "directive": "connect-src"
+          }
+        ]
+      },
+      "durationMs": 22,
+      "id": "remote-connect-negative",
+      "status": "expected-block",
+      "summary": "blocked by connect-src before any network activity"
+    },
+    {
+      "details": {
+        "command": "spike_forbidden",
+        "error": "Command spike_forbidden not allowed by ACL"
+      },
+      "durationMs": 2,
+      "id": "command-forbidden-rejected",
+      "status": "expected-block",
+      "summary": "spike_forbidden rejected: Command spike_forbidden not allowed by ACL"
+    },
+    {
+      "details": {
+        "command": "plugin:app|version",
+        "error": "Command plugin:app|version not allowed by ACL"
+      },
+      "durationMs": 1,
+      "id": "plugin-command-rejected",
+      "status": "expected-block",
+      "summary": "plugin:app|version rejected: Command plugin:app|version not allowed by ACL"
+    },
+    {
+      "details": {},
+      "durationMs": 2,
+      "id": "report-validation-rejects-unknown-key",
+      "status": "expected-block",
+      "summary": "rejected: invalid args `results` for command `spike_report`: unknown field `unexpectedKey`, expected one of `schema`, `runId`, `userAgent`, `origin`, `href`, `isSecureContext`, `startedAt`, `durationMs`, `probes`, `csp`, `violations`, `requestLog`, `resourceOrigins`, `captures`"
+    },
+    {
+      "details": {},
+      "durationMs": 1,
+      "id": "report-validation-rejects-oversized",
+      "status": "expected-block",
+      "summary": "rejected: invalid spike report: probe summary exceeds 512 characters"
+    },
+    {
+      "details": {
+        "excludedDeliberateNegativeProbe": "https://remote.invalid/study-harness-spike-probe",
+        "origins": [
+          "ipc://localhost",
+          "tauri://localhost"
+        ],
+        "resourceEntries": 0,
+        "sampleEntries": []
+      },
+      "durationMs": 0,
+      "id": "resource-origins",
+      "status": "pass",
+      "summary": "all 0 resource loads and 9 fetches stayed on app origins"
+    },
+    {
+      "details": {
+        "header": "worker-src 'self'; frame-ancestors 'none'; font-src 'self'; script-src 'self' 'sha256-Wa7EbxUcBVYbzc5HBzHueNG4lPSTb2evCg4BQ+IgzaM=' 'sha256-e8j9dyK5x+g9XDfcx/BzdEwrgpIYztFx4ovPxekkK8Q=' 'sha256-eTJ36X2Utde8YJrBzqhnMQVKWoW2IMOeLBtIIKr0SX0=' 'sha256-hUHSyTdp3zv7xPfCYv0IxsIu1gLx1xr44XBsk6eBtEY='; base-uri 'none'; default-src 'none'; connect-src 'self' ipc:; style-src 'self'; form-action 'none'; img-src 'self' blob:; object-src 'none'",
+        "headerMatchesViolationPolicy": false,
+        "meta": null,
+        "violationPolicies": [
+          "img-src 'self' blob:; connect-src 'self' ipc:; object-src 'none'; frame-ancestors 'none'; default-src 'none'; worker-src 'self'; style-src 'self'; script-src 'self' 'sha256-Wa7EbxUcBVYbzc5HBzHueNG4lPSTb2evCg4BQ+IgzaM=' 'sha256-e8j9dyK5x+g9XDfcx/BzdEwrgpIYztFx4ovPxekkK8Q=' 'sha256-eTJ36X2Utde8YJrBzqhnMQVKWoW2IMOeLBtIIKr0SX0=' 'sha256-hUHSyTdp3zv7xPfCYv0IxsIu1gLx1xr44XBsk6eBtEY='; font-src 'self'; base-uri 'none'; form-action 'none'"
+        ]
+      },
+      "durationMs": 0,
+      "id": "csp-effective",
+      "status": "pass",
+      "summary": "header: worker-src 'self'; frame-ancestors 'none'; font-src 'self'; script-src 'self' 'sha256-Wa7EbxUcBVYbzc5HBzHueNG4lPSTb2evCg4BQ+IgzaM=' 'sha256-e8j9dyK5x+g9XDfcx/BzdEwrgpIYztFx4ovPxekkK8Q=' 'sha256-eTJ36X2Utde8YJrBzqhnMQVKWoW2IMOeLBtIIKr0SX0=' 'sha256-hUHSyTdp3zv7xPfCYv0IxsIu1gLx1xr44XBsk6eBtEY='; base-uri 'none'; default-src 'none'; connect-src 'self' ipc:; style-src 'self'; form-action 'none'; img-src 'self' blob:; object-src 'none'"
+    }
+  ],
+  "violations": [
+    {
+      "atMs": 31,
+      "blockedURI": "eval",
+      "disposition": "enforce",
+      "effectiveDirective": "script-src",
+      "originalPolicy": "img-src 'self' blob:; connect-src 'self' ipc:; object-src 'none'; frame-ancestors 'none'; default-src 'none'; worker-src 'self'; style-src 'self'; script-src 'self' 'sha256-Wa7EbxUcBVYbzc5HBzHueNG4lPSTb2evCg4BQ+IgzaM=' 'sha256-e8j9dyK5x+g9XDfcx/BzdEwrgpIYztFx4ovPxekkK8Q=' 'sha256-eTJ36X2Utde8YJrBzqhnMQVKWoW2IMOeLBtIIKr0SX0=' 'sha256-hUHSyTdp3zv7xPfCYv0IxsIu1gLx1xr44XBsk6eBtEY='; font-src 'self'; base-uri 'none'; form-action 'none'",
+      "sample": "",
+      "sourceFile": "tauri://localhost/assets/index-CheBHV0w.js",
+      "violatedDirective": "script-src"
+    },
+    {
+      "atMs": 50,
+      "blockedURI": "inline",
+      "disposition": "enforce",
+      "effectiveDirective": "style-src-attr",
+      "originalPolicy": "img-src 'self' blob:; connect-src 'self' ipc:; object-src 'none'; frame-ancestors 'none'; default-src 'none'; worker-src 'self'; style-src 'self'; script-src 'self' 'sha256-Wa7EbxUcBVYbzc5HBzHueNG4lPSTb2evCg4BQ+IgzaM=' 'sha256-e8j9dyK5x+g9XDfcx/BzdEwrgpIYztFx4ovPxekkK8Q=' 'sha256-eTJ36X2Utde8YJrBzqhnMQVKWoW2IMOeLBtIIKr0SX0=' 'sha256-hUHSyTdp3zv7xPfCYv0IxsIu1gLx1xr44XBsk6eBtEY='; font-src 'self'; base-uri 'none'; form-action 'none'",
+      "sample": "",
+      "sourceFile": "tauri://localhost/assets/index-CheBHV0w.js",
+      "violatedDirective": "style-src-attr"
+    },
+    {
+      "atMs": 50,
+      "blockedURI": "inline",
+      "disposition": "enforce",
+      "effectiveDirective": "style-src-attr",
+      "originalPolicy": "img-src 'self' blob:; connect-src 'self' ipc:; object-src 'none'; frame-ancestors 'none'; default-src 'none'; worker-src 'self'; style-src 'self'; script-src 'self' 'sha256-Wa7EbxUcBVYbzc5HBzHueNG4lPSTb2evCg4BQ+IgzaM=' 'sha256-e8j9dyK5x+g9XDfcx/BzdEwrgpIYztFx4ovPxekkK8Q=' 'sha256-eTJ36X2Utde8YJrBzqhnMQVKWoW2IMOeLBtIIKr0SX0=' 'sha256-hUHSyTdp3zv7xPfCYv0IxsIu1gLx1xr44XBsk6eBtEY='; font-src 'self'; base-uri 'none'; form-action 'none'",
+      "sample": "",
+      "sourceFile": "tauri://localhost/assets/index-CheBHV0w.js",
+      "violatedDirective": "style-src-attr"
+    },
+    {
+      "atMs": 95,
+      "blockedURI": "blob",
+      "disposition": "enforce",
+      "effectiveDirective": "worker-src",
+      "originalPolicy": "img-src 'self' blob:; connect-src 'self' ipc:; object-src 'none'; frame-ancestors 'none'; default-src 'none'; worker-src 'self'; style-src 'self'; script-src 'self' 'sha256-Wa7EbxUcBVYbzc5HBzHueNG4lPSTb2evCg4BQ+IgzaM=' 'sha256-e8j9dyK5x+g9XDfcx/BzdEwrgpIYztFx4ovPxekkK8Q=' 'sha256-eTJ36X2Utde8YJrBzqhnMQVKWoW2IMOeLBtIIKr0SX0=' 'sha256-hUHSyTdp3zv7xPfCYv0IxsIu1gLx1xr44XBsk6eBtEY='; font-src 'self'; base-uri 'none'; form-action 'none'",
+      "sample": "",
+      "sourceFile": "tauri://localhost/assets/index-CheBHV0w.js",
+      "violatedDirective": "worker-src"
+    },
+    {
+      "atMs": 146,
+      "blockedURI": "inline",
+      "disposition": "enforce",
+      "effectiveDirective": "style-src-attr",
+      "originalPolicy": "img-src 'self' blob:; connect-src 'self' ipc:; object-src 'none'; frame-ancestors 'none'; default-src 'none'; worker-src 'self'; style-src 'self'; script-src 'self' 'sha256-Wa7EbxUcBVYbzc5HBzHueNG4lPSTb2evCg4BQ+IgzaM=' 'sha256-e8j9dyK5x+g9XDfcx/BzdEwrgpIYztFx4ovPxekkK8Q=' 'sha256-eTJ36X2Utde8YJrBzqhnMQVKWoW2IMOeLBtIIKr0SX0=' 'sha256-hUHSyTdp3zv7xPfCYv0IxsIu1gLx1xr44XBsk6eBtEY='; font-src 'self'; base-uri 'none'; form-action 'none'",
+      "sample": "",
+      "sourceFile": "tauri://localhost/assets/index-CheBHV0w.js",
+      "violatedDirective": "style-src-attr"
+    },
+    {
+      "atMs": 146,
+      "blockedURI": "inline",
+      "disposition": "enforce",
+      "effectiveDirective": "style-src-attr",
+      "originalPolicy": "img-src 'self' blob:; connect-src 'self' ipc:; object-src 'none'; frame-ancestors 'none'; default-src 'none'; worker-src 'self'; style-src 'self'; script-src 'self' 'sha256-Wa7EbxUcBVYbzc5HBzHueNG4lPSTb2evCg4BQ+IgzaM=' 'sha256-e8j9dyK5x+g9XDfcx/BzdEwrgpIYztFx4ovPxekkK8Q=' 'sha256-eTJ36X2Utde8YJrBzqhnMQVKWoW2IMOeLBtIIKr0SX0=' 'sha256-hUHSyTdp3zv7xPfCYv0IxsIu1gLx1xr44XBsk6eBtEY='; font-src 'self'; base-uri 'none'; form-action 'none'",
+      "sample": "",
+      "sourceFile": "tauri://localhost/assets/index-CheBHV0w.js",
+      "violatedDirective": "style-src-attr"
+    },
+    {
+      "atMs": 146,
+      "blockedURI": "inline",
+      "disposition": "enforce",
+      "effectiveDirective": "style-src-attr",
+      "originalPolicy": "img-src 'self' blob:; connect-src 'self' ipc:; object-src 'none'; frame-ancestors 'none'; default-src 'none'; worker-src 'self'; style-src 'self'; script-src 'self' 'sha256-Wa7EbxUcBVYbzc5HBzHueNG4lPSTb2evCg4BQ+IgzaM=' 'sha256-e8j9dyK5x+g9XDfcx/BzdEwrgpIYztFx4ovPxekkK8Q=' 'sha256-eTJ36X2Utde8YJrBzqhnMQVKWoW2IMOeLBtIIKr0SX0=' 'sha256-hUHSyTdp3zv7xPfCYv0IxsIu1gLx1xr44XBsk6eBtEY='; font-src 'self'; base-uri 'none'; form-action 'none'",
+      "sample": "",
+      "sourceFile": "tauri://localhost/assets/index-CheBHV0w.js",
+      "violatedDirective": "style-src-attr"
+    },
+    {
+      "atMs": 146,
+      "blockedURI": "inline",
+      "disposition": "enforce",
+      "effectiveDirective": "style-src-attr",
+      "originalPolicy": "img-src 'self' blob:; connect-src 'self' ipc:; object-src 'none'; frame-ancestors 'none'; default-src 'none'; worker-src 'self'; style-src 'self'; script-src 'self' 'sha256-Wa7EbxUcBVYbzc5HBzHueNG4lPSTb2evCg4BQ+IgzaM=' 'sha256-e8j9dyK5x+g9XDfcx/BzdEwrgpIYztFx4ovPxekkK8Q=' 'sha256-eTJ36X2Utde8YJrBzqhnMQVKWoW2IMOeLBtIIKr0SX0=' 'sha256-hUHSyTdp3zv7xPfCYv0IxsIu1gLx1xr44XBsk6eBtEY='; font-src 'self'; base-uri 'none'; form-action 'none'",
+      "sample": "",
+      "sourceFile": "tauri://localhost/assets/index-CheBHV0w.js",
+      "violatedDirective": "style-src-attr"
+    },
+    {
+      "atMs": 146,
+      "blockedURI": "inline",
+      "disposition": "enforce",
+      "effectiveDirective": "style-src-attr",
+      "originalPolicy": "img-src 'self' blob:; connect-src 'self' ipc:; object-src 'none'; frame-ancestors 'none'; default-src 'none'; worker-src 'self'; style-src 'self'; script-src 'self' 'sha256-Wa7EbxUcBVYbzc5HBzHueNG4lPSTb2evCg4BQ+IgzaM=' 'sha256-e8j9dyK5x+g9XDfcx/BzdEwrgpIYztFx4ovPxekkK8Q=' 'sha256-eTJ36X2Utde8YJrBzqhnMQVKWoW2IMOeLBtIIKr0SX0=' 'sha256-hUHSyTdp3zv7xPfCYv0IxsIu1gLx1xr44XBsk6eBtEY='; font-src 'self'; base-uri 'none'; form-action 'none'",
+      "sample": "",
+      "sourceFile": "tauri://localhost/assets/index-CheBHV0w.js",
+      "violatedDirective": "style-src-attr"
+    },
+    {
+      "atMs": 146,
+      "blockedURI": "inline",
+      "disposition": "enforce",
+      "effectiveDirective": "style-src-attr",
+      "originalPolicy": "img-src 'self' blob:; connect-src 'self' ipc:; object-src 'none'; frame-ancestors 'none'; default-src 'none'; worker-src 'self'; style-src 'self'; script-src 'self' 'sha256-Wa7EbxUcBVYbzc5HBzHueNG4lPSTb2evCg4BQ+IgzaM=' 'sha256-e8j9dyK5x+g9XDfcx/BzdEwrgpIYztFx4ovPxekkK8Q=' 'sha256-eTJ36X2Utde8YJrBzqhnMQVKWoW2IMOeLBtIIKr0SX0=' 'sha256-hUHSyTdp3zv7xPfCYv0IxsIu1gLx1xr44XBsk6eBtEY='; font-src 'self'; base-uri 'none'; form-action 'none'",
+      "sample": "",
+      "sourceFile": "tauri://localhost/assets/index-CheBHV0w.js",
+      "violatedDirective": "style-src-attr"
+    },
+    {
+      "atMs": 146,
+      "blockedURI": "inline",
+      "disposition": "enforce",
+      "effectiveDirective": "style-src-attr",
+      "originalPolicy": "img-src 'self' blob:; connect-src 'self' ipc:; object-src 'none'; frame-ancestors 'none'; default-src 'none'; worker-src 'self'; style-src 'self'; script-src 'self' 'sha256-Wa7EbxUcBVYbzc5HBzHueNG4lPSTb2evCg4BQ+IgzaM=' 'sha256-e8j9dyK5x+g9XDfcx/BzdEwrgpIYztFx4ovPxekkK8Q=' 'sha256-eTJ36X2Utde8YJrBzqhnMQVKWoW2IMOeLBtIIKr0SX0=' 'sha256-hUHSyTdp3zv7xPfCYv0IxsIu1gLx1xr44XBsk6eBtEY='; font-src 'self'; base-uri 'none'; form-action 'none'",
+      "sample": "",
+      "sourceFile": "tauri://localhost/assets/index-CheBHV0w.js",
+      "violatedDirective": "style-src-attr"
+    },
+    {
+      "atMs": 146,
+      "blockedURI": "inline",
+      "disposition": "enforce",
+      "effectiveDirective": "style-src-attr",
+      "originalPolicy": "img-src 'self' blob:; connect-src 'self' ipc:; object-src 'none'; frame-ancestors 'none'; default-src 'none'; worker-src 'self'; style-src 'self'; script-src 'self' 'sha256-Wa7EbxUcBVYbzc5HBzHueNG4lPSTb2evCg4BQ+IgzaM=' 'sha256-e8j9dyK5x+g9XDfcx/BzdEwrgpIYztFx4ovPxekkK8Q=' 'sha256-eTJ36X2Utde8YJrBzqhnMQVKWoW2IMOeLBtIIKr0SX0=' 'sha256-hUHSyTdp3zv7xPfCYv0IxsIu1gLx1xr44XBsk6eBtEY='; font-src 'self'; base-uri 'none'; form-action 'none'",
+      "sample": "",
+      "sourceFile": "tauri://localhost/assets/index-CheBHV0w.js",
+      "violatedDirective": "style-src-attr"
+    },
+    {
+      "atMs": 146,
+      "blockedURI": "inline",
+      "disposition": "enforce",
+      "effectiveDirective": "style-src-attr",
+      "originalPolicy": "img-src 'self' blob:; connect-src 'self' ipc:; object-src 'none'; frame-ancestors 'none'; default-src 'none'; worker-src 'self'; style-src 'self'; script-src 'self' 'sha256-Wa7EbxUcBVYbzc5HBzHueNG4lPSTb2evCg4BQ+IgzaM=' 'sha256-e8j9dyK5x+g9XDfcx/BzdEwrgpIYztFx4ovPxekkK8Q=' 'sha256-eTJ36X2Utde8YJrBzqhnMQVKWoW2IMOeLBtIIKr0SX0=' 'sha256-hUHSyTdp3zv7xPfCYv0IxsIu1gLx1xr44XBsk6eBtEY='; font-src 'self'; base-uri 'none'; form-action 'none'",
+      "sample": "",
+      "sourceFile": "tauri://localhost/assets/index-CheBHV0w.js",
+      "violatedDirective": "style-src-attr"
+    },
+    {
+      "atMs": 146,
+      "blockedURI": "inline",
+      "disposition": "enforce",
+      "effectiveDirective": "style-src-attr",
+      "originalPolicy": "img-src 'self' blob:; connect-src 'self' ipc:; object-src 'none'; frame-ancestors 'none'; default-src 'none'; worker-src 'self'; style-src 'self'; script-src 'self' 'sha256-Wa7EbxUcBVYbzc5HBzHueNG4lPSTb2evCg4BQ+IgzaM=' 'sha256-e8j9dyK5x+g9XDfcx/BzdEwrgpIYztFx4ovPxekkK8Q=' 'sha256-eTJ36X2Utde8YJrBzqhnMQVKWoW2IMOeLBtIIKr0SX0=' 'sha256-hUHSyTdp3zv7xPfCYv0IxsIu1gLx1xr44XBsk6eBtEY='; font-src 'self'; base-uri 'none'; form-action 'none'",
+      "sample": "",
+      "sourceFile": "tauri://localhost/assets/index-CheBHV0w.js",
+      "violatedDirective": "style-src-attr"
+    },
+    {
+      "atMs": 146,
+      "blockedURI": "inline",
+      "disposition": "enforce",
+      "effectiveDirective": "style-src-attr",
+      "originalPolicy": "img-src 'self' blob:; connect-src 'self' ipc:; object-src 'none'; frame-ancestors 'none'; default-src 'none'; worker-src 'self'; style-src 'self'; script-src 'self' 'sha256-Wa7EbxUcBVYbzc5HBzHueNG4lPSTb2evCg4BQ+IgzaM=' 'sha256-e8j9dyK5x+g9XDfcx/BzdEwrgpIYztFx4ovPxekkK8Q=' 'sha256-eTJ36X2Utde8YJrBzqhnMQVKWoW2IMOeLBtIIKr0SX0=' 'sha256-hUHSyTdp3zv7xPfCYv0IxsIu1gLx1xr44XBsk6eBtEY='; font-src 'self'; base-uri 'none'; form-action 'none'",
+      "sample": "",
+      "sourceFile": "tauri://localhost/assets/index-CheBHV0w.js",
+      "violatedDirective": "style-src-attr"
+    },
+    {
+      "atMs": 146,
+      "blockedURI": "inline",
+      "disposition": "enforce",
+      "effectiveDirective": "style-src-attr",
+      "originalPolicy": "img-src 'self' blob:; connect-src 'self' ipc:; object-src 'none'; frame-ancestors 'none'; default-src 'none'; worker-src 'self'; style-src 'self'; script-src 'self' 'sha256-Wa7EbxUcBVYbzc5HBzHueNG4lPSTb2evCg4BQ+IgzaM=' 'sha256-e8j9dyK5x+g9XDfcx/BzdEwrgpIYztFx4ovPxekkK8Q=' 'sha256-eTJ36X2Utde8YJrBzqhnMQVKWoW2IMOeLBtIIKr0SX0=' 'sha256-hUHSyTdp3zv7xPfCYv0IxsIu1gLx1xr44XBsk6eBtEY='; font-src 'self'; base-uri 'none'; form-action 'none'",
+      "sample": "",
+      "sourceFile": "tauri://localhost/assets/index-CheBHV0w.js",
+      "violatedDirective": "style-src-attr"
+    },
+    {
+      "atMs": 146,
+      "blockedURI": "inline",
+      "disposition": "enforce",
+      "effectiveDirective": "style-src-attr",
+      "originalPolicy": "img-src 'self' blob:; connect-src 'self' ipc:; object-src 'none'; frame-ancestors 'none'; default-src 'none'; worker-src 'self'; style-src 'self'; script-src 'self' 'sha256-Wa7EbxUcBVYbzc5HBzHueNG4lPSTb2evCg4BQ+IgzaM=' 'sha256-e8j9dyK5x+g9XDfcx/BzdEwrgpIYztFx4ovPxekkK8Q=' 'sha256-eTJ36X2Utde8YJrBzqhnMQVKWoW2IMOeLBtIIKr0SX0=' 'sha256-hUHSyTdp3zv7xPfCYv0IxsIu1gLx1xr44XBsk6eBtEY='; font-src 'self'; base-uri 'none'; form-action 'none'",
+      "sample": "",
+      "sourceFile": "tauri://localhost/assets/index-CheBHV0w.js",
+      "violatedDirective": "style-src-attr"
+    },
+    {
+      "atMs": 146,
+      "blockedURI": "inline",
+      "disposition": "enforce",
+      "effectiveDirective": "style-src-attr",
+      "originalPolicy": "img-src 'self' blob:; connect-src 'self' ipc:; object-src 'none'; frame-ancestors 'none'; default-src 'none'; worker-src 'self'; style-src 'self'; script-src 'self' 'sha256-Wa7EbxUcBVYbzc5HBzHueNG4lPSTb2evCg4BQ+IgzaM=' 'sha256-e8j9dyK5x+g9XDfcx/BzdEwrgpIYztFx4ovPxekkK8Q=' 'sha256-eTJ36X2Utde8YJrBzqhnMQVKWoW2IMOeLBtIIKr0SX0=' 'sha256-hUHSyTdp3zv7xPfCYv0IxsIu1gLx1xr44XBsk6eBtEY='; font-src 'self'; base-uri 'none'; form-action 'none'",
+      "sample": "",
+      "sourceFile": "tauri://localhost/assets/index-CheBHV0w.js",
+      "violatedDirective": "style-src-attr"
+    },
+    {
+      "atMs": 146,
+      "blockedURI": "inline",
+      "disposition": "enforce",
+      "effectiveDirective": "style-src-attr",
+      "originalPolicy": "img-src 'self' blob:; connect-src 'self' ipc:; object-src 'none'; frame-ancestors 'none'; default-src 'none'; worker-src 'self'; style-src 'self'; script-src 'self' 'sha256-Wa7EbxUcBVYbzc5HBzHueNG4lPSTb2evCg4BQ+IgzaM=' 'sha256-e8j9dyK5x+g9XDfcx/BzdEwrgpIYztFx4ovPxekkK8Q=' 'sha256-eTJ36X2Utde8YJrBzqhnMQVKWoW2IMOeLBtIIKr0SX0=' 'sha256-hUHSyTdp3zv7xPfCYv0IxsIu1gLx1xr44XBsk6eBtEY='; font-src 'self'; base-uri 'none'; form-action 'none'",
+      "sample": "",
+      "sourceFile": "tauri://localhost/assets/index-CheBHV0w.js",
+      "violatedDirective": "style-src-attr"
+    },
+    {
+      "atMs": 146,
+      "blockedURI": "inline",
+      "disposition": "enforce",
+      "effectiveDirective": "style-src-attr",
+      "originalPolicy": "img-src 'self' blob:; connect-src 'self' ipc:; object-src 'none'; frame-ancestors 'none'; default-src 'none'; worker-src 'self'; style-src 'self'; script-src 'self' 'sha256-Wa7EbxUcBVYbzc5HBzHueNG4lPSTb2evCg4BQ+IgzaM=' 'sha256-e8j9dyK5x+g9XDfcx/BzdEwrgpIYztFx4ovPxekkK8Q=' 'sha256-eTJ36X2Utde8YJrBzqhnMQVKWoW2IMOeLBtIIKr0SX0=' 'sha256-hUHSyTdp3zv7xPfCYv0IxsIu1gLx1xr44XBsk6eBtEY='; font-src 'self'; base-uri 'none'; form-action 'none'",
+      "sample": "",
+      "sourceFile": "tauri://localhost/assets/index-CheBHV0w.js",
+      "violatedDirective": "style-src-attr"
+    },
+    {
+      "atMs": 146,
+      "blockedURI": "inline",
+      "disposition": "enforce",
+      "effectiveDirective": "style-src-attr",
+      "originalPolicy": "img-src 'self' blob:; connect-src 'self' ipc:; object-src 'none'; frame-ancestors 'none'; default-src 'none'; worker-src 'self'; style-src 'self'; script-src 'self' 'sha256-Wa7EbxUcBVYbzc5HBzHueNG4lPSTb2evCg4BQ+IgzaM=' 'sha256-e8j9dyK5x+g9XDfcx/BzdEwrgpIYztFx4ovPxekkK8Q=' 'sha256-eTJ36X2Utde8YJrBzqhnMQVKWoW2IMOeLBtIIKr0SX0=' 'sha256-hUHSyTdp3zv7xPfCYv0IxsIu1gLx1xr44XBsk6eBtEY='; font-src 'self'; base-uri 'none'; form-action 'none'",
+      "sample": "",
+      "sourceFile": "tauri://localhost/assets/index-CheBHV0w.js",
+      "violatedDirective": "style-src-attr"
+    },
+    {
+      "atMs": 146,
+      "blockedURI": "inline",
+      "disposition": "enforce",
+      "effectiveDirective": "style-src-attr",
+      "originalPolicy": "img-src 'self' blob:; connect-src 'self' ipc:; object-src 'none'; frame-ancestors 'none'; default-src 'none'; worker-src 'self'; style-src 'self'; script-src 'self' 'sha256-Wa7EbxUcBVYbzc5HBzHueNG4lPSTb2evCg4BQ+IgzaM=' 'sha256-e8j9dyK5x+g9XDfcx/BzdEwrgpIYztFx4ovPxekkK8Q=' 'sha256-eTJ36X2Utde8YJrBzqhnMQVKWoW2IMOeLBtIIKr0SX0=' 'sha256-hUHSyTdp3zv7xPfCYv0IxsIu1gLx1xr44XBsk6eBtEY='; font-src 'self'; base-uri 'none'; form-action 'none'",
+      "sample": "",
+      "sourceFile": "tauri://localhost/assets/index-CheBHV0w.js",
+      "violatedDirective": "style-src-attr"
+    },
+    {
+      "atMs": 146,
+      "blockedURI": "inline",
+      "disposition": "enforce",
+      "effectiveDirective": "style-src-attr",
+      "originalPolicy": "img-src 'self' blob:; connect-src 'self' ipc:; object-src 'none'; frame-ancestors 'none'; default-src 'none'; worker-src 'self'; style-src 'self'; script-src 'self' 'sha256-Wa7EbxUcBVYbzc5HBzHueNG4lPSTb2evCg4BQ+IgzaM=' 'sha256-e8j9dyK5x+g9XDfcx/BzdEwrgpIYztFx4ovPxekkK8Q=' 'sha256-eTJ36X2Utde8YJrBzqhnMQVKWoW2IMOeLBtIIKr0SX0=' 'sha256-hUHSyTdp3zv7xPfCYv0IxsIu1gLx1xr44XBsk6eBtEY='; font-src 'self'; base-uri 'none'; form-action 'none'",
+      "sample": "",
+      "sourceFile": "tauri://localhost/assets/index-CheBHV0w.js",
+      "violatedDirective": "style-src-attr"
+    },
+    {
+      "atMs": 146,
+      "blockedURI": "inline",
+      "disposition": "enforce",
+      "effectiveDirective": "style-src-attr",
+      "originalPolicy": "img-src 'self' blob:; connect-src 'self' ipc:; object-src 'none'; frame-ancestors 'none'; default-src 'none'; worker-src 'self'; style-src 'self'; script-src 'self' 'sha256-Wa7EbxUcBVYbzc5HBzHueNG4lPSTb2evCg4BQ+IgzaM=' 'sha256-e8j9dyK5x+g9XDfcx/BzdEwrgpIYztFx4ovPxekkK8Q=' 'sha256-eTJ36X2Utde8YJrBzqhnMQVKWoW2IMOeLBtIIKr0SX0=' 'sha256-hUHSyTdp3zv7xPfCYv0IxsIu1gLx1xr44XBsk6eBtEY='; font-src 'self'; base-uri 'none'; form-action 'none'",
+      "sample": "",
+      "sourceFile": "tauri://localhost/assets/index-CheBHV0w.js",
+      "violatedDirective": "style-src-attr"
+    },
+    {
+      "atMs": 146,
+      "blockedURI": "inline",
+      "disposition": "enforce",
+      "effectiveDirective": "style-src-attr",
+      "originalPolicy": "img-src 'self' blob:; connect-src 'self' ipc:; object-src 'none'; frame-ancestors 'none'; default-src 'none'; worker-src 'self'; style-src 'self'; script-src 'self' 'sha256-Wa7EbxUcBVYbzc5HBzHueNG4lPSTb2evCg4BQ+IgzaM=' 'sha256-e8j9dyK5x+g9XDfcx/BzdEwrgpIYztFx4ovPxekkK8Q=' 'sha256-eTJ36X2Utde8YJrBzqhnMQVKWoW2IMOeLBtIIKr0SX0=' 'sha256-hUHSyTdp3zv7xPfCYv0IxsIu1gLx1xr44XBsk6eBtEY='; font-src 'self'; base-uri 'none'; form-action 'none'",
+      "sample": "",
+      "sourceFile": "tauri://localhost/assets/index-CheBHV0w.js",
+      "violatedDirective": "style-src-attr"
+    },
+    {
+      "atMs": 146,
+      "blockedURI": "inline",
+      "disposition": "enforce",
+      "effectiveDirective": "style-src-attr",
+      "originalPolicy": "img-src 'self' blob:; connect-src 'self' ipc:; object-src 'none'; frame-ancestors 'none'; default-src 'none'; worker-src 'self'; style-src 'self'; script-src 'self' 'sha256-Wa7EbxUcBVYbzc5HBzHueNG4lPSTb2evCg4BQ+IgzaM=' 'sha256-e8j9dyK5x+g9XDfcx/BzdEwrgpIYztFx4ovPxekkK8Q=' 'sha256-eTJ36X2Utde8YJrBzqhnMQVKWoW2IMOeLBtIIKr0SX0=' 'sha256-hUHSyTdp3zv7xPfCYv0IxsIu1gLx1xr44XBsk6eBtEY='; font-src 'self'; base-uri 'none'; form-action 'none'",
+      "sample": "",
+      "sourceFile": "tauri://localhost/assets/index-CheBHV0w.js",
+      "violatedDirective": "style-src-attr"
+    },
+    {
+      "atMs": 146,
+      "blockedURI": "inline",
+      "disposition": "enforce",
+      "effectiveDirective": "style-src-attr",
+      "originalPolicy": "img-src 'self' blob:; connect-src 'self' ipc:; object-src 'none'; frame-ancestors 'none'; default-src 'none'; worker-src 'self'; style-src 'self'; script-src 'self' 'sha256-Wa7EbxUcBVYbzc5HBzHueNG4lPSTb2evCg4BQ+IgzaM=' 'sha256-e8j9dyK5x+g9XDfcx/BzdEwrgpIYztFx4ovPxekkK8Q=' 'sha256-eTJ36X2Utde8YJrBzqhnMQVKWoW2IMOeLBtIIKr0SX0=' 'sha256-hUHSyTdp3zv7xPfCYv0IxsIu1gLx1xr44XBsk6eBtEY='; font-src 'self'; base-uri 'none'; form-action 'none'",
+      "sample": "",
+      "sourceFile": "tauri://localhost/assets/index-CheBHV0w.js",
+      "violatedDirective": "style-src-attr"
+    },
+    {
+      "atMs": 146,
+      "blockedURI": "inline",
+      "disposition": "enforce",
+      "effectiveDirective": "style-src-attr",
+      "originalPolicy": "img-src 'self' blob:; connect-src 'self' ipc:; object-src 'none'; frame-ancestors 'none'; default-src 'none'; worker-src 'self'; style-src 'self'; script-src 'self' 'sha256-Wa7EbxUcBVYbzc5HBzHueNG4lPSTb2evCg4BQ+IgzaM=' 'sha256-e8j9dyK5x+g9XDfcx/BzdEwrgpIYztFx4ovPxekkK8Q=' 'sha256-eTJ36X2Utde8YJrBzqhnMQVKWoW2IMOeLBtIIKr0SX0=' 'sha256-hUHSyTdp3zv7xPfCYv0IxsIu1gLx1xr44XBsk6eBtEY='; font-src 'self'; base-uri 'none'; form-action 'none'",
+      "sample": "",
+      "sourceFile": "tauri://localhost/assets/index-CheBHV0w.js",
+      "violatedDirective": "style-src-attr"
+    },
+    {
+      "atMs": 146,
+      "blockedURI": "inline",
+      "disposition": "enforce",
+      "effectiveDirective": "style-src-attr",
+      "originalPolicy": "img-src 'self' blob:; connect-src 'self' ipc:; object-src 'none'; frame-ancestors 'none'; default-src 'none'; worker-src 'self'; style-src 'self'; script-src 'self' 'sha256-Wa7EbxUcBVYbzc5HBzHueNG4lPSTb2evCg4BQ+IgzaM=' 'sha256-e8j9dyK5x+g9XDfcx/BzdEwrgpIYztFx4ovPxekkK8Q=' 'sha256-eTJ36X2Utde8YJrBzqhnMQVKWoW2IMOeLBtIIKr0SX0=' 'sha256-hUHSyTdp3zv7xPfCYv0IxsIu1gLx1xr44XBsk6eBtEY='; font-src 'self'; base-uri 'none'; form-action 'none'",
+      "sample": "",
+      "sourceFile": "tauri://localhost/assets/index-CheBHV0w.js",
+      "violatedDirective": "style-src-attr"
+    },
+    {
+      "atMs": 146,
+      "blockedURI": "inline",
+      "disposition": "enforce",
+      "effectiveDirective": "style-src-attr",
+      "originalPolicy": "img-src 'self' blob:; connect-src 'self' ipc:; object-src 'none'; frame-ancestors 'none'; default-src 'none'; worker-src 'self'; style-src 'self'; script-src 'self' 'sha256-Wa7EbxUcBVYbzc5HBzHueNG4lPSTb2evCg4BQ+IgzaM=' 'sha256-e8j9dyK5x+g9XDfcx/BzdEwrgpIYztFx4ovPxekkK8Q=' 'sha256-eTJ36X2Utde8YJrBzqhnMQVKWoW2IMOeLBtIIKr0SX0=' 'sha256-hUHSyTdp3zv7xPfCYv0IxsIu1gLx1xr44XBsk6eBtEY='; font-src 'self'; base-uri 'none'; form-action 'none'",
+      "sample": "",
+      "sourceFile": "tauri://localhost/assets/index-CheBHV0w.js",
+      "violatedDirective": "style-src-attr"
+    },
+    {
+      "atMs": 146,
+      "blockedURI": "inline",
+      "disposition": "enforce",
+      "effectiveDirective": "style-src-attr",
+      "originalPolicy": "img-src 'self' blob:; connect-src 'self' ipc:; object-src 'none'; frame-ancestors 'none'; default-src 'none'; worker-src 'self'; style-src 'self'; script-src 'self' 'sha256-Wa7EbxUcBVYbzc5HBzHueNG4lPSTb2evCg4BQ+IgzaM=' 'sha256-e8j9dyK5x+g9XDfcx/BzdEwrgpIYztFx4ovPxekkK8Q=' 'sha256-eTJ36X2Utde8YJrBzqhnMQVKWoW2IMOeLBtIIKr0SX0=' 'sha256-hUHSyTdp3zv7xPfCYv0IxsIu1gLx1xr44XBsk6eBtEY='; font-src 'self'; base-uri 'none'; form-action 'none'",
+      "sample": "",
+      "sourceFile": "tauri://localhost/assets/index-CheBHV0w.js",
+      "violatedDirective": "style-src-attr"
+    },
+    {
+      "atMs": 146,
+      "blockedURI": "inline",
+      "disposition": "enforce",
+      "effectiveDirective": "style-src-attr",
+      "originalPolicy": "img-src 'self' blob:; connect-src 'self' ipc:; object-src 'none'; frame-ancestors 'none'; default-src 'none'; worker-src 'self'; style-src 'self'; script-src 'self' 'sha256-Wa7EbxUcBVYbzc5HBzHueNG4lPSTb2evCg4BQ+IgzaM=' 'sha256-e8j9dyK5x+g9XDfcx/BzdEwrgpIYztFx4ovPxekkK8Q=' 'sha256-eTJ36X2Utde8YJrBzqhnMQVKWoW2IMOeLBtIIKr0SX0=' 'sha256-hUHSyTdp3zv7xPfCYv0IxsIu1gLx1xr44XBsk6eBtEY='; font-src 'self'; base-uri 'none'; form-action 'none'",
+      "sample": "",
+      "sourceFile": "tauri://localhost/assets/index-CheBHV0w.js",
+      "violatedDirective": "style-src-attr"
+    },
+    {
+      "atMs": 241,
+      "blockedURI": "data",
+      "disposition": "enforce",
+      "effectiveDirective": "img-src",
+      "originalPolicy": "img-src 'self' blob:; connect-src 'self' ipc:; object-src 'none'; frame-ancestors 'none'; default-src 'none'; worker-src 'self'; style-src 'self'; script-src 'self' 'sha256-Wa7EbxUcBVYbzc5HBzHueNG4lPSTb2evCg4BQ+IgzaM=' 'sha256-e8j9dyK5x+g9XDfcx/BzdEwrgpIYztFx4ovPxekkK8Q=' 'sha256-eTJ36X2Utde8YJrBzqhnMQVKWoW2IMOeLBtIIKr0SX0=' 'sha256-hUHSyTdp3zv7xPfCYv0IxsIu1gLx1xr44XBsk6eBtEY='; font-src 'self'; base-uri 'none'; form-action 'none'",
+      "sample": "",
+      "sourceFile": "tauri://localhost/assets/index-CheBHV0w.js",
+      "violatedDirective": "img-src"
+    },
+    {
+      "atMs": 778,
+      "blockedURI": "https://remote.invalid/study-harness-spike-probe",
+      "disposition": "enforce",
+      "effectiveDirective": "connect-src",
+      "originalPolicy": "img-src 'self' blob:; connect-src 'self' ipc:; object-src 'none'; frame-ancestors 'none'; default-src 'none'; worker-src 'self'; style-src 'self'; script-src 'self' 'sha256-Wa7EbxUcBVYbzc5HBzHueNG4lPSTb2evCg4BQ+IgzaM=' 'sha256-e8j9dyK5x+g9XDfcx/BzdEwrgpIYztFx4ovPxekkK8Q=' 'sha256-eTJ36X2Utde8YJrBzqhnMQVKWoW2IMOeLBtIIKr0SX0=' 'sha256-hUHSyTdp3zv7xPfCYv0IxsIu1gLx1xr44XBsk6eBtEY='; font-src 'self'; base-uri 'none'; form-action 'none'",
+      "sample": "",
+      "sourceFile": "tauri://localhost/assets/index-CheBHV0w.js",
+      "violatedDirective": "connect-src"
+    }
+  ],
+  "run": {
+    "exitCode": 0,
+    "signal": null,
+    "timedOut": false,
+    "elapsedMs": 2072,
+    "timeoutSeconds": 60,
+    "outputTail": "[spike] report accepted (117629 bytes); exiting\n",
+    "processSockets": {
+      "samples": 13,
+      "sockets": [],
+      "listening": []
+    },
+    "reportCollected": true,
+    "appDataCopyPresent": true,
+    "appDataCopyMatchesSpikeOut": true
+  },
+  "native": {
+    "appDataReportPath": "~/Library/Application Support/dev.experimentkit.studyharness.reference/native-spike-report.json",
+    "configuredCsp": "default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' blob:; font-src 'self'; connect-src 'self' ipc:; worker-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'; object-src 'none'",
+    "debugAssertions": false,
+    "executable": "~/Documents/ChatGPT/stem_visualization/examples/study-harness-tauri/src-tauri/target/release/bundle/macos/StudyHarnessReference.app/Contents/MacOS/study-harness-reference",
+    "forbiddenCommandExecuted": false,
+    "freezePrototype": true,
+    "identifier": "dev.experimentkit.studyharness.reference",
+    "packageVersion": "0.0.0",
+    "pid": 85849,
+    "productName": "StudyHarnessReference",
+    "receivedAtUnixMs": "1792999036878",
+    "rejectedReportsBeforeAcceptance": 1,
+    "tauriVersion": "2.12.5",
+    "webviewVersion": "21624.5.1.11.3",
+    "withGlobalTauri": false,
+    "workerScriptCsp": "default-src 'none'; script-src 'self'; connect-src 'self'"
+  },
+  "watchdog": null
+}

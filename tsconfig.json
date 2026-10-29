@@ -23,6 +23,27 @@
     ],
     "baseUrl": ".",
     "paths": {
+      "@experiment-kit/core/model": [
+        "packages/core/src/model/index.ts"
+      ],
+      "@experiment-kit/activity": [
+        "packages/activity/src/index.ts"
+      ],
+      "@experiment-kit/activity/conformance": [
+        "packages/activity/src/conformance/index.ts"
+      ],
+      "@experiment-kit/catalog": [
+        "packages/catalog/src/index.ts"
+      ],
+      "@experiment-kit/catalog/worker": [
+        "packages/catalog/src/worker.ts"
+      ],
+      "@experiment-kit/player/activity": [
+        "packages/player/src/activity/index.ts"
+      ],
+      "@experiment-kit/player-3d": [
+        "packages/player-3d/src/index.ts"
+      ],
       "@experiment-kit/core": [
         "packages/core/src/index.ts"
       ],

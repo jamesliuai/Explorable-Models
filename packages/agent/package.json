@@ -1,7 +1,7 @@
 {
   "name": "@experiment-kit/agent",
-  "version": "0.2.0-preview.1",
-  "description": "Provider-neutral declarative visualization tools and a scoped host relay.",
+  "version": "0.3.0-preview.1",
+  "description": "Provider-neutral declarative visualization tools, policy-scoped Study Harness activity tools and scoped host relays.",
   "type": "module",
   "license": "MIT",
   "sideEffects": false,
@@ -19,7 +19,8 @@
     "LICENSE"
   ],
   "dependencies": {
-    "@experiment-kit/core": "0.2.0-preview.1"
+    "@experiment-kit/activity": "0.3.0-preview.1",
+    "@experiment-kit/core": "0.3.0-preview.1"
   },
   "engines": {
     "node": ">=22.12.0"

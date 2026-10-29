@@ -1,6 +1,6 @@
 # @experiment-kit/agent
 
-Provider-neutral authoring tools for the Explorable Models 0.2.0 preview. The host supplies its agent, authentication, persistence and transport. This package has no model-provider SDK, compiler or filesystem dependency.
+Provider-neutral document tools and Study Harness activity tools (`0.3.0-preview.1`, unreleased; see [below](#study-harness-activity-tools)). The host supplies its agent, authentication, persistence and transport. This package has no model-provider SDK, compiler or filesystem dependency.
 
 ```ts
 import { createVisualizationSession } from '@experiment-kit/core/declarative';
@@ -85,3 +85,27 @@ The server calls `relay.dispatch({principal, sessionId, requestId, name, input, 
 Authorization and browser-response phases each have a 15-second default deadline. At most 16 authorization checks may wait concurrently across the relay and at most 16 browser calls may be in flight per connection. Cancellation and disposal release pending authorization waits; the host remains responsible for any underlying authorization operation it starts. Cancellation, timeout, expiry, reconnect and disconnect reject pending server calls and send browser cancellation when possible. Pending calls with the same correlation ID and payload deduplicate; completed correlation IDs cannot be reused. Use a new correlation ID and the same operation ID when retrying after a transport interruption. Each connection remembers up to 1,024 completed IDs and then requires reconnecting. Late replies from replaced connections are ignored. Dispose the relay and browser endpoints on application teardown.
 
 The repository's `examples/host-relay` demonstrates the explicit HTTP boundary with a local scripted tool caller. Automated transport compatibility and scripted workflows are **not** evidence that a real LLM integration, unfamiliar developer pilot or independent security review has passed. Scene SVG export belongs to `@experiment-kit/player`; full-page capture requires a host adapter or separate browser automation. No screenshot capability is implied by these tools.
+
+## Study Harness activity tools
+
+`createActivityTools(context)` returns twelve policy-scoped, task-oriented tools for one host-authorized activity of the `@experiment-kit/activity` adapter: `activity_discover`, `activity_describe_template`, `activity_prepare`, `activity_inspect`, `activity_propose_revision`, `activity_request_reveal`, `activity_operate`, `activity_summarize`, `activity_save`, `activity_restore`, `activity_close` and `activity_sample`. The host constructs the context (adapter, catalogue, policy source, host session, activity, policy revision, audience, granted operations, the tutor binding and optional host routing); tool input can never choose an actor, origin, principal, session, activity or review status.
+
+```ts
+import { createActivityTools } from '@experiment-kit/agent';
+
+const tools = createActivityTools({
+  adapter, catalog, policy: () => hostPort.getPolicy({ activityId }),
+  hostSessionId, activityId, policyRevision: policy.revision, audience: 'tutor',
+  allowedOperations: ['discover', 'prepare', 'inspect.learner', 'request-reveal', 'operate.parameters', 'summarize', 'save'],
+  lifecycle: {
+    request: () => ({ objectiveIds, hostSessionRevision }),
+    bind: prepared => ({ binding: prepared.binding('tutor', 'tutor-tools'), host: prepared.host }),
+  },
+});
+const discovered = await tools.execute('activity_discover', {});
+// Every result is {ok:true,data,scope} or {ok:false,diagnostics}; scope separates technical validation, review scope and activity status.
+```
+
+Effective operations are the host grant ∩ `policy.allowedTools` (∩ the independent task's permitted tools). Each executor rechecks the bound policy revision and its operations before starting, after every await and before its commit; a committed step is never undone and reports when its authorization is no longer current. Expected revisions in input are guards, never permissions. Learner-visible inspection returns exactly the learner projection; full scientific state and isolated sampling require explicit teacher or tutor inspection policy and are never cached. Diagnostics use a fixed vocabulary with repair hints that never suggest bypassing a guard. `createActivityRelay` and `createActivityToolEndpoint` carry the tools between the host and the learner WebView with host-authenticated principal bindings and operation identity preserved across cancellation and reconnects.
+
+Guide, scope model and repair cases: [`docs/study-harness/agent-tools.md`](../../docs/study-harness/agent-tools.md). Schemas: `docs/study-harness/activity-tool-schemas.json`. The scripted conformance sequence in `tests/agent/activity-trial.test.ts` is protocol evidence only; it is not an LLM trial and does not satisfy the real configured host-agent gate (G3 / A57). For that trial, `createTrialRecorder` wraps the activity relay and keeps a sanitized record (request IDs, tool names, outcome codes, fixed-vocabulary repairs, a configuration digest and budget usage; never inputs, results, text or keys); see section 7.1 of the guide.

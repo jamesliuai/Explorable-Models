@@ -1,0 +1,2008 @@
+{
+  "suiteId": "function-derivative:1.0.0",
+  "model": {
+    "modelId": "function-derivative",
+    "version": "1.0.0"
+  },
+  "domain": {
+    "A": [
+      -2,
+      2
+    ],
+    "B": [
+      -5,
+      5
+    ],
+    "C": [
+      -5,
+      5
+    ],
+    "p": [
+      -5,
+      5
+    ],
+    "h": [
+      -2,
+      2
+    ],
+    "x": [
+      -5,
+      5
+    ]
+  },
+  "sampling": {
+    "samples": 401,
+    "domain": [
+      -5,
+      5
+    ],
+    "tolerance": {
+      "absolute": 1e-12,
+      "relative": 0
+    }
+  },
+  "author": "Reference cases for report §12.1 derived by hand where the values are exact binary fractions, plus cases computed by exact rational arithmetic in tests/reference/oracles/function-derivative.ts, which shares no code with the catalogue kernel.",
+  "review": "No independent human subject reviewer has approved these cases. Automated agreement is engineering evidence only.",
+  "semantics": "f(x) = A·x² + B·x + C with the analytical derivative f′(x) = 2A·x + B. Inputs are doubles taken at their exact values. P = (p, f(p)); Q = (p + h, f(p + h)) for the exact sum p + h. The secant slope is (f(p + h) − f(p))/h for h ≠ 0 and undefined (COINCIDENT_POINTS) for h = 0; the difference is secant slope − f′(p). slope.sign is the exact sign of f′(p); curvature is positive-curvature (A > 0), negative-curvature (A < 0), linear (A = 0, B ≠ 0) or constant (A = B = 0); vertex.x = −B/(2A), undefined (NO_VERTEX) when A = 0. Parameters are admissible when each lies in its domain interval and the double sum p + h lies in [−5, 5].",
+  "format": "expected lists every quantity. A number is a valid value; a string is a category; {\"undefined\": code} is an undefined status with that code; {\"limit\": code} is a numerical-limit status; {\"subnormal\": value} is a valid subnormal value carrying an UNDERFLOW approximation. probe.x echoes p. Each number is the exact value rounded once to the nearest double. lines holds the drawn tangent and secant endpoints at x = −5 and x = 5 (the secant is empty when h = 0); an endpoint whose exact value is nonzero but below the double range is drawn at 0. rejected names the diagnostic the runtime reports before evaluation. An observed number o matches expected e when |o − e| <= absolute + relative·|e|; tolerance 0 is used only when every expected number and endpoint is exact. Statuses, codes, categories and rejections always match exactly. Sampled curves: x_i is the double nearest to −5 + i/40 (i = 0 … 400), and each curve value must lie within the sampling tolerance of the exact value at x_i.",
+  "cases": [
+    {
+      "id": "defaults",
+      "label": "Manifest defaults: f(x) = 0.25x² − 0.5x − 2, p = −1, h = 1",
+      "provenance": "manifest default parameters; values derived by hand from f(x) = A·x² + B·x + C, f′(x) = 2A·x + B and (f(p + h) − f(p))/h, and cross-checked by exact rational arithmetic (tests/reference/oracles/function-derivative.ts)",
+      "families": [
+        "default",
+        "positive-curvature"
+      ],
+      "params": {
+        "A": 0.25,
+        "B": -0.5,
+        "C": -2,
+        "p": -1,
+        "h": 1
+      },
+      "expected": {
+        "probe.x": -1,
+        "probe.value": -1.25,
+        "derivative": -1,
+        "second.x": 0,
+        "second.value": -2,
+        "secant.slope": -0.75,
+        "secant.difference": 0.25,
+        "slope.sign": "decreasing",
+        "curvature": "positive-curvature",
+        "vertex.x": 1
+      },
+      "lines": {
+        "tangent": [
+          [
+            -5,
+            2.75
+          ],
+          [
+            5,
+            -7.25
+          ]
+        ],
+        "secant": [
+          [
+            -5,
+            1.75
+          ],
+          [
+            5,
+            -5.75
+          ]
+        ]
+      },
+      "tolerance": {
+        "absolute": 0,
+        "relative": 0
+      }
+    },
+    {
+      "id": "positive-curvature",
+      "label": "f(x) = x² − 2x − 3 at p = 3 with h = 1",
+      "provenance": "report §12.1 (positive curvature); values derived by hand from f(x) = A·x² + B·x + C, f′(x) = 2A·x + B and (f(p + h) − f(p))/h, and cross-checked by exact rational arithmetic (tests/reference/oracles/function-derivative.ts)",
+      "families": [
+        "positive-curvature"
+      ],
+      "params": {
+        "A": 1,
+        "B": -2,
+        "C": -3,
+        "p": 3,
+        "h": 1
+      },
+      "expected": {
+        "probe.x": 3,
+        "probe.value": 0,
+        "derivative": 4,
+        "second.x": 4,
+        "second.value": 5,
+        "secant.slope": 5,
+        "secant.difference": 1,
+        "slope.sign": "increasing",
+        "curvature": "positive-curvature",
+        "vertex.x": 1
+      },
+      "lines": {
+        "tangent": [
+          [
+            -5,
+            -32
+          ],
+          [
+            5,
+            8
+          ]
+        ],
+        "secant": [
+          [
+            -5,
+            -40
+          ],
+          [
+            5,
+            10
+          ]
+        ]
+      },
+      "tolerance": {
+        "absolute": 0,
+        "relative": 0
+      }
+    },
+    {
+      "id": "negative-curvature",
+      "label": "f(x) = −x² + 2x + 1 at p = 2 with h = −1",
+      "provenance": "report §12.1 (negative curvature); values derived by hand from f(x) = A·x² + B·x + C, f′(x) = 2A·x + B and (f(p + h) − f(p))/h, and cross-checked by exact rational arithmetic (tests/reference/oracles/function-derivative.ts)",
+      "families": [
+        "negative-curvature"
+      ],
+      "params": {
+        "A": -1,
+        "B": 2,
+        "C": 1,
+        "p": 2,
+        "h": -1
+      },
+      "expected": {
+        "probe.x": 2,
+        "probe.value": 1,
+        "derivative": -2,
+        "second.x": 1,
+        "second.value": 2,
+        "secant.slope": -1,
+        "secant.difference": 1,
+        "slope.sign": "decreasing",
+        "curvature": "negative-curvature",
+        "vertex.x": 1
+      },
+      "lines": {
+        "tangent": [
+          [
+            -5,
+            15
+          ],
+          [
+            5,
+            -5
+          ]
+        ],
+        "secant": [
+          [
+            -5,
+            8
+          ],
+          [
+            5,
+            -2
+          ]
+        ]
+      },
+      "tolerance": {
+        "absolute": 0,
+        "relative": 0
+      }
+    },
+    {
+      "id": "linear",
+      "label": "Linear f(x) = 1.5x − 1: secant slope equals the derivative",
+      "provenance": "report §12.1 (linear degeneracy); values derived by hand from f(x) = A·x² + B·x + C, f′(x) = 2A·x + B and (f(p + h) − f(p))/h, and cross-checked by exact rational arithmetic (tests/reference/oracles/function-derivative.ts)",
+      "families": [
+        "linear"
+      ],
+      "params": {
+        "A": 0,
+        "B": 1.5,
+        "C": -1,
+        "p": 1,
+        "h": 0.5
+      },
+      "expected": {
+        "probe.x": 1,
+        "probe.value": 0.5,
+        "derivative": 1.5,
+        "second.x": 1.5,
+        "second.value": 1.25,
+        "secant.slope": 1.5,
+        "secant.difference": 0,
+        "slope.sign": "increasing",
+        "curvature": "linear",
+        "vertex.x": {
+          "undefined": "NO_VERTEX"
+        }
+      },
+      "lines": {
+        "tangent": [
+          [
+            -5,
+            -8.5
+          ],
+          [
+            5,
+            6.5
+          ]
+        ],
+        "secant": [
+          [
+            -5,
+            -8.5
+          ],
+          [
+            5,
+            6.5
+          ]
+        ]
+      },
+      "tolerance": {
+        "absolute": 0,
+        "relative": 0
+      }
+    },
+    {
+      "id": "linear-decreasing",
+      "label": "Linear f(x) = −2x + 1 at p = −4 with h = 2",
+      "provenance": "report §12.1 (linear degeneracy); values derived by hand from f(x) = A·x² + B·x + C, f′(x) = 2A·x + B and (f(p + h) − f(p))/h, and cross-checked by exact rational arithmetic (tests/reference/oracles/function-derivative.ts)",
+      "families": [
+        "linear"
+      ],
+      "params": {
+        "A": 0,
+        "B": -2,
+        "C": 1,
+        "p": -4,
+        "h": 2
+      },
+      "expected": {
+        "probe.x": -4,
+        "probe.value": 9,
+        "derivative": -2,
+        "second.x": -2,
+        "second.value": 5,
+        "secant.slope": -2,
+        "secant.difference": 0,
+        "slope.sign": "decreasing",
+        "curvature": "linear",
+        "vertex.x": {
+          "undefined": "NO_VERTEX"
+        }
+      },
+      "lines": {
+        "tangent": [
+          [
+            -5,
+            11
+          ],
+          [
+            5,
+            -9
+          ]
+        ],
+        "secant": [
+          [
+            -5,
+            11
+          ],
+          [
+            5,
+            -9
+          ]
+        ]
+      },
+      "tolerance": {
+        "absolute": 0,
+        "relative": 0
+      }
+    },
+    {
+      "id": "constant",
+      "label": "Constant f(x) = 2: slope 0, curvature class constant, no vertex",
+      "provenance": "report §12.1 (constant degeneracy); values derived by hand from f(x) = A·x² + B·x + C, f′(x) = 2A·x + B and (f(p + h) − f(p))/h, and cross-checked by exact rational arithmetic (tests/reference/oracles/function-derivative.ts)",
+      "families": [
+        "constant",
+        "zero-slope"
+      ],
+      "params": {
+        "A": 0,
+        "B": 0,
+        "C": 2,
+        "p": -3,
+        "h": 1
+      },
+      "expected": {
+        "probe.x": -3,
+        "probe.value": 2,
+        "derivative": 0,
+        "second.x": -2,
+        "second.value": 2,
+        "secant.slope": 0,
+        "secant.difference": 0,
+        "slope.sign": "stationary",
+        "curvature": "constant",
+        "vertex.x": {
+          "undefined": "NO_VERTEX"
+        }
+      },
+      "lines": {
+        "tangent": [
+          [
+            -5,
+            2
+          ],
+          [
+            5,
+            2
+          ]
+        ],
+        "secant": [
+          [
+            -5,
+            2
+          ],
+          [
+            5,
+            2
+          ]
+        ]
+      },
+      "tolerance": {
+        "absolute": 0,
+        "relative": 0
+      }
+    },
+    {
+      "id": "constant-coincident",
+      "label": "Constant f(x) = −5 with h = 0: the secant is still undefined, not 0",
+      "provenance": "report §12.1 (constant degeneracy, coincident secant points); values derived by hand from f(x) = A·x² + B·x + C, f′(x) = 2A·x + B and (f(p + h) − f(p))/h, and cross-checked by exact rational arithmetic (tests/reference/oracles/function-derivative.ts)",
+      "families": [
+        "constant",
+        "coincident"
+      ],
+      "params": {
+        "A": 0,
+        "B": 0,
+        "C": -5,
+        "p": 0,
+        "h": 0
+      },
+      "expected": {
+        "probe.x": 0,
+        "probe.value": -5,
+        "derivative": 0,
+        "second.x": 0,
+        "second.value": -5,
+        "secant.slope": {
+          "undefined": "COINCIDENT_POINTS"
+        },
+        "secant.difference": {
+          "undefined": "COINCIDENT_POINTS"
+        },
+        "slope.sign": "stationary",
+        "curvature": "constant",
+        "vertex.x": {
+          "undefined": "NO_VERTEX"
+        }
+      },
+      "lines": {
+        "tangent": [
+          [
+            -5,
+            -5
+          ],
+          [
+            5,
+            -5
+          ]
+        ],
+        "secant": []
+      },
+      "tolerance": {
+        "absolute": 0,
+        "relative": 0
+      }
+    },
+    {
+      "id": "zero-slope-at-vertex",
+      "label": "Probe at the vertex x = 1 of f(x) = 0.5x² − x − 2",
+      "provenance": "report §12.1 (zero slope); values derived by hand from f(x) = A·x² + B·x + C, f′(x) = 2A·x + B and (f(p + h) − f(p))/h, and cross-checked by exact rational arithmetic (tests/reference/oracles/function-derivative.ts)",
+      "families": [
+        "zero-slope",
+        "positive-curvature"
+      ],
+      "params": {
+        "A": 0.5,
+        "B": -1,
+        "C": -2,
+        "p": 1,
+        "h": 1
+      },
+      "expected": {
+        "probe.x": 1,
+        "probe.value": -2.5,
+        "derivative": 0,
+        "second.x": 2,
+        "second.value": -2,
+        "secant.slope": 0.5,
+        "secant.difference": 0.5,
+        "slope.sign": "stationary",
+        "curvature": "positive-curvature",
+        "vertex.x": 1
+      },
+      "lines": {
+        "tangent": [
+          [
+            -5,
+            -2.5
+          ],
+          [
+            5,
+            -2.5
+          ]
+        ],
+        "secant": [
+          [
+            -5,
+            -5.5
+          ],
+          [
+            5,
+            -0.5
+          ]
+        ]
+      },
+      "tolerance": {
+        "absolute": 0,
+        "relative": 0
+      }
+    },
+    {
+      "id": "zero-slope-at-vertex-downward",
+      "label": "Probe at the vertex x = 1 of f(x) = −2x² + 4x",
+      "provenance": "report §12.1 (zero slope); values derived by hand from f(x) = A·x² + B·x + C, f′(x) = 2A·x + B and (f(p + h) − f(p))/h, and cross-checked by exact rational arithmetic (tests/reference/oracles/function-derivative.ts)",
+      "families": [
+        "zero-slope",
+        "negative-curvature"
+      ],
+      "params": {
+        "A": -2,
+        "B": 4,
+        "C": 0,
+        "p": 1,
+        "h": -0.5
+      },
+      "expected": {
+        "probe.x": 1,
+        "probe.value": 2,
+        "derivative": 0,
+        "second.x": 0.5,
+        "second.value": 1.5,
+        "secant.slope": 1,
+        "secant.difference": 1,
+        "slope.sign": "stationary",
+        "curvature": "negative-curvature",
+        "vertex.x": 1
+      },
+      "lines": {
+        "tangent": [
+          [
+            -5,
+            2
+          ],
+          [
+            5,
+            2
+          ]
+        ],
+        "secant": [
+          [
+            -5,
+            -4
+          ],
+          [
+            5,
+            6
+          ]
+        ]
+      },
+      "tolerance": {
+        "absolute": 0,
+        "relative": 0
+      }
+    },
+    {
+      "id": "probe-near-non-dyadic-vertex",
+      "label": "p = double nearest −1/3 for f(x) = 1.5x² + x: f′(p) = 2^−54, increasing",
+      "provenance": "report §12.1 (zero slope) and the rule that classification never uses displayed digits; f′(p) = 3·fl(−1/3) + 1 = 2^−54 derived by hand because fl(−1/3) = −6004799503160661·2^−54 and 3·6004799503160661 = 2^54 − 1; values computed by exact rational arithmetic in tests/reference/oracles/function-derivative.ts, which shares no code with the catalogue kernel, and rounded once to the nearest double",
+      "families": [
+        "zero-slope",
+        "exact-sign"
+      ],
+      "params": {
+        "A": 1.5,
+        "B": 1,
+        "C": 0,
+        "p": -0.3333333333333333,
+        "h": 1
+      },
+      "expected": {
+        "probe.x": -0.3333333333333333,
+        "probe.value": -0.16666666666666666,
+        "derivative": 5.551115123125783e-17,
+        "second.x": 0.6666666666666667,
+        "second.value": 1.3333333333333335,
+        "secant.slope": 1.5,
+        "secant.difference": 1.5,
+        "slope.sign": "increasing",
+        "curvature": "positive-curvature",
+        "vertex.x": -0.3333333333333333
+      },
+      "lines": {
+        "tangent": [
+          [
+            -5,
+            -0.16666666666666693
+          ],
+          [
+            5,
+            -0.16666666666666638
+          ]
+        ],
+        "secant": [
+          [
+            -5,
+            -7.166666666666667
+          ],
+          [
+            5,
+            7.833333333333334
+          ]
+        ]
+      },
+      "tolerance": {
+        "absolute": 0,
+        "relative": 1e-12
+      }
+    },
+    {
+      "id": "secant-h-1",
+      "label": "Secant approach at p = 2 of f(x) = 0.5x² − x − 2: h = 1",
+      "provenance": "report §12.1 (secant points approaching each other); values derived by hand from f(x) = A·x² + B·x + C, f′(x) = 2A·x + B and (f(p + h) − f(p))/h, and cross-checked by exact rational arithmetic (tests/reference/oracles/function-derivative.ts)",
+      "families": [
+        "secant-approach"
+      ],
+      "params": {
+        "A": 0.5,
+        "B": -1,
+        "C": -2,
+        "p": 2,
+        "h": 1
+      },
+      "expected": {
+        "probe.x": 2,
+        "probe.value": -2,
+        "derivative": 1,
+        "second.x": 3,
+        "second.value": -0.5,
+        "secant.slope": 1.5,
+        "secant.difference": 0.5,
+        "slope.sign": "increasing",
+        "curvature": "positive-curvature",
+        "vertex.x": 1
+      },
+      "lines": {
+        "tangent": [
+          [
+            -5,
+            -9
+          ],
+          [
+            5,
+            1
+          ]
+        ],
+        "secant": [
+          [
+            -5,
+            -12.5
+          ],
+          [
+            5,
+            2.5
+          ]
+        ]
+      },
+      "tolerance": {
+        "absolute": 0,
+        "relative": 0
+      }
+    },
+    {
+      "id": "secant-h-0.1",
+      "label": "Secant approach: h = 0.1 (secant = 2Ap + B + Ah exactly in rationals)",
+      "provenance": "report §12.1 (secant points approaching each other); values computed by exact rational arithmetic in tests/reference/oracles/function-derivative.ts, which shares no code with the catalogue kernel, and rounded once to the nearest double",
+      "families": [
+        "secant-approach"
+      ],
+      "params": {
+        "A": 0.5,
+        "B": -1,
+        "C": -2,
+        "p": 2,
+        "h": 0.1
+      },
+      "expected": {
+        "probe.x": 2,
+        "probe.value": -2,
+        "derivative": 1,
+        "second.x": 2.1,
+        "second.value": -1.895,
+        "secant.slope": 1.05,
+        "secant.difference": 0.05,
+        "slope.sign": "increasing",
+        "curvature": "positive-curvature",
+        "vertex.x": 1
+      },
+      "lines": {
+        "tangent": [
+          [
+            -5,
+            -9
+          ],
+          [
+            5,
+            1
+          ]
+        ],
+        "secant": [
+          [
+            -5,
+            -9.35
+          ],
+          [
+            5,
+            1.15
+          ]
+        ]
+      },
+      "tolerance": {
+        "absolute": 0,
+        "relative": 1e-12
+      }
+    },
+    {
+      "id": "secant-h-0.001",
+      "label": "Secant approach: h = 0.001",
+      "provenance": "report §12.1 (secant points approaching each other); values computed by exact rational arithmetic in tests/reference/oracles/function-derivative.ts, which shares no code with the catalogue kernel, and rounded once to the nearest double",
+      "families": [
+        "secant-approach"
+      ],
+      "params": {
+        "A": 0.5,
+        "B": -1,
+        "C": -2,
+        "p": 2,
+        "h": 0.001
+      },
+      "expected": {
+        "probe.x": 2,
+        "probe.value": -2,
+        "derivative": 1,
+        "second.x": 2.001,
+        "second.value": -1.9989995,
+        "secant.slope": 1.0005,
+        "secant.difference": 0.0005,
+        "slope.sign": "increasing",
+        "curvature": "positive-curvature",
+        "vertex.x": 1
+      },
+      "lines": {
+        "tangent": [
+          [
+            -5,
+            -9
+          ],
+          [
+            5,
+            1
+          ]
+        ],
+        "secant": [
+          [
+            -5,
+            -9.0035
+          ],
+          [
+            5,
+            1.0015
+          ]
+        ]
+      },
+      "tolerance": {
+        "absolute": 0,
+        "relative": 1e-12
+      }
+    },
+    {
+      "id": "secant-h-minus-0.001",
+      "label": "Secant approach from the left: h = −0.001",
+      "provenance": "report §12.1 (secant points approaching each other); values computed by exact rational arithmetic in tests/reference/oracles/function-derivative.ts, which shares no code with the catalogue kernel, and rounded once to the nearest double",
+      "families": [
+        "secant-approach"
+      ],
+      "params": {
+        "A": 0.5,
+        "B": -1,
+        "C": -2,
+        "p": 2,
+        "h": -0.001
+      },
+      "expected": {
+        "probe.x": 2,
+        "probe.value": -2,
+        "derivative": 1,
+        "second.x": 1.999,
+        "second.value": -2.0009995,
+        "secant.slope": 0.9995,
+        "secant.difference": -0.0005,
+        "slope.sign": "increasing",
+        "curvature": "positive-curvature",
+        "vertex.x": 1
+      },
+      "lines": {
+        "tangent": [
+          [
+            -5,
+            -9
+          ],
+          [
+            5,
+            1
+          ]
+        ],
+        "secant": [
+          [
+            -5,
+            -8.9965
+          ],
+          [
+            5,
+            0.9985
+          ]
+        ]
+      },
+      "tolerance": {
+        "absolute": 0,
+        "relative": 1e-12
+      }
+    },
+    {
+      "id": "secant-tiny-offset",
+      "label": "h = 1e-300: Q rounds onto P but the points are distinct, so the secant is defined",
+      "provenance": "report §12.1 (secant points approaching each other); distinct exact points; values computed by exact rational arithmetic in tests/reference/oracles/function-derivative.ts, which shares no code with the catalogue kernel, and rounded once to the nearest double",
+      "families": [
+        "secant-approach",
+        "exact-sign"
+      ],
+      "params": {
+        "A": 1,
+        "B": 0,
+        "C": 0,
+        "p": 1,
+        "h": 1e-300
+      },
+      "expected": {
+        "probe.x": 1,
+        "probe.value": 1,
+        "derivative": 2,
+        "second.x": 1,
+        "second.value": 1,
+        "secant.slope": 2,
+        "secant.difference": 1e-300,
+        "slope.sign": "increasing",
+        "curvature": "positive-curvature",
+        "vertex.x": 0
+      },
+      "lines": {
+        "tangent": [
+          [
+            -5,
+            -11
+          ],
+          [
+            5,
+            9
+          ]
+        ],
+        "secant": [
+          [
+            -5,
+            -11
+          ],
+          [
+            5,
+            9
+          ]
+        ]
+      },
+      "tolerance": {
+        "absolute": 0,
+        "relative": 1e-12
+      }
+    },
+    {
+      "id": "coincident-h-0",
+      "label": "h = 0: secant slope and difference undefined (COINCIDENT_POINTS), no secant line",
+      "provenance": "report §12.1 (coincident secant points are never relabelled as the derivative); values derived by hand from f(x) = A·x² + B·x + C, f′(x) = 2A·x + B and (f(p + h) − f(p))/h, and cross-checked by exact rational arithmetic (tests/reference/oracles/function-derivative.ts)",
+      "families": [
+        "coincident"
+      ],
+      "params": {
+        "A": 0.5,
+        "B": -1,
+        "C": -2,
+        "p": 2,
+        "h": 0
+      },
+      "expected": {
+        "probe.x": 2,
+        "probe.value": -2,
+        "derivative": 1,
+        "second.x": 2,
+        "second.value": -2,
+        "secant.slope": {
+          "undefined": "COINCIDENT_POINTS"
+        },
+        "secant.difference": {
+          "undefined": "COINCIDENT_POINTS"
+        },
+        "slope.sign": "increasing",
+        "curvature": "positive-curvature",
+        "vertex.x": 1
+      },
+      "lines": {
+        "tangent": [
+          [
+            -5,
+            -9
+          ],
+          [
+            5,
+            1
+          ]
+        ],
+        "secant": []
+      },
+      "tolerance": {
+        "absolute": 0,
+        "relative": 0
+      }
+    },
+    {
+      "id": "coincident-at-vertex",
+      "label": "h = 0 at the vertex: the secant is undefined, not 0",
+      "provenance": "report §12.1 (coincident secant points); values derived by hand from f(x) = A·x² + B·x + C, f′(x) = 2A·x + B and (f(p + h) − f(p))/h, and cross-checked by exact rational arithmetic (tests/reference/oracles/function-derivative.ts)",
+      "families": [
+        "coincident",
+        "zero-slope"
+      ],
+      "params": {
+        "A": 0.5,
+        "B": -1,
+        "C": -2,
+        "p": 1,
+        "h": 0
+      },
+      "expected": {
+        "probe.x": 1,
+        "probe.value": -2.5,
+        "derivative": 0,
+        "second.x": 1,
+        "second.value": -2.5,
+        "secant.slope": {
+          "undefined": "COINCIDENT_POINTS"
+        },
+        "secant.difference": {
+          "undefined": "COINCIDENT_POINTS"
+        },
+        "slope.sign": "stationary",
+        "curvature": "positive-curvature",
+        "vertex.x": 1
+      },
+      "lines": {
+        "tangent": [
+          [
+            -5,
+            -2.5
+          ],
+          [
+            5,
+            -2.5
+          ]
+        ],
+        "secant": []
+      },
+      "tolerance": {
+        "absolute": 0,
+        "relative": 0
+      }
+    },
+    {
+      "id": "sign-before-vertex",
+      "label": "f(x) = x² − 2x − 3 left of the vertex: decreasing",
+      "provenance": "report §12.1 (sign changes); values derived by hand from f(x) = A·x² + B·x + C, f′(x) = 2A·x + B and (f(p + h) − f(p))/h, and cross-checked by exact rational arithmetic (tests/reference/oracles/function-derivative.ts)",
+      "families": [
+        "sign-change"
+      ],
+      "params": {
+        "A": 1,
+        "B": -2,
+        "C": -3,
+        "p": 0.5,
+        "h": 0.25
+      },
+      "expected": {
+        "probe.x": 0.5,
+        "probe.value": -3.75,
+        "derivative": -1,
+        "second.x": 0.75,
+        "second.value": -3.9375,
+        "secant.slope": -0.75,
+        "secant.difference": 0.25,
+        "slope.sign": "decreasing",
+        "curvature": "positive-curvature",
+        "vertex.x": 1
+      },
+      "lines": {
+        "tangent": [
+          [
+            -5,
+            1.75
+          ],
+          [
+            5,
+            -8.25
+          ]
+        ],
+        "secant": [
+          [
+            -5,
+            0.375
+          ],
+          [
+            5,
+            -7.125
+          ]
+        ]
+      },
+      "tolerance": {
+        "absolute": 0,
+        "relative": 0
+      }
+    },
+    {
+      "id": "sign-at-vertex",
+      "label": "f(x) = x² − 2x − 3 at the vertex: stationary",
+      "provenance": "report §12.1 (sign changes); values derived by hand from f(x) = A·x² + B·x + C, f′(x) = 2A·x + B and (f(p + h) − f(p))/h, and cross-checked by exact rational arithmetic (tests/reference/oracles/function-derivative.ts)",
+      "families": [
+        "sign-change",
+        "zero-slope"
+      ],
+      "params": {
+        "A": 1,
+        "B": -2,
+        "C": -3,
+        "p": 1,
+        "h": 0.25
+      },
+      "expected": {
+        "probe.x": 1,
+        "probe.value": -4,
+        "derivative": 0,
+        "second.x": 1.25,
+        "second.value": -3.9375,
+        "secant.slope": 0.25,
+        "secant.difference": 0.25,
+        "slope.sign": "stationary",
+        "curvature": "positive-curvature",
+        "vertex.x": 1
+      },
+      "lines": {
+        "tangent": [
+          [
+            -5,
+            -4
+          ],
+          [
+            5,
+            -4
+          ]
+        ],
+        "secant": [
+          [
+            -5,
+            -5.5
+          ],
+          [
+            5,
+            -3
+          ]
+        ]
+      },
+      "tolerance": {
+        "absolute": 0,
+        "relative": 0
+      }
+    },
+    {
+      "id": "sign-after-vertex",
+      "label": "f(x) = x² − 2x − 3 right of the vertex: increasing",
+      "provenance": "report §12.1 (sign changes); values derived by hand from f(x) = A·x² + B·x + C, f′(x) = 2A·x + B and (f(p + h) − f(p))/h, and cross-checked by exact rational arithmetic (tests/reference/oracles/function-derivative.ts)",
+      "families": [
+        "sign-change"
+      ],
+      "params": {
+        "A": 1,
+        "B": -2,
+        "C": -3,
+        "p": 1.5,
+        "h": 0.25
+      },
+      "expected": {
+        "probe.x": 1.5,
+        "probe.value": -3.75,
+        "derivative": 1,
+        "second.x": 1.75,
+        "second.value": -3.4375,
+        "secant.slope": 1.25,
+        "secant.difference": 0.25,
+        "slope.sign": "increasing",
+        "curvature": "positive-curvature",
+        "vertex.x": 1
+      },
+      "lines": {
+        "tangent": [
+          [
+            -5,
+            -10.25
+          ],
+          [
+            5,
+            -0.25
+          ]
+        ],
+        "secant": [
+          [
+            -5,
+            -11.875
+          ],
+          [
+            5,
+            0.625
+          ]
+        ]
+      },
+      "tolerance": {
+        "absolute": 0,
+        "relative": 0
+      }
+    },
+    {
+      "id": "sign-before-vertex-downward",
+      "label": "f(x) = −0.5x² − x + 3 left of its vertex x = −1: increasing",
+      "provenance": "report §12.1 (sign changes); values derived by hand from f(x) = A·x² + B·x + C, f′(x) = 2A·x + B and (f(p + h) − f(p))/h, and cross-checked by exact rational arithmetic (tests/reference/oracles/function-derivative.ts)",
+      "families": [
+        "sign-change",
+        "negative-curvature"
+      ],
+      "params": {
+        "A": -0.5,
+        "B": -1,
+        "C": 3,
+        "p": -2,
+        "h": 0.5
+      },
+      "expected": {
+        "probe.x": -2,
+        "probe.value": 3,
+        "derivative": 1,
+        "second.x": -1.5,
+        "second.value": 3.375,
+        "secant.slope": 0.75,
+        "secant.difference": -0.25,
+        "slope.sign": "increasing",
+        "curvature": "negative-curvature",
+        "vertex.x": -1
+      },
+      "lines": {
+        "tangent": [
+          [
+            -5,
+            0
+          ],
+          [
+            5,
+            10
+          ]
+        ],
+        "secant": [
+          [
+            -5,
+            0.75
+          ],
+          [
+            5,
+            8.25
+          ]
+        ]
+      },
+      "tolerance": {
+        "absolute": 0,
+        "relative": 0
+      }
+    },
+    {
+      "id": "sign-after-vertex-downward",
+      "label": "f(x) = −0.5x² − x + 3 right of its vertex: decreasing",
+      "provenance": "report §12.1 (sign changes); values derived by hand from f(x) = A·x² + B·x + C, f′(x) = 2A·x + B and (f(p + h) − f(p))/h, and cross-checked by exact rational arithmetic (tests/reference/oracles/function-derivative.ts)",
+      "families": [
+        "sign-change",
+        "negative-curvature"
+      ],
+      "params": {
+        "A": -0.5,
+        "B": -1,
+        "C": 3,
+        "p": 0,
+        "h": 0.5
+      },
+      "expected": {
+        "probe.x": 0,
+        "probe.value": 3,
+        "derivative": -1,
+        "second.x": 0.5,
+        "second.value": 2.375,
+        "secant.slope": -1.25,
+        "secant.difference": -0.25,
+        "slope.sign": "decreasing",
+        "curvature": "negative-curvature",
+        "vertex.x": -1
+      },
+      "lines": {
+        "tangent": [
+          [
+            -5,
+            8
+          ],
+          [
+            5,
+            -2
+          ]
+        ],
+        "secant": [
+          [
+            -5,
+            9.25
+          ],
+          [
+            5,
+            -3.25
+          ]
+        ]
+      },
+      "tolerance": {
+        "absolute": 0,
+        "relative": 0
+      }
+    },
+    {
+      "id": "probe-right-boundary",
+      "label": "Probe at p = 5 (domain boundary)",
+      "provenance": "report §12.1 (domain boundaries); values derived by hand from f(x) = A·x² + B·x + C, f′(x) = 2A·x + B and (f(p + h) − f(p))/h, and cross-checked by exact rational arithmetic (tests/reference/oracles/function-derivative.ts)",
+      "families": [
+        "domain-boundary"
+      ],
+      "params": {
+        "A": 1,
+        "B": -2,
+        "C": -3,
+        "p": 5,
+        "h": -1
+      },
+      "expected": {
+        "probe.x": 5,
+        "probe.value": 12,
+        "derivative": 8,
+        "second.x": 4,
+        "second.value": 5,
+        "secant.slope": 7,
+        "secant.difference": -1,
+        "slope.sign": "increasing",
+        "curvature": "positive-curvature",
+        "vertex.x": 1
+      },
+      "lines": {
+        "tangent": [
+          [
+            -5,
+            -68
+          ],
+          [
+            5,
+            12
+          ]
+        ],
+        "secant": [
+          [
+            -5,
+            -58
+          ],
+          [
+            5,
+            12
+          ]
+        ]
+      },
+      "tolerance": {
+        "absolute": 0,
+        "relative": 0
+      }
+    },
+    {
+      "id": "probe-left-boundary",
+      "label": "Probe at p = −5 (domain boundary)",
+      "provenance": "report §12.1 (domain boundaries); values derived by hand from f(x) = A·x² + B·x + C, f′(x) = 2A·x + B and (f(p + h) − f(p))/h, and cross-checked by exact rational arithmetic (tests/reference/oracles/function-derivative.ts)",
+      "families": [
+        "domain-boundary"
+      ],
+      "params": {
+        "A": 1,
+        "B": -2,
+        "C": -3,
+        "p": -5,
+        "h": 2
+      },
+      "expected": {
+        "probe.x": -5,
+        "probe.value": 32,
+        "derivative": -12,
+        "second.x": -3,
+        "second.value": 12,
+        "secant.slope": -10,
+        "secant.difference": 2,
+        "slope.sign": "decreasing",
+        "curvature": "positive-curvature",
+        "vertex.x": 1
+      },
+      "lines": {
+        "tangent": [
+          [
+            -5,
+            32
+          ],
+          [
+            5,
+            -88
+          ]
+        ],
+        "secant": [
+          [
+            -5,
+            32
+          ],
+          [
+            5,
+            -68
+          ]
+        ]
+      },
+      "tolerance": {
+        "absolute": 0,
+        "relative": 0
+      }
+    },
+    {
+      "id": "second-right-boundary",
+      "label": "Second point at p + h = 5 (inclusive)",
+      "provenance": "report §12.1 (domain boundaries); values derived by hand from f(x) = A·x² + B·x + C, f′(x) = 2A·x + B and (f(p + h) − f(p))/h, and cross-checked by exact rational arithmetic (tests/reference/oracles/function-derivative.ts)",
+      "families": [
+        "domain-boundary"
+      ],
+      "params": {
+        "A": 1,
+        "B": -2,
+        "C": -3,
+        "p": 3,
+        "h": 2
+      },
+      "expected": {
+        "probe.x": 3,
+        "probe.value": 0,
+        "derivative": 4,
+        "second.x": 5,
+        "second.value": 12,
+        "secant.slope": 6,
+        "secant.difference": 2,
+        "slope.sign": "increasing",
+        "curvature": "positive-curvature",
+        "vertex.x": 1
+      },
+      "lines": {
+        "tangent": [
+          [
+            -5,
+            -32
+          ],
+          [
+            5,
+            8
+          ]
+        ],
+        "secant": [
+          [
+            -5,
+            -48
+          ],
+          [
+            5,
+            12
+          ]
+        ]
+      },
+      "tolerance": {
+        "absolute": 0,
+        "relative": 0
+      }
+    },
+    {
+      "id": "second-left-boundary",
+      "label": "Second point at p + h = −5 (inclusive)",
+      "provenance": "report §12.1 (domain boundaries); values derived by hand from f(x) = A·x² + B·x + C, f′(x) = 2A·x + B and (f(p + h) − f(p))/h, and cross-checked by exact rational arithmetic (tests/reference/oracles/function-derivative.ts)",
+      "families": [
+        "domain-boundary"
+      ],
+      "params": {
+        "A": 1,
+        "B": -2,
+        "C": -3,
+        "p": -3,
+        "h": -2
+      },
+      "expected": {
+        "probe.x": -3,
+        "probe.value": 12,
+        "derivative": -8,
+        "second.x": -5,
+        "second.value": 32,
+        "secant.slope": -10,
+        "secant.difference": -2,
+        "slope.sign": "decreasing",
+        "curvature": "positive-curvature",
+        "vertex.x": 1
+      },
+      "lines": {
+        "tangent": [
+          [
+            -5,
+            28
+          ],
+          [
+            5,
+            -52
+          ]
+        ],
+        "secant": [
+          [
+            -5,
+            32
+          ],
+          [
+            5,
+            -68
+          ]
+        ]
+      },
+      "tolerance": {
+        "absolute": 0,
+        "relative": 0
+      }
+    },
+    {
+      "id": "coincident-at-boundary",
+      "label": "p = 5 and h = 0",
+      "provenance": "report §12.1 (domain boundaries, coincident points); values derived by hand from f(x) = A·x² + B·x + C, f′(x) = 2A·x + B and (f(p + h) − f(p))/h, and cross-checked by exact rational arithmetic (tests/reference/oracles/function-derivative.ts)",
+      "families": [
+        "domain-boundary",
+        "coincident"
+      ],
+      "params": {
+        "A": 1,
+        "B": -2,
+        "C": -3,
+        "p": 5,
+        "h": 0
+      },
+      "expected": {
+        "probe.x": 5,
+        "probe.value": 12,
+        "derivative": 8,
+        "second.x": 5,
+        "second.value": 12,
+        "secant.slope": {
+          "undefined": "COINCIDENT_POINTS"
+        },
+        "secant.difference": {
+          "undefined": "COINCIDENT_POINTS"
+        },
+        "slope.sign": "increasing",
+        "curvature": "positive-curvature",
+        "vertex.x": 1
+      },
+      "lines": {
+        "tangent": [
+          [
+            -5,
+            -68
+          ],
+          [
+            5,
+            12
+          ]
+        ],
+        "secant": []
+      },
+      "tolerance": {
+        "absolute": 0,
+        "relative": 0
+      }
+    },
+    {
+      "id": "second-within-half-ulp-of-boundary",
+      "label": "p = 5, h = 2^−52: the double sum is 5, so the constraint holds; Q is evaluated at the exact sum",
+      "provenance": "declared constraint semantics (manifest limitations); values computed by exact rational arithmetic in tests/reference/oracles/function-derivative.ts, which shares no code with the catalogue kernel, and rounded once to the nearest double",
+      "families": [
+        "domain-boundary",
+        "double-sum-constraint"
+      ],
+      "params": {
+        "A": 1,
+        "B": 1,
+        "C": 1,
+        "p": 5,
+        "h": 2.220446049250313e-16
+      },
+      "expected": {
+        "probe.x": 5,
+        "probe.value": 31,
+        "derivative": 11,
+        "second.x": 5,
+        "second.value": 31.000000000000004,
+        "secant.slope": 11,
+        "secant.difference": 2.220446049250313e-16,
+        "slope.sign": "increasing",
+        "curvature": "positive-curvature",
+        "vertex.x": -0.5
+      },
+      "lines": {
+        "tangent": [
+          [
+            -5,
+            -79
+          ],
+          [
+            5,
+            31
+          ]
+        ],
+        "secant": [
+          [
+            -5,
+            -79
+          ],
+          [
+            5,
+            31
+          ]
+        ]
+      },
+      "tolerance": {
+        "absolute": 0,
+        "relative": 1e-12
+      }
+    },
+    {
+      "id": "corner-values-high",
+      "label": "A = 2, B = 5, C = 5 at p = −5 with h = 2",
+      "provenance": "parameter-domain corners; values derived by hand from f(x) = A·x² + B·x + C, f′(x) = 2A·x + B and (f(p + h) − f(p))/h, and cross-checked by exact rational arithmetic (tests/reference/oracles/function-derivative.ts)",
+      "families": [
+        "domain-boundary",
+        "positive-curvature"
+      ],
+      "params": {
+        "A": 2,
+        "B": 5,
+        "C": 5,
+        "p": -5,
+        "h": 2
+      },
+      "expected": {
+        "probe.x": -5,
+        "probe.value": 30,
+        "derivative": -15,
+        "second.x": -3,
+        "second.value": 8,
+        "secant.slope": -11,
+        "secant.difference": 4,
+        "slope.sign": "decreasing",
+        "curvature": "positive-curvature",
+        "vertex.x": -1.25
+      },
+      "lines": {
+        "tangent": [
+          [
+            -5,
+            30
+          ],
+          [
+            5,
+            -120
+          ]
+        ],
+        "secant": [
+          [
+            -5,
+            30
+          ],
+          [
+            5,
+            -80
+          ]
+        ]
+      },
+      "tolerance": {
+        "absolute": 0,
+        "relative": 0
+      }
+    },
+    {
+      "id": "corner-values-low",
+      "label": "A = −2, B = −5, C = −5 at p = 5 with h = −2: |f(p)| = 80",
+      "provenance": "parameter-domain corners; values derived by hand from f(x) = A·x² + B·x + C, f′(x) = 2A·x + B and (f(p + h) − f(p))/h, and cross-checked by exact rational arithmetic (tests/reference/oracles/function-derivative.ts)",
+      "families": [
+        "domain-boundary",
+        "negative-curvature"
+      ],
+      "params": {
+        "A": -2,
+        "B": -5,
+        "C": -5,
+        "p": 5,
+        "h": -2
+      },
+      "expected": {
+        "probe.x": 5,
+        "probe.value": -80,
+        "derivative": -25,
+        "second.x": 3,
+        "second.value": -38,
+        "secant.slope": -21,
+        "secant.difference": 4,
+        "slope.sign": "decreasing",
+        "curvature": "negative-curvature",
+        "vertex.x": -1.25
+      },
+      "lines": {
+        "tangent": [
+          [
+            -5,
+            170
+          ],
+          [
+            5,
+            -80
+          ]
+        ],
+        "secant": [
+          [
+            -5,
+            130
+          ],
+          [
+            5,
+            -80
+          ]
+        ]
+      },
+      "tolerance": {
+        "absolute": 0,
+        "relative": 0
+      }
+    },
+    {
+      "id": "decimal-coefficients",
+      "label": "Decimal inputs A = 0.3, B = −1.7, C = 0.9, p = 2.2, h = −0.7 (rounded values)",
+      "provenance": "non-binary decimal inputs; values computed by exact rational arithmetic in tests/reference/oracles/function-derivative.ts, which shares no code with the catalogue kernel, and rounded once to the nearest double",
+      "families": [
+        "positive-curvature"
+      ],
+      "params": {
+        "A": 0.3,
+        "B": -1.7,
+        "C": 0.9,
+        "p": 2.2,
+        "h": -0.7
+      },
+      "expected": {
+        "probe.x": 2.2,
+        "probe.value": -1.388,
+        "derivative": -0.3799999999999999,
+        "second.x": 1.5000000000000002,
+        "second.value": -0.9750000000000001,
+        "secant.slope": -0.5899999999999999,
+        "secant.difference": -0.21,
+        "slope.sign": "decreasing",
+        "curvature": "positive-curvature",
+        "vertex.x": 2.8333333333333335
+      },
+      "lines": {
+        "tangent": [
+          [
+            -5,
+            1.3479999999999994
+          ],
+          [
+            5,
+            -2.4519999999999995
+          ]
+        ],
+        "secant": [
+          [
+            -5,
+            2.8599999999999994
+          ],
+          [
+            5,
+            -3.0399999999999996
+          ]
+        ]
+      },
+      "tolerance": {
+        "absolute": 0,
+        "relative": 1e-12
+      }
+    },
+    {
+      "id": "vertex-overflow",
+      "label": "A = 2^−1074: the vertex −B/(2A) exceeds the double range (OVERFLOW); A·h is subnormal",
+      "provenance": "report §8.2 numerical-limit statuses; values computed by exact rational arithmetic in tests/reference/oracles/function-derivative.ts, which shares no code with the catalogue kernel, and rounded once to the nearest double",
+      "families": [
+        "numerical-limit",
+        "positive-curvature"
+      ],
+      "params": {
+        "A": 5e-324,
+        "B": 5,
+        "C": 0,
+        "p": 1,
+        "h": 1
+      },
+      "expected": {
+        "probe.x": 1,
+        "probe.value": 5,
+        "derivative": 5,
+        "second.x": 2,
+        "second.value": 10,
+        "secant.slope": 5,
+        "secant.difference": {
+          "subnormal": 5e-324
+        },
+        "slope.sign": "increasing",
+        "curvature": "positive-curvature",
+        "vertex.x": {
+          "limit": "OVERFLOW"
+        }
+      },
+      "lines": {
+        "tangent": [
+          [
+            -5,
+            -25
+          ],
+          [
+            5,
+            25
+          ]
+        ],
+        "secant": [
+          [
+            -5,
+            -25
+          ],
+          [
+            5,
+            25
+          ]
+        ]
+      },
+      "tolerance": {
+        "absolute": 0,
+        "relative": 1e-12
+      }
+    },
+    {
+      "id": "vertex-underflow",
+      "label": "B = 2^−1074, A = 2: the vertex is nonzero but rounds to zero (UNDERFLOW); f′(p) is subnormal",
+      "provenance": "report §8.2 numerical-limit statuses; values computed by exact rational arithmetic in tests/reference/oracles/function-derivative.ts, which shares no code with the catalogue kernel, and rounded once to the nearest double",
+      "families": [
+        "numerical-limit",
+        "exact-sign"
+      ],
+      "params": {
+        "A": 2,
+        "B": 5e-324,
+        "C": 0,
+        "p": 0,
+        "h": 1
+      },
+      "expected": {
+        "probe.x": 0,
+        "probe.value": 0,
+        "derivative": {
+          "subnormal": 5e-324
+        },
+        "second.x": 1,
+        "second.value": 2,
+        "secant.slope": 2,
+        "secant.difference": 2,
+        "slope.sign": "increasing",
+        "curvature": "positive-curvature",
+        "vertex.x": {
+          "limit": "UNDERFLOW"
+        }
+      },
+      "lines": {
+        "tangent": [
+          [
+            -5,
+            -2.5e-323
+          ],
+          [
+            5,
+            2.5e-323
+          ]
+        ],
+        "secant": [
+          [
+            -5,
+            -10
+          ],
+          [
+            5,
+            10
+          ]
+        ]
+      },
+      "tolerance": {
+        "absolute": 0,
+        "relative": 1e-12
+      }
+    },
+    {
+      "id": "function-value-underflow",
+      "label": "f(p) = p² with p = 1e-200 is nonzero but rounds to zero (UNDERFLOW)",
+      "provenance": "report §8.2 numerical-limit statuses; values computed by exact rational arithmetic in tests/reference/oracles/function-derivative.ts, which shares no code with the catalogue kernel, and rounded once to the nearest double",
+      "families": [
+        "numerical-limit"
+      ],
+      "params": {
+        "A": 1,
+        "B": 0,
+        "C": 0,
+        "p": 1e-200,
+        "h": 1
+      },
+      "expected": {
+        "probe.x": 1e-200,
+        "probe.value": {
+          "limit": "UNDERFLOW"
+        },
+        "derivative": 2e-200,
+        "second.x": 1,
+        "second.value": 1,
+        "secant.slope": 1,
+        "secant.difference": 1,
+        "slope.sign": "increasing",
+        "curvature": "positive-curvature",
+        "vertex.x": 0
+      },
+      "lines": {
+        "tangent": [
+          [
+            -5,
+            -1e-199
+          ],
+          [
+            5,
+            1e-199
+          ]
+        ],
+        "secant": [
+          [
+            -5,
+            -5
+          ],
+          [
+            5,
+            5
+          ]
+        ]
+      },
+      "tolerance": {
+        "absolute": 0,
+        "relative": 1e-12
+      }
+    },
+    {
+      "id": "second-beyond-right-boundary",
+      "label": "p = 4, h = 1.5: p + h = 5.5 is outside the domain",
+      "provenance": "report §12.1 (domain boundaries) and §8.2 coupled constraints; rejection derived by hand from the declared domain and the coupled constraint −5 ≤ p + h ≤ 5 (evaluated on the double sum); cross-checked by the oracle",
+      "families": [
+        "outside",
+        "domain-boundary"
+      ],
+      "params": {
+        "A": 1,
+        "B": -2,
+        "C": -3,
+        "p": 4,
+        "h": 1.5
+      },
+      "rejected": {
+        "code": "CONSTRAINT_VIOLATION",
+        "path": "$.constraints.secant-in-domain"
+      },
+      "tolerance": {
+        "absolute": 0,
+        "relative": 0
+      }
+    },
+    {
+      "id": "second-beyond-left-boundary",
+      "label": "p = −4.5, h = −1: p + h = −5.5 is outside the domain",
+      "provenance": "report §12.1 (domain boundaries) and §8.2 coupled constraints; rejection derived by hand from the declared domain and the coupled constraint −5 ≤ p + h ≤ 5 (evaluated on the double sum); cross-checked by the oracle",
+      "families": [
+        "outside",
+        "domain-boundary"
+      ],
+      "params": {
+        "A": 1,
+        "B": -2,
+        "C": -3,
+        "p": -4.5,
+        "h": -1
+      },
+      "rejected": {
+        "code": "CONSTRAINT_VIOLATION",
+        "path": "$.constraints.secant-in-domain"
+      },
+      "tolerance": {
+        "absolute": 0,
+        "relative": 0
+      }
+    },
+    {
+      "id": "second-one-ulp-beyond-boundary",
+      "label": "p = 5, h = 2^−50: the double sum is the next double above 5",
+      "provenance": "declared constraint semantics (double sum); rejection derived by hand from the declared domain and the coupled constraint −5 ≤ p + h ≤ 5 (evaluated on the double sum); cross-checked by the oracle",
+      "families": [
+        "outside",
+        "double-sum-constraint"
+      ],
+      "params": {
+        "A": 1,
+        "B": -2,
+        "C": -3,
+        "p": 5,
+        "h": 8.881784197001252e-16
+      },
+      "rejected": {
+        "code": "CONSTRAINT_VIOLATION",
+        "path": "$.constraints.secant-in-domain"
+      },
+      "tolerance": {
+        "absolute": 0,
+        "relative": 0
+      }
+    },
+    {
+      "id": "probe-beyond-domain",
+      "label": "p = 5.25 is outside [−5, 5]",
+      "provenance": "declared parameter domain; rejection derived by hand from the declared domain and the coupled constraint −5 ≤ p + h ≤ 5 (evaluated on the double sum); cross-checked by the oracle",
+      "families": [
+        "outside"
+      ],
+      "params": {
+        "A": 1,
+        "B": -2,
+        "C": -3,
+        "p": 5.25,
+        "h": -1
+      },
+      "rejected": {
+        "code": "OUT_OF_DOMAIN",
+        "path": "$.parameters.p"
+      },
+      "tolerance": {
+        "absolute": 0,
+        "relative": 0
+      }
+    },
+    {
+      "id": "offset-beyond-domain",
+      "label": "h = 2.5 is outside [−2, 2]",
+      "provenance": "declared parameter domain; rejection derived by hand from the declared domain and the coupled constraint −5 ≤ p + h ≤ 5 (evaluated on the double sum); cross-checked by the oracle",
+      "families": [
+        "outside"
+      ],
+      "params": {
+        "A": 1,
+        "B": -2,
+        "C": -3,
+        "p": 0,
+        "h": 2.5
+      },
+      "rejected": {
+        "code": "OUT_OF_DOMAIN",
+        "path": "$.parameters.h"
+      },
+      "tolerance": {
+        "absolute": 0,
+        "relative": 0
+      }
+    },
+    {
+      "id": "coefficient-beyond-domain",
+      "label": "A = 2.5 is outside [−2, 2]",
+      "provenance": "declared parameter domain; rejection derived by hand from the declared domain and the coupled constraint −5 ≤ p + h ≤ 5 (evaluated on the double sum); cross-checked by the oracle",
+      "families": [
+        "outside"
+      ],
+      "params": {
+        "A": 2.5,
+        "B": -2,
+        "C": -3,
+        "p": 0,
+        "h": 1
+      },
+      "rejected": {
+        "code": "OUT_OF_DOMAIN",
+        "path": "$.parameters.A"
+      },
+      "tolerance": {
+        "absolute": 0,
+        "relative": 0
+      }
+    }
+  ]
+}

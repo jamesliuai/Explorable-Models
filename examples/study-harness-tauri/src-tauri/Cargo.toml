@@ -1,0 +1,36 @@
+[package]
+name = "study-harness-reference"
+version = "0.1.0"
+description = "Packaged Tauri 2 reference host for the Study Harness visualizer (conformance fixture, not a Study Harness application)"
+edition = "2021"
+rust-version = "1.85"
+license = "MIT"
+publish = false
+
+# Standalone: never join a parent Cargo workspace.
+[workspace]
+
+[lib]
+name = "study_harness_reference_lib"
+crate-type = ["rlib"]
+
+[features]
+default = []
+# Test-only build: scenario fetch, report/capture write, controlled exit, window control, an ungranted probe command
+# and named crash-injection points (std::process::abort). Never enabled for the release binary.
+conformance = []
+
+[build-dependencies]
+tauri-build = { version = "=2.7.4", features = [] }
+
+[dependencies]
+tauri = { version = "=2.12.5", features = [] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+rusqlite = { version = "0.41", features = ["bundled"] }
+sha2 = "0.10"
+uuid = { version = "1", features = ["v4"] }
+study-harness-contracts = { path = "../../../packages/activity/rust" }
+
+[dev-dependencies]
+tempfile = "3"

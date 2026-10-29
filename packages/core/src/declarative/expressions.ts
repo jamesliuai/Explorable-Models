@@ -140,8 +140,65 @@ export function parseExpression(expression: Expression, path = 'expression'): Ex
 function children(node: ExpressionNode): ExpressionNode[] { return node.type === 'binary' ? [node.left, node.right] : node.type === 'unary' ? [node.value] : node.type === 'call' ? node.args : node.type === 'vector' ? node.items : []; }
 export function expressionReferences(node: ExpressionNode): string[] { const refs = new Set<string>(); const visit = (n: ExpressionNode) => { if (n.type === 'reference')
     refs.add(n.name); children(n).forEach(visit); }; visit(node); return [...refs]; }
-const valid = (value: NumericValue): ValueResult => typeof value === 'number' ? Number.isFinite(value) ? { value, status: 'valid' } : { value: null, status: 'undefined', reason: 'The result is nonfinite.' } : value.every(Number.isFinite) ? { value, status: 'valid' } : { value: null, status: 'undefined', reason: 'A vector component is nonfinite.' };
+/**
+ * Numerical limits (architecture D10, report §8.2, A11). Every operation of the interpreter works on finite doubles, so
+ * a nonfinite result has one of two causes: a mathematically undefined operation (a pole such as 0^-1 or a non-real
+ * power such as (-8)^(1/3)), which is `undefined` with its own reason, or a finite exact result beyond the largest
+ * double, which is marked `limit: 'OVERFLOW'`. A nonzero exact result that rounds to 0 keeps its schema 2.0 value 0 but
+ * is marked `limit: 'UNDERFLOW'`, and so is any result computed from such a value (its true magnitude is unknown),
+ * except a sum or difference with a nonzero exact term, which is only `approximation: 'UNDERFLOW'`. A nonzero result
+ * below the smallest normal double of a rounding operation (×, ÷, powers, exp, dot) is also marked
+ * `approximation: 'UNDERFLOW'` (reduced precision). Markers propagate to every dependent value. They never change a
+ * schema 2.0 status or value: `evaluateCompiledDocument` removes them from schema 2.0 frames, and only the model layer
+ * (`numericalLimits: true`) reads them (D1).
+ */
+const MIN_NORMAL = 2.2250738585072014e-308;
+export const NUMERICAL_LIMIT_REASONS = Object.freeze({
+    overflow: 'The result is larger than the largest representable number (numerical overflow).',
+    underflow: 'The result is nonzero but smaller than the smallest representable number (numerical underflow); it is not exactly 0.',
+    intermediate: 'A step of the calculation was nonzero but smaller than the smallest representable number (numerical underflow), so this value cannot be computed reliably.',
+    approximation: 'A step of the calculation was below the smallest normal number, so this value is held with reduced precision.',
+});
+const NOT_REAL = 'The result is not a real number.';
+type Rule = 'exact' | 'additive' | 'rounding';
+const isSubnormal = (value: number): boolean => value !== 0 && Math.abs(value) < MIN_NORMAL;
 const undefinedValue = (reason: string): ValueResult => ({ value: null, status: 'undefined', reason });
+const overflow = (): ValueResult => ({ value: null, status: 'undefined', reason: NUMERICAL_LIMIT_REASONS.overflow, limit: 'OVERFLOW' });
+/** Result of a literal, constant or other exactly known value. */
+const valid = (value: NumericValue): ValueResult => ({ value, status: 'valid' });
+/**
+ * Classifies the double result of one operation on valid finite operands. `known` is true when the exact result is
+ * known to be nonzero (a zero result is then an underflow); `rule` says whether the operation rounds.
+ */
+function finish(value: NumericValue, operands: readonly ValueResult[], rule: Rule, known: boolean | readonly boolean[] = false): ValueResult {
+    const items = typeof value === 'number' ? [value] : value;
+    if (items.some(Number.isNaN))
+        return rule === 'exact' ? undefinedValue(NOT_REAL) : overflow(); // NaN from finite operands of a rounding sum is ∞ − ∞
+    if (items.some(item => !Number.isFinite(item)))
+        return overflow();
+    const underflowed = operands.some(operand => operand.limit === 'UNDERFLOW');
+    if (underflowed) {
+        // A sum with a nonzero exact term is within one unit of the dropped term: an approximation, not a limit.
+        const others = operands.filter(operand => operand.limit !== 'UNDERFLOW');
+        if (rule === 'additive' && items.every(item => item !== 0) && others.length)
+            return { value, status: 'valid', approximation: 'UNDERFLOW' };
+        return { value, status: 'valid', reason: NUMERICAL_LIMIT_REASONS.intermediate, limit: 'UNDERFLOW' };
+    }
+    const flags = Array.isArray(known) ? known : items.map(() => known);
+    if (rule !== 'exact' && items.some((item, index) => item === 0 && flags[index]))
+        return { value, status: 'valid', reason: NUMERICAL_LIMIT_REASONS.underflow, limit: 'UNDERFLOW' };
+    const approximate = operands.some(operand => operand.approximation === 'UNDERFLOW') || rule === 'rounding' && items.some(isSubnormal);
+    return approximate ? { value, status: 'valid', approximation: 'UNDERFLOW' } : { value, status: 'valid' };
+}
+/** A mathematically undefined outcome whose cause may be an underflowed operand rather than the mathematics. */
+function refuse(reason: string, operands: readonly ValueResult[]): ValueResult {
+    return operands.some(operand => operand.limit === 'UNDERFLOW') ? { value: null, status: 'undefined', reason: NUMERICAL_LIMIT_REASONS.intermediate, limit: 'UNDERFLOW' } : undefinedValue(reason);
+}
+/** Schema 2.0 form of a result (D1): status, value and the reason of an undefined value only. */
+export function plainValueResult(result: ValueResult): ValueResult {
+    return result.status === 'valid' ? { value: result.value, status: 'valid' } : { value: null, status: 'undefined', reason: result.reason ?? 'The value is undefined.' };
+}
+const nonzero = (value: number): boolean => value !== 0;
 export function evaluateExpression(node: ExpressionNode, resolve: (name: string) => ValueResult): ValueResult {
     if (node.type === 'number')
         return valid(node.value);
@@ -149,54 +206,67 @@ export function evaluateExpression(node: ExpressionNode, resolve: (name: string)
         return node.name === 'pi' ? valid(Math.PI) : node.name === 'e' ? valid(Math.E) : resolve(node.name);
     if (node.type === 'unary') {
         const v = evaluateExpression(node.value, resolve);
-        return v.status === 'undefined' ? v : valid(Array.isArray(v.value) ? v.value.map(x => node.op === '-' ? -x : x) : node.op === '-' ? -(v.value as number) : v.value as number);
+        if (v.status === 'undefined' || node.op === '+')
+            return v;
+        return { ...v, value: Array.isArray(v.value) ? v.value.map(x => -x) : -(v.value as number) };
     }
     const nodes = node.type === 'binary' ? [node.left, node.right] : node.type === 'vector' ? node.items : node.args;
     const values = nodes.map(n => evaluateExpression(n, resolve));
-    const missing = values.find(v => v.status === 'undefined');
+    // A mathematically undefined operand explains the result better than a numerical limit of another operand.
+    const missing = values.find(v => v.status === 'undefined' && !v.limit) ?? values.find(v => v.status === 'undefined');
     if (missing)
         return missing;
     const args = values.map(v => v.value as NumericValue);
+    const zeroDivisor = (divisor: ValueResult) => refuse('Division by zero.', [divisor]);
     if (node.type === 'vector')
-        return args.some(Array.isArray) ? undefinedValue('Vectors cannot contain nested vectors.') : valid(args as number[]);
+        return args.some(Array.isArray) ? undefinedValue('Vectors cannot contain nested vectors.') : finish(args as number[], values, 'exact');
     if (node.type === 'binary') {
         const [a, b] = args;
         if (Array.isArray(a) || Array.isArray(b)) {
             if ((node.op === '+' || node.op === '-') && Array.isArray(a) && Array.isArray(b) && a.length === b.length)
-                return valid(a.map((v, i) => node.op === '+' ? v + b[i] : v - b[i]));
+                return finish(a.map((v, i) => node.op === '+' ? v + b[i] : v - b[i]), values, 'additive');
             if (node.op === '*' && Array.isArray(a) && typeof b === 'number')
-                return valid(a.map(v => v * b));
+                return finish(a.map(v => v * b), values, 'rounding', a.map(v => v !== 0 && b !== 0));
             if (node.op === '*' && typeof a === 'number' && Array.isArray(b))
-                return valid(b.map(v => a * v));
+                return finish(b.map(v => a * v), values, 'rounding', b.map(v => a !== 0 && v !== 0));
             if (node.op === '/' && Array.isArray(a) && typeof b === 'number')
-                return b === 0 ? undefinedValue('Division by zero.') : valid(a.map(v => v / b));
+                return b === 0 ? zeroDivisor(values[1]) : finish(a.map(v => v / b), values, 'rounding', a.map(nonzero));
             return undefinedValue('Incompatible vector operation.');
         }
         if ((node.op === '/' || node.op === '%') && b === 0)
-            return undefinedValue('Division by zero.');
+            return zeroDivisor(values[1]);
         switch (node.op) {
-            case '+': return valid(a + b);
-            case '-': return valid(a - b);
-            case '*': return valid(a * b);
-            case '/': return valid(a / b);
-            case '%': return valid(a % b);
+            case '+': return finish(a + b, values, 'additive');
+            case '-': return finish(a - b, values, 'additive');
+            case '*': return finish(a * b, values, 'rounding', a !== 0 && b !== 0);
+            case '/': return finish(a / b, values, 'rounding', a !== 0);
+            case '%': return finish(a % b, values, 'exact');
             case '^':
-            case '**': return valid(a ** b);
+            case '**': return power(a, b, values);
         }
     }
     if (node.type !== 'call')
         return undefinedValue('Unsupported operation.');
     const [a, b, c] = args;
     if (node.name === 'vector')
-        return args.some(Array.isArray) ? undefinedValue('Vectors cannot contain nested vectors.') : valid(args as number[]);
-    if (node.name === 'dot')
-        return Array.isArray(a) && Array.isArray(b) && a.length === b.length ? valid(a.reduce((total, v, i) => total + v * b[i], 0)) : undefinedValue('dot requires equal length vectors.');
+        return args.some(Array.isArray) ? undefinedValue('Vectors cannot contain nested vectors.') : finish(args as number[], values, 'exact');
+    if (node.name === 'dot') {
+        if (!(Array.isArray(a) && Array.isArray(b) && a.length === b.length))
+            return undefinedValue('dot requires equal length vectors.');
+        const products = a.map((v, i) => v * b[i]);
+        const total = products.reduce((sum, p) => sum + p, 0);
+        // A product of nonzero factors that rounds to 0 makes the sum depend on a value below the double range.
+        const lost = products.some((p, i) => p === 0 && a[i] !== 0 && b[i] !== 0);
+        if (lost && Number.isFinite(total) && !values.some(v => v.limit))
+            return total === 0 ? { value: total, status: 'valid', reason: NUMERICAL_LIMIT_REASONS.intermediate, limit: 'UNDERFLOW' } : { ...finish(total, values, 'rounding'), approximation: 'UNDERFLOW' };
+        return finish(total, values, 'rounding');
+    }
     if (node.name === 'norm')
-        return Array.isArray(a) ? valid(Math.hypot(...a)) : undefinedValue('norm requires a vector.');
+        return Array.isArray(a) ? finish(Math.hypot(...a), values, 'rounding') : undefinedValue('norm requires a vector.');
     if (node.name === 'sum')
-        return Array.isArray(a) ? valid(a.reduce((total, v) => total + v, 0)) : undefinedValue('sum requires a vector.');
+        return Array.isArray(a) ? finish(a.reduce((total, v) => total + v, 0), values, 'additive') : undefinedValue('sum requires a vector.');
     if (node.name === 'component')
-        return Array.isArray(a) && typeof b === 'number' && Number.isInteger(b) && b >= 0 && b < a.length ? valid(a[b]) : undefinedValue('Vector component index is outside its zero-based domain.');
+        return Array.isArray(a) && typeof b === 'number' && Number.isInteger(b) && b >= 0 && b < a.length ? finish(a[b], values, 'exact') : undefinedValue('Vector component index is outside its zero-based domain.');
     if (args.some(Array.isArray))
         return undefinedValue(`${node.name} requires scalar arguments.`);
     const x = a as number, y = b as number, z = c as number;
@@ -205,25 +275,35 @@ export function evaluateExpression(node: ExpressionNode, resolve: (name: string)
     if (node.name === 'sqrt' && x < 0)
         return undefinedValue('Square root requires a nonnegative argument.');
     if ((node.name === 'log' || node.name === 'log10') && x <= 0)
-        return undefinedValue('Logarithm requires a positive argument.');
+        return refuse('Logarithm requires a positive argument.', values);
     if ((node.name === 'asin' || node.name === 'acos') && Math.abs(x) > 1)
         return undefinedValue(`${node.name} requires an argument between -1 and 1.`);
     if (node.name === 'atan2' && x === 0 && y === 0)
-        return undefinedValue('The angle of a zero vector is undefined.');
+        return refuse('The angle of a zero vector is undefined.', values);
     if (node.name === 'clamp')
-        return y > z ? undefinedValue('Clamp minimum exceeds maximum.') : valid(Math.max(y, Math.min(z, x)));
+        return y > z ? undefinedValue('Clamp minimum exceeds maximum.') : finish(Math.max(y, Math.min(z, x)), values, 'exact');
     if (node.name === 'pow')
-        return valid(x ** y);
+        return power(x, y, values);
     if (node.name === 'min')
-        return valid(Math.min(...args as number[]));
+        return finish(Math.min(...args as number[]), values, 'exact');
     if (node.name === 'max')
-        return valid(Math.max(...args as number[]));
+        return finish(Math.max(...args as number[]), values, 'exact');
     if (node.name === 'hypot')
-        return valid(Math.hypot(...args as number[]));
+        return finish(Math.hypot(...args as number[]), values, 'rounding');
     if (node.name === 'atan2')
-        return valid(Math.atan2(x, y));
-    const fn = ({ sin: Math.sin, cos: Math.cos, tan: Math.tan, asin: Math.asin, acos: Math.acos, atan: Math.atan, sqrt: Math.sqrt, abs: Math.abs, exp: Math.exp, log: Math.log, log10: Math.log10, floor: Math.floor, ceil: Math.ceil, round: Math.round, sign: Math.sign } as Record<string, (value: number) => number>)[node.name];
-    return fn ? valid(fn(x)) : undefinedValue('Unsupported function.');
+        return finish(Math.atan2(x, y), values, 'exact');
+    if (node.name === 'exp')
+        return finish(Math.exp(x), values, 'rounding', true);
+    const fn = ({ sin: Math.sin, cos: Math.cos, tan: Math.tan, asin: Math.asin, acos: Math.acos, atan: Math.atan, sqrt: Math.sqrt, abs: Math.abs, log: Math.log, log10: Math.log10, floor: Math.floor, ceil: Math.ceil, round: Math.round, sign: Math.sign } as Record<string, (value: number) => number>)[node.name];
+    return fn ? finish(fn(x), values, 'exact') : undefinedValue('Unsupported function.');
+}
+/** a^b on finite doubles: poles and non-real powers are undefined; a finite exact power beyond the double range is an overflow. */
+function power(a: number, b: number, values: readonly ValueResult[]): ValueResult {
+    if (a === 0 && b < 0)
+        return refuse('Zero raised to a negative power is undefined.', values);
+    if (a < 0 && !Number.isInteger(b))
+        return undefinedValue('A negative base with a non-integer exponent is not a real number.');
+    return finish(a ** b, values, 'rounding', a !== 0);
 }
 /** Deliberately small dimensional algebra. Display unit labels never perform conversions. */
 export interface ExpressionType {

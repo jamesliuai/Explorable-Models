@@ -1,5 +1,11 @@
 # Local preview operations and future release handoff
 
+> **Historical: 0.2 preview operations.** This page was written for the `0.2.0-preview.1` candidate. The commands
+> still run, but the current gates also include `npm run test:contracts` and the Study Harness packaging and
+> conformance scripts listed in the [README](../README.md#verify-and-build). The publishing and registry-rollback steps
+> below still describe the intended owner-controlled procedure. Activity record rollback is in
+> [compatibility §6](study-harness/compatibility.md#6-rollback-procedure).
+
 The owner selected a **source-repository developer preview** and authorized committing and pushing to `jamesliuai/Explorable-Models`. npm publishing, hosting, and external pilots remain deferred. The CI workflow builds and retains artifacts without publishing packages, deploying a website, or creating a GitHub Release.
 
 ## Reproduce the candidate

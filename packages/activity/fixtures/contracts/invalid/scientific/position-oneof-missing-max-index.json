@@ -1,0 +1,46 @@
+{
+  "contract": "study-harness.scientific-snapshot",
+  "expect": "invalid",
+  "why": "An index position carries maxIndex.",
+  "value": {
+    "contract": "study-harness.scientific-snapshot",
+    "schemaVersion": "1.0",
+    "model": {
+      "modelId": "quadratic-descent",
+      "version": "1.0.0",
+      "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+    },
+    "scientificRevision": "sha256:7cf73b2641a4662e810d2cadd1ff615f7675eb59866ec0f34d291c55217e59f4",
+    "runtime": {
+      "id": "experiment-kit-activity",
+      "version": "0.3.0-preview.1"
+    },
+    "runId": "run-0002",
+    "params": {
+      "a": 1,
+      "eta": 1.5,
+      "x0": 8
+    },
+    "position": {
+      "kind": "index",
+      "index": 3
+    },
+    "terminal": false,
+    "comparisons": [
+      {
+        "runId": "run-0001",
+        "label": "η = 0.5",
+        "params": {
+          "a": 1,
+          "eta": 0.5,
+          "x0": 8
+        },
+        "position": {
+          "kind": "index",
+          "index": 12,
+          "maxIndex": 1000
+        }
+      }
+    ]
+  }
+}

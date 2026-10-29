@@ -1,0 +1,79 @@
+{
+ "numTotalTestSuites": 4,
+ "numPassedTestSuites": 4,
+ "numFailedTestSuites": 0,
+ "numPendingTestSuites": 0,
+ "numTotalTests": 40,
+ "numPassedTests": 40,
+ "numFailedTests": 0,
+ "numPendingTests": 0,
+ "numTodoTests": 0,
+ "snapshot": {
+  "added": 0,
+  "failure": false,
+  "filesAdded": 0,
+  "filesRemoved": 0,
+  "filesRemovedList": [],
+  "filesUnmatched": 0,
+  "filesUpdated": 0,
+  "matched": 0,
+  "total": 0,
+  "unchecked": 0,
+  "uncheckedKeysByFile": [],
+  "unmatched": 0,
+  "updated": 0,
+  "didUpdate": false
+ },
+ "startTime": 1793026884247,
+ "success": true,
+ "testResults": [
+  {
+   "assertionResults": [
+    {
+     "ancestorTitles": [
+      "frozen schema identities (A04)"
+     ],
+     "fullName": "frozen schema identities (A04) study-harness.activity-template 1.0 is unchanged",
+     "status": "passed",
+     "title": "study-harness.activity-template 1.0 is unchanged",
+     "duration": 1.4230000000000018,
+     "failureMessages": [],
+     "meta": {},
+     "tags": [],
+     "benchmarks": []
+    },
+    {
+     "ancestorTitles": [
+      "frozen schema identities (A04)"
+     ],
+     "fullName": "frozen schema identities (A04) study-harness.activity-instance 1.0 is unchanged",
+     "status": "passed",
+     "title": "study-harness.activity-instance 1.0 is unchanged",
+     "duration": 0.3183750000000032,
+     "failureMessages": [],
+     "meta": {},
+     "tags": [],
+     "benchmarks": []
+    },
+    {
+     "ancestorTitles": [
+      "frozen schema identities (A04)"
+     ],
+     "fullName": "frozen schema identities (A04) study-harness.host-policy 1.0 is unchanged",
+     "status": "passed",
+     "title": "study-harness.host-policy 1.0 is unchanged",
+     "duration": 0.22129199999997695,
+     "failureMessages": [],
+     "meta": {},
+     "tags": [],
+     "benchmarks": []
+    }
+   ],
+   "startTime": 1793026884395,
+   "endTime": 1793026884448.4866,
+   "status": "passed",
+   "message": "",
+   "name": "/repo/tests/activity/versions.test.ts"
+  }
+ ]
+}

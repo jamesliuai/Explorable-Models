@@ -1,0 +1,57 @@
+Two vectors in space — stage orient (prepare)
+Instruction: Get oriented: turn the 3D view or use the orientation presets, find the positive x, y and z axes, and compare the view with the three flat projections.
+Review notice: Reference-checked; no independent subject review
+Revealed by the host for this stage: nothing
+
+Current values:
+x component of u: 2 (fixed). y component of u: 1 (fixed). z component of u: 0 (fixed). x component of v: 1 (fixed). y component of v: 2 (fixed). z component of v: 2 (fixed). Length of u: 2.236. Length of v: 3.
+
+View space:
+Two vectors in space
+3D view. 3D view. Shows Vectors u and v from the origin, each labelled with its name.
+Reference-checked; no independent subject review
+
+View plane-xy:
+Two vectors in space
+Top view: xy plane. Top view: xy plane. Shows u and v projected onto the xy plane, each labelled with its name.
+Reference-checked; no independent subject review
+
+View plane-xz:
+Two vectors in space
+Front view: xz plane. Front view: xz plane. Shows u and v projected onto the xz plane, each labelled with its name.
+Reference-checked; no independent subject review
+
+View plane-yz:
+Two vectors in space
+Side view: yz plane. Side view: yz plane. Shows u and v projected onto the yz plane, each labelled with its name.
+Reference-checked; no independent subject review
+
+View readouts:
+Two vectors in space
+Values. Values. Length of u: 2.236; Length of v: 3.
+Values:
+- Length of u: 2.236
+- Length of v: 3
+Reference-checked; no independent subject review
+
+View vector-table:
+Two vectors in space
+Vector table. Vector table. Table with 2 rows.
+Vector table (2 of 2 rows):
+Quantity	Value	Unit
+Vector u	(2, 1, 0)	
+Vector v	(1, 2, 2)	
+Reference-checked; no independent subject review
+
+View projection-table:
+Two vectors in space
+Projection table. Projection table. Table with 6 rows.
+Projection table (6 of 6 rows):
+Quantity	Value	Unit
+u projected onto the xy plane	(2, 1)	
+v projected onto the xy plane	(1, 2)	
+u projected onto the xz plane	(2, 0)	
+v projected onto the xz plane	(1, 2)	
+u projected onto the yz plane	(1, 0)	
+v projected onto the yz plane	(2, 2)	
+Reference-checked; no independent subject review

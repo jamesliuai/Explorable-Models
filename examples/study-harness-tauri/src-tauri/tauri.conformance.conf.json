@@ -1,0 +1,37 @@
+{
+  "productName": "StudyHarnessReferenceConformance",
+  "identifier": "dev.experimentkit.studyharness.reference.conformance",
+  "build": {
+    "beforeBuildCommand": "npm run build:web:conformance",
+    "frontendDist": "../.conformance-out/dist"
+  },
+  "app": {
+    "security": {
+      "capabilities": [
+        "main-window",
+        {
+          "identifier": "conformance-runner",
+          "description": "TEST-ONLY. Merged by `tauri build --features conformance --config src-tauri/tauri.conformance.conf.json` for the separate conformance binary. Grants the in-app runner its scenario, report, capture, exit, window-lifecycle, crash-arming, simulated-fault, store-reopen and approval-withdrawal commands. `conformance_ungranted` is registered and listed in the app manifest but deliberately granted by no capability.",
+          "local": true,
+          "windows": [
+            "main"
+          ],
+          "permissions": [
+            "allow-conformance-scenario",
+            "allow-conformance-report",
+            "allow-conformance-capture",
+            "allow-conformance-exit",
+            "allow-conformance-window",
+            "allow-conformance-arm",
+            "allow-conformance-fault",
+            "allow-conformance-reopen-store",
+            "allow-conformance-withdraw-approval"
+          ]
+        }
+      ]
+    }
+  },
+  "bundle": {
+    "shortDescription": "Study Harness reference host — conformance test build (not for release)"
+  }
+}

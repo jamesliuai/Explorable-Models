@@ -1,12 +1,25 @@
-import { useEffect, useId, useState, useSyncExternalStore } from 'react';
+import { useEffect, useId, useRef, useState, useSyncExternalStore } from 'react';
 import type { CSSProperties } from 'react';
 import type { ParameterSpec } from '@experiment-kit/core/declarative';
 import type { RodController } from './controller';
 import { rodDocument } from './document';
 import { format, RodDiagram, scalar } from './RodDiagram';
 
+const NAVIGATION_KEYS = ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Home', 'End', 'PageUp', 'PageDown'];
+
 function Parameter({ id, spec, value, controller, disabled }: { id: string; spec: ParameterSpec; value: number; controller: RodController; disabled: boolean }) {
   const uid = useId();
+  // Pointer gesture of the slider: Escape or pointer cancellation cancels the drag, and the still-pressed pointer then
+  // changes nothing until it is released (WebKit reports the release position as one more value change, which would
+  // otherwise start and commit a new run); a value change the release itself produces in the same task (Firefox's
+  // release-position `change`, after `pointerup`) belongs to that release. A key starts a new gesture. The pressed
+  // slider takes focus so that Escape reaches it: WebKit on macOS gives a pressed range input no focus and blurs the
+  // focused element while it handles the press; that blur belongs to the press and commits nothing.
+  const pressed = useRef<number | null>(null);
+  const pressing = useRef<number | null>(null);
+  const cancelled = useRef(false);
+  const releasing = useRef(false);
+  const cancel = () => { controller.cancel(); if (pressed.current !== null) cancelled.current = true; };
   const [exact, setExact] = useState(String(value));
   const [error, setError] = useState('');
   useEffect(() => { setExact(String(Number(value.toFixed(2)))); setError(''); }, [value]);
@@ -26,12 +39,30 @@ function Parameter({ id, spec, value, controller, disabled }: { id: string; spec
     </div>
     <input id={`${uid}-slider`} type="range" min={spec.min} max={spec.max} step={spec.step} value={value} disabled={disabled} style={{ '--fill': `${100 * (value - spec.min) / (spec.max - spec.min)}%` } as CSSProperties}
       aria-label={spec.label} aria-describedby={`${uid}-hint`} aria-valuetext={`${format(value, id === 'angle' ? 1 : 2)} ${spec.unit}`}
-      onChange={event => controller.preview({ [id]: Number(event.target.value) })}
-      onPointerDown={event => event.currentTarget.setPointerCapture(event.pointerId)}
-      onPointerUp={() => void controller.commit()} onPointerCancel={() => controller.cancel()}
-      onKeyDown={event => { if (event.key === 'Escape') { event.preventDefault(); controller.cancel(); } }}
-      onKeyUp={event => { if (['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Home', 'End', 'PageUp', 'PageDown'].includes(event.key)) void controller.commit(); }}
-      onBlur={() => void controller.commit()} />
+      onChange={event => { if (!cancelled.current && !releasing.current) controller.preview({ [id]: Number(event.target.value) }); }}
+      // No explicit setPointerCapture: the native range input keeps its pressed pointer (the release reaches it in every
+      // engine), and an explicit capture stops WebKit's thumb from following the pointer.
+      onPointerDown={event => {
+        if (event.button !== 0) return;
+        const pointer = event.pointerId, input = event.currentTarget;
+        pressed.current = pointer; pressing.current = pointer; cancelled.current = false;
+        input.focus({ preventScroll: true });
+        setTimeout(() => {
+          if (pressing.current === pointer) pressing.current = null;
+          if (pressed.current === pointer && input.isConnected && document.activeElement !== input) input.focus({ preventScroll: true });
+        }, 0);
+      }}
+      onPointerUp={event => {
+        const held = pressed.current === event.pointerId;
+        pressed.current = null; pressing.current = null;
+        if (held) { releasing.current = true; setTimeout(() => { releasing.current = false; }, 0); }
+        if (held && cancelled.current) { cancelled.current = false; return; }
+        void controller.commit();
+      }}
+      onPointerCancel={cancel}
+      onKeyDown={event => { if (event.key === 'Escape') { event.preventDefault(); cancel(); } else if (NAVIGATION_KEYS.includes(event.key)) { pressed.current = null; pressing.current = null; cancelled.current = false; releasing.current = false; } }}
+      onKeyUp={event => { if (NAVIGATION_KEYS.includes(event.key)) void controller.commit(); }}
+      onBlur={() => { if (pressing.current === null && !cancelled.current) void controller.commit(); }} />
     <div className="range-ends" id={`${uid}-hint`}><span>{spec.min}{id === 'angle' ? '°' : ''}</span><span>{spec.max}{id === 'angle' ? '°' : ''}</span></div>
     {error ? <p id={`${uid}-error`} className="input-error" role="alert">{error}</p> : null}
   </div>;

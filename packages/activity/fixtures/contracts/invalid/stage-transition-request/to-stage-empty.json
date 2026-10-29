@@ -1,0 +1,26 @@
+{
+  "contract": "study-harness.stage-transition-request",
+  "expect": "invalid",
+  "why": "Stage IDs are non-empty.",
+  "value": {
+    "activityId": "act-quadratic-0001",
+    "basedOnActivityRevision": 2,
+    "expectedPolicyRevision": 3,
+    "template": {
+      "templateId": "quadratic-descent-regimes",
+      "version": "1.0.0",
+      "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+    },
+    "model": {
+      "modelId": "quadratic-descent",
+      "version": "1.0.0",
+      "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+    },
+    "operationId": "op-stage-1",
+    "idempotencyKey": "op-stage-1",
+    "fromStage": "explore",
+    "toStage": "",
+    "actor": "host",
+    "groups": []
+  }
+}

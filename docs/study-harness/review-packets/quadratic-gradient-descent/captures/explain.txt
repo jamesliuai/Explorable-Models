@@ -1,0 +1,48 @@
+Step size in gradient descent — stage explain (explain)
+Instruction: Explain in your own words how the step size and the curvature together determine what the positions do.
+Host-owned explanation request: How do η and a together determine whether the positions shrink, change sign, keep the same size or grow?
+Review notice: Reference-checked; no independent subject review
+Revealed by the host for this stage: trace, observations, substituted-rule
+
+Current values:
+Step size η: 0.25 (fixed). Curvature a: 2 (fixed). Starting position x₀: 4 (fixed). Starting position: 4. Starting loss: 16. Position: 4. Loss: 16. Gradient: 8. Update multiplier: 0.5. Step size times curvature: 0.5.
+
+View landscape:
+Step size in gradient descent
+Objective landscape. Objective landscape. Shows Objective f(x); Starting point (x₀, f(x₀)); Steps between successive iterates; Iterates (x_k, f(x_k)); Current iterate (x_n, f(x_n)).
+Reference-checked; no independent subject review
+
+View trace-plot:
+Step size in gradient descent
+Position by iteration. Position by iteration. Shows Position x_n at each iteration n.
+Reference-checked; no independent subject review
+
+View readouts:
+Step size in gradient descent
+Values. Values. Starting position: 4; Starting loss: 16; Position: 4; Loss: 16; Gradient: 8; Update multiplier: 0.5; Step size times curvature: 0.5.
+Values:
+- Starting position: 4
+- Starting loss: 16
+- Position: 4
+- Loss: 16
+- Gradient: 8
+- Update multiplier: 0.5
+- Step size times curvature: 0.5
+Reference-checked; no independent subject review
+
+View rules:
+Step size in gradient descent
+Rules. Rules. Objective: f(x) = (a/2)·x²; Update rule: x_(n+1) = (1 − η·a)·x_n; Update rule with current values: x_(n+1) = (1 − 0.5)·x_n = 0.5·x_n.
+Equations:
+- Objective: f(x) = (a/2)·x²
+- Update rule: x_(n+1) = (1 − η·a)·x_n
+- Update rule with current values: x_(n+1) = (1 − 0.5)·x_n = 0.5·x_n
+Reference-checked; no independent subject review
+
+View trace-table:
+Step size in gradient descent
+Trace table. Trace table. Table with 1 row.
+Trace table (1 of 1 rows):
+Iteration n (iter)	Position x_n
+0	4
+Reference-checked; no independent subject review

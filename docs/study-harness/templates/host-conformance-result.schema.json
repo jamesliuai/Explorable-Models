@@ -1,0 +1,935 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://experiment-kit.dev/schema/study-harness/host-conformance-result-1.json",
+  "title": "Study Harness host conformance result (external gate G2, A54)",
+  "description": "One run of the G2 conformance sequence against a host. subject labels whether the run used the actual Study Harness application or a fixture host (the packaged reference host or an in-memory host); fixture results never satisfy A54. Every step of the sequence is listed, with not-run and not-run (environment) kept distinct from pass. Do not put learner data, study content or credentials in this record.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "subject",
+    "runAt",
+    "host",
+    "packages",
+    "steps",
+    "result"
+  ],
+  "properties": {
+    "schema": {
+      "const": "study-harness.host-conformance-result/1"
+    },
+    "subject": {
+      "enum": [
+        "actual-host",
+        "reference-fixture-host",
+        "memory-fixture-host"
+      ]
+    },
+    "runAt": {
+      "type": "string",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}([.][0-9]{1,9})?(Z|[+-][0-9]{2}:[0-9]{2})$"
+    },
+    "host": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "commit",
+        "dirty",
+        "binarySha256",
+        "platform"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:@/+-]{0,127}$"
+        },
+        "commit": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{7,64}$"
+        },
+        "dirty": {
+          "type": "boolean"
+        },
+        "binarySha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "signed": {
+          "type": "boolean"
+        },
+        "platform": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "os",
+            "osVersion",
+            "arch"
+          ],
+          "properties": {
+            "os": {
+              "enum": [
+                "macOS",
+                "Windows",
+                "Linux"
+              ]
+            },
+            "osVersion": {
+              "type": "string",
+              "pattern": "^[0-9A-Za-z][0-9A-Za-z._ ()-]{0,63}$"
+            },
+            "arch": {
+              "enum": [
+                "arm64",
+                "x64"
+              ]
+            },
+            "webview": {
+              "type": "string",
+              "maxLength": 128
+            }
+          }
+        }
+      }
+    },
+    "packages": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 16,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "name",
+          "version",
+          "sha256"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "pattern": "^@experiment-kit/[a-z0-9-]{1,32}$"
+          },
+          "version": {
+            "type": "string",
+            "pattern": "^[0-9]{1,4}[.][0-9]{1,4}[.][0-9]{1,6}(-[0-9A-Za-z.-]{1,32})?$"
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          }
+        }
+      }
+    },
+    "kit": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "version"
+      ],
+      "description": "The conformance kit that produced this record (for example @experiment-kit/activity/conformance); absent when the host ran the sequence with its own harness.",
+      "properties": {
+        "name": {
+          "type": "string",
+          "pattern": "^@?[A-Za-z0-9][A-Za-z0-9_.:@/+-]{0,127}$"
+        },
+        "version": {
+          "type": "string",
+          "pattern": "^[0-9]{1,4}[.][0-9]{1,4}[.][0-9]{1,6}(-[0-9A-Za-z.-]{1,32})?$"
+        }
+      }
+    },
+    "steps": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "open-quadratic",
+        "prediction-reference",
+        "authorize-reveal",
+        "commit-exploration",
+        "camera-change",
+        "save",
+        "terminate",
+        "reopen-verify",
+        "independent-task",
+        "crash-before-intent",
+        "crash-after-intent",
+        "crash-after-display"
+      ],
+      "properties": {
+        "open-quadratic": {
+          "description": "Open the quadratic activity from the approved catalogue through the host",
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "outcome"
+          ],
+          "properties": {
+            "outcome": {
+              "enum": [
+                "pass",
+                "fail",
+                "not-run (environment)",
+                "not-run"
+              ]
+            },
+            "assertions": {
+              "type": "array",
+              "maxItems": 64,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "id",
+                  "outcome"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:@/+-]{0,127}$"
+                  },
+                  "outcome": {
+                    "enum": [
+                      "pass",
+                      "fail",
+                      "not-run (environment)",
+                      "not-run"
+                    ]
+                  },
+                  "detail": {
+                    "type": "string",
+                    "maxLength": 300,
+                    "description": "Why the assertion failed or did not run (fixed text with codes and counts; no learner data)."
+                  }
+                }
+              }
+            },
+            "environmentReason": {
+              "type": "string",
+              "maxLength": 300
+            },
+            "reason": {
+              "type": "string",
+              "maxLength": 300,
+              "description": "Why the step did not run or failed (for example a missing host hook or an earlier failed step)."
+            },
+            "evidence": {
+              "type": "string",
+              "maxLength": 300,
+              "description": "Path or reference to the host-side log or capture (no learner data)."
+            }
+          }
+        },
+        "prediction-reference": {
+          "description": "Record the learner prediction as a host response reference",
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "outcome"
+          ],
+          "properties": {
+            "outcome": {
+              "enum": [
+                "pass",
+                "fail",
+                "not-run (environment)",
+                "not-run"
+              ]
+            },
+            "assertions": {
+              "type": "array",
+              "maxItems": 64,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "id",
+                  "outcome"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:@/+-]{0,127}$"
+                  },
+                  "outcome": {
+                    "enum": [
+                      "pass",
+                      "fail",
+                      "not-run (environment)",
+                      "not-run"
+                    ]
+                  },
+                  "detail": {
+                    "type": "string",
+                    "maxLength": 300,
+                    "description": "Why the assertion failed or did not run (fixed text with codes and counts; no learner data)."
+                  }
+                }
+              }
+            },
+            "environmentReason": {
+              "type": "string",
+              "maxLength": 300
+            },
+            "reason": {
+              "type": "string",
+              "maxLength": 300,
+              "description": "Why the step did not run or failed (for example a missing host hook or an earlier failed step)."
+            },
+            "evidence": {
+              "type": "string",
+              "maxLength": 300,
+              "description": "Path or reference to the host-side log or capture (no learner data)."
+            }
+          }
+        },
+        "authorize-reveal": {
+          "description": "Authorize and reveal the next stage; intent and display acknowledgement are persisted before the content shows",
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "outcome"
+          ],
+          "properties": {
+            "outcome": {
+              "enum": [
+                "pass",
+                "fail",
+                "not-run (environment)",
+                "not-run"
+              ]
+            },
+            "assertions": {
+              "type": "array",
+              "maxItems": 64,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "id",
+                  "outcome"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:@/+-]{0,127}$"
+                  },
+                  "outcome": {
+                    "enum": [
+                      "pass",
+                      "fail",
+                      "not-run (environment)",
+                      "not-run"
+                    ]
+                  },
+                  "detail": {
+                    "type": "string",
+                    "maxLength": 300,
+                    "description": "Why the assertion failed or did not run (fixed text with codes and counts; no learner data)."
+                  }
+                }
+              }
+            },
+            "environmentReason": {
+              "type": "string",
+              "maxLength": 300
+            },
+            "reason": {
+              "type": "string",
+              "maxLength": 300,
+              "description": "Why the step did not run or failed (for example a missing host hook or an earlier failed step)."
+            },
+            "evidence": {
+              "type": "string",
+              "maxLength": 300,
+              "description": "Path or reference to the host-side log or capture (no learner data)."
+            }
+          }
+        },
+        "commit-exploration": {
+          "description": "Commit an exploration parameter change (new run at index zero)",
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "outcome"
+          ],
+          "properties": {
+            "outcome": {
+              "enum": [
+                "pass",
+                "fail",
+                "not-run (environment)",
+                "not-run"
+              ]
+            },
+            "assertions": {
+              "type": "array",
+              "maxItems": 64,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "id",
+                  "outcome"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:@/+-]{0,127}$"
+                  },
+                  "outcome": {
+                    "enum": [
+                      "pass",
+                      "fail",
+                      "not-run (environment)",
+                      "not-run"
+                    ]
+                  },
+                  "detail": {
+                    "type": "string",
+                    "maxLength": 300,
+                    "description": "Why the assertion failed or did not run (fixed text with codes and counts; no learner data)."
+                  }
+                }
+              }
+            },
+            "environmentReason": {
+              "type": "string",
+              "maxLength": 300
+            },
+            "reason": {
+              "type": "string",
+              "maxLength": 300,
+              "description": "Why the step did not run or failed (for example a missing host hook or an earlier failed step)."
+            },
+            "evidence": {
+              "type": "string",
+              "maxLength": 300,
+              "description": "Path or reference to the host-side log or capture (no learner data)."
+            }
+          }
+        },
+        "camera-change": {
+          "description": "Change the presentation (camera or layout) without a scientific change",
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "outcome"
+          ],
+          "properties": {
+            "outcome": {
+              "enum": [
+                "pass",
+                "fail",
+                "not-run (environment)",
+                "not-run"
+              ]
+            },
+            "assertions": {
+              "type": "array",
+              "maxItems": 64,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "id",
+                  "outcome"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:@/+-]{0,127}$"
+                  },
+                  "outcome": {
+                    "enum": [
+                      "pass",
+                      "fail",
+                      "not-run (environment)",
+                      "not-run"
+                    ]
+                  },
+                  "detail": {
+                    "type": "string",
+                    "maxLength": 300,
+                    "description": "Why the assertion failed or did not run (fixed text with codes and counts; no learner data)."
+                  }
+                }
+              }
+            },
+            "environmentReason": {
+              "type": "string",
+              "maxLength": 300
+            },
+            "reason": {
+              "type": "string",
+              "maxLength": 300,
+              "description": "Why the step did not run or failed (for example a missing host hook or an earlier failed step)."
+            },
+            "evidence": {
+              "type": "string",
+              "maxLength": 300,
+              "description": "Path or reference to the host-side log or capture (no learner data)."
+            }
+          }
+        },
+        "save": {
+          "description": "Save the activity artifact through the host store",
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "outcome"
+          ],
+          "properties": {
+            "outcome": {
+              "enum": [
+                "pass",
+                "fail",
+                "not-run (environment)",
+                "not-run"
+              ]
+            },
+            "assertions": {
+              "type": "array",
+              "maxItems": 64,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "id",
+                  "outcome"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:@/+-]{0,127}$"
+                  },
+                  "outcome": {
+                    "enum": [
+                      "pass",
+                      "fail",
+                      "not-run (environment)",
+                      "not-run"
+                    ]
+                  },
+                  "detail": {
+                    "type": "string",
+                    "maxLength": 300,
+                    "description": "Why the assertion failed or did not run (fixed text with codes and counts; no learner data)."
+                  }
+                }
+              }
+            },
+            "environmentReason": {
+              "type": "string",
+              "maxLength": 300
+            },
+            "reason": {
+              "type": "string",
+              "maxLength": 300,
+              "description": "Why the step did not run or failed (for example a missing host hook or an earlier failed step)."
+            },
+            "evidence": {
+              "type": "string",
+              "maxLength": 300,
+              "description": "Path or reference to the host-side log or capture (no learner data)."
+            }
+          }
+        },
+        "terminate": {
+          "description": "Terminate the application process",
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "outcome"
+          ],
+          "properties": {
+            "outcome": {
+              "enum": [
+                "pass",
+                "fail",
+                "not-run (environment)",
+                "not-run"
+              ]
+            },
+            "assertions": {
+              "type": "array",
+              "maxItems": 64,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "id",
+                  "outcome"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:@/+-]{0,127}$"
+                  },
+                  "outcome": {
+                    "enum": [
+                      "pass",
+                      "fail",
+                      "not-run (environment)",
+                      "not-run"
+                    ]
+                  },
+                  "detail": {
+                    "type": "string",
+                    "maxLength": 300,
+                    "description": "Why the assertion failed or did not run (fixed text with codes and counts; no learner data)."
+                  }
+                }
+              }
+            },
+            "environmentReason": {
+              "type": "string",
+              "maxLength": 300
+            },
+            "reason": {
+              "type": "string",
+              "maxLength": 300,
+              "description": "Why the step did not run or failed (for example a missing host hook or an earlier failed step)."
+            },
+            "evidence": {
+              "type": "string",
+              "maxLength": 300,
+              "description": "Path or reference to the host-side log or capture (no learner data)."
+            }
+          }
+        },
+        "reopen-verify": {
+          "description": "Reopen and verify scientific state, permitted presentation, event order and conservative exposure",
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "outcome"
+          ],
+          "properties": {
+            "outcome": {
+              "enum": [
+                "pass",
+                "fail",
+                "not-run (environment)",
+                "not-run"
+              ]
+            },
+            "assertions": {
+              "type": "array",
+              "maxItems": 64,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "id",
+                  "outcome"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:@/+-]{0,127}$"
+                  },
+                  "outcome": {
+                    "enum": [
+                      "pass",
+                      "fail",
+                      "not-run (environment)",
+                      "not-run"
+                    ]
+                  },
+                  "detail": {
+                    "type": "string",
+                    "maxLength": 300,
+                    "description": "Why the assertion failed or did not run (fixed text with codes and counts; no learner data)."
+                  }
+                }
+              }
+            },
+            "environmentReason": {
+              "type": "string",
+              "maxLength": 300
+            },
+            "reason": {
+              "type": "string",
+              "maxLength": 300,
+              "description": "Why the step did not run or failed (for example a missing host hook or an earlier failed step)."
+            },
+            "evidence": {
+              "type": "string",
+              "maxLength": 300,
+              "description": "Path or reference to the host-side log or capture (no learner data)."
+            }
+          }
+        },
+        "independent-task": {
+          "description": "Start an independent task: the teaching visual is absent and late reveals are discarded",
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "outcome"
+          ],
+          "properties": {
+            "outcome": {
+              "enum": [
+                "pass",
+                "fail",
+                "not-run (environment)",
+                "not-run"
+              ]
+            },
+            "assertions": {
+              "type": "array",
+              "maxItems": 64,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "id",
+                  "outcome"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:@/+-]{0,127}$"
+                  },
+                  "outcome": {
+                    "enum": [
+                      "pass",
+                      "fail",
+                      "not-run (environment)",
+                      "not-run"
+                    ]
+                  },
+                  "detail": {
+                    "type": "string",
+                    "maxLength": 300,
+                    "description": "Why the assertion failed or did not run (fixed text with codes and counts; no learner data)."
+                  }
+                }
+              }
+            },
+            "environmentReason": {
+              "type": "string",
+              "maxLength": 300
+            },
+            "reason": {
+              "type": "string",
+              "maxLength": 300,
+              "description": "Why the step did not run or failed (for example a missing host hook or an earlier failed step)."
+            },
+            "evidence": {
+              "type": "string",
+              "maxLength": 300,
+              "description": "Path or reference to the host-side log or capture (no learner data)."
+            }
+          }
+        },
+        "crash-before-intent": {
+          "description": "Terminate before the exposure intent is persisted; reopen shows the content unseen",
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "outcome"
+          ],
+          "properties": {
+            "outcome": {
+              "enum": [
+                "pass",
+                "fail",
+                "not-run (environment)",
+                "not-run"
+              ]
+            },
+            "assertions": {
+              "type": "array",
+              "maxItems": 64,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "id",
+                  "outcome"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:@/+-]{0,127}$"
+                  },
+                  "outcome": {
+                    "enum": [
+                      "pass",
+                      "fail",
+                      "not-run (environment)",
+                      "not-run"
+                    ]
+                  },
+                  "detail": {
+                    "type": "string",
+                    "maxLength": 300,
+                    "description": "Why the assertion failed or did not run (fixed text with codes and counts; no learner data)."
+                  }
+                }
+              }
+            },
+            "environmentReason": {
+              "type": "string",
+              "maxLength": 300
+            },
+            "reason": {
+              "type": "string",
+              "maxLength": 300,
+              "description": "Why the step did not run or failed (for example a missing host hook or an earlier failed step)."
+            },
+            "evidence": {
+              "type": "string",
+              "maxLength": 300,
+              "description": "Path or reference to the host-side log or capture (no learner data)."
+            }
+          }
+        },
+        "crash-after-intent": {
+          "description": "Terminate after the intent is acknowledged, before display; reopen records it as authorized, not displayed",
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "outcome"
+          ],
+          "properties": {
+            "outcome": {
+              "enum": [
+                "pass",
+                "fail",
+                "not-run (environment)",
+                "not-run"
+              ]
+            },
+            "assertions": {
+              "type": "array",
+              "maxItems": 64,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "id",
+                  "outcome"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:@/+-]{0,127}$"
+                  },
+                  "outcome": {
+                    "enum": [
+                      "pass",
+                      "fail",
+                      "not-run (environment)",
+                      "not-run"
+                    ]
+                  },
+                  "detail": {
+                    "type": "string",
+                    "maxLength": 300,
+                    "description": "Why the assertion failed or did not run (fixed text with codes and counts; no learner data)."
+                  }
+                }
+              }
+            },
+            "environmentReason": {
+              "type": "string",
+              "maxLength": 300
+            },
+            "reason": {
+              "type": "string",
+              "maxLength": 300,
+              "description": "Why the step did not run or failed (for example a missing host hook or an earlier failed step)."
+            },
+            "evidence": {
+              "type": "string",
+              "maxLength": 300,
+              "description": "Path or reference to the host-side log or capture (no learner data)."
+            }
+          }
+        },
+        "crash-after-display": {
+          "description": "Terminate after display, before the display acknowledgement is persisted; reopen records it as uncertain (conservatively exposed)",
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "outcome"
+          ],
+          "properties": {
+            "outcome": {
+              "enum": [
+                "pass",
+                "fail",
+                "not-run (environment)",
+                "not-run"
+              ]
+            },
+            "assertions": {
+              "type": "array",
+              "maxItems": 64,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "id",
+                  "outcome"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:@/+-]{0,127}$"
+                  },
+                  "outcome": {
+                    "enum": [
+                      "pass",
+                      "fail",
+                      "not-run (environment)",
+                      "not-run"
+                    ]
+                  },
+                  "detail": {
+                    "type": "string",
+                    "maxLength": 300,
+                    "description": "Why the assertion failed or did not run (fixed text with codes and counts; no learner data)."
+                  }
+                }
+              }
+            },
+            "environmentReason": {
+              "type": "string",
+              "maxLength": 300
+            },
+            "reason": {
+              "type": "string",
+              "maxLength": 300,
+              "description": "Why the step did not run or failed (for example a missing host hook or an earlier failed step)."
+            },
+            "evidence": {
+              "type": "string",
+              "maxLength": 300,
+              "description": "Path or reference to the host-side log or capture (no learner data)."
+            }
+          }
+        }
+      }
+    },
+    "result": {
+      "enum": [
+        "pass",
+        "fail",
+        "incomplete"
+      ],
+      "description": "pass only when every step and assertion passed; incomplete when any step was not run."
+    },
+    "limitations": {
+      "type": "array",
+      "maxItems": 32,
+      "items": {
+        "type": "string",
+        "maxLength": 300
+      }
+    }
+  }
+}

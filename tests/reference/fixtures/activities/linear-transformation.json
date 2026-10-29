@@ -1,0 +1,802 @@
+{
+  "suiteId": "linear-transformation:1.0.0",
+  "model": { "modelId": "linear-transformation", "version": "1.0.0" },
+  "author": "Reference cases from the implementation report §12.2 (identity, nonaxis rotation, nonsymmetric shear, reflection, singular collapse, zero matrix, zero vector) and boundary cases added for this catalogue. Values were derived by hand as closed forms and evaluated with plain double arithmetic, except where a case says otherwise; every case is cross-checked against tests/reference/oracles/linear-transformation.ts, an exact rational oracle that shares no code with the catalogue kernel.",
+  "review": "No independent human subject reviewer has approved these cases. Automated agreement is engineering evidence only.",
+  "semantics": "Column-vector convention: M = [[m11, m12], [m21, m22]] acts by M·v, so M·e₁ = (m11, m21) is the first column and M·e₂ = (m12, m22) the second. Every value concerns the matrix with exactly the stored double entries: det M = m11·m22 − m12·m21, area scale |det M| ≥ 0, orientation from the exact sign of det M (preserved > 0, reversed < 0, collapsed = 0), rank 0/1/2, Δ = (tr M)² − 4·det M, eigen category from the exact sign of Δ and whether M = λ·I (two-real, repeated-scalar, repeated-defective, complex). Eigenvalues are listed λ₁ ≥ λ₂ with multiplicity; eigen-directions are unit vectors whose first nonzero component is positive. The report case [[1, 2], [2, 4]] lies outside the declared entry domain [−3, 3] (m22 = 4); it is represented by [[0.5, 1], [1, 2]], which has the same rank, image line and eigen-directions.",
+  "format": "Each quantity is keyed by its manifest ID. A number, numeric array or category string means a valid value without an approximation note; {\"undefined\": CODE} an undefined status with that code; {\"limit\": \"UNDERFLOW\"} a numerical limit (a nonzero exact value that rounds to zero); {\"value\": …, \"approximation\": \"UNDERFLOW\"} a valid subnormal value with that note. unitSquareImage lists the images of (0, 0), (1, 0), (1, 1), (0, 1) in order and whether the polygon is degenerate (det M = 0). An observed number o matches expected e when |o − e| <= absolute + relative·|e|; tolerance 0 is used only when every expected number is the exact value for the stored entries. Categories, codes and statuses always match exactly.",
+  "cases": [
+    {
+      "id": "identity",
+      "label": "Identity: every vector is unchanged; every direction is an unchanged direction",
+      "provenance": "hand derivation with the column-vector convention (M·e₁ is the first column): images, det M = m11·m22 − m12·m21, area |det M|, tr M, Δ = (m11 − m22)² + 4·m12·m21, eigenvalues (tr ± √Δ)/2 and null vectors of M − λI; every value is an exact binary fraction; cross-checked exactly against the rational oracle (tests/reference/oracles/linear-transformation.ts)",
+      "params": {
+        "m11": 1,
+        "m12": 0,
+        "m21": 0,
+        "m22": 1,
+        "vx": 2,
+        "vy": -1
+      },
+      "expected": {
+        "quantities": {
+          "image.e1": [1, 0],
+          "image.e2": [0, 1],
+          "image.v": [2, -1],
+          "determinant": 1,
+          "area.scale": 1,
+          "orientation": "preserved",
+          "rank": 2,
+          "image.direction": { "undefined": "FULL_RANK" },
+          "trace": 2,
+          "eigen.discriminant": 0,
+          "eigen.category": "repeated-scalar",
+          "eigen.values": [1, 1],
+          "eigen.direction1": { "undefined": "ALL_DIRECTIONS" },
+          "eigen.direction2": { "undefined": "ALL_DIRECTIONS" }
+        },
+        "unitSquareImage": { "vertices": [[0, 0], [1, 0], [1, 1], [0, 1]], "degenerate": false }
+      },
+      "tolerance": { "absolute": 0, "relative": 0 }
+    },
+    {
+      "id": "rotation-30",
+      "label": "Nonaxis rotation by 30° counterclockwise (irrational entries): area kept, orientation kept, no real unchanged direction",
+      "provenance": "hand derivation from the exact rotation matrix [[cos θ, −sin θ], [sin θ, cos θ]] (columns are the rotated e₁ and e₂): det = cos²θ + sin²θ = 1, tr = 2 cos θ, Δ = tr² − 4 = −4 sin²θ < 0 so no real eigen-direction; irrational values evaluate the closed forms in double arithmetic. The stored entries are the nearest doubles to √3/2, so values agree with the stored-entry model only within the declared tolerance; cross-checked against the exact rational oracle (tests/reference/oracles/linear-transformation.ts)",
+      "params": {
+        "m11": 0.8660254037844386,
+        "m12": -0.5,
+        "m21": 0.5,
+        "m22": 0.8660254037844386,
+        "vx": 2,
+        "vy": 0
+      },
+      "expected": {
+        "quantities": {
+          "image.e1": [0.8660254037844386, 0.5],
+          "image.e2": [-0.5, 0.8660254037844386],
+          "image.v": [1.7320508075688772, 1],
+          "determinant": 1,
+          "area.scale": 1,
+          "orientation": "preserved",
+          "rank": 2,
+          "image.direction": { "undefined": "FULL_RANK" },
+          "trace": 1.7320508075688772,
+          "eigen.discriminant": -1,
+          "eigen.category": "complex",
+          "eigen.values": { "undefined": "COMPLEX_EIGENVALUES" },
+          "eigen.direction1": { "undefined": "COMPLEX_EIGENVALUES" },
+          "eigen.direction2": { "undefined": "COMPLEX_EIGENVALUES" }
+        },
+        "unitSquareImage": { "vertices": [[0, 0], [0.8660254037844386, 0.5], [0.3660254037844386, 1.3660254037844386], [-0.5, 0.8660254037844386]], "degenerate": false }
+      },
+      "tolerance": { "absolute": 0, "relative": 1e-12 }
+    },
+    {
+      "id": "rotation-120",
+      "label": "Nonaxis rotation by 120° counterclockwise (irrational entries): negative trace, still no real unchanged direction",
+      "provenance": "hand derivation from the exact rotation matrix [[cos θ, −sin θ], [sin θ, cos θ]] (columns are the rotated e₁ and e₂): det = cos²θ + sin²θ = 1, tr = 2 cos θ, Δ = tr² − 4 = −4 sin²θ < 0 so no real eigen-direction; irrational values evaluate the closed forms in double arithmetic. The stored entries are the nearest doubles to √3/2, so values agree with the stored-entry model only within the declared tolerance; cross-checked against the exact rational oracle (tests/reference/oracles/linear-transformation.ts)",
+      "params": {
+        "m11": -0.5,
+        "m12": -0.8660254037844386,
+        "m21": 0.8660254037844386,
+        "m22": -0.5,
+        "vx": 1,
+        "vy": 1
+      },
+      "expected": {
+        "quantities": {
+          "image.e1": [-0.5, 0.8660254037844386],
+          "image.e2": [-0.8660254037844386, -0.5],
+          "image.v": [-1.3660254037844386, 0.3660254037844386],
+          "determinant": 1,
+          "area.scale": 1,
+          "orientation": "preserved",
+          "rank": 2,
+          "image.direction": { "undefined": "FULL_RANK" },
+          "trace": -1,
+          "eigen.discriminant": -3,
+          "eigen.category": "complex",
+          "eigen.values": { "undefined": "COMPLEX_EIGENVALUES" },
+          "eigen.direction1": { "undefined": "COMPLEX_EIGENVALUES" },
+          "eigen.direction2": { "undefined": "COMPLEX_EIGENVALUES" }
+        },
+        "unitSquareImage": { "vertices": [[0, 0], [-0.5, 0.8660254037844386], [-1.3660254037844386, 0.3660254037844386], [-0.8660254037844386, -0.5]], "degenerate": false }
+      },
+      "tolerance": { "absolute": 0, "relative": 1e-12 }
+    },
+    {
+      "id": "shear",
+      "label": "Nonsymmetric horizontal shear [[1, 1.5], [0, 1]]: repeated eigenvalue 1 with exactly one unchanged direction (1, 0)",
+      "provenance": "hand derivation with the column-vector convention (M·e₁ is the first column): images, det M = m11·m22 − m12·m21, area |det M|, tr M, Δ = (m11 − m22)² + 4·m12·m21, eigenvalues (tr ± √Δ)/2 and null vectors of M − λI; every value is an exact binary fraction; cross-checked exactly against the rational oracle (tests/reference/oracles/linear-transformation.ts)",
+      "params": {
+        "m11": 1,
+        "m12": 1.5,
+        "m21": 0,
+        "m22": 1,
+        "vx": 1,
+        "vy": 2
+      },
+      "expected": {
+        "quantities": {
+          "image.e1": [1, 0],
+          "image.e2": [1.5, 1],
+          "image.v": [4, 2],
+          "determinant": 1,
+          "area.scale": 1,
+          "orientation": "preserved",
+          "rank": 2,
+          "image.direction": { "undefined": "FULL_RANK" },
+          "trace": 2,
+          "eigen.discriminant": 0,
+          "eigen.category": "repeated-defective",
+          "eigen.values": [1, 1],
+          "eigen.direction1": [1, 0],
+          "eigen.direction2": { "undefined": "SINGLE_DIRECTION" }
+        },
+        "unitSquareImage": { "vertices": [[0, 0], [1, 0], [2.5, 1], [1.5, 1]], "degenerate": false }
+      },
+      "tolerance": { "absolute": 0, "relative": 0 }
+    },
+    {
+      "id": "shear-lower",
+      "label": "Vertical shear [[1, 0], [1.5, 1]] (the transpose of the shear): its single unchanged direction is (0, 1)",
+      "provenance": "hand derivation with the column-vector convention (M·e₁ is the first column): images, det M = m11·m22 − m12·m21, area |det M|, tr M, Δ = (m11 − m22)² + 4·m12·m21, eigenvalues (tr ± √Δ)/2 and null vectors of M − λI; every value is an exact binary fraction; cross-checked exactly against the rational oracle (tests/reference/oracles/linear-transformation.ts)",
+      "params": {
+        "m11": 1,
+        "m12": 0,
+        "m21": 1.5,
+        "m22": 1,
+        "vx": 1,
+        "vy": 2
+      },
+      "expected": {
+        "quantities": {
+          "image.e1": [1, 1.5],
+          "image.e2": [0, 1],
+          "image.v": [1, 3.5],
+          "determinant": 1,
+          "area.scale": 1,
+          "orientation": "preserved",
+          "rank": 2,
+          "image.direction": { "undefined": "FULL_RANK" },
+          "trace": 2,
+          "eigen.discriminant": 0,
+          "eigen.category": "repeated-defective",
+          "eigen.values": [1, 1],
+          "eigen.direction1": [0, 1],
+          "eigen.direction2": { "undefined": "SINGLE_DIRECTION" }
+        },
+        "unitSquareImage": { "vertices": [[0, 0], [1, 1.5], [1, 2.5], [0, 1]], "degenerate": false }
+      },
+      "tolerance": { "absolute": 0, "relative": 0 }
+    },
+    {
+      "id": "reflection-x-axis",
+      "label": "Axis reflection across the x-axis: det −1 reverses orientation while the area scale stays 1",
+      "provenance": "hand derivation with the column-vector convention (M·e₁ is the first column): images, det M = m11·m22 − m12·m21, area |det M|, tr M, Δ = (m11 − m22)² + 4·m12·m21, eigenvalues (tr ± √Δ)/2 and null vectors of M − λI; every value is an exact binary fraction; cross-checked exactly against the rational oracle (tests/reference/oracles/linear-transformation.ts)",
+      "params": {
+        "m11": 1,
+        "m12": 0,
+        "m21": 0,
+        "m22": -1,
+        "vx": 2,
+        "vy": 1
+      },
+      "expected": {
+        "quantities": {
+          "image.e1": [1, 0],
+          "image.e2": [0, -1],
+          "image.v": [2, -1],
+          "determinant": -1,
+          "area.scale": 1,
+          "orientation": "reversed",
+          "rank": 2,
+          "image.direction": { "undefined": "FULL_RANK" },
+          "trace": 0,
+          "eigen.discriminant": 4,
+          "eigen.category": "two-real",
+          "eigen.values": [1, -1],
+          "eigen.direction1": [1, 0],
+          "eigen.direction2": [0, 1]
+        },
+        "unitSquareImage": { "vertices": [[0, 0], [1, 0], [1, -1], [0, -1]], "degenerate": false }
+      },
+      "tolerance": { "absolute": 0, "relative": 0 }
+    },
+    {
+      "id": "reflection-diagonal",
+      "label": "Nonaxis reflection across the line y = x: det −1, unchanged directions (1, 1)/√2 (λ = 1) and (1, −1)/√2 (λ = −1)",
+      "provenance": "hand derivation with the column-vector convention (M·e₁ is the first column): images, det M = m11·m22 − m12·m21, area |det M|, tr M, Δ = (m11 − m22)² + 4·m12·m21, eigenvalues (tr ± √Δ)/2 and null vectors of M − λI; irrational values evaluate the closed forms in double arithmetic; cross-checked against the rational oracle (tests/reference/oracles/linear-transformation.ts) within the declared tolerance",
+      "params": {
+        "m11": 0,
+        "m12": 1,
+        "m21": 1,
+        "m22": 0,
+        "vx": 2,
+        "vy": 1
+      },
+      "expected": {
+        "quantities": {
+          "image.e1": [0, 1],
+          "image.e2": [1, 0],
+          "image.v": [1, 2],
+          "determinant": -1,
+          "area.scale": 1,
+          "orientation": "reversed",
+          "rank": 2,
+          "image.direction": { "undefined": "FULL_RANK" },
+          "trace": 0,
+          "eigen.discriminant": 4,
+          "eigen.category": "two-real",
+          "eigen.values": [1, -1],
+          "eigen.direction1": [0.7071067811865475, 0.7071067811865475],
+          "eigen.direction2": [0.7071067811865475, -0.7071067811865475]
+        },
+        "unitSquareImage": { "vertices": [[0, 0], [0, 1], [1, 1], [1, 0]], "degenerate": false }
+      },
+      "tolerance": { "absolute": 0, "relative": 1e-12 }
+    },
+    {
+      "id": "reflection-line-2-1",
+      "label": "Nonaxis reflection across the line through (2, 1): [[3/5, 4/5], [4/5, −3/5]] with decimal entries",
+      "provenance": "hand derivation with the column-vector convention (M·e₁ is the first column): images, det M = m11·m22 − m12·m21, area |det M|, tr M, Δ = (m11 − m22)² + 4·m12·m21, eigenvalues (tr ± √Δ)/2 and null vectors of M − λI; irrational values evaluate the closed forms in double arithmetic; cross-checked against the rational oracle (tests/reference/oracles/linear-transformation.ts) within the declared tolerance. Reflection across a line at angle θ is [[cos 2θ, sin 2θ], [sin 2θ, −cos 2θ]] with cos 2θ = 3/5 and sin 2θ = 4/5 for the direction (2, 1)",
+      "params": {
+        "m11": 0.6,
+        "m12": 0.8,
+        "m21": 0.8,
+        "m22": -0.6,
+        "vx": 1,
+        "vy": 0
+      },
+      "expected": {
+        "quantities": {
+          "image.e1": [0.6, 0.8],
+          "image.e2": [0.8, -0.6],
+          "image.v": [0.6, 0.8],
+          "determinant": -1,
+          "area.scale": 1,
+          "orientation": "reversed",
+          "rank": 2,
+          "image.direction": { "undefined": "FULL_RANK" },
+          "trace": 0,
+          "eigen.discriminant": 4,
+          "eigen.category": "two-real",
+          "eigen.values": [1, -1],
+          "eigen.direction1": [0.8944271909999159, 0.4472135954999579],
+          "eigen.direction2": [0.4472135954999579, -0.8944271909999159]
+        },
+        "unitSquareImage": { "vertices": [[0, 0], [0.6, 0.8], [1.4, 0.2], [0.8, -0.6]], "degenerate": false }
+      },
+      "tolerance": { "absolute": 0, "relative": 1e-12 }
+    },
+    {
+      "id": "singular-collapse",
+      "label": "Singular collapse onto the line along (1, 2): the report case [[1, 2], [2, 4]] scaled by 1/2 to lie in the declared entry domain [−3, 3]",
+      "provenance": "hand derivation with the column-vector convention (M·e₁ is the first column): images, det M = m11·m22 − m12·m21, area |det M|, tr M, Δ = (m11 − m22)² + 4·m12·m21, eigenvalues (tr ± √Δ)/2 and null vectors of M − λI; irrational values evaluate the closed forms in double arithmetic; cross-checked against the rational oracle (tests/reference/oracles/linear-transformation.ts) within the declared tolerance. Columns (0.5, 1) and (1, 2) are parallel, so det = 0, rank 1 and the image line is along (1, 2)/√5; eigenvalues 2.5 and 0 with null vector (2, −1)/√5",
+      "params": {
+        "m11": 0.5,
+        "m12": 1,
+        "m21": 1,
+        "m22": 2,
+        "vx": 1,
+        "vy": 1
+      },
+      "expected": {
+        "quantities": {
+          "image.e1": [0.5, 1],
+          "image.e2": [1, 2],
+          "image.v": [1.5, 3],
+          "determinant": 0,
+          "area.scale": 0,
+          "orientation": "collapsed",
+          "rank": 1,
+          "image.direction": [0.4472135954999579, 0.8944271909999159],
+          "trace": 2.5,
+          "eigen.discriminant": 6.25,
+          "eigen.category": "two-real",
+          "eigen.values": [2.5, 0],
+          "eigen.direction1": [0.4472135954999579, 0.8944271909999159],
+          "eigen.direction2": [0.8944271909999159, -0.4472135954999579]
+        },
+        "unitSquareImage": { "vertices": [[0, 0], [0.5, 1], [1.5, 3], [1, 2]], "degenerate": true }
+      },
+      "tolerance": { "absolute": 0, "relative": 1e-12 }
+    },
+    {
+      "id": "singular-nonsymmetric",
+      "label": "Nonsymmetric singular matrix [[1, 2], [1.5, 3]]: collapse onto the line along (2, 3), not along a row",
+      "provenance": "hand derivation with the column-vector convention (M·e₁ is the first column): images, det M = m11·m22 − m12·m21, area |det M|, tr M, Δ = (m11 − m22)² + 4·m12·m21, eigenvalues (tr ± √Δ)/2 and null vectors of M − λI; irrational values evaluate the closed forms in double arithmetic; cross-checked against the rational oracle (tests/reference/oracles/linear-transformation.ts) within the declared tolerance. Columns (1, 1.5) and (2, 3) are parallel; the transpose would collapse onto (1, 2) instead",
+      "params": {
+        "m11": 1,
+        "m12": 2,
+        "m21": 1.5,
+        "m22": 3,
+        "vx": 1,
+        "vy": 1
+      },
+      "expected": {
+        "quantities": {
+          "image.e1": [1, 1.5],
+          "image.e2": [2, 3],
+          "image.v": [3, 4.5],
+          "determinant": 0,
+          "area.scale": 0,
+          "orientation": "collapsed",
+          "rank": 1,
+          "image.direction": [0.5547001962252291, 0.8320502943378437],
+          "trace": 4,
+          "eigen.discriminant": 16,
+          "eigen.category": "two-real",
+          "eigen.values": [4, 0],
+          "eigen.direction1": [0.5547001962252291, 0.8320502943378437],
+          "eigen.direction2": [0.8944271909999159, -0.4472135954999579]
+        },
+        "unitSquareImage": { "vertices": [[0, 0], [1, 1.5], [3, 4.5], [2, 3]], "degenerate": true }
+      },
+      "tolerance": { "absolute": 0, "relative": 1e-12 }
+    },
+    {
+      "id": "nilpotent",
+      "label": "Rank 1 with a zero first column [[0, 1], [0, 0]]: M·e₁ = 0, repeated eigenvalue 0 with one unchanged direction",
+      "provenance": "hand derivation with the column-vector convention (M·e₁ is the first column): images, det M = m11·m22 − m12·m21, area |det M|, tr M, Δ = (m11 − m22)² + 4·m12·m21, eigenvalues (tr ± √Δ)/2 and null vectors of M − λI; every value is an exact binary fraction; cross-checked exactly against the rational oracle (tests/reference/oracles/linear-transformation.ts)",
+      "params": {
+        "m11": 0,
+        "m12": 1,
+        "m21": 0,
+        "m22": 0,
+        "vx": 2,
+        "vy": 3
+      },
+      "expected": {
+        "quantities": {
+          "image.e1": [0, 0],
+          "image.e2": [1, 0],
+          "image.v": [3, 0],
+          "determinant": 0,
+          "area.scale": 0,
+          "orientation": "collapsed",
+          "rank": 1,
+          "image.direction": [1, 0],
+          "trace": 0,
+          "eigen.discriminant": 0,
+          "eigen.category": "repeated-defective",
+          "eigen.values": [0, 0],
+          "eigen.direction1": [1, 0],
+          "eigen.direction2": { "undefined": "SINGLE_DIRECTION" }
+        },
+        "unitSquareImage": { "vertices": [[0, 0], [0, 0], [1, 0], [1, 0]], "degenerate": true }
+      },
+      "tolerance": { "absolute": 0, "relative": 0 }
+    },
+    {
+      "id": "zero-matrix",
+      "label": "Zero matrix: rank 0, every vector maps to the origin, the image has no direction",
+      "provenance": "hand derivation with the column-vector convention (M·e₁ is the first column): images, det M = m11·m22 − m12·m21, area |det M|, tr M, Δ = (m11 − m22)² + 4·m12·m21, eigenvalues (tr ± √Δ)/2 and null vectors of M − λI; every value is an exact binary fraction; cross-checked exactly against the rational oracle (tests/reference/oracles/linear-transformation.ts)",
+      "params": {
+        "m11": 0,
+        "m12": 0,
+        "m21": 0,
+        "m22": 0,
+        "vx": 2,
+        "vy": -1
+      },
+      "expected": {
+        "quantities": {
+          "image.e1": [0, 0],
+          "image.e2": [0, 0],
+          "image.v": [0, 0],
+          "determinant": 0,
+          "area.scale": 0,
+          "orientation": "collapsed",
+          "rank": 0,
+          "image.direction": { "undefined": "ZERO_IMAGE" },
+          "trace": 0,
+          "eigen.discriminant": 0,
+          "eigen.category": "repeated-scalar",
+          "eigen.values": [0, 0],
+          "eigen.direction1": { "undefined": "ALL_DIRECTIONS" },
+          "eigen.direction2": { "undefined": "ALL_DIRECTIONS" }
+        },
+        "unitSquareImage": { "vertices": [[0, 0], [0, 0], [0, 0], [0, 0]], "degenerate": true }
+      },
+      "tolerance": { "absolute": 0, "relative": 0 }
+    },
+    {
+      "id": "zero-test-vector",
+      "label": "Zero test vector under an invertible matrix with complex eigenvalues: M·0 = 0 is a valid zero vector, not undefined",
+      "provenance": "hand derivation with the column-vector convention (M·e₁ is the first column): images, det M = m11·m22 − m12·m21, area |det M|, tr M, Δ = (m11 − m22)² + 4·m12·m21, eigenvalues (tr ± √Δ)/2 and null vectors of M − λI; every value is an exact binary fraction; cross-checked exactly against the rational oracle (tests/reference/oracles/linear-transformation.ts)",
+      "params": {
+        "m11": 2,
+        "m12": -1,
+        "m21": 1,
+        "m22": 0.5,
+        "vx": 0,
+        "vy": 0
+      },
+      "expected": {
+        "quantities": {
+          "image.e1": [2, 1],
+          "image.e2": [-1, 0.5],
+          "image.v": [0, 0],
+          "determinant": 2,
+          "area.scale": 2,
+          "orientation": "preserved",
+          "rank": 2,
+          "image.direction": { "undefined": "FULL_RANK" },
+          "trace": 2.5,
+          "eigen.discriminant": -1.75,
+          "eigen.category": "complex",
+          "eigen.values": { "undefined": "COMPLEX_EIGENVALUES" },
+          "eigen.direction1": { "undefined": "COMPLEX_EIGENVALUES" },
+          "eigen.direction2": { "undefined": "COMPLEX_EIGENVALUES" }
+        },
+        "unitSquareImage": { "vertices": [[0, 0], [2, 1], [1, 1.5], [-1, 0.5]], "degenerate": false }
+      },
+      "tolerance": { "absolute": 0, "relative": 0 }
+    },
+    {
+      "id": "negative-identity",
+      "label": "M = −I (rotation by 180°): both axes flip yet det = +1, so orientation is preserved; every direction is unchanged (λ = −1)",
+      "provenance": "hand derivation with the column-vector convention (M·e₁ is the first column): images, det M = m11·m22 − m12·m21, area |det M|, tr M, Δ = (m11 − m22)² + 4·m12·m21, eigenvalues (tr ± √Δ)/2 and null vectors of M − λI; every value is an exact binary fraction; cross-checked exactly against the rational oracle (tests/reference/oracles/linear-transformation.ts)",
+      "params": {
+        "m11": -1,
+        "m12": 0,
+        "m21": 0,
+        "m22": -1,
+        "vx": 1,
+        "vy": 2
+      },
+      "expected": {
+        "quantities": {
+          "image.e1": [-1, 0],
+          "image.e2": [0, -1],
+          "image.v": [-1, -2],
+          "determinant": 1,
+          "area.scale": 1,
+          "orientation": "preserved",
+          "rank": 2,
+          "image.direction": { "undefined": "FULL_RANK" },
+          "trace": -2,
+          "eigen.discriminant": 0,
+          "eigen.category": "repeated-scalar",
+          "eigen.values": [-1, -1],
+          "eigen.direction1": { "undefined": "ALL_DIRECTIONS" },
+          "eigen.direction2": { "undefined": "ALL_DIRECTIONS" }
+        },
+        "unitSquareImage": { "vertices": [[0, 0], [-1, 0], [-1, -1], [0, -1]], "degenerate": false }
+      },
+      "tolerance": { "absolute": 0, "relative": 0 }
+    },
+    {
+      "id": "scaling-reflection",
+      "label": "Diagonal [[3, 0], [0, −2]]: det −6 reverses orientation; areas scale by 6, never by −6",
+      "provenance": "hand derivation with the column-vector convention (M·e₁ is the first column): images, det M = m11·m22 − m12·m21, area |det M|, tr M, Δ = (m11 − m22)² + 4·m12·m21, eigenvalues (tr ± √Δ)/2 and null vectors of M − λI; every value is an exact binary fraction; cross-checked exactly against the rational oracle (tests/reference/oracles/linear-transformation.ts)",
+      "params": {
+        "m11": 3,
+        "m12": 0,
+        "m21": 0,
+        "m22": -2,
+        "vx": 1,
+        "vy": 1
+      },
+      "expected": {
+        "quantities": {
+          "image.e1": [3, 0],
+          "image.e2": [0, -2],
+          "image.v": [3, -2],
+          "determinant": -6,
+          "area.scale": 6,
+          "orientation": "reversed",
+          "rank": 2,
+          "image.direction": { "undefined": "FULL_RANK" },
+          "trace": 1,
+          "eigen.discriminant": 25,
+          "eigen.category": "two-real",
+          "eigen.values": [3, -2],
+          "eigen.direction1": [1, 0],
+          "eigen.direction2": [0, 1]
+        },
+        "unitSquareImage": { "vertices": [[0, 0], [3, 0], [3, -2], [0, -2]], "degenerate": false }
+      },
+      "tolerance": { "absolute": 0, "relative": 0 }
+    },
+    {
+      "id": "default-nonsymmetric",
+      "label": "Nonsymmetric default [[1.5, 1], [0.5, 1]]: det 1, eigenvalues 2 and 0.5 with non-perpendicular unchanged directions",
+      "provenance": "hand derivation with the column-vector convention (M·e₁ is the first column): images, det M = m11·m22 − m12·m21, area |det M|, tr M, Δ = (m11 − m22)² + 4·m12·m21, eigenvalues (tr ± √Δ)/2 and null vectors of M − λI; irrational values evaluate the closed forms in double arithmetic; cross-checked against the rational oracle (tests/reference/oracles/linear-transformation.ts) within the declared tolerance",
+      "params": {
+        "m11": 1.5,
+        "m12": 1,
+        "m21": 0.5,
+        "m22": 1,
+        "vx": 1,
+        "vy": 1
+      },
+      "expected": {
+        "quantities": {
+          "image.e1": [1.5, 0.5],
+          "image.e2": [1, 1],
+          "image.v": [2.5, 1.5],
+          "determinant": 1,
+          "area.scale": 1,
+          "orientation": "preserved",
+          "rank": 2,
+          "image.direction": { "undefined": "FULL_RANK" },
+          "trace": 2.5,
+          "eigen.discriminant": 2.25,
+          "eigen.category": "two-real",
+          "eigen.values": [2, 0.5],
+          "eigen.direction1": [0.8944271909999159, 0.4472135954999579],
+          "eigen.direction2": [0.7071067811865475, -0.7071067811865475]
+        },
+        "unitSquareImage": { "vertices": [[0, 0], [1.5, 0.5], [2.5, 1.5], [1, 1]], "degenerate": false }
+      },
+      "tolerance": { "absolute": 0, "relative": 1e-12 }
+    },
+    {
+      "id": "golden",
+      "label": "Symmetric [[1, 1], [1, 0]]: irrational eigenvalues (1 ± √5)/2 with perpendicular unchanged directions",
+      "provenance": "hand derivation with the column-vector convention (M·e₁ is the first column): images, det M = m11·m22 − m12·m21, area |det M|, tr M, Δ = (m11 − m22)² + 4·m12·m21, eigenvalues (tr ± √Δ)/2 and null vectors of M − λI; irrational values evaluate the closed forms in double arithmetic; cross-checked against the rational oracle (tests/reference/oracles/linear-transformation.ts) within the declared tolerance",
+      "params": {
+        "m11": 1,
+        "m12": 1,
+        "m21": 1,
+        "m22": 0,
+        "vx": 1,
+        "vy": 1
+      },
+      "expected": {
+        "quantities": {
+          "image.e1": [1, 1],
+          "image.e2": [1, 0],
+          "image.v": [2, 1],
+          "determinant": -1,
+          "area.scale": 1,
+          "orientation": "reversed",
+          "rank": 2,
+          "image.direction": { "undefined": "FULL_RANK" },
+          "trace": 1,
+          "eigen.discriminant": 5,
+          "eigen.category": "two-real",
+          "eigen.values": [1.618033988749895, -0.6180339887498949],
+          "eigen.direction1": [0.8506508083520399, 0.5257311121191336],
+          "eigen.direction2": [0.5257311121191336, -0.8506508083520399]
+        },
+        "unitSquareImage": { "vertices": [[0, 0], [1, 1], [2, 1], [1, 0]], "degenerate": false }
+      },
+      "tolerance": { "absolute": 0, "relative": 1e-12 }
+    },
+    {
+      "id": "near-singular-positive",
+      "label": "Exact boundary: m22 one unit in the last place above 2 makes det = +2^-52, so the matrix is invertible and orientation is preserved, never collapsed",
+      "provenance": "hand derivation with the column-vector convention (M·e₁ is the first column): images, det M = m11·m22 − m12·m21, area |det M|, tr M, Δ = (m11 − m22)² + 4·m12·m21, eigenvalues (tr ± √Δ)/2 and null vectors of M − λI; det = 0.5·m22 − 1 is exactly 2^-52 for the stored m22 = 2 + 2^-51; eigenvalues λ₁ = (tr + √Δ)/2 and λ₂ = det/λ₁; directions perturb (1, 2)/√5 and (2, −1)/√5 by about 1e-16; cross-checked against the rational oracle within the declared tolerance",
+      "params": {
+        "m11": 0.5,
+        "m12": 1,
+        "m21": 1,
+        "m22": 2.0000000000000004,
+        "vx": 1,
+        "vy": 1
+      },
+      "expected": {
+        "quantities": {
+          "image.e1": [0.5, 1],
+          "image.e2": [1, 2.0000000000000004],
+          "image.v": [1.5, 3.0000000000000004],
+          "determinant": 2.220446049250313e-16,
+          "area.scale": 2.220446049250313e-16,
+          "orientation": "preserved",
+          "rank": 2,
+          "image.direction": { "undefined": "FULL_RANK" },
+          "trace": 2.5000000000000004,
+          "eigen.discriminant": 6.250000000000002,
+          "eigen.category": "two-real",
+          "eigen.values": [2.5000000000000004, 8.88178419700125e-17],
+          "eigen.direction1": [0.4472135954999579, 0.8944271909999159],
+          "eigen.direction2": [0.8944271909999159, -0.4472135954999579]
+        },
+        "unitSquareImage": { "vertices": [[0, 0], [0.5, 1], [1.5, 3.0000000000000004], [1, 2.0000000000000004]], "degenerate": false }
+      },
+      "tolerance": { "absolute": 0, "relative": 1e-12 }
+    },
+    {
+      "id": "near-singular-negative",
+      "label": "Exact boundary: m22 one unit in the last place below 2 makes det = −2^-53, so the matrix is invertible and orientation is reversed, never collapsed",
+      "provenance": "hand derivation with the column-vector convention (M·e₁ is the first column): images, det M = m11·m22 − m12·m21, area |det M|, tr M, Δ = (m11 − m22)² + 4·m12·m21, eigenvalues (tr ± √Δ)/2 and null vectors of M − λI; det = 0.5·m22 − 1 is exactly −2^-53 for the stored m22 = 2 − 2^-52; eigenvalues λ₁ = (tr + √Δ)/2 and λ₂ = det/λ₁; directions perturb (1, 2)/√5 and (2, −1)/√5 by about 1e-16; cross-checked against the rational oracle within the declared tolerance",
+      "params": {
+        "m11": 0.5,
+        "m12": 1,
+        "m21": 1,
+        "m22": 1.9999999999999998,
+        "vx": 1,
+        "vy": 1
+      },
+      "expected": {
+        "quantities": {
+          "image.e1": [0.5, 1],
+          "image.e2": [1, 1.9999999999999998],
+          "image.v": [1.5, 3],
+          "determinant": -1.1102230246251565e-16,
+          "area.scale": 1.1102230246251565e-16,
+          "orientation": "reversed",
+          "rank": 2,
+          "image.direction": { "undefined": "FULL_RANK" },
+          "trace": 2.5,
+          "eigen.discriminant": 6.25,
+          "eigen.category": "two-real",
+          "eigen.values": [2.5, -4.4408920985006264e-17],
+          "eigen.direction1": [0.4472135954999579, 0.8944271909999159],
+          "eigen.direction2": [0.8944271909999159, -0.4472135954999579]
+        },
+        "unitSquareImage": { "vertices": [[0, 0], [0.5, 1], [1.5, 3], [1, 1.9999999999999998]], "degenerate": false }
+      },
+      "tolerance": { "absolute": 0, "relative": 1e-12 }
+    },
+    {
+      "id": "decimal-near-singular",
+      "label": "Decimal entries [[0.1, 0.7], [0.3, 2.1]]: singular in decimal arithmetic, invertible as stored doubles (det ≈ 4.16e-17 > 0)",
+      "provenance": "The decimal matrix is singular by hand (second column = 7 × first column). The determinant of the stored doubles is NOT hand-derived: it is the exact rational value of m11·m22 − m12·m21 for the stored entries computed by the rational oracle (tests/reference/oracles/linear-transformation.ts), which also fixes λ₂ = det/λ₁. The remaining values are hand closed forms of the decimal matrix (directions (1, 3)/√10 and (7, −1)/√50), within the declared tolerance of the stored-entry values",
+      "params": {
+        "m11": 0.1,
+        "m12": 0.7,
+        "m21": 0.3,
+        "m22": 2.1,
+        "vx": 1,
+        "vy": 1
+      },
+      "expected": {
+        "quantities": {
+          "image.e1": [0.1, 0.3],
+          "image.e2": [0.7, 2.1],
+          "image.v": [0.8, 2.4],
+          "determinant": 4.163336342344337e-17,
+          "area.scale": 4.163336342344337e-17,
+          "orientation": "preserved",
+          "rank": 2,
+          "image.direction": { "undefined": "FULL_RANK" },
+          "trace": 2.2,
+          "eigen.discriminant": 4.84,
+          "eigen.category": "two-real",
+          "eigen.values": [2.2, 1.8924256101565167e-17],
+          "eigen.direction1": [0.31622776601683794, 0.9486832980505138],
+          "eigen.direction2": [0.9899494936611665, -0.1414213562373095]
+        },
+        "unitSquareImage": { "vertices": [[0, 0], [0.1, 0.3], [0.8, 2.4], [0.7, 2.1]], "degenerate": false }
+      },
+      "tolerance": { "absolute": 0, "relative": 1e-12 }
+    },
+    {
+      "id": "near-repeated-two-real",
+      "label": "Exact boundary of the repeated case: the shear with m21 = +2^-60 has Δ = 6·2^-60 > 0, two distinct real eigenvalues and two nearly parallel directions",
+      "provenance": "hand derivation with the column-vector convention (M·e₁ is the first column): images, det M = m11·m22 − m12·m21, area |det M|, tr M, Δ = (m11 − m22)² + 4·m12·m21, eigenvalues (tr ± √Δ)/2 and null vectors of M − λI; Δ = 4·1.5·2^-60 exactly; λ = 1 ± √1.5·2^-30; u = (1, ±t)/√(1 + t²) with t = 2^-30/√1.5; cross-checked against the rational oracle within the declared tolerance",
+      "params": {
+        "m11": 1,
+        "m12": 1.5,
+        "m21": 8.673617379884035e-19,
+        "m22": 1,
+        "vx": 1,
+        "vy": 1
+      },
+      "expected": {
+        "quantities": {
+          "image.e1": [1, 8.673617379884035e-19],
+          "image.e2": [1.5, 1],
+          "image.v": [2.5, 1],
+          "determinant": 1,
+          "area.scale": 1,
+          "orientation": "preserved",
+          "rank": 2,
+          "image.direction": { "undefined": "FULL_RANK" },
+          "trace": 2,
+          "eigen.discriminant": 5.204170427930421e-18,
+          "eigen.category": "two-real",
+          "eigen.values": [1.0000000011406325, 0.9999999988593674],
+          "eigen.direction1": [1, 7.604216979143453e-10],
+          "eigen.direction2": [1, -7.604216979143453e-10]
+        },
+        "unitSquareImage": { "vertices": [[0, 0], [1, 8.673617379884035e-19], [2.5, 1], [1.5, 1]], "degenerate": false }
+      },
+      "tolerance": { "absolute": 0, "relative": 1e-12 }
+    },
+    {
+      "id": "near-repeated-complex",
+      "label": "Exact boundary of the repeated case on the other side: m21 = −2^-60 gives Δ = −6·2^-60 < 0 and no real unchanged direction",
+      "provenance": "hand derivation with the column-vector convention (M·e₁ is the first column): images, det M = m11·m22 − m12·m21, area |det M|, tr M, Δ = (m11 − m22)² + 4·m12·m21, eigenvalues (tr ± √Δ)/2 and null vectors of M − λI; Δ = −4·1.5·2^-60 exactly; det = 1 + 1.5·2^-60 rounds to 1; cross-checked against the rational oracle within the declared tolerance",
+      "params": {
+        "m11": 1,
+        "m12": 1.5,
+        "m21": -8.673617379884035e-19,
+        "m22": 1,
+        "vx": 1,
+        "vy": 1
+      },
+      "expected": {
+        "quantities": {
+          "image.e1": [1, -8.673617379884035e-19],
+          "image.e2": [1.5, 1],
+          "image.v": [2.5, 1],
+          "determinant": 1,
+          "area.scale": 1,
+          "orientation": "preserved",
+          "rank": 2,
+          "image.direction": { "undefined": "FULL_RANK" },
+          "trace": 2,
+          "eigen.discriminant": -5.204170427930421e-18,
+          "eigen.category": "complex",
+          "eigen.values": { "undefined": "COMPLEX_EIGENVALUES" },
+          "eigen.direction1": { "undefined": "COMPLEX_EIGENVALUES" },
+          "eigen.direction2": { "undefined": "COMPLEX_EIGENVALUES" }
+        },
+        "unitSquareImage": { "vertices": [[0, 0], [1, -8.673617379884035e-19], [2.5, 1], [1.5, 1]], "degenerate": false }
+      },
+      "tolerance": { "absolute": 0, "relative": 1e-12 }
+    },
+    {
+      "id": "underflow-determinant",
+      "label": "Tiny scalar matrix 2^-600·I: det = 2^-1200 is nonzero but below the smallest double, so it is an UNDERFLOW limit, never 0; orientation and rank still follow the exact value",
+      "provenance": "hand derivation with the column-vector convention (M·e₁ is the first column): images, det M = m11·m22 − m12·m21, area |det M|, tr M, Δ = (m11 − m22)² + 4·m12·m21, eigenvalues (tr ± √Δ)/2 and null vectors of M − λI; det = (2^-600)² = 2^-1200 < 2^-1075; cross-checked exactly against the rational oracle",
+      "params": {
+        "m11": 2.409919865102884e-181,
+        "m12": 0,
+        "m21": 0,
+        "m22": 2.409919865102884e-181,
+        "vx": 1,
+        "vy": 1
+      },
+      "expected": {
+        "quantities": {
+          "image.e1": [2.409919865102884e-181, 0],
+          "image.e2": [0, 2.409919865102884e-181],
+          "image.v": [2.409919865102884e-181, 2.409919865102884e-181],
+          "determinant": { "limit": "UNDERFLOW" },
+          "area.scale": { "limit": "UNDERFLOW" },
+          "orientation": "preserved",
+          "rank": 2,
+          "image.direction": { "undefined": "FULL_RANK" },
+          "trace": 4.819839730205768e-181,
+          "eigen.discriminant": 0,
+          "eigen.category": "repeated-scalar",
+          "eigen.values": [2.409919865102884e-181, 2.409919865102884e-181],
+          "eigen.direction1": { "undefined": "ALL_DIRECTIONS" },
+          "eigen.direction2": { "undefined": "ALL_DIRECTIONS" }
+        },
+        "unitSquareImage": { "vertices": [[0, 0], [2.409919865102884e-181, 0], [2.409919865102884e-181, 2.409919865102884e-181], [0, 2.409919865102884e-181]], "degenerate": false }
+      },
+      "tolerance": { "absolute": 0, "relative": 0 }
+    },
+    {
+      "id": "subnormal-determinant",
+      "label": "Small scalar matrix 2^-530·I: det = 2^-1060 is representable only as a subnormal double, so it is valid with an UNDERFLOW approximation note",
+      "provenance": "hand derivation with the column-vector convention (M·e₁ is the first column): images, det M = m11·m22 − m12·m21, area |det M|, tr M, Δ = (m11 − m22)² + 4·m12·m21, eigenvalues (tr ± √Δ)/2 and null vectors of M − λI; det = (2^-530)² = 2^-1060, between 2^-1074 and 2^-1022; cross-checked exactly against the rational oracle",
+      "params": {
+        "m11": 2.8451311993408992e-160,
+        "m12": 0,
+        "m21": 0,
+        "m22": 2.8451311993408992e-160,
+        "vx": 1,
+        "vy": 1
+      },
+      "expected": {
+        "quantities": {
+          "image.e1": [2.8451311993408992e-160, 0],
+          "image.e2": [0, 2.8451311993408992e-160],
+          "image.v": [2.8451311993408992e-160, 2.8451311993408992e-160],
+          "determinant": { "value": 8.095e-320, "approximation": "UNDERFLOW" },
+          "area.scale": { "value": 8.095e-320, "approximation": "UNDERFLOW" },
+          "orientation": "preserved",
+          "rank": 2,
+          "image.direction": { "undefined": "FULL_RANK" },
+          "trace": 5.6902623986817984e-160,
+          "eigen.discriminant": 0,
+          "eigen.category": "repeated-scalar",
+          "eigen.values": [2.8451311993408992e-160, 2.8451311993408992e-160],
+          "eigen.direction1": { "undefined": "ALL_DIRECTIONS" },
+          "eigen.direction2": { "undefined": "ALL_DIRECTIONS" }
+        },
+        "unitSquareImage": { "vertices": [[0, 0], [2.8451311993408992e-160, 0], [2.8451311993408992e-160, 2.8451311993408992e-160], [0, 2.8451311993408992e-160]], "degenerate": false }
+      },
+      "tolerance": { "absolute": 0, "relative": 0 }
+    }
+  ]
+}

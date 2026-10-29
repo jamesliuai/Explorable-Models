@@ -1,5 +1,10 @@
 # Explorable Models public preview handoff
 
+> **Historical: handoff for the 0.2 public preview.** This handoff covers the `0.2.0-preview.1` source preview.
+> The owner-detail items below (security contact, npm namespace, hosting) are still open for any later publication.
+> The candidate, package list and archive inventory describe 0.2 only. For the current `0.3.0-preview.1` workspace,
+> use the [Study Harness handoff](study-harness/README.md) and the [changelog](../CHANGELOG.md).
+
 Candidate: `0.2.0-preview.1`, **source-repository developer preview**. The owner selected **Explorable Models** and **https://github.com/jamesliuai/Explorable-Models.git**, and authorized committing and pushing the project. npm publishing and hosting are deferred. No deployment or package-publication workflow is installed.
 
 ## Prepared locally

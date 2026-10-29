@@ -1,14 +1,25 @@
 name: Validate Explorable Models
-on: [push, pull_request, workflow_dispatch]
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      native_conformance:
+        description: Also run the packaged Tauri reference-host conformance runner on macOS (unsigned local builds; nothing is signed or published)
+        type: boolean
+        default: false
 permissions:
   contents: read
 concurrency:
   group: preview-${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
+env:
+  # Rust toolchain for the Study Harness contract crate (packages/activity/rust, rust-version 1.85) and the reference host.
+  RUST_TOOLCHAIN: '1.95.0'
 jobs:
   validate:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 90
     steps:
       - uses: actions/checkout@v7
         with:
@@ -17,10 +28,24 @@ jobs:
         with:
           node-version: '22'
           cache: npm
+      - name: Install the pinned Rust toolchain
+        run: |
+          rustup toolchain install "$RUST_TOOLCHAIN" --profile minimal
+          rustup default "$RUST_TOOLCHAIN"
+          rustc --version
+          cargo --version
       - run: npm ci
       - run: npx playwright install --with-deps chromium firefox webkit
-      - name: Verify and package the local preview
-        run: npm run release:preview
+      # The single release pipeline (docs/release.md): packs the six packages once and runs every gate against those
+      # tarballs with exact counts (typecheck, vitest, contracts with cargo test, reference, disclosure, migrations,
+      # lifecycle, Chromium and Firefox/WebKit specs, build, gallery, packed consumers, review packets, release tests,
+      # unified release). The benchmark is skipped here: its §18 targets are measured on the recorded reference machine,
+      # not on shared CI runners. The packaged native gate needs macOS and is recorded as not run (environment). The
+      # record is therefore a partial run, not release evidence. Nothing is signed, published or deployed.
+      - name: Study Harness release pipeline
+        run: npm run release:study-harness -- --skip=benchmark --allow-environment-gaps
+      - name: Package the local preview from the same pipeline run
+        run: node scripts/verify-preview.mjs --from-pipeline && node scripts/package-preview.mjs && npm run verify:artifacts
       - name: Retain verified preview artifacts
         uses: actions/upload-artifact@v7
         with:
@@ -28,14 +53,58 @@ jobs:
           path: release/preview/
           if-no-files-found: error
           retention-days: 14
-      - name: Retain diagnostics
+      - name: Retain the pipeline record and diagnostics
         if: always()
         uses: actions/upload-artifact@v7
         with:
           name: preview-diagnostics
           path: |
+            release/study-harness/verification.json
+            release/study-harness/history/
+            release/study-harness/logs/
+            release/study-harness/packages/manifest.json
             /tmp/experiment-kit-final-verification/
             /tmp/experiment-kit-playwright/
             /tmp/experiment-kit-public-preview/
           if-no-files-found: ignore
           retention-days: 7
+
+  # Optional, manual only: packaged reference-host conformance (report §17, A51/A52). Builds unsigned apps with
+  # `tauri build --no-sign`, uses no secrets, and never signs, notarizes, publishes or deploys. Checks that need a
+  # visible window are recorded as "not run (environment)" when the runner's session cannot show one.
+  native-conformance:
+    if: github.event_name == 'workflow_dispatch' && inputs.native_conformance
+    runs-on: macos-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install the pinned Rust toolchain
+        run: |
+          rustup toolchain install "$RUST_TOOLCHAIN" --profile minimal
+          rustup default "$RUST_TOOLCHAIN"
+          rustc --version
+          cargo --version
+      - run: npm ci
+      - name: Pack the libraries, install them into the reference host and run the conformance scenarios
+        run: node scripts/study-harness/native-conformance.mjs --install --evidence-dir="$RUNNER_TEMP/native-conformance"
+      - name: Reference host Rust tests (release and conformance feature sets)
+        if: ${{ !cancelled() }}
+        working-directory: examples/study-harness-tauri
+        run: npm run test:rust
+      - name: Retain conformance evidence
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: native-conformance-evidence
+          path: |
+            ${{ runner.temp }}/native-conformance/
+            release/study-harness/packages/manifest.json
+            examples/study-harness-tauri/packed-artifacts.json
+          if-no-files-found: ignore
+          retention-days: 14

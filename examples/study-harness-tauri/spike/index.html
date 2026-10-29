@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Study Harness reference host - native spike</title>
+    <!-- Classic script from public/: registers the CSP violation listener before any module code runs. -->
+    <script src="./early.js"></script>
+    <script type="module" src="./src/main.ts"></script>
+  </head>
+  <body>
+    <main class="spike">
+      <h1>Study Harness reference host</h1>
+      <p class="lede">Native feasibility spike: module workers, Web Crypto, local fonts, KaTeX, SVG, PNG capture, WebGL, CSP and command permissions.</p>
+      <p id="status" role="status">Running probes...</p>
+      <section aria-labelledby="math-heading">
+        <h2 id="math-heading">Math</h2>
+        <div id="math-dom" class="math-slot"></div>
+        <div id="math-string" class="math-slot"></div>
+      </section>
+      <section aria-labelledby="scene-heading">
+        <h2 id="scene-heading">Scene</h2>
+        <div id="scene" class="scene-slot"></div>
+        <div id="capture" class="capture-slot"></div>
+      </section>
+      <section aria-labelledby="results-heading">
+        <h2 id="results-heading">Results</h2>
+        <ol id="results" class="results"></ol>
+      </section>
+    </main>
+  </body>
+</html>

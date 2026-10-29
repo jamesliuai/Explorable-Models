@@ -1,0 +1,40 @@
+{
+  "name": "@experiment-kit/study-harness-tauri-reference",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Packaged Tauri 2 reference host for the Study Harness visualizer: a conformance fixture built from the packed library tarballs. Not a root workspace and not a Study Harness application.",
+  "license": "MIT",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "install:packed": "node scripts/install-packed.mjs",
+    "policy": "node scripts/generate-approved-policy.mjs",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "build:web": "npm run policy && npm run typecheck && vite build --config vite.config.mjs --mode production",
+    "build:web:conformance": "npm run policy && npm run typecheck && vite build --config vite.config.mjs --mode conformance",
+    "build:app": "tauri build --bundles app --no-sign",
+    "conformance": "node scripts/conformance.mjs",
+    "conformance:display": "node scripts/conformance.mjs --display-only",
+    "test:rust": "cargo test --manifest-path src-tauri/Cargo.toml --locked && cargo test --manifest-path src-tauri/Cargo.toml --locked --features conformance",
+    "lint:rust": "cargo clippy --manifest-path src-tauri/Cargo.toml --locked --all-targets -- -D warnings && cargo clippy --manifest-path src-tauri/Cargo.toml --locked --all-targets --features conformance -- -D warnings"
+  },
+  "dependencies": {
+    "@experiment-kit/activity": "file:../../release/study-harness/packages/experiment-kit-activity-0.3.0-preview.1.tgz",
+    "@experiment-kit/catalog": "file:../../release/study-harness/packages/experiment-kit-catalog-0.3.0-preview.1.tgz",
+    "@experiment-kit/core": "file:../../release/study-harness/packages/experiment-kit-core-0.3.0-preview.1.tgz",
+    "@experiment-kit/player": "file:../../release/study-harness/packages/experiment-kit-player-0.3.0-preview.1.tgz",
+    "@experiment-kit/player-3d": "file:../../release/study-harness/packages/experiment-kit-player-3d-0.3.0-preview.1.tgz",
+    "@tauri-apps/api": "2.12.4",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "three": "0.186.1"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "2.12.4",
+    "@types/react": "19.3.0",
+    "typescript": "5.9.3",
+    "vite": "8.3.5"
+  }
+}

@@ -1,0 +1,281 @@
+{
+  "contract": "study-harness.save-artifact-request",
+  "expect": "invalid",
+  "why": "The artifact rejects unknown fields.",
+  "value": {
+    "artifact": {
+      "contract": "study-harness.activity-artifact",
+      "schemaVersion": "1.0",
+      "artifactId": "artifact-0002",
+      "kind": "learner-snapshot",
+      "schemas": [
+        {
+          "contract": "study-harness.activity-artifact",
+          "version": "1.0"
+        },
+        {
+          "contract": "study-harness.activity-instance",
+          "version": "1.0"
+        },
+        {
+          "contract": "study-harness.scientific-snapshot",
+          "version": "1.0"
+        },
+        {
+          "contract": "study-harness.presentation-snapshot",
+          "version": "1.0"
+        }
+      ],
+      "runtime": {
+        "id": "experiment-kit-activity",
+        "version": "0.3.0-preview.1"
+      },
+      "template": {
+        "templateId": "quadratic-descent-regimes",
+        "version": "1.0.0",
+        "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+      },
+      "model": {
+        "modelId": "quadratic-descent",
+        "version": "1.0.0",
+        "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+      },
+      "policyRef": {
+        "policyId": "policy-unit-4",
+        "revision": 3
+      },
+      "instance": {
+        "contract": "study-harness.activity-instance",
+        "schemaVersion": "1.0",
+        "activityId": "act-quadratic-0001",
+        "objectiveIds": [
+          "obj-descent-regimes"
+        ],
+        "hostSessionId": "session-7f3a",
+        "hostSessionRevision": 4,
+        "template": {
+          "templateId": "quadratic-descent-regimes",
+          "version": "1.0.0",
+          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+        },
+        "model": {
+          "modelId": "quadratic-descent",
+          "version": "1.0.0",
+          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+        },
+        "initialParameters": {
+          "a": 1,
+          "eta": 0.5,
+          "x0": 8
+        },
+        "mode": "approved",
+        "stage": {
+          "id": "explore",
+          "enteredAtSequence": 15
+        },
+        "activityRevision": 4,
+        "policy": {
+          "policyId": "policy-unit-4",
+          "revision": 3
+        },
+        "context": {
+          "kind": "instructional"
+        },
+        "responses": [],
+        "allowedActions": [
+          "operate.parameters",
+          "operate.presentation",
+          "request-reveal",
+          "save"
+        ],
+        "persistence": "saved",
+        "closed": false
+      },
+      "scientific": {
+        "contract": "study-harness.scientific-snapshot",
+        "schemaVersion": "1.0",
+        "model": {
+          "modelId": "quadratic-descent",
+          "version": "1.0.0",
+          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+        },
+        "scientificRevision": "sha256:7cf73b2641a4662e810d2cadd1ff615f7675eb59866ec0f34d291c55217e59f4",
+        "runtime": {
+          "id": "experiment-kit-activity",
+          "version": "0.3.0-preview.1"
+        },
+        "runId": "run-0002",
+        "params": {
+          "a": 1,
+          "eta": 1.5,
+          "x0": 8
+        },
+        "position": {
+          "kind": "index",
+          "index": 3,
+          "maxIndex": 1000
+        },
+        "terminal": false,
+        "comparisons": [
+          {
+            "runId": "run-0001",
+            "label": "η = 0.5",
+            "params": {
+              "a": 1,
+              "eta": 0.5,
+              "x0": 8
+            },
+            "position": {
+              "kind": "index",
+              "index": 12,
+              "maxIndex": 1000
+            }
+          }
+        ]
+      },
+      "presentation": {
+        "contract": "study-harness.presentation-snapshot",
+        "schemaVersion": "1.0",
+        "revision": 2,
+        "views": {
+          "plot": {
+            "camera": {
+              "kind": "2d",
+              "center": [
+                0,
+                25
+              ],
+              "zoom": 1
+            },
+            "layers": [
+              "g-landscape",
+              "g-trajectory"
+            ]
+          },
+          "values": {
+            "camera": null,
+            "layers": []
+          }
+        },
+        "selection": "m-point",
+        "layout": "card",
+        "displayUnits": {
+          "eta": "dimensionless",
+          "x0": "dimensionless"
+        },
+        "locale": "en-GB",
+        "formatVersion": "1.0"
+      },
+      "exposures": [],
+      "journal": {
+        "cursor": {
+          "activityId": "act-quadratic-0001",
+          "lastSequence": 0,
+          "lastEventId": null,
+          "checkpointDigest": null
+        },
+        "pendingEventIds": []
+      },
+      "pending": {
+        "kind": "preview",
+        "previewId": "pv-4",
+        "params": {
+          "a": 1,
+          "eta": 1.9,
+          "x0": 8
+        },
+        "baseRunId": "run-0002"
+      },
+      "contentRefs": [],
+      "reviewRefs": [],
+      "migratedFrom": {
+        "contract": "study-harness.activity-artifact",
+        "version": "1.0",
+        "digest": "sha256:74541abe7df28dce6069c7c208a0653adf90519f61911d6c0f85ad4d33112f3d",
+        "report": [
+          "No semantic change: identity copy used to exercise the migration record."
+        ]
+      },
+      "integrity": {
+        "algorithm": "sha256",
+        "entries": [
+          {
+            "path": "contract",
+            "digest": "sha256:48b1d8e57e55b06e4907d4e7425bfc16ca3cebe22d5471afdb8756182be24514"
+          },
+          {
+            "path": "schemaVersion",
+            "digest": "sha256:a51162aeeb057ca4e3df627977231de20b581f0d0d418ca3a111bc0e408ac6cc"
+          },
+          {
+            "path": "artifactId",
+            "digest": "sha256:5c38aa8652ad61105052fab891c44dc642ff246ba7686c4fbbef9cdd89280108"
+          },
+          {
+            "path": "kind",
+            "digest": "sha256:15a0ef06231f16aba50019172c92797d2a4d9684f1d195c26dd0c78928a4b892"
+          },
+          {
+            "path": "schemas",
+            "digest": "sha256:b2af7fcece67ab57329884814f0bbbd127eee17a9fa40dbaa1afbd4b3f27032c"
+          },
+          {
+            "path": "runtime",
+            "digest": "sha256:00d75eed4b6326fd8ec0435a806b0721b9f80cb41331a86885f299a55aef017f"
+          },
+          {
+            "path": "template",
+            "digest": "sha256:1ccabad3a28b20f388f6cf6a513b73c1b12785bf93a371d27276687a4efae1bb"
+          },
+          {
+            "path": "model",
+            "digest": "sha256:05b68b1f36cc81ae15fcfb7d1484770cf04fa4bf3ac69009c10a937e6c005599"
+          },
+          {
+            "path": "policyRef",
+            "digest": "sha256:a97c346f02d17709e04a7e1245b1dc238a029d4d1b5de5677922cc64ed024b11"
+          },
+          {
+            "path": "instance",
+            "digest": "sha256:74bd2703cbd43268c12e1acf21bf66f443d3165e81791eb95e566f3805b9eae8"
+          },
+          {
+            "path": "scientific",
+            "digest": "sha256:d63315d1cfc160137da370ce268088bdbf4743eadf8c2e41a687357c613052e1"
+          },
+          {
+            "path": "presentation",
+            "digest": "sha256:eb0d71cdd7a8b07dd396668de2ead0283f2d2a1f79ac944175cb3a876177b4df"
+          },
+          {
+            "path": "exposures",
+            "digest": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          {
+            "path": "journal",
+            "digest": "sha256:244d9035e88e8d87c9c97cc65e49d27bc57186c6854e8b68ee349d57defe56fd"
+          },
+          {
+            "path": "pending",
+            "digest": "sha256:19e2a7631ce349482d96f1c8a52b2fb380e197821150e4fad70adae5dbc28ebe"
+          },
+          {
+            "path": "contentRefs",
+            "digest": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          {
+            "path": "reviewRefs",
+            "digest": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          {
+            "path": "migratedFrom",
+            "digest": "sha256:e559b87d2931273fb8585c84d729e6982378538f815960dfba0066adcd270875"
+          }
+        ],
+        "digest": "sha256:d59c623852a0ac0940f05637d32c6c0b4af1b322ba44fb949532a2c6fbb1fae6"
+      },
+      "notes": "x"
+    },
+    "operationId": "op-save-2"
+  }
+}

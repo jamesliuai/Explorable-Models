@@ -7,6 +7,10 @@ import { createHash } from 'node:crypto';
 import { gzipSync } from 'node:zlib';
 import { createServer } from 'node:http';
 import { chromium } from 'playwright';
+import { releaseIdentity, toolVersions, writeHistoryRecord } from './study-harness/evidence-identity.mjs';
+// Evidence identity and history (report §22.3): package-evidence.json names the source commit and dirty flag, the
+// package-lock digest, Node and the tool versions, and every run (a failed or throwing one included) is also kept
+// append-only in release/preview/history/package-evidence-<time>.json.
 const root = fileURLToPath(new URL('../', import.meta.url));
 const out = path.join(root, 'release/preview'); await mkdir(out, { recursive: true });
 const scratch = await mkdtemp(path.join(tmpdir(), 'experiment-packed-consumer-'));
@@ -18,11 +22,13 @@ const consumerCache = path.join(scratch, '.npm-cache');
 const run = (command,args,cwd=scratch) => { const result=spawnSync(command,args,{cwd,encoding:'utf8',maxBuffer:10_000_000,env:{...process.env,npm_config_cache:consumerCache,npm_config_audit:'false',npm_config_fund:'false'}}); if(result.error||result.status) throw new Error(`${command} ${args.join(' ')}\n${result.error??result.stderr}\n${result.stdout}`); return result.stdout; };
 const packages=[]; let server, browser;
 try {
-  for(const name of ['core','player','agent']) {
+  for(const name of ['core','activity','player','agent']) {
     const packed=JSON.parse(run('npm',['pack','--json','--ignore-scripts','--pack-destination',out],path.join(root,'packages',name)))[0];
     const inventory=packed.files.map(item=>item.path);
     for(const required of ['LICENSE','README.md','package.json']) if(!inventory.includes(required)) throw new Error(`${name}: missing ${required}`);
-    if(inventory.some(file=>/(^|\/)(\.env|\.git|\.codex|node_modules|.*session.*\.json)(\/|$)/.test(file))) throw new Error(`${name}: forbidden local artifact`);
+    // Generated contract fixtures (fixtures/contracts/**) are schema test data whose names may contain "session"
+    // (host-session revision cases); every other *session*.json file is treated as a local session artifact.
+    if(inventory.some(file=>/(^|\/)(\.env|\.git|\.codex|node_modules)(\/|$)/.test(file)||(!file.startsWith('fixtures/contracts/')&&/(^|\/)[^/]*session[^/]*\.json$/.test(file)))) throw new Error(`${name}: forbidden local artifact`);
     const bytes=await readFile(path.join(out,packed.filename)); packages.push({name:`@experiment-kit/${name}`,file:packed.filename,sha256:createHash('sha256').update(bytes).digest('hex'),integrity:packed.integrity,bytes:bytes.length,files:inventory.length});
   }
   await cp(path.join(root,'examples/consumer'),scratch,{recursive:true});
@@ -37,7 +43,7 @@ try {
   if(compressed>180_000) throw new Error(`2D compressed JS including React and both consumer entries exceeds 180KB: ${compressed}`);
   const source=await Promise.all(js.map(item=>readFile(path.join(dist,'assets',item.file),'utf8')));
   if(source.some(text=>/THREE\.REVISION|WebGLRenderer|playwright-core|@modelcontextprotocol/.test(text))) throw new Error('Optional 3D or CLI dependency leaked into consumer');
-  server=createServer(async(req,res)=> { const pathname=decodeURIComponent(new URL(req.url,'http://localhost').pathname); const file=path.resolve(dist,`.${pathname}`); if(!file.startsWith(`${dist}${path.sep}`)){res.writeHead(403).end();return;} try{const bytes=await readFile(file);res.setHeader('Content-Type',file.endsWith('.html')?'text/html':file.endsWith('.js')?'text/javascript':'application/octet-stream');res.setHeader('Content-Security-Policy',"default-src 'self'; script-src 'self'; worker-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'");res.end(bytes);}catch{res.writeHead(404).end();} });
+  server=createServer(async(req,res)=> { const pathname=decodeURIComponent(new URL(req.url,'http://localhost').pathname); const file=path.resolve(dist,`.${pathname}`); if(!file.startsWith(`${dist}${path.sep}`)){res.writeHead(403).end();return;} try{const bytes=await readFile(file);res.setHeader('Content-Type',file.endsWith('.html')?'text/html':file.endsWith('.js')?'text/javascript':'application/octet-stream');res.setHeader('Content-Security-Policy',"default-src 'self'; script-src 'self'; worker-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'");res.end(bytes);}catch{res.writeHead(404).end();} });
   await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve)); const base=`http://127.0.0.1:${server.address().port}`;
   browser=await chromium.launch({headless:true}); const page=await browser.newPage({viewport:{width:1440,height:1000},reducedMotion:'reduce'}); const errors=[];page.on('pageerror',error=>errors.push(error.message));page.on('console',msg=>{if(msg.type()==='error')errors.push(msg.text());});page.on('requestfailed',req=>errors.push(`${req.url()}: ${req.failure()?.errorText}`));
   const checks=[]; let performanceEvidence;
@@ -97,5 +103,12 @@ try {
     await page.evaluate(()=>window.consumer.dispose());checks.push(result);await page.setViewportSize({width:1440,height:1000});
   }
   if(errors.length)throw new Error(errors.join('\n'));
-  const evidence={version:manifest.version,createdAt:new Date().toISOString(),node:process.version,platform:process.platform,arch:process.arch,browser:browser.version(),packages,checks,performance:performanceEvidence,ssrImport:'passed',installation:'Fresh directory and isolated empty npm cache; npm install --ignore-scripts with local tarballs and pinned React/ReactDOM/Vite; no repository aliases.',csp:'self scripts/workers, no eval or external network',dependencyBudget:{gzipBytes:compressed,maxGzipBytes:180000,assets:sizes},screenshots,publication:'Not published. Registry ownership, external trials and public smoke tests remain open.'};await writeFile(path.join(out,'package-evidence.json'),JSON.stringify(evidence,null,2)+'\n');process.stdout.write(JSON.stringify(evidence,null,2)+'\n');
+  const identity=releaseIdentity(root);
+  const evidence={version:manifest.version,createdAt:new Date().toISOString(),source:identity.source,packageLock:identity.packageLock,tools:toolVersions(root),node:process.version,platform:process.platform,arch:process.arch,browser:browser.version(),packages,checks,performance:performanceEvidence,ssrImport:'passed',installation:'Fresh directory and isolated empty npm cache; npm install --ignore-scripts with local tarballs and pinned React/ReactDOM/Vite; no repository aliases.',csp:'self scripts/workers, no eval or external network',dependencyBudget:{gzipBytes:compressed,maxGzipBytes:180000,assets:sizes},screenshots,publication:'Not published. Registry ownership, external trials and public smoke tests remain open.'};
+  evidence.history=path.relative(out,writeHistoryRecord(out,'package-evidence',evidence,{root})).split(path.sep).join('/');
+  await writeFile(path.join(out,'package-evidence.json'),JSON.stringify(evidence,null,2)+'\n');process.stdout.write(JSON.stringify(evidence,null,2)+'\n');
+} catch(error) {
+  // A failed run stays in the engineering record (report §22.3); package-evidence.json keeps the last passing run.
+  try { writeHistoryRecord(out,'package-evidence',{ok:false,error:String(error?.message??error).slice(0,4000),packages},{root}); } catch { /* history is best effort here */ }
+  throw error;
 } finally { await browser?.close();if(server)await new Promise(resolve=>server.close(resolve));await rm(scratch,{recursive:true,force:true}); }

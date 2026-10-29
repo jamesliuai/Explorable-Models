@@ -1,0 +1,44 @@
+{
+  "contract": "study-harness.stage-transition-request",
+  "expect": "invalid",
+  "why": "GroupDigest rejects unknown fields.",
+  "value": {
+    "activityId": "act-quadratic-0001",
+    "basedOnActivityRevision": 2,
+    "expectedPolicyRevision": 3,
+    "template": {
+      "templateId": "quadratic-descent-regimes",
+      "version": "1.0.0",
+      "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+    },
+    "model": {
+      "modelId": "quadratic-descent",
+      "version": "1.0.0",
+      "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+    },
+    "operationId": "op-stage-0",
+    "idempotencyKey": "op-stage-0",
+    "fromStage": "predict",
+    "toStage": "explore",
+    "actor": "tutor",
+    "groups": [
+      {
+        "groupId": "g-trajectory",
+        "contentDigest": "sha256:becc99271e962d4808ed1fe8949d143f75cd960dac64b590d7307f30bc6c75a0",
+        "label": "x"
+      },
+      {
+        "groupId": "g-position",
+        "contentDigest": "sha256:75a956941d3d3f400c356eed1ce88741744c119d1050a3f3163edd37f41477ce"
+      },
+      {
+        "groupId": "g-rule",
+        "contentDigest": "sha256:27532a61ed6e35d5d5c118aa803537a78a77bb64e9283746773fae733fbb1bcd"
+      },
+      {
+        "groupId": "g-table",
+        "contentDigest": "sha256:17a20b683b59afd8837086a614a9a53f5104bf14157b7027988550f9d9370dd6"
+      }
+    ]
+  }
+}

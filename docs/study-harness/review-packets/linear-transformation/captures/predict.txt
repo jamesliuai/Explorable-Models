@@ -1,0 +1,42 @@
+Matrices as transformations of the plane — stage predict (predict)
+Instruction: The arrows Me₁ and Me₂ are the columns of the matrix shown. Before the transformed plane is shown, predict what M does to the whole plane.
+Host-owned prediction request: For this matrix, will M keep the counterclockwise order of e₁ and e₂, reverse it, or flatten the plane onto a line or a point? Which directions through the origin, if any, will M map onto their own line?
+Review notice: Reference-checked; no independent subject review
+Revealed by the host for this stage: nothing
+
+Current values:
+m₁₁ (row 1, column 1): 1.5 (fixed). m₁₂ (row 1, column 2): 1 (fixed). m₂₁ (row 2, column 1): 0.5 (fixed). m₂₂ (row 2, column 2): 1 (fixed). v, x component: 1 (fixed). v, y component: 1 (fixed). Image of e₁: (1.5, 0.5). Image of e₂: (1, 1). Test vector v: (1, 1).
+
+View plane:
+Matrices as transformations of the plane
+The plane under M. The plane under M. Shows Reference grid lines x = k and y = k; Unit square before the transformation; Basis vector e₁; Basis vector e₂; Me₁, the first column of M; Me₂, the second column of M; Test vector v.
+Reference-checked; no independent subject review
+
+View values:
+Matrices as transformations of the plane
+Values. Values. Image of e₁: (1.5, 0.5); Image of e₂: (1, 1); Test vector v: (1, 1).
+Values:
+- Image of e₁: (1.5, 0.5)
+- Image of e₂: (1, 1)
+- Test vector v: (1, 1)
+Reference-checked; no independent subject review
+
+View vector-table:
+Matrices as transformations of the plane
+Vector coordinates. Vector coordinates. Table with 5 rows.
+Vector coordinates (5 of 5 rows):
+Quantity	Value	Unit
+Basis vector e₁	(1, 0)	
+Basis vector e₂	(0, 1)	
+Image of e₁	(1.5, 0.5)	
+Image of e₂	(1, 1)	
+Test vector v	(1, 1)	
+Reference-checked; no independent subject review
+
+View rules:
+Matrices as transformations of the plane
+Rules. Rules. Columns of M: M has rows (m11, m12) and (m21, m22). M·e1 = (m11, m21) is the first column and M·e2 = (m12, m22) is the second column.; Image of a vector: M·v = vx·(M·e1) + vy·(M·e2) = (m11·vx + m12·vy, m21·vx + m22·vy).
+Equations:
+- Columns of M: M has rows (m11, m12) and (m21, m22). M·e1 = (m11, m21) is the first column and M·e2 = (m12, m22) is the second column.
+- Image of a vector: M·v = vx·(M·e1) + vy·(M·e2) = (m11·vx + m12·vy, m21·vx + m22·vy)
+Reference-checked; no independent subject review

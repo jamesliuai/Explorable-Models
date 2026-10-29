@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Packed consumer: benchmark fixture</title>
+</head>
+<body>
+<h1>Benchmark fixture (packed consumer)</h1>
+<p class="consumer-note">Driven by scripts/study-harness/benchmark.mjs. In-memory fixture host with controllable latency; not a Study Harness host.</p>
+<main>
+<section id="active" class="bench-region" aria-label="Active activities"></section>
+<section id="spatial" class="bench-region" aria-label="Spatial activities"></section>
+<section id="legacy" class="bench-region" aria-label="Document path"></section>
+<section id="stress" class="bench-region" aria-label="Lifecycle"></section>
+<div class="bench-spacer"></div>
+<section id="history" class="bench-history" aria-label="Suspended history cards"></section>
+</main>
+<script type="module" src="./src/bench.ts"></script>
+</body>
+</html>

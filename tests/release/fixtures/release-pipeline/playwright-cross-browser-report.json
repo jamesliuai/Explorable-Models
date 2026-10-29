@@ -1,0 +1,189 @@
+{
+ "config": {
+  "projects": [
+   {
+    "name": "firefox",
+    "id": "firefox"
+   },
+   {
+    "name": "webkit",
+    "id": "webkit"
+   }
+  ]
+ },
+ "suites": [
+  {
+   "title": "study-interaction.spec.ts",
+   "file": "study-interaction.spec.ts",
+   "column": 0,
+   "line": 0,
+   "specs": [],
+   "suites": [
+    {
+     "title": "interaction edge cases (report §9–§11)",
+     "file": "study-interaction.spec.ts",
+     "line": 77,
+     "column": 6,
+     "specs": [
+      {
+       "title": "G33 touch: every slider leaves vertical panning to the browser (touch-action: pan-y), so a swipe that starts on it can scroll the page",
+       "ok": true,
+       "tags": [],
+       "tests": [
+        {
+         "timeout": 35000,
+         "annotations": [],
+         "expectedStatus": "passed",
+         "projectId": "firefox",
+         "projectName": "firefox",
+         "results": [],
+         "status": "expected"
+        }
+       ],
+       "id": "a605fa78e5addbd46e2c-8d0c5db84862831c6a5d",
+       "file": "study-interaction.spec.ts",
+       "line": 548,
+       "column": 3
+      },
+      {
+       "title": "G33 touch: a vertical swipe that starts on a slider scrolls the page, cancels any gesture and commits nothing",
+       "ok": true,
+       "tags": [],
+       "tests": [
+        {
+         "timeout": 35000,
+         "annotations": [
+          {
+           "type": "skip",
+           "description": "trusted touch swipes need the Chrome DevTools Protocol (Chromium only in Playwright)"
+          }
+         ],
+         "expectedStatus": "skipped",
+         "projectId": "firefox",
+         "projectName": "firefox",
+         "results": [],
+         "status": "skipped"
+        }
+       ],
+       "id": "a605fa78e5addbd46e2c-2bbed238d45bda569247",
+       "file": "study-interaction.spec.ts",
+       "line": 556,
+       "column": 3
+      },
+      {
+       "title": "G33 touch: every slider leaves vertical panning to the browser (touch-action: pan-y), so a swipe that starts on it can scroll the page",
+       "ok": true,
+       "tags": [],
+       "tests": [
+        {
+         "timeout": 35000,
+         "annotations": [],
+         "expectedStatus": "passed",
+         "projectId": "webkit",
+         "projectName": "webkit",
+         "results": [],
+         "status": "expected"
+        }
+       ],
+       "id": "a605fa78e5addbd46e2c-c07e41f4778240e842ae",
+       "file": "study-interaction.spec.ts",
+       "line": 548,
+       "column": 3
+      },
+      {
+       "title": "G33 touch: a vertical swipe that starts on a slider scrolls the page, cancels any gesture and commits nothing",
+       "ok": true,
+       "tags": [],
+       "tests": [
+        {
+         "timeout": 35000,
+         "annotations": [
+          {
+           "type": "skip",
+           "description": "trusted touch swipes need the Chrome DevTools Protocol (Chromium only in Playwright)"
+          }
+         ],
+         "expectedStatus": "skipped",
+         "projectId": "webkit",
+         "projectName": "webkit",
+         "results": [],
+         "status": "skipped"
+        }
+       ],
+       "id": "a605fa78e5addbd46e2c-bdaba4dd897997af33b3",
+       "file": "study-interaction.spec.ts",
+       "line": 556,
+       "column": 3
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "title": "study-projection.spec.ts",
+   "file": "study-projection.spec.ts",
+   "column": 0,
+   "line": 0,
+   "specs": [],
+   "suites": [
+    {
+     "title": "projection-owned learner outputs",
+     "file": "study-projection.spec.ts",
+     "line": 44,
+     "column": 6,
+     "specs": [
+      {
+       "title": "capture follows the host policy: with export.capture off the card refuses the capture itself (G10)",
+       "ok": true,
+       "tags": [],
+       "tests": [
+        {
+         "timeout": 35000,
+         "annotations": [],
+         "expectedStatus": "passed",
+         "projectId": "firefox",
+         "projectName": "firefox",
+         "results": [],
+         "status": "expected"
+        }
+       ],
+       "id": "19c65ea18f171d68d7be-bad7c4d29d06f1f86fc9",
+       "file": "study-projection.spec.ts",
+       "line": 45,
+       "column": 3
+      },
+      {
+       "title": "capture follows the host policy: with export.capture off the card refuses the capture itself (G10)",
+       "ok": true,
+       "tags": [],
+       "tests": [
+        {
+         "timeout": 35000,
+         "annotations": [],
+         "expectedStatus": "passed",
+         "projectId": "webkit",
+         "projectName": "webkit",
+         "results": [],
+         "status": "expected"
+        }
+       ],
+       "id": "19c65ea18f171d68d7be-30da0e6e716de0479050",
+       "file": "study-projection.spec.ts",
+       "line": 45,
+       "column": 3
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "errors": [],
+ "stats": {
+  "startTime": "2026-10-26T18:00:00.000Z",
+  "duration": 6600,
+  "expected": 4,
+  "skipped": 2,
+  "unexpected": 0,
+  "flaky": 0
+ }
+}

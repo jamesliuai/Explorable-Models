@@ -1,0 +1,47 @@
+{
+  "contract": "study-harness.scientific-snapshot",
+  "expect": "invalid",
+  "why": "Scientific revision is a sha256 digest.",
+  "value": {
+    "contract": "study-harness.scientific-snapshot",
+    "schemaVersion": "1.0",
+    "model": {
+      "modelId": "quadratic-descent",
+      "version": "1.0.0",
+      "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+    },
+    "scientificRevision": "rev-7",
+    "runtime": {
+      "id": "experiment-kit-activity",
+      "version": "0.3.0-preview.1"
+    },
+    "runId": "run-0002",
+    "params": {
+      "a": 1,
+      "eta": 1.5,
+      "x0": 8
+    },
+    "position": {
+      "kind": "index",
+      "index": 3,
+      "maxIndex": 1000
+    },
+    "terminal": false,
+    "comparisons": [
+      {
+        "runId": "run-0001",
+        "label": "η = 0.5",
+        "params": {
+          "a": 1,
+          "eta": 0.5,
+          "x0": 8
+        },
+        "position": {
+          "kind": "index",
+          "index": 12,
+          "maxIndex": 1000
+        }
+      }
+    ]
+  }
+}

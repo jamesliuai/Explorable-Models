@@ -1,12 +1,28 @@
 import { expect, test, type Page } from '@playwright/test';
 import { mkdir } from 'node:fs/promises';
 import fixtures from '../reference/fixtures/showcase.json' with { type: 'json' };
-import type { CardController } from '../../examples/shared/controller';
+import type { DocumentInteractionController } from '@experiment-kit/core/declarative';
 
-type TestWindow = { __SHOWCASE__: CardController };
+type TestWindow = { __SHOWCASE__: DocumentInteractionController };
 const inspect = (page: Page) => page.evaluate(() => (window as unknown as TestWindow).__SHOWCASE__.inspect());
 const commit = (page: Page, params: Record<string, number>) => page.evaluate(params => (window as unknown as TestWindow).__SHOWCASE__.commit(params), params);
 const shots = '/tmp/experiment-kit-showcase';
+/**
+ * Counts explicit pointer captures taken by range inputs. A native slider keeps its pressed pointer itself; an explicit
+ * `setPointerCapture` stops WebKit's thumb from following the pointer, so the example sliders must never take one.
+ */
+async function countRangeCaptures(page: Page): Promise<() => Promise<number>> {
+  await page.evaluate(() => {
+    const original = Element.prototype.setPointerCapture;
+    const counter = window as unknown as { __rangeCaptures: number };
+    counter.__rangeCaptures = 0;
+    Element.prototype.setPointerCapture = function (this: Element, pointerId: number) {
+      if (this instanceof HTMLInputElement && this.type === 'range') counter.__rangeCaptures++;
+      return original.call(this, pointerId);
+    };
+  });
+  return () => page.evaluate(() => (window as unknown as { __rangeCaptures: number }).__rangeCaptures);
+}
 const boundaries: Record<string, Record<string, number>> = {
   projectile: { angle: 80, speed: 30, height: 10 }, forces: { angle: 20, friction: .8, mass: 8 },
   waves: { phase: 180, a: 1, b: 1 }, light: { angle: 50, n1: 1.5, n2: 1 },
@@ -29,12 +45,14 @@ for (const [id, cases] of Object.entries(fixtures.cases)) {
     const box = (await slider.boundingBox())!;
     const spec = before.document!.parameters[key];
     const x = box.x + box.width * ((before.run!.params[key] - spec.min) / (spec.max - spec.min));
+    const captures = await countRangeCaptures(page);
     await page.mouse.move(x, box.y + box.height / 2); await page.mouse.down();
     await page.mouse.move(box.x + box.width * .72, box.y + box.height / 2, { steps: 10 });
     const tentative = Number(await slider.inputValue());
     await expect.poll(async () => (await inspect(page)).displayed.run!.params[key]).toBe(tentative);
     expect((await inspect(page)).primary.run).toEqual(before.run);
     await page.keyboard.press('Escape'); await page.mouse.up();
+    expect(await captures(), 'explicit pointer captures taken by the parameter slider').toBe(0);
     await expect(page.locator('.ex-card')).toHaveAttribute('data-preview', 'false');
     expect((await inspect(page)).primary.run).toEqual(before.run);
     for (const fixture of cases) {
@@ -73,11 +91,13 @@ test('projectile time scrubbing remains tentative; impact is exact; parameter ed
   await page.evaluate(() => document.fonts.ready);
   await timeline.scrollIntoViewIfNeeded();
   const box = (await timeline.boundingBox())!;
+  const captures = await countRangeCaptures(page);
   await page.mouse.move(box.x + box.width * (before.frame!.time / before.frame!.endTime!), box.y + box.height / 2); await page.mouse.down();
   await page.mouse.move(box.x + box.width * .75, box.y + box.height / 2);
   await expect.poll(async () => (await inspect(page)).displayed.frame!.time).toBeGreaterThan(before.frame!.time);
   expect((await inspect(page)).primary.run).toEqual(before.run);
   await page.mouse.up();
+  expect(await captures(), 'explicit pointer captures taken by the timeline slider').toBe(0);
   await expect(page.locator('.ex-card')).toHaveAttribute('data-preview', 'false');
   const after = (await inspect(page)).primary; expect(after.run!.id).toBe(before.run!.id); expect(after.frame!.time).toBeGreaterThan(before.frame!.time);
   await timeline.focus(); await timeline.press('End');

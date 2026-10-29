@@ -1,0 +1,3125 @@
+{
+  "contract": "experiment-kit.review-packet",
+  "version": "1.0",
+  "kind": "installed",
+  "generator": {
+    "tool": "experiment-kit activity review-packet",
+    "toolkitVersion": "0.3.0-preview.1",
+    "browser": "Chromium 156.0.8078.4",
+    "regenerate": "experiment-kit activity review-packet --installed quadratic-surface-gradient --out docs/study-harness/review-packets/quadratic-surface-gradient --width 720 --theme light --index 4"
+  },
+  "status": {
+    "lifecycle": "reference-checked",
+    "reviewScope": [],
+    "subjectReview": "none-recorded",
+    "signOff": null,
+    "statement": "Engineering evidence prepared by a tool; not a subject review. An engineering agent cannot sign this packet."
+  },
+  "identity": {
+    "template": {
+      "templateId": "quadratic-surface-gradient",
+      "version": "1.0.0",
+      "digest": "sha256:be8ee71cf73606c8fa0676a0c83e2f0ea3f6a1d3c77bf13278d30fd23bf95985"
+    },
+    "model": {
+      "modelId": "quadratic-surface-gradient",
+      "version": "1.0.0",
+      "digest": "sha256:cf14845fdc52ac67d2bdfca8f2434a15499f0555045882acfc287bcd14381294"
+    },
+    "modelIdentity": {
+      "digest": "sha256:cf14845fdc52ac67d2bdfca8f2434a15499f0555045882acfc287bcd14381294",
+      "scientificRevision": "sha256:515644892b2fc883491e6e6d34f6e650a86ec88a76c9a5cb0d952019d49d5668",
+      "presentationRevision": "sha256:868aa8fd30ca9161d24c91830ce62769cedb3b61ba5aaa0e88c2d1b81ce8e72f"
+    },
+    "groups": [
+      {
+        "groupId": "scene",
+        "contentDigest": "sha256:17d40ea224bf95b4766830bc1b46aa686837cb93dfa6cdda5ff1316b77202d99"
+      },
+      {
+        "groupId": "contour-view",
+        "contentDigest": "sha256:0bbc8367b2145d3abbcf543170a63c97d614cb970a97c40afb1c5a4087006bd4"
+      },
+      {
+        "groupId": "section-views",
+        "contentDigest": "sha256:c511a0041919ac07271e1a4c2b31e57e785c0bb7bbfe516e61d97570efbc830c"
+      },
+      {
+        "groupId": "surface",
+        "contentDigest": "sha256:831b7fdcbd1ac9e0d0065bfebd66363b4ade993ba67d7a7b780d6136880a0f5a"
+      },
+      {
+        "groupId": "contours",
+        "contentDigest": "sha256:d0fb0f757d535bd889bb6923dc07338dd49afed2984c0decb31c8e910bbf70e9"
+      },
+      {
+        "groupId": "cross-sections",
+        "contentDigest": "sha256:2a3b7d20bbce7daceaae8e4b8f0fc86c79506a2b3538dc6f2d297b00d6de39d7"
+      },
+      {
+        "groupId": "point",
+        "contentDigest": "sha256:bd17ce952fa136272d30982004d22ffc75be83447706b61d4f41ea954e25e6b2"
+      },
+      {
+        "groupId": "surface-values",
+        "contentDigest": "sha256:c4abd5cb67f00f183da7a7f522254383bc6b8248645d36e3c3c570ffdbf70ab2"
+      },
+      {
+        "groupId": "surface-rules",
+        "contentDigest": "sha256:877bc9621a7921e36a50a1c776a327c0393cc06b9c4d376f74d700feed3b86f5"
+      },
+      {
+        "groupId": "gradient-rules",
+        "contentDigest": "sha256:6f0d95791f410df4b7cc7c2e44b65a3b7be27699cda60b883518ecda4f2e2f29"
+      },
+      {
+        "groupId": "gradient",
+        "contentDigest": "sha256:18e3a1a66319bba6677934f4ffc8a5a256f03078ceade78af8a55572b240abea"
+      },
+      {
+        "groupId": "gradient-drawing",
+        "contentDigest": "sha256:9173b71d2254bd586edc8fd8a65c6a9b114ad0438e0bc4e128900f9d3ce2db81"
+      },
+      {
+        "groupId": "gradient-values",
+        "contentDigest": "sha256:64b906dd2c8224655d3b714bb673dc8fd4996a93994252441f12061cf78857f2"
+      },
+      {
+        "groupId": "field",
+        "contentDigest": "sha256:82d8a0e9c722d5d1aa5b32c036c0d7cf77c4254d84ce13e6d101fdbb523d1829"
+      },
+      {
+        "groupId": "minimum",
+        "contentDigest": "sha256:e0ee79d3f14d8f6153abbc305cdb6ac448ff9cb1072d2da8429774dc9ffec19d"
+      },
+      {
+        "groupId": "minimum-values",
+        "contentDigest": "sha256:a512c908fac5fa6feb3f983fd3142383acf7b6d8a0df97d8e350d1dc6d266a8e"
+      },
+      {
+        "groupId": "coefficient-controls",
+        "contentDigest": "sha256:bfa2b8e18caea5ae87c69849296706b1ecbb8218757744984d5aa9278a538537"
+      },
+      {
+        "groupId": "point-controls",
+        "contentDigest": "sha256:75a808bc2d92b0283b12c34ee4477d013de78f1f2223b47a9d16eb84a2fcf9fb"
+      },
+      {
+        "groupId": "scenarios",
+        "contentDigest": "sha256:89d5d8efa6c0ec9c3eca868604fe53ca02087bc831e6942de272fb987c699c4e"
+      },
+      {
+        "groupId": "alternatives",
+        "contentDigest": "sha256:427ad3fb1e3f88b22b1d23e0814fbf491793e591cac2eca3f885b163f73af17a"
+      }
+    ]
+  },
+  "relation": null,
+  "recordedRelation": null,
+  "execution": {
+    "source": "installed-kernel",
+    "kernelId": "quadratic-surface-gradient",
+    "kernelVersion": "1.1.0",
+    "mode": "static",
+    "kernelSourceDigest": null,
+    "kernelSources": []
+  },
+  "taskIntent": {
+    "purpose": "Predict, then observe, how the gradient of f(x, y) = (a·x² + 2b·x·y + c·y²)/2 at a chosen point p relates to the shape of the surface and to its contour lines.",
+    "stages": [
+      {
+        "id": "orient",
+        "kind": "prepare",
+        "instruction": "Look at the surface and at the contour view. Each contour line joins points where f has the same value. Turn or reset the 3D view to compare them; turning the view never changes the surface or the point.",
+        "response": null
+      },
+      {
+        "id": "predict",
+        "kind": "predict",
+        "instruction": "Before the gradient is shown, make a prediction about it at the marked point p.",
+        "response": {
+          "kind": "prediction",
+          "prompt": "At the marked point p, in which direction do you expect f to increase fastest, and how do you expect that direction to sit relative to the contour line through p?",
+          "taskFamily": "surface-gradient-prediction"
+        }
+      },
+      {
+        "id": "explore-point",
+        "kind": "explore",
+        "instruction": "Once the gradient at p is shown as an arrow and as values, move p by dragging it in the contour view, with the arrow keys or by typing coordinates, and compare the arrow with the contour lines and with your prediction.",
+        "response": null
+      },
+      {
+        "id": "explore-field",
+        "kind": "explore",
+        "instruction": "Once arrows for the gradient at a grid of points are shown, change a, b and c as well as the point, and compare how the arrows and the contour lines change together.",
+        "response": null
+      },
+      {
+        "id": "explain",
+        "kind": "explain",
+        "instruction": "Explain in your own words how the gradient at a point is related to the contour lines and to the coefficients a, b and c.",
+        "response": {
+          "kind": "explanation",
+          "prompt": "How is the gradient at a point related to the contour line through that point, and how do a, b and c change the arrows?",
+          "taskFamily": "surface-gradient-explanation"
+        }
+      },
+      {
+        "id": "closed",
+        "kind": "closed",
+        "instruction": "This activity is closed.",
+        "response": null
+      },
+      {
+        "id": "free-explore",
+        "kind": "explore",
+        "instruction": "Explore freely: change a, b, c and the point, turn the 3D view, and compare the arrows, the contour lines and the cross-sections.",
+        "response": null
+      }
+    ],
+    "taskFamilies": [
+      {
+        "id": "surface-gradient-prediction",
+        "description": "Host-owned prediction request about the gradient of a quadratic surface at a marked point and its relation to the contour lines. The host owns the response, its capture and any evaluation.",
+        "hostOwned": true
+      },
+      {
+        "id": "surface-gradient-explanation",
+        "description": "Host-owned explanation request about how the gradient relates to contour lines and to the coefficients a, b and c. The host owns the response, its capture and any evaluation.",
+        "hostOwned": true
+      },
+      {
+        "id": "surface-gradient-later-task",
+        "description": "Host-owned later task with new coefficients, a new point or another representation, such as a contour-only or table-only version. Its prompts, held-out items and scoring stay with the host and are not part of this catalogue.",
+        "hostOwned": true
+      }
+    ]
+  },
+  "derivation": [
+    {
+      "id": "derivation-quadratic-form",
+      "kind": "derivation",
+      "citation": "Derivation written for this catalogue: f(x, y) = ½·[x y]·H·[x y]ᵀ with H = [[a, b], [b, c]], so ∇f = H·[x y]ᵀ = (a·x + b·y, b·x + c·y). H is positive definite exactly when a > 0 and a·c − b² > 0; then f(x, y) > 0 for (x, y) ≠ (0, 0), the origin is the unique minimum with f = 0, and ∇f = 0 only there because H is invertible. On the ray (x, y) = r·(cos t, sin t), f = r²·q(t)/2 with q(t) = a·cos²t + 2b·cos t·sin t + c·sin²t > 0, so the level f = L is the closed ellipse r(t) = √(2L/q(t)). f is constant along a level curve, so ∇f is perpendicular to its tangent. The axis sections are f(x, 0) = a·x²/2 and f(0, y) = c·y²/2. Not independently reviewed."
+    },
+    {
+      "id": "study-harness-specification",
+      "kind": "specification",
+      "citation": "Study Harness visualizer implementation report §12.5 (bounded two-variable quadratic surface from a declared symmetric positive-definite family, linked contour/projection view, selected point with a gradient vector and a bounded gradient field, disclosed sampling and vector scaling, checks of analytic gradients, axis orientation, minimum, zero gradient and approved cross-sections, camera-independent model state) and acceptance criterion A46."
+    }
+  ],
+  "assumptions": [
+    "f is exactly the quadratic form (a·x² + 2b·x·y + c·y²)/2 with constant coefficients: no noise and no higher-order terms.",
+    "The Hessian H = [[a, b], [b, c]] is symmetric positive definite: a ≥ 0.2, c ≥ 0.2 and a·c − b² > 0 (constraint positive-definite). Degenerate troughs (a·c − b² = 0) and saddles (a·c − b² < 0) are outside this model.",
+    "The gradient is the vector of partial derivatives (∂f/∂x, ∂f/∂y) = (a·x + b·y, b·x + c·y); it points toward increasing f.",
+    "Coefficients and coordinates are dimensionless IEEE-754 double values; evaluation is deterministic within one JavaScript engine.",
+    "The 3D view and its camera are presentation only: the kernel has no camera input, and turning or resetting the view never changes a, b, c or the point."
+  ],
+  "limitations": [
+    "Point values — f(p), ∇f(p), |∇f(p)|, the direction ∇f/|∇f| and a·c − b² — are computed exactly from the double inputs (exact binary arithmetic, with integer square roots for the length and the direction) and each is rounded once to the nearest double, ties to even. Sampled surface heights, section heights and field vectors use about 106-bit intermediates and agree with the exactly rounded values to a unit in the last place.",
+    "Results below the smallest normal double are reduced-precision approximations; a nonzero f(p) or gradient length that rounds to 0 is a numerical-limit status, never 0, a nonzero gradient or direction component shown as 0 carries an approximation note, and the gradient direction stays defined at every point other than the origin.",
+    "The surface is sampled on a 41 × 41 grid with spacing 0.1 and the cross-sections at 81 points each; the drawing between samples does not certify values between them.",
+    "Contours are exact ellipses sampled at 180 directions per level for L = 0.25, 0.5, 1, 2, 4 only. Because the coordinates are rounded, f at a contour point equals L to about 4·√(λmax/λmin)·2⁻⁵³ relative (better than 10⁻¹² unless λmax/λmin exceeds about 10⁶). Directions use the platform Math.cos and Math.sin, so the last bits of sample positions can differ between JavaScript engines; f = L at each point holds regardless.",
+    "Gradient arrows (the point's arrow and the 9 × 9 field) are drawn at s·∇f with the disclosed scale s ≤ 1 chosen per frame; the arrow at p can therefore not be compared in length across frames without the scale.",
+    "Only the axis cross-sections f(x, 0) and f(0, y) are provided; sections along other lines are not part of this model."
+  ],
+  "conventions": {
+    "coordinate": "Right-handed Cartesian frame with x to the right and y up in the contour view (viewed from +z) and z = f(x, y) up in the 3D view. Contour, field, point and arrow coordinates share the xy plane; the cross-sections are the vertical planes y = 0 (horizontal axis x) and x = 0 (horizontal axis y).",
+    "angle": "Contour sample directions t are in radians, measured counterclockwise from +x toward +y.",
+    "handedness": "right",
+    "parameters": {
+      "a": {
+        "label": "Coefficient a",
+        "symbol": "a",
+        "description": "Coefficient of x²/2: the curvature of f along the x-axis (∂²f/∂x²). Must be positive.",
+        "dimension": "dimensionless",
+        "unit": "dimensionless",
+        "min": 0.2,
+        "max": 4,
+        "default": 2,
+        "step": {
+          "ui": 0.1,
+          "admissible": "continuous"
+        },
+        "role": "model-input"
+      },
+      "b": {
+        "label": "Coefficient b",
+        "symbol": "b",
+        "description": "Coupling coefficient of x·y (∂²f/∂x∂y). Nonzero values tilt the contour ellipses away from the axes; together with a and c it must keep a·c − b² > 0.",
+        "dimension": "dimensionless",
+        "unit": "dimensionless",
+        "min": -2,
+        "max": 2,
+        "default": 0.5,
+        "step": {
+          "ui": 0.1,
+          "admissible": "continuous"
+        },
+        "role": "model-input"
+      },
+      "c": {
+        "label": "Coefficient c",
+        "symbol": "c",
+        "description": "Coefficient of y²/2: the curvature of f along the y-axis (∂²f/∂y²). Must be positive.",
+        "dimension": "dimensionless",
+        "unit": "dimensionless",
+        "min": 0.2,
+        "max": 4,
+        "default": 1,
+        "step": {
+          "ui": 0.1,
+          "admissible": "continuous"
+        },
+        "role": "model-input"
+      },
+      "px": {
+        "label": "Point x-coordinate",
+        "symbol": "p_x",
+        "description": "The x-coordinate of the selected point p. Any value from −2 to 2 is allowed, including 0.",
+        "dimension": "dimensionless",
+        "unit": "dimensionless",
+        "min": -2,
+        "max": 2,
+        "default": 1,
+        "step": {
+          "ui": 0.1,
+          "admissible": "continuous"
+        },
+        "role": "model-input"
+      },
+      "py": {
+        "label": "Point y-coordinate",
+        "symbol": "p_y",
+        "description": "The y-coordinate of the selected point p. Any value from −2 to 2 is allowed, including 0.",
+        "dimension": "dimensionless",
+        "unit": "dimensionless",
+        "min": -2,
+        "max": 2,
+        "default": 1,
+        "step": {
+          "ui": 0.1,
+          "admissible": "continuous"
+        },
+        "role": "model-input"
+      }
+    },
+    "quantities": {
+      "point": {
+        "label": "Selected point",
+        "symbol": "p",
+        "shape": {
+          "kind": "vector",
+          "length": 2
+        },
+        "dimension": "dimensionless",
+        "unit": "dimensionless",
+        "meaning": "The selected point p = (p_x, p_y), equal to its two parameters.",
+        "coordinateFrame": "xy plane of a right-handed frame: x to the right, y up when viewed from +z",
+        "signConvention": "Components along +x (right) and +y (up) in the xy plane."
+      },
+      "value": {
+        "label": "Height at the point",
+        "symbol": "f(p)",
+        "shape": {
+          "kind": "scalar"
+        },
+        "dimension": "dimensionless",
+        "unit": "dimensionless",
+        "meaning": "f(p) = (a·p_x² + 2b·p_x·p_y + c·p_y²)/2, the exact value rounded once. Positive except at the minimum.",
+        "coordinateFrame": "graph space of a right-handed frame: x and y horizontal, z = f(x, y) up",
+        "signConvention": "Height above the xy plane along +z; never negative on this family."
+      },
+      "gradient": {
+        "label": "Gradient at the point",
+        "symbol": "\\nabla f(p)",
+        "shape": {
+          "kind": "vector",
+          "length": 2
+        },
+        "dimension": "dimensionless",
+        "unit": "dimensionless",
+        "meaning": "Vector of partial derivatives ∇f(p) = (∂f/∂x, ∂f/∂y) = (a·p_x + b·p_y, b·p_x + c·p_y), each component rounded once. It is the zero vector only at the minimum.",
+        "coordinateFrame": "xy plane of a right-handed frame: x to the right, y up when viewed from +z",
+        "signConvention": "Points toward increasing f (uphill); components along +x (right) and +y (up)."
+      },
+      "gradient.norm": {
+        "label": "Length of the gradient",
+        "symbol": "|\\nabla f(p)|",
+        "shape": {
+          "kind": "scalar"
+        },
+        "dimension": "dimensionless",
+        "unit": "dimensionless",
+        "meaning": "|∇f(p)| = √((∂f/∂x)² + (∂f/∂y)²): the rate of increase of f per unit distance in the direction of the gradient.",
+        "coordinateFrame": "xy plane of a right-handed frame: x to the right, y up when viewed from +z",
+        "signConvention": "A length: never negative; 0 only at the minimum."
+      },
+      "gradient.direction": {
+        "label": "Direction of the gradient",
+        "symbol": "\\hat{u}",
+        "shape": {
+          "kind": "vector",
+          "length": 2
+        },
+        "dimension": "dimensionless",
+        "unit": "dimensionless",
+        "meaning": "Unit vector ∇f(p)/|∇f(p)|, the direction of fastest increase of f. Undefined (ZERO_GRADIENT) at the minimum p = (0, 0), where the gradient is zero; no direction is ever chosen in its place. Decided from p itself, so a tiny nonzero point keeps a defined direction.",
+        "coordinateFrame": "xy plane of a right-handed frame: x to the right, y up when viewed from +z",
+        "signConvention": "Unit vector toward increasing f; components along +x (right) and +y (up)."
+      },
+      "hessian.det": {
+        "label": "Hessian determinant",
+        "symbol": "ac - b^2",
+        "shape": {
+          "kind": "scalar"
+        },
+        "dimension": "dimensionless",
+        "unit": "dimensionless",
+        "meaning": "Determinant a·c − b² of the constant Hessian H = [[a, b], [b, c]], rounded once. Positive on the whole admissible domain (constraint positive-definite).",
+        "signConvention": "Positive for every admissible coefficient set."
+      },
+      "minimum.location": {
+        "label": "Location of the minimum",
+        "symbol": "p_{\\min}",
+        "shape": {
+          "kind": "vector",
+          "length": 2
+        },
+        "dimension": "dimensionless",
+        "unit": "dimensionless",
+        "meaning": "The unique minimum of the symmetric positive-definite family: (0, 0) for every admissible a, b and c, because H is positive definite and ∇f = 0 only at the origin.",
+        "coordinateFrame": "xy plane of a right-handed frame: x to the right, y up when viewed from +z",
+        "signConvention": "Components along +x (right) and +y (up) in the xy plane."
+      },
+      "minimum.value": {
+        "label": "Minimum value",
+        "symbol": "f_{\\min}",
+        "shape": {
+          "kind": "scalar"
+        },
+        "dimension": "dimensionless",
+        "unit": "dimensionless",
+        "meaning": "f(0, 0) = 0, the unique lowest value of f on this family.",
+        "coordinateFrame": "graph space of a right-handed frame: x and y horizontal, z = f(x, y) up",
+        "signConvention": "Height along +z; f is never below it."
+      },
+      "arrow.scale": {
+        "label": "Arrow length scale",
+        "symbol": "s",
+        "shape": {
+          "kind": "scalar"
+        },
+        "dimension": "dimensionless",
+        "unit": "dimensionless",
+        "meaning": "Factor s by which drawn gradient arrows are shortened or lengthened: each arrow is drawn as s·∇f. s is chosen per frame from 1, 0.5, 0.2, 0.1, 0.05, 0.02, … as the largest value with s·M ≤ 0.45, where M is the longest gradient on the 9 × 9 field grid (90% of its spacing 0.5). Presentation scale only: no quantity is changed by it.",
+        "signConvention": "Positive; 1 means arrows are drawn at true length."
+      }
+    },
+    "constraints": [
+      {
+        "id": "positive-definite",
+        "expression": "a*c - b*b",
+        "min": 0,
+        "minInclusive": false,
+        "message": "The coefficients must satisfy a·c − b² > 0. Only then is the surface a bowl with a single lowest point, which is the family this activity covers; at a·c − b² = 0 the surface becomes a trough with a whole line of lowest points, and below 0 a saddle.",
+        "recovery": "Reduce the size of b (move b toward 0), or increase a or c, until a·c − b² is greater than 0."
+      }
+    ]
+  },
+  "referenceSuite": {
+    "declared": {
+      "suiteId": "quadratic-surface-gradient:1.0.0",
+      "digest": "sha256:4982408532970c0fca1657884b9307956e4f20ee91e0c68cdff00e8b66c2af20"
+    },
+    "file": {
+      "path": "tests/reference/fixtures/activities/quadratic-surface-gradient.json",
+      "digest": "sha256:4982408532970c0fca1657884b9307956e4f20ee91e0c68cdff00e8b66c2af20"
+    },
+    "binding": "matches",
+    "unavailable": null,
+    "suite": {
+      "suiteId": "quadratic-surface-gradient:1.0.0",
+      "author": "Cases derived by hand from f(x, y) = (a·x² + 2b·x·y + c·y²)/2 where the results are exact rationals, with irrational values (|∇f|, direction) and non-dyadic inputs computed by exact rational arithmetic in tests/reference/oracles/quadratic-surface-gradient.ts, which shares no code with the catalogue kernel. The three exact-tie cases (2026-10-26) take their expectations from that oracle; they were added, and every point tolerance set to 0, when the kernel (1.1.0) began computing point values exactly. Prepared by an engineering agent.",
+      "review": "No independent human subject reviewer has approved these cases. Automated agreement is engineering evidence only.",
+      "derivedFrom": {
+        "path": "tests/reference/fixtures/activities/quadratic-surface-gradient.json",
+        "digest": "sha256:4982408532970c0fca1657884b9307956e4f20ee91e0c68cdff00e8b66c2af20",
+        "suiteId": "quadratic-surface-gradient:1.0.0",
+        "conversion": "Converted by experiment-kit activity tooling: case IDs, labels, provenance, parameters and tolerances copied unchanged; quantity expectations restated as experiment-kit.reference-fixtures 1.0 expectations."
+      },
+      "notCovered": [
+        "Surface, section and field grids, contour levels and the perpendicularity of contours to the gradient direction are checked by tests/reference/activities/quadratic-surface-gradient.test.ts."
+      ]
+    },
+    "results": {
+      "cases": [
+        {
+          "id": "default-point-on-level-2",
+          "label": "a = 2, b = 0.5, c = 1 at p = (1, 1): f = 2, ∇f = (2.5, 1.5); p lies on the contour f = 2",
+          "provenance": "Hand derivation from f = (a·x² + 2b·x·y + c·y²)/2 and ∇f = (a·x + b·y, b·x + c·y): f(1, 1) = (2 + 1 + 1)/2 = 2, ∇f = (2 + 0.5, 0.5 + 1), a·c − b² = 1.75; field maximum |∇f(2, 2)| = |(5, 3)| = √34, so s = 0.05 (0.1·√34 > 0.45). |∇f| = √8.5 and the direction (2.5, 1.5)/√8.5 are irrational: correctly rounded values from exact rational arithmetic in tests/reference/oracles/quadratic-surface-gradient.ts (no shared code with the catalogue kernel).",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 0
+          },
+          "tolerances": {
+            "gradient.norm": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "gradient.direction": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "arrow.scale": {
+              "absolute": 0,
+              "relative": 0
+            }
+          },
+          "kind": "evaluation",
+          "points": 1,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "axes-plus-x",
+          "label": "Axis orientation: b = 0, p = (1, 0): the gradient (2, 0) points along +x (to the right)",
+          "provenance": "Hand derivation from f = (a·x² + 2b·x·y + c·y²)/2 and ∇f = (a·x + b·y, b·x + c·y): with b = 0, ∇f(1, 0) = (a, 0) = (2, 0), |∇f| = 2, direction (1, 0); f(1, 0) = a/2 = 1, so p lies on the contour f = 1 at direction t = 0 (sample k = 0); a·c − b² = 2; field maximum |(4, 2)| = √20, s = 0.1 (0.1·√20 ≈ 0.447 ≤ 0.45). Cross-checked by exact rational arithmetic in tests/reference/oracles/quadratic-surface-gradient.ts (no shared code with the catalogue kernel).",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 0
+          },
+          "tolerances": {
+            "gradient.norm": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "gradient.direction": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "arrow.scale": {
+              "absolute": 0,
+              "relative": 0
+            }
+          },
+          "kind": "evaluation",
+          "points": 1,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "axes-plus-y",
+          "label": "Axis orientation: b = 0, p = (0, 1): the gradient (0, 1) points along +y (up)",
+          "provenance": "Hand derivation from f = (a·x² + 2b·x·y + c·y²)/2 and ∇f = (a·x + b·y, b·x + c·y): ∇f(0, 1) = (b, c) = (0, 1), |∇f| = 1, direction (0, 1); f(0, 1) = c/2 = 0.5, so p lies on the contour f = 0.5 at t = π/2 (sample k = 45). Cross-checked by exact rational arithmetic in tests/reference/oracles/quadratic-surface-gradient.ts (no shared code with the catalogue kernel).",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 0
+          },
+          "tolerances": {
+            "gradient.norm": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "gradient.direction": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "arrow.scale": {
+              "absolute": 0,
+              "relative": 0
+            }
+          },
+          "kind": "evaluation",
+          "points": 1,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "axes-minus-x",
+          "label": "Axis orientation: b = 0, p = (−1, 0): the gradient (−2, 0) points along −x (to the left)",
+          "provenance": "Hand derivation from f = (a·x² + 2b·x·y + c·y²)/2 and ∇f = (a·x + b·y, b·x + c·y): ∇f(−1, 0) = (−a, −b) = (−2, 0), |∇f| = 2, direction (−1, 0); f(−1, 0) = 1, on the contour f = 1 at t = π (sample k = 90). Cross-checked by exact rational arithmetic in tests/reference/oracles/quadratic-surface-gradient.ts (no shared code with the catalogue kernel).",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 0
+          },
+          "tolerances": {
+            "gradient.norm": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "gradient.direction": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "arrow.scale": {
+              "absolute": 0,
+              "relative": 0
+            }
+          },
+          "kind": "evaluation",
+          "points": 1,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "minimum-at-origin",
+          "label": "Minimum: p = (0, 0) gives f = 0 and ∇f = (0, 0); the direction is undefined (ZERO_GRADIENT)",
+          "provenance": "Hand derivation from f = (a·x² + 2b·x·y + c·y²)/2 and ∇f = (a·x + b·y, b·x + c·y): f(0, 0) = 0 and ∇f(0, 0) = (0, 0) for every admissible a, b, c; |∇f| = 0 and the direction is undefined, never an arbitrary direction. Cross-checked by exact rational arithmetic in tests/reference/oracles/quadratic-surface-gradient.ts (no shared code with the catalogue kernel).",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 0
+          },
+          "tolerances": {
+            "gradient.norm": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "gradient.direction": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "arrow.scale": {
+              "absolute": 0,
+              "relative": 0
+            }
+          },
+          "kind": "evaluation",
+          "points": 1,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "minimum-at-origin-negative-zero",
+          "label": "Minimum with a negative-zero input p = (−0, 0) and b = −1.5: still the origin; outputs are +0 and the direction is undefined",
+          "provenance": "Hand derivation from f = (a·x² + 2b·x·y + c·y²)/2 and ∇f = (a·x + b·y, b·x + c·y): −0 is the number 0, so p is the origin; a·c − b² = 3 − 2.25 = 0.75 > 0. Outputs must be +0 (Object.is), never −0. Cross-checked by exact rational arithmetic in tests/reference/oracles/quadratic-surface-gradient.ts (no shared code with the catalogue kernel).",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 0
+          },
+          "tolerances": {
+            "gradient.norm": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "gradient.direction": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "arrow.scale": {
+              "absolute": 0,
+              "relative": 0
+            }
+          },
+          "kind": "evaluation",
+          "points": 1,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "tilted-point-on-x-axis",
+          "label": "Rotated ellipses: b = 1, p = (1, 0): ∇f = (2, 1) is not along +x, and is perpendicular to the tilted contour f = 1",
+          "provenance": "Hand derivation from f = (a·x² + 2b·x·y + c·y²)/2 and ∇f = (a·x + b·y, b·x + c·y): ∇f(1, 0) = (a, b) = (2, 1); f(1, 0) = a/2 = 1 on the contour f = 1 at t = 0 (sample k = 0); a·c − b² = 1. |∇f| = √5 and the direction (2, 1)/√5 from exact rational arithmetic in tests/reference/oracles/quadratic-surface-gradient.ts (no shared code with the catalogue kernel).",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 0
+          },
+          "tolerances": {
+            "gradient.norm": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "gradient.direction": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "arrow.scale": {
+              "absolute": 0,
+              "relative": 0
+            }
+          },
+          "kind": "evaluation",
+          "points": 1,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "tilted-negative-b-point-on-y-axis",
+          "label": "Rotated ellipses: b = −0.5, p = (0, 2): ∇f = (−1, 1)",
+          "provenance": "Hand derivation from f = (a·x² + 2b·x·y + c·y²)/2 and ∇f = (a·x + b·y, b·x + c·y): ∇f(0, 2) = (2b, 2c) = (−1, 1); f(0, 2) = 4c/2 = 1 on the contour f = 1 at t = π/2 (sample k = 45); a·c − b² = 0.25; field maximum |∇f(2, −2)| = |(3, −2)| = √13, s = 0.1. |∇f| = √2 and the direction (−1, 1)/√2 from exact rational arithmetic in tests/reference/oracles/quadratic-surface-gradient.ts (no shared code with the catalogue kernel).",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 0
+          },
+          "tolerances": {
+            "gradient.norm": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "gradient.direction": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "arrow.scale": {
+              "absolute": 0,
+              "relative": 0
+            }
+          },
+          "kind": "evaluation",
+          "points": 1,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "decimal-inputs",
+          "label": "Non-dyadic decimal inputs a = 1.3, b = −0.7, c = 2.1 at p = (0.3, −1.7)",
+          "provenance": "Every value from exact rational arithmetic in tests/reference/oracles/quadratic-surface-gradient.ts (no shared code with the catalogue kernel) for the exact rational values of the double inputs, rounded once; the kernel may differ by one unit in the last place. Hand estimate for orientation: ∇f ≈ (1.3·0.3 + 0.7·1.7, −0.7·0.3 − 2.1·1.7) = (1.58, −3.78).",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 0
+          },
+          "tolerances": {
+            "gradient.norm": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "gradient.direction": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "arrow.scale": {
+              "absolute": 0,
+              "relative": 0
+            }
+          },
+          "kind": "evaluation",
+          "points": 1,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "steep-corner",
+          "label": "Largest heights: a = c = 4, b = 2 at the corner p = (2, 2): f = 24, ∇f = (12, 12)",
+          "provenance": "Hand derivation from f = (a·x² + 2b·x·y + c·y²)/2 and ∇f = (a·x + b·y, b·x + c·y): f(2, 2) = (16 + 16 + 16)/2 = 24 (the largest height on the domain), ∇f = (8 + 4, 4 + 8), a·c − b² = 12; field maximum 12√2, s = 0.02 (0.05·12√2 > 0.45). |∇f| = 12√2 and the direction (√½, √½) from exact rational arithmetic in tests/reference/oracles/quadratic-surface-gradient.ts (no shared code with the catalogue kernel).",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 0
+          },
+          "tolerances": {
+            "gradient.norm": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "gradient.direction": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "arrow.scale": {
+              "absolute": 0,
+              "relative": 0
+            }
+          },
+          "kind": "evaluation",
+          "points": 1,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "steep-corner-negative-b",
+          "label": "a = c = 4, b = −2 at p = (−2, 2): f = 24, ∇f = (−12, 12)",
+          "provenance": "Hand derivation from f = (a·x² + 2b·x·y + c·y²)/2 and ∇f = (a·x + b·y, b·x + c·y): f(−2, 2) = (16 + 16 + 16)/2 = 24, ∇f = (−8 − 4, 4 + 8) = (−12, 12), a·c − b² = 12, s = 0.02. Direction (−√½, √½) from exact rational arithmetic in tests/reference/oracles/quadratic-surface-gradient.ts (no shared code with the catalogue kernel).",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 0
+          },
+          "tolerances": {
+            "gradient.norm": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "gradient.direction": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "arrow.scale": {
+              "absolute": 0,
+              "relative": 0
+            }
+          },
+          "kind": "evaluation",
+          "points": 1,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "gentle-bowl",
+          "label": "Gentle round bowl a = c = 0.2, b = 0 at p = (−2, −2): ∇f = (−0.4, −0.4), arrow scale 0.5",
+          "provenance": "Hand derivation from f = (a·x² + 2b·x·y + c·y²)/2 and ∇f = (a·x + b·y, b·x + c·y): f(−2, −2) = (0.2·4 + 0.2·4)/2 = 0.8 and ∇f = (−0.4, −0.4), exact multiples of the double 0.2 by powers of two; field maximum 0.4√2 ≈ 0.566, so s = 0.5 (1·0.566 > 0.45). Rounded values and the direction from exact rational arithmetic in tests/reference/oracles/quadratic-surface-gradient.ts (no shared code with the catalogue kernel).",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 0
+          },
+          "tolerances": {
+            "gradient.norm": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "gradient.direction": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "arrow.scale": {
+              "absolute": 0,
+              "relative": 0
+            }
+          },
+          "kind": "evaluation",
+          "points": 1,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "near-singular-accepted-b-below-1",
+          "label": "Constraint boundary from above: a = c = 1, b = 1 − 2⁻⁵³ is accepted (a·c − b² ≈ 2⁻⁵²); along (1, −1) f = ∇f components = 2⁻⁵³",
+          "provenance": "Hand derivation from f = (a·x² + 2b·x·y + c·y²)/2 and ∇f = (a·x + b·y, b·x + c·y): fl(b·b) = 1 − 2⁻⁵², so fl(a·c) − fl(b·b) = 2⁻⁵² > 0 is accepted; exact a·c − b² = 2⁻⁵² − 2⁻¹⁰⁶ rounds (tie to even) to 2⁻⁵². At p = (1, −1): ∇f = (1 − b, b − 1) = (2⁻⁵³, −2⁻⁵³), f = 1 − b = 2⁻⁵³. Cross-checked by exact rational arithmetic in tests/reference/oracles/quadratic-surface-gradient.ts (no shared code with the catalogue kernel). Contour tolerance: the declared bound 4·√(λmax/λmin)·2⁻⁵³ ≈ 6e−8 with λmax/λmin ≈ 1.8e16, rounded up to 1e−7.",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 0
+          },
+          "tolerances": {
+            "gradient.norm": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "gradient.direction": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "arrow.scale": {
+              "absolute": 0,
+              "relative": 0
+            }
+          },
+          "kind": "evaluation",
+          "points": 1,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "near-singular-accepted-c-above-1",
+          "label": "Constraint boundary from above: a = 4, b = 2, c = 1 + 2⁻⁵² is accepted (a·c − b² = 2⁻⁵⁰); at p = (0.5, −1) ∇f = (0, −2⁻⁵²)",
+          "provenance": "Hand derivation from f = (a·x² + 2b·x·y + c·y²)/2 and ∇f = (a·x + b·y, b·x + c·y): a·c = 4 + 2⁻⁵⁰ exactly, so a·c − b² = 2⁻⁵⁰ > 0. At p = (0.5, −1) (the null direction of the singular neighbour c = 1): ∇f = (2 − 2, 1 − c) = (0, −2⁻⁵²), f = (−1)·(−2⁻⁵²)/2 = 2⁻⁵³, direction (0, −1). Cross-checked by exact rational arithmetic in tests/reference/oracles/quadratic-surface-gradient.ts (no shared code with the catalogue kernel). Contour tolerance: declared bound ≈ 7.4e−8 (λmax/λmin ≈ 2.8e16), rounded up to 1e−7.",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 0
+          },
+          "tolerances": {
+            "gradient.norm": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "gradient.direction": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "arrow.scale": {
+              "absolute": 0,
+              "relative": 0
+            }
+          },
+          "kind": "evaluation",
+          "points": 1,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "tiny-point-subnormal-gradient",
+          "label": "Smallest nonzero point p = (2⁻¹⁰⁷⁴, 0): f underflows, ∇f = (2⁻¹⁰⁷³, 2⁻¹⁰⁷⁵ → 0) is approximate, the direction stays defined",
+          "provenance": "Hand derivation from f = (a·x² + 2b·x·y + c·y²)/2 and ∇f = (a·x + b·y, b·x + c·y): ∇f = 2⁻¹⁰⁷⁴·(a, b) = (2⁻¹⁰⁷³, 2⁻¹⁰⁷⁵); 2⁻¹⁰⁷⁵ is exactly half the smallest subnormal and rounds (tie to even) to 0, so the vector carries an UNDERFLOW approximation; f = 2⁻²¹⁴⁸ is positive but rounds to 0 (numerical limit); |∇f| = 2⁻¹⁰⁷⁴·√4.25 rounds to 2⁻¹⁰⁷³ (subnormal, approximate); the direction (a, b)/√(a² + b²) is defined because p ≠ 0. Correctly rounded values from exact rational arithmetic in tests/reference/oracles/quadratic-surface-gradient.ts (no shared code with the catalogue kernel).",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 0
+          },
+          "tolerances": {
+            "gradient.norm": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "gradient.direction": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "arrow.scale": {
+              "absolute": 0,
+              "relative": 0
+            }
+          },
+          "kind": "evaluation",
+          "points": 1,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "tiny-point-diagonal",
+          "label": "p = (2⁻¹⁰⁷⁴, 2⁻¹⁰⁷⁴) with a = c = 0.25: both gradient components round to 0 but the direction is still (√½, √½), never ZERO_GRADIENT",
+          "provenance": "Hand derivation from f = (a·x² + 2b·x·y + c·y²)/2 and ∇f = (a·x + b·y, b·x + c·y): ∇f = 2⁻¹⁰⁷⁶·(1, 1); each component is below half the smallest subnormal and rounds to 0 (approximation), |∇f| = 2⁻¹⁰⁷⁶·√2 = 2⁻¹⁰⁷⁵·⁵ is below half the smallest subnormal and rounds to 0 (numerical limit), f rounds to 0 (numerical limit). The zero-gradient case is decided from p, so the direction (√½, √½) is reported. Correctly rounded values from exact rational arithmetic in tests/reference/oracles/quadratic-surface-gradient.ts (no shared code with the catalogue kernel).",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 0
+          },
+          "tolerances": {
+            "gradient.norm": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "gradient.direction": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "arrow.scale": {
+              "absolute": 0,
+              "relative": 0
+            }
+          },
+          "kind": "evaluation",
+          "points": 1,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "small-point-subnormal-height",
+          "label": "p = (10⁻¹⁶⁰, −3·10⁻¹⁶⁰): the gradient is normal but f ≈ 4·10⁻³²⁰ is subnormal (approximate)",
+          "provenance": "Every value from exact rational arithmetic in tests/reference/oracles/quadratic-surface-gradient.ts (no shared code with the catalogue kernel) for the exact rational values of the double inputs. Hand estimate: f ≈ (2·1 − 3 + 9)·10⁻³²⁰/2 = 4·10⁻³²⁰, below 2⁻¹⁰²² ≈ 2.2·10⁻³⁰⁸, so f is a reduced-precision approximation while ∇f ≈ (−0.5, −2.5)·10⁻¹⁶⁰ is normal.",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 0
+          },
+          "tolerances": {
+            "gradient.norm": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "gradient.direction": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "arrow.scale": {
+              "absolute": 0,
+              "relative": 0
+            }
+          },
+          "kind": "evaluation",
+          "points": 1,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "exact-tie-tiny-x-term",
+          "label": "b·py is an exact rounding tie and a·px ≈ 1.2·10⁻¹¹⁴ lies far below one unit of it: ∂f/∂x must round toward the tiny term, not to even",
+          "provenance": "Expectations from exact rational arithmetic in tests/reference/oracles/quadratic-surface-gradient.ts (no shared code with the catalogue kernel). b·py has 105 significant bits whose low 52 are 1 followed by 51 zeros, an exact tie; a·px > 0 breaks it upward, so ∂f/∂x is 0.18664041048643928 (ties-to-even alone would give 0.18664041048643926). Found by the 2026-10 adversarial review (R37).",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 0
+          },
+          "tolerances": {
+            "gradient.norm": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "gradient.direction": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "arrow.scale": {
+              "absolute": 0,
+              "relative": 0
+            }
+          },
+          "kind": "evaluation",
+          "points": 1,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "exact-tie-hand-built-x",
+          "label": "a = 2, b = 1 + 2⁻⁵², c = 2, p = (−10⁻¹⁰⁰, 1.5): b·py = 1.5 + 2⁻⁵² + 2⁻⁵³ is a tie that a·px = −2·10⁻¹⁰⁰ breaks downward",
+          "provenance": "Hand derivation: b·py = 1.5·(1 + 2⁻⁵²) = 1.5 + 2⁻⁵² + 2⁻⁵³ lies halfway between the doubles 1.5 + 2⁻⁵² and 1.5 + 2⁻⁵¹; the exact ∂f/∂x = b·py − 2·10⁻¹⁰⁰ is just below that midpoint, so it rounds to 1.5 + 2⁻⁵² = 1.5000000000000002 (ties-to-even would give 1.5000000000000004). ∂f/∂y = 3 − (1 + 2⁻⁵²)·10⁻¹⁰⁰ rounds to 3. f(p), |∇f|, the direction and a·c − b² = 4 − (1 + 2⁻⁵²)² from exact rational arithmetic in tests/reference/oracles/quadratic-surface-gradient.ts.",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 0
+          },
+          "tolerances": {
+            "gradient.norm": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "gradient.direction": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "arrow.scale": {
+              "absolute": 0,
+              "relative": 0
+            }
+          },
+          "kind": "evaluation",
+          "points": 1,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "exact-tie-hand-built-y",
+          "label": "a = 2, b = 0.5, c = 1 + 2⁻⁵², p = (−10⁻¹⁰⁰, 1.5): c·py is the tie, so ∂f/∂y must round toward b·px = −5·10⁻¹⁰¹",
+          "provenance": "Hand derivation: c·py = 1.5 + 2⁻⁵² + 2⁻⁵³ is the midpoint of 1.5 + 2⁻⁵² and 1.5 + 2⁻⁵¹; ∂f/∂y = c·py − 5·10⁻¹⁰¹ is just below it and rounds to 1.5000000000000002. ∂f/∂x = 0.75 − 2·10⁻¹⁰⁰ rounds to 0.75. f(p), |∇f|, the direction and a·c − b² from exact rational arithmetic in tests/reference/oracles/quadratic-surface-gradient.ts.",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 0
+          },
+          "tolerances": {
+            "gradient.norm": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "gradient.direction": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "arrow.scale": {
+              "absolute": 0,
+              "relative": 0
+            }
+          },
+          "kind": "evaluation",
+          "points": 1,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "singular-unit",
+          "label": "a = b = c = 1: a·c − b² = 0 exactly, rejected (minimum exclusive)",
+          "provenance": "Hand derivation: 1·1 − 1² = 0; the trough has a line of minima and is outside the model.",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 0
+          },
+          "tolerances": null,
+          "kind": "rejection",
+          "points": 0,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "singular-wide",
+          "label": "a = 4, b = 2, c = 1: a·c − b² = 0 exactly, rejected",
+          "provenance": "Hand derivation: 4·1 − 2² = 0.",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 0
+          },
+          "tolerances": null,
+          "kind": "rejection",
+          "points": 0,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "singular-negative-b",
+          "label": "a = 0.5, b = −1, c = 2: a·c − b² = 0 exactly, rejected",
+          "provenance": "Hand derivation: 0.5·2 − (−1)² = 0.",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 0
+          },
+          "tolerances": null,
+          "kind": "rejection",
+          "points": 0,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "singular-largest-b",
+          "label": "a = c = 2, b = −2: a·c − b² = 0 exactly, rejected",
+          "provenance": "Hand derivation: 2·2 − 4 = 0.",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 0
+          },
+          "tolerances": null,
+          "kind": "rejection",
+          "points": 0,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "saddle",
+          "label": "a = 1, b = 1.5, c = 2: a·c − b² = −0.25 < 0 (a saddle), rejected",
+          "provenance": "Hand derivation: 2 − 2.25 = −0.25.",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 0
+          },
+          "tolerances": null,
+          "kind": "rejection",
+          "points": 0,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "a-below-range",
+          "label": "a = 0.1 is below the parameter range [0.2, 4]",
+          "provenance": "Declared parameter bounds.",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 0
+          },
+          "tolerances": null,
+          "kind": "rejection",
+          "points": 0,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "point-outside-range",
+          "label": "p_x = 2.5 is outside the point range [−2, 2]",
+          "provenance": "Declared parameter bounds.",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 0
+          },
+          "tolerances": null,
+          "kind": "rejection",
+          "points": 0,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        }
+      ],
+      "uncovered": [
+        "point",
+        "minimum.location",
+        "minimum.value"
+      ]
+    }
+  },
+  "mutation": {
+    "baselineProblems": [],
+    "mutants": [
+      {
+        "id": "sign:value",
+        "operator": "sign",
+        "target": "value",
+        "description": "value with the wrong sign",
+        "killed": true,
+        "firstProblem": "default-point-on-level-2: value: -2, expected 2 (absolute 0, relative 0)"
+      },
+      {
+        "id": "factor:value",
+        "operator": "factor",
+        "target": "value",
+        "factor": 2,
+        "description": "value off by a factor of 2",
+        "killed": true,
+        "firstProblem": "default-point-on-level-2: value: 4, expected 2 (absolute 0, relative 0)"
+      },
+      {
+        "id": "sign:gradient",
+        "operator": "sign",
+        "target": "gradient",
+        "description": "gradient with the wrong sign",
+        "killed": true,
+        "firstProblem": "default-point-on-level-2: gradient: [-2.5,-1.5], expected [2.5,1.5] (absolute 0, relative 0)"
+      },
+      {
+        "id": "factor:gradient",
+        "operator": "factor",
+        "target": "gradient",
+        "factor": 2,
+        "description": "gradient off by a factor of 2",
+        "killed": true,
+        "firstProblem": "default-point-on-level-2: gradient: [5,3], expected [2.5,1.5] (absolute 0, relative 0)"
+      },
+      {
+        "id": "sign:gradient.norm",
+        "operator": "sign",
+        "target": "gradient.norm",
+        "description": "gradient.norm with the wrong sign",
+        "killed": true,
+        "firstProblem": "default-point-on-level-2: gradient.norm: -2.9154759474226504, expected 2.9154759474226504 (absolute 0, relative 0)"
+      },
+      {
+        "id": "factor:gradient.norm",
+        "operator": "factor",
+        "target": "gradient.norm",
+        "factor": 2,
+        "description": "gradient.norm off by a factor of 2",
+        "killed": true,
+        "firstProblem": "default-point-on-level-2: gradient.norm: 5.830951894845301, expected 2.9154759474226504 (absolute 0, relative 0)"
+      },
+      {
+        "id": "sign:gradient.direction",
+        "operator": "sign",
+        "target": "gradient.direction",
+        "description": "gradient.direction with the wrong sign",
+        "killed": true,
+        "firstProblem": "default-point-on-level-2: gradient.direction: [-0.8574929257125442,-0.5144957554275265], expected [0.8574929257125442,0.5144957554275265] (absolute 0, relative 0)"
+      },
+      {
+        "id": "factor:gradient.direction",
+        "operator": "factor",
+        "target": "gradient.direction",
+        "factor": 2,
+        "description": "gradient.direction off by a factor of 2",
+        "killed": true,
+        "firstProblem": "default-point-on-level-2: gradient.direction: [1.7149858514250884,1.028991510855053], expected [0.8574929257125442,0.5144957554275265] (absolute 0, relative 0)"
+      },
+      {
+        "id": "sign:hessian.det",
+        "operator": "sign",
+        "target": "hessian.det",
+        "description": "hessian.det with the wrong sign",
+        "killed": true,
+        "firstProblem": "default-point-on-level-2: hessian.det: -1.75, expected 1.75 (absolute 0, relative 0)"
+      },
+      {
+        "id": "factor:hessian.det",
+        "operator": "factor",
+        "target": "hessian.det",
+        "factor": 2,
+        "description": "hessian.det off by a factor of 2",
+        "killed": true,
+        "firstProblem": "default-point-on-level-2: hessian.det: 3.5, expected 1.75 (absolute 0, relative 0)"
+      },
+      {
+        "id": "sign:arrow.scale",
+        "operator": "sign",
+        "target": "arrow.scale",
+        "description": "arrow.scale with the wrong sign",
+        "killed": true,
+        "firstProblem": "default-point-on-level-2: arrow.scale: -0.05, expected 0.05 (absolute 0, relative 0)"
+      },
+      {
+        "id": "factor:arrow.scale",
+        "operator": "factor",
+        "target": "arrow.scale",
+        "factor": 2,
+        "description": "arrow.scale off by a factor of 2",
+        "killed": true,
+        "firstProblem": "default-point-on-level-2: arrow.scale: 0.1, expected 0.05 (absolute 0, relative 0)"
+      },
+      {
+        "id": "undefined-as-zero:gradient.direction",
+        "operator": "undefined-as-zero",
+        "target": "gradient.direction",
+        "description": "undefined gradient.direction reported as a valid zero",
+        "killed": true,
+        "firstProblem": "minimum-at-origin: gradient.direction: status valid, expected undefined:ZERO_GRADIENT"
+      },
+      {
+        "id": "limit-as-zero:value",
+        "operator": "limit-as-zero",
+        "target": "value",
+        "description": "numerical limit of value reported as a valid zero",
+        "killed": true,
+        "firstProblem": "tiny-point-subnormal-gradient: value: status valid, expected numerical-limit:UNDERFLOW"
+      },
+      {
+        "id": "limit-as-zero:gradient.norm",
+        "operator": "limit-as-zero",
+        "target": "gradient.norm",
+        "description": "numerical limit of gradient.norm reported as a valid zero",
+        "killed": true,
+        "firstProblem": "tiny-point-diagonal: gradient.norm: status valid, expected numerical-limit:UNDERFLOW"
+      },
+      {
+        "id": "swap-inputs:a,c",
+        "operator": "swap-inputs",
+        "target": "a",
+        "other": "c",
+        "description": "inputs a and c transposed",
+        "killed": true,
+        "firstProblem": "default-point-on-level-2: gradient: [1.5,2.5], expected [2.5,1.5] (absolute 0, relative 0)"
+      },
+      {
+        "id": "swap-inputs:b,px",
+        "operator": "swap-inputs",
+        "target": "b",
+        "other": "px",
+        "description": "inputs b and px transposed",
+        "killed": true,
+        "firstProblem": "default-point-on-level-2: value: 1.25, expected 2 (absolute 0, relative 0)"
+      },
+      {
+        "id": "swap-inputs:b,py",
+        "operator": "swap-inputs",
+        "target": "b",
+        "other": "py",
+        "description": "inputs b and py transposed",
+        "killed": true,
+        "firstProblem": "default-point-on-level-2: value: 1.625, expected 2 (absolute 0, relative 0)"
+      },
+      {
+        "id": "swap-inputs:px,py",
+        "operator": "swap-inputs",
+        "target": "px",
+        "other": "py",
+        "description": "inputs px and py transposed",
+        "killed": true,
+        "firstProblem": "axes-plus-x: value: 0.5, expected 1 (absolute 0, relative 0)"
+      },
+      {
+        "id": "boundary-nudge:a",
+        "operator": "boundary-nudge",
+        "target": "a",
+        "factor": 1e-9,
+        "description": "a shifted by a relative 1e-9 (boundary off by a hair)",
+        "killed": true,
+        "firstProblem": "default-point-on-level-2: value: 2.000000001, expected 2 (absolute 0, relative 0)"
+      },
+      {
+        "id": "boundary-nudge:b",
+        "operator": "boundary-nudge",
+        "target": "b",
+        "factor": 1e-9,
+        "description": "b shifted by a relative 1e-9 (boundary off by a hair)",
+        "killed": true,
+        "firstProblem": "default-point-on-level-2: value: 2.000000001, expected 2 (absolute 0, relative 0)"
+      },
+      {
+        "id": "boundary-nudge:c",
+        "operator": "boundary-nudge",
+        "target": "c",
+        "factor": 1e-9,
+        "description": "c shifted by a relative 1e-9 (boundary off by a hair)",
+        "killed": true,
+        "firstProblem": "default-point-on-level-2: value: 2.0000000005, expected 2 (absolute 0, relative 0)"
+      },
+      {
+        "id": "boundary-nudge:px",
+        "operator": "boundary-nudge",
+        "target": "px",
+        "factor": 1e-9,
+        "description": "px shifted by a relative 1e-9 (boundary off by a hair)",
+        "killed": true,
+        "firstProblem": "default-point-on-level-2: value: 2.0000000025, expected 2 (absolute 0, relative 0)"
+      },
+      {
+        "id": "boundary-nudge:py",
+        "operator": "boundary-nudge",
+        "target": "py",
+        "factor": 1e-9,
+        "description": "py shifted by a relative 1e-9 (boundary off by a hair)",
+        "killed": true,
+        "firstProblem": "default-point-on-level-2: value: 2.0000000015, expected 2 (absolute 0, relative 0)"
+      }
+    ],
+    "uncovered": [
+      "point",
+      "minimum.location",
+      "minimum.value"
+    ]
+  },
+  "activitySpecificTests": [
+    "tests/reference/activities/quadratic-surface-gradient.test.ts"
+  ],
+  "boundaries": {
+    "cases": [
+      {
+        "id": "minimum-at-origin",
+        "source": "declared",
+        "label": "Minimum: p = (0, 0) gives f = 0 and ∇f = (0, 0); the direction is undefined (ZERO_GRADIENT)",
+        "rationale": "From reference case minimum-at-origin: Hand derivation from f = (a·x² + 2b·x·y + c·y²)/2 and ∇f = (a·x + b·y, b·x + c·y): f(0, 0) = 0 and ∇f(0, 0) = (0, 0) for every admissible a, b, c; |∇f| = 0 and the direction is undefined, never an arbitrary direction. Cross-checked by exact rational arithmetic in tests/reference/oracles/quadratic-surface-gradient.ts (no shared code with the catalogue kernel).",
+        "params": {
+          "a": 2,
+          "b": 0.5,
+          "c": 1,
+          "px": 0,
+          "py": 0
+        },
+        "position": {
+          "kind": "static"
+        },
+        "outcome": "undefined",
+        "statuses": {
+          "gradient.direction": "undefined:ZERO_GRADIENT"
+        },
+        "rejection": null,
+        "expected": {
+          "outcome": "undefined",
+          "statuses": {
+            "gradient.direction": "undefined:ZERO_GRADIENT"
+          }
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "minimum-at-origin-negative-zero",
+        "source": "declared",
+        "label": "Minimum with a negative-zero input p = (−0, 0) and b = −1.5: still the origin; outputs are +0 and the direction is undefined",
+        "rationale": "From reference case minimum-at-origin-negative-zero: Hand derivation from f = (a·x² + 2b·x·y + c·y²)/2 and ∇f = (a·x + b·y, b·x + c·y): −0 is the number 0, so p is the origin; a·c − b² = 3 − 2.25 = 0.75 > 0. Outputs must be +0 (Object.is), never −0. Cross-checked by exact rational arithmetic in tests/reference/oracles/quadratic-surface-gradient.ts (no shared code with the catalogue kernel).",
+        "params": {
+          "a": 3,
+          "b": -1.5,
+          "c": 1,
+          "px": -0,
+          "py": 0
+        },
+        "position": {
+          "kind": "static"
+        },
+        "outcome": "undefined",
+        "statuses": {
+          "gradient.direction": "undefined:ZERO_GRADIENT"
+        },
+        "rejection": null,
+        "expected": {
+          "outcome": "undefined",
+          "statuses": {
+            "gradient.direction": "undefined:ZERO_GRADIENT"
+          }
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "tiny-point-subnormal-gradient",
+        "source": "declared",
+        "label": "Smallest nonzero point p = (2⁻¹⁰⁷⁴, 0): f underflows, ∇f = (2⁻¹⁰⁷³, 2⁻¹⁰⁷⁵ → 0) is approximate, the direction stays defined",
+        "rationale": "From reference case tiny-point-subnormal-gradient: Hand derivation from f = (a·x² + 2b·x·y + c·y²)/2 and ∇f = (a·x + b·y, b·x + c·y): ∇f = 2⁻¹⁰⁷⁴·(a, b) = (2⁻¹⁰⁷³, 2⁻¹⁰⁷⁵); 2⁻¹⁰⁷⁵ is exactly half the smallest subnormal and rounds (tie to even) to 0, so the vector carries an UNDERFLOW approximation; f = 2⁻²¹⁴⁸ is positive but rounds to 0 (numerical limit); |∇f| = 2⁻¹⁰⁷⁴·√4.25 rounds to 2⁻¹⁰⁷³ (subnormal, approximate); the direction (a, b)/√(a² + b²) is defined because p ≠ 0. Correctly rounded values from exact rational arithmetic in tests/reference/oracles/quadratic-surface-gradient.ts (no shared code with the catalogue kernel).",
+        "params": {
+          "a": 2,
+          "b": 0.5,
+          "c": 1,
+          "px": 5e-324,
+          "py": 0
+        },
+        "position": {
+          "kind": "static"
+        },
+        "outcome": "numerical-limit",
+        "statuses": {
+          "value": "numerical-limit:UNDERFLOW",
+          "gradient": "valid:UNDERFLOW",
+          "gradient.norm": "valid:UNDERFLOW"
+        },
+        "rejection": null,
+        "expected": {
+          "outcome": "numerical-limit",
+          "statuses": {
+            "value": "numerical-limit:UNDERFLOW",
+            "gradient": "valid:UNDERFLOW",
+            "gradient.norm": "valid:UNDERFLOW"
+          }
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "tiny-point-diagonal",
+        "source": "declared",
+        "label": "p = (2⁻¹⁰⁷⁴, 2⁻¹⁰⁷⁴) with a = c = 0.25: both gradient components round to 0 but the direction is still (√½, √½), never ZERO_GRADIENT",
+        "rationale": "From reference case tiny-point-diagonal: Hand derivation from f = (a·x² + 2b·x·y + c·y²)/2 and ∇f = (a·x + b·y, b·x + c·y): ∇f = 2⁻¹⁰⁷⁶·(1, 1); each component is below half the smallest subnormal and rounds to 0 (approximation), |∇f| = 2⁻¹⁰⁷⁶·√2 = 2⁻¹⁰⁷⁵·⁵ is below half the smallest subnormal and rounds to 0 (numerical limit), f rounds to 0 (numerical limit). The zero-gradient case is decided from p, so the direction (√½, √½) is reported. Correctly rounded values from exact rational arithmetic in tests/reference/oracles/quadratic-surface-gradient.ts (no shared code with the catalogue kernel).",
+        "params": {
+          "a": 0.25,
+          "b": 0,
+          "c": 0.25,
+          "px": 5e-324,
+          "py": 5e-324
+        },
+        "position": {
+          "kind": "static"
+        },
+        "outcome": "numerical-limit",
+        "statuses": {
+          "value": "numerical-limit:UNDERFLOW",
+          "gradient": "valid:UNDERFLOW",
+          "gradient.norm": "numerical-limit:UNDERFLOW"
+        },
+        "rejection": null,
+        "expected": {
+          "outcome": "numerical-limit",
+          "statuses": {
+            "value": "numerical-limit:UNDERFLOW",
+            "gradient": "valid:UNDERFLOW",
+            "gradient.norm": "numerical-limit:UNDERFLOW"
+          }
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "small-point-subnormal-height",
+        "source": "declared",
+        "label": "p = (10⁻¹⁶⁰, −3·10⁻¹⁶⁰): the gradient is normal but f ≈ 4·10⁻³²⁰ is subnormal (approximate)",
+        "rationale": "From reference case small-point-subnormal-height: Every value from exact rational arithmetic in tests/reference/oracles/quadratic-surface-gradient.ts (no shared code with the catalogue kernel) for the exact rational values of the double inputs. Hand estimate: f ≈ (2·1 − 3 + 9)·10⁻³²⁰/2 = 4·10⁻³²⁰, below 2⁻¹⁰²² ≈ 2.2·10⁻³⁰⁸, so f is a reduced-precision approximation while ∇f ≈ (−0.5, −2.5)·10⁻¹⁶⁰ is normal.",
+        "params": {
+          "a": 2,
+          "b": 0.5,
+          "c": 1,
+          "px": 1e-160,
+          "py": -3e-160
+        },
+        "position": {
+          "kind": "static"
+        },
+        "outcome": "valid",
+        "statuses": {
+          "value": "valid:UNDERFLOW"
+        },
+        "rejection": null,
+        "expected": {
+          "outcome": "valid",
+          "statuses": {
+            "value": "valid:UNDERFLOW"
+          }
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "singular-unit",
+        "source": "declared",
+        "label": "a = b = c = 1: a·c − b² = 0 exactly, rejected (minimum exclusive)",
+        "rationale": "From reference case singular-unit: Hand derivation: 1·1 − 1² = 0; the trough has a line of minima and is outside the model.",
+        "params": {
+          "a": 1,
+          "b": 1,
+          "c": 1,
+          "px": 1,
+          "py": 1
+        },
+        "position": {
+          "kind": "static"
+        },
+        "outcome": "out-of-domain",
+        "statuses": {},
+        "rejection": [
+          {
+            "code": "CONSTRAINT_VIOLATION",
+            "path": "$.constraints.positive-definite",
+            "message": "The coefficients must satisfy a·c − b² > 0. Only then is the surface a bowl with a single lowest point, which is the family this activity covers; at a·c − b² = 0 the surface becomes a trough with a whole line of lowest points, and below 0 a saddle."
+          }
+        ],
+        "expected": {
+          "outcome": "out-of-domain"
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "singular-wide",
+        "source": "declared",
+        "label": "a = 4, b = 2, c = 1: a·c − b² = 0 exactly, rejected",
+        "rationale": "From reference case singular-wide: Hand derivation: 4·1 − 2² = 0.",
+        "params": {
+          "a": 4,
+          "b": 2,
+          "c": 1,
+          "px": 0.5,
+          "py": -1
+        },
+        "position": {
+          "kind": "static"
+        },
+        "outcome": "out-of-domain",
+        "statuses": {},
+        "rejection": [
+          {
+            "code": "CONSTRAINT_VIOLATION",
+            "path": "$.constraints.positive-definite",
+            "message": "The coefficients must satisfy a·c − b² > 0. Only then is the surface a bowl with a single lowest point, which is the family this activity covers; at a·c − b² = 0 the surface becomes a trough with a whole line of lowest points, and below 0 a saddle."
+          }
+        ],
+        "expected": {
+          "outcome": "out-of-domain"
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "singular-negative-b",
+        "source": "declared",
+        "label": "a = 0.5, b = −1, c = 2: a·c − b² = 0 exactly, rejected",
+        "rationale": "From reference case singular-negative-b: Hand derivation: 0.5·2 − (−1)² = 0.",
+        "params": {
+          "a": 0.5,
+          "b": -1,
+          "c": 2,
+          "px": 0,
+          "py": 0
+        },
+        "position": {
+          "kind": "static"
+        },
+        "outcome": "out-of-domain",
+        "statuses": {},
+        "rejection": [
+          {
+            "code": "CONSTRAINT_VIOLATION",
+            "path": "$.constraints.positive-definite",
+            "message": "The coefficients must satisfy a·c − b² > 0. Only then is the surface a bowl with a single lowest point, which is the family this activity covers; at a·c − b² = 0 the surface becomes a trough with a whole line of lowest points, and below 0 a saddle."
+          }
+        ],
+        "expected": {
+          "outcome": "out-of-domain"
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "singular-largest-b",
+        "source": "declared",
+        "label": "a = c = 2, b = −2: a·c − b² = 0 exactly, rejected",
+        "rationale": "From reference case singular-largest-b: Hand derivation: 2·2 − 4 = 0.",
+        "params": {
+          "a": 2,
+          "b": -2,
+          "c": 2,
+          "px": 1,
+          "py": 1
+        },
+        "position": {
+          "kind": "static"
+        },
+        "outcome": "out-of-domain",
+        "statuses": {},
+        "rejection": [
+          {
+            "code": "CONSTRAINT_VIOLATION",
+            "path": "$.constraints.positive-definite",
+            "message": "The coefficients must satisfy a·c − b² > 0. Only then is the surface a bowl with a single lowest point, which is the family this activity covers; at a·c − b² = 0 the surface becomes a trough with a whole line of lowest points, and below 0 a saddle."
+          }
+        ],
+        "expected": {
+          "outcome": "out-of-domain"
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "saddle",
+        "source": "declared",
+        "label": "a = 1, b = 1.5, c = 2: a·c − b² = −0.25 < 0 (a saddle), rejected",
+        "rationale": "From reference case saddle: Hand derivation: 2 − 2.25 = −0.25.",
+        "params": {
+          "a": 1,
+          "b": 1.5,
+          "c": 2,
+          "px": 1,
+          "py": 1
+        },
+        "position": {
+          "kind": "static"
+        },
+        "outcome": "out-of-domain",
+        "statuses": {},
+        "rejection": [
+          {
+            "code": "CONSTRAINT_VIOLATION",
+            "path": "$.constraints.positive-definite",
+            "message": "The coefficients must satisfy a·c − b² > 0. Only then is the surface a bowl with a single lowest point, which is the family this activity covers; at a·c − b² = 0 the surface becomes a trough with a whole line of lowest points, and below 0 a saddle."
+          }
+        ],
+        "expected": {
+          "outcome": "out-of-domain"
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "a-below-range",
+        "source": "declared",
+        "label": "a = 0.1 is below the parameter range [0.2, 4]",
+        "rationale": "From reference case a-below-range: Declared parameter bounds.",
+        "params": {
+          "a": 0.1,
+          "b": 0,
+          "c": 1,
+          "px": 1,
+          "py": 1
+        },
+        "position": {
+          "kind": "static"
+        },
+        "outcome": "out-of-domain",
+        "statuses": {},
+        "rejection": [
+          {
+            "code": "OUT_OF_DOMAIN",
+            "path": "$.parameters.a",
+            "message": "Expected a value from 0.2 to 4."
+          }
+        ],
+        "expected": {
+          "outcome": "out-of-domain"
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "point-outside-range",
+        "source": "declared",
+        "label": "p_x = 2.5 is outside the point range [−2, 2]",
+        "rationale": "From reference case point-outside-range: Declared parameter bounds.",
+        "params": {
+          "a": 2,
+          "b": 0.5,
+          "c": 1,
+          "px": 2.5,
+          "py": 0
+        },
+        "position": {
+          "kind": "static"
+        },
+        "outcome": "out-of-domain",
+        "statuses": {},
+        "rejection": [
+          {
+            "code": "OUT_OF_DOMAIN",
+            "path": "$.parameters.px",
+            "message": "Expected a value from -2 to 2."
+          }
+        ],
+        "expected": {
+          "outcome": "out-of-domain"
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "generated.a.min",
+        "source": "generated",
+        "label": "a at its minimum 0.2",
+        "rationale": "Generated probe: lower end of the declared domain (other parameters at defaults).",
+        "params": {
+          "a": 0.2,
+          "b": 0.5,
+          "c": 1,
+          "px": 1,
+          "py": 1
+        },
+        "position": {
+          "kind": "static"
+        },
+        "outcome": "out-of-domain",
+        "statuses": {},
+        "rejection": [
+          {
+            "code": "CONSTRAINT_VIOLATION",
+            "path": "$.constraints.positive-definite",
+            "message": "The coefficients must satisfy a·c − b² > 0. Only then is the surface a bowl with a single lowest point, which is the family this activity covers; at a·c − b² = 0 the surface becomes a trough with a whole line of lowest points, and below 0 a saddle."
+          }
+        ],
+        "expected": null,
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "generated.a.max",
+        "source": "generated",
+        "label": "a at its maximum 4",
+        "rationale": "Generated probe: upper end of the declared domain (other parameters at defaults).",
+        "params": {
+          "a": 4,
+          "b": 0.5,
+          "c": 1,
+          "px": 1,
+          "py": 1
+        },
+        "position": {
+          "kind": "static"
+        },
+        "outcome": "valid",
+        "statuses": {},
+        "rejection": null,
+        "expected": null,
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "generated.a.below",
+        "source": "generated",
+        "label": "a just below its minimum",
+        "rationale": "Generated probe: just outside the declared domain; must be rejected before evaluation.",
+        "params": {
+          "a": 0.1999962,
+          "b": 0.5,
+          "c": 1,
+          "px": 1,
+          "py": 1
+        },
+        "position": {
+          "kind": "static"
+        },
+        "outcome": "out-of-domain",
+        "statuses": {},
+        "rejection": [
+          {
+            "code": "OUT_OF_DOMAIN",
+            "path": "$.parameters.a",
+            "message": "Expected a value from 0.2 to 4."
+          }
+        ],
+        "expected": {
+          "outcome": "out-of-domain"
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "generated.a.above",
+        "source": "generated",
+        "label": "a just above its maximum",
+        "rationale": "Generated probe: just outside the declared domain; must be rejected before evaluation.",
+        "params": {
+          "a": 4.000004,
+          "b": 0.5,
+          "c": 1,
+          "px": 1,
+          "py": 1
+        },
+        "position": {
+          "kind": "static"
+        },
+        "outcome": "out-of-domain",
+        "statuses": {},
+        "rejection": [
+          {
+            "code": "OUT_OF_DOMAIN",
+            "path": "$.parameters.a",
+            "message": "Expected a value from 0.2 to 4."
+          }
+        ],
+        "expected": {
+          "outcome": "out-of-domain"
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "generated.b.min",
+        "source": "generated",
+        "label": "b at its minimum -2",
+        "rationale": "Generated probe: lower end of the declared domain (other parameters at defaults).",
+        "params": {
+          "a": 2,
+          "b": -2,
+          "c": 1,
+          "px": 1,
+          "py": 1
+        },
+        "position": {
+          "kind": "static"
+        },
+        "outcome": "out-of-domain",
+        "statuses": {},
+        "rejection": [
+          {
+            "code": "CONSTRAINT_VIOLATION",
+            "path": "$.constraints.positive-definite",
+            "message": "The coefficients must satisfy a·c − b² > 0. Only then is the surface a bowl with a single lowest point, which is the family this activity covers; at a·c − b² = 0 the surface becomes a trough with a whole line of lowest points, and below 0 a saddle."
+          }
+        ],
+        "expected": null,
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "generated.b.max",
+        "source": "generated",
+        "label": "b at its maximum 2",
+        "rationale": "Generated probe: upper end of the declared domain (other parameters at defaults).",
+        "params": {
+          "a": 2,
+          "b": 2,
+          "c": 1,
+          "px": 1,
+          "py": 1
+        },
+        "position": {
+          "kind": "static"
+        },
+        "outcome": "out-of-domain",
+        "statuses": {},
+        "rejection": [
+          {
+            "code": "CONSTRAINT_VIOLATION",
+            "path": "$.constraints.positive-definite",
+            "message": "The coefficients must satisfy a·c − b² > 0. Only then is the surface a bowl with a single lowest point, which is the family this activity covers; at a·c − b² = 0 the surface becomes a trough with a whole line of lowest points, and below 0 a saddle."
+          }
+        ],
+        "expected": null,
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "generated.b.below",
+        "source": "generated",
+        "label": "b just below its minimum",
+        "rationale": "Generated probe: just outside the declared domain; must be rejected before evaluation.",
+        "params": {
+          "a": 2,
+          "b": -2.000004,
+          "c": 1,
+          "px": 1,
+          "py": 1
+        },
+        "position": {
+          "kind": "static"
+        },
+        "outcome": "out-of-domain",
+        "statuses": {},
+        "rejection": [
+          {
+            "code": "OUT_OF_DOMAIN",
+            "path": "$.parameters.b",
+            "message": "Expected a value from -2 to 2."
+          }
+        ],
+        "expected": {
+          "outcome": "out-of-domain"
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "generated.b.above",
+        "source": "generated",
+        "label": "b just above its maximum",
+        "rationale": "Generated probe: just outside the declared domain; must be rejected before evaluation.",
+        "params": {
+          "a": 2,
+          "b": 2.000004,
+          "c": 1,
+          "px": 1,
+          "py": 1
+        },
+        "position": {
+          "kind": "static"
+        },
+        "outcome": "out-of-domain",
+        "statuses": {},
+        "rejection": [
+          {
+            "code": "OUT_OF_DOMAIN",
+            "path": "$.parameters.b",
+            "message": "Expected a value from -2 to 2."
+          }
+        ],
+        "expected": {
+          "outcome": "out-of-domain"
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "generated.c.min",
+        "source": "generated",
+        "label": "c at its minimum 0.2",
+        "rationale": "Generated probe: lower end of the declared domain (other parameters at defaults).",
+        "params": {
+          "a": 2,
+          "b": 0.5,
+          "c": 0.2,
+          "px": 1,
+          "py": 1
+        },
+        "position": {
+          "kind": "static"
+        },
+        "outcome": "valid",
+        "statuses": {},
+        "rejection": null,
+        "expected": null,
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "generated.c.max",
+        "source": "generated",
+        "label": "c at its maximum 4",
+        "rationale": "Generated probe: upper end of the declared domain (other parameters at defaults).",
+        "params": {
+          "a": 2,
+          "b": 0.5,
+          "c": 4,
+          "px": 1,
+          "py": 1
+        },
+        "position": {
+          "kind": "static"
+        },
+        "outcome": "valid",
+        "statuses": {},
+        "rejection": null,
+        "expected": null,
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "generated.c.below",
+        "source": "generated",
+        "label": "c just below its minimum",
+        "rationale": "Generated probe: just outside the declared domain; must be rejected before evaluation.",
+        "params": {
+          "a": 2,
+          "b": 0.5,
+          "c": 0.1999962,
+          "px": 1,
+          "py": 1
+        },
+        "position": {
+          "kind": "static"
+        },
+        "outcome": "out-of-domain",
+        "statuses": {},
+        "rejection": [
+          {
+            "code": "OUT_OF_DOMAIN",
+            "path": "$.parameters.c",
+            "message": "Expected a value from 0.2 to 4."
+          }
+        ],
+        "expected": {
+          "outcome": "out-of-domain"
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "generated.c.above",
+        "source": "generated",
+        "label": "c just above its maximum",
+        "rationale": "Generated probe: just outside the declared domain; must be rejected before evaluation.",
+        "params": {
+          "a": 2,
+          "b": 0.5,
+          "c": 4.000004,
+          "px": 1,
+          "py": 1
+        },
+        "position": {
+          "kind": "static"
+        },
+        "outcome": "out-of-domain",
+        "statuses": {},
+        "rejection": [
+          {
+            "code": "OUT_OF_DOMAIN",
+            "path": "$.parameters.c",
+            "message": "Expected a value from 0.2 to 4."
+          }
+        ],
+        "expected": {
+          "outcome": "out-of-domain"
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "generated.px.min",
+        "source": "generated",
+        "label": "px at its minimum -2",
+        "rationale": "Generated probe: lower end of the declared domain (other parameters at defaults).",
+        "params": {
+          "a": 2,
+          "b": 0.5,
+          "c": 1,
+          "px": -2,
+          "py": 1
+        },
+        "position": {
+          "kind": "static"
+        },
+        "outcome": "valid",
+        "statuses": {},
+        "rejection": null,
+        "expected": null,
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "generated.px.max",
+        "source": "generated",
+        "label": "px at its maximum 2",
+        "rationale": "Generated probe: upper end of the declared domain (other parameters at defaults).",
+        "params": {
+          "a": 2,
+          "b": 0.5,
+          "c": 1,
+          "px": 2,
+          "py": 1
+        },
+        "position": {
+          "kind": "static"
+        },
+        "outcome": "valid",
+        "statuses": {},
+        "rejection": null,
+        "expected": null,
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "generated.px.below",
+        "source": "generated",
+        "label": "px just below its minimum",
+        "rationale": "Generated probe: just outside the declared domain; must be rejected before evaluation.",
+        "params": {
+          "a": 2,
+          "b": 0.5,
+          "c": 1,
+          "px": -2.000004,
+          "py": 1
+        },
+        "position": {
+          "kind": "static"
+        },
+        "outcome": "out-of-domain",
+        "statuses": {},
+        "rejection": [
+          {
+            "code": "OUT_OF_DOMAIN",
+            "path": "$.parameters.px",
+            "message": "Expected a value from -2 to 2."
+          }
+        ],
+        "expected": {
+          "outcome": "out-of-domain"
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "generated.px.above",
+        "source": "generated",
+        "label": "px just above its maximum",
+        "rationale": "Generated probe: just outside the declared domain; must be rejected before evaluation.",
+        "params": {
+          "a": 2,
+          "b": 0.5,
+          "c": 1,
+          "px": 2.000004,
+          "py": 1
+        },
+        "position": {
+          "kind": "static"
+        },
+        "outcome": "out-of-domain",
+        "statuses": {},
+        "rejection": [
+          {
+            "code": "OUT_OF_DOMAIN",
+            "path": "$.parameters.px",
+            "message": "Expected a value from -2 to 2."
+          }
+        ],
+        "expected": {
+          "outcome": "out-of-domain"
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "generated.py.min",
+        "source": "generated",
+        "label": "py at its minimum -2",
+        "rationale": "Generated probe: lower end of the declared domain (other parameters at defaults).",
+        "params": {
+          "a": 2,
+          "b": 0.5,
+          "c": 1,
+          "px": 1,
+          "py": -2
+        },
+        "position": {
+          "kind": "static"
+        },
+        "outcome": "valid",
+        "statuses": {},
+        "rejection": null,
+        "expected": null,
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "generated.py.max",
+        "source": "generated",
+        "label": "py at its maximum 2",
+        "rationale": "Generated probe: upper end of the declared domain (other parameters at defaults).",
+        "params": {
+          "a": 2,
+          "b": 0.5,
+          "c": 1,
+          "px": 1,
+          "py": 2
+        },
+        "position": {
+          "kind": "static"
+        },
+        "outcome": "valid",
+        "statuses": {},
+        "rejection": null,
+        "expected": null,
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "generated.py.below",
+        "source": "generated",
+        "label": "py just below its minimum",
+        "rationale": "Generated probe: just outside the declared domain; must be rejected before evaluation.",
+        "params": {
+          "a": 2,
+          "b": 0.5,
+          "c": 1,
+          "px": 1,
+          "py": -2.000004
+        },
+        "position": {
+          "kind": "static"
+        },
+        "outcome": "out-of-domain",
+        "statuses": {},
+        "rejection": [
+          {
+            "code": "OUT_OF_DOMAIN",
+            "path": "$.parameters.py",
+            "message": "Expected a value from -2 to 2."
+          }
+        ],
+        "expected": {
+          "outcome": "out-of-domain"
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "generated.py.above",
+        "source": "generated",
+        "label": "py just above its maximum",
+        "rationale": "Generated probe: just outside the declared domain; must be rejected before evaluation.",
+        "params": {
+          "a": 2,
+          "b": 0.5,
+          "c": 1,
+          "px": 1,
+          "py": 2.000004
+        },
+        "position": {
+          "kind": "static"
+        },
+        "outcome": "out-of-domain",
+        "statuses": {},
+        "rejection": [
+          {
+            "code": "OUT_OF_DOMAIN",
+            "path": "$.parameters.py",
+            "message": "Expected a value from -2 to 2."
+          }
+        ],
+        "expected": {
+          "outcome": "out-of-domain"
+        },
+        "matches": true,
+        "mismatches": []
+      }
+    ]
+  },
+  "check": {
+    "worker": {
+      "kernels": [
+        {
+          "id": "quadratic-gradient-descent",
+          "version": "1.0.0",
+          "mode": "discrete"
+        },
+        {
+          "id": "function-derivative",
+          "version": "1.0.0",
+          "mode": "static"
+        },
+        {
+          "id": "linear-transformation",
+          "version": "1.0.0",
+          "mode": "static"
+        },
+        {
+          "id": "vector-orientation-3d",
+          "version": "1.0.0",
+          "mode": "static"
+        },
+        {
+          "id": "quadratic-surface-gradient",
+          "version": "1.1.0",
+          "mode": "static"
+        }
+      ],
+      "checks": null,
+      "checksError": null
+    },
+    "loadError": null,
+    "defaults": {
+      "params": {
+        "a": 2,
+        "b": 0.5,
+        "c": 1,
+        "px": 1,
+        "py": 1
+      },
+      "position": {
+        "kind": "static"
+      },
+      "terminal": {
+        "reached": false
+      },
+      "quantities": {
+        "point": "valid",
+        "value": "valid",
+        "gradient": "valid",
+        "gradient.norm": "valid",
+        "gradient.direction": "valid",
+        "hessian.det": "valid",
+        "minimum.location": "valid",
+        "minimum.value": "valid",
+        "arrow.scale": "valid"
+      },
+      "geometry": {
+        "surface": {
+          "kind": "surface-grid",
+          "elements": 1681,
+          "sampling": {
+            "nx": 41,
+            "ny": 41,
+            "domain": [
+              -2,
+              2,
+              -2,
+              2
+            ]
+          }
+        },
+        "contours": {
+          "kind": "polyline2",
+          "elements": 5
+        },
+        "field": {
+          "kind": "vector-field2",
+          "elements": 81
+        },
+        "cross-section-x": {
+          "kind": "polyline2",
+          "elements": 1,
+          "sampling": {
+            "samples": 81,
+            "domain": [
+              -2,
+              2
+            ]
+          }
+        },
+        "cross-section-y": {
+          "kind": "polyline2",
+          "elements": 1,
+          "sampling": {
+            "samples": 81,
+            "domain": [
+              -2,
+              2
+            ]
+          }
+        },
+        "point-2d": {
+          "kind": "points2",
+          "elements": 1
+        },
+        "point-3d": {
+          "kind": "points3",
+          "elements": 1
+        },
+        "gradient-2d": {
+          "kind": "segments2",
+          "elements": 1
+        },
+        "gradient-3d": {
+          "kind": "segments3",
+          "elements": 1
+        }
+      }
+    },
+    "scenarios": [
+      {
+        "id": "default-bowl",
+        "outcome": "valid",
+        "statuses": {
+          "point": "valid",
+          "value": "valid",
+          "gradient": "valid",
+          "gradient.norm": "valid",
+          "gradient.direction": "valid",
+          "hessian.det": "valid",
+          "minimum.location": "valid",
+          "minimum.value": "valid",
+          "arrow.scale": "valid"
+        },
+        "diagnostics": []
+      },
+      {
+        "id": "round-bowl",
+        "outcome": "valid",
+        "statuses": {
+          "point": "valid",
+          "value": "valid",
+          "gradient": "valid",
+          "gradient.norm": "valid",
+          "gradient.direction": "valid",
+          "hessian.det": "valid",
+          "minimum.location": "valid",
+          "minimum.value": "valid",
+          "arrow.scale": "valid"
+        },
+        "diagnostics": []
+      },
+      {
+        "id": "stretched-bowl",
+        "outcome": "valid",
+        "statuses": {
+          "point": "valid",
+          "value": "valid",
+          "gradient": "valid",
+          "gradient.norm": "valid",
+          "gradient.direction": "valid",
+          "hessian.det": "valid",
+          "minimum.location": "valid",
+          "minimum.value": "valid",
+          "arrow.scale": "valid"
+        },
+        "diagnostics": []
+      },
+      {
+        "id": "tilted-bowl",
+        "outcome": "valid",
+        "statuses": {
+          "point": "valid",
+          "value": "valid",
+          "gradient": "valid",
+          "gradient.norm": "valid",
+          "gradient.direction": "valid",
+          "hessian.det": "valid",
+          "minimum.location": "valid",
+          "minimum.value": "valid",
+          "arrow.scale": "valid"
+        },
+        "diagnostics": []
+      },
+      {
+        "id": "narrow-tilted-bowl",
+        "outcome": "valid",
+        "statuses": {
+          "point": "valid",
+          "value": "valid",
+          "gradient": "valid",
+          "gradient.norm": "valid",
+          "gradient.direction": "valid",
+          "hessian.det": "valid",
+          "minimum.location": "valid",
+          "minimum.value": "valid",
+          "arrow.scale": "valid"
+        },
+        "diagnostics": []
+      },
+      {
+        "id": "point-at-origin",
+        "outcome": "undefined",
+        "statuses": {
+          "point": "valid",
+          "value": "valid",
+          "gradient": "valid",
+          "gradient.norm": "valid",
+          "gradient.direction": "undefined:ZERO_GRADIENT",
+          "hessian.det": "valid",
+          "minimum.location": "valid",
+          "minimum.value": "valid",
+          "arrow.scale": "valid"
+        },
+        "diagnostics": []
+      }
+    ],
+    "checks": [],
+    "diagnostics": []
+  },
+  "captures": {
+    "settings": {
+      "width": 720,
+      "theme": "light",
+      "fonts": "bundled",
+      "index": 4
+    },
+    "spatial": "2d-projection-fallback",
+    "stages": [
+      {
+        "stageId": "orient",
+        "kind": "prepare",
+        "instruction": "Look at the surface and at the contour view. Each contour line joins points where f has the same value. Turn or reset the 3D view to compare them; turning the view never changes the surface or the point.",
+        "response": null,
+        "ok": true,
+        "png": "captures/orient.png",
+        "svg": "captures/orient.svg",
+        "companion": "captures/orient.txt",
+        "svgView": "surface-view",
+        "svgError": null,
+        "revealed": [],
+        "revealError": null,
+        "projectionDigest": "sha256:376c69d3c64ab1dc1492c799566cb82592ab8e4aba030f0d6ad0a3c9ffeed5e2",
+        "frameId": "sha256:0b2a0d0124e506719fb1f1d5aa5af47beca712257d60f77ab7ffa1bc19a43146",
+        "ui": "ready",
+        "reviewNotice": "Reference-checked; no independent subject review",
+        "views": [
+          {
+            "viewId": "surface-view",
+            "kind": "scene3d",
+            "title": "Surface"
+          },
+          {
+            "viewId": "contour-plot",
+            "kind": "plot2d",
+            "title": "Contour view"
+          },
+          {
+            "viewId": "section-x",
+            "kind": "plot2d",
+            "title": "Cross-section along the x-axis"
+          },
+          {
+            "viewId": "section-y",
+            "kind": "plot2d",
+            "title": "Cross-section along the y-axis"
+          },
+          {
+            "viewId": "readouts",
+            "kind": "values",
+            "title": "Values"
+          },
+          {
+            "viewId": "rules",
+            "kind": "equation",
+            "title": "Rules"
+          },
+          {
+            "viewId": "value-table",
+            "kind": "table",
+            "title": "Values table"
+          },
+          {
+            "viewId": "section-x-table",
+            "kind": "table",
+            "title": "Cross-section along the x-axis: table"
+          },
+          {
+            "viewId": "section-y-table",
+            "kind": "table",
+            "title": "Cross-section along the y-axis: table"
+          }
+        ],
+        "math": {
+          "equations": 3,
+          "plainText": 3
+        },
+        "navigatedTo": null,
+        "diagnostics": []
+      },
+      {
+        "stageId": "predict",
+        "kind": "predict",
+        "instruction": "Before the gradient is shown, make a prediction about it at the marked point p.",
+        "response": {
+          "kind": "prediction",
+          "prompt": "At the marked point p, in which direction do you expect f to increase fastest, and how do you expect that direction to sit relative to the contour line through p?",
+          "taskFamily": "surface-gradient-prediction"
+        },
+        "ok": true,
+        "png": "captures/predict.png",
+        "svg": "captures/predict.svg",
+        "companion": "captures/predict.txt",
+        "svgView": "surface-view",
+        "svgError": null,
+        "revealed": [],
+        "revealError": null,
+        "projectionDigest": "sha256:fe189972ec9b68fde5e29b929dbf85a48431ef8d3f72c6b1455832b90db97272",
+        "frameId": "sha256:7cd8a1a1e2d48c0d069e86049aa92b479a6dfa22826eb2c1c2096d0f2fc57f50",
+        "ui": "ready",
+        "reviewNotice": "Reference-checked; no independent subject review",
+        "views": [
+          {
+            "viewId": "surface-view",
+            "kind": "scene3d",
+            "title": "Surface"
+          },
+          {
+            "viewId": "contour-plot",
+            "kind": "plot2d",
+            "title": "Contour view"
+          },
+          {
+            "viewId": "section-x",
+            "kind": "plot2d",
+            "title": "Cross-section along the x-axis"
+          },
+          {
+            "viewId": "section-y",
+            "kind": "plot2d",
+            "title": "Cross-section along the y-axis"
+          },
+          {
+            "viewId": "readouts",
+            "kind": "values",
+            "title": "Values"
+          },
+          {
+            "viewId": "rules",
+            "kind": "equation",
+            "title": "Rules"
+          },
+          {
+            "viewId": "value-table",
+            "kind": "table",
+            "title": "Values table"
+          },
+          {
+            "viewId": "section-x-table",
+            "kind": "table",
+            "title": "Cross-section along the x-axis: table"
+          },
+          {
+            "viewId": "section-y-table",
+            "kind": "table",
+            "title": "Cross-section along the y-axis: table"
+          }
+        ],
+        "math": {
+          "equations": 3,
+          "plainText": 3
+        },
+        "navigatedTo": null,
+        "diagnostics": []
+      },
+      {
+        "stageId": "explore-point",
+        "kind": "explore",
+        "instruction": "Once the gradient at p is shown as an arrow and as values, move p by dragging it in the contour view, with the arrow keys or by typing coordinates, and compare the arrow with the contour lines and with your prediction.",
+        "response": null,
+        "ok": true,
+        "png": "captures/explore-point.png",
+        "svg": "captures/explore-point.svg",
+        "companion": "captures/explore-point.txt",
+        "svgView": "surface-view",
+        "svgError": null,
+        "revealed": [
+          "gradient",
+          "gradient-drawing",
+          "gradient-values"
+        ],
+        "revealError": null,
+        "projectionDigest": "sha256:55fe26a45bdd96070ed1a859bf261c3384bf3b83c337c950b18a9325720e0de6",
+        "frameId": "sha256:2942c109d8d1c9009938fb66292306a543c7fcd384477fd2fcdfaf4e78163fd4",
+        "ui": "ready",
+        "reviewNotice": "Reference-checked; no independent subject review",
+        "views": [
+          {
+            "viewId": "surface-view",
+            "kind": "scene3d",
+            "title": "Surface"
+          },
+          {
+            "viewId": "contour-plot",
+            "kind": "plot2d",
+            "title": "Contour view"
+          },
+          {
+            "viewId": "section-x",
+            "kind": "plot2d",
+            "title": "Cross-section along the x-axis"
+          },
+          {
+            "viewId": "section-y",
+            "kind": "plot2d",
+            "title": "Cross-section along the y-axis"
+          },
+          {
+            "viewId": "readouts",
+            "kind": "values",
+            "title": "Values"
+          },
+          {
+            "viewId": "rules",
+            "kind": "equation",
+            "title": "Rules"
+          },
+          {
+            "viewId": "value-table",
+            "kind": "table",
+            "title": "Values table"
+          },
+          {
+            "viewId": "section-x-table",
+            "kind": "table",
+            "title": "Cross-section along the x-axis: table"
+          },
+          {
+            "viewId": "section-y-table",
+            "kind": "table",
+            "title": "Cross-section along the y-axis: table"
+          }
+        ],
+        "math": {
+          "equations": 7,
+          "plainText": 7
+        },
+        "navigatedTo": null,
+        "diagnostics": []
+      },
+      {
+        "stageId": "explore-field",
+        "kind": "explore",
+        "instruction": "Once arrows for the gradient at a grid of points are shown, change a, b and c as well as the point, and compare how the arrows and the contour lines change together.",
+        "response": null,
+        "ok": true,
+        "png": "captures/explore-field.png",
+        "svg": "captures/explore-field.svg",
+        "companion": "captures/explore-field.txt",
+        "svgView": "surface-view",
+        "svgError": null,
+        "revealed": [
+          "gradient",
+          "gradient-drawing",
+          "gradient-values",
+          "field",
+          "minimum",
+          "minimum-values"
+        ],
+        "revealError": null,
+        "projectionDigest": "sha256:7086ff8e789a03b9a2f28c5fdce1616b6385dc513a60072e4ded5ca0a185740f",
+        "frameId": "sha256:1a8c1c87f6a565e3b408e61e7a154f64975860bb04a56cbf950ecddd886acc14",
+        "ui": "ready",
+        "reviewNotice": "Reference-checked; no independent subject review",
+        "views": [
+          {
+            "viewId": "surface-view",
+            "kind": "scene3d",
+            "title": "Surface"
+          },
+          {
+            "viewId": "contour-plot",
+            "kind": "plot2d",
+            "title": "Contour view"
+          },
+          {
+            "viewId": "section-x",
+            "kind": "plot2d",
+            "title": "Cross-section along the x-axis"
+          },
+          {
+            "viewId": "section-y",
+            "kind": "plot2d",
+            "title": "Cross-section along the y-axis"
+          },
+          {
+            "viewId": "readouts",
+            "kind": "values",
+            "title": "Values"
+          },
+          {
+            "viewId": "rules",
+            "kind": "equation",
+            "title": "Rules"
+          },
+          {
+            "viewId": "value-table",
+            "kind": "table",
+            "title": "Values table"
+          },
+          {
+            "viewId": "field-table",
+            "kind": "table",
+            "title": "Gradient field table"
+          },
+          {
+            "viewId": "section-x-table",
+            "kind": "table",
+            "title": "Cross-section along the x-axis: table"
+          },
+          {
+            "viewId": "section-y-table",
+            "kind": "table",
+            "title": "Cross-section along the y-axis: table"
+          }
+        ],
+        "math": {
+          "equations": 8,
+          "plainText": 8
+        },
+        "navigatedTo": null,
+        "diagnostics": []
+      },
+      {
+        "stageId": "explain",
+        "kind": "explain",
+        "instruction": "Explain in your own words how the gradient at a point is related to the contour lines and to the coefficients a, b and c.",
+        "response": {
+          "kind": "explanation",
+          "prompt": "How is the gradient at a point related to the contour line through that point, and how do a, b and c change the arrows?",
+          "taskFamily": "surface-gradient-explanation"
+        },
+        "ok": true,
+        "png": "captures/explain.png",
+        "svg": "captures/explain.svg",
+        "companion": "captures/explain.txt",
+        "svgView": "surface-view",
+        "svgError": null,
+        "revealed": [
+          "gradient",
+          "gradient-drawing",
+          "gradient-values",
+          "field",
+          "minimum",
+          "minimum-values"
+        ],
+        "revealError": null,
+        "projectionDigest": "sha256:06afa6758274fd94cb7dc525293c3c02cf0a8674ac54d7176696176ca033ab1c",
+        "frameId": "sha256:860cc50276ebdd6d4b3adc63f3968ab8dc2642139368cf8261b83935ef73b5f7",
+        "ui": "ready",
+        "reviewNotice": "Reference-checked; no independent subject review",
+        "views": [
+          {
+            "viewId": "surface-view",
+            "kind": "scene3d",
+            "title": "Surface"
+          },
+          {
+            "viewId": "contour-plot",
+            "kind": "plot2d",
+            "title": "Contour view"
+          },
+          {
+            "viewId": "section-x",
+            "kind": "plot2d",
+            "title": "Cross-section along the x-axis"
+          },
+          {
+            "viewId": "section-y",
+            "kind": "plot2d",
+            "title": "Cross-section along the y-axis"
+          },
+          {
+            "viewId": "readouts",
+            "kind": "values",
+            "title": "Values"
+          },
+          {
+            "viewId": "rules",
+            "kind": "equation",
+            "title": "Rules"
+          },
+          {
+            "viewId": "value-table",
+            "kind": "table",
+            "title": "Values table"
+          },
+          {
+            "viewId": "field-table",
+            "kind": "table",
+            "title": "Gradient field table"
+          },
+          {
+            "viewId": "section-x-table",
+            "kind": "table",
+            "title": "Cross-section along the x-axis: table"
+          },
+          {
+            "viewId": "section-y-table",
+            "kind": "table",
+            "title": "Cross-section along the y-axis: table"
+          }
+        ],
+        "math": {
+          "equations": 8,
+          "plainText": 8
+        },
+        "navigatedTo": null,
+        "diagnostics": []
+      },
+      {
+        "stageId": "closed",
+        "kind": "closed",
+        "instruction": "This activity is closed.",
+        "response": null,
+        "ok": true,
+        "png": "captures/closed.png",
+        "svg": null,
+        "companion": "captures/closed.txt",
+        "svgView": null,
+        "svgError": {
+          "code": "NOT_FOUND",
+          "message": "This stage shows no view; the card screenshot and companion text record the stage."
+        },
+        "revealed": [],
+        "revealError": null,
+        "projectionDigest": "sha256:38f9d7baf1a475b70bb1d09219615e61cb0cb07a89fecec16b9edd75e3a3ca02",
+        "frameId": "sha256:7d032eaa12fa31ab2aa31c2abfe8e1c28401459e9332d1234133e449da6d4abe",
+        "ui": "empty",
+        "reviewNotice": "Reference-checked; no independent subject review",
+        "views": [],
+        "math": {
+          "equations": 0,
+          "plainText": 0
+        },
+        "navigatedTo": null,
+        "diagnostics": []
+      },
+      {
+        "stageId": "free-explore",
+        "kind": "explore",
+        "instruction": "Explore freely: change a, b, c and the point, turn the 3D view, and compare the arrows, the contour lines and the cross-sections.",
+        "response": null,
+        "ok": true,
+        "png": "captures/free-explore.png",
+        "svg": "captures/free-explore.svg",
+        "companion": "captures/free-explore.txt",
+        "svgView": "surface-view",
+        "svgError": null,
+        "revealed": [
+          "gradient",
+          "gradient-drawing",
+          "gradient-values",
+          "field",
+          "minimum",
+          "minimum-values"
+        ],
+        "revealError": null,
+        "projectionDigest": "sha256:71c874a561b215fe4be6e78d1c73f39af95304700c59a221a14f1b8a182f1012",
+        "frameId": "sha256:1b4dc6ac0bb3302cfde7fca7b485bc636352c542d2b3e7b5a077573abbb653ee",
+        "ui": "ready",
+        "reviewNotice": "Reference-checked; no independent subject review",
+        "views": [
+          {
+            "viewId": "surface-view",
+            "kind": "scene3d",
+            "title": "Surface"
+          },
+          {
+            "viewId": "contour-plot",
+            "kind": "plot2d",
+            "title": "Contour view"
+          },
+          {
+            "viewId": "section-x",
+            "kind": "plot2d",
+            "title": "Cross-section along the x-axis"
+          },
+          {
+            "viewId": "section-y",
+            "kind": "plot2d",
+            "title": "Cross-section along the y-axis"
+          },
+          {
+            "viewId": "readouts",
+            "kind": "values",
+            "title": "Values"
+          },
+          {
+            "viewId": "rules",
+            "kind": "equation",
+            "title": "Rules"
+          },
+          {
+            "viewId": "value-table",
+            "kind": "table",
+            "title": "Values table"
+          },
+          {
+            "viewId": "field-table",
+            "kind": "table",
+            "title": "Gradient field table"
+          },
+          {
+            "viewId": "section-x-table",
+            "kind": "table",
+            "title": "Cross-section along the x-axis: table"
+          },
+          {
+            "viewId": "section-y-table",
+            "kind": "table",
+            "title": "Cross-section along the y-axis: table"
+          }
+        ],
+        "math": {
+          "equations": 8,
+          "plainText": 8
+        },
+        "navigatedTo": null,
+        "diagnostics": []
+      }
+    ]
+  },
+  "alternatives": [
+    {
+      "id": "without-webgl",
+      "kind": "alternative-activity",
+      "covers": [
+        "surface-view",
+        "surface-mesh",
+        "point-on-surface",
+        "gradient-arrow-3d"
+      ],
+      "equivalence": "alternative-activity",
+      "verifiedBy": "tests/browser/study-spatial.spec.ts#no-webgl-completion",
+      "namedFilePresent": true
+    },
+    {
+      "id": "contour-projection-gradient",
+      "kind": "projection-2d",
+      "covers": [
+        "point-on-surface",
+        "gradient-arrow-3d"
+      ],
+      "equivalence": "equivalent",
+      "verifiedBy": "tests/browser/study-spatial.spec.ts#contour-projection-gradient",
+      "namedFilePresent": true
+    },
+    {
+      "id": "contour-projection-shape",
+      "kind": "projection-2d",
+      "covers": [
+        "surface-view",
+        "surface-mesh"
+      ],
+      "equivalence": "partial",
+      "verifiedBy": "tests/browser/study-spatial.spec.ts#contour-projection-shape",
+      "namedFilePresent": true
+    },
+    {
+      "id": "equation-values",
+      "kind": "description",
+      "covers": [
+        "contour-plot",
+        "contour-lines",
+        "field-arrows",
+        "gradient-arrow",
+        "point-marker",
+        "minimum-marker",
+        "section-x",
+        "section-x-curve",
+        "section-y",
+        "section-y-curve"
+      ],
+      "equivalence": "equivalent",
+      "verifiedBy": "tests/browser/study-spatial.spec.ts#equation-values-equivalent",
+      "namedFilePresent": true
+    },
+    {
+      "id": "value-table",
+      "kind": "table",
+      "covers": [
+        "point-marker",
+        "gradient-arrow",
+        "minimum-marker",
+        "point-on-surface",
+        "gradient-arrow-3d"
+      ],
+      "equivalence": "equivalent",
+      "verifiedBy": "tests/browser/study-spatial.spec.ts#value-table-equivalent",
+      "namedFilePresent": true
+    },
+    {
+      "id": "field-table",
+      "kind": "table",
+      "covers": [
+        "field-arrows"
+      ],
+      "equivalence": "equivalent",
+      "verifiedBy": "tests/browser/study-spatial.spec.ts#field-table-equivalent",
+      "namedFilePresent": true
+    },
+    {
+      "id": "section-tables",
+      "kind": "table",
+      "covers": [
+        "section-x",
+        "section-x-curve",
+        "section-y",
+        "section-y-curve"
+      ],
+      "equivalence": "equivalent",
+      "verifiedBy": "tests/browser/study-spatial.spec.ts#section-tables-equivalent",
+      "namedFilePresent": true
+    },
+    {
+      "id": "text-description",
+      "kind": "description",
+      "covers": [
+        "surface-view",
+        "contour-plot",
+        "section-x",
+        "section-y"
+      ],
+      "equivalence": "partial",
+      "verifiedBy": "tests/browser/study-spatial.spec.ts#text-description",
+      "namedFilePresent": true
+    },
+    {
+      "id": "exact-entry",
+      "kind": "numeric-entry",
+      "covers": [
+        "a",
+        "b",
+        "c",
+        "px",
+        "py"
+      ],
+      "equivalence": "equivalent",
+      "verifiedBy": "tests/browser/study-spatial.spec.ts#exact-entry",
+      "namedFilePresent": true
+    },
+    {
+      "id": "keyboard-controls",
+      "kind": "keyboard",
+      "covers": [
+        "a",
+        "b",
+        "c",
+        "px",
+        "py",
+        "point-marker"
+      ],
+      "equivalence": "equivalent",
+      "verifiedBy": "tests/browser/study-spatial.spec.ts#keyboard-only",
+      "namedFilePresent": true
+    }
+  ]
+}

@@ -1,0 +1,2197 @@
+{
+  "suiteId": "vector-orientation-3d:1.0.0",
+  "model": {
+    "modelId": "vector-orientation-3d",
+    "version": "1.0.0"
+  },
+  "author": "Reference cases for report §12.4 (handedness, parallel, antiparallel, orthogonal, oblique and zero vectors) plus tolerance-boundary and numerical-limit cases. Integer cases are derived by hand; every stored value is the output of the exact oracle tests/reference/oracles/vector-orientation-3d.ts, which shares no code with the catalogue kernel.",
+  "review": "No independent human subject reviewer has approved these cases. Automated agreement is engineering evidence only.",
+  "semantics": "Right-handed frame (e_x × e_y = e_z). Inputs are the exact values of IEEE-754 doubles. u·v, the components of u×v = (u_y v_z − u_z v_y, u_z v_x − u_x v_z, u_x v_y − u_y v_x) and the lengths |u|, |v|, |u×v| are exact values rounded once to the nearest double (ties to even). θ = atan2(|u×v|, u·v) ∈ [0, π] in radians; undefined (ZERO_VECTOR) when u or v is the zero vector. The unit direction of u×v is undefined (NO_CROSS_DIRECTION) exactly when u×v = 0. Relationship with τ = 1/10¹² exactly: parallel or antiparallel when |u×v|² ≤ τ²·|u|²·|v|² (by the sign of u·v), orthogonal when (u·v)² ≤ τ²·|u|²·|v|², oblique otherwise, undefined-zero-vector when a vector is zero. The angle arc is drawn exactly when u×v ≠ 0 and θ is representable; otherwise it is empty with a reason.",
+  "format": "statuses and values cover every model quantity. Status \"valid:UNDERFLOW\" is a valid value carrying an UNDERFLOW approximation (an inexact result below the smallest normal double, or a vector with a nonzero component flushed to 0); \"numerical-limit:UNDERFLOW\" is a nonzero exact value that rounds to zero (value null); \"undefined:<CODE>\" is a mathematically undefined value (value null). Tolerances: an observed number o matches expected e when |o − e| <= absolute + relative·|e|; `exact` applies to components, dot, cross and lengths (stored as the correctly rounded double), `angle` to θ, `direction` to the unit direction of u×v. Statuses, the relationship and the arc flag always match exactly; geometry for u, v and their projections is compared exactly.",
+  "classificationTolerance": "1e-12 (the rational 1/10^12, applied to sin θ and |cos θ| through exact squared comparisons)",
+  "arc": {
+    "samples": 33,
+    "maxRadius": 1,
+    "radiusFraction": 0.5
+  },
+  "cases": [
+    {
+      "id": "handedness-ex-ey",
+      "label": "e_x × e_y = e_z (right-handed frame); orthogonal axis vectors, θ = π/2",
+      "provenance": "report §12.4 handedness check; hand-derived from the component formulas u·v = Σ u_i v_i and u×v = (u_y v_z − u_z v_y, u_z v_x − u_x v_z, u_x v_y − u_y v_x) with small integers; lengths and θ follow from |w| = √(w·w) and θ = atan2(|u×v|, u·v); every stored double cross-checked by exact rational arithmetic in tests/reference/oracles/vector-orientation-3d.ts",
+      "params": {
+        "ux": 1,
+        "uy": 0,
+        "uz": 0,
+        "vx": 0,
+        "vy": 1,
+        "vz": 0
+      },
+      "expected": {
+        "statuses": {
+          "u": "valid",
+          "v": "valid",
+          "u.norm": "valid",
+          "v.norm": "valid",
+          "dot": "valid",
+          "angle": "valid",
+          "relationship": "valid",
+          "cross": "valid",
+          "cross.norm": "valid",
+          "cross.direction": "valid",
+          "u.xy": "valid",
+          "v.xy": "valid",
+          "u.xz": "valid",
+          "v.xz": "valid",
+          "u.yz": "valid",
+          "v.yz": "valid"
+        },
+        "values": {
+          "u": [1, 0, 0],
+          "v": [0, 1, 0],
+          "u.norm": 1,
+          "v.norm": 1,
+          "dot": 0,
+          "angle": 1.5707963267948966,
+          "relationship": "orthogonal",
+          "cross": [0, 0, 1],
+          "cross.norm": 1,
+          "cross.direction": [0, 0, 1],
+          "u.xy": [1, 0],
+          "v.xy": [0, 1],
+          "u.xz": [1, 0],
+          "v.xz": [0, 0],
+          "u.yz": [0, 0],
+          "v.yz": [1, 0]
+        },
+        "arc": "drawn"
+      },
+      "tolerance": {
+        "exact": {
+          "absolute": 0,
+          "relative": 0
+        },
+        "angle": {
+          "absolute": 0,
+          "relative": 1e-15
+        },
+        "direction": {
+          "absolute": 1e-15,
+          "relative": 0
+        }
+      }
+    },
+    {
+      "id": "handedness-ey-ex",
+      "label": "e_y × e_x = −e_z: reversing the order reverses the cross product",
+      "provenance": "report §12.4 handedness check; hand-derived from the component formulas u·v = Σ u_i v_i and u×v = (u_y v_z − u_z v_y, u_z v_x − u_x v_z, u_x v_y − u_y v_x) with small integers; lengths and θ follow from |w| = √(w·w) and θ = atan2(|u×v|, u·v); every stored double cross-checked by exact rational arithmetic in tests/reference/oracles/vector-orientation-3d.ts",
+      "params": {
+        "ux": 0,
+        "uy": 1,
+        "uz": 0,
+        "vx": 1,
+        "vy": 0,
+        "vz": 0
+      },
+      "expected": {
+        "statuses": {
+          "u": "valid",
+          "v": "valid",
+          "u.norm": "valid",
+          "v.norm": "valid",
+          "dot": "valid",
+          "angle": "valid",
+          "relationship": "valid",
+          "cross": "valid",
+          "cross.norm": "valid",
+          "cross.direction": "valid",
+          "u.xy": "valid",
+          "v.xy": "valid",
+          "u.xz": "valid",
+          "v.xz": "valid",
+          "u.yz": "valid",
+          "v.yz": "valid"
+        },
+        "values": {
+          "u": [0, 1, 0],
+          "v": [1, 0, 0],
+          "u.norm": 1,
+          "v.norm": 1,
+          "dot": 0,
+          "angle": 1.5707963267948966,
+          "relationship": "orthogonal",
+          "cross": [0, 0, -1],
+          "cross.norm": 1,
+          "cross.direction": [0, 0, -1],
+          "u.xy": [0, 1],
+          "v.xy": [1, 0],
+          "u.xz": [0, 0],
+          "v.xz": [1, 0],
+          "u.yz": [1, 0],
+          "v.yz": [0, 0]
+        },
+        "arc": "drawn"
+      },
+      "tolerance": {
+        "exact": {
+          "absolute": 0,
+          "relative": 0
+        },
+        "angle": {
+          "absolute": 0,
+          "relative": 1e-15
+        },
+        "direction": {
+          "absolute": 1e-15,
+          "relative": 0
+        }
+      }
+    },
+    {
+      "id": "handedness-ey-ez",
+      "label": "e_y × e_z = e_x (cyclic order)",
+      "provenance": "handedness check (cyclic permutation); hand-derived from the component formulas u·v = Σ u_i v_i and u×v = (u_y v_z − u_z v_y, u_z v_x − u_x v_z, u_x v_y − u_y v_x) with small integers; lengths and θ follow from |w| = √(w·w) and θ = atan2(|u×v|, u·v); every stored double cross-checked by exact rational arithmetic in tests/reference/oracles/vector-orientation-3d.ts",
+      "params": {
+        "ux": 0,
+        "uy": 1,
+        "uz": 0,
+        "vx": 0,
+        "vy": 0,
+        "vz": 1
+      },
+      "expected": {
+        "statuses": {
+          "u": "valid",
+          "v": "valid",
+          "u.norm": "valid",
+          "v.norm": "valid",
+          "dot": "valid",
+          "angle": "valid",
+          "relationship": "valid",
+          "cross": "valid",
+          "cross.norm": "valid",
+          "cross.direction": "valid",
+          "u.xy": "valid",
+          "v.xy": "valid",
+          "u.xz": "valid",
+          "v.xz": "valid",
+          "u.yz": "valid",
+          "v.yz": "valid"
+        },
+        "values": {
+          "u": [0, 1, 0],
+          "v": [0, 0, 1],
+          "u.norm": 1,
+          "v.norm": 1,
+          "dot": 0,
+          "angle": 1.5707963267948966,
+          "relationship": "orthogonal",
+          "cross": [1, 0, 0],
+          "cross.norm": 1,
+          "cross.direction": [1, 0, 0],
+          "u.xy": [0, 1],
+          "v.xy": [0, 0],
+          "u.xz": [0, 0],
+          "v.xz": [0, 1],
+          "u.yz": [1, 0],
+          "v.yz": [0, 1]
+        },
+        "arc": "drawn"
+      },
+      "tolerance": {
+        "exact": {
+          "absolute": 0,
+          "relative": 0
+        },
+        "angle": {
+          "absolute": 0,
+          "relative": 1e-15
+        },
+        "direction": {
+          "absolute": 1e-15,
+          "relative": 0
+        }
+      }
+    },
+    {
+      "id": "handedness-ez-ex",
+      "label": "e_z × e_x = e_y (cyclic order)",
+      "provenance": "handedness check (cyclic permutation); hand-derived from the component formulas u·v = Σ u_i v_i and u×v = (u_y v_z − u_z v_y, u_z v_x − u_x v_z, u_x v_y − u_y v_x) with small integers; lengths and θ follow from |w| = √(w·w) and θ = atan2(|u×v|, u·v); every stored double cross-checked by exact rational arithmetic in tests/reference/oracles/vector-orientation-3d.ts",
+      "params": {
+        "ux": 0,
+        "uy": 0,
+        "uz": 1,
+        "vx": 1,
+        "vy": 0,
+        "vz": 0
+      },
+      "expected": {
+        "statuses": {
+          "u": "valid",
+          "v": "valid",
+          "u.norm": "valid",
+          "v.norm": "valid",
+          "dot": "valid",
+          "angle": "valid",
+          "relationship": "valid",
+          "cross": "valid",
+          "cross.norm": "valid",
+          "cross.direction": "valid",
+          "u.xy": "valid",
+          "v.xy": "valid",
+          "u.xz": "valid",
+          "v.xz": "valid",
+          "u.yz": "valid",
+          "v.yz": "valid"
+        },
+        "values": {
+          "u": [0, 0, 1],
+          "v": [1, 0, 0],
+          "u.norm": 1,
+          "v.norm": 1,
+          "dot": 0,
+          "angle": 1.5707963267948966,
+          "relationship": "orthogonal",
+          "cross": [0, 1, 0],
+          "cross.norm": 1,
+          "cross.direction": [0, 1, 0],
+          "u.xy": [0, 0],
+          "v.xy": [1, 0],
+          "u.xz": [0, 1],
+          "v.xz": [1, 0],
+          "u.yz": [0, 1],
+          "v.yz": [0, 0]
+        },
+        "arc": "drawn"
+      },
+      "tolerance": {
+        "exact": {
+          "absolute": 0,
+          "relative": 0
+        },
+        "angle": {
+          "absolute": 0,
+          "relative": 1e-15
+        },
+        "direction": {
+          "absolute": 1e-15,
+          "relative": 0
+        }
+      }
+    },
+    {
+      "id": "parallel-nonaxis",
+      "label": "v = 1.5·u with u = (1, 2, 2): parallel, θ = 0, u×v = 0 with no direction",
+      "provenance": "report §12.4 parallel case; hand-derived from the component formulas u·v = Σ u_i v_i and u×v = (u_y v_z − u_z v_y, u_z v_x − u_x v_z, u_x v_y − u_y v_x) with small integers; lengths and θ follow from |w| = √(w·w) and θ = atan2(|u×v|, u·v); every stored double cross-checked by exact rational arithmetic in tests/reference/oracles/vector-orientation-3d.ts",
+      "params": {
+        "ux": 1,
+        "uy": 2,
+        "uz": 2,
+        "vx": 1.5,
+        "vy": 3,
+        "vz": 3
+      },
+      "expected": {
+        "statuses": {
+          "u": "valid",
+          "v": "valid",
+          "u.norm": "valid",
+          "v.norm": "valid",
+          "dot": "valid",
+          "angle": "valid",
+          "relationship": "valid",
+          "cross": "valid",
+          "cross.norm": "valid",
+          "cross.direction": "undefined:NO_CROSS_DIRECTION",
+          "u.xy": "valid",
+          "v.xy": "valid",
+          "u.xz": "valid",
+          "v.xz": "valid",
+          "u.yz": "valid",
+          "v.yz": "valid"
+        },
+        "values": {
+          "u": [1, 2, 2],
+          "v": [1.5, 3, 3],
+          "u.norm": 3,
+          "v.norm": 4.5,
+          "dot": 13.5,
+          "angle": 0,
+          "relationship": "parallel",
+          "cross": [0, 0, 0],
+          "cross.norm": 0,
+          "cross.direction": null,
+          "u.xy": [1, 2],
+          "v.xy": [1.5, 3],
+          "u.xz": [1, 2],
+          "v.xz": [1.5, 3],
+          "u.yz": [2, 2],
+          "v.yz": [3, 3]
+        },
+        "arc": "none"
+      },
+      "tolerance": {
+        "exact": {
+          "absolute": 0,
+          "relative": 0
+        },
+        "angle": {
+          "absolute": 0,
+          "relative": 1e-15
+        },
+        "direction": {
+          "absolute": 1e-15,
+          "relative": 0
+        }
+      }
+    },
+    {
+      "id": "parallel-axis",
+      "label": "u = (0, 0, 2), v = (0, 0, 0.5): parallel along the z axis",
+      "provenance": "report §12.4 parallel case; hand-derived from the component formulas u·v = Σ u_i v_i and u×v = (u_y v_z − u_z v_y, u_z v_x − u_x v_z, u_x v_y − u_y v_x) with small integers; lengths and θ follow from |w| = √(w·w) and θ = atan2(|u×v|, u·v); every stored double cross-checked by exact rational arithmetic in tests/reference/oracles/vector-orientation-3d.ts",
+      "params": {
+        "ux": 0,
+        "uy": 0,
+        "uz": 2,
+        "vx": 0,
+        "vy": 0,
+        "vz": 0.5
+      },
+      "expected": {
+        "statuses": {
+          "u": "valid",
+          "v": "valid",
+          "u.norm": "valid",
+          "v.norm": "valid",
+          "dot": "valid",
+          "angle": "valid",
+          "relationship": "valid",
+          "cross": "valid",
+          "cross.norm": "valid",
+          "cross.direction": "undefined:NO_CROSS_DIRECTION",
+          "u.xy": "valid",
+          "v.xy": "valid",
+          "u.xz": "valid",
+          "v.xz": "valid",
+          "u.yz": "valid",
+          "v.yz": "valid"
+        },
+        "values": {
+          "u": [0, 0, 2],
+          "v": [0, 0, 0.5],
+          "u.norm": 2,
+          "v.norm": 0.5,
+          "dot": 1,
+          "angle": 0,
+          "relationship": "parallel",
+          "cross": [0, 0, 0],
+          "cross.norm": 0,
+          "cross.direction": null,
+          "u.xy": [0, 0],
+          "v.xy": [0, 0],
+          "u.xz": [0, 2],
+          "v.xz": [0, 0.5],
+          "u.yz": [0, 2],
+          "v.yz": [0, 0.5]
+        },
+        "arc": "none"
+      },
+      "tolerance": {
+        "exact": {
+          "absolute": 0,
+          "relative": 0
+        },
+        "angle": {
+          "absolute": 0,
+          "relative": 1e-15
+        },
+        "direction": {
+          "absolute": 1e-15,
+          "relative": 0
+        }
+      }
+    },
+    {
+      "id": "antiparallel-nonaxis",
+      "label": "v = −1.5·u with u = (1, 2, 2): antiparallel, θ = π, no arc because the plane of the turn is not unique",
+      "provenance": "report §12.4 antiparallel case; hand-derived from the component formulas u·v = Σ u_i v_i and u×v = (u_y v_z − u_z v_y, u_z v_x − u_x v_z, u_x v_y − u_y v_x) with small integers; lengths and θ follow from |w| = √(w·w) and θ = atan2(|u×v|, u·v); every stored double cross-checked by exact rational arithmetic in tests/reference/oracles/vector-orientation-3d.ts",
+      "params": {
+        "ux": 1,
+        "uy": 2,
+        "uz": 2,
+        "vx": -1.5,
+        "vy": -3,
+        "vz": -3
+      },
+      "expected": {
+        "statuses": {
+          "u": "valid",
+          "v": "valid",
+          "u.norm": "valid",
+          "v.norm": "valid",
+          "dot": "valid",
+          "angle": "valid",
+          "relationship": "valid",
+          "cross": "valid",
+          "cross.norm": "valid",
+          "cross.direction": "undefined:NO_CROSS_DIRECTION",
+          "u.xy": "valid",
+          "v.xy": "valid",
+          "u.xz": "valid",
+          "v.xz": "valid",
+          "u.yz": "valid",
+          "v.yz": "valid"
+        },
+        "values": {
+          "u": [1, 2, 2],
+          "v": [-1.5, -3, -3],
+          "u.norm": 3,
+          "v.norm": 4.5,
+          "dot": -13.5,
+          "angle": 3.141592653589793,
+          "relationship": "antiparallel",
+          "cross": [0, 0, 0],
+          "cross.norm": 0,
+          "cross.direction": null,
+          "u.xy": [1, 2],
+          "v.xy": [-1.5, -3],
+          "u.xz": [1, 2],
+          "v.xz": [-1.5, -3],
+          "u.yz": [2, 2],
+          "v.yz": [-3, -3]
+        },
+        "arc": "none"
+      },
+      "tolerance": {
+        "exact": {
+          "absolute": 0,
+          "relative": 0
+        },
+        "angle": {
+          "absolute": 0,
+          "relative": 1e-15
+        },
+        "direction": {
+          "absolute": 1e-15,
+          "relative": 0
+        }
+      }
+    },
+    {
+      "id": "antiparallel-axis",
+      "label": "u = (3, 0, 0), v = (−1, 0, 0): antiparallel along the x axis",
+      "provenance": "report §12.4 antiparallel case; hand-derived from the component formulas u·v = Σ u_i v_i and u×v = (u_y v_z − u_z v_y, u_z v_x − u_x v_z, u_x v_y − u_y v_x) with small integers; lengths and θ follow from |w| = √(w·w) and θ = atan2(|u×v|, u·v); every stored double cross-checked by exact rational arithmetic in tests/reference/oracles/vector-orientation-3d.ts",
+      "params": {
+        "ux": 3,
+        "uy": 0,
+        "uz": 0,
+        "vx": -1,
+        "vy": 0,
+        "vz": 0
+      },
+      "expected": {
+        "statuses": {
+          "u": "valid",
+          "v": "valid",
+          "u.norm": "valid",
+          "v.norm": "valid",
+          "dot": "valid",
+          "angle": "valid",
+          "relationship": "valid",
+          "cross": "valid",
+          "cross.norm": "valid",
+          "cross.direction": "undefined:NO_CROSS_DIRECTION",
+          "u.xy": "valid",
+          "v.xy": "valid",
+          "u.xz": "valid",
+          "v.xz": "valid",
+          "u.yz": "valid",
+          "v.yz": "valid"
+        },
+        "values": {
+          "u": [3, 0, 0],
+          "v": [-1, 0, 0],
+          "u.norm": 3,
+          "v.norm": 1,
+          "dot": -3,
+          "angle": 3.141592653589793,
+          "relationship": "antiparallel",
+          "cross": [0, 0, 0],
+          "cross.norm": 0,
+          "cross.direction": null,
+          "u.xy": [3, 0],
+          "v.xy": [-1, 0],
+          "u.xz": [3, 0],
+          "v.xz": [-1, 0],
+          "u.yz": [0, 0],
+          "v.yz": [0, 0]
+        },
+        "arc": "none"
+      },
+      "tolerance": {
+        "exact": {
+          "absolute": 0,
+          "relative": 0
+        },
+        "angle": {
+          "absolute": 0,
+          "relative": 1e-15
+        },
+        "direction": {
+          "absolute": 1e-15,
+          "relative": 0
+        }
+      }
+    },
+    {
+      "id": "orthogonal-axis",
+      "label": "u = (2, 0, 0), v = (0, 0, −3): orthogonal axis vectors, u×v = (0, 6, 0)",
+      "provenance": "report §12.4 orthogonal case (axis); hand-derived from the component formulas u·v = Σ u_i v_i and u×v = (u_y v_z − u_z v_y, u_z v_x − u_x v_z, u_x v_y − u_y v_x) with small integers; lengths and θ follow from |w| = √(w·w) and θ = atan2(|u×v|, u·v); every stored double cross-checked by exact rational arithmetic in tests/reference/oracles/vector-orientation-3d.ts",
+      "params": {
+        "ux": 2,
+        "uy": 0,
+        "uz": 0,
+        "vx": 0,
+        "vy": 0,
+        "vz": -3
+      },
+      "expected": {
+        "statuses": {
+          "u": "valid",
+          "v": "valid",
+          "u.norm": "valid",
+          "v.norm": "valid",
+          "dot": "valid",
+          "angle": "valid",
+          "relationship": "valid",
+          "cross": "valid",
+          "cross.norm": "valid",
+          "cross.direction": "valid",
+          "u.xy": "valid",
+          "v.xy": "valid",
+          "u.xz": "valid",
+          "v.xz": "valid",
+          "u.yz": "valid",
+          "v.yz": "valid"
+        },
+        "values": {
+          "u": [2, 0, 0],
+          "v": [0, 0, -3],
+          "u.norm": 2,
+          "v.norm": 3,
+          "dot": 0,
+          "angle": 1.5707963267948966,
+          "relationship": "orthogonal",
+          "cross": [0, 6, 0],
+          "cross.norm": 6,
+          "cross.direction": [0, 1, 0],
+          "u.xy": [2, 0],
+          "v.xy": [0, 0],
+          "u.xz": [2, 0],
+          "v.xz": [0, -3],
+          "u.yz": [0, 0],
+          "v.yz": [0, -3]
+        },
+        "arc": "drawn"
+      },
+      "tolerance": {
+        "exact": {
+          "absolute": 0,
+          "relative": 0
+        },
+        "angle": {
+          "absolute": 0,
+          "relative": 1e-15
+        },
+        "direction": {
+          "absolute": 1e-15,
+          "relative": 0
+        }
+      }
+    },
+    {
+      "id": "orthogonal-nonaxis",
+      "label": "u = (1, 2, 2), v = (2, 1, −2): orthogonal, u×v = (−6, 6, −3), |u×v| = 9",
+      "provenance": "report §12.4 orthogonal case (nonaxis); hand-derived from the component formulas u·v = Σ u_i v_i and u×v = (u_y v_z − u_z v_y, u_z v_x − u_x v_z, u_x v_y − u_y v_x) with small integers; lengths and θ follow from |w| = √(w·w) and θ = atan2(|u×v|, u·v); every stored double cross-checked by exact rational arithmetic in tests/reference/oracles/vector-orientation-3d.ts",
+      "params": {
+        "ux": 1,
+        "uy": 2,
+        "uz": 2,
+        "vx": 2,
+        "vy": 1,
+        "vz": -2
+      },
+      "expected": {
+        "statuses": {
+          "u": "valid",
+          "v": "valid",
+          "u.norm": "valid",
+          "v.norm": "valid",
+          "dot": "valid",
+          "angle": "valid",
+          "relationship": "valid",
+          "cross": "valid",
+          "cross.norm": "valid",
+          "cross.direction": "valid",
+          "u.xy": "valid",
+          "v.xy": "valid",
+          "u.xz": "valid",
+          "v.xz": "valid",
+          "u.yz": "valid",
+          "v.yz": "valid"
+        },
+        "values": {
+          "u": [1, 2, 2],
+          "v": [2, 1, -2],
+          "u.norm": 3,
+          "v.norm": 3,
+          "dot": 0,
+          "angle": 1.5707963267948966,
+          "relationship": "orthogonal",
+          "cross": [-6, 6, -3],
+          "cross.norm": 9,
+          "cross.direction": [-0.6666666666666666, 0.6666666666666666, -0.3333333333333333],
+          "u.xy": [1, 2],
+          "v.xy": [2, 1],
+          "u.xz": [1, 2],
+          "v.xz": [2, -2],
+          "u.yz": [2, 2],
+          "v.yz": [1, -2]
+        },
+        "arc": "drawn"
+      },
+      "tolerance": {
+        "exact": {
+          "absolute": 0,
+          "relative": 0
+        },
+        "angle": {
+          "absolute": 0,
+          "relative": 1e-15
+        },
+        "direction": {
+          "absolute": 1e-15,
+          "relative": 0
+        }
+      }
+    },
+    {
+      "id": "oblique-acute",
+      "label": "Default pair u = (2, 1, 0), v = (1, 2, 2): u·v = 4, u×v = (2, −4, 3), acute angle",
+      "provenance": "oblique case (template default); hand-derived from the component formulas u·v = Σ u_i v_i and u×v = (u_y v_z − u_z v_y, u_z v_x − u_x v_z, u_x v_y − u_y v_x) with small integers; lengths and θ follow from |w| = √(w·w) and θ = atan2(|u×v|, u·v); every stored double cross-checked by exact rational arithmetic in tests/reference/oracles/vector-orientation-3d.ts",
+      "params": {
+        "ux": 2,
+        "uy": 1,
+        "uz": 0,
+        "vx": 1,
+        "vy": 2,
+        "vz": 2
+      },
+      "expected": {
+        "statuses": {
+          "u": "valid",
+          "v": "valid",
+          "u.norm": "valid",
+          "v.norm": "valid",
+          "dot": "valid",
+          "angle": "valid",
+          "relationship": "valid",
+          "cross": "valid",
+          "cross.norm": "valid",
+          "cross.direction": "valid",
+          "u.xy": "valid",
+          "v.xy": "valid",
+          "u.xz": "valid",
+          "v.xz": "valid",
+          "u.yz": "valid",
+          "v.yz": "valid"
+        },
+        "values": {
+          "u": [2, 1, 0],
+          "v": [1, 2, 2],
+          "u.norm": 2.23606797749979,
+          "v.norm": 3,
+          "dot": 4,
+          "angle": 0.9319311825594855,
+          "relationship": "oblique",
+          "cross": [2, -4, 3],
+          "cross.norm": 5.385164807134504,
+          "cross.direction": [0.3713906763541037, -0.7427813527082074, 0.5570860145311556],
+          "u.xy": [2, 1],
+          "v.xy": [1, 2],
+          "u.xz": [2, 0],
+          "v.xz": [1, 2],
+          "u.yz": [1, 0],
+          "v.yz": [2, 2]
+        },
+        "arc": "drawn"
+      },
+      "tolerance": {
+        "exact": {
+          "absolute": 0,
+          "relative": 0
+        },
+        "angle": {
+          "absolute": 0,
+          "relative": 1e-15
+        },
+        "direction": {
+          "absolute": 1e-15,
+          "relative": 0
+        }
+      }
+    },
+    {
+      "id": "oblique-obtuse",
+      "label": "u = (1, 1, 0), v = (−2, 1, 1): u·v = −1, u×v = (1, −1, 3), obtuse angle",
+      "provenance": "oblique case (obtuse); hand-derived from the component formulas u·v = Σ u_i v_i and u×v = (u_y v_z − u_z v_y, u_z v_x − u_x v_z, u_x v_y − u_y v_x) with small integers; lengths and θ follow from |w| = √(w·w) and θ = atan2(|u×v|, u·v); every stored double cross-checked by exact rational arithmetic in tests/reference/oracles/vector-orientation-3d.ts",
+      "params": {
+        "ux": 1,
+        "uy": 1,
+        "uz": 0,
+        "vx": -2,
+        "vy": 1,
+        "vz": 1
+      },
+      "expected": {
+        "statuses": {
+          "u": "valid",
+          "v": "valid",
+          "u.norm": "valid",
+          "v.norm": "valid",
+          "dot": "valid",
+          "angle": "valid",
+          "relationship": "valid",
+          "cross": "valid",
+          "cross.norm": "valid",
+          "cross.direction": "valid",
+          "u.xy": "valid",
+          "v.xy": "valid",
+          "u.xz": "valid",
+          "v.xz": "valid",
+          "u.yz": "valid",
+          "v.yz": "valid"
+        },
+        "values": {
+          "u": [1, 1, 0],
+          "v": [-2, 1, 1],
+          "u.norm": 1.4142135623730951,
+          "v.norm": 2.449489742783178,
+          "dot": -1,
+          "angle": 1.863639098523472,
+          "relationship": "oblique",
+          "cross": [1, -1, 3],
+          "cross.norm": 3.3166247903554,
+          "cross.direction": [0.30151134457776363, -0.30151134457776363, 0.9045340337332909],
+          "u.xy": [1, 1],
+          "v.xy": [-2, 1],
+          "u.xz": [1, 0],
+          "v.xz": [-2, 1],
+          "u.yz": [1, 0],
+          "v.yz": [1, 1]
+        },
+        "arc": "drawn"
+      },
+      "tolerance": {
+        "exact": {
+          "absolute": 0,
+          "relative": 0
+        },
+        "angle": {
+          "absolute": 0,
+          "relative": 1e-15
+        },
+        "direction": {
+          "absolute": 1e-15,
+          "relative": 0
+        }
+      }
+    },
+    {
+      "id": "oblique-domain-corners",
+      "label": "u = (3, 3, 3), v = (−3, 3, −3): largest components, u×v = (−18, 0, 18) beyond the default view",
+      "provenance": "oblique case at the domain corners; hand-derived from the component formulas u·v = Σ u_i v_i and u×v = (u_y v_z − u_z v_y, u_z v_x − u_x v_z, u_x v_y − u_y v_x) with small integers; lengths and θ follow from |w| = √(w·w) and θ = atan2(|u×v|, u·v); every stored double cross-checked by exact rational arithmetic in tests/reference/oracles/vector-orientation-3d.ts",
+      "params": {
+        "ux": 3,
+        "uy": 3,
+        "uz": 3,
+        "vx": -3,
+        "vy": 3,
+        "vz": -3
+      },
+      "expected": {
+        "statuses": {
+          "u": "valid",
+          "v": "valid",
+          "u.norm": "valid",
+          "v.norm": "valid",
+          "dot": "valid",
+          "angle": "valid",
+          "relationship": "valid",
+          "cross": "valid",
+          "cross.norm": "valid",
+          "cross.direction": "valid",
+          "u.xy": "valid",
+          "v.xy": "valid",
+          "u.xz": "valid",
+          "v.xz": "valid",
+          "u.yz": "valid",
+          "v.yz": "valid"
+        },
+        "values": {
+          "u": [3, 3, 3],
+          "v": [-3, 3, -3],
+          "u.norm": 5.196152422706632,
+          "v.norm": 5.196152422706632,
+          "dot": -9,
+          "angle": 1.9106332362490186,
+          "relationship": "oblique",
+          "cross": [-18, 0, 18],
+          "cross.norm": 25.45584412271571,
+          "cross.direction": [-0.7071067811865476, 0, 0.7071067811865476],
+          "u.xy": [3, 3],
+          "v.xy": [-3, 3],
+          "u.xz": [3, 3],
+          "v.xz": [-3, -3],
+          "u.yz": [3, 3],
+          "v.yz": [3, -3]
+        },
+        "arc": "drawn"
+      },
+      "tolerance": {
+        "exact": {
+          "absolute": 0,
+          "relative": 0
+        },
+        "angle": {
+          "absolute": 0,
+          "relative": 1e-15
+        },
+        "direction": {
+          "absolute": 1e-15,
+          "relative": 0
+        }
+      }
+    },
+    {
+      "id": "zero-u",
+      "label": "u = 0: angle undefined (ZERO_VECTOR), u×v = 0 with no direction, relationship undefined-zero-vector",
+      "provenance": "report §12.4 zero-vector case; hand-derived from the component formulas u·v = Σ u_i v_i and u×v = (u_y v_z − u_z v_y, u_z v_x − u_x v_z, u_x v_y − u_y v_x) with small integers; lengths and θ follow from |w| = √(w·w) and θ = atan2(|u×v|, u·v); every stored double cross-checked by exact rational arithmetic in tests/reference/oracles/vector-orientation-3d.ts",
+      "params": {
+        "ux": 0,
+        "uy": 0,
+        "uz": 0,
+        "vx": 1,
+        "vy": 2,
+        "vz": 2
+      },
+      "expected": {
+        "statuses": {
+          "u": "valid",
+          "v": "valid",
+          "u.norm": "valid",
+          "v.norm": "valid",
+          "dot": "valid",
+          "angle": "undefined:ZERO_VECTOR",
+          "relationship": "valid",
+          "cross": "valid",
+          "cross.norm": "valid",
+          "cross.direction": "undefined:NO_CROSS_DIRECTION",
+          "u.xy": "valid",
+          "v.xy": "valid",
+          "u.xz": "valid",
+          "v.xz": "valid",
+          "u.yz": "valid",
+          "v.yz": "valid"
+        },
+        "values": {
+          "u": [0, 0, 0],
+          "v": [1, 2, 2],
+          "u.norm": 0,
+          "v.norm": 3,
+          "dot": 0,
+          "angle": null,
+          "relationship": "undefined-zero-vector",
+          "cross": [0, 0, 0],
+          "cross.norm": 0,
+          "cross.direction": null,
+          "u.xy": [0, 0],
+          "v.xy": [1, 2],
+          "u.xz": [0, 0],
+          "v.xz": [1, 2],
+          "u.yz": [0, 0],
+          "v.yz": [2, 2]
+        },
+        "arc": "none"
+      },
+      "tolerance": {
+        "exact": {
+          "absolute": 0,
+          "relative": 0
+        },
+        "angle": {
+          "absolute": 0,
+          "relative": 1e-15
+        },
+        "direction": {
+          "absolute": 1e-15,
+          "relative": 0
+        }
+      }
+    },
+    {
+      "id": "zero-v",
+      "label": "v = 0: angle undefined (ZERO_VECTOR), u×v = 0 with no direction",
+      "provenance": "report §12.4 zero-vector case; hand-derived from the component formulas u·v = Σ u_i v_i and u×v = (u_y v_z − u_z v_y, u_z v_x − u_x v_z, u_x v_y − u_y v_x) with small integers; lengths and θ follow from |w| = √(w·w) and θ = atan2(|u×v|, u·v); every stored double cross-checked by exact rational arithmetic in tests/reference/oracles/vector-orientation-3d.ts",
+      "params": {
+        "ux": -2,
+        "uy": 1,
+        "uz": 0.5,
+        "vx": 0,
+        "vy": 0,
+        "vz": 0
+      },
+      "expected": {
+        "statuses": {
+          "u": "valid",
+          "v": "valid",
+          "u.norm": "valid",
+          "v.norm": "valid",
+          "dot": "valid",
+          "angle": "undefined:ZERO_VECTOR",
+          "relationship": "valid",
+          "cross": "valid",
+          "cross.norm": "valid",
+          "cross.direction": "undefined:NO_CROSS_DIRECTION",
+          "u.xy": "valid",
+          "v.xy": "valid",
+          "u.xz": "valid",
+          "v.xz": "valid",
+          "u.yz": "valid",
+          "v.yz": "valid"
+        },
+        "values": {
+          "u": [-2, 1, 0.5],
+          "v": [0, 0, 0],
+          "u.norm": 2.29128784747792,
+          "v.norm": 0,
+          "dot": 0,
+          "angle": null,
+          "relationship": "undefined-zero-vector",
+          "cross": [0, 0, 0],
+          "cross.norm": 0,
+          "cross.direction": null,
+          "u.xy": [-2, 1],
+          "v.xy": [0, 0],
+          "u.xz": [-2, 0.5],
+          "v.xz": [0, 0],
+          "u.yz": [1, 0.5],
+          "v.yz": [0, 0]
+        },
+        "arc": "none"
+      },
+      "tolerance": {
+        "exact": {
+          "absolute": 0,
+          "relative": 0
+        },
+        "angle": {
+          "absolute": 0,
+          "relative": 1e-15
+        },
+        "direction": {
+          "absolute": 1e-15,
+          "relative": 0
+        }
+      }
+    },
+    {
+      "id": "zero-both",
+      "label": "u = v = 0: every orientation quantity undefined, lengths and products exactly 0",
+      "provenance": "report §12.4 zero-vector case; hand-derived from the component formulas u·v = Σ u_i v_i and u×v = (u_y v_z − u_z v_y, u_z v_x − u_x v_z, u_x v_y − u_y v_x) with small integers; lengths and θ follow from |w| = √(w·w) and θ = atan2(|u×v|, u·v); every stored double cross-checked by exact rational arithmetic in tests/reference/oracles/vector-orientation-3d.ts",
+      "params": {
+        "ux": 0,
+        "uy": 0,
+        "uz": 0,
+        "vx": 0,
+        "vy": 0,
+        "vz": 0
+      },
+      "expected": {
+        "statuses": {
+          "u": "valid",
+          "v": "valid",
+          "u.norm": "valid",
+          "v.norm": "valid",
+          "dot": "valid",
+          "angle": "undefined:ZERO_VECTOR",
+          "relationship": "valid",
+          "cross": "valid",
+          "cross.norm": "valid",
+          "cross.direction": "undefined:NO_CROSS_DIRECTION",
+          "u.xy": "valid",
+          "v.xy": "valid",
+          "u.xz": "valid",
+          "v.xz": "valid",
+          "u.yz": "valid",
+          "v.yz": "valid"
+        },
+        "values": {
+          "u": [0, 0, 0],
+          "v": [0, 0, 0],
+          "u.norm": 0,
+          "v.norm": 0,
+          "dot": 0,
+          "angle": null,
+          "relationship": "undefined-zero-vector",
+          "cross": [0, 0, 0],
+          "cross.norm": 0,
+          "cross.direction": null,
+          "u.xy": [0, 0],
+          "v.xy": [0, 0],
+          "u.xz": [0, 0],
+          "v.xz": [0, 0],
+          "u.yz": [0, 0],
+          "v.yz": [0, 0]
+        },
+        "arc": "none"
+      },
+      "tolerance": {
+        "exact": {
+          "absolute": 0,
+          "relative": 0
+        },
+        "angle": {
+          "absolute": 0,
+          "relative": 1e-15
+        },
+        "direction": {
+          "absolute": 1e-15,
+          "relative": 0
+        }
+      }
+    },
+    {
+      "id": "negative-zero-components",
+      "label": "u = (−0, 1, −0), v = (0, −0, 2): −0 inputs are ordinary zeros; outputs carry +0",
+      "provenance": "signed-zero handling; hand-derived from the component formulas u·v = Σ u_i v_i and u×v = (u_y v_z − u_z v_y, u_z v_x − u_x v_z, u_x v_y − u_y v_x) with small integers; lengths and θ follow from |w| = √(w·w) and θ = atan2(|u×v|, u·v); every stored double cross-checked by exact rational arithmetic in tests/reference/oracles/vector-orientation-3d.ts",
+      "params": {
+        "ux": -0,
+        "uy": 1,
+        "uz": -0,
+        "vx": 0,
+        "vy": -0,
+        "vz": 2
+      },
+      "expected": {
+        "statuses": {
+          "u": "valid",
+          "v": "valid",
+          "u.norm": "valid",
+          "v.norm": "valid",
+          "dot": "valid",
+          "angle": "valid",
+          "relationship": "valid",
+          "cross": "valid",
+          "cross.norm": "valid",
+          "cross.direction": "valid",
+          "u.xy": "valid",
+          "v.xy": "valid",
+          "u.xz": "valid",
+          "v.xz": "valid",
+          "u.yz": "valid",
+          "v.yz": "valid"
+        },
+        "values": {
+          "u": [0, 1, 0],
+          "v": [0, 0, 2],
+          "u.norm": 1,
+          "v.norm": 2,
+          "dot": 0,
+          "angle": 1.5707963267948966,
+          "relationship": "orthogonal",
+          "cross": [2, 0, 0],
+          "cross.norm": 2,
+          "cross.direction": [1, 0, 0],
+          "u.xy": [0, 1],
+          "v.xy": [0, 0],
+          "u.xz": [0, 0],
+          "v.xz": [0, 2],
+          "u.yz": [1, 0],
+          "v.yz": [0, 2]
+        },
+        "arc": "drawn"
+      },
+      "tolerance": {
+        "exact": {
+          "absolute": 0,
+          "relative": 0
+        },
+        "angle": {
+          "absolute": 0,
+          "relative": 1e-15
+        },
+        "direction": {
+          "absolute": 1e-15,
+          "relative": 0
+        }
+      }
+    },
+    {
+      "id": "near-parallel-inside",
+      "label": "u = (1, 0, 0), v = (1, b, 0) with b the double nearest 1e-12 (below it): sin θ ≤ 10⁻¹², parallel",
+      "provenance": "tolerance boundary, inside (adjacent doubles straddle sin θ = 10⁻¹²); derived by exact rational arithmetic (high-precision fixed point for θ and the unit direction) in tests/reference/oracles/vector-orientation-3d.ts, which shares no code with the catalogue kernel",
+      "params": {
+        "ux": 1,
+        "uy": 0,
+        "uz": 0,
+        "vx": 1,
+        "vy": 1e-12,
+        "vz": 0
+      },
+      "expected": {
+        "statuses": {
+          "u": "valid",
+          "v": "valid",
+          "u.norm": "valid",
+          "v.norm": "valid",
+          "dot": "valid",
+          "angle": "valid",
+          "relationship": "valid",
+          "cross": "valid",
+          "cross.norm": "valid",
+          "cross.direction": "valid",
+          "u.xy": "valid",
+          "v.xy": "valid",
+          "u.xz": "valid",
+          "v.xz": "valid",
+          "u.yz": "valid",
+          "v.yz": "valid"
+        },
+        "values": {
+          "u": [1, 0, 0],
+          "v": [1, 1e-12, 0],
+          "u.norm": 1,
+          "v.norm": 1,
+          "dot": 1,
+          "angle": 1e-12,
+          "relationship": "parallel",
+          "cross": [0, 0, 1e-12],
+          "cross.norm": 1e-12,
+          "cross.direction": [0, 0, 1],
+          "u.xy": [1, 0],
+          "v.xy": [1, 1e-12],
+          "u.xz": [1, 0],
+          "v.xz": [1, 0],
+          "u.yz": [0, 0],
+          "v.yz": [1e-12, 0]
+        },
+        "arc": "drawn"
+      },
+      "tolerance": {
+        "exact": {
+          "absolute": 0,
+          "relative": 0
+        },
+        "angle": {
+          "absolute": 0,
+          "relative": 1e-15
+        },
+        "direction": {
+          "absolute": 1e-15,
+          "relative": 0
+        }
+      }
+    },
+    {
+      "id": "near-parallel-outside",
+      "label": "u = (1, 0, 0), v = (1, b⁺, 0) with b⁺ the next double above b: sin θ > 10⁻¹², oblique",
+      "provenance": "tolerance boundary, outside (adjacent doubles straddle sin θ = 10⁻¹²); derived by exact rational arithmetic (high-precision fixed point for θ and the unit direction) in tests/reference/oracles/vector-orientation-3d.ts, which shares no code with the catalogue kernel",
+      "params": {
+        "ux": 1,
+        "uy": 0,
+        "uz": 0,
+        "vx": 1,
+        "vy": 1.0000000000000002e-12,
+        "vz": 0
+      },
+      "expected": {
+        "statuses": {
+          "u": "valid",
+          "v": "valid",
+          "u.norm": "valid",
+          "v.norm": "valid",
+          "dot": "valid",
+          "angle": "valid",
+          "relationship": "valid",
+          "cross": "valid",
+          "cross.norm": "valid",
+          "cross.direction": "valid",
+          "u.xy": "valid",
+          "v.xy": "valid",
+          "u.xz": "valid",
+          "v.xz": "valid",
+          "u.yz": "valid",
+          "v.yz": "valid"
+        },
+        "values": {
+          "u": [1, 0, 0],
+          "v": [1, 1.0000000000000002e-12, 0],
+          "u.norm": 1,
+          "v.norm": 1,
+          "dot": 1,
+          "angle": 1.0000000000000002e-12,
+          "relationship": "oblique",
+          "cross": [0, 0, 1.0000000000000002e-12],
+          "cross.norm": 1.0000000000000002e-12,
+          "cross.direction": [0, 0, 1],
+          "u.xy": [1, 0],
+          "v.xy": [1, 1.0000000000000002e-12],
+          "u.xz": [1, 0],
+          "v.xz": [1, 0],
+          "u.yz": [0, 0],
+          "v.yz": [1.0000000000000002e-12, 0]
+        },
+        "arc": "drawn"
+      },
+      "tolerance": {
+        "exact": {
+          "absolute": 0,
+          "relative": 0
+        },
+        "angle": {
+          "absolute": 0,
+          "relative": 1e-15
+        },
+        "direction": {
+          "absolute": 1e-15,
+          "relative": 0
+        }
+      }
+    },
+    {
+      "id": "near-orthogonal-inside",
+      "label": "u = (1, 0, 0), v = (b, 1, 0): |cos θ| ≤ 10⁻¹², orthogonal",
+      "provenance": "tolerance boundary, inside (adjacent doubles straddle |cos θ| = 10⁻¹²); derived by exact rational arithmetic (high-precision fixed point for θ and the unit direction) in tests/reference/oracles/vector-orientation-3d.ts, which shares no code with the catalogue kernel",
+      "params": {
+        "ux": 1,
+        "uy": 0,
+        "uz": 0,
+        "vx": 1e-12,
+        "vy": 1,
+        "vz": 0
+      },
+      "expected": {
+        "statuses": {
+          "u": "valid",
+          "v": "valid",
+          "u.norm": "valid",
+          "v.norm": "valid",
+          "dot": "valid",
+          "angle": "valid",
+          "relationship": "valid",
+          "cross": "valid",
+          "cross.norm": "valid",
+          "cross.direction": "valid",
+          "u.xy": "valid",
+          "v.xy": "valid",
+          "u.xz": "valid",
+          "v.xz": "valid",
+          "u.yz": "valid",
+          "v.yz": "valid"
+        },
+        "values": {
+          "u": [1, 0, 0],
+          "v": [1e-12, 1, 0],
+          "u.norm": 1,
+          "v.norm": 1,
+          "dot": 1e-12,
+          "angle": 1.5707963267938967,
+          "relationship": "orthogonal",
+          "cross": [0, 0, 1],
+          "cross.norm": 1,
+          "cross.direction": [0, 0, 1],
+          "u.xy": [1, 0],
+          "v.xy": [1e-12, 1],
+          "u.xz": [1, 0],
+          "v.xz": [1e-12, 0],
+          "u.yz": [0, 0],
+          "v.yz": [1, 0]
+        },
+        "arc": "drawn"
+      },
+      "tolerance": {
+        "exact": {
+          "absolute": 0,
+          "relative": 0
+        },
+        "angle": {
+          "absolute": 0,
+          "relative": 1e-15
+        },
+        "direction": {
+          "absolute": 1e-15,
+          "relative": 0
+        }
+      }
+    },
+    {
+      "id": "near-orthogonal-outside",
+      "label": "u = (1, 0, 0), v = (b⁺, 1, 0): |cos θ| > 10⁻¹², oblique",
+      "provenance": "tolerance boundary, outside (adjacent doubles straddle |cos θ| = 10⁻¹²); derived by exact rational arithmetic (high-precision fixed point for θ and the unit direction) in tests/reference/oracles/vector-orientation-3d.ts, which shares no code with the catalogue kernel",
+      "params": {
+        "ux": 1,
+        "uy": 0,
+        "uz": 0,
+        "vx": 1.0000000000000002e-12,
+        "vy": 1,
+        "vz": 0
+      },
+      "expected": {
+        "statuses": {
+          "u": "valid",
+          "v": "valid",
+          "u.norm": "valid",
+          "v.norm": "valid",
+          "dot": "valid",
+          "angle": "valid",
+          "relationship": "valid",
+          "cross": "valid",
+          "cross.norm": "valid",
+          "cross.direction": "valid",
+          "u.xy": "valid",
+          "v.xy": "valid",
+          "u.xz": "valid",
+          "v.xz": "valid",
+          "u.yz": "valid",
+          "v.yz": "valid"
+        },
+        "values": {
+          "u": [1, 0, 0],
+          "v": [1.0000000000000002e-12, 1, 0],
+          "u.norm": 1,
+          "v.norm": 1,
+          "dot": 1.0000000000000002e-12,
+          "angle": 1.5707963267938967,
+          "relationship": "oblique",
+          "cross": [0, 0, 1],
+          "cross.norm": 1,
+          "cross.direction": [0, 0, 1],
+          "u.xy": [1, 0],
+          "v.xy": [1.0000000000000002e-12, 1],
+          "u.xz": [1, 0],
+          "v.xz": [1.0000000000000002e-12, 0],
+          "u.yz": [0, 0],
+          "v.yz": [1, 0]
+        },
+        "arc": "drawn"
+      },
+      "tolerance": {
+        "exact": {
+          "absolute": 0,
+          "relative": 0
+        },
+        "angle": {
+          "absolute": 0,
+          "relative": 1e-15
+        },
+        "direction": {
+          "absolute": 1e-15,
+          "relative": 0
+        }
+      }
+    },
+    {
+      "id": "near-orthogonal-negative-inside",
+      "label": "u = (1, 0, 0), v = (−b, 1, 0): cos θ slightly negative, still orthogonal",
+      "provenance": "tolerance boundary, inside on the obtuse side; derived by exact rational arithmetic (high-precision fixed point for θ and the unit direction) in tests/reference/oracles/vector-orientation-3d.ts, which shares no code with the catalogue kernel",
+      "params": {
+        "ux": 1,
+        "uy": 0,
+        "uz": 0,
+        "vx": -1e-12,
+        "vy": 1,
+        "vz": 0
+      },
+      "expected": {
+        "statuses": {
+          "u": "valid",
+          "v": "valid",
+          "u.norm": "valid",
+          "v.norm": "valid",
+          "dot": "valid",
+          "angle": "valid",
+          "relationship": "valid",
+          "cross": "valid",
+          "cross.norm": "valid",
+          "cross.direction": "valid",
+          "u.xy": "valid",
+          "v.xy": "valid",
+          "u.xz": "valid",
+          "v.xz": "valid",
+          "u.yz": "valid",
+          "v.yz": "valid"
+        },
+        "values": {
+          "u": [1, 0, 0],
+          "v": [-1e-12, 1, 0],
+          "u.norm": 1,
+          "v.norm": 1,
+          "dot": -1e-12,
+          "angle": 1.5707963267958966,
+          "relationship": "orthogonal",
+          "cross": [0, 0, 1],
+          "cross.norm": 1,
+          "cross.direction": [0, 0, 1],
+          "u.xy": [1, 0],
+          "v.xy": [-1e-12, 1],
+          "u.xz": [1, 0],
+          "v.xz": [-1e-12, 0],
+          "u.yz": [0, 0],
+          "v.yz": [1, 0]
+        },
+        "arc": "drawn"
+      },
+      "tolerance": {
+        "exact": {
+          "absolute": 0,
+          "relative": 0
+        },
+        "angle": {
+          "absolute": 0,
+          "relative": 1e-15
+        },
+        "direction": {
+          "absolute": 1e-15,
+          "relative": 0
+        }
+      }
+    },
+    {
+      "id": "near-antiparallel-inside",
+      "label": "u = (1, 0, 0), v = (−1, b, 0): large angle π − 10⁻¹², sin θ ≤ 10⁻¹², antiparallel",
+      "provenance": "large-angle tolerance boundary, inside; derived by exact rational arithmetic (high-precision fixed point for θ and the unit direction) in tests/reference/oracles/vector-orientation-3d.ts, which shares no code with the catalogue kernel",
+      "params": {
+        "ux": 1,
+        "uy": 0,
+        "uz": 0,
+        "vx": -1,
+        "vy": 1e-12,
+        "vz": 0
+      },
+      "expected": {
+        "statuses": {
+          "u": "valid",
+          "v": "valid",
+          "u.norm": "valid",
+          "v.norm": "valid",
+          "dot": "valid",
+          "angle": "valid",
+          "relationship": "valid",
+          "cross": "valid",
+          "cross.norm": "valid",
+          "cross.direction": "valid",
+          "u.xy": "valid",
+          "v.xy": "valid",
+          "u.xz": "valid",
+          "v.xz": "valid",
+          "u.yz": "valid",
+          "v.yz": "valid"
+        },
+        "values": {
+          "u": [1, 0, 0],
+          "v": [-1, 1e-12, 0],
+          "u.norm": 1,
+          "v.norm": 1,
+          "dot": -1,
+          "angle": 3.141592653588793,
+          "relationship": "antiparallel",
+          "cross": [0, 0, 1e-12],
+          "cross.norm": 1e-12,
+          "cross.direction": [0, 0, 1],
+          "u.xy": [1, 0],
+          "v.xy": [-1, 1e-12],
+          "u.xz": [1, 0],
+          "v.xz": [-1, 0],
+          "u.yz": [0, 0],
+          "v.yz": [1e-12, 0]
+        },
+        "arc": "drawn"
+      },
+      "tolerance": {
+        "exact": {
+          "absolute": 0,
+          "relative": 0
+        },
+        "angle": {
+          "absolute": 0,
+          "relative": 1e-15
+        },
+        "direction": {
+          "absolute": 1e-15,
+          "relative": 0
+        }
+      }
+    },
+    {
+      "id": "near-antiparallel-outside",
+      "label": "u = (1, 0, 0), v = (−1, b⁺, 0): sin θ > 10⁻¹², oblique although θ rounds near π",
+      "provenance": "large-angle tolerance boundary, outside; derived by exact rational arithmetic (high-precision fixed point for θ and the unit direction) in tests/reference/oracles/vector-orientation-3d.ts, which shares no code with the catalogue kernel",
+      "params": {
+        "ux": 1,
+        "uy": 0,
+        "uz": 0,
+        "vx": -1,
+        "vy": 1.0000000000000002e-12,
+        "vz": 0
+      },
+      "expected": {
+        "statuses": {
+          "u": "valid",
+          "v": "valid",
+          "u.norm": "valid",
+          "v.norm": "valid",
+          "dot": "valid",
+          "angle": "valid",
+          "relationship": "valid",
+          "cross": "valid",
+          "cross.norm": "valid",
+          "cross.direction": "valid",
+          "u.xy": "valid",
+          "v.xy": "valid",
+          "u.xz": "valid",
+          "v.xz": "valid",
+          "u.yz": "valid",
+          "v.yz": "valid"
+        },
+        "values": {
+          "u": [1, 0, 0],
+          "v": [-1, 1.0000000000000002e-12, 0],
+          "u.norm": 1,
+          "v.norm": 1,
+          "dot": -1,
+          "angle": 3.141592653588793,
+          "relationship": "oblique",
+          "cross": [0, 0, 1.0000000000000002e-12],
+          "cross.norm": 1.0000000000000002e-12,
+          "cross.direction": [0, 0, 1],
+          "u.xy": [1, 0],
+          "v.xy": [-1, 1.0000000000000002e-12],
+          "u.xz": [1, 0],
+          "v.xz": [-1, 0],
+          "u.yz": [0, 0],
+          "v.yz": [1.0000000000000002e-12, 0]
+        },
+        "arc": "drawn"
+      },
+      "tolerance": {
+        "exact": {
+          "absolute": 0,
+          "relative": 0
+        },
+        "angle": {
+          "absolute": 0,
+          "relative": 1e-15
+        },
+        "direction": {
+          "absolute": 1e-15,
+          "relative": 0
+        }
+      }
+    },
+    {
+      "id": "near-antiparallel-nonaxis-inside",
+      "label": "u = (1, 2, 2), v = (−1, −2, −2 + 4·10⁻¹²): sin θ ≈ 0.994·10⁻¹², antiparallel",
+      "provenance": "large-angle tolerance boundary, nonaxis, inside (sin θ = √5·ε/(3·|v|)); derived by exact rational arithmetic (high-precision fixed point for θ and the unit direction) in tests/reference/oracles/vector-orientation-3d.ts, which shares no code with the catalogue kernel",
+      "params": {
+        "ux": 1,
+        "uy": 2,
+        "uz": 2,
+        "vx": -1,
+        "vy": -2,
+        "vz": -1.999999999996
+      },
+      "expected": {
+        "statuses": {
+          "u": "valid",
+          "v": "valid",
+          "u.norm": "valid",
+          "v.norm": "valid",
+          "dot": "valid",
+          "angle": "valid",
+          "relationship": "valid",
+          "cross": "valid",
+          "cross.norm": "valid",
+          "cross.direction": "valid",
+          "u.xy": "valid",
+          "v.xy": "valid",
+          "u.xz": "valid",
+          "v.xz": "valid",
+          "u.yz": "valid",
+          "v.yz": "valid"
+        },
+        "values": {
+          "u": [1, 2, 2],
+          "v": [-1, -2, -1.999999999996],
+          "u.norm": 3,
+          "v.norm": 2.9999999999973332,
+          "dot": -8.999999999992,
+          "angle": 3.1415926535887992,
+          "relationship": "antiparallel",
+          "cross": [7.999823026239028e-12, -3.999911513119514e-12, 0],
+          "cross.norm": 8.944074047319275e-12,
+          "cross.direction": [0.8944271909999159, -0.4472135954999579, 0],
+          "u.xy": [1, 2],
+          "v.xy": [-1, -2],
+          "u.xz": [1, 2],
+          "v.xz": [-1, -1.999999999996],
+          "u.yz": [2, 2],
+          "v.yz": [-2, -1.999999999996]
+        },
+        "arc": "drawn"
+      },
+      "tolerance": {
+        "exact": {
+          "absolute": 0,
+          "relative": 0
+        },
+        "angle": {
+          "absolute": 0,
+          "relative": 1e-15
+        },
+        "direction": {
+          "absolute": 1e-15,
+          "relative": 0
+        }
+      }
+    },
+    {
+      "id": "near-antiparallel-nonaxis-outside",
+      "label": "u = (1, 2, 2), v = (−1, −2, −2 + 4.05·10⁻¹²): sin θ ≈ 1.006·10⁻¹², oblique",
+      "provenance": "large-angle tolerance boundary, nonaxis, outside; derived by exact rational arithmetic (high-precision fixed point for θ and the unit direction) in tests/reference/oracles/vector-orientation-3d.ts, which shares no code with the catalogue kernel",
+      "params": {
+        "ux": 1,
+        "uy": 2,
+        "uz": 2,
+        "vx": -1,
+        "vy": -2,
+        "vz": -1.99999999999595
+      },
+      "expected": {
+        "statuses": {
+          "u": "valid",
+          "v": "valid",
+          "u.norm": "valid",
+          "v.norm": "valid",
+          "dot": "valid",
+          "angle": "valid",
+          "relationship": "valid",
+          "cross": "valid",
+          "cross.norm": "valid",
+          "cross.direction": "valid",
+          "u.xy": "valid",
+          "v.xy": "valid",
+          "u.xz": "valid",
+          "v.xz": "valid",
+          "u.yz": "valid",
+          "v.yz": "valid"
+        },
+        "values": {
+          "u": [1, 2, 2],
+          "v": [-1, -2, -1.99999999999595],
+          "u.norm": 3,
+          "v.norm": 2.9999999999973,
+          "dot": -8.9999999999919,
+          "angle": 3.141592653588787,
+          "relationship": "oblique",
+          "cross": [8.100187187665142e-12, -4.050093593832571e-12, 0],
+          "cross.norm": 9.056284591046052e-12,
+          "cross.direction": [0.8944271909999159, -0.4472135954999579, 0],
+          "u.xy": [1, 2],
+          "v.xy": [-1, -2],
+          "u.xz": [1, 2],
+          "v.xz": [-1, -1.99999999999595],
+          "u.yz": [2, 2],
+          "v.yz": [-2, -1.99999999999595]
+        },
+        "arc": "drawn"
+      },
+      "tolerance": {
+        "exact": {
+          "absolute": 0,
+          "relative": 0
+        },
+        "angle": {
+          "absolute": 0,
+          "relative": 1e-15
+        },
+        "direction": {
+          "absolute": 1e-15,
+          "relative": 0
+        }
+      }
+    },
+    {
+      "id": "decimal-near-parallel",
+      "label": "u = (0.1, 0.2, 0.3), v = (0.3, 0.6, 0.9): parallel within τ, but the binary inputs give u×v ≠ 0, so θ and the direction are defined",
+      "provenance": "decimal inputs that are not exactly proportional in binary; derived by exact rational arithmetic (high-precision fixed point for θ and the unit direction) in tests/reference/oracles/vector-orientation-3d.ts, which shares no code with the catalogue kernel",
+      "params": {
+        "ux": 0.1,
+        "uy": 0.2,
+        "uz": 0.3,
+        "vx": 0.3,
+        "vy": 0.6,
+        "vz": 0.9
+      },
+      "expected": {
+        "statuses": {
+          "u": "valid",
+          "v": "valid",
+          "u.norm": "valid",
+          "v.norm": "valid",
+          "dot": "valid",
+          "angle": "valid",
+          "relationship": "valid",
+          "cross": "valid",
+          "cross.norm": "valid",
+          "cross.direction": "valid",
+          "u.xy": "valid",
+          "v.xy": "valid",
+          "u.xz": "valid",
+          "v.xz": "valid",
+          "u.yz": "valid",
+          "v.yz": "valid"
+        },
+        "values": {
+          "u": [0.1, 0.2, 0.3],
+          "v": [0.3, 0.6, 0.9],
+          "u.norm": 0.3741657386773941,
+          "v.norm": 1.1224972160321824,
+          "dot": 0.42,
+          "angle": 7.388494503712122e-17,
+          "relationship": "parallel",
+          "cross": [2.7755575615628914e-17, -1.3877787807814457e-17, 0],
+          "cross.norm": 3.1031676915590914e-17,
+          "cross.direction": [0.8944271909999159, -0.4472135954999579, 0],
+          "u.xy": [0.1, 0.2],
+          "v.xy": [0.3, 0.6],
+          "u.xz": [0.1, 0.3],
+          "v.xz": [0.3, 0.9],
+          "u.yz": [0.2, 0.3],
+          "v.yz": [0.6, 0.9]
+        },
+        "arc": "drawn"
+      },
+      "tolerance": {
+        "exact": {
+          "absolute": 0,
+          "relative": 0
+        },
+        "angle": {
+          "absolute": 0,
+          "relative": 1e-15
+        },
+        "direction": {
+          "absolute": 1e-15,
+          "relative": 0
+        }
+      }
+    },
+    {
+      "id": "decimal-parallel-exact",
+      "label": "u = (0.1, 0.2, 0.3), v = (0.2, 0.4, 0.6): v = 2u exactly in binary, so u×v = 0 exactly and has no direction",
+      "provenance": "decimal inputs that are exactly proportional in binary (doubling is exact); derived by exact rational arithmetic (high-precision fixed point for θ and the unit direction) in tests/reference/oracles/vector-orientation-3d.ts, which shares no code with the catalogue kernel",
+      "params": {
+        "ux": 0.1,
+        "uy": 0.2,
+        "uz": 0.3,
+        "vx": 0.2,
+        "vy": 0.4,
+        "vz": 0.6
+      },
+      "expected": {
+        "statuses": {
+          "u": "valid",
+          "v": "valid",
+          "u.norm": "valid",
+          "v.norm": "valid",
+          "dot": "valid",
+          "angle": "valid",
+          "relationship": "valid",
+          "cross": "valid",
+          "cross.norm": "valid",
+          "cross.direction": "undefined:NO_CROSS_DIRECTION",
+          "u.xy": "valid",
+          "v.xy": "valid",
+          "u.xz": "valid",
+          "v.xz": "valid",
+          "u.yz": "valid",
+          "v.yz": "valid"
+        },
+        "values": {
+          "u": [0.1, 0.2, 0.3],
+          "v": [0.2, 0.4, 0.6],
+          "u.norm": 0.3741657386773941,
+          "v.norm": 0.7483314773547882,
+          "dot": 0.27999999999999997,
+          "angle": 0,
+          "relationship": "parallel",
+          "cross": [0, 0, 0],
+          "cross.norm": 0,
+          "cross.direction": null,
+          "u.xy": [0.1, 0.2],
+          "v.xy": [0.2, 0.4],
+          "u.xz": [0.1, 0.3],
+          "v.xz": [0.2, 0.6],
+          "u.yz": [0.2, 0.3],
+          "v.yz": [0.4, 0.6]
+        },
+        "arc": "none"
+      },
+      "tolerance": {
+        "exact": {
+          "absolute": 0,
+          "relative": 0
+        },
+        "angle": {
+          "absolute": 0,
+          "relative": 1e-15
+        },
+        "direction": {
+          "absolute": 1e-15,
+          "relative": 0
+        }
+      }
+    },
+    {
+      "id": "scaled-orthogonal-nonaxis",
+      "label": "The orthogonal nonaxis pair scaled by 2⁻⁵⁰⁰: same θ and direction, products near 10⁻³⁰⁰",
+      "provenance": "scale invariance of θ and direction; derived by exact rational arithmetic (high-precision fixed point for θ and the unit direction) in tests/reference/oracles/vector-orientation-3d.ts, which shares no code with the catalogue kernel",
+      "params": {
+        "ux": 3.054936363499605e-151,
+        "uy": 6.10987272699921e-151,
+        "uz": 6.10987272699921e-151,
+        "vx": 6.10987272699921e-151,
+        "vy": 3.054936363499605e-151,
+        "vz": -6.10987272699921e-151
+      },
+      "expected": {
+        "statuses": {
+          "u": "valid",
+          "v": "valid",
+          "u.norm": "valid",
+          "v.norm": "valid",
+          "dot": "valid",
+          "angle": "valid",
+          "relationship": "valid",
+          "cross": "valid",
+          "cross.norm": "valid",
+          "cross.direction": "valid",
+          "u.xy": "valid",
+          "v.xy": "valid",
+          "u.xz": "valid",
+          "v.xz": "valid",
+          "u.yz": "valid",
+          "v.yz": "valid"
+        },
+        "values": {
+          "u": [3.054936363499605e-151, 6.10987272699921e-151, 6.10987272699921e-151],
+          "v": [6.10987272699921e-151, 3.054936363499605e-151, -6.10987272699921e-151],
+          "u.norm": 9.164809090498814e-151,
+          "v.norm": 9.164809090498814e-151,
+          "dot": 0,
+          "angle": 1.5707963267948966,
+          "relationship": "orthogonal",
+          "cross": [-5.599581711019313e-301, 5.599581711019313e-301, -2.7997908555096566e-301],
+          "cross.norm": 8.39937256652897e-301,
+          "cross.direction": [-0.6666666666666666, 0.6666666666666666, -0.3333333333333333],
+          "u.xy": [3.054936363499605e-151, 6.10987272699921e-151],
+          "v.xy": [6.10987272699921e-151, 3.054936363499605e-151],
+          "u.xz": [3.054936363499605e-151, 6.10987272699921e-151],
+          "v.xz": [6.10987272699921e-151, -6.10987272699921e-151],
+          "u.yz": [6.10987272699921e-151, 6.10987272699921e-151],
+          "v.yz": [3.054936363499605e-151, -6.10987272699921e-151]
+        },
+        "arc": "drawn"
+      },
+      "tolerance": {
+        "exact": {
+          "absolute": 0,
+          "relative": 0
+        },
+        "angle": {
+          "absolute": 0,
+          "relative": 1e-15
+        },
+        "direction": {
+          "absolute": 1e-15,
+          "relative": 0
+        }
+      }
+    },
+    {
+      "id": "tiny-orthogonal-cross-underflow",
+      "label": "u = (10⁻²⁰⁰, 0, 0), v = (0, 10⁻²⁰⁰, 0): u×v ≈ (0, 0, 10⁻⁴⁰⁰) is a numerical limit, not 0; its direction (0, 0, 1) is defined",
+      "provenance": "underflow of a nonzero cross product; derived by exact rational arithmetic (high-precision fixed point for θ and the unit direction) in tests/reference/oracles/vector-orientation-3d.ts, which shares no code with the catalogue kernel",
+      "params": {
+        "ux": 1e-200,
+        "uy": 0,
+        "uz": 0,
+        "vx": 0,
+        "vy": 1e-200,
+        "vz": 0
+      },
+      "expected": {
+        "statuses": {
+          "u": "valid",
+          "v": "valid",
+          "u.norm": "valid",
+          "v.norm": "valid",
+          "dot": "valid",
+          "angle": "valid",
+          "relationship": "valid",
+          "cross": "numerical-limit:UNDERFLOW",
+          "cross.norm": "numerical-limit:UNDERFLOW",
+          "cross.direction": "valid",
+          "u.xy": "valid",
+          "v.xy": "valid",
+          "u.xz": "valid",
+          "v.xz": "valid",
+          "u.yz": "valid",
+          "v.yz": "valid"
+        },
+        "values": {
+          "u": [1e-200, 0, 0],
+          "v": [0, 1e-200, 0],
+          "u.norm": 1e-200,
+          "v.norm": 1e-200,
+          "dot": 0,
+          "angle": 1.5707963267948966,
+          "relationship": "orthogonal",
+          "cross": null,
+          "cross.norm": null,
+          "cross.direction": [0, 0, 1],
+          "u.xy": [1e-200, 0],
+          "v.xy": [0, 1e-200],
+          "u.xz": [1e-200, 0],
+          "v.xz": [0, 0],
+          "u.yz": [0, 0],
+          "v.yz": [1e-200, 0]
+        },
+        "arc": "drawn"
+      },
+      "tolerance": {
+        "exact": {
+          "absolute": 0,
+          "relative": 0
+        },
+        "angle": {
+          "absolute": 0,
+          "relative": 1e-15
+        },
+        "direction": {
+          "absolute": 1e-15,
+          "relative": 0
+        }
+      }
+    },
+    {
+      "id": "tiny-parallel-dot-underflow",
+      "label": "u = (10⁻²⁰⁰, 0, 0), v = (2·10⁻²⁰⁰, 0, 0): u·v ≈ 2·10⁻⁴⁰⁰ is a numerical limit, not 0; θ = 0 exactly",
+      "provenance": "underflow of a nonzero dot product; derived by exact rational arithmetic (high-precision fixed point for θ and the unit direction) in tests/reference/oracles/vector-orientation-3d.ts, which shares no code with the catalogue kernel",
+      "params": {
+        "ux": 1e-200,
+        "uy": 0,
+        "uz": 0,
+        "vx": 2e-200,
+        "vy": 0,
+        "vz": 0
+      },
+      "expected": {
+        "statuses": {
+          "u": "valid",
+          "v": "valid",
+          "u.norm": "valid",
+          "v.norm": "valid",
+          "dot": "numerical-limit:UNDERFLOW",
+          "angle": "valid",
+          "relationship": "valid",
+          "cross": "valid",
+          "cross.norm": "valid",
+          "cross.direction": "undefined:NO_CROSS_DIRECTION",
+          "u.xy": "valid",
+          "v.xy": "valid",
+          "u.xz": "valid",
+          "v.xz": "valid",
+          "u.yz": "valid",
+          "v.yz": "valid"
+        },
+        "values": {
+          "u": [1e-200, 0, 0],
+          "v": [2e-200, 0, 0],
+          "u.norm": 1e-200,
+          "v.norm": 2e-200,
+          "dot": null,
+          "angle": 0,
+          "relationship": "parallel",
+          "cross": [0, 0, 0],
+          "cross.norm": 0,
+          "cross.direction": null,
+          "u.xy": [1e-200, 0],
+          "v.xy": [2e-200, 0],
+          "u.xz": [1e-200, 0],
+          "v.xz": [2e-200, 0],
+          "u.yz": [0, 0],
+          "v.yz": [0, 0]
+        },
+        "arc": "none"
+      },
+      "tolerance": {
+        "exact": {
+          "absolute": 0,
+          "relative": 0
+        },
+        "angle": {
+          "absolute": 0,
+          "relative": 1e-15
+        },
+        "direction": {
+          "absolute": 1e-15,
+          "relative": 0
+        }
+      }
+    },
+    {
+      "id": "tiny-dot-subnormal",
+      "label": "u = (10⁻¹⁶⁰, 0, 0), v = (1.5·10⁻¹⁶⁰, 0, 0): u·v is subnormal and reported as a reduced-precision approximation",
+      "provenance": "subnormal rounding of a nonzero dot product; derived by exact rational arithmetic (high-precision fixed point for θ and the unit direction) in tests/reference/oracles/vector-orientation-3d.ts, which shares no code with the catalogue kernel",
+      "params": {
+        "ux": 1e-160,
+        "uy": 0,
+        "uz": 0,
+        "vx": 1.5e-160,
+        "vy": 0,
+        "vz": 0
+      },
+      "expected": {
+        "statuses": {
+          "u": "valid",
+          "v": "valid",
+          "u.norm": "valid",
+          "v.norm": "valid",
+          "dot": "valid:UNDERFLOW",
+          "angle": "valid",
+          "relationship": "valid",
+          "cross": "valid",
+          "cross.norm": "valid",
+          "cross.direction": "undefined:NO_CROSS_DIRECTION",
+          "u.xy": "valid",
+          "v.xy": "valid",
+          "u.xz": "valid",
+          "v.xz": "valid",
+          "u.yz": "valid",
+          "v.yz": "valid"
+        },
+        "values": {
+          "u": [1e-160, 0, 0],
+          "v": [1.5e-160, 0, 0],
+          "u.norm": 1e-160,
+          "v.norm": 1.5e-160,
+          "dot": 1.5e-320,
+          "angle": 0,
+          "relationship": "parallel",
+          "cross": [0, 0, 0],
+          "cross.norm": 0,
+          "cross.direction": null,
+          "u.xy": [1e-160, 0],
+          "v.xy": [1.5e-160, 0],
+          "u.xz": [1e-160, 0],
+          "v.xz": [1.5e-160, 0],
+          "u.yz": [0, 0],
+          "v.yz": [0, 0]
+        },
+        "arc": "none"
+      },
+      "tolerance": {
+        "exact": {
+          "absolute": 0,
+          "relative": 0
+        },
+        "angle": {
+          "absolute": 0,
+          "relative": 1e-15
+        },
+        "direction": {
+          "absolute": 1e-15,
+          "relative": 0
+        }
+      }
+    },
+    {
+      "id": "subnormal-angle-underflow",
+      "label": "u = (3, 0, 0), v = (3, 5·10⁻³²⁴, 0): θ ≈ 1.6·10⁻³²⁴ is a numerical limit (not 0), parallel within τ, direction (0, 0, 1) defined, no arc",
+      "provenance": "underflow of a nonzero angle; derived by exact rational arithmetic (high-precision fixed point for θ and the unit direction) in tests/reference/oracles/vector-orientation-3d.ts, which shares no code with the catalogue kernel",
+      "params": {
+        "ux": 3,
+        "uy": 0,
+        "uz": 0,
+        "vx": 3,
+        "vy": 5e-324,
+        "vz": 0
+      },
+      "expected": {
+        "statuses": {
+          "u": "valid",
+          "v": "valid",
+          "u.norm": "valid",
+          "v.norm": "valid",
+          "dot": "valid",
+          "angle": "numerical-limit:UNDERFLOW",
+          "relationship": "valid",
+          "cross": "valid",
+          "cross.norm": "valid",
+          "cross.direction": "valid",
+          "u.xy": "valid",
+          "v.xy": "valid",
+          "u.xz": "valid",
+          "v.xz": "valid",
+          "u.yz": "valid",
+          "v.yz": "valid"
+        },
+        "values": {
+          "u": [3, 0, 0],
+          "v": [3, 5e-324, 0],
+          "u.norm": 3,
+          "v.norm": 3,
+          "dot": 9,
+          "angle": null,
+          "relationship": "parallel",
+          "cross": [0, 0, 1.5e-323],
+          "cross.norm": 1.5e-323,
+          "cross.direction": [0, 0, 1],
+          "u.xy": [3, 0],
+          "v.xy": [3, 5e-324],
+          "u.xz": [3, 0],
+          "v.xz": [3, 0],
+          "u.yz": [0, 0],
+          "v.yz": [5e-324, 0]
+        },
+        "arc": "none"
+      },
+      "tolerance": {
+        "exact": {
+          "absolute": 0,
+          "relative": 0
+        },
+        "angle": {
+          "absolute": 0,
+          "relative": 1e-15
+        },
+        "direction": {
+          "absolute": 1e-15,
+          "relative": 0
+        }
+      }
+    }
+  ]
+}

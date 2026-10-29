@@ -1,0 +1,180 @@
+{
+  "schema": "explorable-models.readme-captures/1",
+  "createdAt": "2026-10-29T06:22:38.983Z",
+  "scope": "README showcase captures of actual production learner-component figures, in authorized free exploration. The existing fixture supplies host policy and worker setup; its debug interface is outside every image. Parameters and camera changes use the real UI. No scientific content, axes, legends, or disclosures are altered.",
+  "browser": {
+    "engine": "Chromium",
+    "version": "156.0.8078.4",
+    "deviceScaleFactor": 2
+  },
+  "entries": [
+    {
+      "file": "quadratic-surface.png",
+      "templateId": "quadratic-surface-gradient",
+      "url": "http://127.0.0.1:4187/study-harness.html?flow=generic&template=quadratic-surface-gradient&mode=free&spatial=1&theme=light&fonts=bundled",
+      "view": "surface-view",
+      "state": "Narrow tilted positive-definite bowl; a=2,b=-1.8,c=2; p=(1,-1); perspective projection.",
+      "parameters": {
+        "a": 2,
+        "b": -1.8,
+        "c": 2,
+        "px": 1,
+        "py": -1
+      },
+      "frameId": "sha256:bbb6bacd09a2d49f22e0acf043171ddd2e46eb69c77e0929cbd8f72dfbb09393",
+      "stage": "free-explore",
+      "cssPixels": {
+        "width": 1046.75,
+        "height": 690.1875
+      },
+      "pixels": {
+        "width": 2094,
+        "height": 1384
+      },
+      "bytes": 257941,
+      "sha256": "ce4592a78ad9988489bae877e3d96066afa88bfcdfe92c06a77c4cbc9fe708de"
+    },
+    {
+      "file": "surface-contours.png",
+      "templateId": "quadratic-surface-gradient",
+      "url": "http://127.0.0.1:4187/study-harness.html?flow=generic&template=quadratic-surface-gradient&mode=free&spatial=1&theme=light&fonts=bundled",
+      "view": "contour-plot",
+      "state": "Standard bowl a=2,b=0.5,c=1 with p=(1,1); contours and gradient field; authored view.",
+      "parameters": {
+        "a": 2,
+        "b": 0.5,
+        "c": 1,
+        "px": 1,
+        "py": 1
+      },
+      "frameId": "sha256:bd8d978c50534863e1e89e2db93d3fb72a87c8a649990b1aaec0e615d24c7e04",
+      "stage": "free-explore",
+      "cssPixels": {
+        "width": 1046.75,
+        "height": 695.8125
+      },
+      "pixels": {
+        "width": 2094,
+        "height": 1394
+      },
+      "bytes": 197520,
+      "sha256": "a7fed799e337565b6d136a6d0b79869cabdef75e09f6bf45699c4b2f1a1a109b"
+    },
+    {
+      "file": "function-derivative.png",
+      "templateId": "function-derivative",
+      "url": "http://127.0.0.1:4187/study-harness.html?flow=generic&template=function-derivative&mode=free&spatial=1&theme=light&fonts=bundled",
+      "view": "function-plot",
+      "state": "A standard quadratic with probe p=-1.5 and secant offset h=1.5; tangent and secant are visible.",
+      "parameters": {
+        "A": 0.25,
+        "B": -0.5,
+        "C": -2,
+        "p": -1.5,
+        "h": 1.5
+      },
+      "frameId": "sha256:e6a42ecbd8457395a9a2069adc932fff88ad429e9b8c2cd69a70a6adfeff531d",
+      "stage": "free-explore",
+      "cssPixels": {
+        "width": 1046.75,
+        "height": 662.25
+      },
+      "pixels": {
+        "width": 2094,
+        "height": 1328
+      },
+      "bytes": 153991,
+      "sha256": "f1facd77acd255e462f4ab8cea25e85ab8f8416b4e87572921516c05be94e433"
+    },
+    {
+      "file": "linear-transformation.png",
+      "templateId": "linear-transformation",
+      "url": "http://127.0.0.1:4187/study-harness.html?flow=generic&template=linear-transformation&mode=free&spatial=1&theme=light&fonts=bundled",
+      "view": "plane",
+      "state": "Shear M=[[1,1.5],[0,1]], with transformed grid, basis, unit square, and test vector; one normal Zoom in action (1.5x).",
+      "parameters": {
+        "m11": 1,
+        "m12": 1.5,
+        "m21": 0,
+        "m22": 1,
+        "vx": 1,
+        "vy": 1
+      },
+      "frameId": "sha256:527186e6142424a64b30a386190ef4b17b8638b11532b93454c5ae78e5c2bd3d",
+      "stage": "free-explore",
+      "cssPixels": {
+        "width": 1046.75,
+        "height": 729.3125
+      },
+      "pixels": {
+        "width": 2094,
+        "height": 1460
+      },
+      "bytes": 202900,
+      "sha256": "860b2d6fd80a0e6ca4b6325054c9528ec185f725e48d6d163d3427bbe8335a23"
+    },
+    {
+      "file": "quadratic-descent.png",
+      "templateId": "quadratic-gradient-descent",
+      "url": "http://127.0.0.1:4187/study-harness.html?flow=generic&template=quadratic-gradient-descent&mode=free&spatial=1&theme=light&fonts=bundled",
+      "view": "landscape",
+      "state": "Alternating convergence: a=2,eta=0.75,x0=8,iteration8.",
+      "parameters": {
+        "eta": 0.75,
+        "a": 2,
+        "x0": 8
+      },
+      "frameId": "sha256:7ed22a3ddd32cb5c93252f7f1d0f911f8e730bd31098688200b2d912e7f5d34d",
+      "stage": "free-explore",
+      "cssPixels": {
+        "width": 1046.75,
+        "height": 730.1875
+      },
+      "pixels": {
+        "width": 2094,
+        "height": 1464
+      },
+      "bytes": 165182,
+      "sha256": "d63b35aca6c037207f24cdd3e31479beb5f04b5c3ce17031df44326727a8a3ae"
+    },
+    {
+      "file": "vector-orientation.png",
+      "templateId": "vector-orientation-3d",
+      "url": "http://127.0.0.1:4187/study-harness.html?flow=generic&template=vector-orientation-3d&mode=free&spatial=1&theme=light&fonts=bundled",
+      "view": "space",
+      "state": "u=(1,2,0),v=(-1,1,1),u×v=(2,-1,3),their angle; isometric camera.",
+      "parameters": {
+        "ux": 1,
+        "uy": 2,
+        "uz": 0,
+        "vx": -1,
+        "vy": 1,
+        "vz": 1
+      },
+      "frameId": "sha256:3779a9d7ee31d81dac6075b51f434137db1a66eaf6f9fb84e59f09a1869bdce3",
+      "stage": "free-explore",
+      "cssPixels": {
+        "width": 1046.75,
+        "height": 647.5
+      },
+      "pixels": {
+        "width": 2094,
+        "height": 1298
+      },
+      "bytes": 115123,
+      "sha256": "9e3b2301c0edcc5dd0f223305ea4f11162f093e7f4a813092a92e26a8f1f035e"
+    }
+  ],
+  "checks": {
+    "pageIdentity": "passed",
+    "meaningfulLearnerContent": "passed",
+    "frameworkOverlayAbsent": "passed",
+    "consoleErrors": [],
+    "parameterAndScenarioInteractions": "passed",
+    "committedFrameBeforeCapture": "passed",
+    "desktop": "1468x1400 CSS pixels at deviceScaleFactor 2",
+    "mobile": "390px learner card inspected separately",
+    "boundary": "eta*a=2 oscillation inspected separately",
+    "browserPlugin": "not available; installed headless Playwright used"
+  }
+}

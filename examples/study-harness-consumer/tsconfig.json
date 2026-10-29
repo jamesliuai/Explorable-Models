@@ -1,0 +1,16 @@
+{
+  "//": "Typecheck of the packed consumer inside the clean install (scripts/study-harness/verify-consumer.mjs): types come from the extracted tarballs' declarations, not from monorepo sources.",
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "jsx": "react-jsx",
+    "strict": true,
+    "skipLibCheck": false,
+    "noEmit": true,
+    "isolatedModules": true,
+    "types": []
+  },
+  "include": ["src"]
+}

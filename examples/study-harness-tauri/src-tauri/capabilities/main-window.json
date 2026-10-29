@@ -1,0 +1,35 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "main-window",
+  "description": "The main window may call exactly the reference host's production application commands. No core or plugin permissions are granted (no window, event, path, fs, shell, http or dialog access).",
+  "local": true,
+  "windows": [
+    "main"
+  ],
+  "permissions": [
+    "allow-get-policy",
+    "allow-register-activity",
+    "allow-request-stage-transition",
+    "allow-record-exposure-intent",
+    "allow-record-display-ack",
+    "allow-record-assistance",
+    "allow-append-events",
+    "allow-get-journal-cursor",
+    "allow-save-artifact",
+    "allow-get-activity-records",
+    "allow-load-latest-artifact",
+    "allow-list-activity",
+    "allow-delete-activity",
+    "allow-open-activity",
+    "allow-authorize-reveal",
+    "allow-start-independent-task",
+    "allow-reopen-instructional",
+    "allow-record-response",
+    "allow-confirm-response",
+    "allow-get-response-snapshot",
+    "allow-export-backup",
+    "allow-list-importable-backups",
+    "allow-import-backup",
+    "allow-host-status"
+  ]
+}

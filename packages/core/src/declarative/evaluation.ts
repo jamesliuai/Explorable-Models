@@ -1,12 +1,22 @@
 import { DocumentError, type DocumentFrame, type EvaluationRequest, type ValueResult } from './types.js';
 import { compileDocument, type CompiledDocument } from './validation.js';
-import { evaluateExpression, crossesKnownDiscontinuity } from './expressions.js';
+import { evaluateExpression, crossesKnownDiscontinuity, plainValueResult } from './expressions.js';
 const valid = (value: number): ValueResult => ({ value, status: 'valid' });
 const undefinedValue = (reason: string): ValueResult => ({ value: null, status: 'undefined', reason });
 /** Trusted bounded interpreter. Hosts use createDocumentEvaluator; authored documents execute in its worker. */
 export function evaluateDocument(request: EvaluationRequest): DocumentFrame { return evaluateCompiledDocument(compileDocument(request.document), request.params, request.time); }
-export function evaluateCompiledDocument(compiled: CompiledDocument, params: Record<string, number>, requestedTime: number): DocumentFrame {
+/** Evaluation options of the model layer (additive). */
+export interface DocumentEvaluationOptions {
+    /**
+     * Keep the numerical-limit markers (`limit`, `approximation`) on quantity results and turn a series sample whose
+     * value is a numerical limit into a gap with its reason instead of drawing its schema 2.0 value. Default false: the
+     * frame is exactly the schema 2.0 frame (D1), as the document worker and session read it.
+     */
+    numericalLimits?: boolean;
+}
+export function evaluateCompiledDocument(compiled: CompiledDocument, params: Record<string, number>, requestedTime: number, options: DocumentEvaluationOptions = {}): DocumentFrame {
     const { document } = compiled;
+    const limits = options.numericalLimits === true;
     const fail = (path: string, message: string): never => { throw new DocumentError([{ code: 'EVALUATION', path, message }]); };
     if (!params || typeof params !== 'object' || Array.isArray(params))
         fail('params', 'Expected a parameter object.');
@@ -31,7 +41,7 @@ export function evaluateCompiledDocument(compiled: CompiledDocument, params: Rec
     if (compiled.end) {
         const initial = evaluateQuantities(0);
         const result = evaluateExpression(compiled.end, name => name === 'time' ? valid(0) : Object.hasOwn(params, name) ? valid(params[name]) : initial[name] ?? undefinedValue(`Unknown reference '${name}'.`));
-        if (result.status !== 'valid' || typeof result.value !== 'number' || result.value < 0)
+        if (result.status !== 'valid' || typeof result.value !== 'number' || result.value < 0 || limits && result.limit)
             fail('time.end', result.reason ?? 'Time end must evaluate to a finite nonnegative scalar.');
         endTime = result.value as number;
     }
@@ -49,8 +59,11 @@ export function evaluateCompiledDocument(compiled: CompiledDocument, params: Rec
                 const before = (name: string) => name === spec.variable ? valid(previous) : resolve(name);
                 if (crossesKnownDiscontinuity(asts.x, before, resolve) || crossesKnownDiscontinuity(asts.y, before, resolve))
                     return { x: x.status === 'valid' ? x.value as number : null, y: null, reason: 'Sample interval crosses a known division or tangent discontinuity.' };
-            } return x.status === 'valid' && y.status === 'valid' ? { x: x.value as number, y: y.value as number } : { x: x.status === 'valid' ? x.value as number : null, y: y.status === 'valid' ? y.value as number : null, reason: x.reason ?? y.reason ?? 'Undefined sample.' }; });
+            } const drawn = (v: ValueResult) => v.status === 'valid' && !(limits && v.limit); return drawn(x) && drawn(y) ? { x: x.value as number, y: y.value as number } : { x: drawn(x) ? x.value as number : null, y: drawn(y) ? y.value as number : null, reason: (drawn(x) ? undefined : x.reason) ?? (drawn(y) ? undefined : y.reason) ?? 'Undefined sample.' }; });
         }
     }
-    return { time, quantities, series, datasets: structuredClone(document.datasets ?? {}), terminal: document.time ? time === endTime : false, endTime };
+    const reported: Record<string, ValueResult> = Object.create(null);
+    for (const [id, result] of Object.entries(quantities))
+        reported[id] = limits ? result : plainValueResult(result);
+    return { time, quantities: reported, series, datasets: structuredClone(document.datasets ?? {}), terminal: document.time ? time === endTime : false, endTime };
 }

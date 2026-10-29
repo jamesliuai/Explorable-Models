@@ -1,6 +1,6 @@
 {
   "name": "@experiment-kit/player",
-  "version": "0.2.0-preview.1",
+  "version": "0.3.0-preview.1",
   "description": "Embeddable React and plain-DOM surfaces for declarative STEM visualizations.",
   "type": "module",
   "license": "MIT",
@@ -12,7 +12,11 @@
       "types": "./dist/public.d.ts",
       "import": "./dist/index.js"
     },
-    "./package.json": "./package.json"
+    "./package.json": "./package.json",
+    "./activity": {
+      "types": "./dist/activity/index.d.ts",
+      "import": "./dist/activity/index.js"
+    }
   },
   "files": [
     "dist",
@@ -20,9 +24,10 @@
     "LICENSE"
   ],
   "peerDependencies": {
-    "@experiment-kit/core": "0.2.0-preview.1",
+    "@experiment-kit/core": "0.3.0-preview.1",
     "react": ">=18.3.1 <20",
-    "react-dom": ">=18.3.1 <20"
+    "react-dom": ">=18.3.1 <20",
+    "@experiment-kit/activity": "0.3.0-preview.1"
   },
   "scripts": {
     "build": "node build.mjs",
@@ -43,5 +48,10 @@
   "homepage": "https://github.com/jamesliuai/Explorable-Models#readme",
   "bugs": {
     "url": "https://github.com/jamesliuai/Explorable-Models/issues"
+  },
+  "peerDependenciesMeta": {
+    "@experiment-kit/activity": {
+      "optional": true
+    }
   }
 }

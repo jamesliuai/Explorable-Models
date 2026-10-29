@@ -5,6 +5,22 @@ import type { RodController } from '../../examples/hinged-rod/controller';
 
 type RodWindow = Window & { __ROD_EXAMPLE__: RodController };
 const inspect = (page: Page) => page.evaluate(() => (window as unknown as RodWindow).__ROD_EXAMPLE__.inspect());
+/**
+ * Counts explicit pointer captures taken by range inputs. A native slider keeps its pressed pointer itself; an explicit
+ * `setPointerCapture` stops WebKit's thumb from following the pointer, so the example sliders must never take one.
+ */
+async function countRangeCaptures(page: Page): Promise<() => Promise<number>> {
+  await page.evaluate(() => {
+    const original = Element.prototype.setPointerCapture;
+    const counter = window as unknown as { __rangeCaptures: number };
+    counter.__rangeCaptures = 0;
+    Element.prototype.setPointerCapture = function (this: Element, pointerId: number) {
+      if (this instanceof HTMLInputElement && this.type === 'range') counter.__rangeCaptures++;
+      return original.call(this, pointerId);
+    };
+  });
+  return () => page.evaluate(() => (window as unknown as { __rangeCaptures: number }).__rangeCaptures);
+}
 const shots = '/tmp/experiment-kit-hinged-rod';
 async function exact(page: Page, name: string, value: number) {
   const input = page.getByRole('textbox', { name: `${name} exact value` });
@@ -53,6 +69,7 @@ test('worker model agrees with external reference fixtures and bound geometry', 
 test('pointer drag renders multiple live frames before one primary commit; Escape and pointercancel restore', async ({ page }) => {
   const before = (await inspect(page)).primary;
   const slider = page.getByRole('slider', { name: 'Angle', exact: true });
+  const captures = await countRangeCaptures(page);
   const box = (await slider.boundingBox())!;
   const y = box.y + box.height / 2;
   await page.mouse.move(box.x + box.width / 2, y); await page.mouse.down();
@@ -65,6 +82,8 @@ test('pointer drag renders multiple live frames before one primary commit; Escap
   }
   const latest = Number(await slider.inputValue());
   await page.mouse.up();
+  // The thumb followed the pointer without an explicit capture (WebKit's thumb stops following under one).
+  expect(await captures(), 'explicit pointer captures taken by the slider').toBe(0);
   await expect.poll(async () => (await inspect(page)).primary.run!.params.angle).toBe(latest);
   const committed = (await inspect(page)).primary;
   expect(committed.run!.id).not.toBe(before.run!.id);

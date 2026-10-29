@@ -1,0 +1,946 @@
+{
+  "suiteId": "quadratic-surface-gradient:1.0.0",
+  "model": {
+    "modelId": "quadratic-surface-gradient",
+    "version": "1.0.0"
+  },
+  "author": "Cases derived by hand from f(x, y) = (a·x² + 2b·x·y + c·y²)/2 where the results are exact rationals, with irrational values (|∇f|, direction) and non-dyadic inputs computed by exact rational arithmetic in tests/reference/oracles/quadratic-surface-gradient.ts, which shares no code with the catalogue kernel. The three exact-tie cases (2026-10-26) take their expectations from that oracle; they were added, and every point tolerance set to 0, when the kernel (1.1.0) began computing point values exactly. Prepared by an engineering agent.",
+  "review": "No independent human subject reviewer has approved these cases. Automated agreement is engineering evidence only.",
+  "semantics": "f(x, y) = (a·x² + 2b·x·y + c·y²)/2 and ∇f = (a·x + b·y, b·x + c·y) for the exact rational values of the double inputs, each reported value rounded once to the nearest double (ties to even). Coefficients are admissible when fl(fl(a·c) − fl(b·b)) > 0 (minimum exclusive), which implies exact a·c − b² > 0. The direction ∇f/|∇f| is undefined (ZERO_GRADIENT) exactly when p = (0, 0). A positive value that rounds to 0 is a numerical limit (UNDERFLOW); a value or vector component below 2⁻¹⁰²² is valid with an UNDERFLOW approximation. The arrow scale s is the first of the listed scales with s·M ≤ 0.45, M the longest gradient on the 9 × 9 field grid. Surface samples (i − 20)/10, field samples (i − 4)/2 and section samples (i − 40)/20 are exact grid coordinates rounded once; contour points are any doubles at the stated directions with f = L within the case tolerance.",
+  "format": "Numbers align with the quantities value (f(p)), gradient, gradientNorm, direction, hessianDet and arrowScale; null means the status is a numerical limit or undefined, as named in statuses. An observed number o matches expected e when |o − e| <= absolute + relative·|e|, using tolerance.rational for value, gradient and hessianDet and tolerance.irrational for gradientNorm and direction. Every reported point value is the correctly rounded exact value, so every case uses tolerance 0 for them: a result one unit in the last place away fails. arrowScale and statuses always match exactly. Geometry is checked against the oracle on every case: surface and section heights and field vectors within tolerances.grid of the correctly rounded exact values, every contour point within tolerance.contour.relative of its level, and, for cases with onContour, the chord through the neighbouring contour samples perpendicular to the reported direction within tolerances.perpendicular. A params value written -0 is negative zero.",
+  "grids": {
+    "surface": {
+      "n": 41,
+      "spacing": 0.1
+    },
+    "field": {
+      "n": 9,
+      "spacing": 0.5
+    },
+    "sections": {
+      "n": 81,
+      "spacing": 0.05
+    },
+    "contours": {
+      "levels": [0.25, 0.5, 1, 2, 4],
+      "samples": 181
+    }
+  },
+  "arrows": {
+    "scales": [1, 0.5, 0.2, 0.1, 0.05, 0.02, 0.01, 0.005, 0.002, 0.001],
+    "maxLength": 0.45,
+    "disclosure": "Arrow lengths are scaled by <factor> for legibility; directions are exact."
+  },
+  "tolerances": {
+    "grid": {
+      "absolute": 0,
+      "relative": 2.3e-16
+    },
+    "perpendicular": {
+      "absolute": 0.002
+    }
+  },
+  "perpendicularProvenance": "The chord between contour samples k − 1 and k + 1 (directions t ± π/90) is parallel to the tangent at sample k up to O(h²) with h = π/90 ≈ 0.035 (h² ≈ 1.2e−3); the bound 0.002 on |chord·û|/|chord| is that order of magnitude. A wrong gradient direction gives values of order 1.",
+  "cases": [
+    {
+      "id": "default-point-on-level-2",
+      "label": "a = 2, b = 0.5, c = 1 at p = (1, 1): f = 2, ∇f = (2.5, 1.5); p lies on the contour f = 2",
+      "provenance": "Hand derivation from f = (a·x² + 2b·x·y + c·y²)/2 and ∇f = (a·x + b·y, b·x + c·y): f(1, 1) = (2 + 1 + 1)/2 = 2, ∇f = (2 + 0.5, 0.5 + 1), a·c − b² = 1.75; field maximum |∇f(2, 2)| = |(5, 3)| = √34, so s = 0.05 (0.1·√34 > 0.45). |∇f| = √8.5 and the direction (2.5, 1.5)/√8.5 are irrational: correctly rounded values from exact rational arithmetic in tests/reference/oracles/quadratic-surface-gradient.ts (no shared code with the catalogue kernel).",
+      "params": {
+        "a": 2,
+        "b": 0.5,
+        "c": 1,
+        "px": 1,
+        "py": 1
+      },
+      "expected": {
+        "value": 2,
+        "gradient": [2.5, 1.5],
+        "gradientNorm": 2.9154759474226504,
+        "direction": [0.8574929257125442, 0.5144957554275265],
+        "hessianDet": 1.75,
+        "arrowScale": 0.05,
+        "statuses": {
+          "value": "valid",
+          "gradient": "valid",
+          "gradient.norm": "valid",
+          "gradient.direction": "valid"
+        }
+      },
+      "tolerance": {
+        "rational": {
+          "absolute": 0,
+          "relative": 0
+        },
+        "irrational": {
+          "absolute": 0,
+          "relative": 0
+        },
+        "contour": {
+          "relative": 1e-12
+        }
+      }
+    },
+    {
+      "id": "axes-plus-x",
+      "label": "Axis orientation: b = 0, p = (1, 0): the gradient (2, 0) points along +x (to the right)",
+      "provenance": "Hand derivation from f = (a·x² + 2b·x·y + c·y²)/2 and ∇f = (a·x + b·y, b·x + c·y): with b = 0, ∇f(1, 0) = (a, 0) = (2, 0), |∇f| = 2, direction (1, 0); f(1, 0) = a/2 = 1, so p lies on the contour f = 1 at direction t = 0 (sample k = 0); a·c − b² = 2; field maximum |(4, 2)| = √20, s = 0.1 (0.1·√20 ≈ 0.447 ≤ 0.45). Cross-checked by exact rational arithmetic in tests/reference/oracles/quadratic-surface-gradient.ts (no shared code with the catalogue kernel).",
+      "params": {
+        "a": 2,
+        "b": 0,
+        "c": 1,
+        "px": 1,
+        "py": 0
+      },
+      "expected": {
+        "value": 1,
+        "gradient": [2, 0],
+        "gradientNorm": 2,
+        "direction": [1, 0],
+        "hessianDet": 2,
+        "arrowScale": 0.1,
+        "statuses": {
+          "value": "valid",
+          "gradient": "valid",
+          "gradient.norm": "valid",
+          "gradient.direction": "valid"
+        }
+      },
+      "tolerance": {
+        "rational": {
+          "absolute": 0,
+          "relative": 0
+        },
+        "irrational": {
+          "absolute": 0,
+          "relative": 0
+        },
+        "contour": {
+          "relative": 1e-12
+        }
+      },
+      "onContour": {
+        "level": 1,
+        "sample": 0
+      }
+    },
+    {
+      "id": "axes-plus-y",
+      "label": "Axis orientation: b = 0, p = (0, 1): the gradient (0, 1) points along +y (up)",
+      "provenance": "Hand derivation from f = (a·x² + 2b·x·y + c·y²)/2 and ∇f = (a·x + b·y, b·x + c·y): ∇f(0, 1) = (b, c) = (0, 1), |∇f| = 1, direction (0, 1); f(0, 1) = c/2 = 0.5, so p lies on the contour f = 0.5 at t = π/2 (sample k = 45). Cross-checked by exact rational arithmetic in tests/reference/oracles/quadratic-surface-gradient.ts (no shared code with the catalogue kernel).",
+      "params": {
+        "a": 2,
+        "b": 0,
+        "c": 1,
+        "px": 0,
+        "py": 1
+      },
+      "expected": {
+        "value": 0.5,
+        "gradient": [0, 1],
+        "gradientNorm": 1,
+        "direction": [0, 1],
+        "hessianDet": 2,
+        "arrowScale": 0.1,
+        "statuses": {
+          "value": "valid",
+          "gradient": "valid",
+          "gradient.norm": "valid",
+          "gradient.direction": "valid"
+        }
+      },
+      "tolerance": {
+        "rational": {
+          "absolute": 0,
+          "relative": 0
+        },
+        "irrational": {
+          "absolute": 0,
+          "relative": 0
+        },
+        "contour": {
+          "relative": 1e-12
+        }
+      },
+      "onContour": {
+        "level": 0.5,
+        "sample": 45
+      }
+    },
+    {
+      "id": "axes-minus-x",
+      "label": "Axis orientation: b = 0, p = (−1, 0): the gradient (−2, 0) points along −x (to the left)",
+      "provenance": "Hand derivation from f = (a·x² + 2b·x·y + c·y²)/2 and ∇f = (a·x + b·y, b·x + c·y): ∇f(−1, 0) = (−a, −b) = (−2, 0), |∇f| = 2, direction (−1, 0); f(−1, 0) = 1, on the contour f = 1 at t = π (sample k = 90). Cross-checked by exact rational arithmetic in tests/reference/oracles/quadratic-surface-gradient.ts (no shared code with the catalogue kernel).",
+      "params": {
+        "a": 2,
+        "b": 0,
+        "c": 1,
+        "px": -1,
+        "py": 0
+      },
+      "expected": {
+        "value": 1,
+        "gradient": [-2, 0],
+        "gradientNorm": 2,
+        "direction": [-1, 0],
+        "hessianDet": 2,
+        "arrowScale": 0.1,
+        "statuses": {
+          "value": "valid",
+          "gradient": "valid",
+          "gradient.norm": "valid",
+          "gradient.direction": "valid"
+        }
+      },
+      "tolerance": {
+        "rational": {
+          "absolute": 0,
+          "relative": 0
+        },
+        "irrational": {
+          "absolute": 0,
+          "relative": 0
+        },
+        "contour": {
+          "relative": 1e-12
+        }
+      },
+      "onContour": {
+        "level": 1,
+        "sample": 90
+      }
+    },
+    {
+      "id": "minimum-at-origin",
+      "label": "Minimum: p = (0, 0) gives f = 0 and ∇f = (0, 0); the direction is undefined (ZERO_GRADIENT)",
+      "provenance": "Hand derivation from f = (a·x² + 2b·x·y + c·y²)/2 and ∇f = (a·x + b·y, b·x + c·y): f(0, 0) = 0 and ∇f(0, 0) = (0, 0) for every admissible a, b, c; |∇f| = 0 and the direction is undefined, never an arbitrary direction. Cross-checked by exact rational arithmetic in tests/reference/oracles/quadratic-surface-gradient.ts (no shared code with the catalogue kernel).",
+      "params": {
+        "a": 2,
+        "b": 0.5,
+        "c": 1,
+        "px": 0,
+        "py": 0
+      },
+      "expected": {
+        "value": 0,
+        "gradient": [0, 0],
+        "gradientNorm": 0,
+        "direction": null,
+        "hessianDet": 1.75,
+        "arrowScale": 0.05,
+        "statuses": {
+          "value": "valid",
+          "gradient": "valid",
+          "gradient.norm": "valid",
+          "gradient.direction": "undefined:ZERO_GRADIENT"
+        }
+      },
+      "tolerance": {
+        "rational": {
+          "absolute": 0,
+          "relative": 0
+        },
+        "irrational": {
+          "absolute": 0,
+          "relative": 0
+        },
+        "contour": {
+          "relative": 1e-12
+        }
+      }
+    },
+    {
+      "id": "minimum-at-origin-negative-zero",
+      "label": "Minimum with a negative-zero input p = (−0, 0) and b = −1.5: still the origin; outputs are +0 and the direction is undefined",
+      "provenance": "Hand derivation from f = (a·x² + 2b·x·y + c·y²)/2 and ∇f = (a·x + b·y, b·x + c·y): −0 is the number 0, so p is the origin; a·c − b² = 3 − 2.25 = 0.75 > 0. Outputs must be +0 (Object.is), never −0. Cross-checked by exact rational arithmetic in tests/reference/oracles/quadratic-surface-gradient.ts (no shared code with the catalogue kernel).",
+      "params": {
+        "a": 3,
+        "b": -1.5,
+        "c": 1,
+        "px": -0,
+        "py": 0
+      },
+      "expected": {
+        "value": 0,
+        "gradient": [0, 0],
+        "gradientNorm": 0,
+        "direction": null,
+        "hessianDet": 0.75,
+        "arrowScale": 0.02,
+        "statuses": {
+          "value": "valid",
+          "gradient": "valid",
+          "gradient.norm": "valid",
+          "gradient.direction": "undefined:ZERO_GRADIENT"
+        }
+      },
+      "tolerance": {
+        "rational": {
+          "absolute": 0,
+          "relative": 0
+        },
+        "irrational": {
+          "absolute": 0,
+          "relative": 0
+        },
+        "contour": {
+          "relative": 1e-12
+        }
+      }
+    },
+    {
+      "id": "tilted-point-on-x-axis",
+      "label": "Rotated ellipses: b = 1, p = (1, 0): ∇f = (2, 1) is not along +x, and is perpendicular to the tilted contour f = 1",
+      "provenance": "Hand derivation from f = (a·x² + 2b·x·y + c·y²)/2 and ∇f = (a·x + b·y, b·x + c·y): ∇f(1, 0) = (a, b) = (2, 1); f(1, 0) = a/2 = 1 on the contour f = 1 at t = 0 (sample k = 0); a·c − b² = 1. |∇f| = √5 and the direction (2, 1)/√5 from exact rational arithmetic in tests/reference/oracles/quadratic-surface-gradient.ts (no shared code with the catalogue kernel).",
+      "params": {
+        "a": 2,
+        "b": 1,
+        "c": 1,
+        "px": 1,
+        "py": 0
+      },
+      "expected": {
+        "value": 1,
+        "gradient": [2, 1],
+        "gradientNorm": 2.23606797749979,
+        "direction": [0.8944271909999159, 0.4472135954999579],
+        "hessianDet": 1,
+        "arrowScale": 0.05,
+        "statuses": {
+          "value": "valid",
+          "gradient": "valid",
+          "gradient.norm": "valid",
+          "gradient.direction": "valid"
+        }
+      },
+      "tolerance": {
+        "rational": {
+          "absolute": 0,
+          "relative": 0
+        },
+        "irrational": {
+          "absolute": 0,
+          "relative": 0
+        },
+        "contour": {
+          "relative": 1e-12
+        }
+      },
+      "onContour": {
+        "level": 1,
+        "sample": 0
+      }
+    },
+    {
+      "id": "tilted-negative-b-point-on-y-axis",
+      "label": "Rotated ellipses: b = −0.5, p = (0, 2): ∇f = (−1, 1)",
+      "provenance": "Hand derivation from f = (a·x² + 2b·x·y + c·y²)/2 and ∇f = (a·x + b·y, b·x + c·y): ∇f(0, 2) = (2b, 2c) = (−1, 1); f(0, 2) = 4c/2 = 1 on the contour f = 1 at t = π/2 (sample k = 45); a·c − b² = 0.25; field maximum |∇f(2, −2)| = |(3, −2)| = √13, s = 0.1. |∇f| = √2 and the direction (−1, 1)/√2 from exact rational arithmetic in tests/reference/oracles/quadratic-surface-gradient.ts (no shared code with the catalogue kernel).",
+      "params": {
+        "a": 1,
+        "b": -0.5,
+        "c": 0.5,
+        "px": 0,
+        "py": 2
+      },
+      "expected": {
+        "value": 1,
+        "gradient": [-1, 1],
+        "gradientNorm": 1.4142135623730951,
+        "direction": [-0.7071067811865476, 0.7071067811865476],
+        "hessianDet": 0.25,
+        "arrowScale": 0.1,
+        "statuses": {
+          "value": "valid",
+          "gradient": "valid",
+          "gradient.norm": "valid",
+          "gradient.direction": "valid"
+        }
+      },
+      "tolerance": {
+        "rational": {
+          "absolute": 0,
+          "relative": 0
+        },
+        "irrational": {
+          "absolute": 0,
+          "relative": 0
+        },
+        "contour": {
+          "relative": 1e-12
+        }
+      },
+      "onContour": {
+        "level": 1,
+        "sample": 45
+      }
+    },
+    {
+      "id": "decimal-inputs",
+      "label": "Non-dyadic decimal inputs a = 1.3, b = −0.7, c = 2.1 at p = (0.3, −1.7)",
+      "provenance": "Every value from exact rational arithmetic in tests/reference/oracles/quadratic-surface-gradient.ts (no shared code with the catalogue kernel) for the exact rational values of the double inputs, rounded once; the kernel may differ by one unit in the last place. Hand estimate for orientation: ∇f ≈ (1.3·0.3 + 0.7·1.7, −0.7·0.3 − 2.1·1.7) = (1.58, −3.78).",
+      "params": {
+        "a": 1.3,
+        "b": -0.7,
+        "c": 2.1,
+        "px": 0.3,
+        "py": -1.7
+      },
+      "expected": {
+        "value": 3.4499999999999997,
+        "gradient": [1.5799999999999998, -3.7800000000000002],
+        "gradientNorm": 4.0969256766507245,
+        "direction": [0.38565503128474243, -0.9226430495293206],
+        "hessianDet": 2.24,
+        "arrowScale": 0.05,
+        "statuses": {
+          "value": "valid",
+          "gradient": "valid",
+          "gradient.norm": "valid",
+          "gradient.direction": "valid"
+        }
+      },
+      "tolerance": {
+        "rational": {
+          "absolute": 0,
+          "relative": 0
+        },
+        "irrational": {
+          "absolute": 0,
+          "relative": 0
+        },
+        "contour": {
+          "relative": 1e-12
+        }
+      }
+    },
+    {
+      "id": "steep-corner",
+      "label": "Largest heights: a = c = 4, b = 2 at the corner p = (2, 2): f = 24, ∇f = (12, 12)",
+      "provenance": "Hand derivation from f = (a·x² + 2b·x·y + c·y²)/2 and ∇f = (a·x + b·y, b·x + c·y): f(2, 2) = (16 + 16 + 16)/2 = 24 (the largest height on the domain), ∇f = (8 + 4, 4 + 8), a·c − b² = 12; field maximum 12√2, s = 0.02 (0.05·12√2 > 0.45). |∇f| = 12√2 and the direction (√½, √½) from exact rational arithmetic in tests/reference/oracles/quadratic-surface-gradient.ts (no shared code with the catalogue kernel).",
+      "params": {
+        "a": 4,
+        "b": 2,
+        "c": 4,
+        "px": 2,
+        "py": 2
+      },
+      "expected": {
+        "value": 24,
+        "gradient": [12, 12],
+        "gradientNorm": 16.97056274847714,
+        "direction": [0.7071067811865476, 0.7071067811865476],
+        "hessianDet": 12,
+        "arrowScale": 0.02,
+        "statuses": {
+          "value": "valid",
+          "gradient": "valid",
+          "gradient.norm": "valid",
+          "gradient.direction": "valid"
+        }
+      },
+      "tolerance": {
+        "rational": {
+          "absolute": 0,
+          "relative": 0
+        },
+        "irrational": {
+          "absolute": 0,
+          "relative": 0
+        },
+        "contour": {
+          "relative": 1e-12
+        }
+      }
+    },
+    {
+      "id": "steep-corner-negative-b",
+      "label": "a = c = 4, b = −2 at p = (−2, 2): f = 24, ∇f = (−12, 12)",
+      "provenance": "Hand derivation from f = (a·x² + 2b·x·y + c·y²)/2 and ∇f = (a·x + b·y, b·x + c·y): f(−2, 2) = (16 + 16 + 16)/2 = 24, ∇f = (−8 − 4, 4 + 8) = (−12, 12), a·c − b² = 12, s = 0.02. Direction (−√½, √½) from exact rational arithmetic in tests/reference/oracles/quadratic-surface-gradient.ts (no shared code with the catalogue kernel).",
+      "params": {
+        "a": 4,
+        "b": -2,
+        "c": 4,
+        "px": -2,
+        "py": 2
+      },
+      "expected": {
+        "value": 24,
+        "gradient": [-12, 12],
+        "gradientNorm": 16.97056274847714,
+        "direction": [-0.7071067811865476, 0.7071067811865476],
+        "hessianDet": 12,
+        "arrowScale": 0.02,
+        "statuses": {
+          "value": "valid",
+          "gradient": "valid",
+          "gradient.norm": "valid",
+          "gradient.direction": "valid"
+        }
+      },
+      "tolerance": {
+        "rational": {
+          "absolute": 0,
+          "relative": 0
+        },
+        "irrational": {
+          "absolute": 0,
+          "relative": 0
+        },
+        "contour": {
+          "relative": 1e-12
+        }
+      }
+    },
+    {
+      "id": "gentle-bowl",
+      "label": "Gentle round bowl a = c = 0.2, b = 0 at p = (−2, −2): ∇f = (−0.4, −0.4), arrow scale 0.5",
+      "provenance": "Hand derivation from f = (a·x² + 2b·x·y + c·y²)/2 and ∇f = (a·x + b·y, b·x + c·y): f(−2, −2) = (0.2·4 + 0.2·4)/2 = 0.8 and ∇f = (−0.4, −0.4), exact multiples of the double 0.2 by powers of two; field maximum 0.4√2 ≈ 0.566, so s = 0.5 (1·0.566 > 0.45). Rounded values and the direction from exact rational arithmetic in tests/reference/oracles/quadratic-surface-gradient.ts (no shared code with the catalogue kernel).",
+      "params": {
+        "a": 0.2,
+        "b": 0,
+        "c": 0.2,
+        "px": -2,
+        "py": -2
+      },
+      "expected": {
+        "value": 0.8,
+        "gradient": [-0.4, -0.4],
+        "gradientNorm": 0.565685424949238,
+        "direction": [-0.7071067811865476, -0.7071067811865476],
+        "hessianDet": 0.04000000000000001,
+        "arrowScale": 0.5,
+        "statuses": {
+          "value": "valid",
+          "gradient": "valid",
+          "gradient.norm": "valid",
+          "gradient.direction": "valid"
+        }
+      },
+      "tolerance": {
+        "rational": {
+          "absolute": 0,
+          "relative": 0
+        },
+        "irrational": {
+          "absolute": 0,
+          "relative": 0
+        },
+        "contour": {
+          "relative": 1e-12
+        }
+      }
+    },
+    {
+      "id": "near-singular-accepted-b-below-1",
+      "label": "Constraint boundary from above: a = c = 1, b = 1 − 2⁻⁵³ is accepted (a·c − b² ≈ 2⁻⁵²); along (1, −1) f = ∇f components = 2⁻⁵³",
+      "provenance": "Hand derivation from f = (a·x² + 2b·x·y + c·y²)/2 and ∇f = (a·x + b·y, b·x + c·y): fl(b·b) = 1 − 2⁻⁵², so fl(a·c) − fl(b·b) = 2⁻⁵² > 0 is accepted; exact a·c − b² = 2⁻⁵² − 2⁻¹⁰⁶ rounds (tie to even) to 2⁻⁵². At p = (1, −1): ∇f = (1 − b, b − 1) = (2⁻⁵³, −2⁻⁵³), f = 1 − b = 2⁻⁵³. Cross-checked by exact rational arithmetic in tests/reference/oracles/quadratic-surface-gradient.ts (no shared code with the catalogue kernel). Contour tolerance: the declared bound 4·√(λmax/λmin)·2⁻⁵³ ≈ 6e−8 with λmax/λmin ≈ 1.8e16, rounded up to 1e−7.",
+      "params": {
+        "a": 1,
+        "b": 0.9999999999999999,
+        "c": 1,
+        "px": 1,
+        "py": -1
+      },
+      "expected": {
+        "value": 1.1102230246251565e-16,
+        "gradient": [1.1102230246251565e-16, -1.1102230246251565e-16],
+        "gradientNorm": 1.5700924586837752e-16,
+        "direction": [0.7071067811865476, -0.7071067811865476],
+        "hessianDet": 2.220446049250313e-16,
+        "arrowScale": 0.05,
+        "statuses": {
+          "value": "valid",
+          "gradient": "valid",
+          "gradient.norm": "valid",
+          "gradient.direction": "valid"
+        }
+      },
+      "tolerance": {
+        "rational": {
+          "absolute": 0,
+          "relative": 0
+        },
+        "irrational": {
+          "absolute": 0,
+          "relative": 0
+        },
+        "contour": {
+          "relative": 1e-7
+        }
+      }
+    },
+    {
+      "id": "near-singular-accepted-c-above-1",
+      "label": "Constraint boundary from above: a = 4, b = 2, c = 1 + 2⁻⁵² is accepted (a·c − b² = 2⁻⁵⁰); at p = (0.5, −1) ∇f = (0, −2⁻⁵²)",
+      "provenance": "Hand derivation from f = (a·x² + 2b·x·y + c·y²)/2 and ∇f = (a·x + b·y, b·x + c·y): a·c = 4 + 2⁻⁵⁰ exactly, so a·c − b² = 2⁻⁵⁰ > 0. At p = (0.5, −1) (the null direction of the singular neighbour c = 1): ∇f = (2 − 2, 1 − c) = (0, −2⁻⁵²), f = (−1)·(−2⁻⁵²)/2 = 2⁻⁵³, direction (0, −1). Cross-checked by exact rational arithmetic in tests/reference/oracles/quadratic-surface-gradient.ts (no shared code with the catalogue kernel). Contour tolerance: declared bound ≈ 7.4e−8 (λmax/λmin ≈ 2.8e16), rounded up to 1e−7.",
+      "params": {
+        "a": 4,
+        "b": 2,
+        "c": 1.0000000000000002,
+        "px": 0.5,
+        "py": -1
+      },
+      "expected": {
+        "value": 1.1102230246251565e-16,
+        "gradient": [0, -2.220446049250313e-16],
+        "gradientNorm": 2.220446049250313e-16,
+        "direction": [0, -1],
+        "hessianDet": 8.881784197001252e-16,
+        "arrowScale": 0.02,
+        "statuses": {
+          "value": "valid",
+          "gradient": "valid",
+          "gradient.norm": "valid",
+          "gradient.direction": "valid"
+        }
+      },
+      "tolerance": {
+        "rational": {
+          "absolute": 0,
+          "relative": 0
+        },
+        "irrational": {
+          "absolute": 0,
+          "relative": 0
+        },
+        "contour": {
+          "relative": 1e-7
+        }
+      }
+    },
+    {
+      "id": "tiny-point-subnormal-gradient",
+      "label": "Smallest nonzero point p = (2⁻¹⁰⁷⁴, 0): f underflows, ∇f = (2⁻¹⁰⁷³, 2⁻¹⁰⁷⁵ → 0) is approximate, the direction stays defined",
+      "provenance": "Hand derivation from f = (a·x² + 2b·x·y + c·y²)/2 and ∇f = (a·x + b·y, b·x + c·y): ∇f = 2⁻¹⁰⁷⁴·(a, b) = (2⁻¹⁰⁷³, 2⁻¹⁰⁷⁵); 2⁻¹⁰⁷⁵ is exactly half the smallest subnormal and rounds (tie to even) to 0, so the vector carries an UNDERFLOW approximation; f = 2⁻²¹⁴⁸ is positive but rounds to 0 (numerical limit); |∇f| = 2⁻¹⁰⁷⁴·√4.25 rounds to 2⁻¹⁰⁷³ (subnormal, approximate); the direction (a, b)/√(a² + b²) is defined because p ≠ 0. Correctly rounded values from exact rational arithmetic in tests/reference/oracles/quadratic-surface-gradient.ts (no shared code with the catalogue kernel).",
+      "params": {
+        "a": 2,
+        "b": 0.5,
+        "c": 1,
+        "px": 5e-324,
+        "py": 0
+      },
+      "expected": {
+        "value": null,
+        "gradient": [1e-323, 0],
+        "gradientNorm": 1e-323,
+        "direction": [0.9701425001453319, 0.24253562503633297],
+        "hessianDet": 1.75,
+        "arrowScale": 0.05,
+        "statuses": {
+          "value": "numerical-limit:UNDERFLOW",
+          "gradient": "valid:UNDERFLOW",
+          "gradient.norm": "valid:UNDERFLOW",
+          "gradient.direction": "valid"
+        }
+      },
+      "tolerance": {
+        "rational": {
+          "absolute": 0,
+          "relative": 0
+        },
+        "irrational": {
+          "absolute": 0,
+          "relative": 0
+        },
+        "contour": {
+          "relative": 1e-12
+        }
+      }
+    },
+    {
+      "id": "tiny-point-diagonal",
+      "label": "p = (2⁻¹⁰⁷⁴, 2⁻¹⁰⁷⁴) with a = c = 0.25: both gradient components round to 0 but the direction is still (√½, √½), never ZERO_GRADIENT",
+      "provenance": "Hand derivation from f = (a·x² + 2b·x·y + c·y²)/2 and ∇f = (a·x + b·y, b·x + c·y): ∇f = 2⁻¹⁰⁷⁶·(1, 1); each component is below half the smallest subnormal and rounds to 0 (approximation), |∇f| = 2⁻¹⁰⁷⁶·√2 = 2⁻¹⁰⁷⁵·⁵ is below half the smallest subnormal and rounds to 0 (numerical limit), f rounds to 0 (numerical limit). The zero-gradient case is decided from p, so the direction (√½, √½) is reported. Correctly rounded values from exact rational arithmetic in tests/reference/oracles/quadratic-surface-gradient.ts (no shared code with the catalogue kernel).",
+      "params": {
+        "a": 0.25,
+        "b": 0,
+        "c": 0.25,
+        "px": 5e-324,
+        "py": 5e-324
+      },
+      "expected": {
+        "value": null,
+        "gradient": [0, 0],
+        "gradientNorm": null,
+        "direction": [0.7071067811865476, 0.7071067811865476],
+        "hessianDet": 0.0625,
+        "arrowScale": 0.5,
+        "statuses": {
+          "value": "numerical-limit:UNDERFLOW",
+          "gradient": "valid:UNDERFLOW",
+          "gradient.norm": "numerical-limit:UNDERFLOW",
+          "gradient.direction": "valid"
+        }
+      },
+      "tolerance": {
+        "rational": {
+          "absolute": 0,
+          "relative": 0
+        },
+        "irrational": {
+          "absolute": 0,
+          "relative": 0
+        },
+        "contour": {
+          "relative": 1e-12
+        }
+      }
+    },
+    {
+      "id": "small-point-subnormal-height",
+      "label": "p = (10⁻¹⁶⁰, −3·10⁻¹⁶⁰): the gradient is normal but f ≈ 4·10⁻³²⁰ is subnormal (approximate)",
+      "provenance": "Every value from exact rational arithmetic in tests/reference/oracles/quadratic-surface-gradient.ts (no shared code with the catalogue kernel) for the exact rational values of the double inputs. Hand estimate: f ≈ (2·1 − 3 + 9)·10⁻³²⁰/2 = 4·10⁻³²⁰, below 2⁻¹⁰²² ≈ 2.2·10⁻³⁰⁸, so f is a reduced-precision approximation while ∇f ≈ (−0.5, −2.5)·10⁻¹⁶⁰ is normal.",
+      "params": {
+        "a": 2,
+        "b": 0.5,
+        "c": 1,
+        "px": 1e-160,
+        "py": -3e-160
+      },
+      "expected": {
+        "value": 4e-320,
+        "gradient": [5e-161, -2.5e-160],
+        "gradientNorm": 2.5495097567963924e-160,
+        "direction": [0.19611613513818404, -0.9805806756909201],
+        "hessianDet": 1.75,
+        "arrowScale": 0.05,
+        "statuses": {
+          "value": "valid:UNDERFLOW",
+          "gradient": "valid",
+          "gradient.norm": "valid",
+          "gradient.direction": "valid"
+        }
+      },
+      "tolerance": {
+        "rational": {
+          "absolute": 0,
+          "relative": 0
+        },
+        "irrational": {
+          "absolute": 0,
+          "relative": 0
+        },
+        "contour": {
+          "relative": 1e-12
+        }
+      }
+    },
+    {
+      "id": "exact-tie-tiny-x-term",
+      "label": "b·py is an exact rounding tie and a·px ≈ 1.2·10⁻¹¹⁴ lies far below one unit of it: ∂f/∂x must round toward the tiny term, not to even",
+      "provenance": "Expectations from exact rational arithmetic in tests/reference/oracles/quadratic-surface-gradient.ts (no shared code with the catalogue kernel). b·py has 105 significant bits whose low 52 are 1 followed by 51 zeros, an exact tie; a·px > 0 breaks it upward, so ∂f/∂x is 0.18664041048643928 (ties-to-even alone would give 0.18664041048643926). Found by the 2026-10 adversarial review (R37).",
+      "params": {
+        "a": 3.5436678717378527,
+        "b": 1.1925741555169225,
+        "c": 3.879436012171209,
+        "px": 3.514840756542981e-115,
+        "py": 0.1565021425485611
+      },
+      "expected": {
+        "value": 0.04750935915268161,
+        "gradient": [0.18664041048643928, 0.60714004778484],
+        "gradientNorm": 0.635180037824493,
+        "direction": [0.2938385959446824, 0.9558550515288694],
+        "hessianDet": 12.32519964038703,
+        "arrowScale": 0.02,
+        "statuses": {
+          "value": "valid",
+          "gradient": "valid",
+          "gradient.norm": "valid",
+          "gradient.direction": "valid"
+        }
+      },
+      "tolerance": {
+        "rational": {
+          "absolute": 0,
+          "relative": 0
+        },
+        "irrational": {
+          "absolute": 0,
+          "relative": 0
+        },
+        "contour": {
+          "relative": 1e-12
+        }
+      }
+    },
+    {
+      "id": "exact-tie-hand-built-x",
+      "label": "a = 2, b = 1 + 2⁻⁵², c = 2, p = (−10⁻¹⁰⁰, 1.5): b·py = 1.5 + 2⁻⁵² + 2⁻⁵³ is a tie that a·px = −2·10⁻¹⁰⁰ breaks downward",
+      "provenance": "Hand derivation: b·py = 1.5·(1 + 2⁻⁵²) = 1.5 + 2⁻⁵² + 2⁻⁵³ lies halfway between the doubles 1.5 + 2⁻⁵² and 1.5 + 2⁻⁵¹; the exact ∂f/∂x = b·py − 2·10⁻¹⁰⁰ is just below that midpoint, so it rounds to 1.5 + 2⁻⁵² = 1.5000000000000002 (ties-to-even would give 1.5000000000000004). ∂f/∂y = 3 − (1 + 2⁻⁵²)·10⁻¹⁰⁰ rounds to 3. f(p), |∇f|, the direction and a·c − b² = 4 − (1 + 2⁻⁵²)² from exact rational arithmetic in tests/reference/oracles/quadratic-surface-gradient.ts.",
+      "params": {
+        "a": 2,
+        "b": 1.0000000000000002,
+        "c": 2,
+        "px": -1e-100,
+        "py": 1.5
+      },
+      "expected": {
+        "value": 2.25,
+        "gradient": [1.5000000000000002, 3],
+        "gradientNorm": 3.3541019662496847,
+        "direction": [0.44721359549995804, 0.8944271909999159],
+        "hessianDet": 2.9999999999999996,
+        "arrowScale": 0.05,
+        "statuses": {
+          "value": "valid",
+          "gradient": "valid",
+          "gradient.norm": "valid",
+          "gradient.direction": "valid"
+        }
+      },
+      "tolerance": {
+        "rational": {
+          "absolute": 0,
+          "relative": 0
+        },
+        "irrational": {
+          "absolute": 0,
+          "relative": 0
+        },
+        "contour": {
+          "relative": 1e-12
+        }
+      }
+    },
+    {
+      "id": "exact-tie-hand-built-y",
+      "label": "a = 2, b = 0.5, c = 1 + 2⁻⁵², p = (−10⁻¹⁰⁰, 1.5): c·py is the tie, so ∂f/∂y must round toward b·px = −5·10⁻¹⁰¹",
+      "provenance": "Hand derivation: c·py = 1.5 + 2⁻⁵² + 2⁻⁵³ is the midpoint of 1.5 + 2⁻⁵² and 1.5 + 2⁻⁵¹; ∂f/∂y = c·py − 5·10⁻¹⁰¹ is just below it and rounds to 1.5000000000000002. ∂f/∂x = 0.75 − 2·10⁻¹⁰⁰ rounds to 0.75. f(p), |∇f|, the direction and a·c − b² from exact rational arithmetic in tests/reference/oracles/quadratic-surface-gradient.ts.",
+      "params": {
+        "a": 2,
+        "b": 0.5,
+        "c": 1.0000000000000002,
+        "px": -1e-100,
+        "py": 1.5
+      },
+      "expected": {
+        "value": 1.1250000000000002,
+        "gradient": [0.75, 1.5000000000000002],
+        "gradientNorm": 1.6770509831248426,
+        "direction": [0.44721359549995787, 0.894427190999916],
+        "hessianDet": 1.7500000000000004,
+        "arrowScale": 0.05,
+        "statuses": {
+          "value": "valid",
+          "gradient": "valid",
+          "gradient.norm": "valid",
+          "gradient.direction": "valid"
+        }
+      },
+      "tolerance": {
+        "rational": {
+          "absolute": 0,
+          "relative": 0
+        },
+        "irrational": {
+          "absolute": 0,
+          "relative": 0
+        },
+        "contour": {
+          "relative": 1e-12
+        }
+      }
+    }
+  ],
+  "rejected": [
+    {
+      "id": "singular-unit",
+      "label": "a = b = c = 1: a·c − b² = 0 exactly, rejected (minimum exclusive)",
+      "provenance": "Hand derivation: 1·1 − 1² = 0; the trough has a line of minima and is outside the model.",
+      "params": {
+        "a": 1,
+        "b": 1,
+        "c": 1,
+        "px": 1,
+        "py": 1
+      },
+      "code": "CONSTRAINT_VIOLATION",
+      "path": "$.constraints.positive-definite"
+    },
+    {
+      "id": "singular-wide",
+      "label": "a = 4, b = 2, c = 1: a·c − b² = 0 exactly, rejected",
+      "provenance": "Hand derivation: 4·1 − 2² = 0.",
+      "params": {
+        "a": 4,
+        "b": 2,
+        "c": 1,
+        "px": 0.5,
+        "py": -1
+      },
+      "code": "CONSTRAINT_VIOLATION",
+      "path": "$.constraints.positive-definite"
+    },
+    {
+      "id": "singular-negative-b",
+      "label": "a = 0.5, b = −1, c = 2: a·c − b² = 0 exactly, rejected",
+      "provenance": "Hand derivation: 0.5·2 − (−1)² = 0.",
+      "params": {
+        "a": 0.5,
+        "b": -1,
+        "c": 2,
+        "px": 0,
+        "py": 0
+      },
+      "code": "CONSTRAINT_VIOLATION",
+      "path": "$.constraints.positive-definite"
+    },
+    {
+      "id": "singular-largest-b",
+      "label": "a = c = 2, b = −2: a·c − b² = 0 exactly, rejected",
+      "provenance": "Hand derivation: 2·2 − 4 = 0.",
+      "params": {
+        "a": 2,
+        "b": -2,
+        "c": 2,
+        "px": 1,
+        "py": 1
+      },
+      "code": "CONSTRAINT_VIOLATION",
+      "path": "$.constraints.positive-definite"
+    },
+    {
+      "id": "saddle",
+      "label": "a = 1, b = 1.5, c = 2: a·c − b² = −0.25 < 0 (a saddle), rejected",
+      "provenance": "Hand derivation: 2 − 2.25 = −0.25.",
+      "params": {
+        "a": 1,
+        "b": 1.5,
+        "c": 2,
+        "px": 1,
+        "py": 1
+      },
+      "code": "CONSTRAINT_VIOLATION",
+      "path": "$.constraints.positive-definite"
+    },
+    {
+      "id": "a-below-range",
+      "label": "a = 0.1 is below the parameter range [0.2, 4]",
+      "provenance": "Declared parameter bounds.",
+      "params": {
+        "a": 0.1,
+        "b": 0,
+        "c": 1,
+        "px": 1,
+        "py": 1
+      },
+      "code": "OUT_OF_DOMAIN",
+      "path": "$.parameters.a"
+    },
+    {
+      "id": "point-outside-range",
+      "label": "p_x = 2.5 is outside the point range [−2, 2]",
+      "provenance": "Declared parameter bounds.",
+      "params": {
+        "a": 2,
+        "b": 0.5,
+        "c": 1,
+        "px": 2.5,
+        "py": 0
+      },
+      "code": "OUT_OF_DOMAIN",
+      "path": "$.parameters.px"
+    }
+  ]
+}

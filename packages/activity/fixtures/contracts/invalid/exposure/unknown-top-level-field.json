@@ -1,0 +1,42 @@
+{
+  "contract": "study-harness.exposure-record",
+  "expect": "invalid",
+  "why": "Unknown fields are rejected at the top level.",
+  "value": {
+    "contract": "study-harness.exposure-record",
+    "schemaVersion": "1.0",
+    "exposureId": "exp-0001",
+    "activityId": "act-quadratic-0001",
+    "receiptId": "rcpt-reveal-1",
+    "scope": "reveal",
+    "groups": [
+      {
+        "groupId": "g-trajectory",
+        "contentDigest": "sha256:becc99271e962d4808ed1fe8949d143f75cd960dac64b590d7307f30bc6c75a0"
+      },
+      {
+        "groupId": "g-position",
+        "contentDigest": "sha256:75a956941d3d3f400c356eed1ce88741744c119d1050a3f3163edd37f41477ce"
+      }
+    ],
+    "template": {
+      "templateId": "quadratic-descent-regimes",
+      "version": "1.0.0",
+      "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+    },
+    "model": {
+      "modelId": "quadratic-descent",
+      "version": "1.0.0",
+      "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+    },
+    "activityRevision": 3,
+    "intendedStage": "explore",
+    "displayStatus": "displayed",
+    "displayed": {
+      "projectionDigest": "sha256:a38cdae9dec3cb8e88113886679526c9916a6773fa28cb1b924d3c00ce480384",
+      "frameId": "frame-run-0002-i3",
+      "monotonicMs": 48213.5
+    },
+    "unexpectedField": true
+  }
+}

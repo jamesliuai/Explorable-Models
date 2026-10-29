@@ -1,0 +1,70 @@
+Two vectors in space — stage explore-angle (explore)
+Instruction: Change the components of u and v and watch the angle θ, the dot product u·v and the relationship. Compare what you see with your prediction.
+Review notice: Reference-checked; no independent subject review
+Revealed by the host for this stage: angle-dot, angle-arc, dot-values
+
+Current values:
+x component of u: 2. y component of u: 1. z component of u: 0. x component of v: 1. y component of v: 2. z component of v: 2. Length of u: 2.236. Length of v: 3. Dot product: 4. Angle between u and v: 53.4°. Relationship of u and v: oblique.
+
+View space:
+Two vectors in space
+3D view. 3D view. Shows Vectors u and v from the origin, each labelled with its name; Arc marking the angle θ between u and v.
+Reference-checked; no independent subject review
+
+View plane-xy:
+Two vectors in space
+Top view: xy plane. Top view: xy plane. Shows u and v projected onto the xy plane, each labelled with its name.
+Reference-checked; no independent subject review
+
+View plane-xz:
+Two vectors in space
+Front view: xz plane. Front view: xz plane. Shows u and v projected onto the xz plane, each labelled with its name.
+Reference-checked; no independent subject review
+
+View plane-yz:
+Two vectors in space
+Side view: yz plane. Side view: yz plane. Shows u and v projected onto the yz plane, each labelled with its name.
+Reference-checked; no independent subject review
+
+View readouts:
+Two vectors in space
+Values. Values. Length of u: 2.236; Length of v: 3; Dot product: 4; Angle between u and v: 53.4°; Relationship of u and v: oblique.
+Values:
+- Length of u: 2.236
+- Length of v: 3
+- Dot product: 4
+- Angle between u and v: 53.4°
+- Relationship of u and v: oblique
+Reference-checked; no independent subject review
+
+View vector-table:
+Two vectors in space
+Vector table. Vector table. Table with 2 rows.
+Vector table (2 of 2 rows):
+Quantity	Value	Unit
+Vector u	(2, 1, 0)	
+Vector v	(1, 2, 2)	
+Reference-checked; no independent subject review
+
+View projection-table:
+Two vectors in space
+Projection table. Projection table. Table with 6 rows.
+Projection table (6 of 6 rows):
+Quantity	Value	Unit
+u projected onto the xy plane	(2, 1)	
+v projected onto the xy plane	(1, 2)	
+u projected onto the xz plane	(2, 0)	
+v projected onto the xz plane	(1, 2)	
+u projected onto the yz plane	(1, 0)	
+v projected onto the yz plane	(2, 2)	
+Reference-checked; no independent subject review
+
+View rules:
+Two vectors in space
+Rules. Rules. Dot product: u·v = u_x·v_x + u_y·v_y + u_z·v_z = |u|·|v|·cos θ; Angle between u and v: cos θ = (u·v)/(|u|·|v|), with 0 ≤ θ ≤ π; θ is undefined when u or v is the zero vector; Dot product now: u·v = 4; Angle now: θ = 53.4°.
+Equations:
+- Dot product: u·v = u_x·v_x + u_y·v_y + u_z·v_z = |u|·|v|·cos θ
+- Angle between u and v: cos θ = (u·v)/(|u|·|v|), with 0 ≤ θ ≤ π; θ is undefined when u or v is the zero vector
+- Dot product now: u·v = 4
+- Angle now: θ = 53.4°
+Reference-checked; no independent subject review

@@ -1,0 +1,29 @@
+Step size in gradient descent — stage predict (predict)
+Instruction: Before any iterations are shown, predict what the positions x_n will do over the first few updates for the three comparison step sizes η = 0.25, 0.75 and 1.25 (curvature a = 2, start x₀ = 4).
+Host-owned prediction request: For η = 0.25, 0.75 and 1.25 with a = 2 and x₀ = 4, what do you expect the positions to do over the first few iterations, and why?
+Review notice: Reference-checked; no independent subject review
+Revealed by the host for this stage: nothing
+
+Current values:
+Step size η: 0.25 (fixed). Curvature a: 2 (fixed). Starting position x₀: 4 (fixed). Starting position: 4. Starting loss: 16.
+
+View landscape:
+Step size in gradient descent
+Objective landscape. Objective landscape. Shows Objective f(x); Starting point (x₀, f(x₀)).
+Reference-checked; no independent subject review
+
+View readouts:
+Step size in gradient descent
+Values. Values. Starting position: 4; Starting loss: 16.
+Values:
+- Starting position: 4
+- Starting loss: 16
+Reference-checked; no independent subject review
+
+View rules:
+Step size in gradient descent
+Rules. Rules. Objective: f(x) = (a/2)·x²; Update rule: x_(n+1) = (1 − η·a)·x_n.
+Equations:
+- Objective: f(x) = (a/2)·x²
+- Update rule: x_(n+1) = (1 − η·a)·x_n
+Reference-checked; no independent subject review

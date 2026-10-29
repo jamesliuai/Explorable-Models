@@ -61,7 +61,7 @@ function Studio() {
   return <>
     <a className="studio-skip" href="#composition">Skip to composition</a>
     <main className="studio">
-      <header className="studio-header"><a href="./index.html">Explorable Models</a><span>Developer preview · 0.2</span></header>
+      <header className="studio-header"><a href="./index.html">Explorable Models</a><span>Developer preview · 0.3</span></header>
       <nav className="studio-links" aria-label="Preview">
         <a href="./guide.html">Preview guide</a>
         <a href="./guide.html#embedding">Embed in your app</a>

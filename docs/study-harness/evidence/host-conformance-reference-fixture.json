@@ -1,0 +1,447 @@
+{
+  "host": {
+    "binarySha256": "46545ff01ea37b7cc817b7be8a9b84c83468ea91608ceb5450cd91df4223f32b",
+    "commit": "910c03a3ef278532024df6ffedc878572e8dc093",
+    "dirty": true,
+    "name": "study-harness-reference",
+    "platform": {
+      "arch": "arm64",
+      "os": "macOS",
+      "osVersion": "26.6.2",
+      "webview": "WKWebView 21624.5.1.11.3"
+    },
+    "signed": false
+  },
+  "kit": {
+    "name": "@experiment-kit/activity/conformance",
+    "version": "0.3.0-preview.1"
+  },
+  "limitations": [
+    "Display acknowledgements were issued by the kit acting as the learner surface (a learner binding with a registered headless surface); rendering and visual inspection are outside this kit.",
+    "Restarts used the host-supplied restart hook over the same durable store; a full process termination of the host application is not exercised by the kit itself.",
+    "Late reveal replies arriving after an independent task begins are discarded by the adapter (tests/activity/independence.test.ts); the kit checks the host side of the independent task only.",
+    "Packaged reference host (conformance fixture) on one macOS machine; not the Study Harness application (A54) and not other platforms (A53). Unsigned build.",
+    "Restarts reopened the same SQLite store inside the running app (conformance_reopen_store); interruptions were in-process simulated faults at the named crash points (conformance_fault). Process terminations are covered by the restart and crash:* scenarios of the same run."
+  ],
+  "packages": [
+    {
+      "name": "@experiment-kit/core",
+      "sha256": "b4b7b8a602e3908882ea9ccc34b6c288224fccd1dae1c12ef5846e7b6c7c4dd1",
+      "version": "0.3.0-preview.1"
+    },
+    {
+      "name": "@experiment-kit/activity",
+      "sha256": "63beb9982b0683b650c5425fe2089f152d80f503b6f705fd576693f66c6313d5",
+      "version": "0.3.0-preview.1"
+    },
+    {
+      "name": "@experiment-kit/catalog",
+      "sha256": "0138850db9ae2115dcc7d9fb94b14e793153862b0626930d65f4411303f09134",
+      "version": "0.3.0-preview.1"
+    },
+    {
+      "name": "@experiment-kit/player",
+      "sha256": "21b3f1d6543c48c1c7735a624d1da5c706193782c79bbd5f5e5fceeaf09d7bad",
+      "version": "0.3.0-preview.1"
+    },
+    {
+      "name": "@experiment-kit/player-3d",
+      "sha256": "0de6c36733b8182b5ab9e21ed31cace1cbcac5e326bfa2d8b1fb70ca8b729f77",
+      "version": "0.3.0-preview.1"
+    }
+  ],
+  "result": "pass",
+  "runAt": "2026-10-29T05:55:20.056Z",
+  "schema": "study-harness.host-conformance-result/1",
+  "steps": {
+    "authorize-reveal": {
+      "assertions": [
+        {
+          "id": "stage-receipt-echoes-request",
+          "outcome": "pass"
+        },
+        {
+          "id": "host-stage-follows-receipt",
+          "outcome": "pass"
+        },
+        {
+          "id": "stage-receipt-named",
+          "outcome": "pass"
+        },
+        {
+          "id": "grant-outside-policy-refused",
+          "outcome": "pass"
+        },
+        {
+          "id": "policy-applied",
+          "outcome": "pass"
+        },
+        {
+          "id": "host-authorized-policy",
+          "outcome": "pass"
+        },
+        {
+          "id": "refusal-reported-with-convention-code",
+          "outcome": "pass"
+        },
+        {
+          "id": "refusal-not-retried",
+          "outcome": "pass"
+        },
+        {
+          "id": "reveal-receipt-echoes-request",
+          "outcome": "pass"
+        },
+        {
+          "id": "authorization-is-not-display",
+          "outcome": "pass"
+        },
+        {
+          "id": "display-ack-requires-authorization",
+          "outcome": "pass"
+        },
+        {
+          "id": "adapter-holds-authorization",
+          "outcome": "pass"
+        },
+        {
+          "id": "display-acknowledged",
+          "outcome": "pass"
+        },
+        {
+          "id": "durable-before-return",
+          "outcome": "pass"
+        },
+        {
+          "id": "intent-replay-identical",
+          "outcome": "pass"
+        },
+        {
+          "id": "fingerprint-conflict-refused",
+          "outcome": "pass"
+        },
+        {
+          "id": "display-ack-idempotent",
+          "outcome": "pass"
+        }
+      ],
+      "evidence": "docs/study-harness/evidence/native-conformance.json (scenarios.hostport-kit)",
+      "outcome": "pass"
+    },
+    "camera-change": {
+      "assertions": [
+        {
+          "id": "presentation-only",
+          "outcome": "pass"
+        },
+        {
+          "id": "no-host-authorization",
+          "outcome": "pass"
+        }
+      ],
+      "evidence": "docs/study-harness/evidence/native-conformance.json (scenarios.hostport-kit)",
+      "outcome": "pass"
+    },
+    "commit-exploration": {
+      "assertions": [
+        {
+          "id": "new-run-at-index-zero",
+          "outcome": "pass"
+        },
+        {
+          "id": "journal-acknowledged",
+          "outcome": "pass"
+        },
+        {
+          "id": "duplicate-eventid-deduped",
+          "outcome": "pass"
+        },
+        {
+          "id": "conflicting-eventid-refused",
+          "outcome": "pass"
+        },
+        {
+          "id": "sequence-gap-refused",
+          "outcome": "pass"
+        },
+        {
+          "id": "journal-durable",
+          "outcome": "pass"
+        }
+      ],
+      "evidence": "docs/study-harness/evidence/native-conformance.json (scenarios.hostport-kit)",
+      "outcome": "pass"
+    },
+    "crash-after-display": {
+      "assertions": [
+        {
+          "id": "checkpoint-marks-ack-unconfirmed",
+          "outcome": "pass"
+        },
+        {
+          "id": "interruption-observed",
+          "outcome": "pass"
+        },
+        {
+          "id": "reopen-records-uncertain",
+          "outcome": "pass"
+        },
+        {
+          "id": "acknowledgement-resent-identically",
+          "outcome": "pass"
+        },
+        {
+          "id": "journal-complete-or-loss-recorded",
+          "outcome": "pass"
+        }
+      ],
+      "evidence": "docs/study-harness/evidence/native-conformance.json (scenarios.hostport-kit)",
+      "outcome": "pass"
+    },
+    "crash-after-intent": {
+      "assertions": [
+        {
+          "id": "interruption-observed",
+          "outcome": "pass"
+        },
+        {
+          "id": "authorized-not-displayed",
+          "outcome": "pass"
+        },
+        {
+          "id": "restored-conservatively",
+          "outcome": "pass"
+        },
+        {
+          "id": "receipt-replayed",
+          "outcome": "pass"
+        },
+        {
+          "id": "one-reveal-record",
+          "outcome": "pass"
+        }
+      ],
+      "evidence": "docs/study-harness/evidence/native-conformance.json (scenarios.hostport-kit)",
+      "outcome": "pass"
+    },
+    "crash-before-intent": {
+      "assertions": [
+        {
+          "id": "interruption-observed",
+          "outcome": "pass"
+        },
+        {
+          "id": "nothing-committed",
+          "outcome": "pass"
+        },
+        {
+          "id": "restored-unseen",
+          "outcome": "pass"
+        },
+        {
+          "id": "reveal-resumed",
+          "outcome": "pass"
+        },
+        {
+          "id": "one-reveal-record",
+          "outcome": "pass"
+        }
+      ],
+      "evidence": "docs/study-harness/evidence/native-conformance.json (scenarios.hostport-kit)",
+      "outcome": "pass"
+    },
+    "independent-task": {
+      "assertions": [
+        {
+          "id": "task-policy",
+          "outcome": "pass"
+        },
+        {
+          "id": "independent-context",
+          "outcome": "pass"
+        },
+        {
+          "id": "independent-lineage",
+          "outcome": "pass"
+        },
+        {
+          "id": "teaching-visual-absent",
+          "outcome": "pass"
+        },
+        {
+          "id": "reveal-refused-before-host",
+          "outcome": "pass"
+        },
+        {
+          "id": "host-refuses-instructional-grant",
+          "outcome": "pass"
+        }
+      ],
+      "evidence": "docs/study-harness/evidence/native-conformance.json (scenarios.hostport-kit)",
+      "outcome": "pass"
+    },
+    "open-quadratic": {
+      "assertions": [
+        {
+          "id": "host-issued-request",
+          "outcome": "pass"
+        },
+        {
+          "id": "registered-through-host",
+          "outcome": "pass"
+        },
+        {
+          "id": "policy-current",
+          "outcome": "pass"
+        },
+        {
+          "id": "journal-acknowledged",
+          "outcome": "pass"
+        },
+        {
+          "id": "unknown-activity-refused",
+          "outcome": "pass"
+        }
+      ],
+      "evidence": "docs/study-harness/evidence/native-conformance.json (scenarios.hostport-kit)",
+      "outcome": "pass"
+    },
+    "prediction-reference": {
+      "assertions": [
+        {
+          "id": "host-produced-revision",
+          "outcome": "pass"
+        },
+        {
+          "id": "response-reference-recorded",
+          "outcome": "pass"
+        },
+        {
+          "id": "adapter-adopts-host-revision",
+          "outcome": "pass"
+        },
+        {
+          "id": "host-revision-durable",
+          "outcome": "pass"
+        },
+        {
+          "id": "registration-ahead-refused",
+          "outcome": "pass"
+        }
+      ],
+      "evidence": "docs/study-harness/evidence/native-conformance.json (scenarios.hostport-kit)",
+      "outcome": "pass"
+    },
+    "reopen-verify": {
+      "assertions": [
+        {
+          "id": "scientific-state-restored",
+          "outcome": "pass"
+        },
+        {
+          "id": "permitted-presentation-restored",
+          "outcome": "pass"
+        },
+        {
+          "id": "event-order-continued",
+          "outcome": "pass"
+        },
+        {
+          "id": "no-reveal-repeated",
+          "outcome": "pass"
+        },
+        {
+          "id": "conservative-exposure",
+          "outcome": "pass"
+        },
+        {
+          "id": "host-records-read-on-restore",
+          "outcome": "pass"
+        },
+        {
+          "id": "host-activity-state",
+          "outcome": "pass"
+        },
+        {
+          "id": "host-lineage-instructional",
+          "outcome": "pass"
+        },
+        {
+          "id": "help-recorded-through-host",
+          "outcome": "pass"
+        },
+        {
+          "id": "assistance-read-back-after-restart",
+          "outcome": "pass"
+        },
+        {
+          "id": "host-revision-is-latest-receipt",
+          "outcome": "pass"
+        },
+        {
+          "id": "stage-receipt-kept",
+          "outcome": "pass"
+        },
+        {
+          "id": "registration-keeps-host-state",
+          "outcome": "pass"
+        },
+        {
+          "id": "forged-grant-not-confirmed",
+          "outcome": "pass"
+        },
+        {
+          "id": "earlier-checkpoint-adopts-host-state",
+          "outcome": "pass"
+        },
+        {
+          "id": "saved-grant-confirmed-by-host",
+          "outcome": "pass"
+        },
+        {
+          "id": "host-step-after-earlier-checkpoint",
+          "outcome": "pass"
+        }
+      ],
+      "evidence": "docs/study-harness/evidence/native-conformance.json (scenarios.hostport-kit)",
+      "outcome": "pass"
+    },
+    "save": {
+      "assertions": [
+        {
+          "id": "artifact-saved",
+          "outcome": "pass"
+        },
+        {
+          "id": "checkpoint-recorded",
+          "outcome": "pass"
+        },
+        {
+          "id": "save-replay-idempotent",
+          "outcome": "pass"
+        },
+        {
+          "id": "save-conflict-refused",
+          "outcome": "pass"
+        },
+        {
+          "id": "checkpoint-durable",
+          "outcome": "pass"
+        }
+      ],
+      "evidence": "docs/study-harness/evidence/native-conformance.json (scenarios.hostport-kit)",
+      "outcome": "pass"
+    },
+    "terminate": {
+      "assertions": [
+        {
+          "id": "store-reopened",
+          "outcome": "pass"
+        }
+      ],
+      "evidence": "docs/study-harness/evidence/native-conformance.json (scenarios.hostport-kit)",
+      "outcome": "pass"
+    }
+  },
+  "subject": "reference-fixture-host"
+}

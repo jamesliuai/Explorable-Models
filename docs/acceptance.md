@@ -1,5 +1,15 @@
 # Release acceptance and evidence
 
+> **Study Harness acceptance (A01–A60) is tracked elsewhere.** The criteria of the
+> [Study Harness implementation report](study-harness-visualizer-implementation-report.md) are recorded in the
+> [requirement ledger](study-harness/requirement-ledger.md) ([JSON](study-harness/requirement-ledger.json)). Each entry
+> lists its status, implementation, tests and external dependencies. External-gate protocols are in
+> [external gates](study-harness/external-gates.md), and current evidence is indexed in the
+> [handoff](study-harness/README.md).
+>
+> This page is the earlier 0.1 acceptance record. Its IDs A01–A14 belong to the earlier specification and are **not**
+> the same criteria as the ledger's A01–A14.
+
 This record maps the supplied specification's A01–A14 conditions to implementation and reproducible checks. Explorable Models 0.1 is a usable software release for trusted local authors and ordinary browser playback. Software checks do not establish independent scientific review, WCAG certification, comparative authoring advantage, or learning efficacy.
 
 The tests below are the evidence sources, not self-updating status badges. Run them against the exact source revision being released. The supplied example manifests deliberately remain **unreviewed**; reference assertions and model cards are available, but no independent human subject reviewer has signed them.

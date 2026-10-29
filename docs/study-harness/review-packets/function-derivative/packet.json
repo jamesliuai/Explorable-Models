@@ -1,0 +1,3045 @@
+{
+  "contract": "experiment-kit.review-packet",
+  "version": "1.0",
+  "kind": "installed",
+  "generator": {
+    "tool": "experiment-kit activity review-packet",
+    "toolkitVersion": "0.3.0-preview.1",
+    "browser": "Chromium 156.0.8078.4",
+    "regenerate": "experiment-kit activity review-packet --installed function-derivative --out docs/study-harness/review-packets/function-derivative --width 720 --theme light --index 4"
+  },
+  "status": {
+    "lifecycle": "reference-checked",
+    "reviewScope": [],
+    "subjectReview": "none-recorded",
+    "signOff": null,
+    "statement": "Engineering evidence prepared by a tool; not a subject review. An engineering agent cannot sign this packet."
+  },
+  "identity": {
+    "template": {
+      "templateId": "function-derivative",
+      "version": "1.0.0",
+      "digest": "sha256:8906edd91542d30c17ff41aa7b551fbb79a7a6d7d32c607ec39db4e0389a2f94"
+    },
+    "model": {
+      "modelId": "function-derivative",
+      "version": "1.0.0",
+      "digest": "sha256:bfeaa64ae40e41254f46d193a1aefc1ff9d900664571aba51e26492f1ff778ba"
+    },
+    "modelIdentity": {
+      "digest": "sha256:bfeaa64ae40e41254f46d193a1aefc1ff9d900664571aba51e26492f1ff778ba",
+      "scientificRevision": "sha256:e6436111cefe2448afeae498d425491f6b284f66f8141804c55255de793baa93",
+      "presentationRevision": "sha256:6b7f39443087f6a470fbd39b3cd6ada3d6f62504b1e3bbb1c7044da9bc8a9053"
+    },
+    "groups": [
+      {
+        "groupId": "function-plot",
+        "contentDigest": "sha256:2f3126f58e6ef8742a391f97662db40c63d55e93cc4dc1b02202a086409a3baf"
+      },
+      {
+        "groupId": "probe",
+        "contentDigest": "sha256:1f9f726bc64f0ffdc613ff081f9fd1aef54d282b3eb26622ea83c3c56eb64917"
+      },
+      {
+        "groupId": "function-rule",
+        "contentDigest": "sha256:ac93faa256224a82307696a7d601b102104be49860de4591bc2afbcb63561c08"
+      },
+      {
+        "groupId": "coefficient-controls",
+        "contentDigest": "sha256:4d658d7b47786dc3c4f3da5065a0ff639c5e4b817b03fac2fd3afbe9a95c122b"
+      },
+      {
+        "groupId": "probe-control",
+        "contentDigest": "sha256:7f2da3314eef4eb12338912b84d76d98458cc949530e2d6dab3c70fdef1e20f5"
+      },
+      {
+        "groupId": "offset-control",
+        "contentDigest": "sha256:01a86bb2d695abb4f9f7e39499c906ac660122c18c499b20307188350c2b9603"
+      },
+      {
+        "groupId": "tangent",
+        "contentDigest": "sha256:9911f9fa1864433e6b317b533158e6f36529e20ae8265b71a614c78525efc160"
+      },
+      {
+        "groupId": "slope",
+        "contentDigest": "sha256:45d1d7ca5a68b734c8044f8bd0b4e047294a38b9c422b8cfaee4d9450d74d46d"
+      },
+      {
+        "groupId": "slope-equations",
+        "contentDigest": "sha256:d0f7e60b04f84b88359f521996d3690c35cfdab655b2a424677137c9462d4531"
+      },
+      {
+        "groupId": "secant",
+        "contentDigest": "sha256:2fc781f6f5264638402257e4f113364db822c0c6b4f320d7615db8e63ed5784e"
+      },
+      {
+        "groupId": "secant-values",
+        "contentDigest": "sha256:52a1e9fd72e09d3381d139b07e3baf85ad47b9fbb8729de25a70f77cb741d85c"
+      },
+      {
+        "groupId": "secant-equations",
+        "contentDigest": "sha256:702752a699ff2fbbf2325cee253b575d85c72b6aa76585a7ae9761fcad5548e0"
+      },
+      {
+        "groupId": "derivative-plot",
+        "contentDigest": "sha256:9c0f70864409a0aedadde1b92f29137385a44d65c31cdfe03a6add164cfc71b7"
+      },
+      {
+        "groupId": "shape",
+        "contentDigest": "sha256:454d2d51af6ea466013531b0cabab444e102f5117a4d41f21536cd219741ce3a"
+      },
+      {
+        "groupId": "derivative-rule",
+        "contentDigest": "sha256:c24cb651bcf52ec4790080ea41485d03bb02d37fa433bc7e021288281a9ed0d8"
+      },
+      {
+        "groupId": "scenarios",
+        "contentDigest": "sha256:f11f8aadb7b006af3d7cc78bd841fbc09dd3ba38f0e189be4712c2c9dcf34213"
+      },
+      {
+        "groupId": "alternatives",
+        "contentDigest": "sha256:6fab31f57fe135a76f2764c37628d7df8e3bf04c01b81a725890e572bd3ff907"
+      }
+    ]
+  },
+  "relation": null,
+  "recordedRelation": null,
+  "execution": {
+    "source": "installed-kernel",
+    "kernelId": "function-derivative",
+    "kernelVersion": "1.0.0",
+    "mode": "static",
+    "kernelSourceDigest": null,
+    "kernelSources": []
+  },
+  "taskIntent": {
+    "purpose": "Predict, then observe, how the slope of the tangent to f(x) = A·x² + B·x + C changes along the curve, how secant slopes compare with it as the second point moves closer, and how the derivative f′ records the slope at every x.",
+    "stages": [
+      {
+        "id": "prepare",
+        "kind": "prepare",
+        "instruction": "Look at the graph of f(x) = A·x² + B·x + C and the probe point P. You can change the coefficients A, B and C to see different curves. Slopes, tangents and the derivative are not shown yet.",
+        "response": null
+      },
+      {
+        "id": "predict",
+        "kind": "predict",
+        "instruction": "Before any slopes are shown, predict the slope of the curve at the probe point P.",
+        "response": {
+          "kind": "prediction",
+          "prompt": "Is the curve rising, falling or level at P, and roughly how steep is it there? How would the slope change if P moved to the right?",
+          "taskFamily": "function-derivative-slope-prediction"
+        }
+      },
+      {
+        "id": "explore-slope",
+        "kind": "explore",
+        "instruction": "Once the tangent at P and its slope f′(p) are shown, move P along the curve and compare the slope with your prediction. Then set the offset h to place a second point Q, and watch the secant slope as h gets closer to 0 from either side.",
+        "response": null
+      },
+      {
+        "id": "explore-derivative",
+        "kind": "explore",
+        "instruction": "Once the graph of the derivative f′ is shown, move P and change the coefficients, and compare the height of the derivative graph at x = p with the slope of the tangent at P.",
+        "response": null
+      },
+      {
+        "id": "explain",
+        "kind": "explain",
+        "instruction": "Explain in your own words how the slope of f changes along the curve and how the secant slope behaves as h shrinks.",
+        "response": {
+          "kind": "explanation",
+          "prompt": "How does the slope of the tangent at P change as P moves, how does the secant slope behave as h gets close to 0, and what does the derivative graph show?",
+          "taskFamily": "function-derivative-explanation"
+        }
+      },
+      {
+        "id": "closed",
+        "kind": "closed",
+        "instruction": "This activity is closed.",
+        "response": null
+      },
+      {
+        "id": "free-explore",
+        "kind": "explore",
+        "instruction": "Explore freely: change the coefficients, move the probe and the second point, and compare the tangent, the secant and the derivative graph.",
+        "response": null
+      }
+    ],
+    "taskFamilies": [
+      {
+        "id": "function-derivative-slope-prediction",
+        "description": "Host-owned prediction request about the slope of the graph at the probe point and how it changes along the curve. The host owns the response, its capture and any evaluation.",
+        "hostOwned": true
+      },
+      {
+        "id": "function-derivative-explanation",
+        "description": "Host-owned explanation request about how the tangent slope changes along the curve and how secant slopes behave as the offset shrinks. The host owns the response, its capture and any evaluation.",
+        "hostOwned": true
+      },
+      {
+        "id": "function-derivative-later-task",
+        "description": "Host-owned later task with another function or representation. Its prompts, held-out items and scoring stay with the host and are not part of this catalogue.",
+        "hostOwned": true
+      }
+    ]
+  },
+  "derivation": [
+    {
+      "id": "derivation-difference-quotient",
+      "kind": "derivation",
+      "citation": "Derivation written for this catalogue: expanding A·(x + h)² + B·(x + h) + C gives (f(x + h) − f(x))/h = 2A·x + B + A·h for every h ≠ 0, so the secant slope differs from f′(x) = 2A·x + B by exactly A·h and tends to it as h → 0; at h = 0 the quotient is 0/0. When A ≠ 0, f′(x) = 0 only at x = −B/(2A). Not independently reviewed."
+    },
+    {
+      "id": "study-harness-specification",
+      "kind": "specification",
+      "citation": "Study Harness visualizer implementation report §12.1 and acceptance item A28: a bounded polynomial family with an analytically defined derivative, a movable probe, tangent, optional secant and linked slope values, a derivative plot shown only when authorized, and the linear, constant, zero-slope, coincident-secant, sign-change and domain-boundary cases."
+    }
+  ],
+  "assumptions": [
+    "The function is exactly the quadratic f(x) = A·x² + B·x + C with real coefficients; A = 0 gives a straight line and A = B = 0 a constant.",
+    "The derivative is the analytical derivative f′(x) = 2A·x + B of this polynomial. It is not estimated from secant slopes, samples or a numerical limit.",
+    "Inputs are IEEE-754 double-precision values taken at their exact values; the second point is evaluated at the exact sum p + h.",
+    "Evaluation is deterministic on every conforming JavaScript engine: only exactly specified arithmetic is used, so the same parameters always give the same values."
+  ],
+  "limitations": [
+    "Each quantity is its exact value rounded to the nearest double once. Categories come from exact signs, so a slope that displays as 0 can still be classified as increasing or decreasing.",
+    "A probe entered as a decimal is in general not exactly at a vertex whose position is not a binary fraction (for example −1/3), so the slope there is a small nonzero number.",
+    "The secant slope is undefined at h = 0 and no limiting value is substituted. For h ≠ 0 it differs from the derivative by exactly A·h.",
+    "The domain constraint −5 ≤ p + h ≤ 5 is evaluated on the double sum p + h, as by every runtime entry point; the exact sum can then lie outside by at most 2^−51, and Q is evaluated at that exact sum.",
+    "Values outside the double range are statuses: a nonzero value that rounds to zero is a numerical limit (UNDERFLOW), subnormal values carry a reduced-precision note, and the vertex of a curve with a tiny nonzero A can exceed the largest double (OVERFLOW).",
+    "The graphs of f and f′ are sampled at 401 positions from −5 to 5 in double precision; the polyline between samples does not certify values between them. Tangent and secant lines are drawn from correctly rounded endpoints, and an endpoint whose exact value is nonzero but below the double range is drawn at 0."
+  ],
+  "conventions": {
+    "coordinate": "x is horizontal and increases to the right; f(x) and f′(x) are vertical and increase upward. A slope is rise over run in these coordinates, so a positive slope rises to the right.",
+    "angle": null,
+    "handedness": null,
+    "parameters": {
+      "A": {
+        "label": "Coefficient A",
+        "symbol": "A",
+        "description": "Coefficient of x² in f(x) = A·x² + B·x + C. With A = 0 the function is linear or constant.",
+        "dimension": "dimensionless",
+        "unit": "dimensionless",
+        "min": -2,
+        "max": 2,
+        "default": 0.25,
+        "step": {
+          "ui": 0.25,
+          "admissible": "continuous"
+        },
+        "role": "model-input"
+      },
+      "B": {
+        "label": "Coefficient B",
+        "symbol": "B",
+        "description": "Coefficient of x in f(x) = A·x² + B·x + C.",
+        "dimension": "dimensionless",
+        "unit": "dimensionless",
+        "min": -5,
+        "max": 5,
+        "default": -0.5,
+        "step": {
+          "ui": 0.25,
+          "admissible": "continuous"
+        },
+        "role": "model-input"
+      },
+      "C": {
+        "label": "Coefficient C",
+        "symbol": "C",
+        "description": "Constant term of f(x) = A·x² + B·x + C; it shifts the graph up or down.",
+        "dimension": "dimensionless",
+        "unit": "dimensionless",
+        "min": -5,
+        "max": 5,
+        "default": -2,
+        "step": {
+          "ui": 0.25,
+          "admissible": "continuous"
+        },
+        "role": "model-input"
+      },
+      "p": {
+        "label": "Probe position",
+        "symbol": "p",
+        "description": "x-coordinate of the probe point P = (p, f(p)) on the graph.",
+        "dimension": "dimensionless",
+        "unit": "dimensionless",
+        "min": -5,
+        "max": 5,
+        "default": -1,
+        "step": {
+          "ui": 0.25,
+          "admissible": "continuous"
+        },
+        "role": "model-input"
+      },
+      "h": {
+        "label": "Secant offset",
+        "symbol": "h",
+        "description": "Horizontal offset from P to the second point Q, which lies at x = p + h. With h = 0 the two points coincide.",
+        "dimension": "dimensionless",
+        "unit": "dimensionless",
+        "min": -2,
+        "max": 2,
+        "default": 1,
+        "step": {
+          "ui": 0.25,
+          "admissible": "continuous"
+        },
+        "role": "model-input"
+      }
+    },
+    "quantities": {
+      "probe.x": {
+        "label": "Probe position",
+        "symbol": "p",
+        "shape": {
+          "kind": "scalar"
+        },
+        "dimension": "dimensionless",
+        "unit": "dimensionless",
+        "meaning": "x-coordinate of the probe point P; it repeats the parameter p exactly.",
+        "coordinateFrame": "x–f(x) plane",
+        "signConvention": "Positive to the right of x = 0."
+      },
+      "probe.value": {
+        "label": "Function value at the probe",
+        "symbol": "f(p)",
+        "shape": {
+          "kind": "scalar"
+        },
+        "dimension": "dimensionless",
+        "unit": "dimensionless",
+        "meaning": "f(p) = A·p² + B·p + C, the height of the graph at the probe, rounded once from its exact value.",
+        "coordinateFrame": "x–f(x) plane",
+        "signConvention": "Positive above the x-axis."
+      },
+      "derivative": {
+        "label": "Derivative at the probe",
+        "symbol": "f'(p)",
+        "shape": {
+          "kind": "scalar"
+        },
+        "dimension": "dimensionless",
+        "unit": "dimensionless",
+        "meaning": "Analytical derivative f′(p) = 2A·p + B of the quadratic at the probe: the slope of the tangent at P, from the exact differentiation rule for this polynomial. It is not estimated from secant slopes, samples or a numerical limit.",
+        "coordinateFrame": "x–f(x) plane",
+        "signConvention": "Positive when f increases as x increases (rise over run in the x–f(x) plane)."
+      },
+      "second.x": {
+        "label": "Second point position",
+        "symbol": "p + h",
+        "shape": {
+          "kind": "scalar"
+        },
+        "dimension": "dimensionless",
+        "unit": "dimensionless",
+        "meaning": "x-coordinate p + h of the second point Q, rounded once from the exact sum (the same double the domain constraint checks). Equal to p when h = 0.",
+        "coordinateFrame": "x–f(x) plane",
+        "signConvention": "Positive to the right of x = 0."
+      },
+      "second.value": {
+        "label": "Function value at the second point",
+        "symbol": "f(p + h)",
+        "shape": {
+          "kind": "scalar"
+        },
+        "dimension": "dimensionless",
+        "unit": "dimensionless",
+        "meaning": "f(p + h) = A·(p + h)² + B·(p + h) + C for the exact sum p + h, rounded once.",
+        "coordinateFrame": "x–f(x) plane",
+        "signConvention": "Positive above the x-axis."
+      },
+      "secant.slope": {
+        "label": "Secant slope",
+        "symbol": "m_sec",
+        "shape": {
+          "kind": "scalar"
+        },
+        "dimension": "dimensionless",
+        "unit": "dimensionless",
+        "meaning": "Slope (f(p + h) − f(p))/h of the line through P and Q, which equals 2A·p + B + A·h exactly for h ≠ 0. Undefined (COINCIDENT_POINTS) when h = 0 because a secant needs two distinct points; it is never replaced by the derivative.",
+        "coordinateFrame": "x–f(x) plane",
+        "signConvention": "Positive when f increases as x increases (rise over run in the x–f(x) plane)."
+      },
+      "secant.difference": {
+        "label": "Secant slope minus derivative",
+        "symbol": "m_sec - f'(p)",
+        "shape": {
+          "kind": "scalar"
+        },
+        "dimension": "dimensionless",
+        "unit": "dimensionless",
+        "meaning": "Difference between the secant slope and the analytical derivative at the probe, equal to A·h exactly for h ≠ 0; undefined (COINCIDENT_POINTS) when h = 0 because the secant slope is undefined.",
+        "coordinateFrame": "x–f(x) plane",
+        "signConvention": "Positive when the secant is steeper upward (larger slope) than the tangent."
+      },
+      "slope.sign": {
+        "label": "Direction of the graph at the probe",
+        "shape": {
+          "kind": "category",
+          "values": [
+            "increasing",
+            "decreasing",
+            "stationary"
+          ]
+        },
+        "dimension": "dimensionless",
+        "unit": "dimensionless",
+        "meaning": "increasing when f′(p) > 0, decreasing when f′(p) < 0, stationary when f′(p) = 0; classified from the exact sign of 2A·p + B for the input values, never from rounded or displayed digits.",
+        "coordinateFrame": "x–f(x) plane",
+        "signConvention": "Positive when f increases as x increases (rise over run in the x–f(x) plane)."
+      },
+      "curvature": {
+        "label": "Shape of the graph",
+        "shape": {
+          "kind": "category",
+          "values": [
+            "positive-curvature",
+            "negative-curvature",
+            "linear",
+            "constant"
+          ]
+        },
+        "dimension": "dimensionless",
+        "unit": "dimensionless",
+        "meaning": "positive-curvature when A > 0 (opens upward, slope increasing), negative-curvature when A < 0 (opens downward, slope decreasing), linear when A = 0 and B ≠ 0 (constant nonzero slope), constant when A = 0 and B = 0 (slope 0 everywhere).",
+        "coordinateFrame": "x–f(x) plane"
+      },
+      "vertex.x": {
+        "label": "Vertex position",
+        "symbol": "x_v",
+        "shape": {
+          "kind": "scalar"
+        },
+        "dimension": "dimensionless",
+        "unit": "dimensionless",
+        "meaning": "x-coordinate −B/(2A) of the vertex, the only x where the analytical derivative is zero; one correctly rounded division. Undefined (NO_VERTEX) when A = 0 because a line has no vertex. It may lie outside the plotted domain.",
+        "coordinateFrame": "x–f(x) plane",
+        "signConvention": "Positive to the right of x = 0."
+      }
+    },
+    "constraints": [
+      {
+        "id": "secant-in-domain",
+        "expression": "p + h",
+        "min": -5,
+        "max": 5,
+        "minInclusive": true,
+        "maxInclusive": true,
+        "message": "The second point Q is at x = p + h, which must stay inside the plotted domain from −5 to 5.",
+        "recovery": "Move the probe p or shorten the offset h so that p + h is between −5 and 5."
+      }
+    ]
+  },
+  "referenceSuite": {
+    "declared": {
+      "suiteId": "function-derivative:1.0.0",
+      "digest": "sha256:07404667c68ff04613998c5a4d8e7ce5acf21c53e84cb28d37384fe8a21394f4"
+    },
+    "file": {
+      "path": "tests/reference/fixtures/activities/function-derivative.json",
+      "digest": "sha256:07404667c68ff04613998c5a4d8e7ce5acf21c53e84cb28d37384fe8a21394f4"
+    },
+    "binding": "matches",
+    "unavailable": null,
+    "suite": {
+      "suiteId": "function-derivative:1.0.0",
+      "author": "Reference cases for report §12.1 derived by hand where the values are exact binary fractions, plus cases computed by exact rational arithmetic in tests/reference/oracles/function-derivative.ts, which shares no code with the catalogue kernel.",
+      "review": "No independent human subject reviewer has approved these cases. Automated agreement is engineering evidence only.",
+      "derivedFrom": {
+        "path": "tests/reference/fixtures/activities/function-derivative.json",
+        "digest": "sha256:07404667c68ff04613998c5a4d8e7ce5acf21c53e84cb28d37384fe8a21394f4",
+        "suiteId": "function-derivative:1.0.0",
+        "conversion": "Converted by experiment-kit activity tooling: case IDs, labels, provenance, parameters and tolerances copied unchanged; quantity expectations restated as experiment-kit.reference-fixtures 1.0 expectations."
+      },
+      "notCovered": [
+        "Tangent and secant endpoints and the sampled curves (lines, sampling tolerance) are checked by tests/reference/activities/function-derivative.test.ts."
+      ]
+    },
+    "results": {
+      "cases": [
+        {
+          "id": "defaults",
+          "label": "Manifest defaults: f(x) = 0.25x² − 0.5x − 2, p = −1, h = 1",
+          "provenance": "manifest default parameters; values derived by hand from f(x) = A·x² + B·x + C, f′(x) = 2A·x + B and (f(p + h) − f(p))/h, and cross-checked by exact rational arithmetic (tests/reference/oracles/function-derivative.ts)",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 0
+          },
+          "tolerances": null,
+          "kind": "evaluation",
+          "points": 1,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "positive-curvature",
+          "label": "f(x) = x² − 2x − 3 at p = 3 with h = 1",
+          "provenance": "report §12.1 (positive curvature); values derived by hand from f(x) = A·x² + B·x + C, f′(x) = 2A·x + B and (f(p + h) − f(p))/h, and cross-checked by exact rational arithmetic (tests/reference/oracles/function-derivative.ts)",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 0
+          },
+          "tolerances": null,
+          "kind": "evaluation",
+          "points": 1,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "negative-curvature",
+          "label": "f(x) = −x² + 2x + 1 at p = 2 with h = −1",
+          "provenance": "report §12.1 (negative curvature); values derived by hand from f(x) = A·x² + B·x + C, f′(x) = 2A·x + B and (f(p + h) − f(p))/h, and cross-checked by exact rational arithmetic (tests/reference/oracles/function-derivative.ts)",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 0
+          },
+          "tolerances": null,
+          "kind": "evaluation",
+          "points": 1,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "linear",
+          "label": "Linear f(x) = 1.5x − 1: secant slope equals the derivative",
+          "provenance": "report §12.1 (linear degeneracy); values derived by hand from f(x) = A·x² + B·x + C, f′(x) = 2A·x + B and (f(p + h) − f(p))/h, and cross-checked by exact rational arithmetic (tests/reference/oracles/function-derivative.ts)",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 0
+          },
+          "tolerances": null,
+          "kind": "evaluation",
+          "points": 1,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "linear-decreasing",
+          "label": "Linear f(x) = −2x + 1 at p = −4 with h = 2",
+          "provenance": "report §12.1 (linear degeneracy); values derived by hand from f(x) = A·x² + B·x + C, f′(x) = 2A·x + B and (f(p + h) − f(p))/h, and cross-checked by exact rational arithmetic (tests/reference/oracles/function-derivative.ts)",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 0
+          },
+          "tolerances": null,
+          "kind": "evaluation",
+          "points": 1,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "constant",
+          "label": "Constant f(x) = 2: slope 0, curvature class constant, no vertex",
+          "provenance": "report §12.1 (constant degeneracy); values derived by hand from f(x) = A·x² + B·x + C, f′(x) = 2A·x + B and (f(p + h) − f(p))/h, and cross-checked by exact rational arithmetic (tests/reference/oracles/function-derivative.ts)",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 0
+          },
+          "tolerances": null,
+          "kind": "evaluation",
+          "points": 1,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "constant-coincident",
+          "label": "Constant f(x) = −5 with h = 0: the secant is still undefined, not 0",
+          "provenance": "report §12.1 (constant degeneracy, coincident secant points); values derived by hand from f(x) = A·x² + B·x + C, f′(x) = 2A·x + B and (f(p + h) − f(p))/h, and cross-checked by exact rational arithmetic (tests/reference/oracles/function-derivative.ts)",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 0
+          },
+          "tolerances": null,
+          "kind": "evaluation",
+          "points": 1,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "zero-slope-at-vertex",
+          "label": "Probe at the vertex x = 1 of f(x) = 0.5x² − x − 2",
+          "provenance": "report §12.1 (zero slope); values derived by hand from f(x) = A·x² + B·x + C, f′(x) = 2A·x + B and (f(p + h) − f(p))/h, and cross-checked by exact rational arithmetic (tests/reference/oracles/function-derivative.ts)",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 0
+          },
+          "tolerances": null,
+          "kind": "evaluation",
+          "points": 1,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "zero-slope-at-vertex-downward",
+          "label": "Probe at the vertex x = 1 of f(x) = −2x² + 4x",
+          "provenance": "report §12.1 (zero slope); values derived by hand from f(x) = A·x² + B·x + C, f′(x) = 2A·x + B and (f(p + h) − f(p))/h, and cross-checked by exact rational arithmetic (tests/reference/oracles/function-derivative.ts)",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 0
+          },
+          "tolerances": null,
+          "kind": "evaluation",
+          "points": 1,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "probe-near-non-dyadic-vertex",
+          "label": "p = double nearest −1/3 for f(x) = 1.5x² + x: f′(p) = 2^−54, increasing",
+          "provenance": "report §12.1 (zero slope) and the rule that classification never uses displayed digits; f′(p) = 3·fl(−1/3) + 1 = 2^−54 derived by hand because fl(−1/3) = −6004799503160661·2^−54 and 3·6004799503160661 = 2^54 − 1; values computed by exact rational arithmetic in tests/reference/oracles/function-derivative.ts, which shares no code with the catalogue kernel, and rounded once to the nearest double",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 1e-12
+          },
+          "tolerances": null,
+          "kind": "evaluation",
+          "points": 1,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "secant-h-1",
+          "label": "Secant approach at p = 2 of f(x) = 0.5x² − x − 2: h = 1",
+          "provenance": "report §12.1 (secant points approaching each other); values derived by hand from f(x) = A·x² + B·x + C, f′(x) = 2A·x + B and (f(p + h) − f(p))/h, and cross-checked by exact rational arithmetic (tests/reference/oracles/function-derivative.ts)",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 0
+          },
+          "tolerances": null,
+          "kind": "evaluation",
+          "points": 1,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "secant-h-0.1",
+          "label": "Secant approach: h = 0.1 (secant = 2Ap + B + Ah exactly in rationals)",
+          "provenance": "report §12.1 (secant points approaching each other); values computed by exact rational arithmetic in tests/reference/oracles/function-derivative.ts, which shares no code with the catalogue kernel, and rounded once to the nearest double",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 1e-12
+          },
+          "tolerances": null,
+          "kind": "evaluation",
+          "points": 1,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "secant-h-0.001",
+          "label": "Secant approach: h = 0.001",
+          "provenance": "report §12.1 (secant points approaching each other); values computed by exact rational arithmetic in tests/reference/oracles/function-derivative.ts, which shares no code with the catalogue kernel, and rounded once to the nearest double",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 1e-12
+          },
+          "tolerances": null,
+          "kind": "evaluation",
+          "points": 1,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "secant-h-minus-0.001",
+          "label": "Secant approach from the left: h = −0.001",
+          "provenance": "report §12.1 (secant points approaching each other); values computed by exact rational arithmetic in tests/reference/oracles/function-derivative.ts, which shares no code with the catalogue kernel, and rounded once to the nearest double",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 1e-12
+          },
+          "tolerances": null,
+          "kind": "evaluation",
+          "points": 1,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "secant-tiny-offset",
+          "label": "h = 1e-300: Q rounds onto P but the points are distinct, so the secant is defined",
+          "provenance": "report §12.1 (secant points approaching each other); distinct exact points; values computed by exact rational arithmetic in tests/reference/oracles/function-derivative.ts, which shares no code with the catalogue kernel, and rounded once to the nearest double",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 1e-12
+          },
+          "tolerances": null,
+          "kind": "evaluation",
+          "points": 1,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "coincident-h-0",
+          "label": "h = 0: secant slope and difference undefined (COINCIDENT_POINTS), no secant line",
+          "provenance": "report §12.1 (coincident secant points are never relabelled as the derivative); values derived by hand from f(x) = A·x² + B·x + C, f′(x) = 2A·x + B and (f(p + h) − f(p))/h, and cross-checked by exact rational arithmetic (tests/reference/oracles/function-derivative.ts)",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 0
+          },
+          "tolerances": null,
+          "kind": "evaluation",
+          "points": 1,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "coincident-at-vertex",
+          "label": "h = 0 at the vertex: the secant is undefined, not 0",
+          "provenance": "report §12.1 (coincident secant points); values derived by hand from f(x) = A·x² + B·x + C, f′(x) = 2A·x + B and (f(p + h) − f(p))/h, and cross-checked by exact rational arithmetic (tests/reference/oracles/function-derivative.ts)",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 0
+          },
+          "tolerances": null,
+          "kind": "evaluation",
+          "points": 1,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "sign-before-vertex",
+          "label": "f(x) = x² − 2x − 3 left of the vertex: decreasing",
+          "provenance": "report §12.1 (sign changes); values derived by hand from f(x) = A·x² + B·x + C, f′(x) = 2A·x + B and (f(p + h) − f(p))/h, and cross-checked by exact rational arithmetic (tests/reference/oracles/function-derivative.ts)",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 0
+          },
+          "tolerances": null,
+          "kind": "evaluation",
+          "points": 1,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "sign-at-vertex",
+          "label": "f(x) = x² − 2x − 3 at the vertex: stationary",
+          "provenance": "report §12.1 (sign changes); values derived by hand from f(x) = A·x² + B·x + C, f′(x) = 2A·x + B and (f(p + h) − f(p))/h, and cross-checked by exact rational arithmetic (tests/reference/oracles/function-derivative.ts)",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 0
+          },
+          "tolerances": null,
+          "kind": "evaluation",
+          "points": 1,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "sign-after-vertex",
+          "label": "f(x) = x² − 2x − 3 right of the vertex: increasing",
+          "provenance": "report §12.1 (sign changes); values derived by hand from f(x) = A·x² + B·x + C, f′(x) = 2A·x + B and (f(p + h) − f(p))/h, and cross-checked by exact rational arithmetic (tests/reference/oracles/function-derivative.ts)",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 0
+          },
+          "tolerances": null,
+          "kind": "evaluation",
+          "points": 1,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "sign-before-vertex-downward",
+          "label": "f(x) = −0.5x² − x + 3 left of its vertex x = −1: increasing",
+          "provenance": "report §12.1 (sign changes); values derived by hand from f(x) = A·x² + B·x + C, f′(x) = 2A·x + B and (f(p + h) − f(p))/h, and cross-checked by exact rational arithmetic (tests/reference/oracles/function-derivative.ts)",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 0
+          },
+          "tolerances": null,
+          "kind": "evaluation",
+          "points": 1,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "sign-after-vertex-downward",
+          "label": "f(x) = −0.5x² − x + 3 right of its vertex: decreasing",
+          "provenance": "report §12.1 (sign changes); values derived by hand from f(x) = A·x² + B·x + C, f′(x) = 2A·x + B and (f(p + h) − f(p))/h, and cross-checked by exact rational arithmetic (tests/reference/oracles/function-derivative.ts)",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 0
+          },
+          "tolerances": null,
+          "kind": "evaluation",
+          "points": 1,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "probe-right-boundary",
+          "label": "Probe at p = 5 (domain boundary)",
+          "provenance": "report §12.1 (domain boundaries); values derived by hand from f(x) = A·x² + B·x + C, f′(x) = 2A·x + B and (f(p + h) − f(p))/h, and cross-checked by exact rational arithmetic (tests/reference/oracles/function-derivative.ts)",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 0
+          },
+          "tolerances": null,
+          "kind": "evaluation",
+          "points": 1,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "probe-left-boundary",
+          "label": "Probe at p = −5 (domain boundary)",
+          "provenance": "report §12.1 (domain boundaries); values derived by hand from f(x) = A·x² + B·x + C, f′(x) = 2A·x + B and (f(p + h) − f(p))/h, and cross-checked by exact rational arithmetic (tests/reference/oracles/function-derivative.ts)",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 0
+          },
+          "tolerances": null,
+          "kind": "evaluation",
+          "points": 1,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "second-right-boundary",
+          "label": "Second point at p + h = 5 (inclusive)",
+          "provenance": "report §12.1 (domain boundaries); values derived by hand from f(x) = A·x² + B·x + C, f′(x) = 2A·x + B and (f(p + h) − f(p))/h, and cross-checked by exact rational arithmetic (tests/reference/oracles/function-derivative.ts)",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 0
+          },
+          "tolerances": null,
+          "kind": "evaluation",
+          "points": 1,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "second-left-boundary",
+          "label": "Second point at p + h = −5 (inclusive)",
+          "provenance": "report §12.1 (domain boundaries); values derived by hand from f(x) = A·x² + B·x + C, f′(x) = 2A·x + B and (f(p + h) − f(p))/h, and cross-checked by exact rational arithmetic (tests/reference/oracles/function-derivative.ts)",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 0
+          },
+          "tolerances": null,
+          "kind": "evaluation",
+          "points": 1,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "coincident-at-boundary",
+          "label": "p = 5 and h = 0",
+          "provenance": "report §12.1 (domain boundaries, coincident points); values derived by hand from f(x) = A·x² + B·x + C, f′(x) = 2A·x + B and (f(p + h) − f(p))/h, and cross-checked by exact rational arithmetic (tests/reference/oracles/function-derivative.ts)",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 0
+          },
+          "tolerances": null,
+          "kind": "evaluation",
+          "points": 1,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "second-within-half-ulp-of-boundary",
+          "label": "p = 5, h = 2^−52: the double sum is 5, so the constraint holds; Q is evaluated at the exact sum",
+          "provenance": "declared constraint semantics (manifest limitations); values computed by exact rational arithmetic in tests/reference/oracles/function-derivative.ts, which shares no code with the catalogue kernel, and rounded once to the nearest double",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 1e-12
+          },
+          "tolerances": null,
+          "kind": "evaluation",
+          "points": 1,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "corner-values-high",
+          "label": "A = 2, B = 5, C = 5 at p = −5 with h = 2",
+          "provenance": "parameter-domain corners; values derived by hand from f(x) = A·x² + B·x + C, f′(x) = 2A·x + B and (f(p + h) − f(p))/h, and cross-checked by exact rational arithmetic (tests/reference/oracles/function-derivative.ts)",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 0
+          },
+          "tolerances": null,
+          "kind": "evaluation",
+          "points": 1,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "corner-values-low",
+          "label": "A = −2, B = −5, C = −5 at p = 5 with h = −2: |f(p)| = 80",
+          "provenance": "parameter-domain corners; values derived by hand from f(x) = A·x² + B·x + C, f′(x) = 2A·x + B and (f(p + h) − f(p))/h, and cross-checked by exact rational arithmetic (tests/reference/oracles/function-derivative.ts)",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 0
+          },
+          "tolerances": null,
+          "kind": "evaluation",
+          "points": 1,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "decimal-coefficients",
+          "label": "Decimal inputs A = 0.3, B = −1.7, C = 0.9, p = 2.2, h = −0.7 (rounded values)",
+          "provenance": "non-binary decimal inputs; values computed by exact rational arithmetic in tests/reference/oracles/function-derivative.ts, which shares no code with the catalogue kernel, and rounded once to the nearest double",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 1e-12
+          },
+          "tolerances": null,
+          "kind": "evaluation",
+          "points": 1,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "vertex-overflow",
+          "label": "A = 2^−1074: the vertex −B/(2A) exceeds the double range (OVERFLOW); A·h is subnormal",
+          "provenance": "report §8.2 numerical-limit statuses; values computed by exact rational arithmetic in tests/reference/oracles/function-derivative.ts, which shares no code with the catalogue kernel, and rounded once to the nearest double",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 1e-12
+          },
+          "tolerances": null,
+          "kind": "evaluation",
+          "points": 1,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "vertex-underflow",
+          "label": "B = 2^−1074, A = 2: the vertex is nonzero but rounds to zero (UNDERFLOW); f′(p) is subnormal",
+          "provenance": "report §8.2 numerical-limit statuses; values computed by exact rational arithmetic in tests/reference/oracles/function-derivative.ts, which shares no code with the catalogue kernel, and rounded once to the nearest double",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 1e-12
+          },
+          "tolerances": null,
+          "kind": "evaluation",
+          "points": 1,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "function-value-underflow",
+          "label": "f(p) = p² with p = 1e-200 is nonzero but rounds to zero (UNDERFLOW)",
+          "provenance": "report §8.2 numerical-limit statuses; values computed by exact rational arithmetic in tests/reference/oracles/function-derivative.ts, which shares no code with the catalogue kernel, and rounded once to the nearest double",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 1e-12
+          },
+          "tolerances": null,
+          "kind": "evaluation",
+          "points": 1,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "second-beyond-right-boundary",
+          "label": "p = 4, h = 1.5: p + h = 5.5 is outside the domain",
+          "provenance": "report §12.1 (domain boundaries) and §8.2 coupled constraints; rejection derived by hand from the declared domain and the coupled constraint −5 ≤ p + h ≤ 5 (evaluated on the double sum); cross-checked by the oracle",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 0
+          },
+          "tolerances": null,
+          "kind": "rejection",
+          "points": 0,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "second-beyond-left-boundary",
+          "label": "p = −4.5, h = −1: p + h = −5.5 is outside the domain",
+          "provenance": "report §12.1 (domain boundaries) and §8.2 coupled constraints; rejection derived by hand from the declared domain and the coupled constraint −5 ≤ p + h ≤ 5 (evaluated on the double sum); cross-checked by the oracle",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 0
+          },
+          "tolerances": null,
+          "kind": "rejection",
+          "points": 0,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "second-one-ulp-beyond-boundary",
+          "label": "p = 5, h = 2^−50: the double sum is the next double above 5",
+          "provenance": "declared constraint semantics (double sum); rejection derived by hand from the declared domain and the coupled constraint −5 ≤ p + h ≤ 5 (evaluated on the double sum); cross-checked by the oracle",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 0
+          },
+          "tolerances": null,
+          "kind": "rejection",
+          "points": 0,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "probe-beyond-domain",
+          "label": "p = 5.25 is outside [−5, 5]",
+          "provenance": "declared parameter domain; rejection derived by hand from the declared domain and the coupled constraint −5 ≤ p + h ≤ 5 (evaluated on the double sum); cross-checked by the oracle",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 0
+          },
+          "tolerances": null,
+          "kind": "rejection",
+          "points": 0,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "offset-beyond-domain",
+          "label": "h = 2.5 is outside [−2, 2]",
+          "provenance": "declared parameter domain; rejection derived by hand from the declared domain and the coupled constraint −5 ≤ p + h ≤ 5 (evaluated on the double sum); cross-checked by the oracle",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 0
+          },
+          "tolerances": null,
+          "kind": "rejection",
+          "points": 0,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "coefficient-beyond-domain",
+          "label": "A = 2.5 is outside [−2, 2]",
+          "provenance": "declared parameter domain; rejection derived by hand from the declared domain and the coupled constraint −5 ≤ p + h ≤ 5 (evaluated on the double sum); cross-checked by the oracle",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 0
+          },
+          "tolerances": null,
+          "kind": "rejection",
+          "points": 0,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        }
+      ],
+      "uncovered": []
+    }
+  },
+  "mutation": {
+    "baselineProblems": [],
+    "mutants": [
+      {
+        "id": "sign:probe.x",
+        "operator": "sign",
+        "target": "probe.x",
+        "description": "probe.x with the wrong sign",
+        "killed": true,
+        "firstProblem": "defaults: probe.x: 1, expected -1 (absolute 0, relative 0)"
+      },
+      {
+        "id": "factor:probe.x",
+        "operator": "factor",
+        "target": "probe.x",
+        "factor": 2,
+        "description": "probe.x off by a factor of 2",
+        "killed": true,
+        "firstProblem": "defaults: probe.x: -2, expected -1 (absolute 0, relative 0)"
+      },
+      {
+        "id": "sign:probe.value",
+        "operator": "sign",
+        "target": "probe.value",
+        "description": "probe.value with the wrong sign",
+        "killed": true,
+        "firstProblem": "defaults: probe.value: 1.25, expected -1.25 (absolute 0, relative 0)"
+      },
+      {
+        "id": "factor:probe.value",
+        "operator": "factor",
+        "target": "probe.value",
+        "factor": 2,
+        "description": "probe.value off by a factor of 2",
+        "killed": true,
+        "firstProblem": "defaults: probe.value: -2.5, expected -1.25 (absolute 0, relative 0)"
+      },
+      {
+        "id": "sign:derivative",
+        "operator": "sign",
+        "target": "derivative",
+        "description": "derivative with the wrong sign",
+        "killed": true,
+        "firstProblem": "defaults: derivative: 1, expected -1 (absolute 0, relative 0)"
+      },
+      {
+        "id": "factor:derivative",
+        "operator": "factor",
+        "target": "derivative",
+        "factor": 2,
+        "description": "derivative off by a factor of 2",
+        "killed": true,
+        "firstProblem": "defaults: derivative: -2, expected -1 (absolute 0, relative 0)"
+      },
+      {
+        "id": "sign:second.x",
+        "operator": "sign",
+        "target": "second.x",
+        "description": "second.x with the wrong sign",
+        "killed": true,
+        "firstProblem": "positive-curvature: second.x: -4, expected 4 (absolute 0, relative 0)"
+      },
+      {
+        "id": "factor:second.x",
+        "operator": "factor",
+        "target": "second.x",
+        "factor": 2,
+        "description": "second.x off by a factor of 2",
+        "killed": true,
+        "firstProblem": "positive-curvature: second.x: 8, expected 4 (absolute 0, relative 0)"
+      },
+      {
+        "id": "sign:second.value",
+        "operator": "sign",
+        "target": "second.value",
+        "description": "second.value with the wrong sign",
+        "killed": true,
+        "firstProblem": "defaults: second.value: 2, expected -2 (absolute 0, relative 0)"
+      },
+      {
+        "id": "factor:second.value",
+        "operator": "factor",
+        "target": "second.value",
+        "factor": 2,
+        "description": "second.value off by a factor of 2",
+        "killed": true,
+        "firstProblem": "defaults: second.value: -4, expected -2 (absolute 0, relative 0)"
+      },
+      {
+        "id": "sign:secant.slope",
+        "operator": "sign",
+        "target": "secant.slope",
+        "description": "secant.slope with the wrong sign",
+        "killed": true,
+        "firstProblem": "defaults: secant.slope: 0.75, expected -0.75 (absolute 0, relative 0)"
+      },
+      {
+        "id": "factor:secant.slope",
+        "operator": "factor",
+        "target": "secant.slope",
+        "factor": 2,
+        "description": "secant.slope off by a factor of 2",
+        "killed": true,
+        "firstProblem": "defaults: secant.slope: -1.5, expected -0.75 (absolute 0, relative 0)"
+      },
+      {
+        "id": "sign:secant.difference",
+        "operator": "sign",
+        "target": "secant.difference",
+        "description": "secant.difference with the wrong sign",
+        "killed": true,
+        "firstProblem": "defaults: secant.difference: -0.25, expected 0.25 (absolute 0, relative 0)"
+      },
+      {
+        "id": "factor:secant.difference",
+        "operator": "factor",
+        "target": "secant.difference",
+        "factor": 2,
+        "description": "secant.difference off by a factor of 2",
+        "killed": true,
+        "firstProblem": "defaults: secant.difference: 0.5, expected 0.25 (absolute 0, relative 0)"
+      },
+      {
+        "id": "sign:vertex.x",
+        "operator": "sign",
+        "target": "vertex.x",
+        "description": "vertex.x with the wrong sign",
+        "killed": true,
+        "firstProblem": "defaults: vertex.x: -1, expected 1 (absolute 0, relative 0)"
+      },
+      {
+        "id": "factor:vertex.x",
+        "operator": "factor",
+        "target": "vertex.x",
+        "factor": 2,
+        "description": "vertex.x off by a factor of 2",
+        "killed": true,
+        "firstProblem": "defaults: vertex.x: 2, expected 1 (absolute 0, relative 0)"
+      },
+      {
+        "id": "undefined-as-zero:vertex.x",
+        "operator": "undefined-as-zero",
+        "target": "vertex.x",
+        "description": "undefined vertex.x reported as a valid zero",
+        "killed": true,
+        "firstProblem": "linear: vertex.x: status valid, expected undefined:NO_VERTEX"
+      },
+      {
+        "id": "undefined-as-zero:secant.slope",
+        "operator": "undefined-as-zero",
+        "target": "secant.slope",
+        "description": "undefined secant.slope reported as a valid zero",
+        "killed": true,
+        "firstProblem": "constant-coincident: secant.slope: status valid, expected undefined:COINCIDENT_POINTS"
+      },
+      {
+        "id": "undefined-as-zero:secant.difference",
+        "operator": "undefined-as-zero",
+        "target": "secant.difference",
+        "description": "undefined secant.difference reported as a valid zero",
+        "killed": true,
+        "firstProblem": "constant-coincident: secant.difference: status valid, expected undefined:COINCIDENT_POINTS"
+      },
+      {
+        "id": "limit-as-zero:vertex.x",
+        "operator": "limit-as-zero",
+        "target": "vertex.x",
+        "description": "numerical limit of vertex.x reported as a valid zero",
+        "killed": true,
+        "firstProblem": "vertex-overflow: vertex.x: status valid, expected numerical-limit:OVERFLOW"
+      },
+      {
+        "id": "limit-as-zero:probe.value",
+        "operator": "limit-as-zero",
+        "target": "probe.value",
+        "description": "numerical limit of probe.value reported as a valid zero",
+        "killed": true,
+        "firstProblem": "function-value-underflow: probe.value: status valid, expected numerical-limit:UNDERFLOW"
+      },
+      {
+        "id": "swap-inputs:A,h",
+        "operator": "swap-inputs",
+        "target": "A",
+        "other": "h",
+        "description": "inputs A and h transposed",
+        "killed": true,
+        "firstProblem": "defaults: probe.value: -0.5, expected -1.25 (absolute 0, relative 0)"
+      },
+      {
+        "id": "swap-inputs:B,C",
+        "operator": "swap-inputs",
+        "target": "B",
+        "other": "C",
+        "description": "inputs B and C transposed",
+        "killed": true,
+        "firstProblem": "defaults: probe.value: 1.75, expected -1.25 (absolute 0, relative 0)"
+      },
+      {
+        "id": "swap-inputs:B,p",
+        "operator": "swap-inputs",
+        "target": "B",
+        "other": "p",
+        "description": "inputs B and p transposed",
+        "killed": true,
+        "firstProblem": "defaults: probe.x: -0.5, expected -1 (absolute 0, relative 0)"
+      },
+      {
+        "id": "swap-inputs:C,p",
+        "operator": "swap-inputs",
+        "target": "C",
+        "other": "p",
+        "description": "inputs C and p transposed",
+        "killed": true,
+        "firstProblem": "defaults: probe.x: -2, expected -1 (absolute 0, relative 0)"
+      },
+      {
+        "id": "boundary-nudge:A",
+        "operator": "boundary-nudge",
+        "target": "A",
+        "factor": 1e-9,
+        "description": "A shifted by a relative 1e-9 (boundary off by a hair)",
+        "killed": true,
+        "firstProblem": "defaults: probe.value: -1.249999999, expected -1.25 (absolute 0, relative 0)"
+      },
+      {
+        "id": "boundary-nudge:B",
+        "operator": "boundary-nudge",
+        "target": "B",
+        "factor": 1e-9,
+        "description": "B shifted by a relative 1e-9 (boundary off by a hair)",
+        "killed": true,
+        "firstProblem": "defaults: probe.value: -1.250000001, expected -1.25 (absolute 0, relative 0)"
+      },
+      {
+        "id": "boundary-nudge:C",
+        "operator": "boundary-nudge",
+        "target": "C",
+        "factor": 1e-9,
+        "description": "C shifted by a relative 1e-9 (boundary off by a hair)",
+        "killed": true,
+        "firstProblem": "defaults: probe.value: -1.249999998, expected -1.25 (absolute 0, relative 0)"
+      },
+      {
+        "id": "boundary-nudge:p",
+        "operator": "boundary-nudge",
+        "target": "p",
+        "factor": 1e-9,
+        "description": "p shifted by a relative 1e-9 (boundary off by a hair)",
+        "killed": true,
+        "firstProblem": "defaults: probe.x: -0.999999999, expected -1 (absolute 0, relative 0)"
+      },
+      {
+        "id": "boundary-nudge:h",
+        "operator": "boundary-nudge",
+        "target": "h",
+        "factor": 1e-9,
+        "description": "h shifted by a relative 1e-9 (boundary off by a hair)",
+        "killed": true,
+        "firstProblem": "defaults: second.x: 1.000000082740371e-9, expected 0 (absolute 0, relative 0)"
+      }
+    ],
+    "uncovered": []
+  },
+  "activitySpecificTests": [
+    "tests/reference/activities/function-derivative.test.ts"
+  ],
+  "boundaries": {
+    "cases": [
+      {
+        "id": "linear",
+        "source": "declared",
+        "label": "Linear f(x) = 1.5x − 1: secant slope equals the derivative",
+        "rationale": "From reference case linear: report §12.1 (linear degeneracy); values derived by hand from f(x) = A·x² + B·x + C, f′(x) = 2A·x + B and (f(p + h) − f(p))/h, and cross-checked by exact rational arithmetic (tests/reference/oracles/function-derivative.ts)",
+        "params": {
+          "A": 0,
+          "B": 1.5,
+          "C": -1,
+          "p": 1,
+          "h": 0.5
+        },
+        "position": {
+          "kind": "static"
+        },
+        "outcome": "undefined",
+        "statuses": {
+          "vertex.x": "undefined:NO_VERTEX"
+        },
+        "rejection": null,
+        "expected": {
+          "outcome": "undefined",
+          "statuses": {
+            "vertex.x": "undefined:NO_VERTEX"
+          }
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "linear-decreasing",
+        "source": "declared",
+        "label": "Linear f(x) = −2x + 1 at p = −4 with h = 2",
+        "rationale": "From reference case linear-decreasing: report §12.1 (linear degeneracy); values derived by hand from f(x) = A·x² + B·x + C, f′(x) = 2A·x + B and (f(p + h) − f(p))/h, and cross-checked by exact rational arithmetic (tests/reference/oracles/function-derivative.ts)",
+        "params": {
+          "A": 0,
+          "B": -2,
+          "C": 1,
+          "p": -4,
+          "h": 2
+        },
+        "position": {
+          "kind": "static"
+        },
+        "outcome": "undefined",
+        "statuses": {
+          "vertex.x": "undefined:NO_VERTEX"
+        },
+        "rejection": null,
+        "expected": {
+          "outcome": "undefined",
+          "statuses": {
+            "vertex.x": "undefined:NO_VERTEX"
+          }
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "constant",
+        "source": "declared",
+        "label": "Constant f(x) = 2: slope 0, curvature class constant, no vertex",
+        "rationale": "From reference case constant: report §12.1 (constant degeneracy); values derived by hand from f(x) = A·x² + B·x + C, f′(x) = 2A·x + B and (f(p + h) − f(p))/h, and cross-checked by exact rational arithmetic (tests/reference/oracles/function-derivative.ts)",
+        "params": {
+          "A": 0,
+          "B": 0,
+          "C": 2,
+          "p": -3,
+          "h": 1
+        },
+        "position": {
+          "kind": "static"
+        },
+        "outcome": "undefined",
+        "statuses": {
+          "vertex.x": "undefined:NO_VERTEX"
+        },
+        "rejection": null,
+        "expected": {
+          "outcome": "undefined",
+          "statuses": {
+            "vertex.x": "undefined:NO_VERTEX"
+          }
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "constant-coincident",
+        "source": "declared",
+        "label": "Constant f(x) = −5 with h = 0: the secant is still undefined, not 0",
+        "rationale": "From reference case constant-coincident: report §12.1 (constant degeneracy, coincident secant points); values derived by hand from f(x) = A·x² + B·x + C, f′(x) = 2A·x + B and (f(p + h) − f(p))/h, and cross-checked by exact rational arithmetic (tests/reference/oracles/function-derivative.ts)",
+        "params": {
+          "A": 0,
+          "B": 0,
+          "C": -5,
+          "p": 0,
+          "h": 0
+        },
+        "position": {
+          "kind": "static"
+        },
+        "outcome": "undefined",
+        "statuses": {
+          "secant.slope": "undefined:COINCIDENT_POINTS",
+          "secant.difference": "undefined:COINCIDENT_POINTS",
+          "vertex.x": "undefined:NO_VERTEX"
+        },
+        "rejection": null,
+        "expected": {
+          "outcome": "undefined",
+          "statuses": {
+            "secant.slope": "undefined:COINCIDENT_POINTS",
+            "secant.difference": "undefined:COINCIDENT_POINTS",
+            "vertex.x": "undefined:NO_VERTEX"
+          }
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "coincident-h-0",
+        "source": "declared",
+        "label": "h = 0: secant slope and difference undefined (COINCIDENT_POINTS), no secant line",
+        "rationale": "From reference case coincident-h-0: report §12.1 (coincident secant points are never relabelled as the derivative); values derived by hand from f(x) = A·x² + B·x + C, f′(x) = 2A·x + B and (f(p + h) − f(p))/h, and cross-checked by exact rational arithmetic (tests/reference/oracles/function-derivative.ts)",
+        "params": {
+          "A": 0.5,
+          "B": -1,
+          "C": -2,
+          "p": 2,
+          "h": 0
+        },
+        "position": {
+          "kind": "static"
+        },
+        "outcome": "undefined",
+        "statuses": {
+          "secant.slope": "undefined:COINCIDENT_POINTS",
+          "secant.difference": "undefined:COINCIDENT_POINTS"
+        },
+        "rejection": null,
+        "expected": {
+          "outcome": "undefined",
+          "statuses": {
+            "secant.slope": "undefined:COINCIDENT_POINTS",
+            "secant.difference": "undefined:COINCIDENT_POINTS"
+          }
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "coincident-at-vertex",
+        "source": "declared",
+        "label": "h = 0 at the vertex: the secant is undefined, not 0",
+        "rationale": "From reference case coincident-at-vertex: report §12.1 (coincident secant points); values derived by hand from f(x) = A·x² + B·x + C, f′(x) = 2A·x + B and (f(p + h) − f(p))/h, and cross-checked by exact rational arithmetic (tests/reference/oracles/function-derivative.ts)",
+        "params": {
+          "A": 0.5,
+          "B": -1,
+          "C": -2,
+          "p": 1,
+          "h": 0
+        },
+        "position": {
+          "kind": "static"
+        },
+        "outcome": "undefined",
+        "statuses": {
+          "secant.slope": "undefined:COINCIDENT_POINTS",
+          "secant.difference": "undefined:COINCIDENT_POINTS"
+        },
+        "rejection": null,
+        "expected": {
+          "outcome": "undefined",
+          "statuses": {
+            "secant.slope": "undefined:COINCIDENT_POINTS",
+            "secant.difference": "undefined:COINCIDENT_POINTS"
+          }
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "coincident-at-boundary",
+        "source": "declared",
+        "label": "p = 5 and h = 0",
+        "rationale": "From reference case coincident-at-boundary: report §12.1 (domain boundaries, coincident points); values derived by hand from f(x) = A·x² + B·x + C, f′(x) = 2A·x + B and (f(p + h) − f(p))/h, and cross-checked by exact rational arithmetic (tests/reference/oracles/function-derivative.ts)",
+        "params": {
+          "A": 1,
+          "B": -2,
+          "C": -3,
+          "p": 5,
+          "h": 0
+        },
+        "position": {
+          "kind": "static"
+        },
+        "outcome": "undefined",
+        "statuses": {
+          "secant.slope": "undefined:COINCIDENT_POINTS",
+          "secant.difference": "undefined:COINCIDENT_POINTS"
+        },
+        "rejection": null,
+        "expected": {
+          "outcome": "undefined",
+          "statuses": {
+            "secant.slope": "undefined:COINCIDENT_POINTS",
+            "secant.difference": "undefined:COINCIDENT_POINTS"
+          }
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "vertex-overflow",
+        "source": "declared",
+        "label": "A = 2^−1074: the vertex −B/(2A) exceeds the double range (OVERFLOW); A·h is subnormal",
+        "rationale": "From reference case vertex-overflow: report §8.2 numerical-limit statuses; values computed by exact rational arithmetic in tests/reference/oracles/function-derivative.ts, which shares no code with the catalogue kernel, and rounded once to the nearest double",
+        "params": {
+          "A": 5e-324,
+          "B": 5,
+          "C": 0,
+          "p": 1,
+          "h": 1
+        },
+        "position": {
+          "kind": "static"
+        },
+        "outcome": "numerical-limit",
+        "statuses": {
+          "secant.difference": "valid:UNDERFLOW",
+          "vertex.x": "numerical-limit:OVERFLOW"
+        },
+        "rejection": null,
+        "expected": {
+          "outcome": "numerical-limit",
+          "statuses": {
+            "secant.difference": "valid:UNDERFLOW",
+            "vertex.x": "numerical-limit:OVERFLOW"
+          }
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "vertex-underflow",
+        "source": "declared",
+        "label": "B = 2^−1074, A = 2: the vertex is nonzero but rounds to zero (UNDERFLOW); f′(p) is subnormal",
+        "rationale": "From reference case vertex-underflow: report §8.2 numerical-limit statuses; values computed by exact rational arithmetic in tests/reference/oracles/function-derivative.ts, which shares no code with the catalogue kernel, and rounded once to the nearest double",
+        "params": {
+          "A": 2,
+          "B": 5e-324,
+          "C": 0,
+          "p": 0,
+          "h": 1
+        },
+        "position": {
+          "kind": "static"
+        },
+        "outcome": "numerical-limit",
+        "statuses": {
+          "derivative": "valid:UNDERFLOW",
+          "vertex.x": "numerical-limit:UNDERFLOW"
+        },
+        "rejection": null,
+        "expected": {
+          "outcome": "numerical-limit",
+          "statuses": {
+            "derivative": "valid:UNDERFLOW",
+            "vertex.x": "numerical-limit:UNDERFLOW"
+          }
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "function-value-underflow",
+        "source": "declared",
+        "label": "f(p) = p² with p = 1e-200 is nonzero but rounds to zero (UNDERFLOW)",
+        "rationale": "From reference case function-value-underflow: report §8.2 numerical-limit statuses; values computed by exact rational arithmetic in tests/reference/oracles/function-derivative.ts, which shares no code with the catalogue kernel, and rounded once to the nearest double",
+        "params": {
+          "A": 1,
+          "B": 0,
+          "C": 0,
+          "p": 1e-200,
+          "h": 1
+        },
+        "position": {
+          "kind": "static"
+        },
+        "outcome": "numerical-limit",
+        "statuses": {
+          "probe.value": "numerical-limit:UNDERFLOW"
+        },
+        "rejection": null,
+        "expected": {
+          "outcome": "numerical-limit",
+          "statuses": {
+            "probe.value": "numerical-limit:UNDERFLOW"
+          }
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "second-beyond-right-boundary",
+        "source": "declared",
+        "label": "p = 4, h = 1.5: p + h = 5.5 is outside the domain",
+        "rationale": "From reference case second-beyond-right-boundary: report §12.1 (domain boundaries) and §8.2 coupled constraints; rejection derived by hand from the declared domain and the coupled constraint −5 ≤ p + h ≤ 5 (evaluated on the double sum); cross-checked by the oracle",
+        "params": {
+          "A": 1,
+          "B": -2,
+          "C": -3,
+          "p": 4,
+          "h": 1.5
+        },
+        "position": {
+          "kind": "static"
+        },
+        "outcome": "out-of-domain",
+        "statuses": {},
+        "rejection": [
+          {
+            "code": "CONSTRAINT_VIOLATION",
+            "path": "$.constraints.secant-in-domain",
+            "message": "The second point Q is at x = p + h, which must stay inside the plotted domain from −5 to 5."
+          }
+        ],
+        "expected": {
+          "outcome": "out-of-domain"
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "second-beyond-left-boundary",
+        "source": "declared",
+        "label": "p = −4.5, h = −1: p + h = −5.5 is outside the domain",
+        "rationale": "From reference case second-beyond-left-boundary: report §12.1 (domain boundaries) and §8.2 coupled constraints; rejection derived by hand from the declared domain and the coupled constraint −5 ≤ p + h ≤ 5 (evaluated on the double sum); cross-checked by the oracle",
+        "params": {
+          "A": 1,
+          "B": -2,
+          "C": -3,
+          "p": -4.5,
+          "h": -1
+        },
+        "position": {
+          "kind": "static"
+        },
+        "outcome": "out-of-domain",
+        "statuses": {},
+        "rejection": [
+          {
+            "code": "CONSTRAINT_VIOLATION",
+            "path": "$.constraints.secant-in-domain",
+            "message": "The second point Q is at x = p + h, which must stay inside the plotted domain from −5 to 5."
+          }
+        ],
+        "expected": {
+          "outcome": "out-of-domain"
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "second-one-ulp-beyond-boundary",
+        "source": "declared",
+        "label": "p = 5, h = 2^−50: the double sum is the next double above 5",
+        "rationale": "From reference case second-one-ulp-beyond-boundary: declared constraint semantics (double sum); rejection derived by hand from the declared domain and the coupled constraint −5 ≤ p + h ≤ 5 (evaluated on the double sum); cross-checked by the oracle",
+        "params": {
+          "A": 1,
+          "B": -2,
+          "C": -3,
+          "p": 5,
+          "h": 8.881784197001252e-16
+        },
+        "position": {
+          "kind": "static"
+        },
+        "outcome": "out-of-domain",
+        "statuses": {},
+        "rejection": [
+          {
+            "code": "CONSTRAINT_VIOLATION",
+            "path": "$.constraints.secant-in-domain",
+            "message": "The second point Q is at x = p + h, which must stay inside the plotted domain from −5 to 5."
+          }
+        ],
+        "expected": {
+          "outcome": "out-of-domain"
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "probe-beyond-domain",
+        "source": "declared",
+        "label": "p = 5.25 is outside [−5, 5]",
+        "rationale": "From reference case probe-beyond-domain: declared parameter domain; rejection derived by hand from the declared domain and the coupled constraint −5 ≤ p + h ≤ 5 (evaluated on the double sum); cross-checked by the oracle",
+        "params": {
+          "A": 1,
+          "B": -2,
+          "C": -3,
+          "p": 5.25,
+          "h": -1
+        },
+        "position": {
+          "kind": "static"
+        },
+        "outcome": "out-of-domain",
+        "statuses": {},
+        "rejection": [
+          {
+            "code": "OUT_OF_DOMAIN",
+            "path": "$.parameters.p",
+            "message": "Expected a value from -5 to 5."
+          }
+        ],
+        "expected": {
+          "outcome": "out-of-domain"
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "offset-beyond-domain",
+        "source": "declared",
+        "label": "h = 2.5 is outside [−2, 2]",
+        "rationale": "From reference case offset-beyond-domain: declared parameter domain; rejection derived by hand from the declared domain and the coupled constraint −5 ≤ p + h ≤ 5 (evaluated on the double sum); cross-checked by the oracle",
+        "params": {
+          "A": 1,
+          "B": -2,
+          "C": -3,
+          "p": 0,
+          "h": 2.5
+        },
+        "position": {
+          "kind": "static"
+        },
+        "outcome": "out-of-domain",
+        "statuses": {},
+        "rejection": [
+          {
+            "code": "OUT_OF_DOMAIN",
+            "path": "$.parameters.h",
+            "message": "Expected a value from -2 to 2."
+          }
+        ],
+        "expected": {
+          "outcome": "out-of-domain"
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "coefficient-beyond-domain",
+        "source": "declared",
+        "label": "A = 2.5 is outside [−2, 2]",
+        "rationale": "From reference case coefficient-beyond-domain: declared parameter domain; rejection derived by hand from the declared domain and the coupled constraint −5 ≤ p + h ≤ 5 (evaluated on the double sum); cross-checked by the oracle",
+        "params": {
+          "A": 2.5,
+          "B": -2,
+          "C": -3,
+          "p": 0,
+          "h": 1
+        },
+        "position": {
+          "kind": "static"
+        },
+        "outcome": "out-of-domain",
+        "statuses": {},
+        "rejection": [
+          {
+            "code": "OUT_OF_DOMAIN",
+            "path": "$.parameters.A",
+            "message": "Expected a value from -2 to 2."
+          }
+        ],
+        "expected": {
+          "outcome": "out-of-domain"
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "generated.A.min",
+        "source": "generated",
+        "label": "A at its minimum -2",
+        "rationale": "Generated probe: lower end of the declared domain (other parameters at defaults).",
+        "params": {
+          "A": -2,
+          "B": -0.5,
+          "C": -2,
+          "p": -1,
+          "h": 1
+        },
+        "position": {
+          "kind": "static"
+        },
+        "outcome": "valid",
+        "statuses": {},
+        "rejection": null,
+        "expected": null,
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "generated.A.max",
+        "source": "generated",
+        "label": "A at its maximum 2",
+        "rationale": "Generated probe: upper end of the declared domain (other parameters at defaults).",
+        "params": {
+          "A": 2,
+          "B": -0.5,
+          "C": -2,
+          "p": -1,
+          "h": 1
+        },
+        "position": {
+          "kind": "static"
+        },
+        "outcome": "valid",
+        "statuses": {},
+        "rejection": null,
+        "expected": null,
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "generated.A.below",
+        "source": "generated",
+        "label": "A just below its minimum",
+        "rationale": "Generated probe: just outside the declared domain; must be rejected before evaluation.",
+        "params": {
+          "A": -2.000004,
+          "B": -0.5,
+          "C": -2,
+          "p": -1,
+          "h": 1
+        },
+        "position": {
+          "kind": "static"
+        },
+        "outcome": "out-of-domain",
+        "statuses": {},
+        "rejection": [
+          {
+            "code": "OUT_OF_DOMAIN",
+            "path": "$.parameters.A",
+            "message": "Expected a value from -2 to 2."
+          }
+        ],
+        "expected": {
+          "outcome": "out-of-domain"
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "generated.A.above",
+        "source": "generated",
+        "label": "A just above its maximum",
+        "rationale": "Generated probe: just outside the declared domain; must be rejected before evaluation.",
+        "params": {
+          "A": 2.000004,
+          "B": -0.5,
+          "C": -2,
+          "p": -1,
+          "h": 1
+        },
+        "position": {
+          "kind": "static"
+        },
+        "outcome": "out-of-domain",
+        "statuses": {},
+        "rejection": [
+          {
+            "code": "OUT_OF_DOMAIN",
+            "path": "$.parameters.A",
+            "message": "Expected a value from -2 to 2."
+          }
+        ],
+        "expected": {
+          "outcome": "out-of-domain"
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "generated.B.min",
+        "source": "generated",
+        "label": "B at its minimum -5",
+        "rationale": "Generated probe: lower end of the declared domain (other parameters at defaults).",
+        "params": {
+          "A": 0.25,
+          "B": -5,
+          "C": -2,
+          "p": -1,
+          "h": 1
+        },
+        "position": {
+          "kind": "static"
+        },
+        "outcome": "valid",
+        "statuses": {},
+        "rejection": null,
+        "expected": null,
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "generated.B.max",
+        "source": "generated",
+        "label": "B at its maximum 5",
+        "rationale": "Generated probe: upper end of the declared domain (other parameters at defaults).",
+        "params": {
+          "A": 0.25,
+          "B": 5,
+          "C": -2,
+          "p": -1,
+          "h": 1
+        },
+        "position": {
+          "kind": "static"
+        },
+        "outcome": "valid",
+        "statuses": {},
+        "rejection": null,
+        "expected": null,
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "generated.B.below",
+        "source": "generated",
+        "label": "B just below its minimum",
+        "rationale": "Generated probe: just outside the declared domain; must be rejected before evaluation.",
+        "params": {
+          "A": 0.25,
+          "B": -5.00001,
+          "C": -2,
+          "p": -1,
+          "h": 1
+        },
+        "position": {
+          "kind": "static"
+        },
+        "outcome": "out-of-domain",
+        "statuses": {},
+        "rejection": [
+          {
+            "code": "OUT_OF_DOMAIN",
+            "path": "$.parameters.B",
+            "message": "Expected a value from -5 to 5."
+          }
+        ],
+        "expected": {
+          "outcome": "out-of-domain"
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "generated.B.above",
+        "source": "generated",
+        "label": "B just above its maximum",
+        "rationale": "Generated probe: just outside the declared domain; must be rejected before evaluation.",
+        "params": {
+          "A": 0.25,
+          "B": 5.00001,
+          "C": -2,
+          "p": -1,
+          "h": 1
+        },
+        "position": {
+          "kind": "static"
+        },
+        "outcome": "out-of-domain",
+        "statuses": {},
+        "rejection": [
+          {
+            "code": "OUT_OF_DOMAIN",
+            "path": "$.parameters.B",
+            "message": "Expected a value from -5 to 5."
+          }
+        ],
+        "expected": {
+          "outcome": "out-of-domain"
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "generated.C.min",
+        "source": "generated",
+        "label": "C at its minimum -5",
+        "rationale": "Generated probe: lower end of the declared domain (other parameters at defaults).",
+        "params": {
+          "A": 0.25,
+          "B": -0.5,
+          "C": -5,
+          "p": -1,
+          "h": 1
+        },
+        "position": {
+          "kind": "static"
+        },
+        "outcome": "valid",
+        "statuses": {},
+        "rejection": null,
+        "expected": null,
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "generated.C.max",
+        "source": "generated",
+        "label": "C at its maximum 5",
+        "rationale": "Generated probe: upper end of the declared domain (other parameters at defaults).",
+        "params": {
+          "A": 0.25,
+          "B": -0.5,
+          "C": 5,
+          "p": -1,
+          "h": 1
+        },
+        "position": {
+          "kind": "static"
+        },
+        "outcome": "valid",
+        "statuses": {},
+        "rejection": null,
+        "expected": null,
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "generated.C.below",
+        "source": "generated",
+        "label": "C just below its minimum",
+        "rationale": "Generated probe: just outside the declared domain; must be rejected before evaluation.",
+        "params": {
+          "A": 0.25,
+          "B": -0.5,
+          "C": -5.00001,
+          "p": -1,
+          "h": 1
+        },
+        "position": {
+          "kind": "static"
+        },
+        "outcome": "out-of-domain",
+        "statuses": {},
+        "rejection": [
+          {
+            "code": "OUT_OF_DOMAIN",
+            "path": "$.parameters.C",
+            "message": "Expected a value from -5 to 5."
+          }
+        ],
+        "expected": {
+          "outcome": "out-of-domain"
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "generated.C.above",
+        "source": "generated",
+        "label": "C just above its maximum",
+        "rationale": "Generated probe: just outside the declared domain; must be rejected before evaluation.",
+        "params": {
+          "A": 0.25,
+          "B": -0.5,
+          "C": 5.00001,
+          "p": -1,
+          "h": 1
+        },
+        "position": {
+          "kind": "static"
+        },
+        "outcome": "out-of-domain",
+        "statuses": {},
+        "rejection": [
+          {
+            "code": "OUT_OF_DOMAIN",
+            "path": "$.parameters.C",
+            "message": "Expected a value from -5 to 5."
+          }
+        ],
+        "expected": {
+          "outcome": "out-of-domain"
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "generated.p.min",
+        "source": "generated",
+        "label": "p at its minimum -5",
+        "rationale": "Generated probe: lower end of the declared domain (other parameters at defaults).",
+        "params": {
+          "A": 0.25,
+          "B": -0.5,
+          "C": -2,
+          "p": -5,
+          "h": 1
+        },
+        "position": {
+          "kind": "static"
+        },
+        "outcome": "valid",
+        "statuses": {},
+        "rejection": null,
+        "expected": null,
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "generated.p.max",
+        "source": "generated",
+        "label": "p at its maximum 5",
+        "rationale": "Generated probe: upper end of the declared domain (other parameters at defaults).",
+        "params": {
+          "A": 0.25,
+          "B": -0.5,
+          "C": -2,
+          "p": 5,
+          "h": 1
+        },
+        "position": {
+          "kind": "static"
+        },
+        "outcome": "out-of-domain",
+        "statuses": {},
+        "rejection": [
+          {
+            "code": "CONSTRAINT_VIOLATION",
+            "path": "$.constraints.secant-in-domain",
+            "message": "The second point Q is at x = p + h, which must stay inside the plotted domain from −5 to 5."
+          }
+        ],
+        "expected": null,
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "generated.p.below",
+        "source": "generated",
+        "label": "p just below its minimum",
+        "rationale": "Generated probe: just outside the declared domain; must be rejected before evaluation.",
+        "params": {
+          "A": 0.25,
+          "B": -0.5,
+          "C": -2,
+          "p": -5.00001,
+          "h": 1
+        },
+        "position": {
+          "kind": "static"
+        },
+        "outcome": "out-of-domain",
+        "statuses": {},
+        "rejection": [
+          {
+            "code": "OUT_OF_DOMAIN",
+            "path": "$.parameters.p",
+            "message": "Expected a value from -5 to 5."
+          }
+        ],
+        "expected": {
+          "outcome": "out-of-domain"
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "generated.p.above",
+        "source": "generated",
+        "label": "p just above its maximum",
+        "rationale": "Generated probe: just outside the declared domain; must be rejected before evaluation.",
+        "params": {
+          "A": 0.25,
+          "B": -0.5,
+          "C": -2,
+          "p": 5.00001,
+          "h": 1
+        },
+        "position": {
+          "kind": "static"
+        },
+        "outcome": "out-of-domain",
+        "statuses": {},
+        "rejection": [
+          {
+            "code": "OUT_OF_DOMAIN",
+            "path": "$.parameters.p",
+            "message": "Expected a value from -5 to 5."
+          }
+        ],
+        "expected": {
+          "outcome": "out-of-domain"
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "generated.h.min",
+        "source": "generated",
+        "label": "h at its minimum -2",
+        "rationale": "Generated probe: lower end of the declared domain (other parameters at defaults).",
+        "params": {
+          "A": 0.25,
+          "B": -0.5,
+          "C": -2,
+          "p": -1,
+          "h": -2
+        },
+        "position": {
+          "kind": "static"
+        },
+        "outcome": "valid",
+        "statuses": {},
+        "rejection": null,
+        "expected": null,
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "generated.h.max",
+        "source": "generated",
+        "label": "h at its maximum 2",
+        "rationale": "Generated probe: upper end of the declared domain (other parameters at defaults).",
+        "params": {
+          "A": 0.25,
+          "B": -0.5,
+          "C": -2,
+          "p": -1,
+          "h": 2
+        },
+        "position": {
+          "kind": "static"
+        },
+        "outcome": "valid",
+        "statuses": {},
+        "rejection": null,
+        "expected": null,
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "generated.h.below",
+        "source": "generated",
+        "label": "h just below its minimum",
+        "rationale": "Generated probe: just outside the declared domain; must be rejected before evaluation.",
+        "params": {
+          "A": 0.25,
+          "B": -0.5,
+          "C": -2,
+          "p": -1,
+          "h": -2.000004
+        },
+        "position": {
+          "kind": "static"
+        },
+        "outcome": "out-of-domain",
+        "statuses": {},
+        "rejection": [
+          {
+            "code": "OUT_OF_DOMAIN",
+            "path": "$.parameters.h",
+            "message": "Expected a value from -2 to 2."
+          }
+        ],
+        "expected": {
+          "outcome": "out-of-domain"
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "generated.h.above",
+        "source": "generated",
+        "label": "h just above its maximum",
+        "rationale": "Generated probe: just outside the declared domain; must be rejected before evaluation.",
+        "params": {
+          "A": 0.25,
+          "B": -0.5,
+          "C": -2,
+          "p": -1,
+          "h": 2.000004
+        },
+        "position": {
+          "kind": "static"
+        },
+        "outcome": "out-of-domain",
+        "statuses": {},
+        "rejection": [
+          {
+            "code": "OUT_OF_DOMAIN",
+            "path": "$.parameters.h",
+            "message": "Expected a value from -2 to 2."
+          }
+        ],
+        "expected": {
+          "outcome": "out-of-domain"
+        },
+        "matches": true,
+        "mismatches": []
+      }
+    ]
+  },
+  "check": {
+    "worker": {
+      "kernels": [
+        {
+          "id": "quadratic-gradient-descent",
+          "version": "1.0.0",
+          "mode": "discrete"
+        },
+        {
+          "id": "function-derivative",
+          "version": "1.0.0",
+          "mode": "static"
+        },
+        {
+          "id": "linear-transformation",
+          "version": "1.0.0",
+          "mode": "static"
+        },
+        {
+          "id": "vector-orientation-3d",
+          "version": "1.0.0",
+          "mode": "static"
+        },
+        {
+          "id": "quadratic-surface-gradient",
+          "version": "1.1.0",
+          "mode": "static"
+        }
+      ],
+      "checks": null,
+      "checksError": null
+    },
+    "loadError": null,
+    "defaults": {
+      "params": {
+        "A": 0.25,
+        "B": -0.5,
+        "C": -2,
+        "p": -1,
+        "h": 1
+      },
+      "position": {
+        "kind": "static"
+      },
+      "terminal": {
+        "reached": false
+      },
+      "quantities": {
+        "probe.x": "valid",
+        "probe.value": "valid",
+        "derivative": "valid",
+        "second.x": "valid",
+        "second.value": "valid",
+        "secant.slope": "valid",
+        "secant.difference": "valid",
+        "slope.sign": "valid",
+        "curvature": "valid",
+        "vertex.x": "valid"
+      },
+      "geometry": {
+        "curve": {
+          "kind": "polyline2",
+          "elements": 1,
+          "sampling": {
+            "samples": 401,
+            "domain": [
+              -5,
+              5
+            ]
+          }
+        },
+        "derivative-curve": {
+          "kind": "polyline2",
+          "elements": 1,
+          "sampling": {
+            "samples": 401,
+            "domain": [
+              -5,
+              5
+            ]
+          }
+        },
+        "tangent": {
+          "kind": "segments2",
+          "elements": 1
+        },
+        "secant": {
+          "kind": "segments2",
+          "elements": 1
+        },
+        "probe": {
+          "kind": "points2",
+          "elements": 1
+        },
+        "second": {
+          "kind": "points2",
+          "elements": 1
+        },
+        "derivative-probe": {
+          "kind": "points2",
+          "elements": 1
+        }
+      }
+    },
+    "scenarios": [
+      {
+        "id": "curve-up",
+        "outcome": "valid",
+        "statuses": {
+          "probe.x": "valid",
+          "probe.value": "valid",
+          "derivative": "valid",
+          "second.x": "valid",
+          "second.value": "valid",
+          "secant.slope": "valid",
+          "secant.difference": "valid",
+          "slope.sign": "valid",
+          "curvature": "valid",
+          "vertex.x": "valid"
+        },
+        "diagnostics": []
+      },
+      {
+        "id": "curve-down",
+        "outcome": "valid",
+        "statuses": {
+          "probe.x": "valid",
+          "probe.value": "valid",
+          "derivative": "valid",
+          "second.x": "valid",
+          "second.value": "valid",
+          "secant.slope": "valid",
+          "secant.difference": "valid",
+          "slope.sign": "valid",
+          "curvature": "valid",
+          "vertex.x": "valid"
+        },
+        "diagnostics": []
+      },
+      {
+        "id": "sloped-line",
+        "outcome": "undefined",
+        "statuses": {
+          "probe.x": "valid",
+          "probe.value": "valid",
+          "derivative": "valid",
+          "second.x": "valid",
+          "second.value": "valid",
+          "secant.slope": "valid",
+          "secant.difference": "valid",
+          "slope.sign": "valid",
+          "curvature": "valid",
+          "vertex.x": "undefined:NO_VERTEX"
+        },
+        "diagnostics": []
+      },
+      {
+        "id": "level-line",
+        "outcome": "undefined",
+        "statuses": {
+          "probe.x": "valid",
+          "probe.value": "valid",
+          "derivative": "valid",
+          "second.x": "valid",
+          "second.value": "valid",
+          "secant.slope": "valid",
+          "secant.difference": "valid",
+          "slope.sign": "valid",
+          "curvature": "valid",
+          "vertex.x": "undefined:NO_VERTEX"
+        },
+        "diagnostics": []
+      },
+      {
+        "id": "offset-1",
+        "outcome": "valid",
+        "statuses": {
+          "probe.x": "valid",
+          "probe.value": "valid",
+          "derivative": "valid",
+          "second.x": "valid",
+          "second.value": "valid",
+          "secant.slope": "valid",
+          "secant.difference": "valid",
+          "slope.sign": "valid",
+          "curvature": "valid",
+          "vertex.x": "valid"
+        },
+        "diagnostics": []
+      },
+      {
+        "id": "offset-0.1",
+        "outcome": "valid",
+        "statuses": {
+          "probe.x": "valid",
+          "probe.value": "valid",
+          "derivative": "valid",
+          "second.x": "valid",
+          "second.value": "valid",
+          "secant.slope": "valid",
+          "secant.difference": "valid",
+          "slope.sign": "valid",
+          "curvature": "valid",
+          "vertex.x": "valid"
+        },
+        "diagnostics": []
+      },
+      {
+        "id": "offset-0.01",
+        "outcome": "valid",
+        "statuses": {
+          "probe.x": "valid",
+          "probe.value": "valid",
+          "derivative": "valid",
+          "second.x": "valid",
+          "second.value": "valid",
+          "secant.slope": "valid",
+          "secant.difference": "valid",
+          "slope.sign": "valid",
+          "curvature": "valid",
+          "vertex.x": "valid"
+        },
+        "diagnostics": []
+      }
+    ],
+    "checks": [],
+    "diagnostics": []
+  },
+  "captures": {
+    "settings": {
+      "width": 720,
+      "theme": "light",
+      "fonts": "bundled",
+      "index": 4
+    },
+    "spatial": "not-applicable",
+    "stages": [
+      {
+        "stageId": "prepare",
+        "kind": "prepare",
+        "instruction": "Look at the graph of f(x) = A·x² + B·x + C and the probe point P. You can change the coefficients A, B and C to see different curves. Slopes, tangents and the derivative are not shown yet.",
+        "response": null,
+        "ok": true,
+        "png": "captures/prepare.png",
+        "svg": "captures/prepare.svg",
+        "companion": "captures/prepare.txt",
+        "svgView": "function-plot",
+        "svgError": null,
+        "revealed": [],
+        "revealError": null,
+        "projectionDigest": "sha256:df19a4dd47f8a4ccc2e7f5a9670a83a848696c611d47995ed45e53fda60ca118",
+        "frameId": "sha256:0e1c0e5a88447afaafe3a64632bca0058a18c8c4b264e483ea06f1e69057e245",
+        "ui": "ready",
+        "reviewNotice": "Reference-checked; no independent subject review",
+        "views": [
+          {
+            "viewId": "function-plot",
+            "kind": "plot2d",
+            "title": "Graph of f"
+          },
+          {
+            "viewId": "readouts",
+            "kind": "values",
+            "title": "Values"
+          },
+          {
+            "viewId": "rules",
+            "kind": "equation",
+            "title": "Rules"
+          },
+          {
+            "viewId": "curve-table",
+            "kind": "table",
+            "title": "Table of f(x)"
+          }
+        ],
+        "math": {
+          "equations": 1,
+          "plainText": 0
+        },
+        "navigatedTo": null,
+        "diagnostics": []
+      },
+      {
+        "stageId": "predict",
+        "kind": "predict",
+        "instruction": "Before any slopes are shown, predict the slope of the curve at the probe point P.",
+        "response": {
+          "kind": "prediction",
+          "prompt": "Is the curve rising, falling or level at P, and roughly how steep is it there? How would the slope change if P moved to the right?",
+          "taskFamily": "function-derivative-slope-prediction"
+        },
+        "ok": true,
+        "png": "captures/predict.png",
+        "svg": "captures/predict.svg",
+        "companion": "captures/predict.txt",
+        "svgView": "function-plot",
+        "svgError": null,
+        "revealed": [],
+        "revealError": null,
+        "projectionDigest": "sha256:7a08fe32189da472af25d65da2ba8a18913a12d233547853e51c2202399460be",
+        "frameId": "sha256:bdd559212f7f56527a4e9f99ea1d745fcc77dba8b3794b35c082d9c742b436af",
+        "ui": "ready",
+        "reviewNotice": "Reference-checked; no independent subject review",
+        "views": [
+          {
+            "viewId": "function-plot",
+            "kind": "plot2d",
+            "title": "Graph of f"
+          },
+          {
+            "viewId": "readouts",
+            "kind": "values",
+            "title": "Values"
+          },
+          {
+            "viewId": "rules",
+            "kind": "equation",
+            "title": "Rules"
+          },
+          {
+            "viewId": "curve-table",
+            "kind": "table",
+            "title": "Table of f(x)"
+          }
+        ],
+        "math": {
+          "equations": 1,
+          "plainText": 0
+        },
+        "navigatedTo": null,
+        "diagnostics": []
+      },
+      {
+        "stageId": "explore-slope",
+        "kind": "explore",
+        "instruction": "Once the tangent at P and its slope f′(p) are shown, move P along the curve and compare the slope with your prediction. Then set the offset h to place a second point Q, and watch the secant slope as h gets closer to 0 from either side.",
+        "response": null,
+        "ok": true,
+        "png": "captures/explore-slope.png",
+        "svg": "captures/explore-slope.svg",
+        "companion": "captures/explore-slope.txt",
+        "svgView": "function-plot",
+        "svgError": null,
+        "revealed": [
+          "tangent",
+          "slope",
+          "slope-equations",
+          "secant",
+          "secant-values",
+          "secant-equations"
+        ],
+        "revealError": null,
+        "projectionDigest": "sha256:585475edb3060e47d983f1fa01448e6cb439f17c46757a6c246369ed1f01ba9e",
+        "frameId": "sha256:b2ffee3658bb9879506cd878def442f86c5c1bf5c5fce18178f85f8d270f6cf0",
+        "ui": "ready",
+        "reviewNotice": "Reference-checked; no independent subject review",
+        "views": [
+          {
+            "viewId": "function-plot",
+            "kind": "plot2d",
+            "title": "Graph of f"
+          },
+          {
+            "viewId": "readouts",
+            "kind": "values",
+            "title": "Values"
+          },
+          {
+            "viewId": "rules",
+            "kind": "equation",
+            "title": "Rules"
+          },
+          {
+            "viewId": "curve-table",
+            "kind": "table",
+            "title": "Table of f(x)"
+          }
+        ],
+        "math": {
+          "equations": 5,
+          "plainText": 0
+        },
+        "navigatedTo": null,
+        "diagnostics": []
+      },
+      {
+        "stageId": "explore-derivative",
+        "kind": "explore",
+        "instruction": "Once the graph of the derivative f′ is shown, move P and change the coefficients, and compare the height of the derivative graph at x = p with the slope of the tangent at P.",
+        "response": null,
+        "ok": true,
+        "png": "captures/explore-derivative.png",
+        "svg": "captures/explore-derivative.svg",
+        "companion": "captures/explore-derivative.txt",
+        "svgView": "function-plot",
+        "svgError": null,
+        "revealed": [
+          "tangent",
+          "slope",
+          "slope-equations",
+          "secant",
+          "secant-values",
+          "secant-equations",
+          "derivative-plot",
+          "shape",
+          "derivative-rule"
+        ],
+        "revealError": null,
+        "projectionDigest": "sha256:ee80fb41a3ebe9b2997c4e089bfcbe1450b28645643e12317a4857ceb2d477b5",
+        "frameId": "sha256:13a726e476aaff23f1f921d70b4ddb6d880f409fb3fcd2ca40f95c3a219d9cd7",
+        "ui": "ready",
+        "reviewNotice": "Reference-checked; no independent subject review",
+        "views": [
+          {
+            "viewId": "function-plot",
+            "kind": "plot2d",
+            "title": "Graph of f"
+          },
+          {
+            "viewId": "derivative-plot",
+            "kind": "plot2d",
+            "title": "Graph of the derivative f′"
+          },
+          {
+            "viewId": "readouts",
+            "kind": "values",
+            "title": "Values"
+          },
+          {
+            "viewId": "rules",
+            "kind": "equation",
+            "title": "Rules"
+          },
+          {
+            "viewId": "curve-table",
+            "kind": "table",
+            "title": "Table of f(x)"
+          },
+          {
+            "viewId": "derivative-table",
+            "kind": "table",
+            "title": "Table of f′(x)"
+          }
+        ],
+        "math": {
+          "equations": 7,
+          "plainText": 3
+        },
+        "navigatedTo": null,
+        "diagnostics": []
+      },
+      {
+        "stageId": "explain",
+        "kind": "explain",
+        "instruction": "Explain in your own words how the slope of f changes along the curve and how the secant slope behaves as h shrinks.",
+        "response": {
+          "kind": "explanation",
+          "prompt": "How does the slope of the tangent at P change as P moves, how does the secant slope behave as h gets close to 0, and what does the derivative graph show?",
+          "taskFamily": "function-derivative-explanation"
+        },
+        "ok": true,
+        "png": "captures/explain.png",
+        "svg": "captures/explain.svg",
+        "companion": "captures/explain.txt",
+        "svgView": "function-plot",
+        "svgError": null,
+        "revealed": [
+          "tangent",
+          "slope",
+          "slope-equations",
+          "secant",
+          "secant-values",
+          "secant-equations",
+          "derivative-plot",
+          "shape",
+          "derivative-rule"
+        ],
+        "revealError": null,
+        "projectionDigest": "sha256:66c08f4cd0b419b82b6606195e1523bee58e755f431c89bb7ccc2f9220ce41bd",
+        "frameId": "sha256:7746fbaae4a58303300a2c4341711e9c8f52ec6f46638cb8c39713b378680a0b",
+        "ui": "ready",
+        "reviewNotice": "Reference-checked; no independent subject review",
+        "views": [
+          {
+            "viewId": "function-plot",
+            "kind": "plot2d",
+            "title": "Graph of f"
+          },
+          {
+            "viewId": "derivative-plot",
+            "kind": "plot2d",
+            "title": "Graph of the derivative f′"
+          },
+          {
+            "viewId": "readouts",
+            "kind": "values",
+            "title": "Values"
+          },
+          {
+            "viewId": "rules",
+            "kind": "equation",
+            "title": "Rules"
+          },
+          {
+            "viewId": "curve-table",
+            "kind": "table",
+            "title": "Table of f(x)"
+          },
+          {
+            "viewId": "derivative-table",
+            "kind": "table",
+            "title": "Table of f′(x)"
+          }
+        ],
+        "math": {
+          "equations": 7,
+          "plainText": 0
+        },
+        "navigatedTo": null,
+        "diagnostics": []
+      },
+      {
+        "stageId": "closed",
+        "kind": "closed",
+        "instruction": "This activity is closed.",
+        "response": null,
+        "ok": true,
+        "png": "captures/closed.png",
+        "svg": null,
+        "companion": "captures/closed.txt",
+        "svgView": null,
+        "svgError": {
+          "code": "NOT_FOUND",
+          "message": "This stage shows no view; the card screenshot and companion text record the stage."
+        },
+        "revealed": [],
+        "revealError": null,
+        "projectionDigest": "sha256:6684125850b74bca5b2bf91520e7f8637ed1b5c4fa48fcddbd461b46d1f1ba57",
+        "frameId": "sha256:66130cde18c3953052cb1a6c66a26a0dbd72e91a04324d2802931edf468028aa",
+        "ui": "empty",
+        "reviewNotice": "Reference-checked; no independent subject review",
+        "views": [],
+        "math": {
+          "equations": 0,
+          "plainText": 0
+        },
+        "navigatedTo": null,
+        "diagnostics": []
+      },
+      {
+        "stageId": "free-explore",
+        "kind": "explore",
+        "instruction": "Explore freely: change the coefficients, move the probe and the second point, and compare the tangent, the secant and the derivative graph.",
+        "response": null,
+        "ok": true,
+        "png": "captures/free-explore.png",
+        "svg": "captures/free-explore.svg",
+        "companion": "captures/free-explore.txt",
+        "svgView": "function-plot",
+        "svgError": null,
+        "revealed": [
+          "tangent",
+          "slope",
+          "slope-equations",
+          "secant",
+          "secant-values",
+          "secant-equations",
+          "derivative-plot",
+          "shape",
+          "derivative-rule"
+        ],
+        "revealError": null,
+        "projectionDigest": "sha256:6b955fe3be3579c7199bd775e72197f7f7adbd5e54da6b2db62fb821e729a700",
+        "frameId": "sha256:848484dc116aed81136650b437ef763719c3312381add611d07630a43ff140bc",
+        "ui": "ready",
+        "reviewNotice": "Reference-checked; no independent subject review",
+        "views": [
+          {
+            "viewId": "function-plot",
+            "kind": "plot2d",
+            "title": "Graph of f"
+          },
+          {
+            "viewId": "derivative-plot",
+            "kind": "plot2d",
+            "title": "Graph of the derivative f′"
+          },
+          {
+            "viewId": "readouts",
+            "kind": "values",
+            "title": "Values"
+          },
+          {
+            "viewId": "rules",
+            "kind": "equation",
+            "title": "Rules"
+          },
+          {
+            "viewId": "curve-table",
+            "kind": "table",
+            "title": "Table of f(x)"
+          },
+          {
+            "viewId": "derivative-table",
+            "kind": "table",
+            "title": "Table of f′(x)"
+          }
+        ],
+        "math": {
+          "equations": 7,
+          "plainText": 3
+        },
+        "navigatedTo": null,
+        "diagnostics": []
+      }
+    ]
+  },
+  "alternatives": [
+    {
+      "id": "curve-table",
+      "kind": "table",
+      "covers": [
+        "function-plot",
+        "function-curve"
+      ],
+      "equivalence": "equivalent",
+      "verifiedBy": "tests/browser/study-function-derivative.spec.ts#curve-table-equivalent",
+      "namedFilePresent": true
+    },
+    {
+      "id": "point-values",
+      "kind": "description",
+      "covers": [
+        "function-plot",
+        "probe-marker",
+        "second-marker",
+        "tangent-line",
+        "secant-line"
+      ],
+      "equivalence": "equivalent",
+      "verifiedBy": "tests/browser/study-function-derivative.spec.ts#point-values-equivalent",
+      "namedFilePresent": true
+    },
+    {
+      "id": "derivative-table",
+      "kind": "table",
+      "covers": [
+        "derivative-plot",
+        "derivative-curve-line",
+        "derivative-probe-marker"
+      ],
+      "equivalence": "equivalent",
+      "verifiedBy": "tests/browser/study-function-derivative.spec.ts#derivative-table-equivalent",
+      "namedFilePresent": true
+    },
+    {
+      "id": "text-description",
+      "kind": "description",
+      "covers": [
+        "function-plot",
+        "derivative-plot"
+      ],
+      "equivalence": "partial",
+      "verifiedBy": "tests/browser/study-function-derivative.spec.ts#text-description",
+      "namedFilePresent": true
+    },
+    {
+      "id": "exact-entry",
+      "kind": "numeric-entry",
+      "covers": [
+        "A",
+        "B",
+        "C",
+        "p",
+        "h"
+      ],
+      "equivalence": "equivalent",
+      "verifiedBy": "tests/browser/study-function-derivative.spec.ts#exact-entry",
+      "namedFilePresent": true
+    },
+    {
+      "id": "keyboard-controls",
+      "kind": "keyboard",
+      "covers": [
+        "A",
+        "B",
+        "C",
+        "p",
+        "h",
+        "probe-marker"
+      ],
+      "equivalence": "equivalent",
+      "verifiedBy": "tests/browser/study-function-derivative.spec.ts#keyboard-only",
+      "namedFilePresent": true
+    }
+  ]
+}

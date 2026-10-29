@@ -1,0 +1,67 @@
+/* Study Harness integration fixture chrome (host page only). The learner card brings its own stylesheet in its shadow root. */
+:root {
+  color-scheme: light;
+  --fx-bg: #eef1f4; --fx-panel: #ffffff; --fx-text: #17212b; --fx-muted: #4a5866; --fx-border: #c3ccd5; --fx-strong: #6b7887;
+  --fx-primary: #1f5fa8; --fx-on-primary: #ffffff; --fx-focus: #b45309; --fx-alert: #a3261c; --fx-tag: #e3e8ee;
+  font: 0.9375rem/1.5 system-ui, -apple-system, "Segoe UI", sans-serif;
+  background: var(--fx-bg); color: var(--fx-text);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --fx-bg: #0b1016; --fx-panel: #121a23; --fx-text: #e7edf3; --fx-muted: #a9b6c3; --fx-border: #2d3a48; --fx-strong: #6f7f90;
+    --fx-primary: #7fb2ee; --fx-on-primary: #0b1016; --fx-focus: #f6ad55; --fx-alert: #ff8f84; --fx-tag: #1f2a36;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --fx-bg: #0b1016; --fx-panel: #121a23; --fx-text: #e7edf3; --fx-muted: #a9b6c3; --fx-border: #2d3a48; --fx-strong: #6f7f90;
+  --fx-primary: #7fb2ee; --fx-on-primary: #0b1016; --fx-focus: #f6ad55; --fx-alert: #ff8f84; --fx-tag: #1f2a36;
+}
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; padding: 16px; background: var(--fx-bg); color: var(--fx-text); overflow-wrap: break-word; }
+:focus-visible { outline: 3px solid var(--fx-focus); outline-offset: 2px; }
+
+.fx-banner { display: block; max-width: 1400px; margin: 0 auto 16px; padding: 10px 14px; border: 1px dashed var(--fx-strong); border-radius: 8px; background: var(--fx-panel); font-size: 0.875rem; }
+.fx-layout { display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; max-width: 1400px; margin: 0 auto; align-items: start; }
+@media (min-width: 1100px) { .fx-layout { grid-template-columns: minmax(0, 1fr) minmax(300px, 380px); } }
+.fx-main, .fx-host { display: grid; gap: 16px; min-width: 0; align-content: start; }
+.fx-h1 { margin: 0; font-size: 1.375rem; line-height: 1.3; }
+.fx-h2 { margin: 0; font-size: 1rem; font-weight: 650; }
+.fx-h3 { margin: 12px 0 4px; font-size: 0.875rem; font-weight: 650; }
+details > summary.fx-h2 { cursor: pointer; }
+.fx-tag { display: inline-block; margin-left: 6px; padding: 0 6px; border-radius: 4px; background: var(--fx-tag); color: var(--fx-muted); font-size: 0.75rem; font-weight: 600; vertical-align: 0.1em; }
+.fx-section { display: grid; gap: 8px; min-width: 0; padding: 12px 14px; border: 1px solid var(--fx-border); border-radius: 8px; background: var(--fx-panel); }
+.fx-messages { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; }
+.fx-message { padding: 8px 10px; border-left: 3px solid var(--fx-strong); background: var(--fx-bg); border-radius: 4px; }
+.fx-message[data-kind="host"] { border-left-color: var(--fx-primary); }
+.fx-message p { margin: 2px 0 0; }
+.fx-message-from { color: var(--fx-muted); font-size: 0.8125rem; font-weight: 600; }
+.fx-card { min-width: 0; max-width: 100%; }
+.fx-label { font-weight: 550; }
+.fx-textarea { width: 100%; min-height: 4.5em; padding: 6px 8px; border: 1px solid var(--fx-strong); border-radius: 6px; background: var(--fx-panel); color: var(--fx-text); font: inherit; resize: vertical; }
+.fx-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.fx-grid { display: flex; flex-wrap: wrap; gap: 6px; }
+.fx-button { display: inline-flex; align-items: center; justify-content: center; min-height: 2.25rem; padding: 0 0.8em; border: 1px solid var(--fx-strong); border-radius: 6px; background: var(--fx-panel); color: var(--fx-text); font: inherit; font-weight: 550; text-align: left; cursor: pointer; }
+.fx-button:hover { background: var(--fx-bg); }
+.fx-button[aria-disabled="true"] { opacity: 0.6; cursor: not-allowed; }
+.fx-primary { background: var(--fx-primary); border-color: var(--fx-primary); color: var(--fx-on-primary); }
+.fx-primary:hover { background: var(--fx-primary); filter: brightness(1.08); }
+.fx-select { min-height: 2.25rem; border: 1px solid var(--fx-strong); border-radius: 6px; background: var(--fx-panel); color: var(--fx-text); font: inherit; }
+.fx-status { margin: 0; color: var(--fx-muted); }
+.fx-note { margin: 0; color: var(--fx-muted); font-size: 0.875rem; }
+.fx-steps { display: grid; gap: 6px; margin: 0; padding: 0; list-style: none; }
+.fx-steps li { display: grid; gap: 2px; }
+.fx-step-state { color: var(--fx-muted); font-size: 0.8125rem; }
+.fx-steps li[data-state="done"] .fx-step-state::before { content: "✓ "; }
+.fx-facts { display: grid; gap: 2px; margin: 0; font-size: 0.875rem; }
+.fx-facts div { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0 12px; }
+.fx-facts dt { color: var(--fx-muted); }
+.fx-facts dd { margin: 0; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.fx-list { margin: 0; padding-left: 1.1em; font-size: 0.8125rem; }
+.fx-log { max-height: 14em; overflow: auto; }
+.fx-alert { padding: 10px 14px; border: 2px solid var(--fx-alert); border-radius: 8px; background: var(--fx-panel); }
+.fx-alert p { margin: 0 0 8px; }
+.fx-capture { display: grid; gap: 6px; font-size: 0.8125rem; }
+.fx-capture p { margin: 0; }
+.fx-capture-image { max-width: 100%; height: auto; border: 1px solid var(--fx-border); background: #fff; }

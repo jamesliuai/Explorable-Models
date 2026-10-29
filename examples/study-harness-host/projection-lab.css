@@ -1,0 +1,13 @@
+/* Projection lab chrome only (fixture page). The learner surface brings its own stylesheet. */
+:root { color-scheme: light; font: 14px/1.45 system-ui, sans-serif; background: #eef1f4; color: #17212b; }
+:root[data-theme="dark"] { color-scheme: dark; background: #0b1016; color: #e7edf3; }
+body { margin: 0; padding: 16px; }
+.lab-banner { display: block; margin: 0 0 12px; padding: 8px 12px; border: 1px dashed #7a8692; border-radius: 6px; font-size: 13px; }
+.lab-picker { font-size: 12px; margin: 0 0 12px; }
+.lab-picker p { margin: 2px 0; }
+.lab-picker a { color: inherit; }
+.lab-picker a[aria-current] { font-weight: 700; }
+.lab-stage { overflow-x: auto; }
+.lab-surface { max-width: 100%; }
+.lab-log-panel { margin-top: 12px; font-size: 12px; }
+.lab-log-panel pre { white-space: pre-wrap; }

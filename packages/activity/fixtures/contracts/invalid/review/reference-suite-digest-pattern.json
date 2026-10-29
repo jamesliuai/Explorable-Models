@@ -1,0 +1,28 @@
+{
+  "contract": "study-harness.review-record",
+  "expect": "invalid",
+  "why": "Reference suite digest is sha256.",
+  "value": {
+    "contract": "study-harness.review-record",
+    "schemaVersion": "1.0",
+    "reviewId": "review-model-quadratic-1",
+    "subject": {
+      "kind": "model",
+      "modelId": "quadratic-descent",
+      "version": "1.0.0",
+      "scientificRevision": "sha256:7cf73b2641a4662e810d2cadd1ff615f7675eb59866ec0f34d291c55217e59f4"
+    },
+    "reviewer": {
+      "name": "A. Reviewer",
+      "role": "Mathematics content reviewer",
+      "affiliation": "Example University"
+    },
+    "date": "2026-10-20",
+    "scope": "Closed-form iterates, regime classification and numerical-limit statuses for the declared parameter domain.",
+    "limitations": [
+      "Does not cover learning effects of the activity."
+    ],
+    "referenceSuiteDigest": "md5:abc",
+    "outcome": "approved-with-limitations"
+  }
+}

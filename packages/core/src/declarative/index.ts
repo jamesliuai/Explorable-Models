@@ -7,3 +7,4 @@ export * from './identity.js';
 export * from './worker.js';
 export * from '../declarative-session.js';
 export * from '../presets.js';
+export * from './interaction.js';

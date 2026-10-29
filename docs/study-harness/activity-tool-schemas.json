@@ -1,0 +1,1932 @@
+[
+  {
+    "name": "activity_discover",
+    "description": "List the approved installed activity templates with exact versions, controls, stages, alternatives, limits, lifecycle and review scope, the operations available to you, and unsupported capabilities with the alternative to offer. Decline unsupported requests with that alternative.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": [],
+      "additionalProperties": false
+    },
+    "outputSchema": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": [
+            "ok",
+            "data",
+            "scope"
+          ],
+          "properties": {
+            "ok": {
+              "const": true
+            },
+            "data": {
+              "type": "object",
+              "description": "audience, operations, mode, independent, templates[], unsupported[], limits, workflow"
+            },
+            "scope": {
+              "type": "object",
+              "description": "validation (technical checks and their meaning), review (lifecycle and review scope, or null) and activity (learner-surface status, or null), reported separately."
+            }
+          }
+        },
+        {
+          "type": "object",
+          "required": [
+            "ok",
+            "diagnostics"
+          ],
+          "properties": {
+            "ok": {
+              "const": false
+            },
+            "diagnostics": {
+              "type": "array",
+              "maxItems": 20,
+              "items": {
+                "type": "object",
+                "required": [
+                  "code",
+                  "path",
+                  "message",
+                  "recovery"
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    "scope": {
+      "audiences": [
+        "learner-visible",
+        "tutor",
+        "teacher"
+      ],
+      "activity": "any",
+      "hostRoute": false,
+      "mutates": false,
+      "conditions": [],
+      "operations": [
+        "discover"
+      ]
+    }
+  },
+  {
+    "name": "activity_describe_template",
+    "description": "Fetch on demand the detail of one discovered template version: stages, transitions, groups, personalisable controls, scenarios and alternatives. Teacher, or tutor with full inspection, also receives equations, assumptions and constraints.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "templateId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+        },
+        "version": {
+          "type": "string",
+          "minLength": 5,
+          "maxLength": 48,
+          "pattern": "^[0-9]{1,4}[.][0-9]{1,4}[.][0-9]{1,6}(-[0-9A-Za-z.-]{1,32})?$"
+        }
+      },
+      "required": [
+        "templateId",
+        "version"
+      ],
+      "additionalProperties": false
+    },
+    "outputSchema": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": [
+            "ok",
+            "data",
+            "scope"
+          ],
+          "properties": {
+            "ok": {
+              "const": true
+            },
+            "data": {
+              "type": "object",
+              "description": "template, model, stages[], transitions[], groups[], controls[], scenarios[], alternatives[], model detail"
+            },
+            "scope": {
+              "type": "object",
+              "description": "validation (technical checks and their meaning), review (lifecycle and review scope, or null) and activity (learner-surface status, or null), reported separately."
+            }
+          }
+        },
+        {
+          "type": "object",
+          "required": [
+            "ok",
+            "diagnostics"
+          ],
+          "properties": {
+            "ok": {
+              "const": false
+            },
+            "diagnostics": {
+              "type": "array",
+              "maxItems": 20,
+              "items": {
+                "type": "object",
+                "required": [
+                  "code",
+                  "path",
+                  "message",
+                  "recovery"
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    "scope": {
+      "audiences": [
+        "learner-visible",
+        "tutor",
+        "teacher"
+      ],
+      "activity": "any",
+      "hostRoute": false,
+      "mutates": false,
+      "conditions": [],
+      "operations": [
+        "discover"
+      ]
+    }
+  },
+  {
+    "name": "activity_prepare",
+    "description": "Prepare the activity the host bound to this tool set from an approved template, optionally personalising permitted control parameters (canonical units), a scenario or a starting stage. The host supplies the activity, session and objectives. operationId: unique per distinct request; repeat it only to retry the identical request.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "operationId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+        },
+        "template": {
+          "type": "object",
+          "properties": {
+            "templateId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+            },
+            "version": {
+              "type": "string",
+              "minLength": 5,
+              "maxLength": 48,
+              "pattern": "^[0-9]{1,4}[.][0-9]{1,4}[.][0-9]{1,6}(-[0-9A-Za-z.-]{1,32})?$"
+            }
+          },
+          "required": [
+            "templateId",
+            "version"
+          ],
+          "additionalProperties": false
+        },
+        "mode": {
+          "enum": [
+            "approved",
+            "exploratory"
+          ]
+        },
+        "parameters": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "number",
+            "minimum": -1000000000000000,
+            "maximum": 1000000000000000
+          },
+          "maxProperties": 64,
+          "propertyNames": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+          },
+          "description": "Initial values of personalisable controls in canonical model units."
+        },
+        "scenarioId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+        },
+        "stageId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+        }
+      },
+      "required": [
+        "operationId",
+        "template"
+      ],
+      "additionalProperties": false
+    },
+    "outputSchema": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": [
+            "ok",
+            "data",
+            "scope"
+          ],
+          "properties": {
+            "ok": {
+              "const": true
+            },
+            "data": {
+              "type": "object",
+              "description": "activityId, projection (learner view), expected guards, validation report"
+            },
+            "scope": {
+              "type": "object",
+              "description": "validation (technical checks and their meaning), review (lifecycle and review scope, or null) and activity (learner-surface status, or null), reported separately."
+            }
+          }
+        },
+        {
+          "type": "object",
+          "required": [
+            "ok",
+            "diagnostics"
+          ],
+          "properties": {
+            "ok": {
+              "const": false
+            },
+            "diagnostics": {
+              "type": "array",
+              "maxItems": 20,
+              "items": {
+                "type": "object",
+                "required": [
+                  "code",
+                  "path",
+                  "message",
+                  "recovery"
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    "scope": {
+      "audiences": [
+        "learner-visible",
+        "tutor",
+        "teacher"
+      ],
+      "activity": "absent",
+      "hostRoute": false,
+      "mutates": true,
+      "conditions": [
+        "host lifecycle hook present",
+        "parameters ⊆ policy.permittedControls"
+      ],
+      "operations": [
+        "prepare"
+      ]
+    }
+  },
+  {
+    "name": "activity_inspect",
+    "description": "Read the activity. view \"learner\" (default) returns exactly the learner projection and the guards to copy into later calls. view \"full\" returns scientific state for teacher (policy.inspection.teacher) or tutor (policy.inspection.tutor = full) audiences only.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "view": {
+          "enum": [
+            "learner",
+            "full"
+          ]
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "outputSchema": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": [
+            "ok",
+            "data",
+            "scope"
+          ],
+          "properties": {
+            "ok": {
+              "const": true
+            },
+            "data": {
+              "type": "object",
+              "description": "view, projection or state, expected guards"
+            },
+            "scope": {
+              "type": "object",
+              "description": "validation (technical checks and their meaning), review (lifecycle and review scope, or null) and activity (learner-surface status, or null), reported separately."
+            }
+          }
+        },
+        {
+          "type": "object",
+          "required": [
+            "ok",
+            "diagnostics"
+          ],
+          "properties": {
+            "ok": {
+              "const": false
+            },
+            "diagnostics": {
+              "type": "array",
+              "maxItems": 20,
+              "items": {
+                "type": "object",
+                "required": [
+                  "code",
+                  "path",
+                  "message",
+                  "recovery"
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    "scope": {
+      "audiences": [
+        "learner-visible",
+        "tutor",
+        "teacher"
+      ],
+      "activity": "required",
+      "hostRoute": false,
+      "mutates": false,
+      "conditions": [
+        "full view: policy.inspection.teacher (teacher) or policy.inspection.tutor = full (tutor)"
+      ],
+      "operations": [],
+      "variants": {
+        "learner": [
+          "inspect.learner"
+        ],
+        "full:tutor": [
+          "inspect.tutor"
+        ],
+        "full:teacher": [
+          "inspect.teacher"
+        ]
+      }
+    }
+  },
+  {
+    "name": "activity_propose_revision",
+    "description": "Check a bounded change without applying it: a parameter set (display units) within interactive controls, a listed scenario, or a declared stage transition. Approved templates are never edited. Exploratory composition (policy mode exploratory with compose.exploratory) creates a separate candidate labelled \"exploratory, not reviewed\". operationId: unique per distinct request; repeat it only to retry the identical request.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "operationId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+        },
+        "proposal": {
+          "oneOf": [
+            {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "const": "parameters"
+                },
+                "values": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "number",
+                    "minimum": -1000000000000000,
+                    "maximum": 1000000000000000
+                  },
+                  "maxProperties": 64,
+                  "propertyNames": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 128,
+                    "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+                  },
+                  "description": "Display-unit values of interactive controls."
+                }
+              },
+              "required": [
+                "kind",
+                "values"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "const": "scenario"
+                },
+                "scenarioId": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 128,
+                  "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+                }
+              },
+              "required": [
+                "kind",
+                "scenarioId"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "const": "stage"
+                },
+                "toStage": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 128,
+                  "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+                }
+              },
+              "required": [
+                "kind",
+                "toStage"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "const": "exploratory-composition"
+                },
+                "document": {
+                  "type": "object",
+                  "description": "Schema 2.0 visualization document (visualization_discover publishes its schema)."
+                },
+                "edits": {
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  },
+                  "maxItems": 100,
+                  "minItems": 1
+                }
+              },
+              "required": [
+                "kind"
+              ],
+              "additionalProperties": false
+            }
+          ]
+        }
+      },
+      "required": [
+        "operationId",
+        "proposal"
+      ],
+      "additionalProperties": false
+    },
+    "outputSchema": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": [
+            "ok",
+            "data",
+            "scope"
+          ],
+          "properties": {
+            "ok": {
+              "const": true
+            },
+            "data": {
+              "type": "object",
+              "description": "verdict, proposal, apply hint or exploratory candidate"
+            },
+            "scope": {
+              "type": "object",
+              "description": "validation (technical checks and their meaning), review (lifecycle and review scope, or null) and activity (learner-surface status, or null), reported separately."
+            }
+          }
+        },
+        {
+          "type": "object",
+          "required": [
+            "ok",
+            "diagnostics"
+          ],
+          "properties": {
+            "ok": {
+              "const": false
+            },
+            "diagnostics": {
+              "type": "array",
+              "maxItems": 20,
+              "items": {
+                "type": "object",
+                "required": [
+                  "code",
+                  "path",
+                  "message",
+                  "recovery"
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    "scope": {
+      "audiences": [
+        "learner-visible",
+        "tutor",
+        "teacher"
+      ],
+      "activity": "required",
+      "hostRoute": false,
+      "mutates": true,
+      "conditions": [
+        "exploratory composition: policy.mode exploratory and policy.exploratory.allowed"
+      ],
+      "operations": [
+        "propose-revision"
+      ],
+      "variants": {
+        "exploratory-composition": [
+          "compose.exploratory"
+        ]
+      }
+    }
+  },
+  {
+    "name": "activity_request_reveal",
+    "description": "Ask the host to authorize showing content groups, or a declared stage transition that reveals them. The host decides and persists the exposure before anything is shown. Returns authorized, pending or denied. operationId: unique per distinct request; repeat it only to retry the identical request.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "operationId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+        },
+        "target": {
+          "oneOf": [
+            {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "const": "groups"
+                },
+                "groups": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 128,
+                    "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+                  },
+                  "maxItems": 64,
+                  "minItems": 1
+                }
+              },
+              "required": [
+                "kind",
+                "groups"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "const": "stage"
+                },
+                "toStage": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 128,
+                  "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+                }
+              },
+              "required": [
+                "kind",
+                "toStage"
+              ],
+              "additionalProperties": false
+            }
+          ]
+        },
+        "expected": {
+          "$ref": "#/$defs/activityGuard"
+        }
+      },
+      "required": [
+        "operationId",
+        "target",
+        "expected"
+      ],
+      "additionalProperties": false,
+      "$defs": {
+        "activityGuard": {
+          "type": "object",
+          "properties": {
+            "scientificVersion": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "runId": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "maxLength": 128
+            },
+            "activityRevision": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "policyRevision": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "presentationRevision": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          "required": [
+            "activityRevision",
+            "policyRevision"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    "outputSchema": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": [
+            "ok",
+            "data",
+            "scope"
+          ],
+          "properties": {
+            "ok": {
+              "const": true
+            },
+            "data": {
+              "type": "object",
+              "description": "status (authorized | pending | denied), display, labels, projection, expected guards"
+            },
+            "scope": {
+              "type": "object",
+              "description": "validation (technical checks and their meaning), review (lifecycle and review scope, or null) and activity (learner-surface status, or null), reported separately."
+            }
+          }
+        },
+        {
+          "type": "object",
+          "required": [
+            "ok",
+            "diagnostics"
+          ],
+          "properties": {
+            "ok": {
+              "const": false
+            },
+            "diagnostics": {
+              "type": "array",
+              "maxItems": 20,
+              "items": {
+                "type": "object",
+                "required": [
+                  "code",
+                  "path",
+                  "message",
+                  "recovery"
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    "scope": {
+      "audiences": [
+        "learner-visible",
+        "tutor",
+        "teacher"
+      ],
+      "activity": "required",
+      "hostRoute": true,
+      "mutates": true,
+      "conditions": [],
+      "operations": [
+        "request-reveal"
+      ]
+    }
+  },
+  {
+    "name": "activity_operate",
+    "description": "Apply a guarded operation as the tutor: commit parameters (display units), apply a scenario, reset, navigate or step, play or pause, set or reset a camera, or select. Parameter commits start a new run at index/time zero. operationId: unique per distinct request; repeat it only to retry the identical request.",
+    "inputSchema": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "action": {
+              "const": "commit-parameters"
+            },
+            "operationId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+            },
+            "values": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "number",
+                "minimum": -1000000000000000,
+                "maximum": 1000000000000000
+              },
+              "maxProperties": 64,
+              "propertyNames": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 128,
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+              },
+              "description": "Display-unit values of interactive controls."
+            },
+            "expected": {
+              "$ref": "#/$defs/scientificGuard"
+            }
+          },
+          "required": [
+            "action",
+            "operationId",
+            "values",
+            "expected"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "action": {
+              "const": "apply-scenario"
+            },
+            "operationId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+            },
+            "scenarioId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+            },
+            "expected": {
+              "$ref": "#/$defs/scientificGuard"
+            }
+          },
+          "required": [
+            "action",
+            "operationId",
+            "scenarioId",
+            "expected"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "action": {
+              "const": "reset"
+            },
+            "operationId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+            },
+            "expected": {
+              "$ref": "#/$defs/scientificGuard"
+            }
+          },
+          "required": [
+            "action",
+            "operationId",
+            "expected"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "action": {
+              "const": "navigate"
+            },
+            "operationId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+            },
+            "position": {
+              "oneOf": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "kind": {
+                      "const": "index"
+                    },
+                    "index": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 1000000
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "index"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "kind": {
+                      "const": "time"
+                    },
+                    "time": {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 1000000000000000
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "time"
+                  ],
+                  "additionalProperties": false
+                }
+              ]
+            },
+            "expected": {
+              "$ref": "#/$defs/scientificGuard"
+            }
+          },
+          "required": [
+            "action",
+            "operationId",
+            "position",
+            "expected"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "action": {
+              "const": "step"
+            },
+            "operationId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+            },
+            "delta": {
+              "enum": [
+                1,
+                -1
+              ]
+            },
+            "expected": {
+              "$ref": "#/$defs/scientificGuard"
+            }
+          },
+          "required": [
+            "action",
+            "operationId",
+            "delta",
+            "expected"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "action": {
+              "const": "play"
+            },
+            "operationId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+            },
+            "expected": {
+              "$ref": "#/$defs/scientificGuard"
+            }
+          },
+          "required": [
+            "action",
+            "operationId",
+            "expected"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "action": {
+              "const": "pause"
+            },
+            "operationId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+            },
+            "expected": {
+              "$ref": "#/$defs/scientificGuard"
+            }
+          },
+          "required": [
+            "action",
+            "operationId",
+            "expected"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "action": {
+              "const": "set-camera"
+            },
+            "operationId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+            },
+            "viewId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+            },
+            "camera": {
+              "anyOf": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "kind": {
+                      "const": "2d"
+                    },
+                    "center": {
+                      "type": "array",
+                      "items": {
+                        "type": "number",
+                        "minimum": -1000000000000000,
+                        "maximum": 1000000000000000
+                      },
+                      "maxItems": 2,
+                      "minItems": 2
+                    },
+                    "zoom": {
+                      "type": "number",
+                      "exclusiveMinimum": 0,
+                      "maximum": 1000000
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "center",
+                    "zoom"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "kind": {
+                      "const": "3d"
+                    },
+                    "projection": {
+                      "enum": [
+                        "orthographic",
+                        "perspective"
+                      ]
+                    },
+                    "position": {
+                      "type": "array",
+                      "items": {
+                        "type": "number",
+                        "minimum": -1000000000000000,
+                        "maximum": 1000000000000000
+                      },
+                      "maxItems": 3,
+                      "minItems": 3
+                    },
+                    "target": {
+                      "type": "array",
+                      "items": {
+                        "type": "number",
+                        "minimum": -1000000000000000,
+                        "maximum": 1000000000000000
+                      },
+                      "maxItems": 3,
+                      "minItems": 3
+                    },
+                    "up": {
+                      "type": "array",
+                      "items": {
+                        "type": "number",
+                        "minimum": -1000000000000000,
+                        "maximum": 1000000000000000
+                      },
+                      "maxItems": 3,
+                      "minItems": 3
+                    },
+                    "preset": {
+                      "anyOf": [
+                        {
+                          "type": "string",
+                          "minLength": 1,
+                          "maxLength": 128,
+                          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "projection",
+                    "position",
+                    "target",
+                    "up",
+                    "preset"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "expected": {
+              "$ref": "#/$defs/presentationGuard"
+            }
+          },
+          "required": [
+            "action",
+            "operationId",
+            "viewId",
+            "camera",
+            "expected"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "action": {
+              "const": "reset-view"
+            },
+            "operationId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+            },
+            "viewId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+            },
+            "expected": {
+              "$ref": "#/$defs/presentationGuard"
+            }
+          },
+          "required": [
+            "action",
+            "operationId",
+            "viewId",
+            "expected"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "action": {
+              "const": "select"
+            },
+            "operationId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+            },
+            "target": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 128,
+                  "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "expected": {
+              "$ref": "#/$defs/presentationGuard"
+            }
+          },
+          "required": [
+            "action",
+            "operationId",
+            "target",
+            "expected"
+          ],
+          "additionalProperties": false
+        }
+      ],
+      "$defs": {
+        "scientificGuard": {
+          "type": "object",
+          "properties": {
+            "scientificVersion": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "runId": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "maxLength": 128
+            },
+            "activityRevision": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "policyRevision": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "presentationRevision": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          "required": [
+            "scientificVersion",
+            "runId"
+          ],
+          "additionalProperties": false
+        },
+        "presentationGuard": {
+          "type": "object",
+          "properties": {
+            "scientificVersion": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "runId": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "maxLength": 128
+            },
+            "activityRevision": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "policyRevision": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "presentationRevision": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          "required": [
+            "presentationRevision"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    "outputSchema": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": [
+            "ok",
+            "data",
+            "scope"
+          ],
+          "properties": {
+            "ok": {
+              "const": true
+            },
+            "data": {
+              "type": "object",
+              "description": "action, projection (learner view), expected guards, authorization"
+            },
+            "scope": {
+              "type": "object",
+              "description": "validation (technical checks and their meaning), review (lifecycle and review scope, or null) and activity (learner-surface status, or null), reported separately."
+            }
+          }
+        },
+        {
+          "type": "object",
+          "required": [
+            "ok",
+            "diagnostics"
+          ],
+          "properties": {
+            "ok": {
+              "const": false
+            },
+            "diagnostics": {
+              "type": "array",
+              "maxItems": 20,
+              "items": {
+                "type": "object",
+                "required": [
+                  "code",
+                  "path",
+                  "message",
+                  "recovery"
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    "scope": {
+      "audiences": [
+        "learner-visible",
+        "tutor",
+        "teacher"
+      ],
+      "activity": "required",
+      "hostRoute": false,
+      "mutates": true,
+      "conditions": [],
+      "operations": [],
+      "variants": {
+        "commit-parameters": [
+          "operate.parameters"
+        ],
+        "apply-scenario": [
+          "operate.parameters"
+        ],
+        "reset": [
+          "operate.parameters"
+        ],
+        "navigate": [
+          "operate.navigation"
+        ],
+        "step": [
+          "operate.navigation"
+        ],
+        "play": [
+          "operate.playback"
+        ],
+        "pause": [
+          "operate.playback"
+        ],
+        "set-camera": [
+          "operate.presentation"
+        ],
+        "reset-view": [
+          "operate.presentation"
+        ],
+        "select": [
+          "operate.presentation"
+        ]
+      }
+    }
+  },
+  {
+    "name": "activity_summarize",
+    "description": "Deterministic interaction summary for the audience of this tool set through an explicit event cursor. It reports observations only and never infers understanding.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "fromSequence": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "toSequence": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "limits": {
+          "type": "object",
+          "properties": {
+            "committedConfigurations": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 20
+            },
+            "previewObservations": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 20
+            },
+            "bytes": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 32768
+            }
+          },
+          "required": [],
+          "additionalProperties": false
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "outputSchema": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": [
+            "ok",
+            "data",
+            "scope"
+          ],
+          "properties": {
+            "ok": {
+              "const": true
+            },
+            "data": {
+              "type": "object",
+              "description": "summary"
+            },
+            "scope": {
+              "type": "object",
+              "description": "validation (technical checks and their meaning), review (lifecycle and review scope, or null) and activity (learner-surface status, or null), reported separately."
+            }
+          }
+        },
+        {
+          "type": "object",
+          "required": [
+            "ok",
+            "diagnostics"
+          ],
+          "properties": {
+            "ok": {
+              "const": false
+            },
+            "diagnostics": {
+              "type": "array",
+              "maxItems": 20,
+              "items": {
+                "type": "object",
+                "required": [
+                  "code",
+                  "path",
+                  "message",
+                  "recovery"
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    "scope": {
+      "audiences": [
+        "learner-visible",
+        "tutor",
+        "teacher"
+      ],
+      "activity": "required",
+      "hostRoute": false,
+      "mutates": false,
+      "conditions": [],
+      "operations": [
+        "summarize"
+      ]
+    }
+  },
+  {
+    "name": "activity_save",
+    "description": "Ask the host to store a backup or a learner snapshot. Returns a reference only; the artifact stays in host storage. operationId: unique per distinct request; repeat it only to retry the identical request.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "operationId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+        },
+        "kind": {
+          "enum": [
+            "backup",
+            "learner-snapshot"
+          ]
+        }
+      },
+      "required": [
+        "operationId",
+        "kind"
+      ],
+      "additionalProperties": false
+    },
+    "outputSchema": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": [
+            "ok",
+            "data",
+            "scope"
+          ],
+          "properties": {
+            "ok": {
+              "const": true
+            },
+            "data": {
+              "type": "object",
+              "description": "artifactId, kind, integrityDigest, cursor"
+            },
+            "scope": {
+              "type": "object",
+              "description": "validation (technical checks and their meaning), review (lifecycle and review scope, or null) and activity (learner-surface status, or null), reported separately."
+            }
+          }
+        },
+        {
+          "type": "object",
+          "required": [
+            "ok",
+            "diagnostics"
+          ],
+          "properties": {
+            "ok": {
+              "const": false
+            },
+            "diagnostics": {
+              "type": "array",
+              "maxItems": 20,
+              "items": {
+                "type": "object",
+                "required": [
+                  "code",
+                  "path",
+                  "message",
+                  "recovery"
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    "scope": {
+      "audiences": [
+        "learner-visible",
+        "tutor",
+        "teacher"
+      ],
+      "activity": "required",
+      "hostRoute": true,
+      "mutates": true,
+      "conditions": [
+        "policy.export.backup or policy.export.learnerSnapshot"
+      ],
+      "operations": [
+        "save"
+      ]
+    }
+  },
+  {
+    "name": "activity_restore",
+    "description": "Reopen the bound activity from a host-stored artifact by its ID (never a path or URL). It restores paused, under the current host policy, with conservative exposure records. operationId: unique per distinct request; repeat it only to retry the identical request.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "operationId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+        },
+        "artifactId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+        }
+      },
+      "required": [
+        "operationId",
+        "artifactId"
+      ],
+      "additionalProperties": false
+    },
+    "outputSchema": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": [
+            "ok",
+            "data",
+            "scope"
+          ],
+          "properties": {
+            "ok": {
+              "const": true
+            },
+            "data": {
+              "type": "object",
+              "description": "restored, notes, projection (learner view), expected guards"
+            },
+            "scope": {
+              "type": "object",
+              "description": "validation (technical checks and their meaning), review (lifecycle and review scope, or null) and activity (learner-surface status, or null), reported separately."
+            }
+          }
+        },
+        {
+          "type": "object",
+          "required": [
+            "ok",
+            "diagnostics"
+          ],
+          "properties": {
+            "ok": {
+              "const": false
+            },
+            "diagnostics": {
+              "type": "array",
+              "maxItems": 20,
+              "items": {
+                "type": "object",
+                "required": [
+                  "code",
+                  "path",
+                  "message",
+                  "recovery"
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    "scope": {
+      "audiences": [
+        "learner-visible",
+        "tutor",
+        "teacher"
+      ],
+      "activity": "absent",
+      "hostRoute": false,
+      "mutates": true,
+      "conditions": [
+        "host lifecycle hook with loadArtifact"
+      ],
+      "operations": [
+        "restore"
+      ]
+    }
+  },
+  {
+    "name": "activity_close",
+    "description": "Ask the host to close the activity. Pending previews are recorded and playback stops. operationId: unique per distinct request; repeat it only to retry the identical request.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "operationId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+        },
+        "reason": {
+          "enum": [
+            "completed",
+            "tutor-decision",
+            "learner-request"
+          ]
+        },
+        "expected": {
+          "$ref": "#/$defs/activityGuard"
+        }
+      },
+      "required": [
+        "operationId",
+        "reason",
+        "expected"
+      ],
+      "additionalProperties": false,
+      "$defs": {
+        "activityGuard": {
+          "type": "object",
+          "properties": {
+            "scientificVersion": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "runId": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "maxLength": 128
+            },
+            "activityRevision": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "policyRevision": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "presentationRevision": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          "required": [
+            "activityRevision",
+            "policyRevision"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    "outputSchema": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": [
+            "ok",
+            "data",
+            "scope"
+          ],
+          "properties": {
+            "ok": {
+              "const": true
+            },
+            "data": {
+              "type": "object",
+              "description": "closed, projection (learner view)"
+            },
+            "scope": {
+              "type": "object",
+              "description": "validation (technical checks and their meaning), review (lifecycle and review scope, or null) and activity (learner-surface status, or null), reported separately."
+            }
+          }
+        },
+        {
+          "type": "object",
+          "required": [
+            "ok",
+            "diagnostics"
+          ],
+          "properties": {
+            "ok": {
+              "const": false
+            },
+            "diagnostics": {
+              "type": "array",
+              "maxItems": 20,
+              "items": {
+                "type": "object",
+                "required": [
+                  "code",
+                  "path",
+                  "message",
+                  "recovery"
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    "scope": {
+      "audiences": [
+        "learner-visible",
+        "tutor",
+        "teacher"
+      ],
+      "activity": "required",
+      "hostRoute": true,
+      "mutates": true,
+      "conditions": [],
+      "operations": [
+        "close"
+      ]
+    }
+  },
+  {
+    "name": "activity_sample",
+    "description": "Isolated sampling of the exact installed model for teacher contexts (policy.sampling.allowed and policy.inspection.teacher). It never changes the learner run and its results are never cached or shown to the learner.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "parameters": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "number",
+            "minimum": -1000000000000000,
+            "maximum": 1000000000000000
+          },
+          "maxProperties": 64,
+          "propertyNames": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+          },
+          "description": "Canonical-unit parameter values."
+        },
+        "positions": {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "kind": {
+                    "const": "static"
+                  }
+                },
+                "required": [
+                  "kind"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "kind": {
+                    "const": "index"
+                  },
+                  "index": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 1000000
+                  }
+                },
+                "required": [
+                  "kind",
+                  "index"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "kind": {
+                    "const": "time"
+                  },
+                  "time": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1000000000000000
+                  }
+                },
+                "required": [
+                  "kind",
+                  "time"
+                ],
+                "additionalProperties": false
+              }
+            ]
+          },
+          "maxItems": 64,
+          "minItems": 1
+        }
+      },
+      "required": [
+        "parameters",
+        "positions"
+      ],
+      "additionalProperties": false
+    },
+    "outputSchema": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": [
+            "ok",
+            "data",
+            "scope"
+          ],
+          "properties": {
+            "ok": {
+              "const": true
+            },
+            "data": {
+              "type": "object",
+              "description": "frames, provenance"
+            },
+            "scope": {
+              "type": "object",
+              "description": "validation (technical checks and their meaning), review (lifecycle and review scope, or null) and activity (learner-surface status, or null), reported separately."
+            }
+          }
+        },
+        {
+          "type": "object",
+          "required": [
+            "ok",
+            "diagnostics"
+          ],
+          "properties": {
+            "ok": {
+              "const": false
+            },
+            "diagnostics": {
+              "type": "array",
+              "maxItems": 20,
+              "items": {
+                "type": "object",
+                "required": [
+                  "code",
+                  "path",
+                  "message",
+                  "recovery"
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    "scope": {
+      "audiences": [
+        "teacher"
+      ],
+      "activity": "required",
+      "hostRoute": false,
+      "mutates": false,
+      "conditions": [
+        "policy.sampling.allowed",
+        "policy.inspection.teacher"
+      ],
+      "operations": [
+        "sample"
+      ]
+    }
+  }
+]

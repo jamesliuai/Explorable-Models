@@ -28,7 +28,15 @@ export interface VisualizationDocument {
   assumptions: string[]; limitations: string[]; sources?: string[];
   provenance?: { authoredBy?: string; review: 'unreviewed'; checks?: 'author' | 'none' };
 }
-export interface ValueResult { value: NumericValue | null; status: 'valid' | 'undefined'; reason?: string }
+/**
+ * One evaluated value. `limit` and `approximation` are markers of the interpreter's numerical-limit classification
+ * (additive; see `NUMERICAL_LIMIT_REASONS` in expressions.ts). They never change `status` or `value`, schema 2.0 frames
+ * never carry them (`evaluateCompiledDocument` removes them unless `numericalLimits` is requested), and only the model
+ * layer reads them: `limit: 'OVERFLOW'` (status `undefined`) is an exact result beyond the double range;
+ * `limit: 'UNDERFLOW'` is a nonzero exact result that rounded to 0, or a value computed from one (its magnitude is then
+ * unknown); `approximation: 'UNDERFLOW'` is a valid value held with reduced precision below the normal double range.
+ */
+export interface ValueResult { value: NumericValue | null; status: 'valid' | 'undefined'; reason?: string; limit?: 'OVERFLOW' | 'UNDERFLOW'; approximation?: 'UNDERFLOW' }
 export interface SeriesPoint { x: number | null; y: number | null; reason?: string }
 export interface DocumentFrame {
   time: number; quantities: Record<string, ValueResult>; series: Record<string, SeriesPoint[]>;

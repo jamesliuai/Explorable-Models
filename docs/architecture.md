@@ -1,5 +1,11 @@
 # Architecture and supported contract
 
+> **Current architecture:** the Study Harness visualization subsystem (`@experiment-kit/activity`,
+> `@experiment-kit/catalog`, `@experiment-kit/player/activity`, `@experiment-kit/player-3d`, the activity tools and
+> authoring commands) is described in [docs/study-harness/architecture.md](study-harness/architecture.md), with
+> decisions D1–D16, and indexed in the [handoff](study-harness/README.md). This page still describes the original
+> schema 1.0 runtime, which is unchanged and retained for existing exports.
+
 This document describes the original schema 1.0 runtime. The additional schema 2.0 agent-first preview is specified in [the versioned contract](agent-first-contract.md); its reusable player entry does not import the legacy gallery or topic-specific adapters.
 
 Explorable Models 0.1 is a local authoring toolkit and portable browser player. The product unit is an immutable experiment definition plus a reproducible run. The player does not need an AI connection; an external agent uses the CLI or MCP adapter to inspect and operate the same runtime that learner controls use.

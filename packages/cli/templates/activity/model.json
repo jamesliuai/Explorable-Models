@@ -1,0 +1,56 @@
+{
+  "contract": "experiment-kit.model-manifest",
+  "schemaVersion": "1.0",
+  "modelId": "linear-function-example",
+  "version": "0.1.0",
+  "title": "Root of a straight line",
+  "summary": "The line y = m·x + b evaluated at a probe position, with its root x = −b/m when one exists.",
+  "execution": { "kind": "kernel", "kernelId": "linear-function-example", "kernelVersion": "0.1.0", "mode": "static" },
+  "capabilities": [],
+  "parameters": {
+    "m": {
+      "label": "Slope", "symbol": "m", "description": "Change in y for each unit step in x.",
+      "dimension": "dimensionless", "unit": "dimensionless", "min": -3, "max": 3, "default": 1,
+      "step": { "ui": 0.1, "admissible": "continuous" }, "role": "model-input"
+    },
+    "b": {
+      "label": "Intercept", "symbol": "b", "description": "Value of y where the line meets x = 0.",
+      "dimension": "dimensionless", "unit": "dimensionless", "min": -5, "max": 5, "default": 1,
+      "step": { "ui": 0.1, "admissible": "continuous" }, "role": "model-input"
+    },
+    "p": {
+      "label": "Probe position", "symbol": "p", "description": "Position x at which the line is read.",
+      "dimension": "dimensionless", "unit": "dimensionless", "min": -5, "max": 5, "default": 2,
+      "step": { "ui": 0.1, "admissible": "continuous" }, "role": "model-input"
+    }
+  },
+  "quantities": {
+    "probe.x": { "label": "Probe position", "symbol": "p", "shape": { "kind": "scalar" }, "dimension": "dimensionless", "unit": "dimensionless", "meaning": "The probe position p; equal to the parameter p.", "coordinateFrame": "x-y plane" },
+    "probe.value": { "label": "Line value at the probe", "symbol": "y(p)", "shape": { "kind": "scalar" }, "dimension": "dimensionless", "unit": "dimensionless", "meaning": "y(p) = m·p + b.", "coordinateFrame": "x-y plane", "signConvention": "Positive values lie above the x-axis." },
+    "slope": { "label": "Slope", "symbol": "m", "shape": { "kind": "scalar" }, "dimension": "dimensionless", "unit": "dimensionless", "meaning": "The slope m of the line; equal to the parameter m.", "signConvention": "Positive when y increases to the right." },
+    "intercept": { "label": "Intercept", "symbol": "b", "shape": { "kind": "scalar" }, "dimension": "dimensionless", "unit": "dimensionless", "meaning": "The value of the line at x = 0; equal to the parameter b.", "coordinateFrame": "x-y plane" },
+    "root": { "label": "Root", "symbol": "x_r", "shape": { "kind": "scalar" }, "dimension": "dimensionless", "unit": "dimensionless", "meaning": "The x where y = 0: −b/m when m ≠ 0. With m = 0 it is undefined: NO_ROOT when b ≠ 0, EVERY_X_IS_A_ROOT when b = 0.", "coordinateFrame": "x-y plane" }
+  },
+  "geometry": {
+    "line": { "kind": "polyline2", "label": "Line", "description": "The line between x = −5 and x = 5 (two exact endpoints).", "dimension": "dimensionless", "unit": "dimensionless", "coordinateFrame": "x-y plane", "maxElements": 2 },
+    "probe-point": { "kind": "points2", "label": "Probe point", "description": "The point (p, y(p)) on the line.", "dimension": "dimensionless", "unit": "dimensionless", "coordinateFrame": "x-y plane", "maxElements": 1 },
+    "root-point": { "kind": "points2", "label": "Root", "description": "The point (x_r, 0), or a gap with the reason when the root is undefined.", "dimension": "dimensionless", "unit": "dimensionless", "coordinateFrame": "x-y plane", "maxElements": 1 }
+  },
+  "constraints": [
+    {
+      "id": "probe-in-view", "expression": "m * p + b", "min": -10, "max": 10,
+      "message": "The line value at the probe, m·p + b, must stay between −10 and 10, the plotted range.",
+      "recovery": "Move the probe closer to x = 0, or reduce the slope or the intercept."
+    }
+  ],
+  "interpretation": {
+    "coordinateConvention": "x increases to the right and y upward in one dimensionless plane.",
+    "assumptions": ["The line is exactly y = m·x + b with real coefficients; nothing is sampled except the two drawn endpoints.", "Values are IEEE-754 double-precision numbers."],
+    "limitations": ["The probe value is limited to [−10, 10] by the coupled constraint so it stays in the plotted range.", "A root outside [−5, 5] is valid but lies outside the drawn line segment."]
+  },
+  "limits": { "maxGeometryElements": 4, "maxOperations": 100 },
+  "sources": [
+    { "id": "derivation", "kind": "derivation", "citation": "Hand derivation: m·x + b = 0 gives x = −b/m for m ≠ 0. For m = 0 the line is the horizontal line y = b, which never meets y = 0 when b ≠ 0 and coincides with it when b = 0." }
+  ],
+  "referenceSuite": null
+}

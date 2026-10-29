@@ -1,0 +1,1580 @@
+{
+  "suiteId": "quadratic-gradient-descent:1.0.0",
+  "model": {
+    "modelId": "quadratic-gradient-descent",
+    "version": "1.0.0"
+  },
+  "maxIndex": 1000,
+  "author": "Reference cases from the implementation report §12.3 plus cases derived by exact rational arithmetic in tests/reference/oracles/quadratic.ts, which shares no code with the catalogue kernel.",
+  "review": "No independent human subject reviewer has approved these cases. Automated agreement is engineering evidence only.",
+  "semantics": "f(x) = a·x²/2 with a > 0; x[n+1] = (1 − p)·x[n] where p = η·a is the IEEE-754 double product of the inputs, computed once. Positions, gradients a·x[n] and losses a·x[n]²/2 are exact values for those inputs, rounded once to the nearest double. The regime depends only on (x0, p): zero-start if x0 = 0, else stationary (p = 0), monotone-convergence (0 < p < 1), one-step (p = 1), alternating-convergence (1 < p < 2), oscillation (p = 2), divergence (p > 2).",
+  "format": "Arrays align with indices. A number is expected for valid statuses and null for numerical limits. Status \"valid:UNDERFLOW\" is a valid subnormal value carrying an UNDERFLOW approximation; \"numerical-limit:OVERFLOW\" means the exact magnitude exceeds Number.MAX_VALUE; \"numerical-limit:UNDERFLOW\" means a nonzero exact value rounds to zero. lastFiniteIndex is the last iteration before the first overflow of that quantity. An observed number o matches expected e when |o − e| <= absolute + relative·|e|; tolerance 0 is used only when every expected position, loss and gradient is exactly representable. Regimes, statuses and lastFiniteIndex always match exactly.",
+  "cases": [
+    {
+      "id": "report-eta-0.25",
+      "label": "a = 2, η = 0.25, x0 = 4: first four positions 4, 2, 1, 0.5",
+      "provenance": "report §12.3 (tabulated sequence); loss, gradient, multiplier, threshold and regime derived by hand from f(x) = a·x²/2 and cross-checked by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+      "params": {
+        "a": 2,
+        "eta": 0.25,
+        "x0": 4
+      },
+      "indices": [0, 1, 2, 3],
+      "expected": {
+        "regime": "monotone-convergence",
+        "multiplier": 0.5,
+        "threshold": 1,
+        "positions": [4, 2, 1, 0.5],
+        "losses": [16, 4, 1, 0.25],
+        "gradients": [8, 4, 2, 1],
+        "statuses": {
+          "position": ["valid", "valid", "valid", "valid"],
+          "loss": ["valid", "valid", "valid", "valid"],
+          "gradient": ["valid", "valid", "valid", "valid"]
+        }
+      },
+      "tolerance": {
+        "absolute": 0,
+        "relative": 0
+      }
+    },
+    {
+      "id": "report-eta-0.75",
+      "label": "a = 2, η = 0.75, x0 = 4: first four positions 4, −2, 1, −0.5",
+      "provenance": "report §12.3 (tabulated sequence); loss, gradient, multiplier, threshold and regime derived by hand from f(x) = a·x²/2 and cross-checked by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+      "params": {
+        "a": 2,
+        "eta": 0.75,
+        "x0": 4
+      },
+      "indices": [0, 1, 2, 3],
+      "expected": {
+        "regime": "alternating-convergence",
+        "multiplier": -0.5,
+        "threshold": 1,
+        "positions": [4, -2, 1, -0.5],
+        "losses": [16, 4, 1, 0.25],
+        "gradients": [8, -4, 2, -1],
+        "statuses": {
+          "position": ["valid", "valid", "valid", "valid"],
+          "loss": ["valid", "valid", "valid", "valid"],
+          "gradient": ["valid", "valid", "valid", "valid"]
+        }
+      },
+      "tolerance": {
+        "absolute": 0,
+        "relative": 0
+      }
+    },
+    {
+      "id": "report-eta-1.25",
+      "label": "a = 2, η = 1.25, x0 = 4: first four positions 4, −6, 9, −13.5",
+      "provenance": "report §12.3 (tabulated sequence); loss, gradient, multiplier, threshold and regime derived by hand from f(x) = a·x²/2 and cross-checked by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+      "params": {
+        "a": 2,
+        "eta": 1.25,
+        "x0": 4
+      },
+      "indices": [0, 1, 2, 3],
+      "expected": {
+        "regime": "divergence",
+        "multiplier": -1.5,
+        "threshold": 1,
+        "positions": [4, -6, 9, -13.5],
+        "losses": [16, 36, 81, 182.25],
+        "gradients": [8, -12, 18, -27],
+        "statuses": {
+          "position": ["valid", "valid", "valid", "valid"],
+          "loss": ["valid", "valid", "valid", "valid"],
+          "gradient": ["valid", "valid", "valid", "valid"]
+        },
+        "lastFiniteIndex": {
+          "loss": 871
+        }
+      },
+      "tolerance": {
+        "absolute": 0,
+        "relative": 0
+      }
+    },
+    {
+      "id": "zero-start-stationary",
+      "label": "x0 = 0 with a = 2, η = 0: position stays exactly 0 through n = 1000",
+      "provenance": "report §12.3 (x0 = 0 in any allowed regime); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+      "params": {
+        "a": 2,
+        "eta": 0,
+        "x0": 0
+      },
+      "indices": [0, 1, 500, 1000],
+      "expected": {
+        "regime": "zero-start",
+        "multiplier": 1,
+        "threshold": 1,
+        "positions": [0, 0, 0, 0],
+        "losses": [0, 0, 0, 0],
+        "gradients": [0, 0, 0, 0],
+        "statuses": {
+          "position": ["valid", "valid", "valid", "valid"],
+          "loss": ["valid", "valid", "valid", "valid"],
+          "gradient": ["valid", "valid", "valid", "valid"]
+        }
+      },
+      "tolerance": {
+        "absolute": 0,
+        "relative": 0
+      }
+    },
+    {
+      "id": "zero-start-monotone",
+      "label": "x0 = 0 with a = 2, η = 0.25: position stays exactly 0 through n = 1000",
+      "provenance": "report §12.3 (x0 = 0 in any allowed regime); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+      "params": {
+        "a": 2,
+        "eta": 0.25,
+        "x0": 0
+      },
+      "indices": [0, 1, 500, 1000],
+      "expected": {
+        "regime": "zero-start",
+        "multiplier": 0.5,
+        "threshold": 1,
+        "positions": [0, 0, 0, 0],
+        "losses": [0, 0, 0, 0],
+        "gradients": [0, 0, 0, 0],
+        "statuses": {
+          "position": ["valid", "valid", "valid", "valid"],
+          "loss": ["valid", "valid", "valid", "valid"],
+          "gradient": ["valid", "valid", "valid", "valid"]
+        }
+      },
+      "tolerance": {
+        "absolute": 0,
+        "relative": 0
+      }
+    },
+    {
+      "id": "zero-start-one-step",
+      "label": "x0 = 0 with a = 2, η = 0.5: position stays exactly 0 through n = 1000",
+      "provenance": "report §12.3 (x0 = 0 in any allowed regime); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+      "params": {
+        "a": 2,
+        "eta": 0.5,
+        "x0": 0
+      },
+      "indices": [0, 1, 500, 1000],
+      "expected": {
+        "regime": "zero-start",
+        "multiplier": 0,
+        "threshold": 1,
+        "positions": [0, 0, 0, 0],
+        "losses": [0, 0, 0, 0],
+        "gradients": [0, 0, 0, 0],
+        "statuses": {
+          "position": ["valid", "valid", "valid", "valid"],
+          "loss": ["valid", "valid", "valid", "valid"],
+          "gradient": ["valid", "valid", "valid", "valid"]
+        }
+      },
+      "tolerance": {
+        "absolute": 0,
+        "relative": 0
+      }
+    },
+    {
+      "id": "zero-start-alternating",
+      "label": "x0 = 0 with a = 2, η = 0.75: position stays exactly 0 through n = 1000",
+      "provenance": "report §12.3 (x0 = 0 in any allowed regime); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+      "params": {
+        "a": 2,
+        "eta": 0.75,
+        "x0": 0
+      },
+      "indices": [0, 1, 500, 1000],
+      "expected": {
+        "regime": "zero-start",
+        "multiplier": -0.5,
+        "threshold": 1,
+        "positions": [0, 0, 0, 0],
+        "losses": [0, 0, 0, 0],
+        "gradients": [0, 0, 0, 0],
+        "statuses": {
+          "position": ["valid", "valid", "valid", "valid"],
+          "loss": ["valid", "valid", "valid", "valid"],
+          "gradient": ["valid", "valid", "valid", "valid"]
+        }
+      },
+      "tolerance": {
+        "absolute": 0,
+        "relative": 0
+      }
+    },
+    {
+      "id": "zero-start-oscillation",
+      "label": "x0 = 0 with a = 2, η = 1: position stays exactly 0 through n = 1000",
+      "provenance": "report §12.3 (x0 = 0 in any allowed regime); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+      "params": {
+        "a": 2,
+        "eta": 1,
+        "x0": 0
+      },
+      "indices": [0, 1, 500, 1000],
+      "expected": {
+        "regime": "zero-start",
+        "multiplier": -1,
+        "threshold": 1,
+        "positions": [0, 0, 0, 0],
+        "losses": [0, 0, 0, 0],
+        "gradients": [0, 0, 0, 0],
+        "statuses": {
+          "position": ["valid", "valid", "valid", "valid"],
+          "loss": ["valid", "valid", "valid", "valid"],
+          "gradient": ["valid", "valid", "valid", "valid"]
+        }
+      },
+      "tolerance": {
+        "absolute": 0,
+        "relative": 0
+      }
+    },
+    {
+      "id": "zero-start-divergence",
+      "label": "x0 = 0 with a = 2, η = 1.25: position stays exactly 0 through n = 1000",
+      "provenance": "report §12.3 (x0 = 0 in any allowed regime); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+      "params": {
+        "a": 2,
+        "eta": 1.25,
+        "x0": 0
+      },
+      "indices": [0, 1, 500, 1000],
+      "expected": {
+        "regime": "zero-start",
+        "multiplier": -1.5,
+        "threshold": 1,
+        "positions": [0, 0, 0, 0],
+        "losses": [0, 0, 0, 0],
+        "gradients": [0, 0, 0, 0],
+        "statuses": {
+          "position": ["valid", "valid", "valid", "valid"],
+          "loss": ["valid", "valid", "valid", "valid"],
+          "gradient": ["valid", "valid", "valid", "valid"]
+        }
+      },
+      "tolerance": {
+        "absolute": 0,
+        "relative": 0
+      }
+    },
+    {
+      "id": "zero-start-divergence-multiplier-minus-3",
+      "label": "x0 = 0 with a = 10, η = 0.4: position stays exactly 0 through n = 1000",
+      "provenance": "report §12.3 (x0 = 0 in any allowed regime); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+      "params": {
+        "a": 10,
+        "eta": 0.4,
+        "x0": 0
+      },
+      "indices": [0, 1, 500, 1000],
+      "expected": {
+        "regime": "zero-start",
+        "multiplier": -3,
+        "threshold": 0.2,
+        "positions": [0, 0, 0, 0],
+        "losses": [0, 0, 0, 0],
+        "gradients": [0, 0, 0, 0],
+        "statuses": {
+          "position": ["valid", "valid", "valid", "valid"],
+          "loss": ["valid", "valid", "valid", "valid"],
+          "gradient": ["valid", "valid", "valid", "valid"]
+        }
+      },
+      "tolerance": {
+        "absolute": 0,
+        "relative": 0
+      }
+    },
+    {
+      "id": "zero-start-divergence-eta-max",
+      "label": "x0 = 0 with a = 2, η = 2: position stays exactly 0 through n = 1000",
+      "provenance": "report §12.3 (x0 = 0 in any allowed regime); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+      "params": {
+        "a": 2,
+        "eta": 2,
+        "x0": 0
+      },
+      "indices": [0, 1, 500, 1000],
+      "expected": {
+        "regime": "zero-start",
+        "multiplier": -3,
+        "threshold": 1,
+        "positions": [0, 0, 0, 0],
+        "losses": [0, 0, 0, 0],
+        "gradients": [0, 0, 0, 0],
+        "statuses": {
+          "position": ["valid", "valid", "valid", "valid"],
+          "loss": ["valid", "valid", "valid", "valid"],
+          "gradient": ["valid", "valid", "valid", "valid"]
+        }
+      },
+      "tolerance": {
+        "absolute": 0,
+        "relative": 0
+      }
+    },
+    {
+      "id": "zero-start-monotone-curvature-min",
+      "label": "x0 = 0 with a = 0.1, η = 2: position stays exactly 0 through n = 1000",
+      "provenance": "report §12.3 (x0 = 0 in any allowed regime); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+      "params": {
+        "a": 0.1,
+        "eta": 2,
+        "x0": 0
+      },
+      "indices": [0, 1, 500, 1000],
+      "expected": {
+        "regime": "zero-start",
+        "multiplier": 0.8,
+        "threshold": 20,
+        "positions": [0, 0, 0, 0],
+        "losses": [0, 0, 0, 0],
+        "gradients": [0, 0, 0, 0],
+        "statuses": {
+          "position": ["valid", "valid", "valid", "valid"],
+          "loss": ["valid", "valid", "valid", "valid"],
+          "gradient": ["valid", "valid", "valid", "valid"]
+        }
+      },
+      "tolerance": {
+        "absolute": 0,
+        "relative": 0
+      }
+    },
+    {
+      "id": "eta-zero",
+      "label": "η = 0, a = 2, x0 = 4: position stays at x0",
+      "provenance": "report §12.3 (eta = 0); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+      "params": {
+        "a": 2,
+        "eta": 0,
+        "x0": 4
+      },
+      "indices": [0, 1, 2, 500, 1000],
+      "expected": {
+        "regime": "stationary",
+        "multiplier": 1,
+        "threshold": 1,
+        "positions": [4, 4, 4, 4, 4],
+        "losses": [16, 16, 16, 16, 16],
+        "gradients": [8, 8, 8, 8, 8],
+        "statuses": {
+          "position": ["valid", "valid", "valid", "valid", "valid"],
+          "loss": ["valid", "valid", "valid", "valid", "valid"],
+          "gradient": ["valid", "valid", "valid", "valid", "valid"]
+        }
+      },
+      "tolerance": {
+        "absolute": 0,
+        "relative": 0
+      }
+    },
+    {
+      "id": "eta-zero-negative-start",
+      "label": "η = 0, a = 7.3, x0 = −9.75: position stays at x0",
+      "provenance": "report §12.3 (eta = 0); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+      "params": {
+        "a": 7.3,
+        "eta": 0,
+        "x0": -9.75
+      },
+      "indices": [0, 1, 2, 500, 1000],
+      "expected": {
+        "regime": "stationary",
+        "multiplier": 1,
+        "threshold": 0.273972602739726,
+        "positions": [-9.75, -9.75, -9.75, -9.75, -9.75],
+        "losses": [346.978125, 346.978125, 346.978125, 346.978125, 346.978125],
+        "gradients": [-71.175, -71.175, -71.175, -71.175, -71.175],
+        "statuses": {
+          "position": ["valid", "valid", "valid", "valid", "valid"],
+          "loss": ["valid", "valid", "valid", "valid", "valid"],
+          "gradient": ["valid", "valid", "valid", "valid", "valid"]
+        }
+      },
+      "tolerance": {
+        "absolute": 0,
+        "relative": 1e-12
+      }
+    },
+    {
+      "id": "one-step-a2-eta0.5",
+      "label": "a = 2, η = 0.5 (η·a = 1), x0 = 4: x0 at n = 0, exactly 0 afterwards",
+      "provenance": "report §12.3 (eta*a = 1); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+      "params": {
+        "a": 2,
+        "eta": 0.5,
+        "x0": 4
+      },
+      "indices": [0, 1, 2, 3, 1000],
+      "expected": {
+        "regime": "one-step",
+        "multiplier": 0,
+        "threshold": 1,
+        "positions": [4, 0, 0, 0, 0],
+        "losses": [16, 0, 0, 0, 0],
+        "gradients": [8, 0, 0, 0, 0],
+        "statuses": {
+          "position": ["valid", "valid", "valid", "valid", "valid"],
+          "loss": ["valid", "valid", "valid", "valid", "valid"],
+          "gradient": ["valid", "valid", "valid", "valid", "valid"]
+        }
+      },
+      "tolerance": {
+        "absolute": 0,
+        "relative": 0
+      }
+    },
+    {
+      "id": "one-step-a5-eta0.2",
+      "label": "a = 5, η = 0.2 (η·a = 1), x0 = -3: x0 at n = 0, exactly 0 afterwards",
+      "provenance": "report §12.3 (eta*a = 1); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+      "params": {
+        "a": 5,
+        "eta": 0.2,
+        "x0": -3
+      },
+      "indices": [0, 1, 2, 3, 1000],
+      "expected": {
+        "regime": "one-step",
+        "multiplier": 0,
+        "threshold": 0.4,
+        "positions": [-3, 0, 0, 0, 0],
+        "losses": [22.5, 0, 0, 0, 0],
+        "gradients": [-15, 0, 0, 0, 0],
+        "statuses": {
+          "position": ["valid", "valid", "valid", "valid", "valid"],
+          "loss": ["valid", "valid", "valid", "valid", "valid"],
+          "gradient": ["valid", "valid", "valid", "valid", "valid"]
+        }
+      },
+      "tolerance": {
+        "absolute": 0,
+        "relative": 0
+      }
+    },
+    {
+      "id": "one-step-a10-eta0.1",
+      "label": "a = 10, η = 0.1 (η·a = 1), x0 = 7: x0 at n = 0, exactly 0 afterwards",
+      "provenance": "report §12.3 (eta*a = 1); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+      "params": {
+        "a": 10,
+        "eta": 0.1,
+        "x0": 7
+      },
+      "indices": [0, 1, 2, 3, 1000],
+      "expected": {
+        "regime": "one-step",
+        "multiplier": 0,
+        "threshold": 0.2,
+        "positions": [7, 0, 0, 0, 0],
+        "losses": [245, 0, 0, 0, 0],
+        "gradients": [70, 0, 0, 0, 0],
+        "statuses": {
+          "position": ["valid", "valid", "valid", "valid", "valid"],
+          "loss": ["valid", "valid", "valid", "valid", "valid"],
+          "gradient": ["valid", "valid", "valid", "valid", "valid"]
+        }
+      },
+      "tolerance": {
+        "absolute": 0,
+        "relative": 0
+      }
+    },
+    {
+      "id": "one-step-a0.5-eta2",
+      "label": "a = 0.5, η = 2 (η·a = 1), x0 = 10: x0 at n = 0, exactly 0 afterwards",
+      "provenance": "report §12.3 (eta*a = 1); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+      "params": {
+        "a": 0.5,
+        "eta": 2,
+        "x0": 10
+      },
+      "indices": [0, 1, 2, 3, 1000],
+      "expected": {
+        "regime": "one-step",
+        "multiplier": 0,
+        "threshold": 4,
+        "positions": [10, 0, 0, 0, 0],
+        "losses": [25, 0, 0, 0, 0],
+        "gradients": [5, 0, 0, 0, 0],
+        "statuses": {
+          "position": ["valid", "valid", "valid", "valid", "valid"],
+          "loss": ["valid", "valid", "valid", "valid", "valid"],
+          "gradient": ["valid", "valid", "valid", "valid", "valid"]
+        }
+      },
+      "tolerance": {
+        "absolute": 0,
+        "relative": 0
+      }
+    },
+    {
+      "id": "oscillation-a2-eta1",
+      "label": "a = 2, η = 1 (η·a = 2), x0 = 4: ±x0 alternating with constant magnitude",
+      "provenance": "report §12.3 (eta*a = 2); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+      "params": {
+        "a": 2,
+        "eta": 1,
+        "x0": 4
+      },
+      "indices": [0, 1, 2, 3, 999, 1000],
+      "expected": {
+        "regime": "oscillation",
+        "multiplier": -1,
+        "threshold": 1,
+        "positions": [4, -4, 4, -4, -4, 4],
+        "losses": [16, 16, 16, 16, 16, 16],
+        "gradients": [8, -8, 8, -8, -8, 8],
+        "statuses": {
+          "position": ["valid", "valid", "valid", "valid", "valid", "valid"],
+          "loss": ["valid", "valid", "valid", "valid", "valid", "valid"],
+          "gradient": ["valid", "valid", "valid", "valid", "valid", "valid"]
+        }
+      },
+      "tolerance": {
+        "absolute": 0,
+        "relative": 0
+      }
+    },
+    {
+      "id": "oscillation-a5-eta0.4",
+      "label": "a = 5, η = 0.4 (η·a = 2), x0 = -3: ±x0 alternating with constant magnitude",
+      "provenance": "report §12.3 (eta*a = 2); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+      "params": {
+        "a": 5,
+        "eta": 0.4,
+        "x0": -3
+      },
+      "indices": [0, 1, 2, 3, 999, 1000],
+      "expected": {
+        "regime": "oscillation",
+        "multiplier": -1,
+        "threshold": 0.4,
+        "positions": [-3, 3, -3, 3, 3, -3],
+        "losses": [22.5, 22.5, 22.5, 22.5, 22.5, 22.5],
+        "gradients": [-15, 15, -15, 15, 15, -15],
+        "statuses": {
+          "position": ["valid", "valid", "valid", "valid", "valid", "valid"],
+          "loss": ["valid", "valid", "valid", "valid", "valid", "valid"],
+          "gradient": ["valid", "valid", "valid", "valid", "valid", "valid"]
+        }
+      },
+      "tolerance": {
+        "absolute": 0,
+        "relative": 0
+      }
+    },
+    {
+      "id": "oscillation-a1-eta2",
+      "label": "a = 1, η = 2 (η·a = 2), x0 = 10: ±x0 alternating with constant magnitude",
+      "provenance": "report §12.3 (eta*a = 2); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+      "params": {
+        "a": 1,
+        "eta": 2,
+        "x0": 10
+      },
+      "indices": [0, 1, 2, 3, 999, 1000],
+      "expected": {
+        "regime": "oscillation",
+        "multiplier": -1,
+        "threshold": 2,
+        "positions": [10, -10, 10, -10, -10, 10],
+        "losses": [50, 50, 50, 50, 50, 50],
+        "gradients": [10, -10, 10, -10, -10, 10],
+        "statuses": {
+          "position": ["valid", "valid", "valid", "valid", "valid", "valid"],
+          "loss": ["valid", "valid", "valid", "valid", "valid", "valid"],
+          "gradient": ["valid", "valid", "valid", "valid", "valid", "valid"]
+        }
+      },
+      "tolerance": {
+        "absolute": 0,
+        "relative": 0
+      }
+    },
+    {
+      "id": "oscillation-a4-eta0.5",
+      "label": "a = 4, η = 0.5 (η·a = 2), x0 = 0.1: ±x0 alternating with constant magnitude",
+      "provenance": "report §12.3 (eta*a = 2); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+      "params": {
+        "a": 4,
+        "eta": 0.5,
+        "x0": 0.1
+      },
+      "indices": [0, 1, 2, 3, 999, 1000],
+      "expected": {
+        "regime": "oscillation",
+        "multiplier": -1,
+        "threshold": 0.5,
+        "positions": [0.1, -0.1, 0.1, -0.1, -0.1, 0.1],
+        "losses": [0.020000000000000004, 0.020000000000000004, 0.020000000000000004, 0.020000000000000004, 0.020000000000000004, 0.020000000000000004],
+        "gradients": [0.4, -0.4, 0.4, -0.4, -0.4, 0.4],
+        "statuses": {
+          "position": ["valid", "valid", "valid", "valid", "valid", "valid"],
+          "loss": ["valid", "valid", "valid", "valid", "valid", "valid"],
+          "gradient": ["valid", "valid", "valid", "valid", "valid", "valid"]
+        }
+      },
+      "tolerance": {
+        "absolute": 0,
+        "relative": 1e-12
+      }
+    },
+    {
+      "id": "neighbour-a2-eta0.5-below",
+      "label": "a = 2, η = 0.49999999999999994 (adjacent double below 0.5), x0 = 4",
+      "provenance": "report §12.3 (neighbouring floating-point values around each boundary); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+      "params": {
+        "a": 2,
+        "eta": 0.49999999999999994,
+        "x0": 4
+      },
+      "indices": [0, 1, 2, 19, 20, 21, 1000],
+      "expected": {
+        "regime": "monotone-convergence",
+        "multiplier": 1.1102230246251565e-16,
+        "threshold": 1,
+        "positions": [4, 4.440892098500626e-16, 4.930380657631324e-32, 2.916448807822559e-303, 3.2379e-319, null, null],
+        "losses": [16, 1.9721522630525295e-31, 2.4308653429145085e-63, null, null, null, null],
+        "gradients": [8, 8.881784197001252e-16, 9.860761315262648e-32, 5.832897615645118e-303, 6.4758e-319, null, null],
+        "statuses": {
+          "position": ["valid", "valid", "valid", "valid", "valid:UNDERFLOW", "numerical-limit:UNDERFLOW", "numerical-limit:UNDERFLOW"],
+          "loss": ["valid", "valid", "valid", "numerical-limit:UNDERFLOW", "numerical-limit:UNDERFLOW", "numerical-limit:UNDERFLOW", "numerical-limit:UNDERFLOW"],
+          "gradient": ["valid", "valid", "valid", "valid", "valid:UNDERFLOW", "numerical-limit:UNDERFLOW", "numerical-limit:UNDERFLOW"]
+        }
+      },
+      "tolerance": {
+        "absolute": 0,
+        "relative": 0
+      }
+    },
+    {
+      "id": "neighbour-a2-eta0.5-above",
+      "label": "a = 2, η = 0.5000000000000001 (adjacent double above 0.5), x0 = 4",
+      "provenance": "report §12.3 (neighbouring floating-point values around each boundary); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+      "params": {
+        "a": 2,
+        "eta": 0.5000000000000001,
+        "x0": 4
+      },
+      "indices": [0, 1, 2, 19, 20, 21, 1000],
+      "expected": {
+        "regime": "alternating-convergence",
+        "multiplier": -2.220446049250313e-16,
+        "threshold": 1,
+        "positions": [4, -8.881784197001252e-16, 1.9721522630525295e-31, -1.5290591125556738e-297, 3.39519326554e-313, null, null],
+        "losses": [16, 7.888609052210118e-31, 3.8893845486632136e-62, null, null, null, null],
+        "gradients": [8, -1.7763568394002505e-15, 3.944304526105059e-31, -3.0581182251113476e-297, 6.7903865311e-313, null, null],
+        "statuses": {
+          "position": ["valid", "valid", "valid", "valid", "valid:UNDERFLOW", "numerical-limit:UNDERFLOW", "numerical-limit:UNDERFLOW"],
+          "loss": ["valid", "valid", "valid", "numerical-limit:UNDERFLOW", "numerical-limit:UNDERFLOW", "numerical-limit:UNDERFLOW", "numerical-limit:UNDERFLOW"],
+          "gradient": ["valid", "valid", "valid", "valid", "valid:UNDERFLOW", "numerical-limit:UNDERFLOW", "numerical-limit:UNDERFLOW"]
+        }
+      },
+      "tolerance": {
+        "absolute": 0,
+        "relative": 0
+      }
+    },
+    {
+      "id": "neighbour-a2-eta1-below",
+      "label": "a = 2, η = 0.9999999999999999 (adjacent double below 1), x0 = 4",
+      "provenance": "report §12.3 (neighbouring floating-point values around each boundary); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+      "params": {
+        "a": 2,
+        "eta": 0.9999999999999999,
+        "x0": 4
+      },
+      "indices": [0, 1, 2, 3, 999, 1000],
+      "expected": {
+        "regime": "alternating-convergence",
+        "multiplier": -0.9999999999999998,
+        "threshold": 1,
+        "positions": [4, -3.999999999999999, 3.9999999999999982, -3.9999999999999973, -3.9999999999991127, 3.999999999999112],
+        "losses": [16, 15.999999999999993, 15.999999999999986, 15.999999999999979, 15.999999999992902, 15.999999999992895],
+        "gradients": [8, -7.999999999999998, 7.9999999999999964, -7.999999999999995, -7.999999999998225, 7.999999999998224],
+        "statuses": {
+          "position": ["valid", "valid", "valid", "valid", "valid", "valid"],
+          "loss": ["valid", "valid", "valid", "valid", "valid", "valid"],
+          "gradient": ["valid", "valid", "valid", "valid", "valid", "valid"]
+        }
+      },
+      "tolerance": {
+        "absolute": 0,
+        "relative": 1e-12
+      }
+    },
+    {
+      "id": "neighbour-a2-eta1-above",
+      "label": "a = 2, η = 1.0000000000000002 (adjacent double above 1), x0 = 4",
+      "provenance": "report §12.3 (neighbouring floating-point values around each boundary); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+      "params": {
+        "a": 2,
+        "eta": 1.0000000000000002,
+        "x0": 4
+      },
+      "indices": [0, 1, 2, 3, 999, 1000],
+      "expected": {
+        "regime": "divergence",
+        "multiplier": -1.0000000000000004,
+        "threshold": 1,
+        "positions": [4, -4.000000000000002, 4.0000000000000036, -4.000000000000005, -4.000000000001775, 4.000000000001776],
+        "losses": [16, 16.000000000000014, 16.00000000000003, 16.000000000000043, 16.000000000014197, 16.00000000001421],
+        "gradients": [8, -8.000000000000004, 8.000000000000007, -8.00000000000001, -8.00000000000355, 8.000000000003553],
+        "statuses": {
+          "position": ["valid", "valid", "valid", "valid", "valid", "valid"],
+          "loss": ["valid", "valid", "valid", "valid", "valid", "valid"],
+          "gradient": ["valid", "valid", "valid", "valid", "valid", "valid"]
+        }
+      },
+      "tolerance": {
+        "absolute": 0,
+        "relative": 1e-12
+      }
+    },
+    {
+      "id": "neighbour-a5-eta0.2-below",
+      "label": "a = 5, η = 0.19999999999999998 (adjacent double below 0.2), x0 = 4",
+      "provenance": "report §12.3 (neighbouring floating-point values around each boundary); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+      "params": {
+        "a": 5,
+        "eta": 0.19999999999999998,
+        "x0": 4
+      },
+      "indices": [0, 1, 2, 3, 10, 100, 1000],
+      "expected": {
+        "regime": "monotone-convergence",
+        "multiplier": 1.1102230246251565e-16,
+        "threshold": 0.4,
+        "positions": [4, 4.440892098500626e-16, 4.930380657631324e-32, 5.473822126268817e-48, 1.1380524797363597e-159, null, null],
+        "losses": [40, 4.930380657631324e-31, 6.077163357286271e-63, 7.490682167507517e-95, 3.23791e-318, null, null],
+        "gradients": [20, 2.220446049250313e-15, 2.465190328815662e-31, 2.7369110631344083e-47, 5.690262398681798e-159, null, null],
+        "statuses": {
+          "position": ["valid", "valid", "valid", "valid", "valid", "numerical-limit:UNDERFLOW", "numerical-limit:UNDERFLOW"],
+          "loss": ["valid", "valid", "valid", "valid", "valid:UNDERFLOW", "numerical-limit:UNDERFLOW", "numerical-limit:UNDERFLOW"],
+          "gradient": ["valid", "valid", "valid", "valid", "valid", "numerical-limit:UNDERFLOW", "numerical-limit:UNDERFLOW"]
+        }
+      },
+      "tolerance": {
+        "absolute": 0,
+        "relative": 0
+      }
+    },
+    {
+      "id": "neighbour-a5-eta0.2-above",
+      "label": "a = 5, η = 0.20000000000000004 (adjacent double above 0.2), x0 = 4",
+      "provenance": "report §12.3 (neighbouring floating-point values around each boundary); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+      "params": {
+        "a": 5,
+        "eta": 0.20000000000000004,
+        "x0": 4
+      },
+      "indices": [0, 1, 2, 3, 10, 100, 1000],
+      "expected": {
+        "regime": "alternating-convergence",
+        "multiplier": -2.220446049250313e-16,
+        "threshold": 0.4,
+        "positions": [4, -8.881784197001252e-16, 1.9721522630525295e-31, -4.3790577010150533e-47, 1.1653657392500323e-156, null, null],
+        "losses": [40, 1.9721522630525295e-30, 9.723461371658034e-62, 4.794036587204811e-93, 3.395193265544e-312, null, null],
+        "gradients": [20, -4.440892098500626e-15, 9.860761315262648e-31, -2.1895288505075267e-46, 5.826828696250162e-156, null, null],
+        "statuses": {
+          "position": ["valid", "valid", "valid", "valid", "valid", "numerical-limit:UNDERFLOW", "numerical-limit:UNDERFLOW"],
+          "loss": ["valid", "valid", "valid", "valid", "valid:UNDERFLOW", "numerical-limit:UNDERFLOW", "numerical-limit:UNDERFLOW"],
+          "gradient": ["valid", "valid", "valid", "valid", "valid", "numerical-limit:UNDERFLOW", "numerical-limit:UNDERFLOW"]
+        }
+      },
+      "tolerance": {
+        "absolute": 0,
+        "relative": 0
+      }
+    },
+    {
+      "id": "neighbour-a5-eta0.4-below",
+      "label": "a = 5, η = 0.39999999999999997 (adjacent double below 0.4), x0 = 4",
+      "provenance": "report §12.3 (neighbouring floating-point values around each boundary); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+      "params": {
+        "a": 5,
+        "eta": 0.39999999999999997,
+        "x0": 4
+      },
+      "indices": [0, 1, 2, 3, 10, 100, 1000],
+      "expected": {
+        "regime": "alternating-convergence",
+        "multiplier": -0.9999999999999998,
+        "threshold": 0.4,
+        "positions": [4, -3.999999999999999, 3.9999999999999982, -3.9999999999999973, 3.999999999999991, 3.999999999999911, 3.999999999999112],
+        "losses": [40, 39.999999999999986, 39.999999999999964, 39.99999999999995, 39.99999999999982, 39.999999999998224, 39.999999999982236],
+        "gradients": [20, -19.999999999999996, 19.999999999999993, -19.999999999999986, 19.999999999999957, 19.999999999999556, 19.99999999999556],
+        "statuses": {
+          "position": ["valid", "valid", "valid", "valid", "valid", "valid", "valid"],
+          "loss": ["valid", "valid", "valid", "valid", "valid", "valid", "valid"],
+          "gradient": ["valid", "valid", "valid", "valid", "valid", "valid", "valid"]
+        }
+      },
+      "tolerance": {
+        "absolute": 0,
+        "relative": 1e-12
+      }
+    },
+    {
+      "id": "neighbour-a5-eta0.4-above",
+      "label": "a = 5, η = 0.4000000000000001 (adjacent double above 0.4), x0 = 4",
+      "provenance": "report §12.3 (neighbouring floating-point values around each boundary); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+      "params": {
+        "a": 5,
+        "eta": 0.4000000000000001,
+        "x0": 4
+      },
+      "indices": [0, 1, 2, 3, 10, 100, 1000],
+      "expected": {
+        "regime": "divergence",
+        "multiplier": -1.0000000000000004,
+        "threshold": 0.4,
+        "positions": [4, -4.000000000000002, 4.0000000000000036, -4.000000000000005, 4.000000000000018, 4.000000000000178, 4.000000000001776],
+        "losses": [40, 40.000000000000036, 40.00000000000007, 40.00000000000011, 40.000000000000355, 40.00000000000355, 40.00000000003553],
+        "gradients": [20, -20.000000000000007, 20.000000000000018, -20.00000000000003, 20.00000000000009, 20.000000000000888, 20.000000000008882],
+        "statuses": {
+          "position": ["valid", "valid", "valid", "valid", "valid", "valid", "valid"],
+          "loss": ["valid", "valid", "valid", "valid", "valid", "valid", "valid"],
+          "gradient": ["valid", "valid", "valid", "valid", "valid", "valid", "valid"]
+        }
+      },
+      "tolerance": {
+        "absolute": 0,
+        "relative": 1e-12
+      }
+    },
+    {
+      "id": "a5-eta0.05",
+      "label": "a = 5, η = 0.05, x0 = 4 (convergence interval 0 < η < 0.4)",
+      "provenance": "report §12.3 (a = 5 and positive step sizes); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+      "params": {
+        "a": 5,
+        "eta": 0.05,
+        "x0": 4
+      },
+      "indices": [0, 1, 2, 3, 10, 100, 1000],
+      "expected": {
+        "regime": "monotone-convergence",
+        "multiplier": 0.75,
+        "threshold": 0.4,
+        "positions": [4, 3, 2.25, 1.6875, 0.22525405883789062, 1.2828808741526015e-12, 4.605994160499308e-125],
+        "losses": [40, 22.5, 12.65625, 7.119140625, 0.12684847755735973, 4.1144583431663575e-24, 5.303795551638431e-249],
+        "gradients": [20, 15, 11.25, 8.4375, 1.1262702941894531, 6.414404370763008e-12, 2.3029970802496537e-124],
+        "statuses": {
+          "position": ["valid", "valid", "valid", "valid", "valid", "valid", "valid"],
+          "loss": ["valid", "valid", "valid", "valid", "valid", "valid", "valid"],
+          "gradient": ["valid", "valid", "valid", "valid", "valid", "valid", "valid"]
+        }
+      },
+      "tolerance": {
+        "absolute": 0,
+        "relative": 1e-12
+      }
+    },
+    {
+      "id": "a5-eta0.1",
+      "label": "a = 5, η = 0.1, x0 = 4 (convergence interval 0 < η < 0.4)",
+      "provenance": "report §12.3 (a = 5 and positive step sizes); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+      "params": {
+        "a": 5,
+        "eta": 0.1,
+        "x0": 4
+      },
+      "indices": [0, 1, 2, 3, 10, 100, 1000],
+      "expected": {
+        "regime": "monotone-convergence",
+        "multiplier": 0.5,
+        "threshold": 0.4,
+        "positions": [4, 2, 1, 0.5, 0.00390625, 3.1554436208840472e-30, 3.7330544740128755e-301],
+        "losses": [40, 10, 2.5, 0.625, 0.00003814697265625, 2.4892061111444567e-59, null],
+        "gradients": [20, 10, 5, 2.5, 0.01953125, 1.5777218104420236e-29, 1.8665272370064378e-300],
+        "statuses": {
+          "position": ["valid", "valid", "valid", "valid", "valid", "valid", "valid"],
+          "loss": ["valid", "valid", "valid", "valid", "valid", "valid", "numerical-limit:UNDERFLOW"],
+          "gradient": ["valid", "valid", "valid", "valid", "valid", "valid", "valid"]
+        }
+      },
+      "tolerance": {
+        "absolute": 0,
+        "relative": 0
+      }
+    },
+    {
+      "id": "a5-eta0.2",
+      "label": "a = 5, η = 0.2, x0 = 4 (convergence interval 0 < η < 0.4)",
+      "provenance": "report §12.3 (a = 5 and positive step sizes); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+      "params": {
+        "a": 5,
+        "eta": 0.2,
+        "x0": 4
+      },
+      "indices": [0, 1, 2, 3, 10, 100, 1000],
+      "expected": {
+        "regime": "one-step",
+        "multiplier": 0,
+        "threshold": 0.4,
+        "positions": [4, 0, 0, 0, 0, 0, 0],
+        "losses": [40, 0, 0, 0, 0, 0, 0],
+        "gradients": [20, 0, 0, 0, 0, 0, 0],
+        "statuses": {
+          "position": ["valid", "valid", "valid", "valid", "valid", "valid", "valid"],
+          "loss": ["valid", "valid", "valid", "valid", "valid", "valid", "valid"],
+          "gradient": ["valid", "valid", "valid", "valid", "valid", "valid", "valid"]
+        }
+      },
+      "tolerance": {
+        "absolute": 0,
+        "relative": 0
+      }
+    },
+    {
+      "id": "a5-eta0.3",
+      "label": "a = 5, η = 0.3, x0 = 4 (convergence interval 0 < η < 0.4)",
+      "provenance": "report §12.3 (a = 5 and positive step sizes); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+      "params": {
+        "a": 5,
+        "eta": 0.3,
+        "x0": 4
+      },
+      "indices": [0, 1, 2, 3, 10, 100, 1000],
+      "expected": {
+        "regime": "alternating-convergence",
+        "multiplier": -0.5,
+        "threshold": 0.4,
+        "positions": [4, -2, 1, -0.5, 0.00390625, 3.1554436208840472e-30, 3.7330544740128755e-301],
+        "losses": [40, 10, 2.5, 0.625, 0.00003814697265625, 2.4892061111444567e-59, null],
+        "gradients": [20, -10, 5, -2.5, 0.01953125, 1.5777218104420236e-29, 1.8665272370064378e-300],
+        "statuses": {
+          "position": ["valid", "valid", "valid", "valid", "valid", "valid", "valid"],
+          "loss": ["valid", "valid", "valid", "valid", "valid", "valid", "numerical-limit:UNDERFLOW"],
+          "gradient": ["valid", "valid", "valid", "valid", "valid", "valid", "valid"]
+        }
+      },
+      "tolerance": {
+        "absolute": 0,
+        "relative": 0
+      }
+    },
+    {
+      "id": "a5-eta0.39",
+      "label": "a = 5, η = 0.39, x0 = 4 (convergence interval 0 < η < 0.4)",
+      "provenance": "report §12.3 (a = 5 and positive step sizes); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+      "params": {
+        "a": 5,
+        "eta": 0.39,
+        "x0": 4
+      },
+      "indices": [0, 1, 2, 3, 10, 100, 1000],
+      "expected": {
+        "regime": "alternating-convergence",
+        "multiplier": -0.9500000000000002,
+        "threshold": 0.4,
+        "positions": [4, -3.8000000000000007, 3.610000000000001, -3.4295000000000018, 2.39494775695352, 0.023682116881336545, 2.1167290990984149e-22],
+        "losses": [40, 36.100000000000016, 32.58025000000003, 29.403675625000034, 14.339436896341743, 0.0014021066499532134, 1.1201355197424967e-43],
+        "gradients": [20, -19.000000000000004, 18.050000000000008, -17.147500000000008, 11.9747387847676, 0.11841058440668273, 1.0583645495492074e-21],
+        "statuses": {
+          "position": ["valid", "valid", "valid", "valid", "valid", "valid", "valid"],
+          "loss": ["valid", "valid", "valid", "valid", "valid", "valid", "valid"],
+          "gradient": ["valid", "valid", "valid", "valid", "valid", "valid", "valid"]
+        }
+      },
+      "tolerance": {
+        "absolute": 0,
+        "relative": 1e-12
+      }
+    },
+    {
+      "id": "a5-eta0.4",
+      "label": "a = 5, η = 0.4, x0 = 4 (convergence interval 0 < η < 0.4)",
+      "provenance": "report §12.3 (a = 5 and positive step sizes); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+      "params": {
+        "a": 5,
+        "eta": 0.4,
+        "x0": 4
+      },
+      "indices": [0, 1, 2, 3, 10, 100, 1000],
+      "expected": {
+        "regime": "oscillation",
+        "multiplier": -1,
+        "threshold": 0.4,
+        "positions": [4, -4, 4, -4, 4, 4, 4],
+        "losses": [40, 40, 40, 40, 40, 40, 40],
+        "gradients": [20, -20, 20, -20, 20, 20, 20],
+        "statuses": {
+          "position": ["valid", "valid", "valid", "valid", "valid", "valid", "valid"],
+          "loss": ["valid", "valid", "valid", "valid", "valid", "valid", "valid"],
+          "gradient": ["valid", "valid", "valid", "valid", "valid", "valid", "valid"]
+        }
+      },
+      "tolerance": {
+        "absolute": 0,
+        "relative": 0
+      }
+    },
+    {
+      "id": "a5-eta0.41",
+      "label": "a = 5, η = 0.41, x0 = 4 (convergence interval 0 < η < 0.4)",
+      "provenance": "report §12.3 (a = 5 and positive step sizes); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+      "params": {
+        "a": 5,
+        "eta": 0.41,
+        "x0": 4
+      },
+      "indices": [0, 1, 2, 3, 10, 100, 1000],
+      "expected": {
+        "regime": "divergence",
+        "multiplier": -1.0499999999999998,
+        "threshold": 0.4,
+        "positions": [4, -4.199999999999999, 4.409999999999998, -4.630499999999998, 6.515578507109755, 526.0050313852049, 6.185275682926663e+21],
+        "losses": [40, 44.09999999999999, 48.62024999999997, 53.60382562499994, 106.13190820577644, 691703.232606376, 9.564408818450973e+43],
+        "gradients": [20, -20.999999999999996, 22.049999999999994, -23.15249999999999, 32.57789253554877, 2630.0251569260245, 3.0926378414633315e+22],
+        "statuses": {
+          "position": ["valid", "valid", "valid", "valid", "valid", "valid", "valid"],
+          "loss": ["valid", "valid", "valid", "valid", "valid", "valid", "valid"],
+          "gradient": ["valid", "valid", "valid", "valid", "valid", "valid", "valid"]
+        }
+      },
+      "tolerance": {
+        "absolute": 0,
+        "relative": 1e-12
+      }
+    },
+    {
+      "id": "a5-eta0.6",
+      "label": "a = 5, η = 0.6, x0 = 4 (convergence interval 0 < η < 0.4)",
+      "provenance": "report §12.3 (a = 5 and positive step sizes); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+      "params": {
+        "a": 5,
+        "eta": 0.6,
+        "x0": 4
+      },
+      "indices": [0, 1, 2, 3, 10, 100, 1000],
+      "expected": {
+        "regime": "divergence",
+        "multiplier": -2,
+        "threshold": 0.4,
+        "positions": [4, -8, 16, -32, 4096, 5.070602400912918e+30, 4.2860344287450693e+301],
+        "losses": [40, 160, 640, 2560, 41943040, 6.427752177035961e+61, null],
+        "gradients": [20, -40, 80, -160, 20480, 2.535301200456459e+31, 2.1430172143725346e+302],
+        "statuses": {
+          "position": ["valid", "valid", "valid", "valid", "valid", "valid", "valid"],
+          "loss": ["valid", "valid", "valid", "valid", "valid", "valid", "numerical-limit:OVERFLOW"],
+          "gradient": ["valid", "valid", "valid", "valid", "valid", "valid", "valid"]
+        },
+        "lastFiniteIndex": {
+          "loss": 509
+        }
+      },
+      "tolerance": {
+        "absolute": 0,
+        "relative": 0
+      }
+    },
+    {
+      "id": "a5-eta0.8",
+      "label": "a = 5, η = 0.8, x0 = 4 (convergence interval 0 < η < 0.4)",
+      "provenance": "report §12.3 (a = 5 and positive step sizes); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+      "params": {
+        "a": 5,
+        "eta": 0.8,
+        "x0": 4
+      },
+      "indices": [0, 1, 2, 3, 10, 100, 1000],
+      "expected": {
+        "regime": "divergence",
+        "multiplier": -3,
+        "threshold": 0.4,
+        "positions": [4, -12, 36, -108, 236196, 2.0615100829280453e+48, null],
+        "losses": [40, 360, 3240, 29160, 139471376040, 1.062455955503499e+97, null],
+        "gradients": [20, -60, 180, -540, 1180980, 1.0307550414640227e+49, null],
+        "statuses": {
+          "position": ["valid", "valid", "valid", "valid", "valid", "valid", "numerical-limit:OVERFLOW"],
+          "loss": ["valid", "valid", "valid", "valid", "valid", "valid", "numerical-limit:OVERFLOW"],
+          "gradient": ["valid", "valid", "valid", "valid", "valid", "valid", "numerical-limit:OVERFLOW"]
+        },
+        "lastFiniteIndex": {
+          "position": 644,
+          "loss": 321,
+          "gradient": 643
+        }
+      },
+      "tolerance": {
+        "absolute": 0,
+        "relative": 1e-12
+      }
+    },
+    {
+      "id": "multiplier-minus-0.8-x0-4",
+      "label": "a = 2, η = 0.9 (multiplier −0.8), x0 = 4: alternating convergence",
+      "provenance": "report §12.3 (multiplier -0.8); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+      "params": {
+        "a": 2,
+        "eta": 0.9,
+        "x0": 4
+      },
+      "indices": [0, 1, 2, 3, 50, 1000],
+      "expected": {
+        "regime": "alternating-convergence",
+        "multiplier": -0.8,
+        "threshold": 1,
+        "positions": [4, -3.2, 2.5600000000000005, -2.0480000000000005, 0.00005708990770823855, 4.920927688644742e-97],
+        "losses": [16, 10.240000000000002, 6.553600000000001, 4.194304000000002, 3.259257562135196e-9, 2.421552931687048e-193],
+        "gradients": [8, -6.4, 5.120000000000001, -4.096000000000001, 0.0001141798154164771, 9.841855377289483e-97],
+        "statuses": {
+          "position": ["valid", "valid", "valid", "valid", "valid", "valid"],
+          "loss": ["valid", "valid", "valid", "valid", "valid", "valid"],
+          "gradient": ["valid", "valid", "valid", "valid", "valid", "valid"]
+        }
+      },
+      "tolerance": {
+        "absolute": 0,
+        "relative": 1e-12
+      }
+    },
+    {
+      "id": "multiplier-minus-0.8-x0--7.5",
+      "label": "a = 2, η = 0.9 (multiplier −0.8), x0 = -7.5: alternating convergence",
+      "provenance": "report §12.3 (multiplier -0.8); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+      "params": {
+        "a": 2,
+        "eta": 0.9,
+        "x0": -7.5
+      },
+      "indices": [0, 1, 2, 3, 50, 1000],
+      "expected": {
+        "regime": "alternating-convergence",
+        "multiplier": -0.8,
+        "threshold": 1,
+        "positions": [-7.5, 6, -4.800000000000001, 3.8400000000000007, -0.00010704357695294729, -9.22673941620889e-97],
+        "losses": [56.25, 36.00000000000001, 23.040000000000006, 14.745600000000005, 1.1458327366881547e-8, 8.513272025462279e-193],
+        "gradients": [-15, 12, -9.600000000000001, 7.6800000000000015, -0.00021408715390589458, -1.845347883241778e-96],
+        "statuses": {
+          "position": ["valid", "valid", "valid", "valid", "valid", "valid"],
+          "loss": ["valid", "valid", "valid", "valid", "valid", "valid"],
+          "gradient": ["valid", "valid", "valid", "valid", "valid", "valid"]
+        }
+      },
+      "tolerance": {
+        "absolute": 0,
+        "relative": 1e-12
+      }
+    },
+    {
+      "id": "multiplier-minus-0.8-x0-10",
+      "label": "a = 2, η = 0.9 (multiplier −0.8), x0 = 10: alternating convergence",
+      "provenance": "report §12.3 (multiplier -0.8); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+      "params": {
+        "a": 2,
+        "eta": 0.9,
+        "x0": 10
+      },
+      "indices": [0, 1, 2, 3, 50, 1000],
+      "expected": {
+        "regime": "alternating-convergence",
+        "multiplier": -0.8,
+        "threshold": 1,
+        "positions": [10, -8, 6.4, -5.120000000000001, 0.00014272476927059639, 1.2302319221611855e-96],
+        "losses": [100, 64.00000000000001, 40.96000000000001, 26.21440000000001, 2.0370359763344975e-8, 1.5134705823044052e-192],
+        "gradients": [20, -16, 12.8, -10.240000000000002, 0.00028544953854119277, 2.460463844322371e-96],
+        "statuses": {
+          "position": ["valid", "valid", "valid", "valid", "valid", "valid"],
+          "loss": ["valid", "valid", "valid", "valid", "valid", "valid"],
+          "gradient": ["valid", "valid", "valid", "valid", "valid", "valid"]
+        }
+      },
+      "tolerance": {
+        "absolute": 0,
+        "relative": 1e-12
+      }
+    },
+    {
+      "id": "multiplier-minus-0.8-x0-0.001",
+      "label": "a = 2, η = 0.9 (multiplier −0.8), x0 = 0.001: alternating convergence",
+      "provenance": "report §12.3 (multiplier -0.8); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+      "params": {
+        "a": 2,
+        "eta": 0.9,
+        "x0": 0.001
+      },
+      "indices": [0, 1, 2, 3, 50, 1000],
+      "expected": {
+        "regime": "alternating-convergence",
+        "multiplier": -0.8,
+        "threshold": 1,
+        "positions": [0.001, -0.0008, 0.00064, -0.0005120000000000001, 1.4272476927059639e-8, 1.2302319221611855e-100],
+        "losses": [0.000001, 6.400000000000001e-7, 4.096000000000001e-7, 2.621440000000001e-7, 2.0370359763344976e-16, 1.513470582304405e-200],
+        "gradients": [0.002, -0.0016, 0.00128, -0.0010240000000000002, 2.8544953854119278e-8, 2.460463844322371e-100],
+        "statuses": {
+          "position": ["valid", "valid", "valid", "valid", "valid", "valid"],
+          "loss": ["valid", "valid", "valid", "valid", "valid", "valid"],
+          "gradient": ["valid", "valid", "valid", "valid", "valid", "valid"]
+        }
+      },
+      "tolerance": {
+        "absolute": 0,
+        "relative": 1e-12
+      }
+    },
+    {
+      "id": "multiplier-minus-0.8-x0--10",
+      "label": "a = 2, η = 0.9 (multiplier −0.8), x0 = -10: alternating convergence",
+      "provenance": "report §12.3 (multiplier -0.8); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+      "params": {
+        "a": 2,
+        "eta": 0.9,
+        "x0": -10
+      },
+      "indices": [0, 1, 2, 3, 50, 1000],
+      "expected": {
+        "regime": "alternating-convergence",
+        "multiplier": -0.8,
+        "threshold": 1,
+        "positions": [-10, 8, -6.4, 5.120000000000001, -0.00014272476927059639, -1.2302319221611855e-96],
+        "losses": [100, 64.00000000000001, 40.96000000000001, 26.21440000000001, 2.0370359763344975e-8, 1.5134705823044052e-192],
+        "gradients": [-20, 16, -12.8, 10.240000000000002, -0.00028544953854119277, -2.460463844322371e-96],
+        "statuses": {
+          "position": ["valid", "valid", "valid", "valid", "valid", "valid"],
+          "loss": ["valid", "valid", "valid", "valid", "valid", "valid"],
+          "gradient": ["valid", "valid", "valid", "valid", "valid", "valid"]
+        }
+      },
+      "tolerance": {
+        "absolute": 0,
+        "relative": 1e-12
+      }
+    },
+    {
+      "id": "multiplier-minus-0.8-a4",
+      "label": "a = 4, η = 0.45 (multiplier −0.8), x0 = 1: alternating convergence",
+      "provenance": "report §12.3 (multiplier -0.8); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+      "params": {
+        "a": 4,
+        "eta": 0.45,
+        "x0": 1
+      },
+      "indices": [0, 1, 2, 3, 50, 1000],
+      "expected": {
+        "regime": "alternating-convergence",
+        "multiplier": -0.8,
+        "threshold": 0.5,
+        "positions": [1, -0.8, 0.6400000000000001, -0.5120000000000001, 0.000014272476927059638, 1.2302319221611854e-97],
+        "losses": [2, 1.2800000000000002, 0.8192000000000002, 0.5242880000000002, 4.074071952668995e-10, 3.02694116460881e-194],
+        "gradients": [4, -3.2, 2.5600000000000005, -2.0480000000000005, 0.00005708990770823855, 4.920927688644742e-97],
+        "statuses": {
+          "position": ["valid", "valid", "valid", "valid", "valid", "valid"],
+          "loss": ["valid", "valid", "valid", "valid", "valid", "valid"],
+          "gradient": ["valid", "valid", "valid", "valid", "valid", "valid"]
+        }
+      },
+      "tolerance": {
+        "absolute": 0,
+        "relative": 1e-12
+      }
+    },
+    {
+      "id": "overflow-multiplier-minus-3",
+      "label": "a = 10, η = 0.4, x0 = 10: |x_n| = 10·3^n exceeds Number.MAX_VALUE",
+      "provenance": "report §12.3 (growing sequence beyond representable bounds); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+      "params": {
+        "a": 10,
+        "eta": 0.4,
+        "x0": 10
+      },
+      "indices": [0, 1, 2, 320, 321, 641, 642, 643, 644, 1000],
+      "expected": {
+        "regime": "divergence",
+        "multiplier": -3,
+        "threshold": 0.2,
+        "positions": [10, -30, 90, 4.773110738113041e+153, -1.4319332214339125e+154, -6.834775835487006e+306, 2.0504327506461019e+307, -6.151298251938305e+307, null, null],
+        "losses": [500, 4500, 40500, 1.139129305914501e+308, null, null, null, null, null, null],
+        "gradients": [100, -300, 900, 4.7731107381130413e+154, -1.4319332214339123e+155, -6.834775835487006e+307, null, null, null, null],
+        "statuses": {
+          "position": ["valid", "valid", "valid", "valid", "valid", "valid", "valid", "valid", "numerical-limit:OVERFLOW", "numerical-limit:OVERFLOW"],
+          "loss": ["valid", "valid", "valid", "valid", "numerical-limit:OVERFLOW", "numerical-limit:OVERFLOW", "numerical-limit:OVERFLOW", "numerical-limit:OVERFLOW", "numerical-limit:OVERFLOW", "numerical-limit:OVERFLOW"],
+          "gradient": ["valid", "valid", "valid", "valid", "valid", "valid", "numerical-limit:OVERFLOW", "numerical-limit:OVERFLOW", "numerical-limit:OVERFLOW", "numerical-limit:OVERFLOW"]
+        },
+        "lastFiniteIndex": {
+          "position": 643,
+          "loss": 320,
+          "gradient": 641
+        }
+      },
+      "tolerance": {
+        "absolute": 0,
+        "relative": 1e-12
+      }
+    },
+    {
+      "id": "overflow-small-start",
+      "label": "a = 10, η = 0.4, x0 = 0.001: 3^n overflows before 0.001·3^n does",
+      "provenance": "report §12.3 (growing sequence beyond representable bounds); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+      "params": {
+        "a": 10,
+        "eta": 0.4,
+        "x0": 0.001
+      },
+      "indices": [0, 1, 646, 647, 650, 652, 653, 1000],
+      "expected": {
+        "regime": "divergence",
+        "multiplier": -3,
+        "threshold": 0.2,
+        "positions": [0.001, -0.003, 1.6608505280233425e+305, -4.982551584070027e+305, 1.3452889276989075e+307, 1.2107600349290167e+308, null, null],
+        "losses": [0.000005, 0.000045, null, null, null, null, null, null],
+        "gradients": [0.01, -0.03, 1.6608505280233425e+306, -4.9825515840700274e+306, 1.3452889276989074e+308, null, null, null],
+        "statuses": {
+          "position": ["valid", "valid", "valid", "valid", "valid", "valid", "numerical-limit:OVERFLOW", "numerical-limit:OVERFLOW"],
+          "loss": ["valid", "valid", "numerical-limit:OVERFLOW", "numerical-limit:OVERFLOW", "numerical-limit:OVERFLOW", "numerical-limit:OVERFLOW", "numerical-limit:OVERFLOW", "numerical-limit:OVERFLOW"],
+          "gradient": ["valid", "valid", "valid", "valid", "valid", "numerical-limit:OVERFLOW", "numerical-limit:OVERFLOW", "numerical-limit:OVERFLOW"]
+        },
+        "lastFiniteIndex": {
+          "position": 652,
+          "loss": 328,
+          "gradient": 650
+        }
+      },
+      "tolerance": {
+        "absolute": 0,
+        "relative": 1e-12
+      }
+    },
+    {
+      "id": "overflow-negative-start",
+      "label": "a = 10, η = 0.4, x0 = −10: sign alternates up to the last finite iterate",
+      "provenance": "report §12.3 (growing sequence beyond representable bounds); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+      "params": {
+        "a": 10,
+        "eta": 0.4,
+        "x0": -10
+      },
+      "indices": [0, 1, 642, 643, 644],
+      "expected": {
+        "regime": "divergence",
+        "multiplier": -3,
+        "threshold": 0.2,
+        "positions": [-10, 30, -2.0504327506461019e+307, 6.151298251938305e+307, null],
+        "losses": [500, 4500, null, null, null],
+        "gradients": [-100, 300, null, null, null],
+        "statuses": {
+          "position": ["valid", "valid", "valid", "valid", "numerical-limit:OVERFLOW"],
+          "loss": ["valid", "valid", "numerical-limit:OVERFLOW", "numerical-limit:OVERFLOW", "numerical-limit:OVERFLOW"],
+          "gradient": ["valid", "valid", "numerical-limit:OVERFLOW", "numerical-limit:OVERFLOW", "numerical-limit:OVERFLOW"]
+        },
+        "lastFiniteIndex": {
+          "position": 643,
+          "loss": 320,
+          "gradient": 641
+        }
+      },
+      "tolerance": {
+        "absolute": 0,
+        "relative": 1e-12
+      }
+    },
+    {
+      "id": "underflow-multiplier-0.25",
+      "label": "a = 2, η = 0.375 (multiplier 0.25), x0 = 4: x_n = 2^(2−2n) through the subnormal range to underflow",
+      "provenance": "report §12.3 (underflow as a numerical approximation); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+      "params": {
+        "a": 2,
+        "eta": 0.375,
+        "x0": 4
+      },
+      "indices": [0, 1, 256, 257, 269, 270, 511, 512, 513, 537, 538, 539, 540, 1000],
+      "expected": {
+        "regime": "monotone-convergence",
+        "multiplier": 0.25,
+        "threshold": 1,
+        "positions": [4, 1, 2.983336292480083e-154, 7.458340731200207e-155, 4.445517498970155e-162, 1.1113793747425387e-162, 8.900295434028806e-308, 2.2250738585072014e-308, 5.562684646268003e-309, 2e-323, 5e-324, null, null, null],
+        "losses": [16, 1, 8.900295434028806e-308, 5.562684646268003e-309, 2e-323, null, null, null, null, null, null, null, null, null],
+        "gradients": [8, 2, 5.966672584960166e-154, 1.4916681462400413e-154, 8.89103499794031e-162, 2.2227587494850775e-162, 1.7800590868057611e-307, 4.450147717014403e-308, 1.1125369292536007e-308, 4e-323, 1e-323, null, null, null],
+        "statuses": {
+          "position": ["valid", "valid", "valid", "valid", "valid", "valid", "valid", "valid", "valid:UNDERFLOW", "valid:UNDERFLOW", "valid:UNDERFLOW", "numerical-limit:UNDERFLOW", "numerical-limit:UNDERFLOW", "numerical-limit:UNDERFLOW"],
+          "loss": ["valid", "valid", "valid", "valid:UNDERFLOW", "valid:UNDERFLOW", "numerical-limit:UNDERFLOW", "numerical-limit:UNDERFLOW", "numerical-limit:UNDERFLOW", "numerical-limit:UNDERFLOW", "numerical-limit:UNDERFLOW", "numerical-limit:UNDERFLOW", "numerical-limit:UNDERFLOW", "numerical-limit:UNDERFLOW", "numerical-limit:UNDERFLOW"],
+          "gradient": ["valid", "valid", "valid", "valid", "valid", "valid", "valid", "valid", "valid:UNDERFLOW", "valid:UNDERFLOW", "valid:UNDERFLOW", "numerical-limit:UNDERFLOW", "numerical-limit:UNDERFLOW", "numerical-limit:UNDERFLOW"]
+        }
+      },
+      "tolerance": {
+        "absolute": 0,
+        "relative": 0
+      }
+    },
+    {
+      "id": "underflow-inexact-subnormal",
+      "label": "a = 2, η = 0.375, x0 = −3: subnormal values that are not exactly representable",
+      "provenance": "report §12.3 (underflow as a numerical approximation); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+      "params": {
+        "a": 2,
+        "eta": 0.375,
+        "x0": -3
+      },
+      "indices": [0, 1, 512, 513, 536, 537, 538, 539, 1000],
+      "expected": {
+        "regime": "monotone-convergence",
+        "multiplier": 0.25,
+        "threshold": 1,
+        "positions": [-3, -0.75, -1.668805393880401e-308, -4.172013484701003e-309, -6e-323, -1.5e-323, -5e-324, null, null],
+        "losses": [9, 0.5625, null, null, null, null, null, null, null],
+        "gradients": [-6, -1.5, -3.337610787760802e-308, -8.344026969402005e-309, -1.2e-322, -3e-323, -1e-323, null, null],
+        "statuses": {
+          "position": ["valid", "valid", "valid:UNDERFLOW", "valid:UNDERFLOW", "valid:UNDERFLOW", "valid:UNDERFLOW", "valid:UNDERFLOW", "numerical-limit:UNDERFLOW", "numerical-limit:UNDERFLOW"],
+          "loss": ["valid", "valid", "numerical-limit:UNDERFLOW", "numerical-limit:UNDERFLOW", "numerical-limit:UNDERFLOW", "numerical-limit:UNDERFLOW", "numerical-limit:UNDERFLOW", "numerical-limit:UNDERFLOW", "numerical-limit:UNDERFLOW"],
+          "gradient": ["valid", "valid", "valid", "valid:UNDERFLOW", "valid:UNDERFLOW", "valid:UNDERFLOW", "valid:UNDERFLOW", "numerical-limit:UNDERFLOW", "numerical-limit:UNDERFLOW"]
+        }
+      },
+      "tolerance": {
+        "absolute": 0,
+        "relative": 1e-12
+      }
+    },
+    {
+      "id": "default-long-run",
+      "label": "Default a = 2, η = 0.25, x0 = 4 to n = 1000: loss underflows while position stays normal",
+      "provenance": "report §12.3 (underflow as a numerical approximation); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+      "params": {
+        "a": 2,
+        "eta": 0.25,
+        "x0": 4
+      },
+      "indices": [0, 1, 2, 3, 100, 513, 514, 539, 540, 1000],
+      "expected": {
+        "regime": "monotone-convergence",
+        "multiplier": 0.5,
+        "threshold": 1,
+        "positions": [4, 2, 1, 0.5, 3.1554436208840472e-30, 1.4916681462400413e-154, 7.458340731200207e-155, 2.2227587494850775e-162, 1.1113793747425387e-162, 3.7330544740128755e-301],
+        "losses": [16, 4, 1, 0.25, 9.956824444577827e-60, 2.2250738585072014e-308, 5.562684646268003e-309, 5e-324, null, null],
+        "gradients": [8, 4, 2, 1, 6.310887241768095e-30, 2.983336292480083e-154, 1.4916681462400413e-154, 4.445517498970155e-162, 2.2227587494850775e-162, 7.466108948025751e-301],
+        "statuses": {
+          "position": ["valid", "valid", "valid", "valid", "valid", "valid", "valid", "valid", "valid", "valid"],
+          "loss": ["valid", "valid", "valid", "valid", "valid", "valid", "valid:UNDERFLOW", "valid:UNDERFLOW", "numerical-limit:UNDERFLOW", "numerical-limit:UNDERFLOW"],
+          "gradient": ["valid", "valid", "valid", "valid", "valid", "valid", "valid", "valid", "valid", "valid"]
+        }
+      },
+      "tolerance": {
+        "absolute": 0,
+        "relative": 0
+      }
+    },
+    {
+      "id": "interior-curvature-min",
+      "label": "a = 0.1, η = 2, x0 = −10: monotone convergence at the smallest curvature",
+      "provenance": "derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+      "params": {
+        "a": 0.1,
+        "eta": 2,
+        "x0": -10
+      },
+      "indices": [0, 1, 2, 3, 100, 1000],
+      "expected": {
+        "regime": "monotone-convergence",
+        "multiplier": 0.8,
+        "threshold": 20,
+        "positions": [-10, -8, -6.3999999999999995, -5.12, -2.0370359763344832e-9, -1.2302319221611e-96],
+        "losses": [5, 3.2, 2.048, 1.3107199999999999, 2.074757784440491e-19, 7.567352911520976e-194],
+        "gradients": [-1, -0.8, -0.64, -0.512, -2.0370359763344833e-10, -1.2302319221611001e-97],
+        "statuses": {
+          "position": ["valid", "valid", "valid", "valid", "valid", "valid"],
+          "loss": ["valid", "valid", "valid", "valid", "valid", "valid"],
+          "gradient": ["valid", "valid", "valid", "valid", "valid", "valid"]
+        }
+      },
+      "tolerance": {
+        "absolute": 0,
+        "relative": 1e-12
+      }
+    },
+    {
+      "id": "interior-alternating-a10",
+      "label": "a = 10, η = 0.15, x0 = 3: alternating convergence",
+      "provenance": "derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+      "params": {
+        "a": 10,
+        "eta": 0.15,
+        "x0": 3
+      },
+      "indices": [0, 1, 2, 3, 100, 1000],
+      "expected": {
+        "regime": "alternating-convergence",
+        "multiplier": -0.5,
+        "threshold": 0.2,
+        "positions": [3, -1.5, 0.75, -0.375, 2.3665827156630354e-30, 2.7997908555096566e-301],
+        "losses": [45, 11.25, 2.8125, 0.703125, 2.8003568750375138e-59, null],
+        "gradients": [30, -15, 7.5, -3.75, 2.3665827156630354e-29, 2.7997908555096566e-300],
+        "statuses": {
+          "position": ["valid", "valid", "valid", "valid", "valid", "valid"],
+          "loss": ["valid", "valid", "valid", "valid", "valid", "numerical-limit:UNDERFLOW"],
+          "gradient": ["valid", "valid", "valid", "valid", "valid", "valid"]
+        }
+      },
+      "tolerance": {
+        "absolute": 0,
+        "relative": 0
+      }
+    },
+    {
+      "id": "interior-alternating-a3",
+      "label": "a = 3, η = 0.5, x0 = 1: multiplier −0.5",
+      "provenance": "derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+      "params": {
+        "a": 3,
+        "eta": 0.5,
+        "x0": 1
+      },
+      "indices": [0, 1, 2, 3, 100, 1000],
+      "expected": {
+        "regime": "alternating-convergence",
+        "multiplier": -0.5,
+        "threshold": 0.6666666666666666,
+        "positions": [1, -0.5, 0.25, -0.125, 7.888609052210118e-31, 9.332636185032189e-302],
+        "losses": [1.5, 0.375, 0.09375, 0.0234375, 9.334522916791713e-61, null],
+        "gradients": [3, -1.5, 0.75, -0.375, 2.3665827156630354e-30, 2.7997908555096566e-301],
+        "statuses": {
+          "position": ["valid", "valid", "valid", "valid", "valid", "valid"],
+          "loss": ["valid", "valid", "valid", "valid", "valid", "numerical-limit:UNDERFLOW"],
+          "gradient": ["valid", "valid", "valid", "valid", "valid", "valid"]
+        }
+      },
+      "tolerance": {
+        "absolute": 0,
+        "relative": 0
+      }
+    },
+    {
+      "id": "interior-divergence-a7",
+      "label": "a = 7, η = 0.3, x0 = 2.5: multiplier −1.1, divergence without overflow by n = 1000",
+      "provenance": "derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+      "params": {
+        "a": 7,
+        "eta": 0.3,
+        "x0": 2.5
+      },
+      "indices": [0, 1, 2, 3, 100, 1000],
+      "expected": {
+        "regime": "divergence",
+        "multiplier": -1.1,
+        "threshold": 0.2857142857142857,
+        "positions": [2.5, -2.75, 3.0250000000000004, -3.327500000000001, 34451.53084955595, 6.174832295015065e+41],
+        "losses": [21.875, 26.468750000000004, 32.02718750000001, 38.75289687500002, 4154177922.5726695, 1.3344993855046353e+84],
+        "gradients": [17.5, -19.25, 21.175000000000004, -23.292500000000004, 241160.71594689167, 4.322382606510545e+42],
+        "statuses": {
+          "position": ["valid", "valid", "valid", "valid", "valid", "valid"],
+          "loss": ["valid", "valid", "valid", "valid", "valid", "valid"],
+          "gradient": ["valid", "valid", "valid", "valid", "valid", "valid"]
+        }
+      },
+      "tolerance": {
+        "absolute": 0,
+        "relative": 1e-12
+      }
+    }
+  ]
+}

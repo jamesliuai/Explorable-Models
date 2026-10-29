@@ -23,17 +23,22 @@ generic player, which retains its existing commit-on-release behavior. The card
 is a custom representation of the same declarative quantities, with a specialized
 diagram, controls and typography. Geometry tests cover the adapter.
 
-The controller owns two existing toolkit sessions. The primary session records a
-tentative parameter preview during dragging. A scratch session commits complete
-frames for immediate display, with at most one retained run. Both evaluate in
-browser workers. The SVG, results and accessible description all read one scratch
-frame, not separate UI-side physics calculations. Requests are coalesced to one
-in flight plus the newest pending values. A generation counter prevents late
-preview replies from replacing a committed or cancelled gesture.
+The controller is the supported `createDocumentInteractionController` from
+`@experiment-kit/core/declarative` (`controller.ts` only binds it to the rod
+document). It owns two toolkit sessions. The primary session records a tentative
+parameter preview during dragging. A scratch session, created on the first preview,
+evaluates complete frames for immediate display, with at most one retained run.
+Both evaluate in browser workers. The SVG, results and accessible description all
+read one identified tentative frame (`previewId`, `sequence`), not separate UI-side
+physics calculations. Requests are coalesced by the core preview coordinator to one
+in flight plus the newest pending value, and preview epochs prevent late replies
+from replacing a committed or cancelled gesture.
 
 Release commits one primary run. Only primary artifacts are exported, and exports
-are rejected while a preview is tentative. Failures retain the primary frame.
-This example does not change the public session contract or the generic player.
+are rejected while a preview is tentative. Failures retain the primary frame. When
+the page is hidden the card is suspended (scratch worker terminated, primary worker
+released once idle) and it resumes paused without catch-up. This example does not
+change the session contract or the generic player.
 
 ## Model and representation
 

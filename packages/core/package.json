@@ -1,6 +1,6 @@
 {
   "name": "@experiment-kit/core",
-  "version": "0.2.0-preview.1",
+  "version": "0.3.0-preview.1",
   "description": "Validated, inspectable analytical experiments for browsers and agent tools.",
   "type": "module",
   "license": "MIT",
@@ -23,7 +23,11 @@
       "types": "./dist/declarative/index.d.ts",
       "import": "./dist/declarative/index.js"
     },
-    "./document-worker": "./dist/declarative/document-worker.js"
+    "./document-worker": "./dist/declarative/document-worker.js",
+    "./model": {
+      "types": "./dist/model/index.d.ts",
+      "import": "./dist/model/index.js"
+    }
   },
   "files": [
     "dist",

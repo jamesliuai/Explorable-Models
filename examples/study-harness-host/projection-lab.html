@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Projection lab (fixture) — Study Harness learner surface</title>
+  <link rel="stylesheet" href="./projection-lab.css">
+</head>
+<body>
+  <header class="lab-banner" role="note">
+    <strong>Projection lab — fixture page.</strong>
+    Static, hand-written LearnerProjection fixtures for visual inspection of the learner surface. No model is evaluated,
+    nothing is recorded, and this is not an activity, a tutor or a host.
+  </header>
+  <nav id="lab-picker" class="lab-picker" aria-label="Fixture selection"></nav>
+  <main class="lab-stage">
+    <div id="lab-surface" class="lab-surface"></div>
+  </main>
+  <details class="lab-log-panel"><summary>Fixture binding log</summary><pre id="lab-log"></pre></details>
+  <script type="module" src="./projection-lab.tsx"></script>
+</body>
+</html>

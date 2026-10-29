@@ -1,5 +1,13 @@
 # Agent-first preview contract
 
+> **Historical: the 0.2 declarative preview contract.** This page records the `0.2.0-preview.1` candidate as it was
+> prepared on 22 October 2026. The workspace is now `0.3.0-preview.1` (unreleased), which adds the Study Harness
+> visualization subsystem and its separate `study-harness.*` 1.0 contracts. The schema 2.0 document contract described
+> here is unchanged, and so is document runtime `0.2.0-preview.1`. The package list and release statements below
+> describe the 0.2 candidate only. For current behaviour, see the [README](../README.md), the
+> [Study Harness handoff](study-harness/README.md), [embedding](embedding.md), the
+> [compatibility matrix](study-harness/compatibility.md) and the [changelog](../CHANGELOG.md).
+
 Candidate: `0.2.0-preview.1`. Document schema: `2.0`. This is a limited developer preview, not the supported release defined by the release plan. Public package names are provisional until registry ownership is confirmed. Legacy schema `1.0` and runtime identities remain separate.
 
 The product is an embedded 2D explanation toolkit. The host supplies authentication, application navigation, data loading, an agent connection if desired, and persistence. The toolkit supplies a bounded document grammar, worker evaluation, guarded instance state, safe rendering, and provider-neutral tools. No account, tutoring, assessment, model subscription, or telemetry service is included.

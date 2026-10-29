@@ -18,7 +18,10 @@ createRodController().then(controller => {
   </div>);
   // Dev-only inspection hook for browser tests, never needed by the embedded component.
   if (import.meta.env.DEV) Object.assign(window, { __ROD_EXAMPLE__: controller });
-  const dispose = () => { root.unmount(); controller.dispose(); };
+  // A hidden page suspends the card (no worker work) and resumes it without catch-up.
+  const visibility = () => { if (document.visibilityState === 'hidden') controller.suspend(); else controller.resume(); };
+  document.addEventListener('visibilitychange', visibility);
+  const dispose = () => { document.removeEventListener('visibilitychange', visibility); root.unmount(); controller.dispose(); };
   window.addEventListener('pagehide', dispose, { once: true });
   import.meta.hot?.dispose(() => { window.removeEventListener('pagehide', dispose); dispose(); });
 }).catch(error => {

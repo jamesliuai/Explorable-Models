@@ -1,0 +1,5 @@
+KaTeX_Main-Regular.woff2
+Source: npm package katex@0.19.0, file dist/fonts/KaTeX_Main-Regular.woff2 (copied unmodified).
+SHA-256: c2342cd8b869e01752a9321dc17213fc40d4d04c79688c1d43f2cf316abd7866
+License: MIT (KaTeX package "license" field and LICENSE, Copyright (c) 2013-2020 Khan Academy and other contributors).
+Purpose: locally bundled web font for the native spike's offline font probe.

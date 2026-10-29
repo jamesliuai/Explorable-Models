@@ -1,0 +1,4976 @@
+{
+  "contract": "experiment-kit.review-packet",
+  "version": "1.0",
+  "kind": "installed",
+  "generator": {
+    "tool": "experiment-kit activity review-packet",
+    "toolkitVersion": "0.3.0-preview.1",
+    "browser": "Chromium 156.0.8078.4",
+    "regenerate": "experiment-kit activity review-packet --installed quadratic-gradient-descent --out docs/study-harness/review-packets/quadratic-gradient-descent --width 720 --theme light --index 4"
+  },
+  "status": {
+    "lifecycle": "reference-checked",
+    "reviewScope": [],
+    "subjectReview": "none-recorded",
+    "signOff": null,
+    "statement": "Engineering evidence prepared by a tool; not a subject review. An engineering agent cannot sign this packet."
+  },
+  "identity": {
+    "template": {
+      "templateId": "quadratic-gradient-descent",
+      "version": "1.0.0",
+      "digest": "sha256:a6fdb69ad2598e7726de2d3d1d81d986677520eab7b29d48fbe9bc81b72ed8c3"
+    },
+    "model": {
+      "modelId": "quadratic-gradient-descent",
+      "version": "1.0.0",
+      "digest": "sha256:5326283f785aed9a4d5fe0ba5ca32e3f03da6e05bb5c084ee3816fea7b41171e"
+    },
+    "modelIdentity": {
+      "digest": "sha256:5326283f785aed9a4d5fe0ba5ca32e3f03da6e05bb5c084ee3816fea7b41171e",
+      "scientificRevision": "sha256:e942314fe3ae98ce588d26cf266aab805f2f4771104159219c8ac13c33c12645",
+      "presentationRevision": "sha256:5dce53f8a1319574ae2fe48436e58404dff4c46dd38a1067c1763765d1cfeeb3"
+    },
+    "groups": [
+      {
+        "groupId": "landscape",
+        "contentDigest": "sha256:08234a22f5d167a782ccdc7dd64990b5457ddd2d6ced104c2c4c9cfb324dce20"
+      },
+      {
+        "groupId": "start",
+        "contentDigest": "sha256:f9fb2169fce1fd62b673d3f6c6708fb7504284d331615cd406f3dc9444b3c9cf"
+      },
+      {
+        "groupId": "update-rule",
+        "contentDigest": "sha256:43b2e407198a3edf611be1d16749db5307e53032d39308e274fbfab430e2c6c8"
+      },
+      {
+        "groupId": "step-control",
+        "contentDigest": "sha256:1e6a6e3a864a11b0f6b1d81dd96e8046a7571eb874d24369f89dcf89279c0582"
+      },
+      {
+        "groupId": "curvature-control",
+        "contentDigest": "sha256:c47efe1e93007df0a08c6d8af7a22a679a93640614e802babb0f19f80d2967b9"
+      },
+      {
+        "groupId": "start-control",
+        "contentDigest": "sha256:5e7128f44d35a2dbdbb2a41a11d98cb48caedaed7940742c3faeadf6a375362d"
+      },
+      {
+        "groupId": "navigation",
+        "contentDigest": "sha256:37a05ff5f058afd3c5ca0d71add10de460f57a65fb51db581c199c0243607dd0"
+      },
+      {
+        "groupId": "trace",
+        "contentDigest": "sha256:27e300a15be4e99000d6d8ae630dee9d6f1399f6515cf2c22f31c6e19e44cb3e"
+      },
+      {
+        "groupId": "observations",
+        "contentDigest": "sha256:4b27d634fd8a9d4f206cd43affbe9455919749360b70d302524079e20dac6e47"
+      },
+      {
+        "groupId": "regime",
+        "contentDigest": "sha256:f68675ea0311e2e540ec7180c795239b2bfa8e9ab068e0d4cfdd7bab5b3a8055"
+      },
+      {
+        "groupId": "substituted-rule",
+        "contentDigest": "sha256:d786d60f59c3264798c9ea614f2de72615a873611760bd5ac28c43ff772db1ec"
+      },
+      {
+        "groupId": "scenarios",
+        "contentDigest": "sha256:4670a9657788000e344e30c579fe1dded253c2e9463926a977f5c130e1f48e91"
+      },
+      {
+        "groupId": "alternatives",
+        "contentDigest": "sha256:62015f063185a534d0e75b023df198b0e8e49b19ab15666f831231e18175f989"
+      }
+    ]
+  },
+  "relation": null,
+  "recordedRelation": null,
+  "execution": {
+    "source": "installed-kernel",
+    "kernelId": "quadratic-gradient-descent",
+    "kernelVersion": "1.0.0",
+    "mode": "discrete",
+    "kernelSourceDigest": null,
+    "kernelSources": []
+  },
+  "taskIntent": {
+    "purpose": "Predict, then observe, how the step size η and the curvature a determine the positions produced by fixed-step gradient descent on f(x) = a·x²/2.",
+    "stages": [
+      {
+        "id": "predict",
+        "kind": "predict",
+        "instruction": "Before any iterations are shown, predict what the positions x_n will do over the first few updates for the three comparison step sizes η = 0.25, 0.75 and 1.25 (curvature a = 2, start x₀ = 4).",
+        "response": {
+          "kind": "prediction",
+          "prompt": "For η = 0.25, 0.75 and 1.25 with a = 2 and x₀ = 4, what do you expect the positions to do over the first few iterations, and why?",
+          "taskFamily": "quadratic-step-size-prediction"
+        }
+      },
+      {
+        "id": "explore-step",
+        "kind": "explore",
+        "instruction": "Change the step size η and step through the iterations one at a time. Use the scenarios to compare η = 0.25, 0.75 and 1.25, and compare what you see with your prediction.",
+        "response": null
+      },
+      {
+        "id": "explore-curvature",
+        "kind": "explore",
+        "instruction": "Now change the curvature a as well as the step size. Notice how the step sizes that give each kind of behaviour change with a.",
+        "response": null
+      },
+      {
+        "id": "explain",
+        "kind": "explain",
+        "instruction": "Explain in your own words how the step size and the curvature together determine what the positions do.",
+        "response": {
+          "kind": "explanation",
+          "prompt": "How do η and a together determine whether the positions shrink, change sign, keep the same size or grow?",
+          "taskFamily": "quadratic-step-size-explanation"
+        }
+      },
+      {
+        "id": "closed",
+        "kind": "closed",
+        "instruction": "This activity is closed.",
+        "response": null
+      },
+      {
+        "id": "free-explore",
+        "kind": "explore",
+        "instruction": "Explore freely: change the step size, curvature and starting position, step through the iterations and compare the scenarios.",
+        "response": null
+      }
+    ],
+    "taskFamilies": [
+      {
+        "id": "quadratic-step-size-prediction",
+        "description": "Host-owned prediction request about how the step size changes fixed-step gradient descent on f(x) = a·x²/2. The host owns the response, its capture and any evaluation.",
+        "hostOwned": true
+      },
+      {
+        "id": "quadratic-step-size-explanation",
+        "description": "Host-owned explanation request about how step size and curvature together determine the iterates. The host owns the response, its capture and any evaluation.",
+        "hostOwned": true
+      },
+      {
+        "id": "quadratic-new-curvature-task",
+        "description": "Host-owned later task with a new curvature or a recurrence representation. Its prompts, held-out items and scoring stay with the host and are not part of this catalogue.",
+        "hostOwned": true
+      }
+    ]
+  },
+  "derivation": [
+    {
+      "id": "derivation-closed-form",
+      "kind": "derivation",
+      "citation": "Closed form written for this catalogue: f′(x) = a·x, so x_{n+1} = x_n − η·f′(x_n) = (1 − η·a)·x_n and, by induction, x_n = x0·(1 − η·a)^n. For x0 ≠ 0 the positions tend to 0 exactly when |1 − η·a| < 1, that is 0 < η·a < 2. Not independently reviewed."
+    },
+    {
+      "id": "study-harness-specification",
+      "kind": "specification",
+      "citation": "Study Harness Original Project Specification (25 October 2026), section 10: exact quadratic gradient-descent worked example, boundary cases and staged controls, as carried into the Study Harness visualizer implementation report §12.3."
+    }
+  ],
+  "assumptions": [
+    "The objective is exactly the quadratic f(x) = a·x²/2 with a > 0: no noise and no higher-order terms.",
+    "The step size η is the same for every update.",
+    "Evaluation is deterministic on every conforming JavaScript engine: values come from exactly specified arithmetic rounded once (a logarithm only estimates the first index of a numerical limit, which is then verified exactly), so the same parameters and iteration always give the same values.",
+    "Real numbers are IEEE-754 double-precision values; the product η·a is computed once in double precision and the regime is classified from it."
+  ],
+  "limitations": [
+    "Positions are evaluated from the closed form x_n = x0·(1 − η·a)^n with extended-precision intermediates and one final rounding; the recurrence is not stepped.",
+    "Iterations are bounded to 0 ≤ n ≤ 1000, and η·a is at most 4.",
+    "Values beyond the double range are numerical-limit statuses: overflow above Number.MAX_VALUE with the last finite iteration, or underflow of a nonzero value to zero. Subnormal values are reported as reduced-precision approximations.",
+    "Displayed rounding is separate from computation: a value shown as 0 at display precision is not exact convergence, and the regime never depends on displayed digits.",
+    "The objective curve is sampled at 201 points; the polyline between samples does not certify values between them."
+  ],
+  "conventions": {
+    "coordinate": "Position x lies on a horizontal axis, positive to the right, with the minimum of f at x = 0. The iteration index n counts updates from n = 0; it is not a time.",
+    "angle": null,
+    "handedness": null,
+    "parameters": {
+      "a": {
+        "label": "Curvature",
+        "symbol": "a",
+        "description": "Curvature (second derivative) of the objective f(x) = a·x²/2. It must be positive.",
+        "dimension": "dimensionless",
+        "unit": "dimensionless",
+        "min": 0.1,
+        "max": 10,
+        "default": 2,
+        "step": {
+          "ui": 0.1,
+          "admissible": "continuous"
+        },
+        "role": "model-input"
+      },
+      "eta": {
+        "label": "Step size",
+        "symbol": "\\eta",
+        "description": "Fixed step size multiplying the gradient in every update. A step size of 0 leaves the position unchanged.",
+        "dimension": "dimensionless",
+        "unit": "dimensionless",
+        "min": 0,
+        "max": 2,
+        "default": 0.25,
+        "step": {
+          "ui": 0.05,
+          "admissible": "continuous"
+        },
+        "role": "model-input"
+      },
+      "x0": {
+        "label": "Starting position",
+        "symbol": "x_0",
+        "description": "Position at iteration n = 0.",
+        "dimension": "dimensionless",
+        "unit": "dimensionless",
+        "min": -10,
+        "max": 10,
+        "default": 4,
+        "step": {
+          "ui": 0.5,
+          "admissible": "continuous"
+        },
+        "role": "model-input"
+      }
+    },
+    "quantities": {
+      "start.position": {
+        "label": "Starting position",
+        "symbol": "x_0",
+        "shape": {
+          "kind": "scalar"
+        },
+        "dimension": "dimensionless",
+        "unit": "dimensionless",
+        "meaning": "Position at iteration 0; equal to the parameter x0.",
+        "coordinateFrame": "position-loss plane",
+        "signConvention": "Positive positions lie to the right of the minimum at x = 0."
+      },
+      "start.loss": {
+        "label": "Starting loss",
+        "symbol": "f(x_0)",
+        "shape": {
+          "kind": "scalar"
+        },
+        "dimension": "dimensionless",
+        "unit": "dimensionless",
+        "meaning": "Objective value a·x0²/2 at the starting position; never negative.",
+        "coordinateFrame": "position-loss plane"
+      },
+      "position": {
+        "label": "Position",
+        "symbol": "x_n",
+        "shape": {
+          "kind": "scalar"
+        },
+        "dimension": "dimensionless",
+        "unit": "dimensionless",
+        "meaning": "Position after n fixed-step gradient-descent updates: x_n = x0·(1 − η·a)^n.",
+        "coordinateFrame": "position-loss plane",
+        "signConvention": "Positive positions lie to the right of the minimum at x = 0."
+      },
+      "loss": {
+        "label": "Loss",
+        "symbol": "f(x_n)",
+        "shape": {
+          "kind": "scalar"
+        },
+        "dimension": "dimensionless",
+        "unit": "dimensionless",
+        "meaning": "Objective value a·x_n²/2 at the current position; never negative.",
+        "coordinateFrame": "position-loss plane"
+      },
+      "gradient": {
+        "label": "Gradient",
+        "symbol": "f'(x_n)",
+        "shape": {
+          "kind": "scalar"
+        },
+        "dimension": "dimensionless",
+        "unit": "dimensionless",
+        "meaning": "Derivative a·x_n of the objective at the current position.",
+        "coordinateFrame": "position-loss plane",
+        "signConvention": "Positive when the objective increases to the right."
+      },
+      "multiplier": {
+        "label": "Update multiplier",
+        "symbol": "r",
+        "shape": {
+          "kind": "scalar"
+        },
+        "dimension": "dimensionless",
+        "unit": "dimensionless",
+        "meaning": "Factor r = 1 − η·a applied to the position by every update, using the double-precision product η·a."
+      },
+      "product": {
+        "label": "Step size times curvature",
+        "symbol": "\\eta a",
+        "shape": {
+          "kind": "scalar"
+        },
+        "dimension": "dimensionless",
+        "unit": "dimensionless",
+        "meaning": "Product η·a, computed once in IEEE-754 double precision; the regime is classified from this value."
+      },
+      "threshold": {
+        "label": "Largest convergent step size",
+        "symbol": "2/a",
+        "shape": {
+          "kind": "scalar"
+        },
+        "dimension": "dimensionless",
+        "unit": "dimensionless",
+        "meaning": "Step size 2/a. Positive step sizes below it bring a nonzero start to 0; at it the positions alternate with constant magnitude."
+      },
+      "regime": {
+        "label": "Regime",
+        "shape": {
+          "kind": "category",
+          "values": [
+            "zero-start",
+            "stationary",
+            "monotone-convergence",
+            "one-step",
+            "alternating-convergence",
+            "oscillation",
+            "divergence"
+          ]
+        },
+        "dimension": "dimensionless",
+        "unit": "dimensionless",
+        "meaning": "Classification from the declared conditions on x0 and the product p = η·a: zero-start (x0 = 0), stationary (p = 0), monotone-convergence (0 < p < 1), one-step (p = 1), alternating-convergence (1 < p < 2), oscillation (p = 2), divergence (p > 2). Never derived from iterates or displayed digits."
+      },
+      "index": {
+        "label": "Iteration",
+        "symbol": "n",
+        "shape": {
+          "kind": "scalar"
+        },
+        "dimension": "iteration",
+        "unit": "iteration",
+        "meaning": "Integer number of updates applied, from 0 to 1000. Not a time."
+      }
+    },
+    "constraints": [
+      {
+        "id": "multiplier-lower-bound",
+        "expression": "eta * a",
+        "max": 4,
+        "maxInclusive": true,
+        "message": "The step size times the curvature (η·a) can be at most 4, which keeps the update factor 1 − η·a at or above −3 and the iterations inside the supported numerical range.",
+        "recovery": "Reduce the step size η or the curvature a until η·a is at most 4."
+      }
+    ]
+  },
+  "referenceSuite": {
+    "declared": {
+      "suiteId": "quadratic-gradient-descent:1.0.0",
+      "digest": "sha256:5e22c857c6557619b9634a0f8791e9567342d517e339883fc0c20b3e9b22c2f2"
+    },
+    "file": {
+      "path": "tests/reference/fixtures/activities/quadratic-gradient-descent.json",
+      "digest": "sha256:5e22c857c6557619b9634a0f8791e9567342d517e339883fc0c20b3e9b22c2f2"
+    },
+    "binding": "matches",
+    "unavailable": null,
+    "suite": {
+      "suiteId": "quadratic-gradient-descent:1.0.0",
+      "author": "Reference cases from the implementation report §12.3 plus cases derived by exact rational arithmetic in tests/reference/oracles/quadratic.ts, which shares no code with the catalogue kernel.",
+      "review": "No independent human subject reviewer has approved these cases. Automated agreement is engineering evidence only.",
+      "derivedFrom": {
+        "path": "tests/reference/fixtures/activities/quadratic-gradient-descent.json",
+        "digest": "sha256:5e22c857c6557619b9634a0f8791e9567342d517e339883fc0c20b3e9b22c2f2",
+        "suiteId": "quadratic-gradient-descent:1.0.0",
+        "conversion": "Converted by experiment-kit activity tooling: case IDs, labels, provenance, parameters and tolerances copied unchanged; quantity expectations restated as experiment-kit.reference-fixtures 1.0 expectations. Parameter-only quantities restated at every point of a case: start.position is the case's x0 (declared equal to it), start.loss is the case's own loss expectation at n = 0, and product is the IEEE-754 double product of the case's η and a, which the suite's declared semantics define as p (compared exactly)."
+      },
+      "notCovered": [
+        "Trace geometry (the trace ends at the current position or stops with a reason), the starting marker, the sampled objective curve and the current-iterate marker are checked by tests/reference/activities/quadratic.test.ts."
+      ]
+    },
+    "results": {
+      "cases": [
+        {
+          "id": "report-eta-0.25",
+          "label": "a = 2, η = 0.25, x0 = 4: first four positions 4, 2, 1, 0.5",
+          "provenance": "report §12.3 (tabulated sequence); loss, gradient, multiplier, threshold and regime derived by hand from f(x) = a·x²/2 and cross-checked by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 0
+          },
+          "tolerances": {
+            "index": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "start.position": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "product": {
+              "absolute": 0,
+              "relative": 0
+            }
+          },
+          "kind": "evaluation",
+          "points": 4,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "report-eta-0.75",
+          "label": "a = 2, η = 0.75, x0 = 4: first four positions 4, −2, 1, −0.5",
+          "provenance": "report §12.3 (tabulated sequence); loss, gradient, multiplier, threshold and regime derived by hand from f(x) = a·x²/2 and cross-checked by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 0
+          },
+          "tolerances": {
+            "index": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "start.position": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "product": {
+              "absolute": 0,
+              "relative": 0
+            }
+          },
+          "kind": "evaluation",
+          "points": 4,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "report-eta-1.25",
+          "label": "a = 2, η = 1.25, x0 = 4: first four positions 4, −6, 9, −13.5",
+          "provenance": "report §12.3 (tabulated sequence); loss, gradient, multiplier, threshold and regime derived by hand from f(x) = a·x²/2 and cross-checked by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 0
+          },
+          "tolerances": {
+            "index": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "start.position": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "product": {
+              "absolute": 0,
+              "relative": 0
+            }
+          },
+          "kind": "evaluation",
+          "points": 6,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "zero-start-stationary",
+          "label": "x0 = 0 with a = 2, η = 0: position stays exactly 0 through n = 1000",
+          "provenance": "report §12.3 (x0 = 0 in any allowed regime); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 0
+          },
+          "tolerances": {
+            "index": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "start.position": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "product": {
+              "absolute": 0,
+              "relative": 0
+            }
+          },
+          "kind": "evaluation",
+          "points": 4,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "zero-start-monotone",
+          "label": "x0 = 0 with a = 2, η = 0.25: position stays exactly 0 through n = 1000",
+          "provenance": "report §12.3 (x0 = 0 in any allowed regime); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 0
+          },
+          "tolerances": {
+            "index": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "start.position": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "product": {
+              "absolute": 0,
+              "relative": 0
+            }
+          },
+          "kind": "evaluation",
+          "points": 4,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "zero-start-one-step",
+          "label": "x0 = 0 with a = 2, η = 0.5: position stays exactly 0 through n = 1000",
+          "provenance": "report §12.3 (x0 = 0 in any allowed regime); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 0
+          },
+          "tolerances": {
+            "index": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "start.position": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "product": {
+              "absolute": 0,
+              "relative": 0
+            }
+          },
+          "kind": "evaluation",
+          "points": 4,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "zero-start-alternating",
+          "label": "x0 = 0 with a = 2, η = 0.75: position stays exactly 0 through n = 1000",
+          "provenance": "report §12.3 (x0 = 0 in any allowed regime); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 0
+          },
+          "tolerances": {
+            "index": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "start.position": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "product": {
+              "absolute": 0,
+              "relative": 0
+            }
+          },
+          "kind": "evaluation",
+          "points": 4,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "zero-start-oscillation",
+          "label": "x0 = 0 with a = 2, η = 1: position stays exactly 0 through n = 1000",
+          "provenance": "report §12.3 (x0 = 0 in any allowed regime); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 0
+          },
+          "tolerances": {
+            "index": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "start.position": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "product": {
+              "absolute": 0,
+              "relative": 0
+            }
+          },
+          "kind": "evaluation",
+          "points": 4,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "zero-start-divergence",
+          "label": "x0 = 0 with a = 2, η = 1.25: position stays exactly 0 through n = 1000",
+          "provenance": "report §12.3 (x0 = 0 in any allowed regime); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 0
+          },
+          "tolerances": {
+            "index": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "start.position": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "product": {
+              "absolute": 0,
+              "relative": 0
+            }
+          },
+          "kind": "evaluation",
+          "points": 4,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "zero-start-divergence-multiplier-minus-3",
+          "label": "x0 = 0 with a = 10, η = 0.4: position stays exactly 0 through n = 1000",
+          "provenance": "report §12.3 (x0 = 0 in any allowed regime); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 0
+          },
+          "tolerances": {
+            "index": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "start.position": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "product": {
+              "absolute": 0,
+              "relative": 0
+            }
+          },
+          "kind": "evaluation",
+          "points": 4,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "zero-start-divergence-eta-max",
+          "label": "x0 = 0 with a = 2, η = 2: position stays exactly 0 through n = 1000",
+          "provenance": "report §12.3 (x0 = 0 in any allowed regime); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 0
+          },
+          "tolerances": {
+            "index": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "start.position": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "product": {
+              "absolute": 0,
+              "relative": 0
+            }
+          },
+          "kind": "evaluation",
+          "points": 4,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "zero-start-monotone-curvature-min",
+          "label": "x0 = 0 with a = 0.1, η = 2: position stays exactly 0 through n = 1000",
+          "provenance": "report §12.3 (x0 = 0 in any allowed regime); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 0
+          },
+          "tolerances": {
+            "index": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "start.position": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "product": {
+              "absolute": 0,
+              "relative": 0
+            }
+          },
+          "kind": "evaluation",
+          "points": 4,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "eta-zero",
+          "label": "η = 0, a = 2, x0 = 4: position stays at x0",
+          "provenance": "report §12.3 (eta = 0); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 0
+          },
+          "tolerances": {
+            "index": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "start.position": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "product": {
+              "absolute": 0,
+              "relative": 0
+            }
+          },
+          "kind": "evaluation",
+          "points": 5,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "eta-zero-negative-start",
+          "label": "η = 0, a = 7.3, x0 = −9.75: position stays at x0",
+          "provenance": "report §12.3 (eta = 0); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 1e-12
+          },
+          "tolerances": {
+            "index": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "start.position": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "product": {
+              "absolute": 0,
+              "relative": 0
+            }
+          },
+          "kind": "evaluation",
+          "points": 5,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "one-step-a2-eta0.5",
+          "label": "a = 2, η = 0.5 (η·a = 1), x0 = 4: x0 at n = 0, exactly 0 afterwards",
+          "provenance": "report §12.3 (eta*a = 1); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 0
+          },
+          "tolerances": {
+            "index": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "start.position": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "product": {
+              "absolute": 0,
+              "relative": 0
+            }
+          },
+          "kind": "evaluation",
+          "points": 5,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "one-step-a5-eta0.2",
+          "label": "a = 5, η = 0.2 (η·a = 1), x0 = -3: x0 at n = 0, exactly 0 afterwards",
+          "provenance": "report §12.3 (eta*a = 1); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 0
+          },
+          "tolerances": {
+            "index": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "start.position": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "product": {
+              "absolute": 0,
+              "relative": 0
+            }
+          },
+          "kind": "evaluation",
+          "points": 5,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "one-step-a10-eta0.1",
+          "label": "a = 10, η = 0.1 (η·a = 1), x0 = 7: x0 at n = 0, exactly 0 afterwards",
+          "provenance": "report §12.3 (eta*a = 1); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 0
+          },
+          "tolerances": {
+            "index": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "start.position": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "product": {
+              "absolute": 0,
+              "relative": 0
+            }
+          },
+          "kind": "evaluation",
+          "points": 5,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "one-step-a0.5-eta2",
+          "label": "a = 0.5, η = 2 (η·a = 1), x0 = 10: x0 at n = 0, exactly 0 afterwards",
+          "provenance": "report §12.3 (eta*a = 1); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 0
+          },
+          "tolerances": {
+            "index": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "start.position": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "product": {
+              "absolute": 0,
+              "relative": 0
+            }
+          },
+          "kind": "evaluation",
+          "points": 5,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "oscillation-a2-eta1",
+          "label": "a = 2, η = 1 (η·a = 2), x0 = 4: ±x0 alternating with constant magnitude",
+          "provenance": "report §12.3 (eta*a = 2); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 0
+          },
+          "tolerances": {
+            "index": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "start.position": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "product": {
+              "absolute": 0,
+              "relative": 0
+            }
+          },
+          "kind": "evaluation",
+          "points": 6,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "oscillation-a5-eta0.4",
+          "label": "a = 5, η = 0.4 (η·a = 2), x0 = -3: ±x0 alternating with constant magnitude",
+          "provenance": "report §12.3 (eta*a = 2); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 0
+          },
+          "tolerances": {
+            "index": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "start.position": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "product": {
+              "absolute": 0,
+              "relative": 0
+            }
+          },
+          "kind": "evaluation",
+          "points": 6,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "oscillation-a1-eta2",
+          "label": "a = 1, η = 2 (η·a = 2), x0 = 10: ±x0 alternating with constant magnitude",
+          "provenance": "report §12.3 (eta*a = 2); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 0
+          },
+          "tolerances": {
+            "index": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "start.position": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "product": {
+              "absolute": 0,
+              "relative": 0
+            }
+          },
+          "kind": "evaluation",
+          "points": 6,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "oscillation-a4-eta0.5",
+          "label": "a = 4, η = 0.5 (η·a = 2), x0 = 0.1: ±x0 alternating with constant magnitude",
+          "provenance": "report §12.3 (eta*a = 2); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 1e-12
+          },
+          "tolerances": {
+            "index": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "start.position": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "product": {
+              "absolute": 0,
+              "relative": 0
+            }
+          },
+          "kind": "evaluation",
+          "points": 6,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "neighbour-a2-eta0.5-below",
+          "label": "a = 2, η = 0.49999999999999994 (adjacent double below 0.5), x0 = 4",
+          "provenance": "report §12.3 (neighbouring floating-point values around each boundary); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 0
+          },
+          "tolerances": {
+            "index": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "start.position": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "product": {
+              "absolute": 0,
+              "relative": 0
+            }
+          },
+          "kind": "evaluation",
+          "points": 7,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "neighbour-a2-eta0.5-above",
+          "label": "a = 2, η = 0.5000000000000001 (adjacent double above 0.5), x0 = 4",
+          "provenance": "report §12.3 (neighbouring floating-point values around each boundary); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 0
+          },
+          "tolerances": {
+            "index": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "start.position": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "product": {
+              "absolute": 0,
+              "relative": 0
+            }
+          },
+          "kind": "evaluation",
+          "points": 7,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "neighbour-a2-eta1-below",
+          "label": "a = 2, η = 0.9999999999999999 (adjacent double below 1), x0 = 4",
+          "provenance": "report §12.3 (neighbouring floating-point values around each boundary); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 1e-12
+          },
+          "tolerances": {
+            "index": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "start.position": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "product": {
+              "absolute": 0,
+              "relative": 0
+            }
+          },
+          "kind": "evaluation",
+          "points": 6,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "neighbour-a2-eta1-above",
+          "label": "a = 2, η = 1.0000000000000002 (adjacent double above 1), x0 = 4",
+          "provenance": "report §12.3 (neighbouring floating-point values around each boundary); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 1e-12
+          },
+          "tolerances": {
+            "index": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "start.position": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "product": {
+              "absolute": 0,
+              "relative": 0
+            }
+          },
+          "kind": "evaluation",
+          "points": 6,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "neighbour-a5-eta0.2-below",
+          "label": "a = 5, η = 0.19999999999999998 (adjacent double below 0.2), x0 = 4",
+          "provenance": "report §12.3 (neighbouring floating-point values around each boundary); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 0
+          },
+          "tolerances": {
+            "index": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "start.position": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "product": {
+              "absolute": 0,
+              "relative": 0
+            }
+          },
+          "kind": "evaluation",
+          "points": 7,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "neighbour-a5-eta0.2-above",
+          "label": "a = 5, η = 0.20000000000000004 (adjacent double above 0.2), x0 = 4",
+          "provenance": "report §12.3 (neighbouring floating-point values around each boundary); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 0
+          },
+          "tolerances": {
+            "index": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "start.position": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "product": {
+              "absolute": 0,
+              "relative": 0
+            }
+          },
+          "kind": "evaluation",
+          "points": 7,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "neighbour-a5-eta0.4-below",
+          "label": "a = 5, η = 0.39999999999999997 (adjacent double below 0.4), x0 = 4",
+          "provenance": "report §12.3 (neighbouring floating-point values around each boundary); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 1e-12
+          },
+          "tolerances": {
+            "index": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "start.position": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "product": {
+              "absolute": 0,
+              "relative": 0
+            }
+          },
+          "kind": "evaluation",
+          "points": 7,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "neighbour-a5-eta0.4-above",
+          "label": "a = 5, η = 0.4000000000000001 (adjacent double above 0.4), x0 = 4",
+          "provenance": "report §12.3 (neighbouring floating-point values around each boundary); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 1e-12
+          },
+          "tolerances": {
+            "index": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "start.position": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "product": {
+              "absolute": 0,
+              "relative": 0
+            }
+          },
+          "kind": "evaluation",
+          "points": 7,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "a5-eta0.05",
+          "label": "a = 5, η = 0.05, x0 = 4 (convergence interval 0 < η < 0.4)",
+          "provenance": "report §12.3 (a = 5 and positive step sizes); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 1e-12
+          },
+          "tolerances": {
+            "index": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "start.position": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "product": {
+              "absolute": 0,
+              "relative": 0
+            }
+          },
+          "kind": "evaluation",
+          "points": 7,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "a5-eta0.1",
+          "label": "a = 5, η = 0.1, x0 = 4 (convergence interval 0 < η < 0.4)",
+          "provenance": "report §12.3 (a = 5 and positive step sizes); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 0
+          },
+          "tolerances": {
+            "index": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "start.position": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "product": {
+              "absolute": 0,
+              "relative": 0
+            }
+          },
+          "kind": "evaluation",
+          "points": 7,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "a5-eta0.2",
+          "label": "a = 5, η = 0.2, x0 = 4 (convergence interval 0 < η < 0.4)",
+          "provenance": "report §12.3 (a = 5 and positive step sizes); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 0
+          },
+          "tolerances": {
+            "index": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "start.position": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "product": {
+              "absolute": 0,
+              "relative": 0
+            }
+          },
+          "kind": "evaluation",
+          "points": 7,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "a5-eta0.3",
+          "label": "a = 5, η = 0.3, x0 = 4 (convergence interval 0 < η < 0.4)",
+          "provenance": "report §12.3 (a = 5 and positive step sizes); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 0
+          },
+          "tolerances": {
+            "index": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "start.position": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "product": {
+              "absolute": 0,
+              "relative": 0
+            }
+          },
+          "kind": "evaluation",
+          "points": 7,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "a5-eta0.39",
+          "label": "a = 5, η = 0.39, x0 = 4 (convergence interval 0 < η < 0.4)",
+          "provenance": "report §12.3 (a = 5 and positive step sizes); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 1e-12
+          },
+          "tolerances": {
+            "index": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "start.position": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "product": {
+              "absolute": 0,
+              "relative": 0
+            }
+          },
+          "kind": "evaluation",
+          "points": 7,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "a5-eta0.4",
+          "label": "a = 5, η = 0.4, x0 = 4 (convergence interval 0 < η < 0.4)",
+          "provenance": "report §12.3 (a = 5 and positive step sizes); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 0
+          },
+          "tolerances": {
+            "index": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "start.position": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "product": {
+              "absolute": 0,
+              "relative": 0
+            }
+          },
+          "kind": "evaluation",
+          "points": 7,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "a5-eta0.41",
+          "label": "a = 5, η = 0.41, x0 = 4 (convergence interval 0 < η < 0.4)",
+          "provenance": "report §12.3 (a = 5 and positive step sizes); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 1e-12
+          },
+          "tolerances": {
+            "index": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "start.position": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "product": {
+              "absolute": 0,
+              "relative": 0
+            }
+          },
+          "kind": "evaluation",
+          "points": 7,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "a5-eta0.6",
+          "label": "a = 5, η = 0.6, x0 = 4 (convergence interval 0 < η < 0.4)",
+          "provenance": "report §12.3 (a = 5 and positive step sizes); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 0
+          },
+          "tolerances": {
+            "index": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "start.position": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "product": {
+              "absolute": 0,
+              "relative": 0
+            }
+          },
+          "kind": "evaluation",
+          "points": 9,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "a5-eta0.8",
+          "label": "a = 5, η = 0.8, x0 = 4 (convergence interval 0 < η < 0.4)",
+          "provenance": "report §12.3 (a = 5 and positive step sizes); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 1e-12
+          },
+          "tolerances": {
+            "index": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "start.position": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "product": {
+              "absolute": 0,
+              "relative": 0
+            }
+          },
+          "kind": "evaluation",
+          "points": 13,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "multiplier-minus-0.8-x0-4",
+          "label": "a = 2, η = 0.9 (multiplier −0.8), x0 = 4: alternating convergence",
+          "provenance": "report §12.3 (multiplier -0.8); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 1e-12
+          },
+          "tolerances": {
+            "index": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "start.position": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "product": {
+              "absolute": 0,
+              "relative": 0
+            }
+          },
+          "kind": "evaluation",
+          "points": 6,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "multiplier-minus-0.8-x0--7.5",
+          "label": "a = 2, η = 0.9 (multiplier −0.8), x0 = -7.5: alternating convergence",
+          "provenance": "report §12.3 (multiplier -0.8); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 1e-12
+          },
+          "tolerances": {
+            "index": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "start.position": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "product": {
+              "absolute": 0,
+              "relative": 0
+            }
+          },
+          "kind": "evaluation",
+          "points": 6,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "multiplier-minus-0.8-x0-10",
+          "label": "a = 2, η = 0.9 (multiplier −0.8), x0 = 10: alternating convergence",
+          "provenance": "report §12.3 (multiplier -0.8); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 1e-12
+          },
+          "tolerances": {
+            "index": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "start.position": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "product": {
+              "absolute": 0,
+              "relative": 0
+            }
+          },
+          "kind": "evaluation",
+          "points": 6,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "multiplier-minus-0.8-x0-0.001",
+          "label": "a = 2, η = 0.9 (multiplier −0.8), x0 = 0.001: alternating convergence",
+          "provenance": "report §12.3 (multiplier -0.8); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 1e-12
+          },
+          "tolerances": {
+            "index": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "start.position": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "product": {
+              "absolute": 0,
+              "relative": 0
+            }
+          },
+          "kind": "evaluation",
+          "points": 6,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "multiplier-minus-0.8-x0--10",
+          "label": "a = 2, η = 0.9 (multiplier −0.8), x0 = -10: alternating convergence",
+          "provenance": "report §12.3 (multiplier -0.8); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 1e-12
+          },
+          "tolerances": {
+            "index": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "start.position": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "product": {
+              "absolute": 0,
+              "relative": 0
+            }
+          },
+          "kind": "evaluation",
+          "points": 6,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "multiplier-minus-0.8-a4",
+          "label": "a = 4, η = 0.45 (multiplier −0.8), x0 = 1: alternating convergence",
+          "provenance": "report §12.3 (multiplier -0.8); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 1e-12
+          },
+          "tolerances": {
+            "index": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "start.position": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "product": {
+              "absolute": 0,
+              "relative": 0
+            }
+          },
+          "kind": "evaluation",
+          "points": 6,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "overflow-multiplier-minus-3",
+          "label": "a = 10, η = 0.4, x0 = 10: |x_n| = 10·3^n exceeds Number.MAX_VALUE",
+          "provenance": "report §12.3 (growing sequence beyond representable bounds); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 1e-12
+          },
+          "tolerances": {
+            "index": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "start.position": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "product": {
+              "absolute": 0,
+              "relative": 0
+            }
+          },
+          "kind": "evaluation",
+          "points": 16,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "overflow-small-start",
+          "label": "a = 10, η = 0.4, x0 = 0.001: 3^n overflows before 0.001·3^n does",
+          "provenance": "report §12.3 (growing sequence beyond representable bounds); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 1e-12
+          },
+          "tolerances": {
+            "index": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "start.position": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "product": {
+              "absolute": 0,
+              "relative": 0
+            }
+          },
+          "kind": "evaluation",
+          "points": 14,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "overflow-negative-start",
+          "label": "a = 10, η = 0.4, x0 = −10: sign alternates up to the last finite iterate",
+          "provenance": "report §12.3 (growing sequence beyond representable bounds); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 1e-12
+          },
+          "tolerances": {
+            "index": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "start.position": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "product": {
+              "absolute": 0,
+              "relative": 0
+            }
+          },
+          "kind": "evaluation",
+          "points": 11,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "underflow-multiplier-0.25",
+          "label": "a = 2, η = 0.375 (multiplier 0.25), x0 = 4: x_n = 2^(2−2n) through the subnormal range to underflow",
+          "provenance": "report §12.3 (underflow as a numerical approximation); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 0
+          },
+          "tolerances": {
+            "index": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "start.position": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "product": {
+              "absolute": 0,
+              "relative": 0
+            }
+          },
+          "kind": "evaluation",
+          "points": 14,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "underflow-inexact-subnormal",
+          "label": "a = 2, η = 0.375, x0 = −3: subnormal values that are not exactly representable",
+          "provenance": "report §12.3 (underflow as a numerical approximation); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 1e-12
+          },
+          "tolerances": {
+            "index": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "start.position": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "product": {
+              "absolute": 0,
+              "relative": 0
+            }
+          },
+          "kind": "evaluation",
+          "points": 9,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "default-long-run",
+          "label": "Default a = 2, η = 0.25, x0 = 4 to n = 1000: loss underflows while position stays normal",
+          "provenance": "report §12.3 (underflow as a numerical approximation); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 0
+          },
+          "tolerances": {
+            "index": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "start.position": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "product": {
+              "absolute": 0,
+              "relative": 0
+            }
+          },
+          "kind": "evaluation",
+          "points": 10,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "interior-curvature-min",
+          "label": "a = 0.1, η = 2, x0 = −10: monotone convergence at the smallest curvature",
+          "provenance": "derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 1e-12
+          },
+          "tolerances": {
+            "index": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "start.position": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "product": {
+              "absolute": 0,
+              "relative": 0
+            }
+          },
+          "kind": "evaluation",
+          "points": 6,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "interior-alternating-a10",
+          "label": "a = 10, η = 0.15, x0 = 3: alternating convergence",
+          "provenance": "derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 0
+          },
+          "tolerances": {
+            "index": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "start.position": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "product": {
+              "absolute": 0,
+              "relative": 0
+            }
+          },
+          "kind": "evaluation",
+          "points": 6,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "interior-alternating-a3",
+          "label": "a = 3, η = 0.5, x0 = 1: multiplier −0.5",
+          "provenance": "derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 0
+          },
+          "tolerances": {
+            "index": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "start.position": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "product": {
+              "absolute": 0,
+              "relative": 0
+            }
+          },
+          "kind": "evaluation",
+          "points": 6,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        },
+        {
+          "id": "interior-divergence-a7",
+          "label": "a = 7, η = 0.3, x0 = 2.5: multiplier −1.1, divergence without overflow by n = 1000",
+          "provenance": "derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+          "tolerance": {
+            "absolute": 0,
+            "relative": 1e-12
+          },
+          "tolerances": {
+            "index": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "start.position": {
+              "absolute": 0,
+              "relative": 0
+            },
+            "product": {
+              "absolute": 0,
+              "relative": 0
+            }
+          },
+          "kind": "evaluation",
+          "points": 6,
+          "passed": true,
+          "problems": [],
+          "omittedProblems": 0
+        }
+      ],
+      "uncovered": []
+    }
+  },
+  "mutation": {
+    "baselineProblems": [],
+    "mutants": [
+      {
+        "id": "sign:start.position",
+        "operator": "sign",
+        "target": "start.position",
+        "description": "start.position with the wrong sign",
+        "killed": true,
+        "firstProblem": "report-eta-0.25: n=0: start.position: -4, expected 4 (absolute 0, relative 0)"
+      },
+      {
+        "id": "factor:start.position",
+        "operator": "factor",
+        "target": "start.position",
+        "factor": 2,
+        "description": "start.position off by a factor of 2",
+        "killed": true,
+        "firstProblem": "report-eta-0.25: n=0: start.position: 8, expected 4 (absolute 0, relative 0)"
+      },
+      {
+        "id": "sign:start.loss",
+        "operator": "sign",
+        "target": "start.loss",
+        "description": "start.loss with the wrong sign",
+        "killed": true,
+        "firstProblem": "report-eta-0.25: n=0: start.loss: -16, expected 16 (absolute 0, relative 0)"
+      },
+      {
+        "id": "factor:start.loss",
+        "operator": "factor",
+        "target": "start.loss",
+        "factor": 2,
+        "description": "start.loss off by a factor of 2",
+        "killed": true,
+        "firstProblem": "report-eta-0.25: n=0: start.loss: 32, expected 16 (absolute 0, relative 0)"
+      },
+      {
+        "id": "sign:position",
+        "operator": "sign",
+        "target": "position",
+        "description": "position with the wrong sign",
+        "killed": true,
+        "firstProblem": "report-eta-0.25: n=0: position: -4, expected 4 (absolute 0, relative 0)"
+      },
+      {
+        "id": "factor:position",
+        "operator": "factor",
+        "target": "position",
+        "factor": 2,
+        "description": "position off by a factor of 2",
+        "killed": true,
+        "firstProblem": "report-eta-0.25: n=0: position: 8, expected 4 (absolute 0, relative 0)"
+      },
+      {
+        "id": "sign:loss",
+        "operator": "sign",
+        "target": "loss",
+        "description": "loss with the wrong sign",
+        "killed": true,
+        "firstProblem": "report-eta-0.25: n=0: loss: -16, expected 16 (absolute 0, relative 0)"
+      },
+      {
+        "id": "factor:loss",
+        "operator": "factor",
+        "target": "loss",
+        "factor": 2,
+        "description": "loss off by a factor of 2",
+        "killed": true,
+        "firstProblem": "report-eta-0.25: n=0: loss: 32, expected 16 (absolute 0, relative 0)"
+      },
+      {
+        "id": "sign:gradient",
+        "operator": "sign",
+        "target": "gradient",
+        "description": "gradient with the wrong sign",
+        "killed": true,
+        "firstProblem": "report-eta-0.25: n=0: gradient: -8, expected 8 (absolute 0, relative 0)"
+      },
+      {
+        "id": "factor:gradient",
+        "operator": "factor",
+        "target": "gradient",
+        "factor": 2,
+        "description": "gradient off by a factor of 2",
+        "killed": true,
+        "firstProblem": "report-eta-0.25: n=0: gradient: 16, expected 8 (absolute 0, relative 0)"
+      },
+      {
+        "id": "sign:multiplier",
+        "operator": "sign",
+        "target": "multiplier",
+        "description": "multiplier with the wrong sign",
+        "killed": true,
+        "firstProblem": "report-eta-0.25: n=0: multiplier: -0.5, expected 0.5 (absolute 0, relative 0)"
+      },
+      {
+        "id": "factor:multiplier",
+        "operator": "factor",
+        "target": "multiplier",
+        "factor": 2,
+        "description": "multiplier off by a factor of 2",
+        "killed": true,
+        "firstProblem": "report-eta-0.25: n=0: multiplier: 1, expected 0.5 (absolute 0, relative 0)"
+      },
+      {
+        "id": "sign:product",
+        "operator": "sign",
+        "target": "product",
+        "description": "product with the wrong sign",
+        "killed": true,
+        "firstProblem": "report-eta-0.25: n=0: product: -0.5, expected 0.5 (absolute 0, relative 0)"
+      },
+      {
+        "id": "factor:product",
+        "operator": "factor",
+        "target": "product",
+        "factor": 2,
+        "description": "product off by a factor of 2",
+        "killed": true,
+        "firstProblem": "report-eta-0.25: n=0: product: 1, expected 0.5 (absolute 0, relative 0)"
+      },
+      {
+        "id": "sign:threshold",
+        "operator": "sign",
+        "target": "threshold",
+        "description": "threshold with the wrong sign",
+        "killed": true,
+        "firstProblem": "report-eta-0.25: n=0: threshold: -1, expected 1 (absolute 0, relative 0)"
+      },
+      {
+        "id": "factor:threshold",
+        "operator": "factor",
+        "target": "threshold",
+        "factor": 2,
+        "description": "threshold off by a factor of 2",
+        "killed": true,
+        "firstProblem": "report-eta-0.25: n=0: threshold: 2, expected 1 (absolute 0, relative 0)"
+      },
+      {
+        "id": "sign:index",
+        "operator": "sign",
+        "target": "index",
+        "description": "index with the wrong sign",
+        "killed": true,
+        "firstProblem": "report-eta-0.25: n=1: index: -1, expected 1 (absolute 0, relative 0)"
+      },
+      {
+        "id": "factor:index",
+        "operator": "factor",
+        "target": "index",
+        "factor": 2,
+        "description": "index off by a factor of 2",
+        "killed": true,
+        "firstProblem": "report-eta-0.25: n=1: index: 2, expected 1 (absolute 0, relative 0)"
+      },
+      {
+        "id": "limit-as-zero:loss",
+        "operator": "limit-as-zero",
+        "target": "loss",
+        "description": "numerical limit of loss reported as a valid zero",
+        "killed": true,
+        "firstProblem": "report-eta-1.25: n=872: loss: status valid, expected numerical-limit:OVERFLOW"
+      },
+      {
+        "id": "limit-as-zero:position",
+        "operator": "limit-as-zero",
+        "target": "position",
+        "description": "numerical limit of position reported as a valid zero",
+        "killed": true,
+        "firstProblem": "neighbour-a2-eta0.5-below: n=21: position: status valid, expected numerical-limit:UNDERFLOW"
+      },
+      {
+        "id": "limit-as-zero:gradient",
+        "operator": "limit-as-zero",
+        "target": "gradient",
+        "description": "numerical limit of gradient reported as a valid zero",
+        "killed": true,
+        "firstProblem": "neighbour-a2-eta0.5-below: n=21: gradient: status valid, expected numerical-limit:UNDERFLOW"
+      },
+      {
+        "id": "boundary-nudge:a",
+        "operator": "boundary-nudge",
+        "target": "a",
+        "factor": 1e-9,
+        "description": "a shifted by a relative 1e-9 (boundary off by a hair)",
+        "killed": true,
+        "firstProblem": "report-eta-0.25: n=0: multiplier: 0.49999999949999996, expected 0.5 (absolute 0, relative 0)"
+      },
+      {
+        "id": "boundary-nudge:eta",
+        "operator": "boundary-nudge",
+        "target": "eta",
+        "factor": 1e-9,
+        "description": "eta shifted by a relative 1e-9 (boundary off by a hair)",
+        "killed": true,
+        "firstProblem": "report-eta-0.25: n=0: multiplier: 0.49999999799999995, expected 0.5 (absolute 0, relative 0)"
+      },
+      {
+        "id": "boundary-nudge:x0",
+        "operator": "boundary-nudge",
+        "target": "x0",
+        "factor": 1e-9,
+        "description": "x0 shifted by a relative 1e-9 (boundary off by a hair)",
+        "killed": true,
+        "firstProblem": "report-eta-0.25: n=0: position: 4.000000004, expected 4 (absolute 0, relative 0)"
+      }
+    ],
+    "uncovered": []
+  },
+  "activitySpecificTests": [
+    "tests/reference/activities/quadratic.test.ts"
+  ],
+  "boundaries": {
+    "cases": [
+      {
+        "id": "report-eta-1.25@n=872",
+        "source": "declared",
+        "label": "a = 2, η = 1.25, x0 = 4: first four positions 4, −6, 9, −13.5 (n = 872)",
+        "rationale": "From reference case report-eta-1.25: report §12.3 (tabulated sequence); loss, gradient, multiplier, threshold and regime derived by hand from f(x) = a·x²/2 and cross-checked by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+        "params": {
+          "a": 2,
+          "eta": 1.25,
+          "x0": 4
+        },
+        "position": {
+          "kind": "index",
+          "index": 872
+        },
+        "outcome": "numerical-limit",
+        "statuses": {
+          "loss": "numerical-limit:OVERFLOW"
+        },
+        "rejection": null,
+        "expected": {
+          "outcome": "numerical-limit",
+          "statuses": {
+            "loss": "numerical-limit:OVERFLOW"
+          }
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "neighbour-a2-eta0.5-below@n=19",
+        "source": "declared",
+        "label": "a = 2, η = 0.49999999999999994 (adjacent double below 0.5), x0 = 4 (n = 19)",
+        "rationale": "From reference case neighbour-a2-eta0.5-below: report §12.3 (neighbouring floating-point values around each boundary); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+        "params": {
+          "a": 2,
+          "eta": 0.49999999999999994,
+          "x0": 4
+        },
+        "position": {
+          "kind": "index",
+          "index": 19
+        },
+        "outcome": "numerical-limit",
+        "statuses": {
+          "loss": "numerical-limit:UNDERFLOW"
+        },
+        "rejection": null,
+        "expected": {
+          "outcome": "numerical-limit",
+          "statuses": {
+            "loss": "numerical-limit:UNDERFLOW"
+          }
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "neighbour-a2-eta0.5-below@n=20",
+        "source": "declared",
+        "label": "a = 2, η = 0.49999999999999994 (adjacent double below 0.5), x0 = 4 (n = 20)",
+        "rationale": "From reference case neighbour-a2-eta0.5-below: report §12.3 (neighbouring floating-point values around each boundary); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+        "params": {
+          "a": 2,
+          "eta": 0.49999999999999994,
+          "x0": 4
+        },
+        "position": {
+          "kind": "index",
+          "index": 20
+        },
+        "outcome": "numerical-limit",
+        "statuses": {
+          "position": "valid:UNDERFLOW",
+          "loss": "numerical-limit:UNDERFLOW",
+          "gradient": "valid:UNDERFLOW"
+        },
+        "rejection": null,
+        "expected": {
+          "outcome": "numerical-limit",
+          "statuses": {
+            "position": "valid:UNDERFLOW",
+            "loss": "numerical-limit:UNDERFLOW",
+            "gradient": "valid:UNDERFLOW"
+          }
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "neighbour-a2-eta0.5-below@n=21",
+        "source": "declared",
+        "label": "a = 2, η = 0.49999999999999994 (adjacent double below 0.5), x0 = 4 (n = 21)",
+        "rationale": "From reference case neighbour-a2-eta0.5-below: report §12.3 (neighbouring floating-point values around each boundary); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+        "params": {
+          "a": 2,
+          "eta": 0.49999999999999994,
+          "x0": 4
+        },
+        "position": {
+          "kind": "index",
+          "index": 21
+        },
+        "outcome": "numerical-limit",
+        "statuses": {
+          "position": "numerical-limit:UNDERFLOW",
+          "loss": "numerical-limit:UNDERFLOW",
+          "gradient": "numerical-limit:UNDERFLOW"
+        },
+        "rejection": null,
+        "expected": {
+          "outcome": "numerical-limit",
+          "statuses": {
+            "position": "numerical-limit:UNDERFLOW",
+            "loss": "numerical-limit:UNDERFLOW",
+            "gradient": "numerical-limit:UNDERFLOW"
+          }
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "neighbour-a2-eta0.5-below@n=1000",
+        "source": "declared",
+        "label": "a = 2, η = 0.49999999999999994 (adjacent double below 0.5), x0 = 4 (n = 1000)",
+        "rationale": "From reference case neighbour-a2-eta0.5-below: report §12.3 (neighbouring floating-point values around each boundary); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+        "params": {
+          "a": 2,
+          "eta": 0.49999999999999994,
+          "x0": 4
+        },
+        "position": {
+          "kind": "index",
+          "index": 1000
+        },
+        "outcome": "numerical-limit",
+        "statuses": {
+          "position": "numerical-limit:UNDERFLOW",
+          "loss": "numerical-limit:UNDERFLOW",
+          "gradient": "numerical-limit:UNDERFLOW"
+        },
+        "rejection": null,
+        "expected": {
+          "outcome": "numerical-limit",
+          "statuses": {
+            "position": "numerical-limit:UNDERFLOW",
+            "loss": "numerical-limit:UNDERFLOW",
+            "gradient": "numerical-limit:UNDERFLOW"
+          }
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "neighbour-a2-eta0.5-above@n=19",
+        "source": "declared",
+        "label": "a = 2, η = 0.5000000000000001 (adjacent double above 0.5), x0 = 4 (n = 19)",
+        "rationale": "From reference case neighbour-a2-eta0.5-above: report §12.3 (neighbouring floating-point values around each boundary); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+        "params": {
+          "a": 2,
+          "eta": 0.5000000000000001,
+          "x0": 4
+        },
+        "position": {
+          "kind": "index",
+          "index": 19
+        },
+        "outcome": "numerical-limit",
+        "statuses": {
+          "loss": "numerical-limit:UNDERFLOW"
+        },
+        "rejection": null,
+        "expected": {
+          "outcome": "numerical-limit",
+          "statuses": {
+            "loss": "numerical-limit:UNDERFLOW"
+          }
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "neighbour-a2-eta0.5-above@n=20",
+        "source": "declared",
+        "label": "a = 2, η = 0.5000000000000001 (adjacent double above 0.5), x0 = 4 (n = 20)",
+        "rationale": "From reference case neighbour-a2-eta0.5-above: report §12.3 (neighbouring floating-point values around each boundary); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+        "params": {
+          "a": 2,
+          "eta": 0.5000000000000001,
+          "x0": 4
+        },
+        "position": {
+          "kind": "index",
+          "index": 20
+        },
+        "outcome": "numerical-limit",
+        "statuses": {
+          "position": "valid:UNDERFLOW",
+          "loss": "numerical-limit:UNDERFLOW",
+          "gradient": "valid:UNDERFLOW"
+        },
+        "rejection": null,
+        "expected": {
+          "outcome": "numerical-limit",
+          "statuses": {
+            "position": "valid:UNDERFLOW",
+            "loss": "numerical-limit:UNDERFLOW",
+            "gradient": "valid:UNDERFLOW"
+          }
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "neighbour-a2-eta0.5-above@n=21",
+        "source": "declared",
+        "label": "a = 2, η = 0.5000000000000001 (adjacent double above 0.5), x0 = 4 (n = 21)",
+        "rationale": "From reference case neighbour-a2-eta0.5-above: report §12.3 (neighbouring floating-point values around each boundary); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+        "params": {
+          "a": 2,
+          "eta": 0.5000000000000001,
+          "x0": 4
+        },
+        "position": {
+          "kind": "index",
+          "index": 21
+        },
+        "outcome": "numerical-limit",
+        "statuses": {
+          "position": "numerical-limit:UNDERFLOW",
+          "loss": "numerical-limit:UNDERFLOW",
+          "gradient": "numerical-limit:UNDERFLOW"
+        },
+        "rejection": null,
+        "expected": {
+          "outcome": "numerical-limit",
+          "statuses": {
+            "position": "numerical-limit:UNDERFLOW",
+            "loss": "numerical-limit:UNDERFLOW",
+            "gradient": "numerical-limit:UNDERFLOW"
+          }
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "neighbour-a2-eta0.5-above@n=1000",
+        "source": "declared",
+        "label": "a = 2, η = 0.5000000000000001 (adjacent double above 0.5), x0 = 4 (n = 1000)",
+        "rationale": "From reference case neighbour-a2-eta0.5-above: report §12.3 (neighbouring floating-point values around each boundary); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+        "params": {
+          "a": 2,
+          "eta": 0.5000000000000001,
+          "x0": 4
+        },
+        "position": {
+          "kind": "index",
+          "index": 1000
+        },
+        "outcome": "numerical-limit",
+        "statuses": {
+          "position": "numerical-limit:UNDERFLOW",
+          "loss": "numerical-limit:UNDERFLOW",
+          "gradient": "numerical-limit:UNDERFLOW"
+        },
+        "rejection": null,
+        "expected": {
+          "outcome": "numerical-limit",
+          "statuses": {
+            "position": "numerical-limit:UNDERFLOW",
+            "loss": "numerical-limit:UNDERFLOW",
+            "gradient": "numerical-limit:UNDERFLOW"
+          }
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "neighbour-a5-eta0.2-below@n=10",
+        "source": "declared",
+        "label": "a = 5, η = 0.19999999999999998 (adjacent double below 0.2), x0 = 4 (n = 10)",
+        "rationale": "From reference case neighbour-a5-eta0.2-below: report §12.3 (neighbouring floating-point values around each boundary); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+        "params": {
+          "a": 5,
+          "eta": 0.19999999999999998,
+          "x0": 4
+        },
+        "position": {
+          "kind": "index",
+          "index": 10
+        },
+        "outcome": "valid",
+        "statuses": {
+          "loss": "valid:UNDERFLOW"
+        },
+        "rejection": null,
+        "expected": {
+          "outcome": "valid",
+          "statuses": {
+            "loss": "valid:UNDERFLOW"
+          }
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "neighbour-a5-eta0.2-below@n=100",
+        "source": "declared",
+        "label": "a = 5, η = 0.19999999999999998 (adjacent double below 0.2), x0 = 4 (n = 100)",
+        "rationale": "From reference case neighbour-a5-eta0.2-below: report §12.3 (neighbouring floating-point values around each boundary); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+        "params": {
+          "a": 5,
+          "eta": 0.19999999999999998,
+          "x0": 4
+        },
+        "position": {
+          "kind": "index",
+          "index": 100
+        },
+        "outcome": "numerical-limit",
+        "statuses": {
+          "position": "numerical-limit:UNDERFLOW",
+          "loss": "numerical-limit:UNDERFLOW",
+          "gradient": "numerical-limit:UNDERFLOW"
+        },
+        "rejection": null,
+        "expected": {
+          "outcome": "numerical-limit",
+          "statuses": {
+            "position": "numerical-limit:UNDERFLOW",
+            "loss": "numerical-limit:UNDERFLOW",
+            "gradient": "numerical-limit:UNDERFLOW"
+          }
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "neighbour-a5-eta0.2-below@n=1000",
+        "source": "declared",
+        "label": "a = 5, η = 0.19999999999999998 (adjacent double below 0.2), x0 = 4 (n = 1000)",
+        "rationale": "From reference case neighbour-a5-eta0.2-below: report §12.3 (neighbouring floating-point values around each boundary); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+        "params": {
+          "a": 5,
+          "eta": 0.19999999999999998,
+          "x0": 4
+        },
+        "position": {
+          "kind": "index",
+          "index": 1000
+        },
+        "outcome": "numerical-limit",
+        "statuses": {
+          "position": "numerical-limit:UNDERFLOW",
+          "loss": "numerical-limit:UNDERFLOW",
+          "gradient": "numerical-limit:UNDERFLOW"
+        },
+        "rejection": null,
+        "expected": {
+          "outcome": "numerical-limit",
+          "statuses": {
+            "position": "numerical-limit:UNDERFLOW",
+            "loss": "numerical-limit:UNDERFLOW",
+            "gradient": "numerical-limit:UNDERFLOW"
+          }
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "neighbour-a5-eta0.2-above@n=10",
+        "source": "declared",
+        "label": "a = 5, η = 0.20000000000000004 (adjacent double above 0.2), x0 = 4 (n = 10)",
+        "rationale": "From reference case neighbour-a5-eta0.2-above: report §12.3 (neighbouring floating-point values around each boundary); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+        "params": {
+          "a": 5,
+          "eta": 0.20000000000000004,
+          "x0": 4
+        },
+        "position": {
+          "kind": "index",
+          "index": 10
+        },
+        "outcome": "valid",
+        "statuses": {
+          "loss": "valid:UNDERFLOW"
+        },
+        "rejection": null,
+        "expected": {
+          "outcome": "valid",
+          "statuses": {
+            "loss": "valid:UNDERFLOW"
+          }
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "neighbour-a5-eta0.2-above@n=100",
+        "source": "declared",
+        "label": "a = 5, η = 0.20000000000000004 (adjacent double above 0.2), x0 = 4 (n = 100)",
+        "rationale": "From reference case neighbour-a5-eta0.2-above: report §12.3 (neighbouring floating-point values around each boundary); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+        "params": {
+          "a": 5,
+          "eta": 0.20000000000000004,
+          "x0": 4
+        },
+        "position": {
+          "kind": "index",
+          "index": 100
+        },
+        "outcome": "numerical-limit",
+        "statuses": {
+          "position": "numerical-limit:UNDERFLOW",
+          "loss": "numerical-limit:UNDERFLOW",
+          "gradient": "numerical-limit:UNDERFLOW"
+        },
+        "rejection": null,
+        "expected": {
+          "outcome": "numerical-limit",
+          "statuses": {
+            "position": "numerical-limit:UNDERFLOW",
+            "loss": "numerical-limit:UNDERFLOW",
+            "gradient": "numerical-limit:UNDERFLOW"
+          }
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "neighbour-a5-eta0.2-above@n=1000",
+        "source": "declared",
+        "label": "a = 5, η = 0.20000000000000004 (adjacent double above 0.2), x0 = 4 (n = 1000)",
+        "rationale": "From reference case neighbour-a5-eta0.2-above: report §12.3 (neighbouring floating-point values around each boundary); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+        "params": {
+          "a": 5,
+          "eta": 0.20000000000000004,
+          "x0": 4
+        },
+        "position": {
+          "kind": "index",
+          "index": 1000
+        },
+        "outcome": "numerical-limit",
+        "statuses": {
+          "position": "numerical-limit:UNDERFLOW",
+          "loss": "numerical-limit:UNDERFLOW",
+          "gradient": "numerical-limit:UNDERFLOW"
+        },
+        "rejection": null,
+        "expected": {
+          "outcome": "numerical-limit",
+          "statuses": {
+            "position": "numerical-limit:UNDERFLOW",
+            "loss": "numerical-limit:UNDERFLOW",
+            "gradient": "numerical-limit:UNDERFLOW"
+          }
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "a5-eta0.1@n=1000",
+        "source": "declared",
+        "label": "a = 5, η = 0.1, x0 = 4 (convergence interval 0 < η < 0.4) (n = 1000)",
+        "rationale": "From reference case a5-eta0.1: report §12.3 (a = 5 and positive step sizes); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+        "params": {
+          "a": 5,
+          "eta": 0.1,
+          "x0": 4
+        },
+        "position": {
+          "kind": "index",
+          "index": 1000
+        },
+        "outcome": "numerical-limit",
+        "statuses": {
+          "loss": "numerical-limit:UNDERFLOW"
+        },
+        "rejection": null,
+        "expected": {
+          "outcome": "numerical-limit",
+          "statuses": {
+            "loss": "numerical-limit:UNDERFLOW"
+          }
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "a5-eta0.3@n=1000",
+        "source": "declared",
+        "label": "a = 5, η = 0.3, x0 = 4 (convergence interval 0 < η < 0.4) (n = 1000)",
+        "rationale": "From reference case a5-eta0.3: report §12.3 (a = 5 and positive step sizes); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+        "params": {
+          "a": 5,
+          "eta": 0.3,
+          "x0": 4
+        },
+        "position": {
+          "kind": "index",
+          "index": 1000
+        },
+        "outcome": "numerical-limit",
+        "statuses": {
+          "loss": "numerical-limit:UNDERFLOW"
+        },
+        "rejection": null,
+        "expected": {
+          "outcome": "numerical-limit",
+          "statuses": {
+            "loss": "numerical-limit:UNDERFLOW"
+          }
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "a5-eta0.6@n=1000",
+        "source": "declared",
+        "label": "a = 5, η = 0.6, x0 = 4 (convergence interval 0 < η < 0.4) (n = 1000)",
+        "rationale": "From reference case a5-eta0.6: report §12.3 (a = 5 and positive step sizes); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+        "params": {
+          "a": 5,
+          "eta": 0.6,
+          "x0": 4
+        },
+        "position": {
+          "kind": "index",
+          "index": 1000
+        },
+        "outcome": "numerical-limit",
+        "statuses": {
+          "loss": "numerical-limit:OVERFLOW"
+        },
+        "rejection": null,
+        "expected": {
+          "outcome": "numerical-limit",
+          "statuses": {
+            "loss": "numerical-limit:OVERFLOW"
+          }
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "a5-eta0.6@n=510",
+        "source": "declared",
+        "label": "a = 5, η = 0.6, x0 = 4 (convergence interval 0 < η < 0.4) (n = 510)",
+        "rationale": "From reference case a5-eta0.6: report §12.3 (a = 5 and positive step sizes); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+        "params": {
+          "a": 5,
+          "eta": 0.6,
+          "x0": 4
+        },
+        "position": {
+          "kind": "index",
+          "index": 510
+        },
+        "outcome": "numerical-limit",
+        "statuses": {
+          "loss": "numerical-limit:OVERFLOW"
+        },
+        "rejection": null,
+        "expected": {
+          "outcome": "numerical-limit",
+          "statuses": {
+            "loss": "numerical-limit:OVERFLOW"
+          }
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "a5-eta0.8@n=1000",
+        "source": "declared",
+        "label": "a = 5, η = 0.8, x0 = 4 (convergence interval 0 < η < 0.4) (n = 1000)",
+        "rationale": "From reference case a5-eta0.8: report §12.3 (a = 5 and positive step sizes); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+        "params": {
+          "a": 5,
+          "eta": 0.8,
+          "x0": 4
+        },
+        "position": {
+          "kind": "index",
+          "index": 1000
+        },
+        "outcome": "numerical-limit",
+        "statuses": {
+          "position": "numerical-limit:OVERFLOW",
+          "loss": "numerical-limit:OVERFLOW",
+          "gradient": "numerical-limit:OVERFLOW"
+        },
+        "rejection": null,
+        "expected": {
+          "outcome": "numerical-limit",
+          "statuses": {
+            "position": "numerical-limit:OVERFLOW",
+            "loss": "numerical-limit:OVERFLOW",
+            "gradient": "numerical-limit:OVERFLOW"
+          }
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "a5-eta0.8@n=645",
+        "source": "declared",
+        "label": "a = 5, η = 0.8, x0 = 4 (convergence interval 0 < η < 0.4) (n = 645)",
+        "rationale": "From reference case a5-eta0.8: report §12.3 (a = 5 and positive step sizes); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+        "params": {
+          "a": 5,
+          "eta": 0.8,
+          "x0": 4
+        },
+        "position": {
+          "kind": "index",
+          "index": 645
+        },
+        "outcome": "numerical-limit",
+        "statuses": {
+          "position": "numerical-limit:OVERFLOW",
+          "loss": "numerical-limit:OVERFLOW",
+          "gradient": "numerical-limit:OVERFLOW"
+        },
+        "rejection": null,
+        "expected": {
+          "outcome": "numerical-limit",
+          "statuses": {
+            "position": "numerical-limit:OVERFLOW"
+          }
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "a5-eta0.8@n=322",
+        "source": "declared",
+        "label": "a = 5, η = 0.8, x0 = 4 (convergence interval 0 < η < 0.4) (n = 322)",
+        "rationale": "From reference case a5-eta0.8: report §12.3 (a = 5 and positive step sizes); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+        "params": {
+          "a": 5,
+          "eta": 0.8,
+          "x0": 4
+        },
+        "position": {
+          "kind": "index",
+          "index": 322
+        },
+        "outcome": "numerical-limit",
+        "statuses": {
+          "loss": "numerical-limit:OVERFLOW"
+        },
+        "rejection": null,
+        "expected": {
+          "outcome": "numerical-limit",
+          "statuses": {
+            "loss": "numerical-limit:OVERFLOW"
+          }
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "a5-eta0.8@n=644",
+        "source": "declared",
+        "label": "a = 5, η = 0.8, x0 = 4 (convergence interval 0 < η < 0.4) (n = 644)",
+        "rationale": "From reference case a5-eta0.8: report §12.3 (a = 5 and positive step sizes); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+        "params": {
+          "a": 5,
+          "eta": 0.8,
+          "x0": 4
+        },
+        "position": {
+          "kind": "index",
+          "index": 644
+        },
+        "outcome": "numerical-limit",
+        "statuses": {
+          "loss": "numerical-limit:OVERFLOW",
+          "gradient": "numerical-limit:OVERFLOW"
+        },
+        "rejection": null,
+        "expected": {
+          "outcome": "numerical-limit",
+          "statuses": {
+            "gradient": "numerical-limit:OVERFLOW"
+          }
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "overflow-multiplier-minus-3@n=321",
+        "source": "declared",
+        "label": "a = 10, η = 0.4, x0 = 10: |x_n| = 10·3^n exceeds Number.MAX_VALUE (n = 321)",
+        "rationale": "From reference case overflow-multiplier-minus-3: report §12.3 (growing sequence beyond representable bounds); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+        "params": {
+          "a": 10,
+          "eta": 0.4,
+          "x0": 10
+        },
+        "position": {
+          "kind": "index",
+          "index": 321
+        },
+        "outcome": "numerical-limit",
+        "statuses": {
+          "loss": "numerical-limit:OVERFLOW"
+        },
+        "rejection": null,
+        "expected": {
+          "outcome": "numerical-limit",
+          "statuses": {
+            "loss": "numerical-limit:OVERFLOW"
+          }
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "overflow-multiplier-minus-3@n=641",
+        "source": "declared",
+        "label": "a = 10, η = 0.4, x0 = 10: |x_n| = 10·3^n exceeds Number.MAX_VALUE (n = 641)",
+        "rationale": "From reference case overflow-multiplier-minus-3: report §12.3 (growing sequence beyond representable bounds); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+        "params": {
+          "a": 10,
+          "eta": 0.4,
+          "x0": 10
+        },
+        "position": {
+          "kind": "index",
+          "index": 641
+        },
+        "outcome": "numerical-limit",
+        "statuses": {
+          "loss": "numerical-limit:OVERFLOW"
+        },
+        "rejection": null,
+        "expected": {
+          "outcome": "numerical-limit",
+          "statuses": {
+            "loss": "numerical-limit:OVERFLOW"
+          }
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "overflow-multiplier-minus-3@n=642",
+        "source": "declared",
+        "label": "a = 10, η = 0.4, x0 = 10: |x_n| = 10·3^n exceeds Number.MAX_VALUE (n = 642)",
+        "rationale": "From reference case overflow-multiplier-minus-3: report §12.3 (growing sequence beyond representable bounds); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+        "params": {
+          "a": 10,
+          "eta": 0.4,
+          "x0": 10
+        },
+        "position": {
+          "kind": "index",
+          "index": 642
+        },
+        "outcome": "numerical-limit",
+        "statuses": {
+          "loss": "numerical-limit:OVERFLOW",
+          "gradient": "numerical-limit:OVERFLOW"
+        },
+        "rejection": null,
+        "expected": {
+          "outcome": "numerical-limit",
+          "statuses": {
+            "loss": "numerical-limit:OVERFLOW",
+            "gradient": "numerical-limit:OVERFLOW"
+          }
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "overflow-multiplier-minus-3@n=643",
+        "source": "declared",
+        "label": "a = 10, η = 0.4, x0 = 10: |x_n| = 10·3^n exceeds Number.MAX_VALUE (n = 643)",
+        "rationale": "From reference case overflow-multiplier-minus-3: report §12.3 (growing sequence beyond representable bounds); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+        "params": {
+          "a": 10,
+          "eta": 0.4,
+          "x0": 10
+        },
+        "position": {
+          "kind": "index",
+          "index": 643
+        },
+        "outcome": "numerical-limit",
+        "statuses": {
+          "loss": "numerical-limit:OVERFLOW",
+          "gradient": "numerical-limit:OVERFLOW"
+        },
+        "rejection": null,
+        "expected": {
+          "outcome": "numerical-limit",
+          "statuses": {
+            "loss": "numerical-limit:OVERFLOW",
+            "gradient": "numerical-limit:OVERFLOW"
+          }
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "overflow-multiplier-minus-3@n=644",
+        "source": "declared",
+        "label": "a = 10, η = 0.4, x0 = 10: |x_n| = 10·3^n exceeds Number.MAX_VALUE (n = 644)",
+        "rationale": "From reference case overflow-multiplier-minus-3: report §12.3 (growing sequence beyond representable bounds); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+        "params": {
+          "a": 10,
+          "eta": 0.4,
+          "x0": 10
+        },
+        "position": {
+          "kind": "index",
+          "index": 644
+        },
+        "outcome": "numerical-limit",
+        "statuses": {
+          "position": "numerical-limit:OVERFLOW",
+          "loss": "numerical-limit:OVERFLOW",
+          "gradient": "numerical-limit:OVERFLOW"
+        },
+        "rejection": null,
+        "expected": {
+          "outcome": "numerical-limit",
+          "statuses": {
+            "position": "numerical-limit:OVERFLOW",
+            "loss": "numerical-limit:OVERFLOW",
+            "gradient": "numerical-limit:OVERFLOW"
+          }
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "overflow-multiplier-minus-3@n=1000",
+        "source": "declared",
+        "label": "a = 10, η = 0.4, x0 = 10: |x_n| = 10·3^n exceeds Number.MAX_VALUE (n = 1000)",
+        "rationale": "From reference case overflow-multiplier-minus-3: report §12.3 (growing sequence beyond representable bounds); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+        "params": {
+          "a": 10,
+          "eta": 0.4,
+          "x0": 10
+        },
+        "position": {
+          "kind": "index",
+          "index": 1000
+        },
+        "outcome": "numerical-limit",
+        "statuses": {
+          "position": "numerical-limit:OVERFLOW",
+          "loss": "numerical-limit:OVERFLOW",
+          "gradient": "numerical-limit:OVERFLOW"
+        },
+        "rejection": null,
+        "expected": {
+          "outcome": "numerical-limit",
+          "statuses": {
+            "position": "numerical-limit:OVERFLOW",
+            "loss": "numerical-limit:OVERFLOW",
+            "gradient": "numerical-limit:OVERFLOW"
+          }
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "overflow-multiplier-minus-3@n=644.11",
+        "source": "declared",
+        "label": "a = 10, η = 0.4, x0 = 10: |x_n| = 10·3^n exceeds Number.MAX_VALUE (n = 644)",
+        "rationale": "From reference case overflow-multiplier-minus-3: report §12.3 (growing sequence beyond representable bounds); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+        "params": {
+          "a": 10,
+          "eta": 0.4,
+          "x0": 10
+        },
+        "position": {
+          "kind": "index",
+          "index": 644
+        },
+        "outcome": "numerical-limit",
+        "statuses": {
+          "position": "numerical-limit:OVERFLOW",
+          "loss": "numerical-limit:OVERFLOW",
+          "gradient": "numerical-limit:OVERFLOW"
+        },
+        "rejection": null,
+        "expected": {
+          "outcome": "numerical-limit",
+          "statuses": {
+            "position": "numerical-limit:OVERFLOW"
+          }
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "overflow-multiplier-minus-3@n=321.13",
+        "source": "declared",
+        "label": "a = 10, η = 0.4, x0 = 10: |x_n| = 10·3^n exceeds Number.MAX_VALUE (n = 321)",
+        "rationale": "From reference case overflow-multiplier-minus-3: report §12.3 (growing sequence beyond representable bounds); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+        "params": {
+          "a": 10,
+          "eta": 0.4,
+          "x0": 10
+        },
+        "position": {
+          "kind": "index",
+          "index": 321
+        },
+        "outcome": "numerical-limit",
+        "statuses": {
+          "loss": "numerical-limit:OVERFLOW"
+        },
+        "rejection": null,
+        "expected": {
+          "outcome": "numerical-limit",
+          "statuses": {
+            "loss": "numerical-limit:OVERFLOW"
+          }
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "overflow-multiplier-minus-3@n=642.15",
+        "source": "declared",
+        "label": "a = 10, η = 0.4, x0 = 10: |x_n| = 10·3^n exceeds Number.MAX_VALUE (n = 642)",
+        "rationale": "From reference case overflow-multiplier-minus-3: report §12.3 (growing sequence beyond representable bounds); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+        "params": {
+          "a": 10,
+          "eta": 0.4,
+          "x0": 10
+        },
+        "position": {
+          "kind": "index",
+          "index": 642
+        },
+        "outcome": "numerical-limit",
+        "statuses": {
+          "loss": "numerical-limit:OVERFLOW",
+          "gradient": "numerical-limit:OVERFLOW"
+        },
+        "rejection": null,
+        "expected": {
+          "outcome": "numerical-limit",
+          "statuses": {
+            "gradient": "numerical-limit:OVERFLOW"
+          }
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "overflow-small-start@n=646",
+        "source": "declared",
+        "label": "a = 10, η = 0.4, x0 = 0.001: 3^n overflows before 0.001·3^n does (n = 646)",
+        "rationale": "From reference case overflow-small-start: report §12.3 (growing sequence beyond representable bounds); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+        "params": {
+          "a": 10,
+          "eta": 0.4,
+          "x0": 0.001
+        },
+        "position": {
+          "kind": "index",
+          "index": 646
+        },
+        "outcome": "numerical-limit",
+        "statuses": {
+          "loss": "numerical-limit:OVERFLOW"
+        },
+        "rejection": null,
+        "expected": {
+          "outcome": "numerical-limit",
+          "statuses": {
+            "loss": "numerical-limit:OVERFLOW"
+          }
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "overflow-small-start@n=647",
+        "source": "declared",
+        "label": "a = 10, η = 0.4, x0 = 0.001: 3^n overflows before 0.001·3^n does (n = 647)",
+        "rationale": "From reference case overflow-small-start: report §12.3 (growing sequence beyond representable bounds); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+        "params": {
+          "a": 10,
+          "eta": 0.4,
+          "x0": 0.001
+        },
+        "position": {
+          "kind": "index",
+          "index": 647
+        },
+        "outcome": "numerical-limit",
+        "statuses": {
+          "loss": "numerical-limit:OVERFLOW"
+        },
+        "rejection": null,
+        "expected": {
+          "outcome": "numerical-limit",
+          "statuses": {
+            "loss": "numerical-limit:OVERFLOW"
+          }
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "overflow-small-start@n=650",
+        "source": "declared",
+        "label": "a = 10, η = 0.4, x0 = 0.001: 3^n overflows before 0.001·3^n does (n = 650)",
+        "rationale": "From reference case overflow-small-start: report §12.3 (growing sequence beyond representable bounds); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+        "params": {
+          "a": 10,
+          "eta": 0.4,
+          "x0": 0.001
+        },
+        "position": {
+          "kind": "index",
+          "index": 650
+        },
+        "outcome": "numerical-limit",
+        "statuses": {
+          "loss": "numerical-limit:OVERFLOW"
+        },
+        "rejection": null,
+        "expected": {
+          "outcome": "numerical-limit",
+          "statuses": {
+            "loss": "numerical-limit:OVERFLOW"
+          }
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "overflow-small-start@n=652",
+        "source": "declared",
+        "label": "a = 10, η = 0.4, x0 = 0.001: 3^n overflows before 0.001·3^n does (n = 652)",
+        "rationale": "From reference case overflow-small-start: report §12.3 (growing sequence beyond representable bounds); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+        "params": {
+          "a": 10,
+          "eta": 0.4,
+          "x0": 0.001
+        },
+        "position": {
+          "kind": "index",
+          "index": 652
+        },
+        "outcome": "numerical-limit",
+        "statuses": {
+          "loss": "numerical-limit:OVERFLOW",
+          "gradient": "numerical-limit:OVERFLOW"
+        },
+        "rejection": null,
+        "expected": {
+          "outcome": "numerical-limit",
+          "statuses": {
+            "loss": "numerical-limit:OVERFLOW",
+            "gradient": "numerical-limit:OVERFLOW"
+          }
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "overflow-small-start@n=653",
+        "source": "declared",
+        "label": "a = 10, η = 0.4, x0 = 0.001: 3^n overflows before 0.001·3^n does (n = 653)",
+        "rationale": "From reference case overflow-small-start: report §12.3 (growing sequence beyond representable bounds); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+        "params": {
+          "a": 10,
+          "eta": 0.4,
+          "x0": 0.001
+        },
+        "position": {
+          "kind": "index",
+          "index": 653
+        },
+        "outcome": "numerical-limit",
+        "statuses": {
+          "position": "numerical-limit:OVERFLOW",
+          "loss": "numerical-limit:OVERFLOW",
+          "gradient": "numerical-limit:OVERFLOW"
+        },
+        "rejection": null,
+        "expected": {
+          "outcome": "numerical-limit",
+          "statuses": {
+            "position": "numerical-limit:OVERFLOW",
+            "loss": "numerical-limit:OVERFLOW",
+            "gradient": "numerical-limit:OVERFLOW"
+          }
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "overflow-small-start@n=1000",
+        "source": "declared",
+        "label": "a = 10, η = 0.4, x0 = 0.001: 3^n overflows before 0.001·3^n does (n = 1000)",
+        "rationale": "From reference case overflow-small-start: report §12.3 (growing sequence beyond representable bounds); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+        "params": {
+          "a": 10,
+          "eta": 0.4,
+          "x0": 0.001
+        },
+        "position": {
+          "kind": "index",
+          "index": 1000
+        },
+        "outcome": "numerical-limit",
+        "statuses": {
+          "position": "numerical-limit:OVERFLOW",
+          "loss": "numerical-limit:OVERFLOW",
+          "gradient": "numerical-limit:OVERFLOW"
+        },
+        "rejection": null,
+        "expected": {
+          "outcome": "numerical-limit",
+          "statuses": {
+            "position": "numerical-limit:OVERFLOW",
+            "loss": "numerical-limit:OVERFLOW",
+            "gradient": "numerical-limit:OVERFLOW"
+          }
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "overflow-small-start@n=653.9",
+        "source": "declared",
+        "label": "a = 10, η = 0.4, x0 = 0.001: 3^n overflows before 0.001·3^n does (n = 653)",
+        "rationale": "From reference case overflow-small-start: report §12.3 (growing sequence beyond representable bounds); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+        "params": {
+          "a": 10,
+          "eta": 0.4,
+          "x0": 0.001
+        },
+        "position": {
+          "kind": "index",
+          "index": 653
+        },
+        "outcome": "numerical-limit",
+        "statuses": {
+          "position": "numerical-limit:OVERFLOW",
+          "loss": "numerical-limit:OVERFLOW",
+          "gradient": "numerical-limit:OVERFLOW"
+        },
+        "rejection": null,
+        "expected": {
+          "outcome": "numerical-limit",
+          "statuses": {
+            "position": "numerical-limit:OVERFLOW"
+          }
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "overflow-small-start@n=329",
+        "source": "declared",
+        "label": "a = 10, η = 0.4, x0 = 0.001: 3^n overflows before 0.001·3^n does (n = 329)",
+        "rationale": "From reference case overflow-small-start: report §12.3 (growing sequence beyond representable bounds); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+        "params": {
+          "a": 10,
+          "eta": 0.4,
+          "x0": 0.001
+        },
+        "position": {
+          "kind": "index",
+          "index": 329
+        },
+        "outcome": "numerical-limit",
+        "statuses": {
+          "loss": "numerical-limit:OVERFLOW"
+        },
+        "rejection": null,
+        "expected": {
+          "outcome": "numerical-limit",
+          "statuses": {
+            "loss": "numerical-limit:OVERFLOW"
+          }
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "overflow-small-start@n=651",
+        "source": "declared",
+        "label": "a = 10, η = 0.4, x0 = 0.001: 3^n overflows before 0.001·3^n does (n = 651)",
+        "rationale": "From reference case overflow-small-start: report §12.3 (growing sequence beyond representable bounds); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+        "params": {
+          "a": 10,
+          "eta": 0.4,
+          "x0": 0.001
+        },
+        "position": {
+          "kind": "index",
+          "index": 651
+        },
+        "outcome": "numerical-limit",
+        "statuses": {
+          "loss": "numerical-limit:OVERFLOW",
+          "gradient": "numerical-limit:OVERFLOW"
+        },
+        "rejection": null,
+        "expected": {
+          "outcome": "numerical-limit",
+          "statuses": {
+            "gradient": "numerical-limit:OVERFLOW"
+          }
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "overflow-negative-start@n=642",
+        "source": "declared",
+        "label": "a = 10, η = 0.4, x0 = −10: sign alternates up to the last finite iterate (n = 642)",
+        "rationale": "From reference case overflow-negative-start: report §12.3 (growing sequence beyond representable bounds); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+        "params": {
+          "a": 10,
+          "eta": 0.4,
+          "x0": -10
+        },
+        "position": {
+          "kind": "index",
+          "index": 642
+        },
+        "outcome": "numerical-limit",
+        "statuses": {
+          "loss": "numerical-limit:OVERFLOW",
+          "gradient": "numerical-limit:OVERFLOW"
+        },
+        "rejection": null,
+        "expected": {
+          "outcome": "numerical-limit",
+          "statuses": {
+            "loss": "numerical-limit:OVERFLOW",
+            "gradient": "numerical-limit:OVERFLOW"
+          }
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "overflow-negative-start@n=643",
+        "source": "declared",
+        "label": "a = 10, η = 0.4, x0 = −10: sign alternates up to the last finite iterate (n = 643)",
+        "rationale": "From reference case overflow-negative-start: report §12.3 (growing sequence beyond representable bounds); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+        "params": {
+          "a": 10,
+          "eta": 0.4,
+          "x0": -10
+        },
+        "position": {
+          "kind": "index",
+          "index": 643
+        },
+        "outcome": "numerical-limit",
+        "statuses": {
+          "loss": "numerical-limit:OVERFLOW",
+          "gradient": "numerical-limit:OVERFLOW"
+        },
+        "rejection": null,
+        "expected": {
+          "outcome": "numerical-limit",
+          "statuses": {
+            "loss": "numerical-limit:OVERFLOW",
+            "gradient": "numerical-limit:OVERFLOW"
+          }
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "overflow-negative-start@n=644",
+        "source": "declared",
+        "label": "a = 10, η = 0.4, x0 = −10: sign alternates up to the last finite iterate (n = 644)",
+        "rationale": "From reference case overflow-negative-start: report §12.3 (growing sequence beyond representable bounds); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+        "params": {
+          "a": 10,
+          "eta": 0.4,
+          "x0": -10
+        },
+        "position": {
+          "kind": "index",
+          "index": 644
+        },
+        "outcome": "numerical-limit",
+        "statuses": {
+          "position": "numerical-limit:OVERFLOW",
+          "loss": "numerical-limit:OVERFLOW",
+          "gradient": "numerical-limit:OVERFLOW"
+        },
+        "rejection": null,
+        "expected": {
+          "outcome": "numerical-limit",
+          "statuses": {
+            "position": "numerical-limit:OVERFLOW",
+            "loss": "numerical-limit:OVERFLOW",
+            "gradient": "numerical-limit:OVERFLOW"
+          }
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "overflow-negative-start@n=644.6",
+        "source": "declared",
+        "label": "a = 10, η = 0.4, x0 = −10: sign alternates up to the last finite iterate (n = 644)",
+        "rationale": "From reference case overflow-negative-start: report §12.3 (growing sequence beyond representable bounds); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+        "params": {
+          "a": 10,
+          "eta": 0.4,
+          "x0": -10
+        },
+        "position": {
+          "kind": "index",
+          "index": 644
+        },
+        "outcome": "numerical-limit",
+        "statuses": {
+          "position": "numerical-limit:OVERFLOW",
+          "loss": "numerical-limit:OVERFLOW",
+          "gradient": "numerical-limit:OVERFLOW"
+        },
+        "rejection": null,
+        "expected": {
+          "outcome": "numerical-limit",
+          "statuses": {
+            "position": "numerical-limit:OVERFLOW"
+          }
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "overflow-negative-start@n=321",
+        "source": "declared",
+        "label": "a = 10, η = 0.4, x0 = −10: sign alternates up to the last finite iterate (n = 321)",
+        "rationale": "From reference case overflow-negative-start: report §12.3 (growing sequence beyond representable bounds); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+        "params": {
+          "a": 10,
+          "eta": 0.4,
+          "x0": -10
+        },
+        "position": {
+          "kind": "index",
+          "index": 321
+        },
+        "outcome": "numerical-limit",
+        "statuses": {
+          "loss": "numerical-limit:OVERFLOW"
+        },
+        "rejection": null,
+        "expected": {
+          "outcome": "numerical-limit",
+          "statuses": {
+            "loss": "numerical-limit:OVERFLOW"
+          }
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "overflow-negative-start@n=642.10",
+        "source": "declared",
+        "label": "a = 10, η = 0.4, x0 = −10: sign alternates up to the last finite iterate (n = 642)",
+        "rationale": "From reference case overflow-negative-start: report §12.3 (growing sequence beyond representable bounds); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+        "params": {
+          "a": 10,
+          "eta": 0.4,
+          "x0": -10
+        },
+        "position": {
+          "kind": "index",
+          "index": 642
+        },
+        "outcome": "numerical-limit",
+        "statuses": {
+          "loss": "numerical-limit:OVERFLOW",
+          "gradient": "numerical-limit:OVERFLOW"
+        },
+        "rejection": null,
+        "expected": {
+          "outcome": "numerical-limit",
+          "statuses": {
+            "gradient": "numerical-limit:OVERFLOW"
+          }
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "underflow-multiplier-0.25@n=257",
+        "source": "declared",
+        "label": "a = 2, η = 0.375 (multiplier 0.25), x0 = 4: x_n = 2^(2−2n) through the subnormal range to underflow (n = 257)",
+        "rationale": "From reference case underflow-multiplier-0.25: report §12.3 (underflow as a numerical approximation); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+        "params": {
+          "a": 2,
+          "eta": 0.375,
+          "x0": 4
+        },
+        "position": {
+          "kind": "index",
+          "index": 257
+        },
+        "outcome": "valid",
+        "statuses": {
+          "loss": "valid:UNDERFLOW"
+        },
+        "rejection": null,
+        "expected": {
+          "outcome": "valid",
+          "statuses": {
+            "loss": "valid:UNDERFLOW"
+          }
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "underflow-multiplier-0.25@n=269",
+        "source": "declared",
+        "label": "a = 2, η = 0.375 (multiplier 0.25), x0 = 4: x_n = 2^(2−2n) through the subnormal range to underflow (n = 269)",
+        "rationale": "From reference case underflow-multiplier-0.25: report §12.3 (underflow as a numerical approximation); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+        "params": {
+          "a": 2,
+          "eta": 0.375,
+          "x0": 4
+        },
+        "position": {
+          "kind": "index",
+          "index": 269
+        },
+        "outcome": "valid",
+        "statuses": {
+          "loss": "valid:UNDERFLOW"
+        },
+        "rejection": null,
+        "expected": {
+          "outcome": "valid",
+          "statuses": {
+            "loss": "valid:UNDERFLOW"
+          }
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "underflow-multiplier-0.25@n=270",
+        "source": "declared",
+        "label": "a = 2, η = 0.375 (multiplier 0.25), x0 = 4: x_n = 2^(2−2n) through the subnormal range to underflow (n = 270)",
+        "rationale": "From reference case underflow-multiplier-0.25: report §12.3 (underflow as a numerical approximation); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+        "params": {
+          "a": 2,
+          "eta": 0.375,
+          "x0": 4
+        },
+        "position": {
+          "kind": "index",
+          "index": 270
+        },
+        "outcome": "numerical-limit",
+        "statuses": {
+          "loss": "numerical-limit:UNDERFLOW"
+        },
+        "rejection": null,
+        "expected": {
+          "outcome": "numerical-limit",
+          "statuses": {
+            "loss": "numerical-limit:UNDERFLOW"
+          }
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "underflow-multiplier-0.25@n=511",
+        "source": "declared",
+        "label": "a = 2, η = 0.375 (multiplier 0.25), x0 = 4: x_n = 2^(2−2n) through the subnormal range to underflow (n = 511)",
+        "rationale": "From reference case underflow-multiplier-0.25: report §12.3 (underflow as a numerical approximation); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+        "params": {
+          "a": 2,
+          "eta": 0.375,
+          "x0": 4
+        },
+        "position": {
+          "kind": "index",
+          "index": 511
+        },
+        "outcome": "numerical-limit",
+        "statuses": {
+          "loss": "numerical-limit:UNDERFLOW"
+        },
+        "rejection": null,
+        "expected": {
+          "outcome": "numerical-limit",
+          "statuses": {
+            "loss": "numerical-limit:UNDERFLOW"
+          }
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "underflow-multiplier-0.25@n=512",
+        "source": "declared",
+        "label": "a = 2, η = 0.375 (multiplier 0.25), x0 = 4: x_n = 2^(2−2n) through the subnormal range to underflow (n = 512)",
+        "rationale": "From reference case underflow-multiplier-0.25: report §12.3 (underflow as a numerical approximation); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+        "params": {
+          "a": 2,
+          "eta": 0.375,
+          "x0": 4
+        },
+        "position": {
+          "kind": "index",
+          "index": 512
+        },
+        "outcome": "numerical-limit",
+        "statuses": {
+          "loss": "numerical-limit:UNDERFLOW"
+        },
+        "rejection": null,
+        "expected": {
+          "outcome": "numerical-limit",
+          "statuses": {
+            "loss": "numerical-limit:UNDERFLOW"
+          }
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "underflow-multiplier-0.25@n=513",
+        "source": "declared",
+        "label": "a = 2, η = 0.375 (multiplier 0.25), x0 = 4: x_n = 2^(2−2n) through the subnormal range to underflow (n = 513)",
+        "rationale": "From reference case underflow-multiplier-0.25: report §12.3 (underflow as a numerical approximation); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+        "params": {
+          "a": 2,
+          "eta": 0.375,
+          "x0": 4
+        },
+        "position": {
+          "kind": "index",
+          "index": 513
+        },
+        "outcome": "numerical-limit",
+        "statuses": {
+          "position": "valid:UNDERFLOW",
+          "loss": "numerical-limit:UNDERFLOW",
+          "gradient": "valid:UNDERFLOW"
+        },
+        "rejection": null,
+        "expected": {
+          "outcome": "numerical-limit",
+          "statuses": {
+            "position": "valid:UNDERFLOW",
+            "loss": "numerical-limit:UNDERFLOW",
+            "gradient": "valid:UNDERFLOW"
+          }
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "underflow-multiplier-0.25@n=537",
+        "source": "declared",
+        "label": "a = 2, η = 0.375 (multiplier 0.25), x0 = 4: x_n = 2^(2−2n) through the subnormal range to underflow (n = 537)",
+        "rationale": "From reference case underflow-multiplier-0.25: report §12.3 (underflow as a numerical approximation); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+        "params": {
+          "a": 2,
+          "eta": 0.375,
+          "x0": 4
+        },
+        "position": {
+          "kind": "index",
+          "index": 537
+        },
+        "outcome": "numerical-limit",
+        "statuses": {
+          "position": "valid:UNDERFLOW",
+          "loss": "numerical-limit:UNDERFLOW",
+          "gradient": "valid:UNDERFLOW"
+        },
+        "rejection": null,
+        "expected": {
+          "outcome": "numerical-limit",
+          "statuses": {
+            "position": "valid:UNDERFLOW",
+            "loss": "numerical-limit:UNDERFLOW",
+            "gradient": "valid:UNDERFLOW"
+          }
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "underflow-multiplier-0.25@n=538",
+        "source": "declared",
+        "label": "a = 2, η = 0.375 (multiplier 0.25), x0 = 4: x_n = 2^(2−2n) through the subnormal range to underflow (n = 538)",
+        "rationale": "From reference case underflow-multiplier-0.25: report §12.3 (underflow as a numerical approximation); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+        "params": {
+          "a": 2,
+          "eta": 0.375,
+          "x0": 4
+        },
+        "position": {
+          "kind": "index",
+          "index": 538
+        },
+        "outcome": "numerical-limit",
+        "statuses": {
+          "position": "valid:UNDERFLOW",
+          "loss": "numerical-limit:UNDERFLOW",
+          "gradient": "valid:UNDERFLOW"
+        },
+        "rejection": null,
+        "expected": {
+          "outcome": "numerical-limit",
+          "statuses": {
+            "position": "valid:UNDERFLOW",
+            "loss": "numerical-limit:UNDERFLOW",
+            "gradient": "valid:UNDERFLOW"
+          }
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "underflow-multiplier-0.25@n=539",
+        "source": "declared",
+        "label": "a = 2, η = 0.375 (multiplier 0.25), x0 = 4: x_n = 2^(2−2n) through the subnormal range to underflow (n = 539)",
+        "rationale": "From reference case underflow-multiplier-0.25: report §12.3 (underflow as a numerical approximation); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+        "params": {
+          "a": 2,
+          "eta": 0.375,
+          "x0": 4
+        },
+        "position": {
+          "kind": "index",
+          "index": 539
+        },
+        "outcome": "numerical-limit",
+        "statuses": {
+          "position": "numerical-limit:UNDERFLOW",
+          "loss": "numerical-limit:UNDERFLOW",
+          "gradient": "numerical-limit:UNDERFLOW"
+        },
+        "rejection": null,
+        "expected": {
+          "outcome": "numerical-limit",
+          "statuses": {
+            "position": "numerical-limit:UNDERFLOW",
+            "loss": "numerical-limit:UNDERFLOW",
+            "gradient": "numerical-limit:UNDERFLOW"
+          }
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "underflow-multiplier-0.25@n=540",
+        "source": "declared",
+        "label": "a = 2, η = 0.375 (multiplier 0.25), x0 = 4: x_n = 2^(2−2n) through the subnormal range to underflow (n = 540)",
+        "rationale": "From reference case underflow-multiplier-0.25: report §12.3 (underflow as a numerical approximation); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+        "params": {
+          "a": 2,
+          "eta": 0.375,
+          "x0": 4
+        },
+        "position": {
+          "kind": "index",
+          "index": 540
+        },
+        "outcome": "numerical-limit",
+        "statuses": {
+          "position": "numerical-limit:UNDERFLOW",
+          "loss": "numerical-limit:UNDERFLOW",
+          "gradient": "numerical-limit:UNDERFLOW"
+        },
+        "rejection": null,
+        "expected": {
+          "outcome": "numerical-limit",
+          "statuses": {
+            "position": "numerical-limit:UNDERFLOW",
+            "loss": "numerical-limit:UNDERFLOW",
+            "gradient": "numerical-limit:UNDERFLOW"
+          }
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "underflow-multiplier-0.25@n=1000",
+        "source": "declared",
+        "label": "a = 2, η = 0.375 (multiplier 0.25), x0 = 4: x_n = 2^(2−2n) through the subnormal range to underflow (n = 1000)",
+        "rationale": "From reference case underflow-multiplier-0.25: report §12.3 (underflow as a numerical approximation); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+        "params": {
+          "a": 2,
+          "eta": 0.375,
+          "x0": 4
+        },
+        "position": {
+          "kind": "index",
+          "index": 1000
+        },
+        "outcome": "numerical-limit",
+        "statuses": {
+          "position": "numerical-limit:UNDERFLOW",
+          "loss": "numerical-limit:UNDERFLOW",
+          "gradient": "numerical-limit:UNDERFLOW"
+        },
+        "rejection": null,
+        "expected": {
+          "outcome": "numerical-limit",
+          "statuses": {
+            "position": "numerical-limit:UNDERFLOW",
+            "loss": "numerical-limit:UNDERFLOW",
+            "gradient": "numerical-limit:UNDERFLOW"
+          }
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "underflow-inexact-subnormal@n=512",
+        "source": "declared",
+        "label": "a = 2, η = 0.375, x0 = −3: subnormal values that are not exactly representable (n = 512)",
+        "rationale": "From reference case underflow-inexact-subnormal: report §12.3 (underflow as a numerical approximation); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+        "params": {
+          "a": 2,
+          "eta": 0.375,
+          "x0": -3
+        },
+        "position": {
+          "kind": "index",
+          "index": 512
+        },
+        "outcome": "numerical-limit",
+        "statuses": {
+          "position": "valid:UNDERFLOW",
+          "loss": "numerical-limit:UNDERFLOW"
+        },
+        "rejection": null,
+        "expected": {
+          "outcome": "numerical-limit",
+          "statuses": {
+            "position": "valid:UNDERFLOW",
+            "loss": "numerical-limit:UNDERFLOW"
+          }
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "underflow-inexact-subnormal@n=513",
+        "source": "declared",
+        "label": "a = 2, η = 0.375, x0 = −3: subnormal values that are not exactly representable (n = 513)",
+        "rationale": "From reference case underflow-inexact-subnormal: report §12.3 (underflow as a numerical approximation); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+        "params": {
+          "a": 2,
+          "eta": 0.375,
+          "x0": -3
+        },
+        "position": {
+          "kind": "index",
+          "index": 513
+        },
+        "outcome": "numerical-limit",
+        "statuses": {
+          "position": "valid:UNDERFLOW",
+          "loss": "numerical-limit:UNDERFLOW",
+          "gradient": "valid:UNDERFLOW"
+        },
+        "rejection": null,
+        "expected": {
+          "outcome": "numerical-limit",
+          "statuses": {
+            "position": "valid:UNDERFLOW",
+            "loss": "numerical-limit:UNDERFLOW",
+            "gradient": "valid:UNDERFLOW"
+          }
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "underflow-inexact-subnormal@n=536",
+        "source": "declared",
+        "label": "a = 2, η = 0.375, x0 = −3: subnormal values that are not exactly representable (n = 536)",
+        "rationale": "From reference case underflow-inexact-subnormal: report §12.3 (underflow as a numerical approximation); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+        "params": {
+          "a": 2,
+          "eta": 0.375,
+          "x0": -3
+        },
+        "position": {
+          "kind": "index",
+          "index": 536
+        },
+        "outcome": "numerical-limit",
+        "statuses": {
+          "position": "valid:UNDERFLOW",
+          "loss": "numerical-limit:UNDERFLOW",
+          "gradient": "valid:UNDERFLOW"
+        },
+        "rejection": null,
+        "expected": {
+          "outcome": "numerical-limit",
+          "statuses": {
+            "position": "valid:UNDERFLOW",
+            "loss": "numerical-limit:UNDERFLOW",
+            "gradient": "valid:UNDERFLOW"
+          }
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "underflow-inexact-subnormal@n=537",
+        "source": "declared",
+        "label": "a = 2, η = 0.375, x0 = −3: subnormal values that are not exactly representable (n = 537)",
+        "rationale": "From reference case underflow-inexact-subnormal: report §12.3 (underflow as a numerical approximation); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+        "params": {
+          "a": 2,
+          "eta": 0.375,
+          "x0": -3
+        },
+        "position": {
+          "kind": "index",
+          "index": 537
+        },
+        "outcome": "numerical-limit",
+        "statuses": {
+          "position": "valid:UNDERFLOW",
+          "loss": "numerical-limit:UNDERFLOW",
+          "gradient": "valid:UNDERFLOW"
+        },
+        "rejection": null,
+        "expected": {
+          "outcome": "numerical-limit",
+          "statuses": {
+            "position": "valid:UNDERFLOW",
+            "loss": "numerical-limit:UNDERFLOW",
+            "gradient": "valid:UNDERFLOW"
+          }
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "underflow-inexact-subnormal@n=538",
+        "source": "declared",
+        "label": "a = 2, η = 0.375, x0 = −3: subnormal values that are not exactly representable (n = 538)",
+        "rationale": "From reference case underflow-inexact-subnormal: report §12.3 (underflow as a numerical approximation); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+        "params": {
+          "a": 2,
+          "eta": 0.375,
+          "x0": -3
+        },
+        "position": {
+          "kind": "index",
+          "index": 538
+        },
+        "outcome": "numerical-limit",
+        "statuses": {
+          "position": "valid:UNDERFLOW",
+          "loss": "numerical-limit:UNDERFLOW",
+          "gradient": "valid:UNDERFLOW"
+        },
+        "rejection": null,
+        "expected": {
+          "outcome": "numerical-limit",
+          "statuses": {
+            "position": "valid:UNDERFLOW",
+            "loss": "numerical-limit:UNDERFLOW",
+            "gradient": "valid:UNDERFLOW"
+          }
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "underflow-inexact-subnormal@n=539",
+        "source": "declared",
+        "label": "a = 2, η = 0.375, x0 = −3: subnormal values that are not exactly representable (n = 539)",
+        "rationale": "From reference case underflow-inexact-subnormal: report §12.3 (underflow as a numerical approximation); expected values derived independently by exact rational arithmetic (tests/reference/oracles/quadratic.ts)",
+        "params": {
+          "a": 2,
+          "eta": 0.375,
+          "x0": -3
+        },
+        "position": {
+          "kind": "index",
+          "index": 539
+        },
+        "outcome": "numerical-limit",
+        "statuses": {
+          "position": "numerical-limit:UNDERFLOW",
+          "loss": "numerical-limit:UNDERFLOW",
+          "gradient": "numerical-limit:UNDERFLOW"
+        },
+        "rejection": null,
+        "expected": {
+          "outcome": "numerical-limit",
+          "statuses": {
+            "position": "numerical-limit:UNDERFLOW",
+            "loss": "numerical-limit:UNDERFLOW",
+            "gradient": "numerical-limit:UNDERFLOW"
+          }
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "generated.a.min",
+        "source": "generated",
+        "label": "a at its minimum 0.1",
+        "rationale": "Generated probe: lower end of the declared domain (other parameters at defaults).",
+        "params": {
+          "a": 0.1,
+          "eta": 0.25,
+          "x0": 4
+        },
+        "position": {
+          "kind": "index",
+          "index": 0
+        },
+        "outcome": "valid",
+        "statuses": {},
+        "rejection": null,
+        "expected": null,
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "generated.a.max",
+        "source": "generated",
+        "label": "a at its maximum 10",
+        "rationale": "Generated probe: upper end of the declared domain (other parameters at defaults).",
+        "params": {
+          "a": 10,
+          "eta": 0.25,
+          "x0": 4
+        },
+        "position": {
+          "kind": "index",
+          "index": 0
+        },
+        "outcome": "valid",
+        "statuses": {},
+        "rejection": null,
+        "expected": null,
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "generated.a.below",
+        "source": "generated",
+        "label": "a just below its minimum",
+        "rationale": "Generated probe: just outside the declared domain; must be rejected before evaluation.",
+        "params": {
+          "a": 0.09999010000000001,
+          "eta": 0.25,
+          "x0": 4
+        },
+        "position": {
+          "kind": "index",
+          "index": 0
+        },
+        "outcome": "out-of-domain",
+        "statuses": {},
+        "rejection": [
+          {
+            "code": "OUT_OF_DOMAIN",
+            "path": "$.parameters.a",
+            "message": "Expected a value from 0.1 to 10."
+          }
+        ],
+        "expected": {
+          "outcome": "out-of-domain"
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "generated.a.above",
+        "source": "generated",
+        "label": "a just above its maximum",
+        "rationale": "Generated probe: just outside the declared domain; must be rejected before evaluation.",
+        "params": {
+          "a": 10.00001,
+          "eta": 0.25,
+          "x0": 4
+        },
+        "position": {
+          "kind": "index",
+          "index": 0
+        },
+        "outcome": "out-of-domain",
+        "statuses": {},
+        "rejection": [
+          {
+            "code": "OUT_OF_DOMAIN",
+            "path": "$.parameters.a",
+            "message": "Expected a value from 0.1 to 10."
+          }
+        ],
+        "expected": {
+          "outcome": "out-of-domain"
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "generated.eta.min",
+        "source": "generated",
+        "label": "eta at its minimum 0",
+        "rationale": "Generated probe: lower end of the declared domain (other parameters at defaults).",
+        "params": {
+          "a": 2,
+          "eta": 0,
+          "x0": 4
+        },
+        "position": {
+          "kind": "index",
+          "index": 0
+        },
+        "outcome": "valid",
+        "statuses": {},
+        "rejection": null,
+        "expected": null,
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "generated.eta.max",
+        "source": "generated",
+        "label": "eta at its maximum 2",
+        "rationale": "Generated probe: upper end of the declared domain (other parameters at defaults).",
+        "params": {
+          "a": 2,
+          "eta": 2,
+          "x0": 4
+        },
+        "position": {
+          "kind": "index",
+          "index": 0
+        },
+        "outcome": "valid",
+        "statuses": {},
+        "rejection": null,
+        "expected": null,
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "generated.eta.below",
+        "source": "generated",
+        "label": "eta just below its minimum",
+        "rationale": "Generated probe: just outside the declared domain; must be rejected before evaluation.",
+        "params": {
+          "a": 2,
+          "eta": -0.000002,
+          "x0": 4
+        },
+        "position": {
+          "kind": "index",
+          "index": 0
+        },
+        "outcome": "out-of-domain",
+        "statuses": {},
+        "rejection": [
+          {
+            "code": "OUT_OF_DOMAIN",
+            "path": "$.parameters.eta",
+            "message": "Expected a value from 0 to 2."
+          }
+        ],
+        "expected": {
+          "outcome": "out-of-domain"
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "generated.eta.above",
+        "source": "generated",
+        "label": "eta just above its maximum",
+        "rationale": "Generated probe: just outside the declared domain; must be rejected before evaluation.",
+        "params": {
+          "a": 2,
+          "eta": 2.000002,
+          "x0": 4
+        },
+        "position": {
+          "kind": "index",
+          "index": 0
+        },
+        "outcome": "out-of-domain",
+        "statuses": {},
+        "rejection": [
+          {
+            "code": "OUT_OF_DOMAIN",
+            "path": "$.parameters.eta",
+            "message": "Expected a value from 0 to 2."
+          }
+        ],
+        "expected": {
+          "outcome": "out-of-domain"
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "generated.x0.min",
+        "source": "generated",
+        "label": "x0 at its minimum -10",
+        "rationale": "Generated probe: lower end of the declared domain (other parameters at defaults).",
+        "params": {
+          "a": 2,
+          "eta": 0.25,
+          "x0": -10
+        },
+        "position": {
+          "kind": "index",
+          "index": 0
+        },
+        "outcome": "valid",
+        "statuses": {},
+        "rejection": null,
+        "expected": null,
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "generated.x0.max",
+        "source": "generated",
+        "label": "x0 at its maximum 10",
+        "rationale": "Generated probe: upper end of the declared domain (other parameters at defaults).",
+        "params": {
+          "a": 2,
+          "eta": 0.25,
+          "x0": 10
+        },
+        "position": {
+          "kind": "index",
+          "index": 0
+        },
+        "outcome": "valid",
+        "statuses": {},
+        "rejection": null,
+        "expected": null,
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "generated.x0.below",
+        "source": "generated",
+        "label": "x0 just below its minimum",
+        "rationale": "Generated probe: just outside the declared domain; must be rejected before evaluation.",
+        "params": {
+          "a": 2,
+          "eta": 0.25,
+          "x0": -10.00002
+        },
+        "position": {
+          "kind": "index",
+          "index": 0
+        },
+        "outcome": "out-of-domain",
+        "statuses": {},
+        "rejection": [
+          {
+            "code": "OUT_OF_DOMAIN",
+            "path": "$.parameters.x0",
+            "message": "Expected a value from -10 to 10."
+          }
+        ],
+        "expected": {
+          "outcome": "out-of-domain"
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "generated.x0.above",
+        "source": "generated",
+        "label": "x0 just above its maximum",
+        "rationale": "Generated probe: just outside the declared domain; must be rejected before evaluation.",
+        "params": {
+          "a": 2,
+          "eta": 0.25,
+          "x0": 10.00002
+        },
+        "position": {
+          "kind": "index",
+          "index": 0
+        },
+        "outcome": "out-of-domain",
+        "statuses": {},
+        "rejection": [
+          {
+            "code": "OUT_OF_DOMAIN",
+            "path": "$.parameters.x0",
+            "message": "Expected a value from -10 to 10."
+          }
+        ],
+        "expected": {
+          "outcome": "out-of-domain"
+        },
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "generated.index.first",
+        "source": "generated",
+        "label": "Index 0 at the default parameters",
+        "rationale": "Generated probe: first iteration.",
+        "params": {
+          "a": 2,
+          "eta": 0.25,
+          "x0": 4
+        },
+        "position": {
+          "kind": "index",
+          "index": 0
+        },
+        "outcome": "valid",
+        "statuses": {},
+        "rejection": null,
+        "expected": null,
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "generated.index.last",
+        "source": "generated",
+        "label": "Index 1000 at the default parameters",
+        "rationale": "Generated probe: last admissible iteration.",
+        "params": {
+          "a": 2,
+          "eta": 0.25,
+          "x0": 4
+        },
+        "position": {
+          "kind": "index",
+          "index": 1000
+        },
+        "outcome": "numerical-limit",
+        "statuses": {
+          "loss": "numerical-limit:UNDERFLOW"
+        },
+        "rejection": null,
+        "expected": null,
+        "matches": true,
+        "mismatches": []
+      },
+      {
+        "id": "generated.index.beyond",
+        "source": "generated",
+        "label": "Index 1001 at the default parameters",
+        "rationale": "Generated probe: one past the last iteration; must be rejected before evaluation.",
+        "params": {
+          "a": 2,
+          "eta": 0.25,
+          "x0": 4
+        },
+        "position": {
+          "kind": "index",
+          "index": 1001
+        },
+        "outcome": "out-of-domain",
+        "statuses": {},
+        "rejection": [
+          {
+            "code": "OUT_OF_DOMAIN",
+            "path": "$.position.index",
+            "message": "Expected an index from 0 to 1000."
+          }
+        ],
+        "expected": {
+          "outcome": "out-of-domain"
+        },
+        "matches": true,
+        "mismatches": []
+      }
+    ]
+  },
+  "check": {
+    "worker": {
+      "kernels": [
+        {
+          "id": "quadratic-gradient-descent",
+          "version": "1.0.0",
+          "mode": "discrete"
+        },
+        {
+          "id": "function-derivative",
+          "version": "1.0.0",
+          "mode": "static"
+        },
+        {
+          "id": "linear-transformation",
+          "version": "1.0.0",
+          "mode": "static"
+        },
+        {
+          "id": "vector-orientation-3d",
+          "version": "1.0.0",
+          "mode": "static"
+        },
+        {
+          "id": "quadratic-surface-gradient",
+          "version": "1.1.0",
+          "mode": "static"
+        }
+      ],
+      "checks": null,
+      "checksError": null
+    },
+    "loadError": null,
+    "defaults": {
+      "params": {
+        "a": 2,
+        "eta": 0.25,
+        "x0": 4
+      },
+      "position": {
+        "kind": "index",
+        "index": 0,
+        "maxIndex": 1000
+      },
+      "terminal": {
+        "reached": false
+      },
+      "quantities": {
+        "start.position": "valid",
+        "start.loss": "valid",
+        "position": "valid",
+        "loss": "valid",
+        "gradient": "valid",
+        "multiplier": "valid",
+        "product": "valid",
+        "threshold": "valid",
+        "regime": "valid",
+        "index": "valid"
+      },
+      "geometry": {
+        "curve": {
+          "kind": "polyline2",
+          "elements": 1,
+          "sampling": {
+            "samples": 201,
+            "domain": [
+              -10,
+              10
+            ]
+          }
+        },
+        "start": {
+          "kind": "points2",
+          "elements": 1
+        },
+        "current": {
+          "kind": "points2",
+          "elements": 1
+        },
+        "trace": {
+          "kind": "points2",
+          "elements": 1
+        },
+        "iterates": {
+          "kind": "points2",
+          "elements": 1
+        },
+        "steps": {
+          "kind": "segments2",
+          "elements": 0
+        }
+      }
+    },
+    "scenarios": [
+      {
+        "id": "step-0.25",
+        "outcome": "valid",
+        "statuses": {
+          "start.position": "valid",
+          "start.loss": "valid",
+          "position": "valid",
+          "loss": "valid",
+          "gradient": "valid",
+          "multiplier": "valid",
+          "product": "valid",
+          "threshold": "valid",
+          "regime": "valid",
+          "index": "valid"
+        },
+        "diagnostics": []
+      },
+      {
+        "id": "step-0.75",
+        "outcome": "valid",
+        "statuses": {
+          "start.position": "valid",
+          "start.loss": "valid",
+          "position": "valid",
+          "loss": "valid",
+          "gradient": "valid",
+          "multiplier": "valid",
+          "product": "valid",
+          "threshold": "valid",
+          "regime": "valid",
+          "index": "valid"
+        },
+        "diagnostics": []
+      },
+      {
+        "id": "step-1.25",
+        "outcome": "valid",
+        "statuses": {
+          "start.position": "valid",
+          "start.loss": "valid",
+          "position": "valid",
+          "loss": "valid",
+          "gradient": "valid",
+          "multiplier": "valid",
+          "product": "valid",
+          "threshold": "valid",
+          "regime": "valid",
+          "index": "valid"
+        },
+        "diagnostics": []
+      }
+    ],
+    "checks": [],
+    "diagnostics": []
+  },
+  "captures": {
+    "settings": {
+      "width": 720,
+      "theme": "light",
+      "fonts": "bundled",
+      "index": 4
+    },
+    "spatial": "not-applicable",
+    "stages": [
+      {
+        "stageId": "predict",
+        "kind": "predict",
+        "instruction": "Before any iterations are shown, predict what the positions x_n will do over the first few updates for the three comparison step sizes η = 0.25, 0.75 and 1.25 (curvature a = 2, start x₀ = 4).",
+        "response": {
+          "kind": "prediction",
+          "prompt": "For η = 0.25, 0.75 and 1.25 with a = 2 and x₀ = 4, what do you expect the positions to do over the first few iterations, and why?",
+          "taskFamily": "quadratic-step-size-prediction"
+        },
+        "ok": true,
+        "png": "captures/predict.png",
+        "svg": "captures/predict.svg",
+        "companion": "captures/predict.txt",
+        "svgView": "landscape",
+        "svgError": null,
+        "revealed": [],
+        "revealError": null,
+        "projectionDigest": "sha256:3528bb5869ef250943977c5a56706271f28711c3eb7a91bdaf165f38b1cf35d0",
+        "frameId": "sha256:0bd49038d3e9818df0848ec3e35e0d8d14385daf2b4197dd377ad3a669163608",
+        "ui": "ready",
+        "reviewNotice": "Reference-checked; no independent subject review",
+        "views": [
+          {
+            "viewId": "landscape",
+            "kind": "plot2d",
+            "title": "Objective landscape"
+          },
+          {
+            "viewId": "readouts",
+            "kind": "values",
+            "title": "Values"
+          },
+          {
+            "viewId": "rules",
+            "kind": "equation",
+            "title": "Rules"
+          }
+        ],
+        "math": {
+          "equations": 2,
+          "plainText": 0
+        },
+        "navigatedTo": null,
+        "diagnostics": []
+      },
+      {
+        "stageId": "explore-step",
+        "kind": "explore",
+        "instruction": "Change the step size η and step through the iterations one at a time. Use the scenarios to compare η = 0.25, 0.75 and 1.25, and compare what you see with your prediction.",
+        "response": null,
+        "ok": true,
+        "png": "captures/explore-step.png",
+        "svg": "captures/explore-step.svg",
+        "companion": "captures/explore-step.txt",
+        "svgView": "landscape",
+        "svgError": null,
+        "revealed": [
+          "trace",
+          "observations"
+        ],
+        "revealError": null,
+        "projectionDigest": "sha256:dc6a996a3dc77207ccf90c4bb05ddb47806bd6c9a1b4a9b6c6a26cc2af21e348",
+        "frameId": "sha256:fbbb93cdc83e2aa95e79c7f56345b3ed75c6a833fb05adf9f2969d4120e092a0",
+        "ui": "paused",
+        "reviewNotice": "Reference-checked; no independent subject review",
+        "views": [
+          {
+            "viewId": "landscape",
+            "kind": "plot2d",
+            "title": "Objective landscape"
+          },
+          {
+            "viewId": "trace-plot",
+            "kind": "plot2d",
+            "title": "Position by iteration"
+          },
+          {
+            "viewId": "readouts",
+            "kind": "values",
+            "title": "Values"
+          },
+          {
+            "viewId": "rules",
+            "kind": "equation",
+            "title": "Rules"
+          },
+          {
+            "viewId": "trace-table",
+            "kind": "table",
+            "title": "Trace table"
+          }
+        ],
+        "math": {
+          "equations": 2,
+          "plainText": 0
+        },
+        "navigatedTo": 4,
+        "diagnostics": []
+      },
+      {
+        "stageId": "explore-curvature",
+        "kind": "explore",
+        "instruction": "Now change the curvature a as well as the step size. Notice how the step sizes that give each kind of behaviour change with a.",
+        "response": null,
+        "ok": true,
+        "png": "captures/explore-curvature.png",
+        "svg": "captures/explore-curvature.svg",
+        "companion": "captures/explore-curvature.txt",
+        "svgView": "landscape",
+        "svgError": null,
+        "revealed": [
+          "trace",
+          "observations",
+          "substituted-rule"
+        ],
+        "revealError": null,
+        "projectionDigest": "sha256:65076740fe33141bc9dda942cea74058adbdfaddacf7fbdfe20085438118733a",
+        "frameId": "sha256:b2b143a97b5c13aa89b458a409ea762ba849bc22cbab0275896a7137db85725e",
+        "ui": "paused",
+        "reviewNotice": "Reference-checked; no independent subject review",
+        "views": [
+          {
+            "viewId": "landscape",
+            "kind": "plot2d",
+            "title": "Objective landscape"
+          },
+          {
+            "viewId": "trace-plot",
+            "kind": "plot2d",
+            "title": "Position by iteration"
+          },
+          {
+            "viewId": "readouts",
+            "kind": "values",
+            "title": "Values"
+          },
+          {
+            "viewId": "rules",
+            "kind": "equation",
+            "title": "Rules"
+          },
+          {
+            "viewId": "trace-table",
+            "kind": "table",
+            "title": "Trace table"
+          }
+        ],
+        "math": {
+          "equations": 3,
+          "plainText": 0
+        },
+        "navigatedTo": 4,
+        "diagnostics": []
+      },
+      {
+        "stageId": "explain",
+        "kind": "explain",
+        "instruction": "Explain in your own words how the step size and the curvature together determine what the positions do.",
+        "response": {
+          "kind": "explanation",
+          "prompt": "How do η and a together determine whether the positions shrink, change sign, keep the same size or grow?",
+          "taskFamily": "quadratic-step-size-explanation"
+        },
+        "ok": true,
+        "png": "captures/explain.png",
+        "svg": "captures/explain.svg",
+        "companion": "captures/explain.txt",
+        "svgView": "landscape",
+        "svgError": null,
+        "revealed": [
+          "trace",
+          "observations",
+          "substituted-rule"
+        ],
+        "revealError": null,
+        "projectionDigest": "sha256:1f8c85024407ff889fca036cdd4d16a56ca530c3aeef05f9746d80f58e3c271c",
+        "frameId": "sha256:5dd81136512c7a703a98bbaec64d37f0bbfd002b5941451c38b4ce874be83109",
+        "ui": "ready",
+        "reviewNotice": "Reference-checked; no independent subject review",
+        "views": [
+          {
+            "viewId": "landscape",
+            "kind": "plot2d",
+            "title": "Objective landscape"
+          },
+          {
+            "viewId": "trace-plot",
+            "kind": "plot2d",
+            "title": "Position by iteration"
+          },
+          {
+            "viewId": "readouts",
+            "kind": "values",
+            "title": "Values"
+          },
+          {
+            "viewId": "rules",
+            "kind": "equation",
+            "title": "Rules"
+          },
+          {
+            "viewId": "trace-table",
+            "kind": "table",
+            "title": "Trace table"
+          }
+        ],
+        "math": {
+          "equations": 3,
+          "plainText": 0
+        },
+        "navigatedTo": null,
+        "diagnostics": []
+      },
+      {
+        "stageId": "closed",
+        "kind": "closed",
+        "instruction": "This activity is closed.",
+        "response": null,
+        "ok": true,
+        "png": "captures/closed.png",
+        "svg": null,
+        "companion": "captures/closed.txt",
+        "svgView": null,
+        "svgError": {
+          "code": "NOT_FOUND",
+          "message": "This stage shows no view; the card screenshot and companion text record the stage."
+        },
+        "revealed": [],
+        "revealError": null,
+        "projectionDigest": "sha256:b267de1b68f7f4b7a1f902e70cecee5b1092e4d339886a6a10a0c557fbd21d6f",
+        "frameId": "sha256:1d1fea04ea9aca8c6233234dc4acf1ee6bf8f6667713072b4acc842753d540ee",
+        "ui": "empty",
+        "reviewNotice": "Reference-checked; no independent subject review",
+        "views": [],
+        "math": {
+          "equations": 0,
+          "plainText": 0
+        },
+        "navigatedTo": null,
+        "diagnostics": []
+      },
+      {
+        "stageId": "free-explore",
+        "kind": "explore",
+        "instruction": "Explore freely: change the step size, curvature and starting position, step through the iterations and compare the scenarios.",
+        "response": null,
+        "ok": true,
+        "png": "captures/free-explore.png",
+        "svg": "captures/free-explore.svg",
+        "companion": "captures/free-explore.txt",
+        "svgView": "landscape",
+        "svgError": null,
+        "revealed": [
+          "trace",
+          "observations",
+          "regime",
+          "substituted-rule"
+        ],
+        "revealError": null,
+        "projectionDigest": "sha256:a777f70d8873ad5d15b5824a8f51ec74257c417fdb10db7fcd3c574dabcd303c",
+        "frameId": "sha256:ec335f94051727ae2ba69122e6e2797af3c817042938271d8520438c0583d159",
+        "ui": "paused",
+        "reviewNotice": "Reference-checked; no independent subject review",
+        "views": [
+          {
+            "viewId": "landscape",
+            "kind": "plot2d",
+            "title": "Objective landscape"
+          },
+          {
+            "viewId": "trace-plot",
+            "kind": "plot2d",
+            "title": "Position by iteration"
+          },
+          {
+            "viewId": "readouts",
+            "kind": "values",
+            "title": "Values"
+          },
+          {
+            "viewId": "rules",
+            "kind": "equation",
+            "title": "Rules"
+          },
+          {
+            "viewId": "trace-table",
+            "kind": "table",
+            "title": "Trace table"
+          }
+        ],
+        "math": {
+          "equations": 4,
+          "plainText": 0
+        },
+        "navigatedTo": 4,
+        "diagnostics": []
+      }
+    ]
+  },
+  "alternatives": [
+    {
+      "id": "trace-table",
+      "kind": "table",
+      "covers": [
+        "trace-plot",
+        "trace-points"
+      ],
+      "equivalence": "equivalent",
+      "verifiedBy": "tests/browser/study-quadratic.spec.ts#trace-table-equivalent",
+      "namedFilePresent": true
+    },
+    {
+      "id": "landscape-equation-values",
+      "kind": "description",
+      "covers": [
+        "landscape",
+        "objective-curve",
+        "start-marker",
+        "iterate-points",
+        "iterate-steps",
+        "current-iterate"
+      ],
+      "equivalence": "equivalent",
+      "verifiedBy": "tests/browser/study-quadratic.spec.ts#landscape-equivalent",
+      "namedFilePresent": true
+    },
+    {
+      "id": "text-description",
+      "kind": "description",
+      "covers": [
+        "landscape",
+        "trace-plot"
+      ],
+      "equivalence": "partial",
+      "verifiedBy": "tests/browser/study-quadratic.spec.ts#text-description",
+      "namedFilePresent": true
+    },
+    {
+      "id": "exact-entry",
+      "kind": "numeric-entry",
+      "covers": [
+        "eta",
+        "a",
+        "x0"
+      ],
+      "equivalence": "equivalent",
+      "verifiedBy": "tests/browser/study-quadratic.spec.ts#exact-entry",
+      "namedFilePresent": true
+    },
+    {
+      "id": "keyboard-steps",
+      "kind": "keyboard",
+      "covers": [
+        "eta",
+        "a",
+        "x0",
+        "current-iterate"
+      ],
+      "equivalence": "equivalent",
+      "verifiedBy": "tests/browser/study-quadratic.spec.ts#keyboard-only",
+      "namedFilePresent": true
+    }
+  ]
+}

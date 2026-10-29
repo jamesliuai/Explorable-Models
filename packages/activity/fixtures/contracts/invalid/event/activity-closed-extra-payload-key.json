@@ -1,0 +1,36 @@
+{
+  "contract": "study-harness.interaction-event",
+  "expect": "invalid",
+  "why": "The activity.closed payload is closed.",
+  "value": {
+    "contract": "study-harness.interaction-event",
+    "schemaVersion": "1.0",
+    "eventId": "evt-0060",
+    "activityId": "act-quadratic-0001",
+    "sequence": 60,
+    "operationId": "op-60",
+    "actor": {
+      "kind": "host",
+      "binding": "host-api"
+    },
+    "type": "activity.closed",
+    "revisions": {
+      "scientific": {
+        "modelDigest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901",
+        "runId": "run-0002",
+        "version": 5
+      },
+      "presentation": 2,
+      "activity": 3,
+      "hostSession": 4,
+      "policy": 3
+    },
+    "payload": {
+      "reason": "The host closed the instructional view.",
+      "pending": "retain",
+      "grade": "A"
+    },
+    "monotonicMs": 16030,
+    "causes": []
+  }
+}

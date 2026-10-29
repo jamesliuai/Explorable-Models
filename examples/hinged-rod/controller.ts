@@ -1,5 +1,6 @@
-import { createCardController } from '../shared/controller';
+import { createDocumentInteractionController, type DocumentInteractionController } from '@experiment-kit/core/declarative';
 import { rodDocument } from './document';
 
-export const createRodController = () => createCardController(rodDocument);
-export type RodController = Awaited<ReturnType<typeof createRodController>>;
+/** The supported document interaction controller (primary/scratch sessions, coalesced previews, suspension). */
+export const createRodController = (): Promise<DocumentInteractionController> => createDocumentInteractionController(rodDocument);
+export type RodController = DocumentInteractionController;

@@ -1,0 +1,52 @@
+{
+  "name": "@experiment-kit/catalog",
+  "version": "0.3.0-preview.1",
+  "description": "Installed, versioned Study Harness model and activity catalogue with pure kernels and a worker entry.",
+  "type": "module",
+  "license": "MIT",
+  "sideEffects": [
+    "./dist/worker.js"
+  ],
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./package.json": "./package.json",
+    "./worker": {
+      "types": "./dist/worker.d.ts",
+      "import": "./dist/worker.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "build": "node ../../scripts/study-harness/generate-catalog-index.mjs && tsc -p tsconfig.build.json",
+    "prepack": "npm run build"
+  },
+  "publishConfig": {
+    "access": "public",
+    "tag": "preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jamesliuai/Explorable-Models.git",
+    "directory": "packages/catalog"
+  },
+  "homepage": "https://github.com/jamesliuai/Explorable-Models#readme",
+  "bugs": {
+    "url": "https://github.com/jamesliuai/Explorable-Models/issues"
+  },
+  "dependencies": {
+    "@experiment-kit/core": "0.3.0-preview.1",
+    "@experiment-kit/activity": "0.3.0-preview.1"
+  }
+}

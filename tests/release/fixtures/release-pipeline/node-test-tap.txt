@@ -1,0 +1,40 @@
+TAP version 13
+# Subtest: a modified deliverable cannot reuse a passing candidate inventory
+ok 1 - a modified deliverable cannot reuse a passing candidate inventory
+  ---
+  duration_ms: 4.308375
+  type: 'test'
+  ...
+# Subtest: a complete declared site passes integrity verification
+ok 2 - a complete declared site passes integrity verification
+  ---
+  duration_ms: 2.8695
+  type: 'test'
+  ...
+# Subtest: an extra local credential file is rejected even if it is not in the asset manifest
+ok 3 - an extra local credential file is rejected even if it is not in the asset manifest
+  ---
+  duration_ms: 0.672125
+  type: 'test'
+  ...
+# Subtest: a traversal path cannot be extracted from a preview archive
+ok 4 - a traversal path cannot be extracted from a preview archive
+  ---
+  duration_ms: 0.875667
+  type: 'test'
+  ...
+# Subtest: an unmanifested public file is rejected
+ok 5 - an unmanifested public file is rejected
+  ---
+  duration_ms: 0.6565
+  type: 'test'
+  ...
+1..5
+# tests 5
+# suites 0
+# pass 5
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 54.541208

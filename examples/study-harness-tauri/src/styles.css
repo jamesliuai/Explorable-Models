@@ -1,0 +1,71 @@
+/* Host chrome of the reference host (conformance fixture). Loaded as a bundled stylesheet (style-src 'self'); the
+   learner card styles itself inside its own shadow root. */
+:root {
+  color-scheme: light dark;
+  --host-bg: #f6f7f9;
+  --host-surface: #ffffff;
+  --host-text: #1d2330;
+  --host-muted: #586174;
+  --host-border: #cfd5df;
+  --host-accent: #2f5bd3;
+  --host-accent-text: #ffffff;
+  --host-badge-bg: #fff3d6;
+  --host-badge-text: #6b4800;
+  --host-error: #b42318;
+  --host-radius: 8px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --host-bg: #14171d;
+    --host-surface: #1c2028;
+    --host-text: #e8ebf2;
+    --host-muted: #a3acbd;
+    --host-border: #39404d;
+    --host-accent: #7ea2ff;
+    --host-accent-text: #0d1220;
+    --host-badge-bg: #3b2f12;
+    --host-badge-text: #ffd98a;
+    --host-error: #ff8a80;
+  }
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--host-bg); color: var(--host-text); font-size: 15px; line-height: 1.45; }
+.host-header { padding: 16px 20px 8px; border-bottom: 1px solid var(--host-border); background: var(--host-surface); }
+.host-badge { display: inline-block; margin: 0 0 6px; padding: 2px 10px; border-radius: 999px; background: var(--host-badge-bg); color: var(--host-badge-text); font-size: 13px; font-weight: 650; }
+.host-h1 { margin: 0; font-size: 20px; }
+.host-lede { margin: 4px 0 0; color: var(--host-muted); max-width: 72ch; font-size: 14px; }
+.host-layout { display: grid; grid-template-columns: minmax(300px, 380px) minmax(0, 1fr); gap: 16px; padding: 16px 20px 32px; align-items: start; }
+.host-panel { display: grid; gap: 12px; min-width: 0; }
+.host-card { min-width: 0; }
+.host-section { background: var(--host-surface); border: 1px solid var(--host-border); border-radius: var(--host-radius); padding: 12px; display: grid; gap: 8px; min-width: 0; }
+.host-h2 { margin: 0; font-size: 14px; text-transform: uppercase; letter-spacing: 0.04em; color: var(--host-muted); }
+.host-note { margin: 0; color: var(--host-muted); font-size: 13px; overflow-wrap: anywhere; }
+.host-row { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.host-label { font-size: 13px; color: var(--host-muted); }
+.host-row-fill { flex-wrap: nowrap; }
+.host-row-fill .host-select { flex: 1 1 auto; width: 0; }
+.host-row-fill .host-button { flex: none; }
+.host-records { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.host-record { display: grid; gap: 4px; padding-top: 8px; border-top: 1px solid var(--host-border); }
+.host-record-title { margin: 0; font-size: 13px; font-weight: 650; overflow-wrap: anywhere; }
+.host-select { min-width: 0; max-width: 100%; flex: 1 1 12em; min-height: 32px; border: 1px solid var(--host-border); border-radius: 6px; background: var(--host-surface); color: var(--host-text); font: inherit; font-size: 13px; }
+.host-button { min-height: 32px; padding: 0 10px; border: 1px solid var(--host-border); border-radius: 6px; background: var(--host-surface); color: var(--host-text); font: inherit; font-size: 13px; font-weight: 600; cursor: pointer; text-align: left; }
+.host-button:hover:not(:disabled) { border-color: var(--host-accent); }
+.host-button:focus-visible, .host-select:focus-visible { outline: 3px solid var(--host-accent); outline-offset: 2px; }
+.host-button:disabled { opacity: 0.55; cursor: not-allowed; }
+.host-button-primary { background: var(--host-accent); border-color: var(--host-accent); color: var(--host-accent-text); }
+.host-facts { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 2px 10px; margin: 0; font-size: 13px; }
+.host-facts dt { color: var(--host-muted); }
+.host-facts dd { margin: 0; overflow-wrap: anywhere; }
+.host-list { margin: 0; padding-left: 18px; font-size: 12px; color: var(--host-muted); display: grid; gap: 2px; }
+.host-log { max-height: 180px; overflow: auto; }
+.host-error { margin: 0; padding: 8px 10px; border: 1px solid var(--host-error); border-radius: var(--host-radius); color: var(--host-error); background: var(--host-surface); }
+.host-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+@media (max-width: 860px) {
+  .host-layout { grid-template-columns: minmax(0, 1fr); padding: 12px; }
+  .host-card { order: -1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  * { scroll-behavior: auto; }
+}

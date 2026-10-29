@@ -1,0 +1,63 @@
+{
+  "schema": "study-harness-reference.packed-artifacts/1",
+  "note": "Written by scripts/install-packed.mjs: identities of the packed tarballs installed into node_modules (sha256 checked against the pack manifest; integrity checked against package-lock.json).",
+  "packManifest": {
+    "createdAt": "2026-10-29T04:04:38.116Z",
+    "source": {
+      "commit": "910c03a3ef278532024df6ffedc878572e8dc093",
+      "dirty": true
+    },
+    "lockSha256": "804030326e78de3671cfd34d787f8509479bdd36dc306b72fde41b5b011de0de",
+    "node": "v22.22.3"
+  },
+  "react": "19.3.1",
+  "reactDom": "19.3.1",
+  "three": "0.186.1",
+  "packages": [
+    {
+      "name": "@experiment-kit/core",
+      "version": "0.3.0-preview.1",
+      "file": "experiment-kit-core-0.3.0-preview.1.tgz",
+      "sha256": "b4b7b8a602e3908882ea9ccc34b6c288224fccd1dae1c12ef5846e7b6c7c4dd1",
+      "integrity": "sha512-RImLrEiMjI1TiB0dcWD4guZWayssTgPhuw5WvtJMUKWCYRbfoJRutuozr3KVU/0gwVkvc1Qmn4VwbZFYcrp+yw==",
+      "bytes": 454992,
+      "resolved": "file:../../release/study-harness/packages/experiment-kit-core-0.3.0-preview.1.tgz"
+    },
+    {
+      "name": "@experiment-kit/activity",
+      "version": "0.3.0-preview.1",
+      "file": "experiment-kit-activity-0.3.0-preview.1.tgz",
+      "sha256": "63beb9982b0683b650c5425fe2089f152d80f503b6f705fd576693f66c6313d5",
+      "integrity": "sha512-3z0DDE4+TpVT4G+GCY5SoDKIoWQJ45zuEwt64mbXD1AyMDEKCBI0fgfc72Fk2ivnDxY9tU+OSxI1HNm/xPqH0Q==",
+      "bytes": 855800,
+      "resolved": "file:../../release/study-harness/packages/experiment-kit-activity-0.3.0-preview.1.tgz"
+    },
+    {
+      "name": "@experiment-kit/catalog",
+      "version": "0.3.0-preview.1",
+      "file": "experiment-kit-catalog-0.3.0-preview.1.tgz",
+      "sha256": "0138850db9ae2115dcc7d9fb94b14e793153862b0626930d65f4411303f09134",
+      "integrity": "sha512-ruTWOzqv341uxjgwIUGyooqB1kR7Y6v95xm0VnHF5ghGSfHv/3/41k3Z5UqQmsKNZsoddF1pTqewBnFBIsYqKw==",
+      "bytes": 265427,
+      "resolved": "file:../../release/study-harness/packages/experiment-kit-catalog-0.3.0-preview.1.tgz"
+    },
+    {
+      "name": "@experiment-kit/player",
+      "version": "0.3.0-preview.1",
+      "file": "experiment-kit-player-0.3.0-preview.1.tgz",
+      "sha256": "21b3f1d6543c48c1c7735a624d1da5c706193782c79bbd5f5e5fceeaf09d7bad",
+      "integrity": "sha512-R0V6LQM8OOz4tPg9KZW2TOR3t/TclyYbKVI9uE6m9xqehVopNiaRUC5Gn+Byt+dyQsOy9g24o2oA25g/ER2W6w==",
+      "bytes": 1064904,
+      "resolved": "file:../../release/study-harness/packages/experiment-kit-player-0.3.0-preview.1.tgz"
+    },
+    {
+      "name": "@experiment-kit/player-3d",
+      "version": "0.3.0-preview.1",
+      "file": "experiment-kit-player-3d-0.3.0-preview.1.tgz",
+      "sha256": "0de6c36733b8182b5ab9e21ed31cace1cbcac5e326bfa2d8b1fb70ca8b729f77",
+      "integrity": "sha512-G0iJrAGtL9qN/fAvxd6K38R2Ueuoa8lur1vm+GbOQys3rSrqnQHG9Y2LIMEQzEv/HalVAy2sO/vIMPxgQ8OHvQ==",
+      "bytes": 122370,
+      "resolved": "file:../../release/study-harness/packages/experiment-kit-player-3d-0.3.0-preview.1.tgz"
+    }
+  ]
+}

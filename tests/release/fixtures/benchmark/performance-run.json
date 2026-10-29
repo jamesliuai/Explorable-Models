@@ -1,0 +1,2299 @@
+{
+ "note": "Captured from docs/study-harness/evidence/performance.json of the benchmark run created 2026-10-27T02:38:31.138Z (schema study-harness.performance-evidence/1): its results, build, quick flag and console errors, unchanged. Used by tests/release/benchmark-gate.test.mjs as the base of the gate scenarios.",
+ "createdAt": "2026-10-27T02:38:31.138Z",
+ "quick": false,
+ "build": {
+  "createdAt": "2026-10-27T02:36:31.039Z",
+  "csp": "default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' blob:; font-src 'self'; connect-src 'self'; worker-src 'self'",
+  "documentPathCsp": "default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' blob:; font-src 'self'; connect-src 'self'; worker-src 'self'",
+  "versions": {
+   "react": "19.3.1",
+   "react-dom": "19.3.1",
+   "three": "0.186.1",
+   "vite": "8.3.5",
+   "typescript": "5.9.3"
+  },
+  "packages": [
+   {
+    "name": "@experiment-kit/core",
+    "version": "0.3.0-preview.1",
+    "sha256": "dbd6f58dbf24d974e0b04e23387d12526cba8d69ad1e7ec57578c5b0f737d365"
+   },
+   {
+    "name": "@experiment-kit/activity",
+    "version": "0.3.0-preview.1",
+    "sha256": "9c4b1c52d269bd2c3f9cc3c727cc5149b370ed6d3eb25b4c21254de3ad117caa"
+   },
+   {
+    "name": "@experiment-kit/catalog",
+    "version": "0.3.0-preview.1",
+    "sha256": "70e549f61f00ddecbf251115ddf4d1562b5bd6af4ac5fa4664504b0311659ca8"
+   },
+   {
+    "name": "@experiment-kit/player",
+    "version": "0.3.0-preview.1",
+    "sha256": "eeb24d1078119715059d3dfdf4691270bb089b3933cabc92e4fd6d871a85464c"
+   },
+   {
+    "name": "@experiment-kit/player-3d",
+    "version": "0.3.0-preview.1",
+    "sha256": "0a94db4622aa31e3d4f2129f56a04ad2a5c2d660774ef986dffb38eb10768f8c"
+   },
+   {
+    "name": "@experiment-kit/agent",
+    "version": "0.3.0-preview.1",
+    "sha256": "0b719777ab648a5fa9d14527aef05362d52dd327b77cb3ac86067b81df393735"
+   }
+  ],
+  "matchesCurrentPack": true
+ },
+ "consoleErrors": [],
+ "results": {
+  "twoD": {
+   "commit": {
+    "quadratic-linked-trace-and-math": {
+     "total": {
+      "count": 60,
+      "min": 14,
+      "p50": 15.8,
+      "p95": 16.8,
+      "max": 17.4
+     },
+     "command": {
+      "count": 60,
+      "min": 3.1,
+      "p50": 3.4,
+      "p95": 3.9,
+      "max": 6.1
+     },
+     "workerEvaluation": {
+      "count": 60,
+      "min": 0.6,
+      "p50": 0.8,
+      "p95": 0.9,
+      "max": 2.2
+     },
+     "workerDelivered": {
+      "count": 60,
+      "min": 0.6,
+      "p50": 0.8,
+      "p95": 1,
+      "max": 2.3
+     },
+     "render": {
+      "count": 60,
+      "min": 0.9,
+      "p50": 1.1,
+      "p95": 1.4,
+      "max": 2.1
+     },
+     "paint": {
+      "count": 60,
+      "min": 6.7,
+      "p50": 10.8,
+      "p95": 12.1,
+      "max": 12.2
+     },
+     "storageAck": {
+      "count": 60,
+      "min": 0.2,
+      "p50": 0.3,
+      "p95": 0.3,
+      "max": 0.4
+     },
+     "failed": 0,
+     "failureCodes": [],
+     "svgElements": 139
+    },
+    "function-derivative-401-sample-curves": {
+     "total": {
+      "count": 60,
+      "min": 17.1,
+      "p50": 18.1,
+      "p95": 22.5,
+      "max": 23.8
+     },
+     "command": {
+      "count": 60,
+      "min": 9.2,
+      "p50": 9.9,
+      "p95": 11.1,
+      "max": 14.1
+     },
+     "workerEvaluation": {
+      "count": 60,
+      "min": 1.2,
+      "p50": 1.6,
+      "p95": 2.3,
+      "max": 3.6
+     },
+     "workerDelivered": {
+      "count": 60,
+      "min": 1.4,
+      "p50": 1.7,
+      "p95": 2.4,
+      "max": 3.8
+     },
+     "render": {
+      "count": 60,
+      "min": 1.3,
+      "p50": 1.6,
+      "p95": 2.7,
+      "max": 2.7
+     },
+     "paint": {
+      "count": 60,
+      "min": 4.2,
+      "p50": 4.5,
+      "p95": 7.9,
+      "max": 9.5
+     },
+     "storageAck": {
+      "count": 60,
+      "min": 0.1,
+      "p50": 0.3,
+      "p95": 0.4,
+      "max": 0.4
+     },
+     "failed": 0,
+     "failureCodes": []
+    },
+    "linear-transformation-grid": {
+     "total": {
+      "count": 60,
+      "min": 13.8,
+      "p50": 16.5,
+      "p95": 17.4,
+      "max": 18.3
+     },
+     "command": {
+      "count": 60,
+      "min": 4.3,
+      "p50": 4.8,
+      "p95": 5.2,
+      "max": 7.8
+     },
+     "workerEvaluation": {
+      "count": 60,
+      "min": 0.9,
+      "p50": 1,
+      "p95": 1.2,
+      "max": 1.5
+     },
+     "workerDelivered": {
+      "count": 60,
+      "min": 1,
+      "p50": 1.1,
+      "p95": 1.3,
+      "max": 1.5
+     },
+     "render": {
+      "count": 60,
+      "min": 1,
+      "p50": 1.2,
+      "p95": 1.4,
+      "max": 1.4
+     },
+     "paint": {
+      "count": 60,
+      "min": 5.6,
+      "p50": 9.8,
+      "p95": 10.6,
+      "max": 11.2
+     },
+     "storageAck": {
+      "count": 60,
+      "min": 0.2,
+      "p50": 0.3,
+      "p95": 0.4,
+      "max": 1.2
+     },
+     "failed": 0,
+     "failureCodes": [],
+     "svgElements": 210
+    },
+    "two-active-alternating": {
+     "total": {
+      "count": 30,
+      "min": 7.5,
+      "p50": 18.6,
+      "p95": 27.6,
+      "max": 28.2
+     },
+     "command": {
+      "count": 30,
+      "min": 3.7,
+      "p50": 9.9,
+      "p95": 15.7,
+      "max": 18.1
+     },
+     "workerEvaluation": {
+      "count": 30,
+      "min": 0.8,
+      "p50": 1.6,
+      "p95": 9.3,
+      "max": 12.2
+     },
+     "workerDelivered": {
+      "count": 30,
+      "min": 0.9,
+      "p50": 1.6,
+      "p95": 9.4,
+      "max": 12.3
+     },
+     "render": {
+      "count": 30,
+      "min": 1.1,
+      "p50": 1.6,
+      "p95": 2.3,
+      "max": 2.4
+     },
+     "paint": {
+      "count": 30,
+      "min": 1.8,
+      "p50": 4.8,
+      "p95": 12.9,
+      "max": 13
+     },
+     "storageAck": {
+      "count": 30,
+      "min": 0.2,
+      "p50": 0.3,
+      "p95": 0.4,
+      "max": 0.4
+     },
+     "failed": 0,
+     "failureCodes": []
+    }
+   },
+   "twoActiveStates": [
+    {
+     "id": "quadratic",
+     "ui": "ready"
+    },
+    {
+     "id": "derivative",
+     "ui": "clipped"
+    }
+   ],
+   "preview": {
+    "refreshMs": 16.699999999999818,
+    "quadratic-eta": {
+     "drags": 3,
+     "refreshMs": 16.699999999999818,
+     "inputEvents": 360,
+     "inputRateHz": {
+      "count": 3,
+      "min": 60,
+      "p50": 60,
+      "p95": 60.02,
+      "max": 60.02
+     },
+     "inputAck": {
+      "count": 360,
+      "min": 2.3,
+      "p50": 2.9,
+      "p95": 3.6,
+      "max": 7.7
+     },
+     "unacknowledged": 0,
+     "frameRateFps": {
+      "count": 3,
+      "min": 60,
+      "p50": 60,
+      "p95": 60,
+      "max": 60
+     },
+     "frameDelta": {
+      "count": 357,
+      "min": 16.5,
+      "p50": 16.7,
+      "p95": 16.8,
+      "max": 16.8
+     },
+     "droppedFrames": 0,
+     "framesInWindow": 360,
+     "longTasks": 0,
+     "longTaskMs": 0,
+     "tentativeFramesPainted": 360,
+     "previewUpdateRateHz": {
+      "count": 3,
+      "min": 60.51,
+      "p50": 60.51,
+      "p95": 60.53,
+      "max": 60.53
+     },
+     "previewLatency": {
+      "count": 360,
+      "min": 15.5,
+      "p50": 19.6,
+      "p95": 20.5,
+      "max": 27.6
+     },
+     "workerMessages": 363,
+     "evaluation": {
+      "count": 363,
+      "min": 1.1,
+      "p50": 1.5,
+      "p95": 1.9,
+      "max": 10.7
+     },
+     "sent": [
+      {
+       "moves": 120,
+       "sentMs": 1999.4530840000007,
+       "sentRateHz": 60.01641196798392
+      },
+      {
+       "moves": 120,
+       "sentMs": 1999.4081669999996,
+       "sentRateHz": 60.01776024554971
+      },
+      {
+       "moves": 120,
+       "sentMs": 2000.271084,
+       "sentRateHz": 59.99186858214864
+      }
+     ]
+    },
+    "function-derivative-A": {
+     "drags": 3,
+     "refreshMs": 16.699999999999818,
+     "inputEvents": 168,
+     "inputRateHz": {
+      "count": 3,
+      "min": 27.73,
+      "p50": 27.95,
+      "p95": 27.98,
+      "max": 27.98
+     },
+     "inputAck": {
+      "count": 168,
+      "min": 5.3,
+      "p50": 6,
+      "p95": 6.6,
+      "max": 7.8
+     },
+     "unacknowledged": 0,
+     "frameRateFps": {
+      "count": 3,
+      "min": 60,
+      "p50": 60,
+      "p95": 60,
+      "max": 60
+     },
+     "frameDelta": {
+      "count": 355,
+      "min": 16.5,
+      "p50": 16.7,
+      "p95": 16.8,
+      "max": 16.8
+     },
+     "droppedFrames": 0,
+     "framesInWindow": 358,
+     "longTasks": 0,
+     "longTaskMs": 0,
+     "tentativeFramesPainted": 168,
+     "previewUpdateRateHz": {
+      "count": 3,
+      "min": 28.23,
+      "p50": 28.46,
+      "p95": 28.49,
+      "max": 28.49
+     },
+     "previewLatency": {
+      "count": 168,
+      "min": 16.7,
+      "p50": 18.4,
+      "p95": 19.7,
+      "max": 35.2
+     },
+     "workerMessages": 171,
+     "evaluation": {
+      "count": 171,
+      "min": 1.3,
+      "p50": 1.6,
+      "p95": 2,
+      "max": 15.6
+     },
+     "sent": [
+      {
+       "moves": 120,
+       "sentMs": 2022.1568750000006,
+       "sentRateHz": 59.342576969949455
+      },
+      {
+       "moves": 120,
+       "sentMs": 2004.9307499999995,
+       "sentRateHz": 59.8524412875607
+      },
+      {
+       "moves": 120,
+       "sentMs": 2006.1360410000016,
+       "sentRateHz": 59.81648180757642
+      }
+     ]
+    }
+   },
+   "rapidInputs": {
+    "within64": {
+     "runs": 6,
+     "updatesPerRun": 60,
+     "refusedUpdates": 0,
+     "newestValueShown": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+     ],
+     "lastShownIndex": [
+      60,
+      60,
+      60,
+      60,
+      60,
+      60
+     ],
+     "workerMessagesDuringPreview": [
+      2,
+      2,
+      2,
+      2,
+      2,
+      2
+     ],
+     "tentativeFramesPainted": [
+      2,
+      2,
+      2,
+      2,
+      2,
+      2
+     ],
+     "burst": {
+      "count": 6,
+      "min": 25.8,
+      "p50": 25.9,
+      "p95": 26.8,
+      "max": 26.8
+     },
+     "lastValueShownAfterBurst": {
+      "count": 6,
+      "min": 20,
+      "p50": 21.6,
+      "p95": 23.5,
+      "max": 23.5
+     },
+     "commit": {
+      "total": {
+       "count": 6,
+       "min": 13.8,
+       "p50": 14.4,
+       "p95": 16.2,
+       "max": 16.2
+      },
+      "command": {
+       "count": 6,
+       "min": 4.7,
+       "p50": 4.8,
+       "p95": 7.7,
+       "max": 7.7
+      },
+      "workerEvaluation": {
+       "count": 6,
+       "min": 0.8,
+       "p50": 0.8,
+       "p95": 2.7,
+       "max": 2.7
+      },
+      "workerDelivered": {
+       "count": 6,
+       "min": 0.8,
+       "p50": 0.9,
+       "p95": 2.7,
+       "max": 2.7
+      },
+      "render": {
+       "count": 6,
+       "min": 1,
+       "p50": 1.1,
+       "p95": 1.2,
+       "max": 1.2
+      },
+      "paint": {
+       "count": 6,
+       "min": 3.4,
+       "p50": 7,
+       "p95": 9,
+       "max": 9
+      },
+      "storageAck": {
+       "count": 6,
+       "min": 1,
+       "p50": 1.1,
+       "p95": 1.5,
+       "max": 1.5
+      },
+      "failed": 0,
+      "failureCodes": []
+     },
+     "committedLastValue": true
+    },
+    "burst200": {
+     "runs": 3,
+     "updatesPerRun": 200,
+     "refusedUpdates": 0,
+     "newestValueShown": [
+      true,
+      true,
+      true
+     ],
+     "lastShownIndex": [
+      200,
+      200,
+      200
+     ],
+     "workerMessagesDuringPreview": [
+      2,
+      2,
+      2
+     ],
+     "tentativeFramesPainted": [
+      2,
+      2,
+      2
+     ],
+     "burst": {
+      "count": 3,
+      "min": 83,
+      "p50": 84.4,
+      "p95": 85,
+      "max": 85
+     },
+     "lastValueShownAfterBurst": {
+      "count": 3,
+      "min": 13,
+      "p50": 13.1,
+      "p95": 15,
+      "max": 15
+     },
+     "commit": {
+      "total": {
+       "count": 3,
+       "min": 16.5,
+       "p50": 16.7,
+       "p95": 17.5,
+       "max": 17.5
+      },
+      "command": {
+       "count": 3,
+       "min": 4.7,
+       "p50": 4.9,
+       "p95": 5,
+       "max": 5
+      },
+      "workerEvaluation": {
+       "count": 3,
+       "min": 0.9,
+       "p50": 1.1,
+       "p95": 1.1,
+       "max": 1.1
+      },
+      "workerDelivered": {
+       "count": 3,
+       "min": 0.9,
+       "p50": 1.1,
+       "p95": 1.2,
+       "max": 1.2
+      },
+      "render": {
+       "count": 3,
+       "min": 1,
+       "p50": 1.1,
+       "p95": 1.2,
+       "max": 1.2
+      },
+      "paint": {
+       "count": 3,
+       "min": 9.2,
+       "p50": 9.5,
+       "p95": 10.3,
+       "max": 10.3
+      },
+      "storageAck": {
+       "count": 3,
+       "min": 1,
+       "p50": 1,
+       "p95": 1.1,
+       "max": 1.1
+      },
+      "failed": 0,
+      "failureCodes": []
+     },
+     "committedLastValue": true
+    },
+    "unpacedPointer": {
+     "drags": 3,
+     "refreshMs": 16.699999999999818,
+     "inputEvents": 360,
+     "inputRateHz": {
+      "count": 3,
+      "min": 60,
+      "p50": 60,
+      "p95": 60.03,
+      "max": 60.03
+     },
+     "inputAck": {
+      "count": 360,
+      "min": 2.2,
+      "p50": 2.8,
+      "p95": 3.4,
+      "max": 4.8
+     },
+     "unacknowledged": 0,
+     "frameRateFps": {
+      "count": 3,
+      "min": 60,
+      "p50": 60,
+      "p95": 60,
+      "max": 60
+     },
+     "frameDelta": {
+      "count": 357,
+      "min": 16.5,
+      "p50": 16.7,
+      "p95": 16.7,
+      "max": 16.8
+     },
+     "droppedFrames": 0,
+     "framesInWindow": 360,
+     "longTasks": 0,
+     "longTaskMs": 0,
+     "tentativeFramesPainted": 360,
+     "previewUpdateRateHz": {
+      "count": 3,
+      "min": 60.51,
+      "p50": 60.51,
+      "p95": 60.53,
+      "max": 60.53
+     },
+     "previewLatency": {
+      "count": 360,
+      "min": 16.6,
+      "p50": 19.4,
+      "p95": 20.3,
+      "max": 25.1
+     },
+     "workerMessages": 363,
+     "evaluation": {
+      "count": 363,
+      "min": 1.1,
+      "p50": 1.4,
+      "p95": 1.8,
+      "max": 13.9
+     },
+     "sent": [
+      {
+       "moves": 120,
+       "sentMs": 1998.6603329999998,
+       "sentRateHz": 60.040216948659484
+      },
+      {
+       "moves": 120,
+       "sentMs": 1997.812417000001,
+       "sentRateHz": 60.065699351392084
+      },
+      {
+       "moves": 120,
+       "sentMs": 1996.3758330000019,
+       "sentRateHz": 60.10892238645923
+      }
+     ]
+    }
+   },
+   "slowEvaluator": {
+    "delayMs": 250,
+    "preview": {
+     "drags": 2,
+     "refreshMs": 16.699999999999818,
+     "inputEvents": 240,
+     "inputRateHz": {
+      "count": 2,
+      "min": 59.99,
+      "p50": 59.99,
+      "p95": 60.01,
+      "max": 60.01
+     },
+     "inputAck": {
+      "count": 240,
+      "min": 1.9,
+      "p50": 3.2,
+      "p95": 4.3,
+      "max": 8
+     },
+     "unacknowledged": 0,
+     "frameRateFps": {
+      "count": 2,
+      "min": 60,
+      "p50": 60,
+      "p95": 60,
+      "max": 60
+     },
+     "frameDelta": {
+      "count": 238,
+      "min": 16.5,
+      "p50": 16.7,
+      "p95": 16.8,
+      "max": 16.8
+     },
+     "droppedFrames": 0,
+     "framesInWindow": 240,
+     "longTasks": 0,
+     "longTaskMs": 0,
+     "tentativeFramesPainted": 14,
+     "previewUpdateRateHz": {
+      "count": 2,
+      "min": 3.53,
+      "p50": 3.53,
+      "p95": 3.53,
+      "max": 3.53
+     },
+     "previewLatency": {
+      "count": 14,
+      "min": 269.4,
+      "p50": 274.5,
+      "p95": 287.5,
+      "max": 287.5
+     },
+     "workerMessages": 18,
+     "evaluation": {
+      "count": 18,
+      "min": 2,
+      "p50": 3.8,
+      "p95": 10.4,
+      "max": 10.4
+     },
+     "sent": [
+      {
+       "moves": 120,
+       "sentMs": 1999.5463750000054,
+       "sentRateHz": 60.01361183733469
+      },
+      {
+       "moves": 120,
+       "sentMs": 2000.4151669999992,
+       "sentRateHz": 59.98754757491801
+      }
+     ]
+    },
+    "dragDuringPendingCommit": {
+     "attempts": [
+      {
+       "pointerValue": 1.8,
+       "shownAfterMoves": {
+        "slider": 1.8,
+        "output": "1.8preview"
+       },
+       "shownAfter600ms": {
+        "slider": 1.8,
+        "output": "1.8preview"
+       },
+       "committedWhileHeld": 0.6,
+       "controlLeftPointerValue": false
+      },
+      {
+       "pointerValue": 1.8,
+       "shownAfterMoves": {
+        "slider": 1.8,
+        "output": "1.8preview"
+       },
+       "shownAfter600ms": {
+        "slider": 1.8,
+        "output": "1.8preview"
+       },
+       "committedWhileHeld": 0.6,
+       "controlLeftPointerValue": false
+      },
+      {
+       "pointerValue": 1.8,
+       "shownAfterMoves": {
+        "slider": 1.8,
+        "output": "1.8preview"
+       },
+       "shownAfter600ms": {
+        "slider": 1.8,
+        "output": "1.8preview"
+       },
+       "committedWhileHeld": 0.6,
+       "controlLeftPointerValue": false
+      },
+      {
+       "pointerValue": 1.8,
+       "shownAfterMoves": {
+        "slider": 1.8,
+        "output": "1.8preview"
+       },
+       "shownAfter600ms": {
+        "slider": 1.8,
+        "output": "1.8preview"
+       },
+       "committedWhileHeld": 0.6,
+       "controlLeftPointerValue": false
+      },
+      {
+       "pointerValue": 1.8,
+       "shownAfterMoves": {
+        "slider": 1.8,
+        "output": "1.8preview"
+       },
+       "shownAfter600ms": {
+        "slider": 1.8,
+        "output": "1.8preview"
+       },
+       "committedWhileHeld": 0.6,
+       "controlLeftPointerValue": false
+      },
+      {
+       "pointerValue": 1.8,
+       "shownAfterMoves": {
+        "slider": 1.8,
+        "output": "1.8preview"
+       },
+       "shownAfter600ms": {
+        "slider": 1.8,
+        "output": "1.8preview"
+       },
+       "committedWhileHeld": 0.6,
+       "controlLeftPointerValue": false
+      }
+     ],
+     "controlLeftPointerValue": 0
+    },
+    "commit": {
+     "total": {
+      "count": 20,
+      "min": 260.9,
+      "p50": 270.6,
+      "p95": 275.7,
+      "max": 277
+     },
+     "command": {
+      "count": 20,
+      "min": 256.5,
+      "p50": 260.5,
+      "p95": 264.6,
+      "max": 268.1
+     },
+     "workerEvaluation": {
+      "count": 20,
+      "min": 1,
+      "p50": 1.8,
+      "p95": 3.8,
+      "max": 5.2
+     },
+     "workerDelivered": {
+      "count": 20,
+      "min": 251.8,
+      "p50": 253.4,
+      "p95": 256.1,
+      "max": 257.3
+     },
+     "render": {
+      "count": 20,
+      "min": 1.4,
+      "p50": 2.7,
+      "p95": 4.6,
+      "max": 4.7
+     },
+     "paint": {
+      "count": 20,
+      "min": 2.3,
+      "p50": 4.4,
+      "p95": 5.6,
+      "max": 6.8
+     },
+     "storageAck": {
+      "count": 20,
+      "min": 0.3,
+      "p50": 0.7,
+      "p95": 1.1,
+      "max": 1.8
+     },
+     "failed": 0,
+     "failureCodes": []
+    }
+   },
+   "navigationWhilePending": {
+    "delayMs": 300,
+    "commit": {
+     "ok": true,
+     "codes": []
+    },
+    "stepDuringCommit": {
+     "ok": false,
+     "codes": [
+      "CONFLICT"
+     ]
+    },
+    "previewBegun": true,
+    "navigateDuringPreview": {
+     "ok": false,
+     "codes": [
+      "PREVIEW_ACTIVE"
+     ]
+    },
+    "previewActiveAfterNavigate": true,
+    "final": {
+     "activityId": "quadratic",
+     "templateId": "quadratic-gradient-descent",
+     "surfaceId": "surface-quadratic-2",
+     "stage": "free-explore",
+     "ui": "ready",
+     "projectionId": "d76a31ec-1944-4a34-ba2e-87eb001a8dfa",
+     "frameId": "sha256:6b100728a53c7b4bffcb8326c954114612d513efdd658633c4b423ccc41f5d9c",
+     "frameKind": "committed",
+     "activityRevision": 2,
+     "scientificVersion": 146,
+     "runId": "a0b874ad-d3a7-4a4b-bafa-a0f529032992",
+     "persistence": "saved",
+     "controls": {
+      "eta": 0.45,
+      "a": 2,
+      "x0": 4
+     },
+     "views": [
+      "landscape",
+      "trace-plot",
+      "readouts",
+      "rules",
+      "trace-table"
+     ]
+    },
+    "domShowsCurrentProjection": true,
+    "tentativeFramesShownAfterNavigate": 0,
+    "elapsedMs": 1012.9000000059605
+   },
+   "resize": {
+    "samplesMs": [
+     17.599999994039536,
+     35.70000001788139,
+     33.19999998807907,
+     33.19999998807907,
+     31.099999994039536,
+     33.20000001788139,
+     33.5,
+     33.29999998211861,
+     33.20000001788139,
+     33.599999994039536,
+     33.80000001192093,
+     35.69999998807907,
+     31.19999998807907,
+     33.80000001192093,
+     33,
+     31.599999994039536,
+     34.20000001788139,
+     33,
+     33.900000005960464,
+     33.19999998807907,
+     33,
+     33.80000001192093,
+     33.599999994039536,
+     32.80000001192093,
+     33.29999998211861,
+     33.70000001788139,
+     33.29999998211861,
+     33.400000005960464,
+     32.80000001192093,
+     33.400000005960464,
+     33.29999998211861,
+     32.80000001192093
+    ],
+    "unchanged": 0,
+    "workerMessages": 0,
+    "scientificUnchanged": true,
+    "relayout": {
+     "count": 32,
+     "min": 17.6,
+     "p50": 33.3,
+     "p95": 35.7,
+     "max": 35.7
+    }
+   },
+   "largest": {
+    "workload": "quadratic trace at n = 999/1000: 1,000–1,001 iterates, step segments and trace points drawn; trace table capped at 200 rows",
+    "tableRows": 200,
+    "svgElements": 2155,
+    "navigation": {
+     "total": {
+      "count": 40,
+      "min": 69.6,
+      "p50": 73.7,
+      "p95": 79,
+      "max": 87.7
+     },
+     "command": {
+      "count": 40,
+      "min": 44.7,
+      "p50": 47.6,
+      "p95": 51.5,
+      "max": 59.4
+     },
+     "workerEvaluation": {
+      "count": 40,
+      "min": 10.1,
+      "p50": 11.4,
+      "p95": 14.6,
+      "max": 20.1
+     },
+     "workerDelivered": {
+      "count": 40,
+      "min": 11,
+      "p50": 12.3,
+      "p95": 15.6,
+      "max": 21.1
+     },
+     "render": {
+      "count": 40,
+      "min": 3.2,
+      "p50": 3.6,
+      "p95": 6.6,
+      "max": 7.1
+     },
+     "paint": {
+      "count": 40,
+      "min": 11.5,
+      "p50": 12.2,
+      "p95": 15.7,
+      "max": 16.5
+     },
+     "storageAck": {
+      "count": 40,
+      "min": 0.2,
+      "p50": 0.3,
+      "p95": 0.4,
+      "max": 2.9
+     },
+     "failed": 0,
+     "failureCodes": []
+    }
+   },
+   "storage": {
+    "appendLatencyMs": 25,
+    "commit": {
+     "total": {
+      "count": 30,
+      "min": 5.9,
+      "p50": 7.8,
+      "p95": 20.6,
+      "max": 22.2
+     },
+     "command": {
+      "count": 30,
+      "min": 3,
+      "p50": 3.6,
+      "p95": 5.5,
+      "max": 5.9
+     },
+     "workerEvaluation": {
+      "count": 30,
+      "min": 0.7,
+      "p50": 0.9,
+      "p95": 1.9,
+      "max": 2.1
+     },
+     "workerDelivered": {
+      "count": 30,
+      "min": 0.7,
+      "p50": 1,
+      "p95": 2,
+      "max": 2.2
+     },
+     "render": {
+      "count": 30,
+      "min": 1.4,
+      "p50": 1.9,
+      "p95": 3.5,
+      "max": 4
+     },
+     "paint": {
+      "count": 30,
+      "min": 1.9,
+      "p50": 2.5,
+      "p95": 14,
+      "max": 14.3
+     },
+     "storageAck": {
+      "count": 30,
+      "min": 25.4,
+      "p50": 26,
+      "p95": 26.6,
+      "max": 26.9
+     },
+     "failed": 0,
+     "failureCodes": []
+    }
+   },
+   "reveal": {
+    "hostLatency0ms": {
+     "receipt": {
+      "count": 12,
+      "min": 1.1,
+      "p50": 1.1,
+      "p95": 1.5,
+      "max": 1.5
+     },
+     "displayed": {
+      "count": 12,
+      "min": 13.2,
+      "p50": 13.9,
+      "p95": 33.6,
+      "max": 33.6
+     },
+     "displayAckPersisted": {
+      "count": 12,
+      "min": 8.7,
+      "p50": 9.2,
+      "p95": 22.9,
+      "max": 22.9
+     }
+    },
+    "hostLatency30ms": {
+     "receipt": {
+      "count": 12,
+      "min": 31.5,
+      "p50": 32.6,
+      "p95": 33.2,
+      "max": 33.2
+     },
+     "displayed": {
+      "count": 12,
+      "min": 41.4,
+      "p50": 43.7,
+      "p95": 44.8,
+      "max": 44.8
+     },
+     "displayAckPersisted": {
+      "count": 12,
+      "min": 69,
+      "p50": 70.6,
+      "p95": 71.7,
+      "max": 71.7
+     }
+    }
+   },
+   "history": {
+    "cards": 22,
+    "quiet": {
+     "cards": 22,
+     "windowMs": 2000,
+     "workerMessages": 0,
+     "evaluations": 0,
+     "domMutations": 0,
+     "notifications": 0,
+     "uiStates": [
+      "suspended"
+     ],
+     "liveWorkers": 0
+    },
+    "liveWorkersAfter": 0,
+    "maxWorkers": 6,
+    "activeCards": [
+     {
+      "id": "quadratic",
+      "ui": "ready"
+     },
+     {
+      "id": "derivative",
+      "ui": "clipped"
+     },
+     {
+      "id": "linear",
+      "ui": "suspended"
+     }
+    ],
+    "pageWide": {
+     "workerMessages": 0,
+     "animationFrames": 0,
+     "timersSet": 1,
+     "note": "whole page during the 2 s window, including the window's own timer and the three idle active cards"
+    },
+    "commitWithHistory": {
+     "total": {
+      "count": 30,
+      "min": 11.2,
+      "p50": 16.3,
+      "p95": 17.9,
+      "max": 18.6
+     },
+     "command": {
+      "count": 30,
+      "min": 3,
+      "p50": 3.5,
+      "p95": 4.3,
+      "max": 5.1
+     },
+     "workerEvaluation": {
+      "count": 30,
+      "min": 0.6,
+      "p50": 0.9,
+      "p95": 1.3,
+      "max": 1.7
+     },
+     "workerDelivered": {
+      "count": 30,
+      "min": 0.7,
+      "p50": 0.9,
+      "p95": 1.4,
+      "max": 1.8
+     },
+     "render": {
+      "count": 30,
+      "min": 1,
+      "p50": 1.1,
+      "p95": 1.4,
+      "max": 1.6
+     },
+     "paint": {
+      "count": 30,
+      "min": 3.8,
+      "p50": 11.1,
+      "p95": 12.5,
+      "max": 13.5
+     },
+     "storageAck": {
+      "count": 30,
+      "min": 0.1,
+      "p50": 0.2,
+      "p95": 0.3,
+      "max": 0.3
+     },
+     "failed": 0,
+     "failureCodes": []
+    }
+   },
+   "stalledPersistence": {
+    "outboxLimit": 24,
+    "acceptedWhileStalled": 21,
+    "refusal": {
+     "commit": 21,
+     "codes": [
+      "PERSISTENCE_BACKPRESSURE"
+     ]
+    },
+    "persistenceWhileStalled": [
+     "saving"
+    ],
+    "chipWhileStalled": {
+     "tone": "info",
+     "text": "…Saving…. The host is recording recent changes."
+    },
+    "commitsWhileStalledMs": [
+     11.099999994039536,
+     12.099999994039536,
+     14.300000011920929,
+     13.400000005960464,
+     14.099999994039536,
+     13.799999982118607,
+     13.699999988079071,
+     14.199999988079071,
+     12.099999994039536,
+     14.300000011920929,
+     12.800000011920929,
+     13.700000017881393,
+     13.799999982118607,
+     13.900000005960464,
+     14.099999994039536,
+     13.5,
+     13.599999994039536,
+     11.5,
+     13.900000005960464,
+     14.600000023841858,
+     13.100000023841858
+    ],
+    "stageTransitionWhileStalled": {
+     "ok": false,
+     "codes": [
+      "PERSISTENCE_PENDING"
+     ],
+     "resolvedAfterMs": 1003.9000000059605
+    },
+    "presentationWhileStalled": {
+     "ok": true,
+     "codes": [],
+     "totalMs": 15.900000005960464
+    },
+    "describeCurrentValuesChars": 293,
+    "stalledMs": 1383,
+    "drainMs": 15.099999994039536,
+    "afterRelease": {
+     "ok": true,
+     "codes": [],
+     "totalMs": 27.900000005960464,
+     "storageAckMs": 0.19999998807907104
+    },
+    "hostEvents": 31
+   },
+   "diagnostics": [
+    {
+     "source": "surface",
+     "code": "CLIPPED"
+    },
+    {
+     "source": "surface",
+     "code": "CLIPPED"
+    },
+    {
+     "source": "surface",
+     "code": "CLIPPED"
+    },
+    {
+     "source": "surface",
+     "code": "CLIPPED"
+    },
+    {
+     "source": "surface",
+     "code": "CLIPPED"
+    },
+    {
+     "source": "surface",
+     "code": "CLIPPED"
+    },
+    {
+     "source": "surface",
+     "code": "CLIPPED"
+    },
+    {
+     "source": "surface",
+     "code": "CLIPPED"
+    },
+    {
+     "source": "surface",
+     "code": "CLIPPED"
+    },
+    {
+     "source": "surface",
+     "code": "CLIPPED"
+    },
+    {
+     "source": "surface",
+     "code": "CLIPPED"
+    },
+    {
+     "source": "surface",
+     "code": "CLIPPED"
+    },
+    {
+     "source": "surface",
+     "code": "CLIPPED"
+    },
+    {
+     "source": "surface",
+     "code": "CLIPPED"
+    },
+    {
+     "source": "surface",
+     "code": "CLIPPED"
+    },
+    {
+     "source": "surface",
+     "code": "CLIPPED"
+    },
+    {
+     "source": "surface",
+     "code": "CLIPPED"
+    },
+    {
+     "source": "surface",
+     "code": "CLIPPED"
+    },
+    {
+     "source": "surface",
+     "code": "CLIPPED"
+    },
+    {
+     "source": "surface",
+     "code": "CLIPPED"
+    },
+    {
+     "source": "surface",
+     "code": "CLIPPED"
+    },
+    {
+     "source": "surface",
+     "code": "CLIPPED"
+    },
+    {
+     "source": "surface",
+     "code": "CLIPPED"
+    },
+    {
+     "source": "surface",
+     "code": "CLIPPED"
+    },
+    {
+     "source": "surface",
+     "code": "CLIPPED"
+    },
+    {
+     "source": "surface",
+     "code": "CLIPPED"
+    },
+    {
+     "source": "surface",
+     "code": "CLIPPED"
+    },
+    {
+     "source": "surface",
+     "code": "CLIPPED"
+    },
+    {
+     "source": "surface",
+     "code": "CLIPPED"
+    },
+    {
+     "source": "surface",
+     "code": "CLIPPED"
+    },
+    {
+     "source": "surface",
+     "code": "CLIPPED"
+    },
+    {
+     "source": "surface",
+     "code": "CLIPPED"
+    },
+    {
+     "source": "surface",
+     "code": "CLIPPED"
+    },
+    {
+     "source": "surface",
+     "code": "CLIPPED"
+    },
+    {
+     "source": "surface",
+     "code": "CLIPPED"
+    },
+    {
+     "source": "surface",
+     "code": "CLIPPED"
+    },
+    {
+     "source": "surface",
+     "code": "CLIPPED"
+    },
+    {
+     "source": "surface",
+     "code": "CLIPPED"
+    },
+    {
+     "source": "surface",
+     "code": "CLIPPED"
+    },
+    {
+     "source": "surface",
+     "code": "CLIPPED"
+    },
+    {
+     "source": "surface",
+     "code": "CLIPPED"
+    },
+    {
+     "source": "surface",
+     "code": "CLIPPED"
+    },
+    {
+     "source": "surface",
+     "code": "CLIPPED"
+    },
+    {
+     "source": "surface",
+     "code": "CLIPPED"
+    },
+    {
+     "source": "surface",
+     "code": "CLIPPED"
+    },
+    {
+     "source": "surface",
+     "code": "CLIPPED"
+    },
+    {
+     "source": "surface",
+     "code": "CLIPPED"
+    },
+    {
+     "source": "surface",
+     "code": "CLIPPED"
+    },
+    {
+     "source": "surface",
+     "code": "CLIPPED"
+    },
+    {
+     "source": "surface",
+     "code": "CLIPPED"
+    },
+    {
+     "source": "surface",
+     "code": "CLIPPED"
+    },
+    {
+     "source": "surface",
+     "code": "CLIPPED"
+    },
+    {
+     "source": "surface",
+     "code": "CLIPPED"
+    },
+    {
+     "source": "surface",
+     "code": "CLIPPED"
+    },
+    {
+     "source": "surface",
+     "code": "CLIPPED"
+    },
+    {
+     "source": "surface",
+     "code": "CLIPPED"
+    },
+    {
+     "source": "surface",
+     "code": "CLIPPED"
+    },
+    {
+     "source": "surface",
+     "code": "CLIPPED"
+    },
+    {
+     "source": "surface",
+     "code": "CLIPPED"
+    },
+    {
+     "source": "surface",
+     "code": "CLIPPED"
+    },
+    {
+     "source": "surface",
+     "code": "CLIPPED"
+    },
+    {
+     "source": "surface",
+     "code": "CLIPPED"
+    },
+    {
+     "source": "surface",
+     "code": "CLIPPED"
+    },
+    {
+     "source": "surface",
+     "code": "CLIPPED"
+    },
+    {
+     "source": "surface",
+     "code": "CLIPPED"
+    },
+    {
+     "source": "surface",
+     "code": "CLIPPED"
+    },
+    {
+     "source": "surface",
+     "code": "CLIPPED"
+    },
+    {
+     "source": "surface",
+     "code": "CLIPPED"
+    },
+    {
+     "source": "surface",
+     "code": "CLIPPED"
+    },
+    {
+     "source": "surface",
+     "code": "CLIPPED"
+    },
+    {
+     "source": "surface",
+     "code": "CLIPPED"
+    },
+    {
+     "source": "surface",
+     "code": "CLIPPED"
+    },
+    {
+     "source": "surface",
+     "code": "CLIPPED"
+    },
+    {
+     "source": "surface",
+     "code": "CLIPPED"
+    },
+    {
+     "source": "surface",
+     "code": "CLIPPED"
+    },
+    {
+     "source": "surface",
+     "code": "CLIPPED"
+    },
+    {
+     "source": "surface",
+     "code": "CLIPPED"
+    }
+   ],
+   "cspViolations": []
+  },
+  "documentPath": {
+   "wave": {
+    "svgElements": 44,
+    "total": {
+     "count": 40,
+     "min": 15.9,
+     "p50": 16.6,
+     "p95": 17.1,
+     "max": 17.6
+    },
+    "command": {
+     "count": 40,
+     "min": 2.2,
+     "p50": 3,
+     "p95": 3.6,
+     "max": 3.9
+    },
+    "dom": {
+     "count": 40,
+     "min": 2.2,
+     "p50": 3,
+     "p95": 3.6,
+     "max": 3.9
+    }
+   },
+   "1001-sample-curve": {
+    "svgElements": 44,
+    "total": {
+     "count": 40,
+     "min": 15.6,
+     "p50": 16.7,
+     "p95": 17.5,
+     "max": 18.2
+    },
+    "command": {
+     "count": 40,
+     "min": 3.2,
+     "p50": 3.7,
+     "p95": 4.6,
+     "max": 4.8
+    },
+    "dom": {
+     "count": 40,
+     "min": 3.2,
+     "p50": 3.7,
+     "p95": 4.6,
+     "max": 4.8
+    }
+   },
+   "100-mark-scene": {
+    "svgElements": 334,
+    "total": {
+     "count": 40,
+     "min": 15.9,
+     "p50": 16.6,
+     "p95": 17,
+     "max": 17.6
+    },
+    "command": {
+     "count": 40,
+     "min": 6.5,
+     "p50": 7.2,
+     "p95": 8.5,
+     "max": 11.5
+    },
+    "dom": {
+     "count": 40,
+     "min": 6.5,
+     "p50": 7.2,
+     "p95": 8.5,
+     "max": 11.5
+    }
+   },
+   "5000-row-dataset": {
+    "svgElements": 44,
+    "total": {
+     "count": 40,
+     "min": 27.2,
+     "p50": 29.3,
+     "p95": 39.4,
+     "max": 39.5
+    },
+    "command": {
+     "count": 40,
+     "min": 26.7,
+     "p50": 27.7,
+     "p95": 29,
+     "max": 30.3
+    },
+    "dom": {
+     "count": 40,
+     "min": 26.7,
+     "p50": 27.7,
+     "p95": 29,
+     "max": 30.3
+    }
+   },
+   "cspViolations": []
+  },
+  "spatial": {
+   "vector-orientation-3d": {
+    "spatialState": "ready",
+    "loaderCalls": 1,
+    "commit": {
+     "total": {
+      "count": 30,
+      "min": 18.2,
+      "p50": 19.7,
+      "p95": 20.6,
+      "max": 20.6
+     },
+     "command": {
+      "count": 30,
+      "min": 4.2,
+      "p50": 4.7,
+      "p95": 5.3,
+      "max": 5.7
+     },
+     "workerEvaluation": {
+      "count": 30,
+      "min": 0.9,
+      "p50": 1.1,
+      "p95": 1.4,
+      "max": 1.5
+     },
+     "workerDelivered": {
+      "count": 30,
+      "min": 1,
+      "p50": 1.1,
+      "p95": 1.4,
+      "max": 1.6
+     },
+     "render": {
+      "count": 30,
+      "min": 1.5,
+      "p50": 1.7,
+      "p95": 2.4,
+      "max": 2.8
+     },
+     "paint": {
+      "count": 30,
+      "min": 11.6,
+      "p50": 12.5,
+      "p95": 13.6,
+      "max": 14
+     },
+     "storageAck": {
+      "count": 30,
+      "min": 0.2,
+      "p50": 0.3,
+      "p95": 0.4,
+      "max": 0.4
+     },
+     "failed": 0,
+     "failureCodes": [],
+     "rendererFrame": {
+      "count": 30,
+      "min": 32.5,
+      "p50": 33.2,
+      "p95": 34.3,
+      "max": 34.3
+     }
+    },
+    "cameraCommand": {
+     "command": {
+      "count": 30,
+      "min": 1.1,
+      "p50": 1.5,
+      "p95": 1.8,
+      "max": 1.8
+     },
+     "dom": {
+      "count": 30,
+      "min": 4.7,
+      "p50": 5.6,
+      "p95": 6.4,
+      "max": 7
+     },
+     "rendererFrame": {
+      "count": 30,
+      "min": 32.3,
+      "p50": 33.2,
+      "p95": 34.3,
+      "max": 34.3
+     },
+     "failed": 0
+    },
+    "pointerOrbit": {
+     "moves": 90,
+     "durationMs": 1488,
+     "inputAck": {
+      "count": 90,
+      "min": 17.6,
+      "p50": 32,
+      "p95": 33.5,
+      "max": 50.3
+     },
+     "unacknowledged": 0,
+     "rendererFrames": 90,
+     "frameRateFps": 60.00539374325783
+    }
+   },
+   "quadratic-surface-gradient": {
+    "spatialState": "ready",
+    "loaderCalls": 0,
+    "commit": {
+     "total": {
+      "count": 30,
+      "min": 25.4,
+      "p50": 26.5,
+      "p95": 27.8,
+      "max": 29
+     },
+     "command": {
+      "count": 30,
+      "min": 14.4,
+      "p50": 14.9,
+      "p95": 15.7,
+      "max": 16.7
+     },
+     "workerEvaluation": {
+      "count": 30,
+      "min": 2.5,
+      "p50": 2.9,
+      "p95": 3.2,
+      "max": 3.3
+     },
+     "workerDelivered": {
+      "count": 30,
+      "min": 2.7,
+      "p50": 3.1,
+      "p95": 3.5,
+      "max": 3.6
+     },
+     "render": {
+      "count": 30,
+      "min": 2.3,
+      "p50": 2.5,
+      "p95": 2.9,
+      "max": 2.9
+     },
+     "paint": {
+      "count": 30,
+      "min": 5.7,
+      "p50": 6.1,
+      "p95": 6.4,
+      "max": 6.5
+     },
+     "storageAck": {
+      "count": 30,
+      "min": 0.2,
+      "p50": 0.3,
+      "p95": 0.4,
+      "max": 0.4
+     },
+     "failed": 0,
+     "failureCodes": [],
+     "rendererFrame": {
+      "count": 30,
+      "min": 49,
+      "p50": 49.9,
+      "p95": 50.4,
+      "max": 50.8
+     }
+    },
+    "cameraCommand": {
+     "command": {
+      "count": 30,
+      "min": 3.3,
+      "p50": 3.5,
+      "p95": 3.7,
+      "max": 4
+     },
+     "dom": {
+      "count": 30,
+      "min": 11.7,
+      "p50": 12.2,
+      "p95": 13,
+      "max": 13.3
+     },
+     "rendererFrame": {
+      "count": 30,
+      "min": 32.4,
+      "p50": 33.3,
+      "p95": 49.8,
+      "max": 50
+     },
+     "failed": 0
+    },
+    "pointerOrbit": {
+     "moves": 90,
+     "durationMs": 1485,
+     "inputAck": {
+      "count": 90,
+      "min": 30.1,
+      "p50": 31.9,
+      "p95": 33.2,
+      "max": 49.8
+     },
+     "unacknowledged": 0,
+     "rendererFrames": 90,
+     "frameRateFps": 60.00272739669983
+    }
+   },
+   "diagnostics": [],
+   "cspViolations": []
+  },
+  "lifecycle": {
+   "cycles": 100,
+   "duration": {
+    "count": 100,
+    "min": 53.6,
+    "p50": 72.9,
+    "p95": 84.7,
+    "max": 96.6
+   },
+   "totalMs": 6812,
+   "workers": {
+    "created": 200,
+    "terminated": 200,
+    "liveBefore": 0,
+    "liveAfter": 0,
+    "peak": 1,
+    "viaBenchWrapper": {
+     "created": 200,
+     "terminated": 200,
+     "live": 0,
+     "peak": 1
+    }
+   },
+   "timersPendingFromCycles": 0,
+   "intervalsLiveFromCycles": 0,
+   "windowListenersFromCycles": [],
+   "documentListenersFromCycles": [],
+   "mediaQueryListenersNet": 0,
+   "shadowRootsAttached": 200,
+   "connectedSurfacesAfter": 0,
+   "openCardsAfter": 0,
+   "adapterActivitiesStillOpen": 0,
+   "heap": {
+    "gcForced": true,
+    "samples": [
+     {
+      "cycle": 0,
+      "usedJSHeapSize": 6311035,
+      "hostRecordChars": 14730
+     },
+     {
+      "cycle": 10,
+      "usedJSHeapSize": 11890034,
+      "hostRecordChars": 155452
+     },
+     {
+      "cycle": 20,
+      "usedJSHeapSize": 16040088,
+      "hostRecordChars": 296471
+     },
+     {
+      "cycle": 30,
+      "usedJSHeapSize": 14053915,
+      "hostRecordChars": 437566
+     },
+     {
+      "cycle": 40,
+      "usedJSHeapSize": 14024568,
+      "hostRecordChars": 578690
+     },
+     {
+      "cycle": 50,
+      "usedJSHeapSize": 14280955,
+      "hostRecordChars": 719775
+     },
+     {
+      "cycle": 60,
+      "usedJSHeapSize": 14052864,
+      "hostRecordChars": 860795
+     },
+     {
+      "cycle": 70,
+      "usedJSHeapSize": 14476965,
+      "hostRecordChars": 1001791
+     },
+     {
+      "cycle": 80,
+      "usedJSHeapSize": 14863520,
+      "hostRecordChars": 1142919
+     },
+     {
+      "cycle": 90,
+      "usedJSHeapSize": 14646169,
+      "hostRecordChars": 1284003
+     },
+     {
+      "cycle": 100,
+      "usedJSHeapSize": 14968514,
+      "hostRecordChars": 1424941
+     }
+    ],
+    "note": "JS heap of the page (performance.memory.usedJSHeapSize with --enable-precise-memory-info) after a forced gc() every 10 cycles; not process memory, not GPU or worker memory."
+   },
+   "cspViolations": []
+  },
+  "pageNavigationWhilePending": {
+   "unloadMs": 7,
+   "reopenedStage": "free-explore",
+   "reopenedFrame": "committed",
+   "cspViolations": []
+  },
+  "spatialSoftware": {
+   "vector-orientation-3d": {
+    "spatialState": "ready",
+    "loaderCalls": 1,
+    "commit": {
+     "total": {
+      "count": 30,
+      "min": 9.4,
+      "p50": 66.3,
+      "p95": 73.2,
+      "max": 74.2
+     },
+     "command": {
+      "count": 30,
+      "min": 4,
+      "p50": 4.5,
+      "p95": 5,
+      "max": 5.3
+     },
+     "workerEvaluation": {
+      "count": 30,
+      "min": 0.9,
+      "p50": 1,
+      "p95": 1.2,
+      "max": 1.6
+     },
+     "workerDelivered": {
+      "count": 30,
+      "min": 0.9,
+      "p50": 1.1,
+      "p95": 1.3,
+      "max": 1.7
+     },
+     "render": {
+      "count": 30,
+      "min": 1.4,
+      "p50": 1.6,
+      "p95": 2,
+      "max": 2.1
+     },
+     "paint": {
+      "count": 30,
+      "min": 2.5,
+      "p50": 59.6,
+      "p95": 65.9,
+      "max": 67.6
+     },
+     "storageAck": {
+      "count": 30,
+      "min": 0.2,
+      "p50": 0.3,
+      "p95": 0.4,
+      "max": 0.4
+     },
+     "failed": 0,
+     "failureCodes": [],
+     "rendererFrame": {
+      "count": 30,
+      "min": 59.9,
+      "p50": 66.6,
+      "p95": 74.5,
+      "max": 75.7
+     }
+    },
+    "cameraCommand": {
+     "command": {
+      "count": 30,
+      "min": 0.9,
+      "p50": 1.1,
+      "p95": 1.3,
+      "max": 1.4
+     },
+     "dom": {
+      "count": 30,
+      "min": 3.7,
+      "p50": 4.1,
+      "p95": 4.5,
+      "max": 4.5
+     },
+     "rendererFrame": {
+      "count": 30,
+      "min": 32.5,
+      "p50": 33.3,
+      "p95": 34.6,
+      "max": 81.7
+     },
+     "failed": 0
+    },
+    "pointerOrbit": {
+     "moves": 90,
+     "durationMs": 1481,
+     "inputAck": {
+      "count": 90,
+      "min": 24.9,
+      "p50": 32.4,
+      "p95": 34.8,
+      "max": 46.5
+     },
+     "unacknowledged": 0,
+     "rendererFrames": 90,
+     "frameRateFps": 60.002727396699875
+    }
+   },
+   "quadratic-surface-gradient": {
+    "spatialState": "ready",
+    "loaderCalls": 0,
+    "commit": {
+     "total": {
+      "count": 30,
+      "min": 26.5,
+      "p50": 27.3,
+      "p95": 286.9,
+      "max": 288.7
+     },
+     "command": {
+      "count": 30,
+      "min": 14.9,
+      "p50": 15.3,
+      "p95": 17.3,
+      "max": 17.5
+     },
+     "workerEvaluation": {
+      "count": 30,
+      "min": 2.5,
+      "p50": 2.9,
+      "p95": 3.2,
+      "max": 3.6
+     },
+     "workerDelivered": {
+      "count": 30,
+      "min": 2.8,
+      "p50": 3.2,
+      "p95": 3.5,
+      "max": 3.8
+     },
+     "render": {
+      "count": 30,
+      "min": 2.4,
+      "p50": 2.5,
+      "p95": 2.9,
+      "max": 3
+     },
+     "paint": {
+      "count": 30,
+      "min": 5.9,
+      "p50": 6.2,
+      "p95": 266.2,
+      "max": 267.7
+     },
+     "storageAck": {
+      "count": 30,
+      "min": 0.2,
+      "p50": 0.3,
+      "p95": 0.4,
+      "max": 0.4
+     },
+     "failed": 0,
+     "failureCodes": [],
+     "rendererFrame": {
+      "count": 30,
+      "min": 274.6,
+      "p50": 283.8,
+      "p95": 302,
+      "max": 302.4
+     }
+    },
+    "cameraCommand": {
+     "command": {
+      "count": 30,
+      "min": 3.4,
+      "p50": 3.6,
+      "p95": 3.9,
+      "max": 4.1
+     },
+     "dom": {
+      "count": 30,
+      "min": 11.9,
+      "p50": 12.4,
+      "p95": 13.3,
+      "max": 13.8
+     },
+     "rendererFrame": {
+      "count": 30,
+      "min": 51.7,
+      "p50": 65.8,
+      "p95": 69.2,
+      "max": 73.1
+     },
+     "failed": 0
+    },
+    "pointerOrbit": {
+     "moves": 90,
+     "durationMs": 4519,
+     "inputAck": {
+      "count": 90,
+      "min": 68.8,
+      "p50": 99.2,
+      "p95": 108,
+      "max": 149.9
+     },
+     "unacknowledged": 0,
+     "rendererFrames": 90,
+     "frameRateFps": 39.33508155918038
+    }
+   },
+   "diagnostics": [],
+   "webglRenderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)",
+   "cspViolations": []
+  },
+  "environment": {
+   "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.8078.4 Safari/537.36",
+   "hardwareConcurrency": 8,
+   "deviceMemory": 16,
+   "devicePixelRatio": 1,
+   "viewport": {
+    "width": 1600,
+    "height": 1000
+   },
+   "webglRenderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M3, Unspecified Version)",
+   "browser": "Chromium 156.0.8078.4 (Playwright headless shell, --use-angle=metal --enable-gpu --ignore-gpu-blocklist)",
+   "os": "macOS 26.6.2",
+   "cpu": "Apple M3",
+   "cores": 8,
+   "memoryBytes": 17179869184,
+   "node": "v22.22.3",
+   "loadAverage": {
+    "start": [
+     5.68,
+     4.83,
+     5.22
+    ],
+    "end": [
+     6.02,
+     5.07,
+     5.25
+    ],
+    "note": "1/5/15-minute load averages; other processes (including other development work) shared this machine during the run"
+   },
+   "consoleSession": "locked during this run (headless Chromium renders offscreen and is unaffected; a packaged WKWebView window would be treated as hidden)"
+  }
+ }
+}

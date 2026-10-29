@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Observed data example — Study Harness learner surface</title>
+  <style>
+    :root { color-scheme: light; }
+    body { margin: 0; background: #f3f5f7; color: #17212b; font: 15px/1.45 system-ui, sans-serif; }
+    body[data-theme="dark"] { color-scheme: dark; background: #10161c; color: #e6edf3; }
+    .ob-banner { padding: 12px 16px; background: #fff7d6; color: #17212b; border-bottom: 1px solid #e3cf7a; }
+    .ob-banner p { margin: 4px 0 0; max-width: 72ch; }
+    main { padding: 16px; }
+    #ob-card { max-width: 960px; min-width: 0; }
+    #ob-status:empty { display: none; }
+    #ob-status { color: #9b1c1c; }
+  </style>
+</head>
+<body>
+  <header class="ob-banner" role="note">
+    <strong>Observed-data example — test page, not a tutor or a Study Harness host.</strong>
+    <p>The recorded heights are illustrative values constructed for this example, not a measurement. An in-page example
+      host records the journal in memory only.</p>
+  </header>
+  <main>
+    <p id="ob-status" role="alert"></p>
+    <div id="ob-card"></div>
+  </main>
+  <script type="module" src="./main.ts"></script>
+</body>
+</html>

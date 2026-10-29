@@ -1,0 +1,52 @@
+{
+  "name": "@experiment-kit/activity",
+  "version": "0.3.0-preview.1",
+  "description": "Study Harness activity contracts, projection policy, exposure protocol, journal and adapter.",
+  "type": "module",
+  "license": "MIT",
+  "sideEffects": false,
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./conformance": {
+      "types": "./dist/conformance/index.d.ts",
+      "import": "./dist/conformance/index.js"
+    },
+    "./package.json": "./package.json",
+    "./schema/*": "./schema/*"
+  },
+  "files": [
+    "dist",
+    "schema",
+    "fixtures",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "prepack": "npm run build"
+  },
+  "publishConfig": {
+    "access": "public",
+    "tag": "preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jamesliuai/Explorable-Models.git",
+    "directory": "packages/activity"
+  },
+  "homepage": "https://github.com/jamesliuai/Explorable-Models#readme",
+  "bugs": {
+    "url": "https://github.com/jamesliuai/Explorable-Models/issues"
+  },
+  "dependencies": {
+    "@experiment-kit/core": "0.3.0-preview.1"
+  }
+}

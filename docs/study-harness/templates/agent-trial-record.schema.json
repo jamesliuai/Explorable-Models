@@ -1,0 +1,447 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://experiment-kit.dev/schema/study-harness/agent-trial-record-1.json",
+  "title": "Study Harness agent trial record (external gate G3, A57)",
+  "description": "Sanitized record of a host-agent trial: identifiers, tool names, outcome codes, fixed-vocabulary repairs, G3 step marks, configuration digest and budget usage. It never contains tool inputs, results, messages, learner or study text, or credentials. kind distinguishes a real configured trial from scripted or fixture evidence.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "trialId",
+    "kind",
+    "startedAt",
+    "endedAt",
+    "host",
+    "configuration",
+    "budget",
+    "entries",
+    "steps",
+    "totals",
+    "withinBudget",
+    "truncated"
+  ],
+  "properties": {
+    "schema": {
+      "const": "study-harness.agent-trial-record/1"
+    },
+    "trialId": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:@/-]{0,127}$"
+    },
+    "kind": {
+      "enum": [
+        "real-agent-trial",
+        "scripted-fixture"
+      ]
+    },
+    "startedAt": {
+      "type": "string",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}([.][0-9]{1,9})?Z$"
+    },
+    "endedAt": {
+      "type": "string",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}([.][0-9]{1,9})?Z$"
+    },
+    "host": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:@/+-]{0,127}$"
+        },
+        "commit": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{7,64}$"
+        },
+        "binarySha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "platform": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:@/+-]{0,127}$"
+        }
+      }
+    },
+    "configuration": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "provider",
+        "model",
+        "digest"
+      ],
+      "properties": {
+        "provider": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:@/+-]{0,127}$"
+        },
+        "model": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:@/+-]{0,127}$"
+        },
+        "digest": {
+          "type": "string",
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        }
+      }
+    },
+    "budget": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "maxRequests"
+      ],
+      "properties": {
+        "maxRequests": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "maxInputTokens": {
+          "type": "number",
+          "minimum": 0
+        },
+        "maxOutputTokens": {
+          "type": "number",
+          "minimum": 0
+        },
+        "maxCost": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "amount",
+            "currency"
+          ],
+          "properties": {
+            "amount": {
+              "type": "number",
+              "minimum": 0
+            },
+            "currency": {
+              "type": "string",
+              "pattern": "^[A-Z]{3}$"
+            }
+          }
+        }
+      }
+    },
+    "entries": {
+      "type": "array",
+      "maxItems": 1000,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "sequence",
+          "requestId",
+          "tool",
+          "operation",
+          "outcome",
+          "durationMs"
+        ],
+        "properties": {
+          "sequence": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "requestId": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:@/-]{0,127}$"
+          },
+          "tool": {
+            "enum": [
+              "activity_discover",
+              "activity_describe_template",
+              "activity_prepare",
+              "activity_inspect",
+              "activity_propose_revision",
+              "activity_request_reveal",
+              "activity_operate",
+              "activity_summarize",
+              "activity_save",
+              "activity_restore",
+              "activity_close",
+              "activity_sample",
+              "unknown"
+            ]
+          },
+          "operation": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "pattern": "^sha256:[0-9a-f]{64}$"
+          },
+          "outcome": {
+            "oneOf": [
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "ok",
+                  "status"
+                ],
+                "properties": {
+                  "ok": {
+                    "const": true
+                  },
+                  "status": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "pattern": "^[a-z][a-z-]{0,31}$"
+                  }
+                }
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "ok",
+                  "codes"
+                ],
+                "properties": {
+                  "ok": {
+                    "const": false
+                  },
+                  "codes": {
+                    "type": "array",
+                    "minItems": 1,
+                    "maxItems": 8,
+                    "items": {
+                      "type": "string",
+                      "pattern": "^[A-Z][A-Z0-9_]{1,63}$"
+                    }
+                  }
+                }
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "relayError"
+                ],
+                "properties": {
+                  "relayError": {
+                    "type": "string",
+                    "pattern": "^[A-Z][A-Z0-9_]{1,63}$"
+                  }
+                }
+              }
+            ]
+          },
+          "durationMs": {
+            "type": "number",
+            "minimum": 0
+          },
+          "steps": {
+            "type": "array",
+            "maxItems": 11,
+            "items": {
+              "enum": [
+                "discover",
+                "personalise",
+                "inspect",
+                "rejected-request",
+                "repair",
+                "host-reveal",
+                "summarise",
+                "save",
+                "reopen",
+                "stale-operation",
+                "unsupported-declined"
+              ]
+            }
+          },
+          "repair": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "kind",
+              "of"
+            ],
+            "properties": {
+              "kind": {
+                "enum": [
+                  "refresh-guards",
+                  "adjust-value",
+                  "drop-parameter",
+                  "request-stage-change",
+                  "retry-same-operation",
+                  "new-operation",
+                  "decline-with-alternative",
+                  "other"
+                ]
+              },
+              "of": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:@/-]{0,127}$"
+              }
+            }
+          },
+          "usage": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "inputTokens": {
+                "type": "number",
+                "minimum": 0
+              },
+              "outputTokens": {
+                "type": "number",
+                "minimum": 0
+              },
+              "cost": {
+                "type": "number",
+                "minimum": 0
+              }
+            }
+          }
+        }
+      }
+    },
+    "steps": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "discover",
+        "personalise",
+        "inspect",
+        "rejected-request",
+        "repair",
+        "host-reveal",
+        "summarise",
+        "save",
+        "reopen",
+        "stale-operation",
+        "unsupported-declined"
+      ],
+      "properties": {
+        "discover": {
+          "type": "array",
+          "maxItems": 1000,
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:@/-]{0,127}$"
+          }
+        },
+        "personalise": {
+          "type": "array",
+          "maxItems": 1000,
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:@/-]{0,127}$"
+          }
+        },
+        "inspect": {
+          "type": "array",
+          "maxItems": 1000,
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:@/-]{0,127}$"
+          }
+        },
+        "rejected-request": {
+          "type": "array",
+          "maxItems": 1000,
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:@/-]{0,127}$"
+          }
+        },
+        "repair": {
+          "type": "array",
+          "maxItems": 1000,
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:@/-]{0,127}$"
+          }
+        },
+        "host-reveal": {
+          "type": "array",
+          "maxItems": 1000,
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:@/-]{0,127}$"
+          }
+        },
+        "summarise": {
+          "type": "array",
+          "maxItems": 1000,
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:@/-]{0,127}$"
+          }
+        },
+        "save": {
+          "type": "array",
+          "maxItems": 1000,
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:@/-]{0,127}$"
+          }
+        },
+        "reopen": {
+          "type": "array",
+          "maxItems": 1000,
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:@/-]{0,127}$"
+          }
+        },
+        "stale-operation": {
+          "type": "array",
+          "maxItems": 1000,
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:@/-]{0,127}$"
+          }
+        },
+        "unsupported-declined": {
+          "type": "array",
+          "maxItems": 1000,
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:@/-]{0,127}$"
+          }
+        }
+      }
+    },
+    "totals": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "requests",
+        "inputTokens",
+        "outputTokens",
+        "cost"
+      ],
+      "properties": {
+        "requests": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "inputTokens": {
+          "type": "number",
+          "minimum": 0
+        },
+        "outputTokens": {
+          "type": "number",
+          "minimum": 0
+        },
+        "cost": {
+          "type": "number",
+          "minimum": 0
+        }
+      }
+    },
+    "withinBudget": {
+      "type": "boolean"
+    },
+    "truncated": {
+      "type": "boolean"
+    }
+  }
+}

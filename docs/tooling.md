@@ -107,7 +107,10 @@ Version 0.1 supports trusted local authors and curated exported bundles. A worke
 
 The model import surface and restrictive local response policies reduce accidental capabilities. They do not establish safety for adversarial source. Serve only the exported directory, not a directory containing private files. The general static server also rejects path traversal and symlink escapes.
 
-## Declarative authoring over stdio MCP (0.2 preview)
+## Declarative authoring over stdio MCP
+
+Introduced in the 0.2 preview and unchanged in 0.3.0-preview.1 (the document schema 2.0 tools; the Study Harness
+activity tools are separate, see `docs/study-harness/agent-tools.md`).
 
 `experiment-kit mcp-document` creates a blank v2 session without a source directory. Its nine `visualization_*` tools are the same schemas and executor as `@experiment-kit/agent`: discover, create, revise, inspect, commit, discard, operate, save and restore. Existing `experiment-kit mcp <directory>` retains the legacy source-project workflow.
 

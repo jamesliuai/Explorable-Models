@@ -7,5 +7,5 @@
     "outDir": "dist", "rootDir": "src", "noEmitOnError": true,
     "types": ["react", "react-dom"]
   },
-  "include": ["src/public.ts"]
+  "include": ["src/public.ts", "src/activity/index.ts"]
 }

@@ -1,0 +1,351 @@
+{
+  "contract": "experiment-kit.measurement",
+  "scenario": "stalled-persistence stage transition (benchmark bench.stalledPersistence)",
+  "createdAt": "2026-10-26T23:36:59.541Z",
+  "runs": 8,
+  "warmups": 1,
+  "adapter": {
+    "persistenceWaitMs": 1000,
+    "outboxLimit": 24
+  },
+  "environment": {
+    "platform": "darwin",
+    "arch": "arm64",
+    "cpu": "Apple M3",
+    "cores": 8,
+    "node": "v22.22.3",
+    "chromium": "156.0.8078.4",
+    "loadavg": [
+      3.18896484375,
+      3.39599609375,
+      3.67919921875
+    ]
+  },
+  "consumer": {
+    "dist": "release/study-harness/consumer/dist",
+    "builtAt": "2026-10-26T21:37:10.799Z",
+    "pack": {
+      "createdAt": "2026-10-26T21:36:45.326Z",
+      "packages": [
+        {
+          "name": "@experiment-kit/core",
+          "sha256": "dbd6f58dbf24d974e0b04e23387d12526cba8d69ad1e7ec57578c5b0f737d365"
+        },
+        {
+          "name": "@experiment-kit/activity",
+          "sha256": "48e5194b330fdd3d93c8fb8b5a602ca05657040d9a1f1bcfafa4a9b7bd2901b3"
+        },
+        {
+          "name": "@experiment-kit/catalog",
+          "sha256": "70e549f61f00ddecbf251115ddf4d1562b5bd6af4ac5fa4664504b0311659ca8"
+        },
+        {
+          "name": "@experiment-kit/player",
+          "sha256": "077e87d2e38a7d1cdcd7c48fb9f123ca0cd3e4d8461d87bdda38e5af235d520b"
+        },
+        {
+          "name": "@experiment-kit/player-3d",
+          "sha256": "77d9c2565e14d1acbee36c0104b6ba69974619546d901db6d54170bdddd00e54"
+        },
+        {
+          "name": "@experiment-kit/agent",
+          "sha256": "0b719777ab648a5fa9d14527aef05362d52dd327b77cb3ac86067b81df393735"
+        }
+      ]
+    }
+  },
+  "stageTransitionMs": {
+    "count": 8,
+    "min": 1002.7,
+    "p50": 1003,
+    "p95": 1006,
+    "max": 1006
+  },
+  "stageTransitionCodes": [
+    "PERSISTENCE_PENDING"
+  ],
+  "acceptedWhileStalled": [
+    21
+  ],
+  "refusalCodes": [
+    "PERSISTENCE_BACKPRESSURE"
+  ],
+  "presentationWhileStalledMs": {
+    "count": 8,
+    "min": 9.5,
+    "p50": 10.4,
+    "p95": 23.4,
+    "max": 23.4
+  },
+  "presentationWhileStalledOk": true,
+  "drainMs": {
+    "count": 8,
+    "min": 9.6,
+    "p50": 12.5,
+    "p95": 13.7,
+    "max": 13.7
+  },
+  "afterReleaseOk": true,
+  "chips": [
+    "…Saving…. The host is recording recent changes."
+  ],
+  "errors": [],
+  "samples": [
+    {
+      "stageTransition": {
+        "ok": false,
+        "codes": [
+          "PERSISTENCE_PENDING"
+        ],
+        "resolvedAfterMs": 1004.2999999821186
+      },
+      "acceptedWhileStalled": 21,
+      "refusal": {
+        "commit": 21,
+        "codes": [
+          "PERSISTENCE_BACKPRESSURE"
+        ]
+      },
+      "presentation": {
+        "ok": true,
+        "codes": [],
+        "totalMs": 17
+      },
+      "chip": {
+        "tone": "info",
+        "text": "…Saving…. The host is recording recent changes."
+      },
+      "drainMs": 12.5,
+      "afterRelease": {
+        "ok": true,
+        "codes": [],
+        "totalMs": 12.699999988079071,
+        "storageAckMs": 0.30000001192092896
+      }
+    },
+    {
+      "stageTransition": {
+        "ok": false,
+        "codes": [
+          "PERSISTENCE_PENDING"
+        ],
+        "resolvedAfterMs": 1003.9000000059605
+      },
+      "acceptedWhileStalled": 21,
+      "refusal": {
+        "commit": 21,
+        "codes": [
+          "PERSISTENCE_BACKPRESSURE"
+        ]
+      },
+      "presentation": {
+        "ok": true,
+        "codes": [],
+        "totalMs": 22.80000001192093
+      },
+      "chip": {
+        "tone": "info",
+        "text": "…Saving…. The host is recording recent changes."
+      },
+      "drainMs": 13.299999982118607,
+      "afterRelease": {
+        "ok": true,
+        "codes": [],
+        "totalMs": 10.100000023841858,
+        "storageAckMs": 0.5
+      }
+    },
+    {
+      "stageTransition": {
+        "ok": false,
+        "codes": [
+          "PERSISTENCE_PENDING"
+        ],
+        "resolvedAfterMs": 1004.6999999880791
+      },
+      "acceptedWhileStalled": 21,
+      "refusal": {
+        "commit": 21,
+        "codes": [
+          "PERSISTENCE_BACKPRESSURE"
+        ]
+      },
+      "presentation": {
+        "ok": true,
+        "codes": [],
+        "totalMs": 23.400000005960464
+      },
+      "chip": {
+        "tone": "info",
+        "text": "…Saving…. The host is recording recent changes."
+      },
+      "drainMs": 13.400000005960464,
+      "afterRelease": {
+        "ok": true,
+        "codes": [],
+        "totalMs": 19.799999982118607,
+        "storageAckMs": 0.4000000059604645
+      }
+    },
+    {
+      "stageTransition": {
+        "ok": false,
+        "codes": [
+          "PERSISTENCE_PENDING"
+        ],
+        "resolvedAfterMs": 1002.7000000178814
+      },
+      "acceptedWhileStalled": 21,
+      "refusal": {
+        "commit": 21,
+        "codes": [
+          "PERSISTENCE_BACKPRESSURE"
+        ]
+      },
+      "presentation": {
+        "ok": true,
+        "codes": [],
+        "totalMs": 10.399999976158142
+      },
+      "chip": {
+        "tone": "info",
+        "text": "…Saving…. The host is recording recent changes."
+      },
+      "drainMs": 9.599999994039536,
+      "afterRelease": {
+        "ok": true,
+        "codes": [],
+        "totalMs": 9,
+        "storageAckMs": 0.29999998211860657
+      }
+    },
+    {
+      "stageTransition": {
+        "ok": false,
+        "codes": [
+          "PERSISTENCE_PENDING"
+        ],
+        "resolvedAfterMs": 1002.6999999880791
+      },
+      "acceptedWhileStalled": 21,
+      "refusal": {
+        "commit": 21,
+        "codes": [
+          "PERSISTENCE_BACKPRESSURE"
+        ]
+      },
+      "presentation": {
+        "ok": true,
+        "codes": [],
+        "totalMs": 9.599999994039536
+      },
+      "chip": {
+        "tone": "info",
+        "text": "…Saving…. The host is recording recent changes."
+      },
+      "drainMs": 12.5,
+      "afterRelease": {
+        "ok": true,
+        "codes": [],
+        "totalMs": 9.700000017881393,
+        "storageAckMs": 0.30000001192092896
+      }
+    },
+    {
+      "stageTransition": {
+        "ok": false,
+        "codes": [
+          "PERSISTENCE_PENDING"
+        ],
+        "resolvedAfterMs": 1003
+      },
+      "acceptedWhileStalled": 21,
+      "refusal": {
+        "commit": 21,
+        "codes": [
+          "PERSISTENCE_BACKPRESSURE"
+        ]
+      },
+      "presentation": {
+        "ok": true,
+        "codes": [],
+        "totalMs": 9.5
+      },
+      "chip": {
+        "tone": "info",
+        "text": "…Saving…. The host is recording recent changes."
+      },
+      "drainMs": 12.199999988079071,
+      "afterRelease": {
+        "ok": true,
+        "codes": [],
+        "totalMs": 7.800000011920929,
+        "storageAckMs": 0.29999998211860657
+      }
+    },
+    {
+      "stageTransition": {
+        "ok": false,
+        "codes": [
+          "PERSISTENCE_PENDING"
+        ],
+        "resolvedAfterMs": 1002.7000000178814
+      },
+      "acceptedWhileStalled": 21,
+      "refusal": {
+        "commit": 21,
+        "codes": [
+          "PERSISTENCE_BACKPRESSURE"
+        ]
+      },
+      "presentation": {
+        "ok": true,
+        "codes": [],
+        "totalMs": 9.699999988079071
+      },
+      "chip": {
+        "tone": "info",
+        "text": "…Saving…. The host is recording recent changes."
+      },
+      "drainMs": 12.400000005960464,
+      "afterRelease": {
+        "ok": true,
+        "codes": [],
+        "totalMs": 9.299999982118607,
+        "storageAckMs": 0.4000000059604645
+      }
+    },
+    {
+      "stageTransition": {
+        "ok": false,
+        "codes": [
+          "PERSISTENCE_PENDING"
+        ],
+        "resolvedAfterMs": 1006
+      },
+      "acceptedWhileStalled": 21,
+      "refusal": {
+        "commit": 21,
+        "codes": [
+          "PERSISTENCE_BACKPRESSURE"
+        ]
+      },
+      "presentation": {
+        "ok": true,
+        "codes": [],
+        "totalMs": 22.799999982118607
+      },
+      "chip": {
+        "tone": "info",
+        "text": "…Saving…. The host is recording recent changes."
+      },
+      "drainMs": 13.699999988079071,
+      "afterRelease": {
+        "ok": true,
+        "codes": [],
+        "totalMs": 19.599999994039536,
+        "storageAckMs": 0.4000000059604645
+      }
+    }
+  ]
+}

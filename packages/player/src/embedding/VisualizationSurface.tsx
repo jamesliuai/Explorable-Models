@@ -4,7 +4,7 @@ import type { MutationGuard, ParameterSpec, SessionState, ViewSpec, Visualizatio
 import { Scene } from './Scene.js';
 import { formatNumber, formatValue } from './format.js';
 import { registerSurface } from './export.js';
-import { surfaceStyles } from './styles.js';
+import { adoptSurfaceStyles } from './stylesheet.js';
 
 export interface VisualizationSurfaceProps {
   session: VisualizationSession;
@@ -16,6 +16,11 @@ export interface VisualizationSurfaceProps {
   className?: string;
   /** Hosts can surface errors in their own notification system. */
   onError?: (error: Error) => void;
+  /**
+   * Base URL of the packaged `surface.css`, linked only where constructable stylesheets are unavailable (the styles are
+   * otherwise adopted as a constructable stylesheet: no inline style element, so no `style-src 'unsafe-inline'`).
+   */
+  assetBase?: string | URL;
 }
 
 function guard(session: VisualizationSession): MutationGuard {
@@ -63,7 +68,7 @@ function Readout({ view, state, precision, locale }: { view: ViewSpec; state: Se
 }
 
 /** Embeddable presentation only: the host owns session lifetime, persistence and navigation. */
-export function VisualizationSurface({ session, controls, theme = 'light', locale, headingLevel = 2, className, onError }: VisualizationSurfaceProps) {
+export function VisualizationSurface({ session, controls, theme = 'light', locale, headingLevel = 2, className, onError, assetBase }: VisualizationSurfaceProps) {
   const subscribe = useCallback((notify: () => void) => session.subscribe(() => notify()), [session]);
   const getState = useCallback(() => session.getState(), [session]);
   const state = useSyncExternalStore(subscribe, getState, getState);
@@ -71,7 +76,18 @@ export function VisualizationSurface({ session, controls, theme = 'light', local
   const uid = useId();
   const [error, setError] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
+  const onErrorRef = useRef(onError);
+  onErrorRef.current = onError;
   useLayoutEffect(() => root.current ? registerSurface(session, root.current) : undefined, [session]);
+  // The stylesheet is adopted into the surface's document or shadow root before the first paint (CSP: style-src 'self').
+  const assetHref = assetBase === undefined ? undefined : String(assetBase);
+  useLayoutEffect(() => {
+    const node = root.current;
+    if (!node) return undefined;
+    const adopted = adoptSurfaceStyles(node.getRootNode(), assetHref);
+    if (!adopted.ok) onErrorRef.current?.(new Error('This browser cannot apply the visualization stylesheet; pass assetBase so surface.css can be linked.'));
+    return adopted.release;
+  }, [assetHref]);
   const runAction = useCallback((operation: () => unknown) => {
     setError(null);
     try {
@@ -89,7 +105,6 @@ export function VisualizationSurface({ session, controls, theme = 'light', local
   const Heading = `h${headingLevel}` as 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
   const Subheading = `h${Math.min(6, headingLevel + 1)}` as 'h3' | 'h4' | 'h5' | 'h6';
   return <div ref={root} data-ek-surface="" data-theme={theme} data-session-id={state.sessionId} className={className} style={{ '--ek-columns': doc?.presentation?.columns ?? 1 } as CSSProperties}>
-    <style>{surfaceStyles}</style>
     <div className="ek-sr" id={`${uid}-description`}>{doc?.description ?? 'Visualization surface'}</div>
     {error ? <p className="ek-status" role="alert">{error}</p> : null}
     {state.error?.length ? <div className="ek-status" role="status">{state.error.map(item => <p key={`${item.path}-${item.code}`}>{item.message}{item.recovery ? ` ${item.recovery}` : ''}</p>)}</div> : null}

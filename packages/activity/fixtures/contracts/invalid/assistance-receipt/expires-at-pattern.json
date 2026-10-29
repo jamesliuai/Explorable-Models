@@ -1,0 +1,30 @@
+{
+  "contract": "study-harness.assistance-receipt",
+  "expect": "invalid",
+  "why": "A date without time is not a timestamp.",
+  "value": {
+    "schemaVersion": "1.0",
+    "activityId": "act-quadratic-0001",
+    "basedOnActivityRevision": 2,
+    "activityRevision": 3,
+    "policyId": "policy-unit-4",
+    "policyRevision": 3,
+    "template": {
+      "templateId": "quadratic-descent-regimes",
+      "version": "1.0.0",
+      "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+    },
+    "model": {
+      "modelId": "quadratic-descent",
+      "version": "1.0.0",
+      "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+    },
+    "issuedAt": "2026-10-26T09:12:04.120Z",
+    "expiresAt": "2026-10-26",
+    "contract": "study-harness.assistance-receipt",
+    "receiptId": "rcpt-help-1",
+    "idempotencyKey": "op-help-1",
+    "kind": "help",
+    "grant": null
+  }
+}

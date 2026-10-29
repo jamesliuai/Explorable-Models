@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Study Harness reference host — conformance fixture</title>
+    <!-- Classic script from public/: records CSP violations from the first byte (offline audit, native.md N9). -->
+    <script src="./csp-audit.js"></script>
+    <script type="module" src="./src/main.ts"></script>
+  </head>
+  <body>
+    <header class="host-header">
+      <p class="host-badge">Reference host — conformance fixture</p>
+      <h1 class="host-h1">Study Harness reference host</h1>
+      <p class="host-lede">
+        A packaged conformance fixture for the visualizer boundary, not a Study Harness application: no tutor, grading,
+        curriculum, account or network. The native host stores every record in its own database.
+      </p>
+    </header>
+    <div class="host-layout">
+      <aside id="host-panel" class="host-panel" aria-label="Host controls (reference host — conformance fixture)"></aside>
+      <main id="card" class="host-card" aria-label="Learner card"></main>
+    </div>
+  </body>
+</html>

@@ -1,12 +1,12 @@
 import { useId, useSyncExternalStore } from 'react';
-import type { CardController } from '../shared/controller';
+import type { DocumentInteractionController } from '@experiment-kit/core/declarative';
 import type { Exhibit } from './catalog';
 import { Parameter, Timeline } from './Controls';
 import * as Scenes from './scenes';
 import { fmt } from './scenes/shared';
 
 const renderers = { projectile: Scenes.Projectile, forces: Scenes.Forces, waves: Scenes.Waves, light: Scenes.Light, matrix: Scenes.Matrix, probability: Scenes.Probability };
-export function ExampleCard({ exhibit, controller }: { exhibit: Exhibit; controller: CardController }) {
+export function ExampleCard({ exhibit, controller }: { exhibit: Exhibit; controller: DocumentInteractionController }) {
   const state = useSyncExternalStore(controller.subscribe, controller.getSnapshot), uid = useId();
   const doc = state.rendered.document!, frame = state.rendered.frame!, Scene = renderers[exhibit.id];
   const tir = exhibit.id === 'light' && frame.quantities.transmitted.status === 'undefined';

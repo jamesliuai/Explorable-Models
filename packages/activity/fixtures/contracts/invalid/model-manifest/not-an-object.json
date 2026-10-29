@@ -1,0 +1,6 @@
+{
+  "contract": "experiment-kit.model-manifest",
+  "expect": "invalid",
+  "why": "The record must be a JSON object.",
+  "value": []
+}

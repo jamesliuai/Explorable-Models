@@ -1,0 +1,118 @@
+{
+ "config": {
+  "projects": [
+   {
+    "name": "chromium",
+    "id": "chromium"
+   }
+  ]
+ },
+ "suites": [
+  {
+   "title": "study-lifecycle.spec.ts",
+   "file": "study-lifecycle.spec.ts",
+   "column": 0,
+   "line": 0,
+   "specs": [],
+   "suites": [
+    {
+     "title": "study activity lifecycle (A41–A43)",
+     "file": "study-lifecycle.spec.ts",
+     "line": 148,
+     "column": 6,
+     "specs": [
+      {
+       "title": "two simultaneous activities under one adapter are isolated and rapid input changes coalesce (A41)",
+       "ok": true,
+       "tags": [],
+       "tests": [
+        {
+         "timeout": 35000,
+         "annotations": [],
+         "expectedStatus": "passed",
+         "projectId": "chromium",
+         "projectName": "chromium",
+         "results": [],
+         "status": "expected"
+        }
+       ],
+       "id": "709df2bdd89dd0ae71a9-9ade49c4d6ea4b4dc805",
+       "file": "study-lifecycle.spec.ts",
+       "line": 149,
+       "column": 3
+      },
+      {
+       "title": "20 suspended history cards hold frozen state without workers or timers and compute only when reactivated (§9, §18)",
+       "ok": false,
+       "tags": [],
+       "tests": [
+        {
+         "timeout": 35000,
+         "annotations": [],
+         "expectedStatus": "passed",
+         "projectId": "chromium",
+         "projectName": "chromium",
+         "results": [],
+         "status": "unexpected"
+        }
+       ],
+       "id": "709df2bdd89dd0ae71a9-8795699e445623beaa4a",
+       "file": "study-lifecycle.spec.ts",
+       "line": 241,
+       "column": 3
+      },
+      {
+       "title": "offscreen: playback and worker work stop, and resume is paused without wall-clock catch-up (A42)",
+       "ok": true,
+       "tags": [],
+       "tests": [
+        {
+         "timeout": 35000,
+         "annotations": [],
+         "expectedStatus": "passed",
+         "projectId": "chromium",
+         "projectName": "chromium",
+         "results": [],
+         "status": "flaky"
+        }
+       ],
+       "id": "709df2bdd89dd0ae71a9-83f95de1ffe51eb56363",
+       "file": "study-lifecycle.spec.ts",
+       "line": 288,
+       "column": 5
+      },
+      {
+       "title": "collapsed: playback and worker work stop, and resume is paused without wall-clock catch-up (A42)",
+       "ok": true,
+       "tags": [],
+       "tests": [
+        {
+         "timeout": 35000,
+         "annotations": [],
+         "expectedStatus": "passed",
+         "projectId": "chromium",
+         "projectName": "chromium",
+         "results": [],
+         "status": "skipped"
+        }
+       ],
+       "id": "709df2bdd89dd0ae71a9-cb42a0c00d07e9220114",
+       "file": "study-lifecycle.spec.ts",
+       "line": 288,
+       "column": 5
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "errors": [],
+ "stats": {
+  "startTime": "2026-10-26T16:51:39.295Z",
+  "duration": 1234.5,
+  "expected": 1,
+  "skipped": 1,
+  "unexpected": 1,
+  "flaky": 1
+ }
+}

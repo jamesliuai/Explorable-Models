@@ -1,0 +1,84 @@
+{
+  "contract": "study-harness.activity-template",
+  "schemaVersion": "1.0",
+  "templateId": "linear-function-example",
+  "version": "0.1.0",
+  "model": { "modelId": "linear-function-example", "version": "0.1.0", "digest": "sha256:0000000000000000000000000000000000000000000000000000000000000000" },
+  "title": "Where a line crosses zero",
+  "purpose": "Predict, then explore, how the slope and the intercept place the root of y = m·x + b.",
+  "dimension": "2d",
+  "locale": "en",
+  "requires": [],
+  "groups": [
+    { "id": "graph", "kind": "view", "label": "Graph", "description": "The line and its probe point.", "solutionBearing": false, "members": ["graph"] },
+    { "id": "line", "kind": "dataset", "label": "Line", "description": "The drawn line and the probe point.", "solutionBearing": false, "members": ["line", "probe-point"] },
+    { "id": "root-point", "kind": "dataset", "label": "Root marker", "description": "Where the line crosses y = 0.", "solutionBearing": true, "members": ["root-point"] },
+    { "id": "slope-control", "kind": "control", "label": "Slope control", "description": "Sets the slope m.", "solutionBearing": false, "members": ["m"] },
+    { "id": "intercept-control", "kind": "control", "label": "Intercept control", "description": "Sets the intercept b.", "solutionBearing": false, "members": ["b"] },
+    { "id": "probe-control", "kind": "control", "label": "Probe control", "description": "Sets the probe position p.", "solutionBearing": false, "members": ["p"] },
+    { "id": "rule", "kind": "equation", "label": "Rule", "description": "The line with the current slope and intercept.", "solutionBearing": false, "members": ["rule"] },
+    { "id": "probe-values", "kind": "quantity", "label": "Line values", "description": "Probe position, line value, slope and intercept.", "solutionBearing": false, "members": ["probe.x", "probe.value", "slope", "intercept"] },
+    { "id": "root", "kind": "quantity", "label": "Root", "description": "The root of the line.", "solutionBearing": true, "members": ["root"] },
+    { "id": "root-rule", "kind": "equation", "label": "Root rule", "description": "The root formula with the current values.", "solutionBearing": true, "members": ["root-rule"] },
+    { "id": "scenarios", "kind": "annotation", "label": "Scenarios", "description": "Prepared lines to compare.", "solutionBearing": false, "members": ["scenario-note"] },
+    { "id": "alternatives", "kind": "alternative", "label": "Other ways to work", "description": "Text and exact-entry equivalents.", "solutionBearing": false, "members": ["values-description", "exact-entry"] }
+  ],
+  "views": [
+    {
+      "id": "graph", "kind": "plot2d", "group": "graph", "title": "Line", "description": "The line y = m·x + b for x from −5 to 5 with the probe point and, once shown, its root.",
+      "bounds": [-5, 5, -10, 10], "equalAspect": false,
+      "axes": { "x": { "label": "Position x", "unit": "dimensionless" }, "y": { "label": "Value y", "unit": "dimensionless" } },
+      "marks": [
+        { "id": "line-curve", "kind": "curve", "group": "line", "label": "Line y = m·x + b", "bindings": { "geometry": "line" }, "style": { "role": "primary", "dash": "solid", "marker": "none", "weight": "regular" } },
+        { "id": "probe-marker", "kind": "point", "group": "line", "label": "Probe point (p, y(p))", "bindings": { "geometry": "probe-point" }, "style": { "role": "reference", "dash": "solid", "marker": "square", "weight": "bold" }, "text": "P", "placement": { "anchor": "ne", "offset": [6, -6], "leader": false, "maxWidthEm": 4 } },
+        { "id": "root-marker", "kind": "point", "group": "root-point", "label": "Root (x_r, 0)", "bindings": { "geometry": "root-point" }, "style": { "role": "accent", "dash": "solid", "marker": "diamond", "weight": "bold" }, "text": "root", "placement": { "anchor": "s", "offset": [0, 8], "leader": false, "maxWidthEm": 6 } }
+      ]
+    },
+    { "id": "values", "kind": "values", "group": "probe-values", "title": "Values", "description": "Values of the current line. Values not shown yet are not listed.", "equalAspect": false, "marks": [], "quantities": ["probe.x", "probe.value", "slope", "intercept", "root"] },
+    { "id": "rules", "kind": "equation", "group": "rule", "title": "Rules", "description": "The line and, once shown, its root.", "equalAspect": false, "marks": [], "equations": ["rule", "root-rule"] }
+  ],
+  "controls": [
+    { "parameter": "m", "group": "slope-control", "label": "Slope m", "displayUnits": ["dimensionless"], "slider": true, "exact": true, "step": 0.1, "description": "Use the slider, the arrow keys or type an exact value." },
+    { "parameter": "b", "group": "intercept-control", "label": "Intercept b", "displayUnits": ["dimensionless"], "slider": true, "exact": true, "step": 0.1, "description": "Use the slider, the arrow keys or type an exact value." },
+    { "parameter": "p", "group": "probe-control", "label": "Probe position p", "displayUnits": ["dimensionless"], "slider": true, "exact": true, "step": 0.1, "description": "Where the line is read." }
+  ],
+  "scenarios": [
+    { "id": "flat", "label": "Flat line", "description": "Slope 0 and intercept 1: a horizontal line.", "parameters": { "m": 0, "b": 1, "p": 2 }, "group": "scenarios" },
+    { "id": "steep", "label": "Steep line", "description": "Slope −2 and intercept 4.", "parameters": { "m": -2, "b": 4, "p": 1 }, "group": "scenarios" }
+  ],
+  "equations": [
+    { "id": "rule", "group": "rule", "label": "Line", "tex": "y = {{q:slope}} \\cdot x + {{q:intercept}}", "plain": "y = {{q:slope}}·x + {{q:intercept}}" },
+    { "id": "root-rule", "group": "root-rule", "label": "Root", "tex": "x_r = -\\tfrac{b}{m} = {{q:root}}", "plain": "x_r = −b/m = {{q:root}}" }
+  ],
+  "stages": [
+    {
+      "id": "predict", "kind": "predict", "instruction": "Look at the line. Before anything else is shown, predict where it crosses y = 0.",
+      "visible": { "graph": "fixed", "line": "fixed", "slope-control": "fixed", "intercept-control": "fixed", "probe-control": "fixed", "rule": "fixed", "probe-values": "fixed", "scenarios": "fixed", "alternatives": "fixed" },
+      "controls": { "m": "fixed", "b": "fixed", "p": "fixed" }, "allowsPreview": false, "allowsPlayback": false, "allowsNavigation": false,
+      "response": { "kind": "prediction", "prompt": "Where does this line cross y = 0, and why?", "taskFamily": "linear-root-prediction" }
+    },
+    {
+      "id": "explore", "kind": "explore", "instruction": "Change the slope and the intercept and watch the root move. Try a slope of 0.",
+      "visible": { "graph": "interactive", "line": "interactive", "root-point": "interactive", "slope-control": "interactive", "intercept-control": "interactive", "probe-control": "interactive", "rule": "fixed", "probe-values": "fixed", "root": "fixed", "root-rule": "fixed", "scenarios": "interactive", "alternatives": "fixed" },
+      "controls": { "m": "interactive", "b": "interactive", "p": "interactive" }, "allowsPreview": true, "allowsPlayback": false, "allowsNavigation": false
+    },
+    { "id": "closed", "kind": "closed", "instruction": "This activity is closed.", "visible": {}, "controls": {}, "allowsPreview": false, "allowsPlayback": false, "allowsNavigation": false }
+  ],
+  "transitions": [
+    { "id": "show-root", "from": "predict", "to": "explore", "label": "Show the root and explore" },
+    { "id": "close-from-explore", "from": "explore", "to": "closed", "label": "Close the activity" },
+    { "id": "close-from-predict", "from": "predict", "to": "closed", "label": "Close the activity" }
+  ],
+  "initialStage": "predict",
+  "alternatives": [
+    { "id": "values-description", "kind": "description", "group": "alternatives", "label": "Values and rule", "covers": ["graph", "line-curve", "probe-marker", "root-marker"], "equivalence": "equivalent", "description": "The values panel and the rule state the slope, the intercept, the probe point and the root that the graph draws.", "verifiedBy": "unverified: name the test or manual check that exercised this equivalence" },
+    { "id": "exact-entry", "kind": "numeric-entry", "group": "alternatives", "label": "Exact entry", "covers": ["m", "b", "p"], "equivalence": "equivalent", "description": "Every control accepts an exact typed value.", "verifiedBy": "unverified: name the test or manual check that exercised this equivalence" }
+  ],
+  "taskFamilies": [
+    { "id": "linear-root-prediction", "description": "Host-owned prediction request about where a line crosses y = 0. The host owns the response and any evaluation.", "hostOwned": true }
+  ],
+  "content": [
+    { "id": "derivation", "kind": "derivation", "text": "m·x + b = 0 gives x = −b/m for m ≠ 0; with m = 0 the line is horizontal and has no single root." },
+    { "id": "scenario-note", "kind": "learner-copy", "text": "Each scenario starts a new run with the listed slope, intercept and probe position." }
+  ]
+}

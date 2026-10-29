@@ -1,5 +1,11 @@
 # Agent-first STEM visualization toolkit: implementation and release plan
 
+> **Historical: the 0.2-era plan.** This plan predates the Study Harness implementation report. It is kept as a
+> record of the agent-first preview's planning and is not the current specification. The current specification is
+> [docs/study-harness-visualizer-implementation-report.md](study-harness-visualizer-implementation-report.md), and
+> progress is tracked in the [requirement ledger](study-harness/requirement-ledger.md). Status statements below refer
+> to the 0.2 preview.
+
 Planning date: October 22, 2026.
 
 Implementation update (October 22, 2026): the owner selected a verified local preview, with external pilots and publication to be arranged separately. See [the candidate evidence and remaining gates](agent-first-release-status.md). The full supported-release checklist below remains the target; it is not marked complete by the preview.

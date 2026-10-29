@@ -1,0 +1,20 @@
+{
+  "contract": "experiment-kit.reference-fixtures",
+  "version": "1.0",
+  "suiteId": "linear-function-example:0.1.0",
+  "model": { "modelId": "linear-function-example", "version": "0.1.0" },
+  "author": "Example cases shipped with the experiment-kit activity scaffold, derived by hand from y = m·x + b and x_r = −b/m with binary-fraction inputs so every value is exact.",
+  "review": "No independent human subject reviewer has approved these cases. Replace or extend them with independently derived cases for your model.",
+  "semantics": "probe.value = m·p + b; slope = m; intercept = b; probe.x = p; root = −b/m for m ≠ 0, undefined NO_ROOT for m = 0 and b ≠ 0, undefined EVERY_X_IS_A_ROOT for m = 0 and b = 0. Parameters with |m·p + b| > 10 are rejected by the constraint probe-in-view.",
+  "derivedFrom": null,
+  "notCovered": ["The drawn line endpoints and the probe and root points are not compared by this suite."],
+  "cases": [
+    { "id": "defaults", "label": "m = 1, b = 1, p = 2", "provenance": "Hand derivation: y(2) = 1·2 + 1 = 3; root −1/1 = −1.", "params": { "m": 1, "b": 1, "p": 2 }, "tolerance": { "absolute": 0, "relative": 0 }, "points": [{ "expect": { "probe.x": 2, "probe.value": 3, "slope": 1, "intercept": 1, "root": -1 } }] },
+    { "id": "negative-slope", "label": "m = −2, b = 4, p = 1", "provenance": "Hand derivation: y(1) = −2 + 4 = 2; root −4/(−2) = 2.", "params": { "m": -2, "b": 4, "p": 1 }, "tolerance": { "absolute": 0, "relative": 0 }, "points": [{ "expect": { "probe.value": 2, "root": 2 } }] },
+    { "id": "fractional", "label": "m = 0.5, b = −1.5, p = −3", "provenance": "Hand derivation: y(−3) = −1.5 − 1.5 = −3; root 1.5/0.5 = 3.", "params": { "m": 0.5, "b": -1.5, "p": -3 }, "tolerance": { "absolute": 0, "relative": 0 }, "points": [{ "expect": { "probe.value": -3, "root": 3 } }] },
+    { "id": "root-at-origin", "label": "m = 2, b = 0, p = 1.5", "provenance": "Hand derivation: y(1.5) = 3; root −0/2 = 0.", "params": { "m": 2, "b": 0, "p": 1.5 }, "tolerance": { "absolute": 0, "relative": 0 }, "points": [{ "expect": { "probe.value": 3, "root": 0 } }] },
+    { "id": "flat-no-root", "label": "m = 0, b = 2: no root", "provenance": "Hand derivation: y = 2 for every x, so y = 0 has no solution; the root is undefined, never 0.", "params": { "m": 0, "b": 2, "p": 1 }, "tolerance": { "absolute": 0, "relative": 0 }, "points": [{ "expect": { "probe.value": 2, "root": { "status": "undefined", "code": "NO_ROOT" } } }] },
+    { "id": "flat-every-root", "label": "m = 0, b = 0: every x is a root", "provenance": "Hand derivation: y = 0 for every x, so there is no single root.", "params": { "m": 0, "b": 0, "p": -4 }, "tolerance": { "absolute": 0, "relative": 0 }, "points": [{ "expect": { "probe.value": 0, "root": { "status": "undefined", "code": "EVERY_X_IS_A_ROOT" } } }] },
+    { "id": "probe-outside-view", "label": "m = 3, b = 5, p = 4: m·p + b = 17 is rejected", "provenance": "Hand derivation: 3·4 + 5 = 17 > 10 violates probe-in-view.", "params": { "m": 3, "b": 5, "p": 4 }, "tolerance": { "absolute": 0, "relative": 0 }, "reject": { "code": "CONSTRAINT_VIOLATION", "path": "$.constraints.probe-in-view" } }
+  ]
+}

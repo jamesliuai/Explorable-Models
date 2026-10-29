@@ -13,8 +13,10 @@ import { serveDocumentMcp } from './document-mcp.js';
 import { openService } from './service.js';
 import { serveStatic } from './server.js';
 import type { CheckReport, Snapshot } from '../../core/src/types.js';
+import { runActivityCommand } from './activity-commands.js';
+import { toolkitVersion } from './activity-loader.js';
 
-const HELP = `Explorable Models 0.2.0-preview.1 — reproducible interactive explanations
+const help = (): string => `Explorable Models ${toolkitVersion()} — reproducible interactive explanations
 
 Usage: experiment-kit <command> [directory] [options]
 
@@ -35,6 +37,9 @@ Usage: experiment-kit <command> [directory] [options]
   mcp [directory]       Serve legacy source-project tools over local stdio MCP
   mcp-document          Author a blank declarative v2 session through stdio MCP
   serve <directory>     Serve an exported artifact locally
+  activity <command>    Study Harness activity authoring: scaffold, validate, check,
+                        reference, boundaries, capture, preview, review-packet, package
+                        (experiment-kit activity --help)
 
 Options:
   --template <name>     rolling, linear-map (default), base-rates, riemann-sums, oscillator
@@ -58,9 +63,11 @@ async function stopOnSignal(cleanup: () => Promise<void>): Promise<void> { await
 async function emit(result: unknown, output?: string): Promise<void> { if (output) { await mkdir(path.dirname(path.resolve(output)), { recursive: true }); await writeJSON(path.resolve(output), result); } process.stdout.write(`${JSON.stringify(result, null, 2)}\n`); }
 
 export async function main(argv = process.argv.slice(2)): Promise<void> {
+  // Activity authoring has its own options; it is dispatched before the legacy option parser.
+  if (argv[0] === 'activity') { await runActivityCommand(argv.slice(1)); return; }
   const { values, positionals } = parseArgs({ args: argv, allowPositionals: true, options: { help: { type: 'boolean' }, template: { type: 'string' }, out: { type: 'string' }, zip: { type: 'boolean' }, port: { type: 'string' }, session: { type: 'string' }, 'session-id': { type: 'string' }, args: { type: 'string' }, snapshot: { type: 'string' }, width: { type: 'string' }, height: { type: 'string' } } });
   const command = positionals[0];
-  if (!command || values.help) { process.stdout.write(HELP); return; }
+  if (!command || values.help) { process.stdout.write(help()); return; }
   const directory = path.resolve(positionals[1] ?? '.');
   const args = decodeArgs(values.args);
   const port = numeric(values.port, 'port');

@@ -1,0 +1,8 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "main-window-spike",
+  "description": "The main window may call only the spike_report application command. No core or plugin permissions are granted.",
+  "local": true,
+  "windows": ["main"],
+  "permissions": ["allow-spike-report"]
+}

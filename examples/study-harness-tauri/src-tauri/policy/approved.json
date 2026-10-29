@@ -1,0 +1,1692 @@
+{
+  "schema": "study-harness-reference.approved-policy/1",
+  "generatedBy": "examples/study-harness-tauri/scripts/generate-approved-policy.mjs",
+  "note": "Host-owned approval for the reference host (conformance fixture). Lifecycle is the installed catalogue status; none of these entries has an independent subject review. The Rust host embeds this file and never approves content requested by the webview.",
+  "catalog": [
+    {
+      "name": "@experiment-kit/catalog",
+      "version": "0.3.0-preview.1",
+      "integrity": "sha512-ruTWOzqv341uxjgwIUGyooqB1kR7Y6v95xm0VnHF5ghGSfHv/3/41k3Z5UqQmsKNZsoddF1pTqewBnFBIsYqKw=="
+    },
+    {
+      "name": "@experiment-kit/activity",
+      "version": "0.3.0-preview.1",
+      "integrity": "sha512-3z0DDE4+TpVT4G+GCY5SoDKIoWQJ45zuEwt64mbXD1AyMDEKCBI0fgfc72Fk2ivnDxY9tU+OSxI1HNm/xPqH0Q=="
+    },
+    {
+      "name": "@experiment-kit/core",
+      "version": "0.3.0-preview.1",
+      "integrity": "sha512-RImLrEiMjI1TiB0dcWD4guZWayssTgPhuw5WvtJMUKWCYRbfoJRutuozr3KVU/0gwVkvc1Qmn4VwbZFYcrp+yw=="
+    }
+  ],
+  "templates": [
+    {
+      "template": {
+        "templateId": "function-derivative",
+        "version": "1.0.0",
+        "digest": "sha256:8906edd91542d30c17ff41aa7b551fbb79a7a6d7d32c607ec39db4e0389a2f94"
+      },
+      "model": {
+        "modelId": "function-derivative",
+        "version": "1.0.0",
+        "digest": "sha256:bfeaa64ae40e41254f46d193a1aefc1ff9d900664571aba51e26492f1ff778ba"
+      },
+      "title": "Slope of a curve and its derivative",
+      "dimension": "2d",
+      "lifecycle": "reference-checked",
+      "initialStage": "prepare",
+      "groups": [
+        {
+          "groupId": "function-plot",
+          "kind": "view",
+          "solutionBearing": false,
+          "contentDigest": "sha256:2f3126f58e6ef8742a391f97662db40c63d55e93cc4dc1b02202a086409a3baf"
+        },
+        {
+          "groupId": "probe",
+          "kind": "quantity",
+          "solutionBearing": false,
+          "contentDigest": "sha256:1f9f726bc64f0ffdc613ff081f9fd1aef54d282b3eb26622ea83c3c56eb64917"
+        },
+        {
+          "groupId": "function-rule",
+          "kind": "equation",
+          "solutionBearing": false,
+          "contentDigest": "sha256:ac93faa256224a82307696a7d601b102104be49860de4591bc2afbcb63561c08"
+        },
+        {
+          "groupId": "coefficient-controls",
+          "kind": "control",
+          "solutionBearing": false,
+          "contentDigest": "sha256:4d658d7b47786dc3c4f3da5065a0ff639c5e4b817b03fac2fd3afbe9a95c122b"
+        },
+        {
+          "groupId": "probe-control",
+          "kind": "control",
+          "solutionBearing": false,
+          "contentDigest": "sha256:7f2da3314eef4eb12338912b84d76d98458cc949530e2d6dab3c70fdef1e20f5"
+        },
+        {
+          "groupId": "offset-control",
+          "kind": "control",
+          "solutionBearing": false,
+          "contentDigest": "sha256:01a86bb2d695abb4f9f7e39499c906ac660122c18c499b20307188350c2b9603"
+        },
+        {
+          "groupId": "tangent",
+          "kind": "dataset",
+          "solutionBearing": true,
+          "contentDigest": "sha256:9911f9fa1864433e6b317b533158e6f36529e20ae8265b71a614c78525efc160"
+        },
+        {
+          "groupId": "slope",
+          "kind": "quantity",
+          "solutionBearing": true,
+          "contentDigest": "sha256:45d1d7ca5a68b734c8044f8bd0b4e047294a38b9c422b8cfaee4d9450d74d46d"
+        },
+        {
+          "groupId": "slope-equations",
+          "kind": "equation",
+          "solutionBearing": true,
+          "contentDigest": "sha256:d0f7e60b04f84b88359f521996d3690c35cfdab655b2a424677137c9462d4531"
+        },
+        {
+          "groupId": "secant",
+          "kind": "dataset",
+          "solutionBearing": true,
+          "contentDigest": "sha256:2fc781f6f5264638402257e4f113364db822c0c6b4f320d7615db8e63ed5784e"
+        },
+        {
+          "groupId": "secant-values",
+          "kind": "quantity",
+          "solutionBearing": true,
+          "contentDigest": "sha256:52a1e9fd72e09d3381d139b07e3baf85ad47b9fbb8729de25a70f77cb741d85c"
+        },
+        {
+          "groupId": "secant-equations",
+          "kind": "equation",
+          "solutionBearing": true,
+          "contentDigest": "sha256:702752a699ff2fbbf2325cee253b575d85c72b6aa76585a7ae9761fcad5548e0"
+        },
+        {
+          "groupId": "derivative-plot",
+          "kind": "view",
+          "solutionBearing": true,
+          "contentDigest": "sha256:9c0f70864409a0aedadde1b92f29137385a44d65c31cdfe03a6add164cfc71b7"
+        },
+        {
+          "groupId": "shape",
+          "kind": "quantity",
+          "solutionBearing": true,
+          "contentDigest": "sha256:454d2d51af6ea466013531b0cabab444e102f5117a4d41f21536cd219741ce3a"
+        },
+        {
+          "groupId": "derivative-rule",
+          "kind": "equation",
+          "solutionBearing": true,
+          "contentDigest": "sha256:c24cb651bcf52ec4790080ea41485d03bb02d37fa433bc7e021288281a9ed0d8"
+        },
+        {
+          "groupId": "scenarios",
+          "kind": "annotation",
+          "solutionBearing": false,
+          "contentDigest": "sha256:f11f8aadb7b006af3d7cc78bd841fbc09dd3ba38f0e189be4712c2c9dcf34213"
+        },
+        {
+          "groupId": "alternatives",
+          "kind": "alternative",
+          "solutionBearing": false,
+          "contentDigest": "sha256:6fab31f57fe135a76f2764c37628d7df8e3bf04c01b81a725890e572bd3ff907"
+        }
+      ],
+      "stages": [
+        {
+          "id": "prepare",
+          "kind": "prepare",
+          "visible": [
+            "alternatives",
+            "coefficient-controls",
+            "function-plot",
+            "function-rule",
+            "probe",
+            "probe-control",
+            "scenarios"
+          ],
+          "response": null
+        },
+        {
+          "id": "predict",
+          "kind": "predict",
+          "visible": [
+            "alternatives",
+            "coefficient-controls",
+            "function-plot",
+            "function-rule",
+            "probe",
+            "probe-control"
+          ],
+          "response": "prediction"
+        },
+        {
+          "id": "explore-slope",
+          "kind": "explore",
+          "visible": [
+            "alternatives",
+            "coefficient-controls",
+            "function-plot",
+            "function-rule",
+            "offset-control",
+            "probe",
+            "probe-control",
+            "scenarios",
+            "secant",
+            "secant-equations",
+            "secant-values",
+            "slope",
+            "slope-equations",
+            "tangent"
+          ],
+          "response": null
+        },
+        {
+          "id": "explore-derivative",
+          "kind": "explore",
+          "visible": [
+            "alternatives",
+            "coefficient-controls",
+            "derivative-plot",
+            "derivative-rule",
+            "function-plot",
+            "function-rule",
+            "offset-control",
+            "probe",
+            "probe-control",
+            "scenarios",
+            "secant",
+            "secant-equations",
+            "secant-values",
+            "shape",
+            "slope",
+            "slope-equations",
+            "tangent"
+          ],
+          "response": null
+        },
+        {
+          "id": "explain",
+          "kind": "explain",
+          "visible": [
+            "alternatives",
+            "coefficient-controls",
+            "derivative-plot",
+            "derivative-rule",
+            "function-plot",
+            "function-rule",
+            "offset-control",
+            "probe",
+            "probe-control",
+            "secant",
+            "secant-equations",
+            "secant-values",
+            "shape",
+            "slope",
+            "slope-equations",
+            "tangent"
+          ],
+          "response": "explanation"
+        },
+        {
+          "id": "closed",
+          "kind": "closed",
+          "visible": [],
+          "response": null
+        },
+        {
+          "id": "free-explore",
+          "kind": "explore",
+          "visible": [
+            "alternatives",
+            "coefficient-controls",
+            "derivative-plot",
+            "derivative-rule",
+            "function-plot",
+            "function-rule",
+            "offset-control",
+            "probe",
+            "probe-control",
+            "scenarios",
+            "secant",
+            "secant-equations",
+            "secant-values",
+            "shape",
+            "slope",
+            "slope-equations",
+            "tangent"
+          ],
+          "response": null
+        }
+      ],
+      "transitions": [
+        {
+          "id": "start-prediction",
+          "from": "prepare",
+          "to": "predict"
+        },
+        {
+          "id": "show-slopes",
+          "from": "predict",
+          "to": "explore-slope"
+        },
+        {
+          "id": "show-derivative-graph",
+          "from": "explore-slope",
+          "to": "explore-derivative"
+        },
+        {
+          "id": "request-explanation",
+          "from": "explore-derivative",
+          "to": "explain"
+        },
+        {
+          "id": "close-after-explanation",
+          "from": "explain",
+          "to": "closed"
+        },
+        {
+          "id": "close-from-preparation",
+          "from": "prepare",
+          "to": "closed"
+        },
+        {
+          "id": "close-from-prediction",
+          "from": "predict",
+          "to": "closed"
+        },
+        {
+          "id": "close-from-slope-exploration",
+          "from": "explore-slope",
+          "to": "closed"
+        },
+        {
+          "id": "close-from-derivative-exploration",
+          "from": "explore-derivative",
+          "to": "closed"
+        },
+        {
+          "id": "close-from-free-exploration",
+          "from": "free-explore",
+          "to": "closed"
+        }
+      ],
+      "parameters": {
+        "A": [
+          -2,
+          2
+        ],
+        "B": [
+          -5,
+          5
+        ],
+        "C": [
+          -5,
+          5
+        ],
+        "p": [
+          -5,
+          5
+        ],
+        "h": [
+          -2,
+          2
+        ]
+      },
+      "neutralScaffold": [
+        "function-rule"
+      ]
+    },
+    {
+      "template": {
+        "templateId": "linear-transformation",
+        "version": "1.0.0",
+        "digest": "sha256:b76adcb12a8931cd3d0629e89beaad6e5920d56619c9fbe238bccffdde0521d3"
+      },
+      "model": {
+        "modelId": "linear-transformation",
+        "version": "1.0.0",
+        "digest": "sha256:feeb312898a4fda3e38f2743b71f197fe0c91333e9e3921cd8239d98f441a536"
+      },
+      "title": "Matrices as transformations of the plane",
+      "dimension": "2d",
+      "lifecycle": "reference-checked",
+      "initialStage": "prepare",
+      "groups": [
+        {
+          "groupId": "plane",
+          "kind": "view",
+          "solutionBearing": false,
+          "contentDigest": "sha256:5207bb297a476859671c259872cb63189020d48f05b039ed526d24d235642ce4"
+        },
+        {
+          "groupId": "reference",
+          "kind": "dataset",
+          "solutionBearing": false,
+          "contentDigest": "sha256:3a3b48b50d409219afc3cef0dcee588bdff59035dba0ca665f8b02c831e54087"
+        },
+        {
+          "groupId": "basis",
+          "kind": "quantity",
+          "solutionBearing": false,
+          "contentDigest": "sha256:a204dd2237a93950a8d841b35883e8d93de9be7db1f776979a65ec54f7747f66"
+        },
+        {
+          "groupId": "columns",
+          "kind": "quantity",
+          "solutionBearing": false,
+          "contentDigest": "sha256:ad6a2183cebfcc1cbd7ac08860adc60030bf4098eb0004c8555528844eac5045"
+        },
+        {
+          "groupId": "test-vector",
+          "kind": "quantity",
+          "solutionBearing": false,
+          "contentDigest": "sha256:1aa6893d138ef79f64b76ac959e7390e9979544465448b23f873680dc560aecd"
+        },
+        {
+          "groupId": "matrix-control",
+          "kind": "control",
+          "solutionBearing": false,
+          "contentDigest": "sha256:5f2d0f61abedd366f30c35d3b72af0cbd08806d3a72a4ccf6fc7a3de4074b78b"
+        },
+        {
+          "groupId": "vector-control",
+          "kind": "control",
+          "solutionBearing": false,
+          "contentDigest": "sha256:45571c2ed9730e09c905d3630074925bd1b937a9b4e2c2a61c53c37b7a7ca97d"
+        },
+        {
+          "groupId": "convention",
+          "kind": "equation",
+          "solutionBearing": false,
+          "contentDigest": "sha256:9ea771cee706b9148b13967f30e0bb4835b78b9b388a2f336321bce151d859db"
+        },
+        {
+          "groupId": "readouts",
+          "kind": "view",
+          "solutionBearing": false,
+          "contentDigest": "sha256:8813e550484b60d6d2dcf64240c20a48efb32eba69a7083b0d577abdfbb9470d"
+        },
+        {
+          "groupId": "transformed",
+          "kind": "dataset",
+          "solutionBearing": true,
+          "contentDigest": "sha256:420de7756996062038b15748021074e09ec0aeb1405e1a838b2a0fe6ed0b9845"
+        },
+        {
+          "groupId": "image-vector",
+          "kind": "quantity",
+          "solutionBearing": true,
+          "contentDigest": "sha256:4aa056e269e397210284d4f024c769e884101d1d4e43842121408f69530b50de"
+        },
+        {
+          "groupId": "determinant",
+          "kind": "quantity",
+          "solutionBearing": true,
+          "contentDigest": "sha256:c8b01a72fe9fdc6a62e1c5f67aa3d146f01cad077496d9107f7e0584a319f50a"
+        },
+        {
+          "groupId": "collapse",
+          "kind": "quantity",
+          "solutionBearing": true,
+          "contentDigest": "sha256:2a426357d1bbf92073c92e2e934e53391de1a9f38cd689f1c064347a29fdd89a"
+        },
+        {
+          "groupId": "determinant-rule",
+          "kind": "equation",
+          "solutionBearing": false,
+          "contentDigest": "sha256:299782c4f1d2cc8faa651005cb73da89f8ca9aac2011fd2a52e82ba5dcd9d9cf"
+        },
+        {
+          "groupId": "determinant-values",
+          "kind": "equation",
+          "solutionBearing": true,
+          "contentDigest": "sha256:23080981f41897fdb2f29ae661684ca2891d540deb194a5739b5f3501442ba59"
+        },
+        {
+          "groupId": "eigen",
+          "kind": "quantity",
+          "solutionBearing": true,
+          "contentDigest": "sha256:6ab564e505299a9d16034351554ae836b0b9a8531390094d20b2500440deffdc"
+        },
+        {
+          "groupId": "eigen-lines",
+          "kind": "dataset",
+          "solutionBearing": true,
+          "contentDigest": "sha256:9d57e2aa626f736b9cea49b70c53e20f4e59c0a1541675d5841d233a586fb5c1"
+        },
+        {
+          "groupId": "eigen-rule",
+          "kind": "equation",
+          "solutionBearing": false,
+          "contentDigest": "sha256:0d926abe44dd36bff1499ce5503a0dcb2a2f23f3d2c7e1b47ab65c2e6afa0f97"
+        },
+        {
+          "groupId": "eigen-values",
+          "kind": "equation",
+          "solutionBearing": true,
+          "contentDigest": "sha256:593fae9365f0815ef8ebc5ec28750bc829800fd739d3405a28f1abc5cf38c481"
+        },
+        {
+          "groupId": "scenarios",
+          "kind": "annotation",
+          "solutionBearing": false,
+          "contentDigest": "sha256:6fdf6780be228c5995ea7516e07b0931ddeb1086b2536bc58b7cfa291493cc6e"
+        },
+        {
+          "groupId": "alternatives",
+          "kind": "alternative",
+          "solutionBearing": false,
+          "contentDigest": "sha256:31e6c8f7ebdd03a9881af0e64c9c0c2fa7bf579be16998d6a77c07a89fc4b894"
+        }
+      ],
+      "stages": [
+        {
+          "id": "prepare",
+          "kind": "prepare",
+          "visible": [
+            "alternatives",
+            "basis",
+            "columns",
+            "convention",
+            "matrix-control",
+            "plane",
+            "readouts",
+            "reference",
+            "test-vector",
+            "vector-control"
+          ],
+          "response": null
+        },
+        {
+          "id": "predict",
+          "kind": "predict",
+          "visible": [
+            "alternatives",
+            "basis",
+            "columns",
+            "convention",
+            "matrix-control",
+            "plane",
+            "readouts",
+            "reference",
+            "test-vector",
+            "vector-control"
+          ],
+          "response": "prediction"
+        },
+        {
+          "id": "explore",
+          "kind": "explore",
+          "visible": [
+            "alternatives",
+            "basis",
+            "collapse",
+            "columns",
+            "convention",
+            "determinant",
+            "determinant-rule",
+            "determinant-values",
+            "image-vector",
+            "matrix-control",
+            "plane",
+            "readouts",
+            "reference",
+            "scenarios",
+            "test-vector",
+            "transformed",
+            "vector-control"
+          ],
+          "response": null
+        },
+        {
+          "id": "explore-eigen",
+          "kind": "explore",
+          "visible": [
+            "alternatives",
+            "basis",
+            "collapse",
+            "columns",
+            "convention",
+            "determinant",
+            "determinant-rule",
+            "determinant-values",
+            "eigen",
+            "eigen-lines",
+            "eigen-rule",
+            "eigen-values",
+            "image-vector",
+            "matrix-control",
+            "plane",
+            "readouts",
+            "reference",
+            "scenarios",
+            "test-vector",
+            "transformed",
+            "vector-control"
+          ],
+          "response": null
+        },
+        {
+          "id": "explain",
+          "kind": "explain",
+          "visible": [
+            "alternatives",
+            "basis",
+            "collapse",
+            "columns",
+            "convention",
+            "determinant",
+            "determinant-rule",
+            "determinant-values",
+            "eigen",
+            "eigen-lines",
+            "eigen-rule",
+            "eigen-values",
+            "image-vector",
+            "matrix-control",
+            "plane",
+            "readouts",
+            "reference",
+            "test-vector",
+            "transformed",
+            "vector-control"
+          ],
+          "response": "explanation"
+        },
+        {
+          "id": "closed",
+          "kind": "closed",
+          "visible": [],
+          "response": null
+        },
+        {
+          "id": "free-explore",
+          "kind": "explore",
+          "visible": [
+            "alternatives",
+            "basis",
+            "collapse",
+            "columns",
+            "convention",
+            "determinant",
+            "determinant-rule",
+            "determinant-values",
+            "eigen",
+            "eigen-lines",
+            "eigen-rule",
+            "eigen-values",
+            "image-vector",
+            "matrix-control",
+            "plane",
+            "readouts",
+            "reference",
+            "scenarios",
+            "test-vector",
+            "transformed",
+            "vector-control"
+          ],
+          "response": null
+        }
+      ],
+      "transitions": [
+        {
+          "id": "start-prediction",
+          "from": "prepare",
+          "to": "predict"
+        },
+        {
+          "id": "start-exploration",
+          "from": "predict",
+          "to": "explore"
+        },
+        {
+          "id": "show-unchanged-directions",
+          "from": "explore",
+          "to": "explore-eigen"
+        },
+        {
+          "id": "request-explanation",
+          "from": "explore-eigen",
+          "to": "explain"
+        },
+        {
+          "id": "request-explanation-early",
+          "from": "explore",
+          "to": "explain"
+        },
+        {
+          "id": "close-after-explanation",
+          "from": "explain",
+          "to": "closed"
+        },
+        {
+          "id": "close-from-preparation",
+          "from": "prepare",
+          "to": "closed"
+        },
+        {
+          "id": "close-from-prediction",
+          "from": "predict",
+          "to": "closed"
+        },
+        {
+          "id": "close-from-exploration",
+          "from": "explore",
+          "to": "closed"
+        },
+        {
+          "id": "close-from-eigen-exploration",
+          "from": "explore-eigen",
+          "to": "closed"
+        },
+        {
+          "id": "close-from-free-exploration",
+          "from": "free-explore",
+          "to": "closed"
+        }
+      ],
+      "parameters": {
+        "m11": [
+          -3,
+          3
+        ],
+        "m12": [
+          -3,
+          3
+        ],
+        "m21": [
+          -3,
+          3
+        ],
+        "m22": [
+          -3,
+          3
+        ],
+        "vx": [
+          -3,
+          3
+        ],
+        "vy": [
+          -3,
+          3
+        ]
+      },
+      "neutralScaffold": [
+        "convention",
+        "determinant-rule",
+        "eigen-rule"
+      ]
+    },
+    {
+      "template": {
+        "templateId": "quadratic-gradient-descent",
+        "version": "1.0.0",
+        "digest": "sha256:a6fdb69ad2598e7726de2d3d1d81d986677520eab7b29d48fbe9bc81b72ed8c3"
+      },
+      "model": {
+        "modelId": "quadratic-gradient-descent",
+        "version": "1.0.0",
+        "digest": "sha256:5326283f785aed9a4d5fe0ba5ca32e3f03da6e05bb5c084ee3816fea7b41171e"
+      },
+      "title": "Step size in gradient descent",
+      "dimension": "2d",
+      "lifecycle": "reference-checked",
+      "initialStage": "predict",
+      "groups": [
+        {
+          "groupId": "landscape",
+          "kind": "view",
+          "solutionBearing": false,
+          "contentDigest": "sha256:08234a22f5d167a782ccdc7dd64990b5457ddd2d6ced104c2c4c9cfb324dce20"
+        },
+        {
+          "groupId": "start",
+          "kind": "quantity",
+          "solutionBearing": false,
+          "contentDigest": "sha256:f9fb2169fce1fd62b673d3f6c6708fb7504284d331615cd406f3dc9444b3c9cf"
+        },
+        {
+          "groupId": "update-rule",
+          "kind": "equation",
+          "solutionBearing": false,
+          "contentDigest": "sha256:43b2e407198a3edf611be1d16749db5307e53032d39308e274fbfab430e2c6c8"
+        },
+        {
+          "groupId": "step-control",
+          "kind": "control",
+          "solutionBearing": false,
+          "contentDigest": "sha256:1e6a6e3a864a11b0f6b1d81dd96e8046a7571eb874d24369f89dcf89279c0582"
+        },
+        {
+          "groupId": "curvature-control",
+          "kind": "control",
+          "solutionBearing": false,
+          "contentDigest": "sha256:c47efe1e93007df0a08c6d8af7a22a679a93640614e802babb0f19f80d2967b9"
+        },
+        {
+          "groupId": "start-control",
+          "kind": "control",
+          "solutionBearing": false,
+          "contentDigest": "sha256:5e7128f44d35a2dbdbb2a41a11d98cb48caedaed7940742c3faeadf6a375362d"
+        },
+        {
+          "groupId": "navigation",
+          "kind": "quantity",
+          "solutionBearing": false,
+          "contentDigest": "sha256:37a05ff5f058afd3c5ca0d71add10de460f57a65fb51db581c199c0243607dd0"
+        },
+        {
+          "groupId": "trace",
+          "kind": "dataset",
+          "solutionBearing": true,
+          "contentDigest": "sha256:27e300a15be4e99000d6d8ae630dee9d6f1399f6515cf2c22f31c6e19e44cb3e"
+        },
+        {
+          "groupId": "observations",
+          "kind": "quantity",
+          "solutionBearing": true,
+          "contentDigest": "sha256:4b27d634fd8a9d4f206cd43affbe9455919749360b70d302524079e20dac6e47"
+        },
+        {
+          "groupId": "regime",
+          "kind": "quantity",
+          "solutionBearing": true,
+          "contentDigest": "sha256:f68675ea0311e2e540ec7180c795239b2bfa8e9ab068e0d4cfdd7bab5b3a8055"
+        },
+        {
+          "groupId": "substituted-rule",
+          "kind": "equation",
+          "solutionBearing": true,
+          "contentDigest": "sha256:d786d60f59c3264798c9ea614f2de72615a873611760bd5ac28c43ff772db1ec"
+        },
+        {
+          "groupId": "scenarios",
+          "kind": "annotation",
+          "solutionBearing": false,
+          "contentDigest": "sha256:4670a9657788000e344e30c579fe1dded253c2e9463926a977f5c130e1f48e91"
+        },
+        {
+          "groupId": "alternatives",
+          "kind": "alternative",
+          "solutionBearing": false,
+          "contentDigest": "sha256:62015f063185a534d0e75b023df198b0e8e49b19ab15666f831231e18175f989"
+        }
+      ],
+      "stages": [
+        {
+          "id": "predict",
+          "kind": "predict",
+          "visible": [
+            "alternatives",
+            "curvature-control",
+            "landscape",
+            "scenarios",
+            "start",
+            "start-control",
+            "step-control",
+            "update-rule"
+          ],
+          "response": "prediction"
+        },
+        {
+          "id": "explore-step",
+          "kind": "explore",
+          "visible": [
+            "alternatives",
+            "curvature-control",
+            "landscape",
+            "navigation",
+            "observations",
+            "scenarios",
+            "start",
+            "start-control",
+            "step-control",
+            "trace",
+            "update-rule"
+          ],
+          "response": null
+        },
+        {
+          "id": "explore-curvature",
+          "kind": "explore",
+          "visible": [
+            "alternatives",
+            "curvature-control",
+            "landscape",
+            "navigation",
+            "observations",
+            "scenarios",
+            "start",
+            "start-control",
+            "step-control",
+            "substituted-rule",
+            "trace",
+            "update-rule"
+          ],
+          "response": null
+        },
+        {
+          "id": "explain",
+          "kind": "explain",
+          "visible": [
+            "alternatives",
+            "curvature-control",
+            "landscape",
+            "observations",
+            "start",
+            "start-control",
+            "step-control",
+            "substituted-rule",
+            "trace",
+            "update-rule"
+          ],
+          "response": "explanation"
+        },
+        {
+          "id": "closed",
+          "kind": "closed",
+          "visible": [],
+          "response": null
+        },
+        {
+          "id": "free-explore",
+          "kind": "explore",
+          "visible": [
+            "alternatives",
+            "curvature-control",
+            "landscape",
+            "navigation",
+            "observations",
+            "regime",
+            "scenarios",
+            "start",
+            "start-control",
+            "step-control",
+            "substituted-rule",
+            "trace",
+            "update-rule"
+          ],
+          "response": null
+        }
+      ],
+      "transitions": [
+        {
+          "id": "start-step-exploration",
+          "from": "predict",
+          "to": "explore-step"
+        },
+        {
+          "id": "add-curvature",
+          "from": "explore-step",
+          "to": "explore-curvature"
+        },
+        {
+          "id": "request-explanation",
+          "from": "explore-curvature",
+          "to": "explain"
+        },
+        {
+          "id": "request-explanation-early",
+          "from": "explore-step",
+          "to": "explain"
+        },
+        {
+          "id": "close-after-explanation",
+          "from": "explain",
+          "to": "closed"
+        },
+        {
+          "id": "close-from-prediction",
+          "from": "predict",
+          "to": "closed"
+        },
+        {
+          "id": "close-from-step-exploration",
+          "from": "explore-step",
+          "to": "closed"
+        },
+        {
+          "id": "close-from-curvature-exploration",
+          "from": "explore-curvature",
+          "to": "closed"
+        },
+        {
+          "id": "close-from-free-exploration",
+          "from": "free-explore",
+          "to": "closed"
+        }
+      ],
+      "parameters": {
+        "eta": [
+          0,
+          2
+        ],
+        "a": [
+          0.1,
+          10
+        ],
+        "x0": [
+          -10,
+          10
+        ]
+      },
+      "neutralScaffold": [
+        "update-rule"
+      ]
+    },
+    {
+      "template": {
+        "templateId": "quadratic-surface-gradient",
+        "version": "1.0.0",
+        "digest": "sha256:be8ee71cf73606c8fa0676a0c83e2f0ea3f6a1d3c77bf13278d30fd23bf95985"
+      },
+      "model": {
+        "modelId": "quadratic-surface-gradient",
+        "version": "1.0.0",
+        "digest": "sha256:cf14845fdc52ac67d2bdfca8f2434a15499f0555045882acfc287bcd14381294"
+      },
+      "title": "Gradient on a quadratic surface",
+      "dimension": "3d",
+      "lifecycle": "reference-checked",
+      "initialStage": "orient",
+      "groups": [
+        {
+          "groupId": "scene",
+          "kind": "view",
+          "solutionBearing": false,
+          "contentDigest": "sha256:17d40ea224bf95b4766830bc1b46aa686837cb93dfa6cdda5ff1316b77202d99"
+        },
+        {
+          "groupId": "contour-view",
+          "kind": "view",
+          "solutionBearing": false,
+          "contentDigest": "sha256:0bbc8367b2145d3abbcf543170a63c97d614cb970a97c40afb1c5a4087006bd4"
+        },
+        {
+          "groupId": "section-views",
+          "kind": "view",
+          "solutionBearing": false,
+          "contentDigest": "sha256:c511a0041919ac07271e1a4c2b31e57e785c0bb7bbfe516e61d97570efbc830c"
+        },
+        {
+          "groupId": "surface",
+          "kind": "dataset",
+          "solutionBearing": false,
+          "contentDigest": "sha256:831b7fdcbd1ac9e0d0065bfebd66363b4ade993ba67d7a7b780d6136880a0f5a"
+        },
+        {
+          "groupId": "contours",
+          "kind": "dataset",
+          "solutionBearing": false,
+          "contentDigest": "sha256:d0fb0f757d535bd889bb6923dc07338dd49afed2984c0decb31c8e910bbf70e9"
+        },
+        {
+          "groupId": "cross-sections",
+          "kind": "dataset",
+          "solutionBearing": false,
+          "contentDigest": "sha256:2a3b7d20bbce7daceaae8e4b8f0fc86c79506a2b3538dc6f2d297b00d6de39d7"
+        },
+        {
+          "groupId": "point",
+          "kind": "dataset",
+          "solutionBearing": false,
+          "contentDigest": "sha256:bd17ce952fa136272d30982004d22ffc75be83447706b61d4f41ea954e25e6b2"
+        },
+        {
+          "groupId": "surface-values",
+          "kind": "quantity",
+          "solutionBearing": false,
+          "contentDigest": "sha256:c4abd5cb67f00f183da7a7f522254383bc6b8248645d36e3c3c570ffdbf70ab2"
+        },
+        {
+          "groupId": "surface-rules",
+          "kind": "equation",
+          "solutionBearing": false,
+          "contentDigest": "sha256:877bc9621a7921e36a50a1c776a327c0393cc06b9c4d376f74d700feed3b86f5"
+        },
+        {
+          "groupId": "gradient-rules",
+          "kind": "equation",
+          "solutionBearing": false,
+          "contentDigest": "sha256:6f0d95791f410df4b7cc7c2e44b65a3b7be27699cda60b883518ecda4f2e2f29"
+        },
+        {
+          "groupId": "gradient",
+          "kind": "quantity",
+          "solutionBearing": true,
+          "contentDigest": "sha256:18e3a1a66319bba6677934f4ffc8a5a256f03078ceade78af8a55572b240abea"
+        },
+        {
+          "groupId": "gradient-drawing",
+          "kind": "dataset",
+          "solutionBearing": true,
+          "contentDigest": "sha256:9173b71d2254bd586edc8fd8a65c6a9b114ad0438e0bc4e128900f9d3ce2db81"
+        },
+        {
+          "groupId": "gradient-values",
+          "kind": "equation",
+          "solutionBearing": true,
+          "contentDigest": "sha256:64b906dd2c8224655d3b714bb673dc8fd4996a93994252441f12061cf78857f2"
+        },
+        {
+          "groupId": "field",
+          "kind": "dataset",
+          "solutionBearing": true,
+          "contentDigest": "sha256:82d8a0e9c722d5d1aa5b32c036c0d7cf77c4254d84ce13e6d101fdbb523d1829"
+        },
+        {
+          "groupId": "minimum",
+          "kind": "quantity",
+          "solutionBearing": true,
+          "contentDigest": "sha256:e0ee79d3f14d8f6153abbc305cdb6ac448ff9cb1072d2da8429774dc9ffec19d"
+        },
+        {
+          "groupId": "minimum-values",
+          "kind": "equation",
+          "solutionBearing": true,
+          "contentDigest": "sha256:a512c908fac5fa6feb3f983fd3142383acf7b6d8a0df97d8e350d1dc6d266a8e"
+        },
+        {
+          "groupId": "coefficient-controls",
+          "kind": "control",
+          "solutionBearing": false,
+          "contentDigest": "sha256:bfa2b8e18caea5ae87c69849296706b1ecbb8218757744984d5aa9278a538537"
+        },
+        {
+          "groupId": "point-controls",
+          "kind": "control",
+          "solutionBearing": false,
+          "contentDigest": "sha256:75a808bc2d92b0283b12c34ee4477d013de78f1f2223b47a9d16eb84a2fcf9fb"
+        },
+        {
+          "groupId": "scenarios",
+          "kind": "annotation",
+          "solutionBearing": false,
+          "contentDigest": "sha256:89d5d8efa6c0ec9c3eca868604fe53ca02087bc831e6942de272fb987c699c4e"
+        },
+        {
+          "groupId": "alternatives",
+          "kind": "alternative",
+          "solutionBearing": false,
+          "contentDigest": "sha256:427ad3fb1e3f88b22b1d23e0814fbf491793e591cac2eca3f885b163f73af17a"
+        }
+      ],
+      "stages": [
+        {
+          "id": "orient",
+          "kind": "prepare",
+          "visible": [
+            "alternatives",
+            "coefficient-controls",
+            "contour-view",
+            "contours",
+            "cross-sections",
+            "point",
+            "point-controls",
+            "scene",
+            "section-views",
+            "surface",
+            "surface-rules",
+            "surface-values"
+          ],
+          "response": null
+        },
+        {
+          "id": "predict",
+          "kind": "predict",
+          "visible": [
+            "alternatives",
+            "coefficient-controls",
+            "contour-view",
+            "contours",
+            "cross-sections",
+            "point",
+            "point-controls",
+            "scene",
+            "section-views",
+            "surface",
+            "surface-rules",
+            "surface-values"
+          ],
+          "response": "prediction"
+        },
+        {
+          "id": "explore-point",
+          "kind": "explore",
+          "visible": [
+            "alternatives",
+            "coefficient-controls",
+            "contour-view",
+            "contours",
+            "cross-sections",
+            "gradient",
+            "gradient-drawing",
+            "gradient-rules",
+            "gradient-values",
+            "point",
+            "point-controls",
+            "scene",
+            "section-views",
+            "surface",
+            "surface-rules",
+            "surface-values"
+          ],
+          "response": null
+        },
+        {
+          "id": "explore-field",
+          "kind": "explore",
+          "visible": [
+            "alternatives",
+            "coefficient-controls",
+            "contour-view",
+            "contours",
+            "cross-sections",
+            "field",
+            "gradient",
+            "gradient-drawing",
+            "gradient-rules",
+            "gradient-values",
+            "minimum",
+            "minimum-values",
+            "point",
+            "point-controls",
+            "scenarios",
+            "scene",
+            "section-views",
+            "surface",
+            "surface-rules",
+            "surface-values"
+          ],
+          "response": null
+        },
+        {
+          "id": "explain",
+          "kind": "explain",
+          "visible": [
+            "alternatives",
+            "coefficient-controls",
+            "contour-view",
+            "contours",
+            "cross-sections",
+            "field",
+            "gradient",
+            "gradient-drawing",
+            "gradient-rules",
+            "gradient-values",
+            "minimum",
+            "minimum-values",
+            "point",
+            "point-controls",
+            "scene",
+            "section-views",
+            "surface",
+            "surface-rules",
+            "surface-values"
+          ],
+          "response": "explanation"
+        },
+        {
+          "id": "closed",
+          "kind": "closed",
+          "visible": [],
+          "response": null
+        },
+        {
+          "id": "free-explore",
+          "kind": "explore",
+          "visible": [
+            "alternatives",
+            "coefficient-controls",
+            "contour-view",
+            "contours",
+            "cross-sections",
+            "field",
+            "gradient",
+            "gradient-drawing",
+            "gradient-rules",
+            "gradient-values",
+            "minimum",
+            "minimum-values",
+            "point",
+            "point-controls",
+            "scenarios",
+            "scene",
+            "section-views",
+            "surface",
+            "surface-rules",
+            "surface-values"
+          ],
+          "response": null
+        }
+      ],
+      "transitions": [
+        {
+          "id": "start-prediction",
+          "from": "orient",
+          "to": "predict"
+        },
+        {
+          "id": "show-gradient",
+          "from": "predict",
+          "to": "explore-point"
+        },
+        {
+          "id": "show-field",
+          "from": "explore-point",
+          "to": "explore-field"
+        },
+        {
+          "id": "request-explanation",
+          "from": "explore-field",
+          "to": "explain"
+        },
+        {
+          "id": "request-explanation-early",
+          "from": "explore-point",
+          "to": "explain"
+        },
+        {
+          "id": "close-after-explanation",
+          "from": "explain",
+          "to": "closed"
+        },
+        {
+          "id": "close-from-orientation",
+          "from": "orient",
+          "to": "closed"
+        },
+        {
+          "id": "close-from-prediction",
+          "from": "predict",
+          "to": "closed"
+        },
+        {
+          "id": "close-from-point-exploration",
+          "from": "explore-point",
+          "to": "closed"
+        },
+        {
+          "id": "close-from-field-exploration",
+          "from": "explore-field",
+          "to": "closed"
+        },
+        {
+          "id": "close-from-free-exploration",
+          "from": "free-explore",
+          "to": "closed"
+        }
+      ],
+      "parameters": {
+        "a": [
+          0.2,
+          4
+        ],
+        "b": [
+          -2,
+          2
+        ],
+        "c": [
+          0.2,
+          4
+        ],
+        "px": [
+          -2,
+          2
+        ],
+        "py": [
+          -2,
+          2
+        ]
+      },
+      "neutralScaffold": [
+        "surface-rules",
+        "gradient-rules"
+      ]
+    },
+    {
+      "template": {
+        "templateId": "vector-orientation-3d",
+        "version": "1.0.0",
+        "digest": "sha256:af54a2ba93d0e1790d4c884d09cdebf9c8e8f48b746f16a79b7998c63179f430"
+      },
+      "model": {
+        "modelId": "vector-orientation-3d",
+        "version": "1.0.0",
+        "digest": "sha256:4cbfe83e8927ecf3d0edb8b4f299a13557899f98250c9a697a3620597e834e5f"
+      },
+      "title": "Two vectors in space",
+      "dimension": "3d",
+      "lifecycle": "reference-checked",
+      "initialStage": "orient",
+      "groups": [
+        {
+          "groupId": "space",
+          "kind": "view",
+          "solutionBearing": false,
+          "contentDigest": "sha256:7ebb836d2e872e3ed3dcdd69b354b1ff9025c8a9d1ed0e7f09d929155d18fb71"
+        },
+        {
+          "groupId": "projections",
+          "kind": "view",
+          "solutionBearing": false,
+          "contentDigest": "sha256:e7272872056f680c71cbed931a65af209bac98d2650b88c2d3463ea0826bf3bf"
+        },
+        {
+          "groupId": "vectors",
+          "kind": "dataset",
+          "solutionBearing": false,
+          "contentDigest": "sha256:67446c9c86b2a2529af20e97b3a2fe3e1f5a06ec45d644de231e656316eab02d"
+        },
+        {
+          "groupId": "components",
+          "kind": "quantity",
+          "solutionBearing": false,
+          "contentDigest": "sha256:7301a8c297095744920298edfd85898fd2fa973834a68e146accabd04d1470dd"
+        },
+        {
+          "groupId": "lengths",
+          "kind": "quantity",
+          "solutionBearing": false,
+          "contentDigest": "sha256:eef280331ce2f39ce5502bf4acd83da43f5d5a961c986114f6e158a1b1a11a3a"
+        },
+        {
+          "groupId": "controls-u",
+          "kind": "control",
+          "solutionBearing": false,
+          "contentDigest": "sha256:3d3023688da7c7d8d2602722713e37f59a837b6c8a900a966ec4f464d4b017e5"
+        },
+        {
+          "groupId": "controls-v",
+          "kind": "control",
+          "solutionBearing": false,
+          "contentDigest": "sha256:c5a80a91427a7b341d5ff8682a4688d7b5975d0a142a76a119bd1ee3240e5e2d"
+        },
+        {
+          "groupId": "angle-dot",
+          "kind": "quantity",
+          "solutionBearing": true,
+          "contentDigest": "sha256:1419588e79afb31fe1bf034149bd5b0a97867d6f050147d2b6985de9d3af8d9c"
+        },
+        {
+          "groupId": "angle-arc",
+          "kind": "dataset",
+          "solutionBearing": true,
+          "contentDigest": "sha256:aa01780e1a925a2427b034b6db032bf1fb7e0ed6c8bf133e313485f5f3b63a1e"
+        },
+        {
+          "groupId": "dot-rules",
+          "kind": "equation",
+          "solutionBearing": false,
+          "contentDigest": "sha256:f84f23cb5375656e9c3b5d222d5457d022832ff902a2a905b66f6b44f8bfa553"
+        },
+        {
+          "groupId": "dot-values",
+          "kind": "equation",
+          "solutionBearing": true,
+          "contentDigest": "sha256:4ccdbe734d0363c16741f57f02b26ae21f10b9f75fc7c29f7131418f344bb9e3"
+        },
+        {
+          "groupId": "cross",
+          "kind": "quantity",
+          "solutionBearing": true,
+          "contentDigest": "sha256:1387413e01884cf462bda5a1fc987e6618441a58e693ae3fd5b6e076cebbda02"
+        },
+        {
+          "groupId": "cross-drawing",
+          "kind": "dataset",
+          "solutionBearing": true,
+          "contentDigest": "sha256:c9fa789da9927bfbb6d16e161311518d5c7627226f3e3b005b723dd81053c58e"
+        },
+        {
+          "groupId": "cross-rules",
+          "kind": "equation",
+          "solutionBearing": false,
+          "contentDigest": "sha256:bde1ec8261af91902b655306ec04caec71b28e048f12399c74437812ab44d8f5"
+        },
+        {
+          "groupId": "cross-values",
+          "kind": "equation",
+          "solutionBearing": true,
+          "contentDigest": "sha256:4f83b255cb70375756dfe773b4bf9a2c6e8e9b9e46f6d0c00336696158c1121e"
+        },
+        {
+          "groupId": "scenarios",
+          "kind": "annotation",
+          "solutionBearing": false,
+          "contentDigest": "sha256:02d0880a3ae56e7e2d10fb375cc46cc4b45bec9b3111ba3acb988ff505439408"
+        },
+        {
+          "groupId": "alternatives",
+          "kind": "alternative",
+          "solutionBearing": false,
+          "contentDigest": "sha256:98f17cefb36c04abb4ce15b5411fe53aaf46f18ca3e874db373f30d8a57d354c"
+        }
+      ],
+      "stages": [
+        {
+          "id": "orient",
+          "kind": "prepare",
+          "visible": [
+            "alternatives",
+            "components",
+            "controls-u",
+            "controls-v",
+            "lengths",
+            "projections",
+            "space",
+            "vectors"
+          ],
+          "response": null
+        },
+        {
+          "id": "predict",
+          "kind": "predict",
+          "visible": [
+            "alternatives",
+            "components",
+            "controls-u",
+            "controls-v",
+            "lengths",
+            "projections",
+            "space",
+            "vectors"
+          ],
+          "response": "prediction"
+        },
+        {
+          "id": "explore-angle",
+          "kind": "explore",
+          "visible": [
+            "alternatives",
+            "angle-arc",
+            "angle-dot",
+            "components",
+            "controls-u",
+            "controls-v",
+            "dot-rules",
+            "dot-values",
+            "lengths",
+            "projections",
+            "scenarios",
+            "space",
+            "vectors"
+          ],
+          "response": null
+        },
+        {
+          "id": "explore-cross",
+          "kind": "explore",
+          "visible": [
+            "alternatives",
+            "angle-arc",
+            "angle-dot",
+            "components",
+            "controls-u",
+            "controls-v",
+            "cross",
+            "cross-drawing",
+            "cross-rules",
+            "cross-values",
+            "dot-rules",
+            "dot-values",
+            "lengths",
+            "projections",
+            "scenarios",
+            "space",
+            "vectors"
+          ],
+          "response": null
+        },
+        {
+          "id": "explain",
+          "kind": "explain",
+          "visible": [
+            "alternatives",
+            "angle-arc",
+            "angle-dot",
+            "components",
+            "controls-u",
+            "controls-v",
+            "cross",
+            "cross-drawing",
+            "cross-rules",
+            "cross-values",
+            "dot-rules",
+            "dot-values",
+            "lengths",
+            "projections",
+            "space",
+            "vectors"
+          ],
+          "response": "explanation"
+        },
+        {
+          "id": "closed",
+          "kind": "closed",
+          "visible": [],
+          "response": null
+        },
+        {
+          "id": "free-explore",
+          "kind": "explore",
+          "visible": [
+            "alternatives",
+            "angle-arc",
+            "angle-dot",
+            "components",
+            "controls-u",
+            "controls-v",
+            "cross",
+            "cross-drawing",
+            "cross-rules",
+            "cross-values",
+            "dot-rules",
+            "dot-values",
+            "lengths",
+            "projections",
+            "scenarios",
+            "space",
+            "vectors"
+          ],
+          "response": null
+        }
+      ],
+      "transitions": [
+        {
+          "id": "start-prediction",
+          "from": "orient",
+          "to": "predict"
+        },
+        {
+          "id": "show-angle",
+          "from": "predict",
+          "to": "explore-angle"
+        },
+        {
+          "id": "show-cross",
+          "from": "explore-angle",
+          "to": "explore-cross"
+        },
+        {
+          "id": "request-explanation",
+          "from": "explore-cross",
+          "to": "explain"
+        },
+        {
+          "id": "request-explanation-early",
+          "from": "explore-angle",
+          "to": "explain"
+        },
+        {
+          "id": "close-after-explanation",
+          "from": "explain",
+          "to": "closed"
+        },
+        {
+          "id": "close-from-orientation",
+          "from": "orient",
+          "to": "closed"
+        },
+        {
+          "id": "close-from-prediction",
+          "from": "predict",
+          "to": "closed"
+        },
+        {
+          "id": "close-from-angle-exploration",
+          "from": "explore-angle",
+          "to": "closed"
+        },
+        {
+          "id": "close-from-cross-exploration",
+          "from": "explore-cross",
+          "to": "closed"
+        },
+        {
+          "id": "close-from-free-exploration",
+          "from": "free-explore",
+          "to": "closed"
+        }
+      ],
+      "parameters": {
+        "ux": [
+          -3,
+          3
+        ],
+        "uy": [
+          -3,
+          3
+        ],
+        "uz": [
+          -3,
+          3
+        ],
+        "vx": [
+          -3,
+          3
+        ],
+        "vy": [
+          -3,
+          3
+        ],
+        "vz": [
+          -3,
+          3
+        ]
+      },
+      "neutralScaffold": [
+        "dot-rules",
+        "cross-rules"
+      ]
+    }
+  ]
+}

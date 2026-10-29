@@ -1,5 +1,5 @@
 import { createRoot } from 'react-dom/client';
-import { createCardController } from '../shared/controller';
+import { createDocumentInteractionController } from '@experiment-kit/core/declarative';
 import { exhibits } from './catalog';
 import { documents } from './models';
 import { ExampleCard } from './ExampleCard';
@@ -11,7 +11,7 @@ const requested = new URLSearchParams(location.search).get('example');
 const exhibit = exhibits.find(item => item.id === requested) ?? exhibits[0];
 document.title = `${exhibit.nav} · Explorable Models`;
 root.render(<p className="ex-loading" role="status">Preparing the model…</p>);
-createCardController(documents[exhibit.id]).then(async controller => {
+createDocumentInteractionController(documents[exhibit.id]).then(async controller => {
   // Open the projectile example at an illustrative paused point, not autoplay.
   if (exhibit.id === 'projectile') await controller.seek(controller.getSnapshot().rendered.frame!.endTime! * .28);
   root.render(<div className="ex-page">
@@ -21,7 +21,10 @@ createCardController(documents[exhibit.id]).then(async controller => {
     <footer className="ex-footer"><span>Six models. Six ways to explore.</span><a href="./hinged-rod.html">The hinged-rod example ↗</a></footer>
   </div>);
   if (import.meta.env.DEV) Object.assign(window, { __SHOWCASE__: controller });
-  const dispose = () => { root.unmount(); controller.dispose(); };
+  // A hidden page suspends the card (no playback ticks or worker work) and resumes it paused, without catch-up.
+  const visibility = () => { if (document.visibilityState === 'hidden') controller.suspend(); else controller.resume(); };
+  document.addEventListener('visibilitychange', visibility);
+  const dispose = () => { document.removeEventListener('visibilitychange', visibility); root.unmount(); controller.dispose(); };
   window.addEventListener('pagehide', dispose, { once: true });
   import.meta.hot?.dispose(() => { window.removeEventListener('pagehide', dispose); dispose(); });
 }).catch(error => root.render(<main className="ex-loading"><h1>Unable to prepare the model</h1><p role="alert">{error instanceof Error ? error.message : 'Reload to retry.'}</p></main>));

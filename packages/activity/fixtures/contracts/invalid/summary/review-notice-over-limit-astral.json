@@ -1,0 +1,77 @@
+{
+  "contract": "study-harness.interaction-summary",
+  "expect": "invalid",
+  "why": "Review notice of 201 code points exceeds 200.",
+  "value": {
+    "contract": "study-harness.interaction-summary",
+    "schemaVersion": "1.0",
+    "summarizerVersion": "1.0.0",
+    "activityId": "act-quadratic-0001",
+    "audience": "learner",
+    "template": {
+      "templateId": "quadratic-descent-regimes",
+      "version": "1.0.0",
+      "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+    },
+    "model": {
+      "modelId": "quadratic-descent",
+      "version": "1.0.0",
+      "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+    },
+    "cursor": {
+      "fromSequence": 1,
+      "toSequence": 12,
+      "acknowledgedThrough": 12
+    },
+    "complete": true,
+    "committedConfigurations": [
+      {
+        "runId": "run-0001",
+        "params": {
+          "a": 1,
+          "eta": 0.5,
+          "x0": 8
+        },
+        "furthestPosition": null,
+        "cause": "initial",
+        "sequence": 2,
+        "observations": {
+          "loss": {
+            "status": "undefined",
+            "code": "NOT_VISIBLE_YET",
+            "reason": "Not shown in this stage."
+          },
+          "x": {
+            "status": "numerical-limit",
+            "code": "UNDERFLOW",
+            "reason": "Too small to represent.",
+            "lastFiniteIndex": 1000
+          }
+        }
+      }
+    ],
+    "previewObservations": [],
+    "revealed": [
+      {
+        "exposureId": "exp-0001",
+        "groups": [
+          "g-trajectory",
+          "g-position"
+        ],
+        "displayStatus": "displayed",
+        "sequence": 12
+      }
+    ],
+    "comparisons": [],
+    "responses": [],
+    "omitted": {
+      "committedConfigurations": 0,
+      "previewObservations": 0,
+      "events": 0
+    },
+    "limitations": [],
+    "text": "Summary of events 1–12. This was an exploratory composition: it is not reviewed, and its results are not reviewed assessment content. Recorded 1 committed configuration.",
+    "mode": "exploratory",
+    "reviewNotice": "😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀"
+  }
+}

@@ -1,0 +1,277 @@
+{
+  "schema": "study-harness.documentation-source-refresh/1",
+  "createdAt": "2026-10-29T06:32:16.765Z",
+  "pipelineRunId": "2026-10-29T05-29-41.307Z",
+  "scope": "Supplemental documentation/source-archive refresh after complete candidate verification (see the pipeline record for original or audited resumed execution provenance). The pipeline history and its original source archive are preserved. The recorded runtime/test/build source scope, six scoped runtime tarballs and native binaries are unchanged. The refreshed unified source archive includes byte-checked reconciled handoff documents and three verification captures plus six README showcase images and passed package-release clean-install, SDK build, worker, gallery and authoring checks.",
+  "original": {
+    "path": "release/study-harness/artifacts/2026-10-29T05-29-41.307Z/experiment-kit-0.3.0-preview.1.tgz",
+    "sha256": "sha256:64f30fa66776d8e855941517de45cacfbe6f55bfa1334506f88e4e63bdb3d6e1",
+    "manifest": {
+      "package": "experiment-kit-0.3.0-preview.1.tgz",
+      "version": "0.3.0-preview.1",
+      "createdAt": "2026-10-29T05:53:40.974Z",
+      "source": {
+        "commit": "910c03a3ef278532024df6ffedc878572e8dc093",
+        "dirty": true
+      },
+      "packageLock": {
+        "file": "package-lock.json",
+        "sha256": "804030326e78de3671cfd34d787f8509479bdd36dc306b72fde41b5b011de0de"
+      },
+      "node": "v22.22.3",
+      "platform": {
+        "platform": "darwin",
+        "arch": "arm64"
+      },
+      "sha256": "sha256:64f30fa66776d8e855941517de45cacfbe6f55bfa1334506f88e4e63bdb3d6e1",
+      "integrity": "sha512-4tGFpN6mJreoQl6OMBC3B1DOKGJ8TPYreBA6Ku3qbgUsPooDO8eROrAONn+YPQqYWWU50BTFYLG2Lo3ywxGr3A==",
+      "bytes": 14023869,
+      "unpackedBytes": 48235044,
+      "files": 1839,
+      "validation": {
+        "npmPackDryRun": "passed",
+        "freshExtraction": "passed",
+        "npmCiIgnoreScripts": "passed",
+        "executableHelp": "passed",
+        "browserWorkerVerify": "passed",
+        "galleryCliIdentity": "matched",
+        "sdkBuild": "passed",
+        "galleryExperiments": 5,
+        "galleryChecks": 31,
+        "galleryFreshStateRestore": "passed",
+        "galleryExternalNetwork": "blocked",
+        "activityAuthoring": {
+          "scaffold": "passed",
+          "validate": "passed",
+          "check": "passed",
+          "reference": "55 cases passed",
+          "reviewPacket": "passed"
+        }
+      },
+      "browserInstall": "Uses the installed Playwright Chromium cache; end users install it once with npx playwright install chromium.",
+      "publication": "Not published to any registry."
+    }
+  },
+  "refreshed": {
+    "path": "release/experiment-kit-0.3.0-preview.1.tgz",
+    "sha256": "sha256:a4da8f840c4ffc85aad6cf4620f7cc2c406fa4d9a1d46bc39d794089023455c6",
+    "bytes": 18540226,
+    "manifest": {
+      "package": "experiment-kit-0.3.0-preview.1.tgz",
+      "version": "0.3.0-preview.1",
+      "createdAt": "2026-10-29T06:31:16.622Z",
+      "source": {
+        "commit": "910c03a3ef278532024df6ffedc878572e8dc093",
+        "dirty": true
+      },
+      "packageLock": {
+        "file": "package-lock.json",
+        "sha256": "804030326e78de3671cfd34d787f8509479bdd36dc306b72fde41b5b011de0de"
+      },
+      "node": "v22.22.3",
+      "platform": {
+        "platform": "darwin",
+        "arch": "arm64"
+      },
+      "sha256": "sha256:a4da8f840c4ffc85aad6cf4620f7cc2c406fa4d9a1d46bc39d794089023455c6",
+      "integrity": "sha512-tJPCID18B9DPGZrO5zbVu4zlIdqAOfu0gO3GhneB36xEFEQEBt3bkv+3tyLZ06nINLcVv7n1xoHR3NAlWRF4qw==",
+      "bytes": 18540226,
+      "unpackedBytes": 53391936,
+      "files": 1869,
+      "validation": {
+        "npmPackDryRun": "passed",
+        "freshExtraction": "passed",
+        "npmCiIgnoreScripts": "passed",
+        "executableHelp": "passed",
+        "browserWorkerVerify": "passed",
+        "galleryCliIdentity": "matched",
+        "sdkBuild": "passed",
+        "galleryExperiments": 5,
+        "galleryChecks": 31,
+        "galleryFreshStateRestore": "passed",
+        "galleryExternalNetwork": "blocked",
+        "activityAuthoring": {
+          "scaffold": "passed",
+          "validate": "passed",
+          "check": "passed",
+          "reference": "55 cases passed",
+          "reviewPacket": "passed"
+        }
+      },
+      "browserInstall": "Uses the installed Playwright Chromium cache; end users install it once with npx playwright install chromium.",
+      "publication": "Not published to any registry."
+    },
+    "checkedArchiveMembers": [
+      {
+        "path": "docs/images/study-harness-visual/quadratic-default.png",
+        "sha256": "498fb30e6128c00cf9d2c70eae0cb5ea89c482613010449f7c08341261225728",
+        "bytes": 394189
+      },
+      {
+        "path": "docs/images/study-harness-visual/quadratic-boundary.png",
+        "sha256": "9666ee7b7a1cb89669fbad8fb7bc967ff4aa2e04709f1b8d91f8ef6813339f6e",
+        "bytes": 431160
+      },
+      {
+        "path": "docs/images/study-harness-visual/quadratic-mobile.png",
+        "sha256": "8fc3ab178632a37dc43e17af91b4ccc3251aa55c7fb3e8632e2e65e232eb84c5",
+        "bytes": 384966
+      },
+      {
+        "path": "docs/images/activities/quadratic-surface.png",
+        "sha256": "ce4592a78ad9988489bae877e3d96066afa88bfcdfe92c06a77c4cbc9fe708de",
+        "bytes": 257941
+      },
+      {
+        "path": "docs/images/activities/surface-contours.png",
+        "sha256": "a7fed799e337565b6d136a6d0b79869cabdef75e09f6bf45699c4b2f1a1a109b",
+        "bytes": 197520
+      },
+      {
+        "path": "docs/images/activities/function-derivative.png",
+        "sha256": "f1facd77acd255e462f4ab8cea25e85ab8f8416b4e87572921516c05be94e433",
+        "bytes": 153991
+      },
+      {
+        "path": "docs/images/activities/linear-transformation.png",
+        "sha256": "860b2d6fd80a0e6ca4b6325054c9528ec185f725e48d6d163d3427bbe8335a23",
+        "bytes": 202900
+      },
+      {
+        "path": "docs/images/activities/quadratic-descent.png",
+        "sha256": "d63b35aca6c037207f24cdd3e31479beb5f04b5c3ce17031df44326727a8a3ae",
+        "bytes": 165182
+      },
+      {
+        "path": "docs/images/activities/vector-orientation.png",
+        "sha256": "9e3b2301c0edcc5dd0f223305ea4f11162f093e7f4a813092a92e26a8f1f035e",
+        "bytes": 115123
+      },
+      {
+        "path": "docs/images/activities/README.md",
+        "sha256": "2530d7b3971b04d96bb694f13d1f7132ee73bf220e38efa7479c411645d513d0",
+        "bytes": 3216
+      },
+      {
+        "path": "docs/images/activities/captures.json",
+        "sha256": "f7fc394f9d75dfe0d5c88117171aa6c048b19530a7b362da5fd1086ce9a02947",
+        "bytes": 6349
+      },
+      {
+        "path": "README.md",
+        "sha256": "38fa69afe214c9cbaa5fa433e52bed5ece7462d24e3e5e0d93f4306e2277b7aa",
+        "bytes": 13195
+      },
+      {
+        "path": "CHANGELOG.md",
+        "sha256": "900182bd239d5f6817c7e82878c5fe27565ffe34aadf561c33b9d84b36b77872",
+        "bytes": 19807
+      },
+      {
+        "path": "docs/study-harness/README.md",
+        "sha256": "743c20efa1facb9a71456727cd33a146f0055ec234c0cc31e6989b4e177de69c",
+        "bytes": 31432
+      },
+      {
+        "path": "docs/study-harness/performance.md",
+        "sha256": "c4522d3729e89261c33119f67909958c98a05ec0c2add1a70da10fe1123f8951",
+        "bytes": 36274
+      },
+      {
+        "path": "docs/study-harness/native.md",
+        "sha256": "bd28f2e7a072d67a567aa00fccbefd02e3977219ff131407e89a77f463cceef0",
+        "bytes": 45917
+      },
+      {
+        "path": "docs/study-harness/requirement-ledger.json",
+        "sha256": "8a38a65472759ac3e9bae3d47d5571aebc148d1591f5a3fb3536ed096f4f9fde",
+        "bytes": 118547
+      },
+      {
+        "path": "docs/study-harness/requirement-ledger.md",
+        "sha256": "a62166fdfafe66d5e00a692f90019cfd7fd4a740f6421f2721adee52f91c499d",
+        "bytes": 100590
+      },
+      {
+        "path": "docs/study-harness/evidence/visual-inspection.md",
+        "sha256": "0a782b6cb0841c459fef6ef45287295147e9c88da6886e45a06f6f1812c46355",
+        "bytes": 4901
+      }
+    ]
+  },
+  "runtimeSources": {
+    "scope": "Runtime, test and build source/configuration files under the named roots plus explicit root files; authored model.md files are included because they contribute source revisions. Generated dependency/build directories and other Markdown documentation are excluded.",
+    "roots": [
+      "packages",
+      "examples",
+      "scripts",
+      "tests",
+      "public"
+    ],
+    "rootFiles": [
+      "package.json",
+      "package-lock.json",
+      "publication.config.json",
+      "tsconfig.json",
+      "vite.config.ts",
+      "vitest.config.ts",
+      "playwright.config.ts",
+      "index.html",
+      "agent.html",
+      "gallery.html",
+      "guide.html",
+      "hinged-rod.html",
+      "showcase.html",
+      "study-harness.html"
+    ],
+    "files": 1243,
+    "digest": "d6dd656d66565c6a296166ed83b4e889accc753cdca9f2dbb02784a87b5be890"
+  },
+  "runtimePackManifestSha256": "ba0e78e61ab08420c48657c0f45eb261c18b10d9394a3a48c85d5d88b2aa3394",
+  "tarballs": [
+    {
+      "name": "@experiment-kit/core",
+      "path": "release/study-harness/packages/experiment-kit-core-0.3.0-preview.1.tgz",
+      "sha256": "b4b7b8a602e3908882ea9ccc34b6c288224fccd1dae1c12ef5846e7b6c7c4dd1"
+    },
+    {
+      "name": "@experiment-kit/activity",
+      "path": "release/study-harness/packages/experiment-kit-activity-0.3.0-preview.1.tgz",
+      "sha256": "63beb9982b0683b650c5425fe2089f152d80f503b6f705fd576693f66c6313d5"
+    },
+    {
+      "name": "@experiment-kit/catalog",
+      "path": "release/study-harness/packages/experiment-kit-catalog-0.3.0-preview.1.tgz",
+      "sha256": "0138850db9ae2115dcc7d9fb94b14e793153862b0626930d65f4411303f09134"
+    },
+    {
+      "name": "@experiment-kit/player",
+      "path": "release/study-harness/packages/experiment-kit-player-0.3.0-preview.1.tgz",
+      "sha256": "21b3f1d6543c48c1c7735a624d1da5c706193782c79bbd5f5e5fceeaf09d7bad"
+    },
+    {
+      "name": "@experiment-kit/player-3d",
+      "path": "release/study-harness/packages/experiment-kit-player-3d-0.3.0-preview.1.tgz",
+      "sha256": "0de6c36733b8182b5ab9e21ed31cace1cbcac5e326bfa2d8b1fb70ca8b729f77"
+    },
+    {
+      "name": "@experiment-kit/agent",
+      "path": "release/study-harness/packages/experiment-kit-agent-0.3.0-preview.1.tgz",
+      "sha256": "223b69a085e8bd192241da1c32c6c67caa45f5aaf18c578c9bc5ceac3e1e820c"
+    }
+  ],
+  "nativeBinaries": [
+    {
+      "name": "release",
+      "executable": "examples/study-harness-tauri/src-tauri/target/release/bundle/macos/StudyHarnessReference.app/Contents/MacOS/study-harness-reference",
+      "sha256": "ec1326175861bb619a42dd732dec967f2fd44c86d602cc710eec259868e900bb"
+    },
+    {
+      "name": "conformance",
+      "executable": "examples/study-harness-tauri/src-tauri/target/conformance/release/bundle/macos/StudyHarnessReferenceConformance.app/Contents/MacOS/study-harness-reference",
+      "sha256": "46545ff01ea37b7cc817b7be8a9b84c83468ea91608ceb5450cd91df4223f32b"
+    }
+  ],
+  "log": "release/study-harness/logs/2026-10-29T05-29-41.307Z/documentation-source-refresh.log",
+  "published": false
+}

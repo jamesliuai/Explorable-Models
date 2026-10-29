@@ -1,5 +1,11 @@
 # Agent-first local preview: release evidence
 
+> **Historical: evidence for the 0.2 preview.** This record documents the `0.2.0-preview.1` source preview of
+> 22 October 2026. It does not describe the current `0.3.0-preview.1` workspace or the Study Harness subsystem. Its
+> results, package lists and "what ships" statements apply to that candidate only. Current requirement status is in the
+> [Study Harness requirement ledger](study-harness/requirement-ledger.md), current evidence is indexed in the
+> [handoff](study-harness/README.md), and changes are in the [changelog](../CHANGELOG.md).
+
 Candidate: **0.2.0-preview.1**, schema **2.0**. Working date: **October 22, 2026 (America/Los_Angeles)**. The owner authorized a **source-repository developer preview** at `jamesliuai/Explorable-Models`. npm publishing, hosting, and external pilots remain deferred. This record does not mark the original supported-release plan complete.
 
 ## What ships

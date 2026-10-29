@@ -1,0 +1,34 @@
+{
+  "contract": "study-harness.assistance-request",
+  "expect": "valid",
+  "why": "Reopen instructional request.",
+  "value": {
+    "activityId": "act-quadratic-0001",
+    "basedOnActivityRevision": 2,
+    "expectedPolicyRevision": 3,
+    "template": {
+      "templateId": "quadratic-descent-regimes",
+      "version": "1.0.0",
+      "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+    },
+    "model": {
+      "modelId": "quadratic-descent",
+      "version": "1.0.0",
+      "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+    },
+    "operationId": "op-reopen-1",
+    "idempotencyKey": "op-reopen-1",
+    "kind": "reopen-instructional",
+    "actor": "host",
+    "groups": [
+      {
+        "groupId": "g-trajectory",
+        "contentDigest": "sha256:becc99271e962d4808ed1fe8949d143f75cd960dac64b590d7307f30bc6c75a0"
+      },
+      {
+        "groupId": "g-position",
+        "contentDigest": "sha256:75a956941d3d3f400c356eed1ce88741744c119d1050a3f3163edd37f41477ce"
+      }
+    ]
+  }
+}

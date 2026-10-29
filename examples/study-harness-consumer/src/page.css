@@ -1,0 +1,13 @@
+/* Host chrome of the packed consumer pages (linked stylesheet; no inline styles, so style-src 'self' suffices). */
+:root { color-scheme: light; font-family: system-ui, -apple-system, "Segoe UI", sans-serif; background: #f6f7f9; color: #1b1f24; }
+body { margin: 0; padding: 16px; }
+h1 { font-size: 1.1rem; margin: 0 0 4px; }
+.consumer-note { margin: 0 0 16px; font-size: 0.85rem; color: #4a5059; max-width: 72ch; }
+#cards, .bench-region { display: grid; gap: 16px; }
+.consumer-card { width: 100%; max-width: 1200px; }
+.bench-history { display: grid; gap: 8px; }
+.bench-history > .consumer-card { max-width: 960px; }
+.bench-legacy { width: 100%; max-width: 960px; background: #fff; }
+.bench-spacer { height: 3000px; }
+/* Benchmark: two active cards side by side on a wide viewport, so both are on screen (and therefore active) at once. */
+@media (min-width: 1500px) { #active { grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; } }

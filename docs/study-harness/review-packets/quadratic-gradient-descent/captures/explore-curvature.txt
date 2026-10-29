@@ -1,0 +1,58 @@
+Step size in gradient descent — stage explore-curvature (explore)
+Instruction: Now change the curvature a as well as the step size. Notice how the step sizes that give each kind of behaviour change with a.
+Review notice: Reference-checked; no independent subject review
+Revealed by the host for this stage: trace, observations, substituted-rule
+Shown at iteration n = 4
+
+Current values:
+Step size η: 0.25. Curvature a: 2. Starting position x₀: 4 (fixed). Step 4 of 1000. Starting position: 4. Starting loss: 16. Iteration: n = 4. Position: 0.25. Loss: 0.0625. Gradient: 0.5. Update multiplier: 0.5. Step size times curvature: 0.5.
+
+View landscape:
+Step size in gradient descent
+Objective landscape. Objective landscape. Shows Objective f(x); Starting point (x₀, f(x₀)); Steps between successive iterates; Iterates (x_k, f(x_k)); Current iterate (x_n, f(x_n)).
+Position: n = 4 of 1000.
+Reference-checked; no independent subject review
+
+View trace-plot:
+Step size in gradient descent
+Position by iteration. Position by iteration. Shows Position x_n at each iteration n.
+Position: n = 4 of 1000.
+Reference-checked; no independent subject review
+
+View readouts:
+Step size in gradient descent
+Values. Values. Starting position: 4; Starting loss: 16; Iteration: n = 4; Position: 0.25; Loss: 0.0625; Gradient: 0.5; Update multiplier: 0.5; Step size times curvature: 0.5.
+Position: n = 4 of 1000.
+Values:
+- Starting position: 4
+- Starting loss: 16
+- Iteration: n = 4
+- Position: 0.25
+- Loss: 0.0625
+- Gradient: 0.5
+- Update multiplier: 0.5
+- Step size times curvature: 0.5
+Reference-checked; no independent subject review
+
+View rules:
+Step size in gradient descent
+Rules. Rules. Objective: f(x) = (a/2)·x²; Update rule: x_(n+1) = (1 − η·a)·x_n; Update rule with current values: x_(n+1) = (1 − 0.5)·x_n = 0.5·x_n.
+Position: n = 4 of 1000.
+Equations:
+- Objective: f(x) = (a/2)·x²
+- Update rule: x_(n+1) = (1 − η·a)·x_n
+- Update rule with current values: x_(n+1) = (1 − 0.5)·x_n = 0.5·x_n
+Reference-checked; no independent subject review
+
+View trace-table:
+Step size in gradient descent
+Trace table. Trace table. Table with 5 rows.
+Position: n = 4 of 1000.
+Trace table (5 of 5 rows):
+Iteration n (iter)	Position x_n
+0	4
+1	2
+2	1
+3	0.5
+4	0.25
+Reference-checked; no independent subject review
