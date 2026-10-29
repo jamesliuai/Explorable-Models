@@ -1,4 +1,4 @@
-import type { AnalyticModel, ScalarParams } from '@experiment-kit/core';
+import type { AnalyticModel, ScalarParams } from '@explorable-models/core';
 
 export const BODY_TYPES = {
   sphere: { label: 'Solid sphere', kappa: 2 / 5 },

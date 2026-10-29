@@ -38,8 +38,8 @@ const drawn = (projection: LearnerProjection): ProjectedView[] => projection.vie
 function checkStage(template: ActivityTemplate, projection: LearnerProjection, html: string): number {
   const where = `${template.templateId} @ ${projection.stage.id}`;
   let arrows = 0;
-  expect(html, where).toContain('class="eka"');
-  expect(html, where).toContain(`data-eka-ui-state="${projection.status.ui}"`);
+  expect(html, where).toContain('class="ema"');
+  expect(html, where).toContain(`data-ema-ui-state="${projection.status.ui}"`);
   for (const view of drawn(projection)) {
     const plan = planOf(view);
     expect(plan.notes.filter(note => note.kind === 'unsupported'), `${where} ${view.viewId}`).toEqual([]);

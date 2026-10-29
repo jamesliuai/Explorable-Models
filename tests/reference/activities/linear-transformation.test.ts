@@ -3,7 +3,7 @@ import { fileURLToPath } from 'node:url';
 import { describe, expect, it } from 'vitest';
 import {
   evaluateRequest, validateKernelOutput, validateManifest, type GeometryResult, type KernelOutput, type QuantityResult, type Vec2,
-} from '@experiment-kit/core/model';
+} from '@explorable-models/core/model';
 import {
   LINEAR_EIGEN_LINE_HALF_LENGTH, linearTransformationKernel as kernel,
 } from '../../../packages/catalog/src/kernels/linear-transformation';

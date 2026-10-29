@@ -6,7 +6,7 @@ authorization; authority comes from the binding the host constructed (architectu
 
 | Space | Identity / counter | Owner | Advanced by | Guard on commands |
 | --- | --- | --- | --- | --- |
-| Scientific | model `digest` + `scientificRevision`; run ID; `ModelSession.version` | `@experiment-kit/core/model` session | load, parameter commit, scenario, reset experiment, restore (new run); navigation (version only) | `expectedScientificVersion`, `expectedRunId` |
+| Scientific | model `digest` + `scientificRevision`; run ID; `ModelSession.version` | `@explorable-models/core/model` session | load, parameter commit, scenario, reset experiment, restore (new run); navigation (version only) | `expectedScientificVersion`, `expectedRunId` |
 | Presentation | `PresentationSnapshot.revision` | activity controller | camera, reset view, selection, layout, display unit | `expectedPresentationRevision` |
 | Activity | `ActivityInstance.activityRevision`; template `digest` and group content digests | host-authorized via receipts | only values carried by verified receipts: stage transition, reveal, exploration scope, assistance (host-local changes never advance it: response references are guarded by the host-session revision, policy updates and the independent context by the policy revision; close takes no revision guard) | `expectedActivityRevision`, `expectedPolicyRevision` |
 | Host session | `hostSessionRevision` | Study Harness host only | attempts, corrections, disputes, deletion: the host passes the revision its transaction produced (`hostSessionRevision` on response references; `observeHostSessionRevision` for changes made elsewhere); the adapter adopts it and never computes one | `expectedHostSessionRevision` (response references, `observeHostSessionRevision`) |
@@ -28,7 +28,7 @@ authorization; authority comes from the binding the host constructed (architectu
 
 Label wording versus label spelling (report §8.3, R38). A quantity label is the learner's readout name and a column
 label is a table header, so what a label says is part of what a model review approves. `labelWording` (in
-`@experiment-kit/core/model`) removes only variation a mechanical rule can certify as harmless: white space (including
+`@explorable-models/core/model`) removes only variation a mechanical rule can certify as harmless: white space (including
 no-break and thin spaces), curly versus straight quotation marks, Unicode canonical composition, and a hyphen or en dash
 joining two words of three or more letters ("Step-size" = "Step size"). Everything else changes the scientific revision,
 including a capitalization change or a corrected typing error, because no rule can tell them from a meaningful change:

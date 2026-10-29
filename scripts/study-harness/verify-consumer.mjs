@@ -39,9 +39,9 @@ export const BUDGETS_PATH = path.join(ROOT, 'docs/study-harness/budgets.json');
 const PACKED = path.join(ROOT, 'release/study-harness/packages');
 const EVIDENCE = path.join(ROOT, 'docs/study-harness/evidence');
 const PACKAGES = ['core', 'activity', 'catalog', 'player', 'player-3d', 'agent'];
-/** Public entries imported in Node; worker entries (`@experiment-kit/catalog/worker`, `@experiment-kit/core/document-worker`) start a worker loop on import and are browser-only. */
-export const PUBLIC_ENTRIES = ['@experiment-kit/core', '@experiment-kit/core/model', '@experiment-kit/core/declarative', '@experiment-kit/activity', '@experiment-kit/activity/conformance', '@experiment-kit/catalog',
-  '@experiment-kit/player', '@experiment-kit/player/activity', '@experiment-kit/player-3d', '@experiment-kit/agent'];
+/** Public entries imported in Node; worker entries (`@explorable-models/catalog/worker`, `@explorable-models/core/document-worker`) start a worker loop on import and are browser-only. */
+export const PUBLIC_ENTRIES = ['@explorable-models/core', '@explorable-models/core/model', '@explorable-models/core/declarative', '@explorable-models/activity', '@explorable-models/activity/conformance', '@explorable-models/catalog',
+  '@explorable-models/player', '@explorable-models/player/activity', '@explorable-models/player-3d', '@explorable-models/agent'];
 
 const MIME = {
   '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.css': 'text/css; charset=utf-8', '.json': 'application/json', '.map': 'application/json',
@@ -178,18 +178,18 @@ export function packageOf(source) {
 /** Patterns that must not reach the eager activity graph (report §4.1, A44). */
 export const FORBIDDEN_EAGER = [
   { id: 'three', test: source => /node_modules\/three\//.test(source) },
-  { id: '@experiment-kit/player-3d', test: source => /node_modules\/@experiment-kit\/player-3d\//.test(source) },
-  { id: 'katex', test: source => /node_modules\/katex\//.test(source) || /@experiment-kit\/player\/dist\/activity\/katex-[^/]+\.js$/.test(source) },
+  { id: '@explorable-models/player-3d', test: source => /node_modules\/@explorable-models\/player-3d\//.test(source) },
+  { id: 'katex', test: source => /node_modules\/katex\//.test(source) || /@explorable-models\/player\/dist\/activity\/katex-[^/]+\.js$/.test(source) },
   { id: 'playwright', test: source => /node_modules\/(playwright|playwright-core|@playwright)\//.test(source) },
   { id: '@modelcontextprotocol', test: source => /node_modules\/@modelcontextprotocol\//.test(source) },
   { id: 'provider-sdk', test: source => /node_modules\/(openai|@anthropic-ai|@google\/generative-ai|@google\/genai|@mistralai|cohere-ai|ollama|@aws-sdk\/client-bedrock[^/]*)\//.test(source) },
   { id: 'tauri', test: source => /node_modules\/@tauri-apps\//.test(source) },
-  { id: '@experiment-kit/cli', test: source => /node_modules\/@experiment-kit\/cli\//.test(source) },
-  { id: '@experiment-kit/agent', test: source => /node_modules\/@experiment-kit\/agent\//.test(source) },
+  { id: '@explorable-models/cli', test: source => /node_modules\/@explorable-models\/cli\//.test(source) },
+  { id: '@explorable-models/agent', test: source => /node_modules\/@explorable-models\/agent\//.test(source) },
 ];
 const FORBIDDEN_TEXT = [/THREE\.REVISION/, /WebGLRenderer/, /KaTeX parse error/, /playwright-core/, /@modelcontextprotocol/];
 /** Installed catalogue content (templates, learner copy, model manifests, per-template content modules), not loaders. */
-const isCatalogueContent = source => /@experiment-kit\/catalog\/dist\/(templates|copy|models)\//.test(source) || /@experiment-kit\/catalog\/dist\/content\/(?!loaders|types)[a-z0-9-]+\.js$/.test(source);
+const isCatalogueContent = source => /@explorable-models\/catalog\/dist\/(templates|copy|models)\//.test(source) || /@explorable-models\/catalog\/dist\/content\/(?!loaders|types)[a-z0-9-]+\.js$/.test(source);
 
 /**
  * Module graph of emitted chunks: static imports (`import … from`), dynamic imports (`import()`) and `new URL('….js',
@@ -290,8 +290,8 @@ async function quadraticFlow(page, base, html, out, log, label) {
   expect(opened.stage === 'predict' && opened.frameKind === 'committed', 'prepare + mount (predict stage, committed frame from the catalogue worker)', opened);
   // KaTeX, its stylesheet and fonts load only once an equation is on screen.
   const mathBefore = log.requests.filter(item => /katex/i.test(item.url)).length;
-  await page.locator('[data-eka-panel="equations"]').first().scrollIntoViewIfNeeded();
-  await page.locator('[data-eka-panel="equations"] .katex').first().waitFor({ timeout: 15_000 });
+  await page.locator('[data-ema-panel="equations"]').first().scrollIntoViewIfNeeded();
+  await page.locator('[data-ema-panel="equations"] .katex').first().waitFor({ timeout: 15_000 });
   expect(mathBefore === 0, 'KaTeX rendered the update rule, fetched only once the equations were on screen', { katexRequestsBeforeScroll: mathBefore });
   const transition = await evaluate(page, id => window.consumer.transition(id, 'explore-step'), activityId);
   expect(transition.ok, 'stage transition predict → explore-step (stage receipt with grants)', transition);
@@ -319,7 +319,7 @@ async function quadraticFlow(page, base, html, out, log, label) {
   const dragged = await evaluate(page, id => window.consumer.settle(id), activityId);
   expect(dragged.frameKind === 'committed' && dragged.runId !== before.runId && dragged.controls.eta !== before.controls.eta, 'pointer release commits a new run', { before: before.controls, after: dragged.controls });
   // Exact entry + Enter (the same command path as the card's Apply button).
-  const exact = page.locator('[data-parameter="eta"] input.eka-input');
+  const exact = page.locator('[data-parameter="eta"] input.ema-input');
   await exact.fill('0.75');
   await exact.press('Enter');
   await page.waitForFunction(id => window.consumer.summary(id).controls.eta === 0.75, activityId, { timeout: 10_000 });
@@ -356,10 +356,10 @@ async function spatialFlow(page, base, out, log, lazy3dFiles) {
   expect(threeRequests().length === 0 && (await evaluate(page, () => window.consumer.spatialLoads.length)) === 0, 'a 2D template with the spatial loader configured requests no 3D chunk', { flat: flat.views });
   const openedAt = performance.now();
   const spatial = await evaluate(page, () => window.consumer.open('vector-orientation-3d', { activityId: 'space', stageId: 'free-explore' }));
-  await page.locator('[data-eka-spatial]').first().scrollIntoViewIfNeeded();
+  await page.locator('[data-ema-spatial]').first().scrollIntoViewIfNeeded();
   await page.waitForFunction(() => (window.consumer.spatialState('space')[0]?.state ?? 'pending') !== 'pending' && window.consumer.spatialLoads.length > 0, undefined, { timeout: 20_000 });
   await page.waitForFunction(() => ['ready', 'fallback', 'failed'].includes(window.consumer.spatialState('space')[0]?.state), undefined, { timeout: 20_000 });
-  await page.locator('[data-eka-spatial]').first().scrollIntoViewIfNeeded();
+  await page.locator('[data-ema-spatial]').first().scrollIntoViewIfNeeded();
   await page.waitForTimeout(300);
   const state = await evaluate(page, () => window.consumer.spatialState('space'));
   const requests = threeRequests();
@@ -405,8 +405,8 @@ async function main() {
   await mkdir(cache, { recursive: true });
   const packed = [];
   for (const short of PACKAGES) {
-    const entry = manifest.packages.find(item => item.name === `@experiment-kit/${short}`);
-    if (!entry) throw new Error(`@experiment-kit/${short} is missing from the pack manifest; run without --no-pack.`);
+    const entry = manifest.packages.find(item => item.name === `@explorable-models/${short}`);
+    if (!entry) throw new Error(`@explorable-models/${short} is missing from the pack manifest; run without --no-pack.`);
     const bytes = await readFile(path.join(PACKED, entry.file));
     if (sha256(bytes) !== entry.sha256 || sha512(bytes) !== entry.integrity) throw new Error(`${entry.file}: bytes differ from the pack manifest (concurrent re-pack?).`);
     await writeFile(path.join(tarballs, entry.file), bytes);
@@ -455,14 +455,14 @@ async function main() {
       const out = [];
       for (const entry of entries) { const module = await import(entry); out.push({ entry, exports: Object.keys(module).length }); }
       const after = ['window', 'document', 'HTMLElement', 'customElements', 'requestAnimationFrame'].filter(name => name in globalThis);
-      const { createInstalledCatalog, createLazyCatalog } = await import('@experiment-kit/catalog');
+      const { createInstalledCatalog, createLazyCatalog } = await import('@explorable-models/catalog');
       const catalog = createInstalledCatalog();
       const lazy = createLazyCatalog();
       process.stdout.write(JSON.stringify({ before, after, out, templates: catalog.listTemplates().map(item => item.template.templateId), problems: catalog.problems().length, lazyTemplates: lazy.listTemplates().map(item => item.template.templateId) }));`;
     const ssr = JSON.parse(run(process.execPath, ['--input-type=module', '-e', ssrScript], { cwd: app }));
     check('ssr-safe-imports', ssr.after.length === 0 && ssr.before.filter(name => name !== 'Worker').length === 0 && ssr.out.length === PUBLIC_ENTRIES.length && ssr.templates.length === 5 && ssr.problems === 0
       && JSON.stringify(ssr.lazyTemplates) === JSON.stringify(ssr.templates), ssr);
-    evidence.ssr = { node: process.version, domGlobals: ssr.after, entries: ssr.out, installedTemplates: ssr.templates, lazyCatalogTemplates: ssr.lazyTemplates, catalogProblems: ssr.problems, workerEntriesNotImported: ['@experiment-kit/catalog/worker', '@experiment-kit/core/document-worker'] };
+    evidence.ssr = { node: process.version, domGlobals: ssr.after, entries: ssr.out, installedTemplates: ssr.templates, lazyCatalogTemplates: ssr.lazyTemplates, catalogProblems: ssr.problems, workerEntriesNotImported: ['@explorable-models/catalog/worker', '@explorable-models/core/document-worker'] };
     const typecheck = spawnSync(path.join(app, 'node_modules/.bin/tsc'), ['-p', 'tsconfig.json'], { cwd: app, encoding: 'utf8' });
     check('typecheck-against-packed-declarations', typecheck.status === 0, typecheck.status === 0 ? 'tsc -p tsconfig.json (skipLibCheck false): no errors' : `${typecheck.stdout}${typecheck.stderr}`.slice(0, 6000));
     evidence.typecheck = { command: 'tsc -p tsconfig.json', skipLibCheck: false, ok: typecheck.status === 0, output: `${typecheck.stdout}${typecheck.stderr}`.trim().slice(0, 6000) };
@@ -498,11 +498,11 @@ async function main() {
     /** Groups whose share of the main activity chunk explains its size (estimated by removal, see gzipSaving). */
     const SIZE_GROUPS = [
       { id: 'catalogue content (templates, learner copy, model manifests)', test: source => isCatalogueContent(source) },
-      { id: 'catalogue kernels in the main thread (also in the kernel worker)', test: source => /@experiment-kit\/catalog\/dist\/kernels\//.test(source) },
-      { id: 'schema 2.0 document runtime in the main thread (@experiment-kit/core/declarative)', test: source => /@experiment-kit\/core\/dist\/declarative\//.test(source) },
+      { id: 'catalogue kernels in the main thread (also in the kernel worker)', test: source => /@explorable-models\/catalog\/dist\/kernels\//.test(source) },
+      { id: 'schema 2.0 document runtime in the main thread (@explorable-models/core/declarative)', test: source => /@explorable-models\/core\/dist\/declarative\//.test(source) },
       { id: 'react-dom', test: source => /node_modules\/react-dom\//.test(source) },
-      { id: 'learner surface (@experiment-kit/player/activity)', test: source => /@experiment-kit\/player\/dist\/activity\//.test(source) },
-      { id: 'activity runtime (@experiment-kit/activity)', test: source => /@experiment-kit\/activity\//.test(source) },
+      { id: 'learner surface (@explorable-models/player/activity)', test: source => /@explorable-models\/player\/dist\/activity\//.test(source) },
+      { id: 'activity runtime (@explorable-models/activity)', test: source => /@explorable-models\/activity\//.test(source) },
       { id: 'consumer host code (this example)', test: source => !source.includes('node_modules/') },
     ];
     const activityResults = {};
@@ -535,14 +535,14 @@ async function main() {
     const allLazy = [...new Set(Object.values(entries).flatMap(entry => entry.lazy))];
     const lazyInfo = await Promise.all(allLazy.map(info));
     const isMath = item => item.sources.some(source => FORBIDDEN_EAGER.find(rule => rule.id === 'katex').test(source));
-    const is3d = item => item.sources.some(source => /node_modules\/(three|@experiment-kit\/player-3d)\//.test(source));
+    const is3d = item => item.sources.some(source => /node_modules\/(three|@explorable-models\/player-3d)\//.test(source));
     const assets = await readdir(path.join(dist, 'assets'));
     const fileSizes = async (filter) => Promise.all(assets.filter(filter).map(async file => { const bytes = await readFile(path.join(dist, 'assets', file)); return { file: `assets/${file}`, bytes: bytes.length, gzip9: gzip9(bytes) }; }));
     const sum = (list, key) => list.reduce((total, item) => total + item[key], 0);
     const mathJs = lazyInfo.filter(isMath), threeJs = lazyInfo.filter(is3d);
     // Per-template catalogue content chunks of the multi-page build (served to the flows): file → template ID.
     const contentChunkTemplate = new Map(lazyInfo.flatMap(item => {
-      const id = item.sources.map(source => /@experiment-kit\/catalog\/dist\/content\/([a-z0-9-]+)\.js$/.exec(source)?.[1]).find(match => match && match !== 'loaders' && match !== 'types');
+      const id = item.sources.map(source => /@explorable-models\/catalog\/dist\/content\/([a-z0-9-]+)\.js$/.exec(source)?.[1]).find(match => match && match !== 'loaders' && match !== 'types');
       return id ? [[item.file, id]] : [];
     }));
     const mathCss = await fileSizes(file => /^katex.*\.css$/.test(file)), mathFonts = await fileSizes(file => /^KaTeX_.*\.woff2$/.test(file)), uiFonts = await fileSizes(file => /^inter-.*\.woff2$/.test(file));
@@ -569,7 +569,7 @@ async function main() {
     for (const file of activityEager) {
       const map = JSON.parse(await readFile(path.join(singleActivity, `${file}.map`), 'utf8'));
       for (const [source, count] of attributeBytes((await readFile(path.join(singleActivity, file))).toString('utf8'), map)) {
-        if (!source || !/node_modules\/@experiment-kit\/catalog\//.test(source)) continue;
+        if (!source || !/node_modules\/@explorable-models\/catalog\//.test(source)) continue;
         if (isCatalogueContent(source)) contentBytes.templatesCopyModels += count;
         else if (/\/kernels\//.test(source)) contentBytes.kernels += count;
         else contentBytes.other += count;
@@ -586,8 +586,8 @@ async function main() {
       for (const [source, count] of attributeBytes(bytes.toString('utf8'), map)) {
         if (!source) continue;
         if (isCatalogueContent(source)) content += count;
-        if (/@experiment-kit\/catalog\/dist\/kernels\//.test(source)) kernelBytes += count;
-        templateId ??= /@experiment-kit\/catalog\/dist\/content\/([a-z0-9-]+)\.js$/.exec(source)?.[1] ?? null;
+        if (/@explorable-models\/catalog\/dist\/kernels\//.test(source)) kernelBytes += count;
+        templateId ??= /@explorable-models\/catalog\/dist\/content\/([a-z0-9-]+)\.js$/.exec(source)?.[1] ?? null;
       }
       if (content) contentChunks.push({ file, templateId, bytes: bytes.length, gzip9: gzip9(bytes), contentBytes: content, kernelConstantBytes: kernelBytes });
     }

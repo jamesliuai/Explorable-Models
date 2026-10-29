@@ -1,18 +1,18 @@
 import { expect, test, type Page } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
-import type { CheckReport, Inspection, Manifest, RuntimeState, Snapshot } from '@experiment-kit/core';
+import type { CheckReport, Inspection, Manifest, RuntimeState, Snapshot } from '@explorable-models/core';
 
 /** The same public command bridge used by the CLI; no UI model imports. */
 async function request<T = unknown>(page: Page, method: string, args: Record<string, unknown> = {}): Promise<T> {
   return page.evaluate(async ({ method, args }) => {
-    const bridge = (window as unknown as { __EXPERIMENT_KIT__: { request(input: unknown): Promise<unknown> } }).__EXPERIMENT_KIT__;
+    const bridge = (window as unknown as { __EXPLORABLE_MODELS__: { request(input: unknown): Promise<unknown> } }).__EXPLORABLE_MODELS__;
     return bridge.request({ method, args });
   }, { method, args }) as Promise<T>;
 }
 
 async function openExperiment(page: Page, id = 'rolling') {
   await page.goto(`/?experiment=${id}`);
-  await page.waitForFunction(() => Boolean((window as unknown as { __EXPERIMENT_KIT__?: unknown }).__EXPERIMENT_KIT__));
+  await page.waitForFunction(() => Boolean((window as unknown as { __EXPLORABLE_MODELS__?: unknown }).__EXPLORABLE_MODELS__));
   await expect.poll(async () => (await request<Inspection>(page, 'inspect')).experimentId).toBe(id);
 }
 

@@ -8,7 +8,7 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 import {
   createActivityRelay, createActivityToolEndpoint,
   type ActivityRelayCall, type ActivityRelayCancel, type ActivityRelayConnection, type ActivityToolResult, type ActivityTools,
-} from '@experiment-kit/agent';
+} from '@explorable-models/agent';
 import { settled, until } from '../activity/support/adapter-harness.js';
 import { ACTIVITY_ID, SESSION_ID, atExplore, codesOf, dataOf, expectedGuards, opId, rig, type Rig } from './support/activity-tools.js';
 

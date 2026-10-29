@@ -12,7 +12,7 @@ import { mkdirSync } from 'node:fs';
 import { expect, test, type Page } from '@playwright/test';
 import { card, control, expectAccessible, openFixture, overflow, projection, settle } from './support/study-harness';
 
-const SHOTS = '/tmp/experiment-kit-playwright/study-projection';
+const SHOTS = '/tmp/explorable-models-playwright/study-projection';
 mkdirSync(SHOTS, { recursive: true });
 
 async function exact(page: Page, parameter: string, value: string): Promise<void> {
@@ -76,9 +76,9 @@ test.describe('projection-owned learner outputs', () => {
     await goTo(page, 400);
     const shown = await projection(page);
     expect(shown.status).toMatchObject({ ui: 'undefined', cause: 'numerical-limit' });
-    const banner = card(page).locator('.eka-banner[data-ui-state="undefined"]');
+    const banner = card(page).locator('.ema-banner[data-ui-state="undefined"]');
     await expect(banner).toBeVisible();
-    await expect(banner.locator('.eka-banner-title')).toHaveText('Some values are beyond the representable range');
+    await expect(banner.locator('.ema-banner-title')).toHaveText('Some values are beyond the representable range');
     await expect(banner).toContainText('beyond the range that can be represented');
     await expect(banner).not.toContainText('not defined');
     await expectAccessible(page, 'numerical-limit banner');
@@ -96,7 +96,7 @@ test.describe('projection-owned learner outputs', () => {
       expect(restarted.ok).toBe(true);
       // No learner card: the restore was refused (CONTENT_REVOKED) and nothing else was opened in its place.
       await expect(card(page)).toHaveCount(0);
-      const record = page.locator('[data-fx-card] [data-experiment-kit-archival]');
+      const record = page.locator('[data-fx-card] [data-explorable-models-archival]');
       await expect(record).toHaveCount(1);
       // Learner-facing words only (report §10.4, R19/R29): the host's names for the saved template, no identifiers.
       await expect(record.getByRole('heading', { name: `${template.title} — saved, read-only` })).toBeVisible();

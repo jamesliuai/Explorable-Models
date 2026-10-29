@@ -9,7 +9,7 @@ import { releaseIdentity } from './study-harness/evidence-identity.mjs';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const manifest=JSON.parse(await readFile(path.join(root,'package.json'),'utf8'));
 const releaseDirectory=path.join(root,'release');
-const temporary=await mkdtemp(path.join(tmpdir(),'experiment-kit-release-'));
+const temporary=await mkdtemp(path.join(tmpdir(),'explorable-models-release-'));
 const staging=path.join(temporary,'staging');
 await mkdir(staging);await mkdir(releaseDirectory,{recursive:true});
 const hash=bytes=>`sha256:${createHash('sha256').update(bytes).digest('hex')}`;
@@ -42,7 +42,7 @@ try{
  const runtimeTools=['vite','esbuild','typescript','playwright','@vitejs/plugin-react'];
  const dependencies={...manifest.dependencies};const development={...manifest.devDependencies};
  for(const name of runtimeTools){if(!dependencies[name]&&!development[name])throw new Error(`Missing pinned runtime dependency ${name}`);dependencies[name]??=development[name];delete development[name];}
- const stagedManifest={name:'experiment-kit',version:manifest.version,description:manifest.description,type:'module',license:'MIT',engines:manifest.engines,bin:{'experiment-kit':'packages/cli/bin/experiment-kit.mjs'},files:['packages','examples','docs','scripts','tests','public','dist','README.md','AGENTS.md','LICENSE','THIRD_PARTY_NOTICES.md','SECURITY.md','CONTRIBUTING.md','CHANGELOG.md','RELEASE.json','npm-shrinkwrap.json','index.html','agent.html','tsconfig.json','vite.config.ts','vitest.config.ts','playwright.config.ts'],scripts:{...manifest.scripts,kit:'node packages/cli/bin/experiment-kit.mjs',ek:'node packages/cli/bin/experiment-kit.mjs','build:sdk':'tsc -p packages/core/tsconfig.build.json',release:'node scripts/package-release.mjs'},dependencies,devDependencies:development};
+ const stagedManifest={name:'explorable-models',version:manifest.version,description:manifest.description,type:'module',license:'MIT',engines:manifest.engines,bin:{'explorable-models':'packages/cli/bin/explorable-models.mjs'},files:['packages','examples','docs','scripts','tests','public','dist','README.md','AGENTS.md','LICENSE','THIRD_PARTY_NOTICES.md','SECURITY.md','CONTRIBUTING.md','CHANGELOG.md','RELEASE.json','npm-shrinkwrap.json','index.html','agent.html','tsconfig.json','vite.config.ts','vitest.config.ts','playwright.config.ts'],scripts:{...manifest.scripts,models:'node packages/cli/bin/explorable-models.mjs','build:sdk':'tsc -p packages/core/tsconfig.build.json',release:'node scripts/package-release.mjs'},dependencies,devDependencies:development};
  // Workspace-only scripts: they build, pack or verify the scoped packages and need the monorepo workspaces.
  for(const script of ['build:packages','verify:packages','verify:preview','release:preview','pack:study-harness','verify:consumer','benchmark','test:native','release:study-harness']) delete stagedManifest.scripts[script];
  delete stagedManifest.scripts['verify:artifacts'];
@@ -56,30 +56,30 @@ try{
  const lock=await readFile(path.join(staging,'package-lock.json'));
  // npm excludes package-lock.json from tarballs. Shrinkwrap is the standard distributable lock format.
  await writeFile(path.join(staging,'npm-shrinkwrap.json'),lock);
- await chmod(path.join(staging,'packages/cli/bin/experiment-kit.mjs'),0o755);
+ await chmod(path.join(staging,'packages/cli/bin/explorable-models.mjs'),0o755);
  await symlink(path.join(root,'node_modules'),path.join(staging,'node_modules'),'dir');
  try{run('npm',['run','build']);run('npm',['run','verify:gallery']);}finally{await rm(path.join(staging,'node_modules'),{force:true});}
- await writeFile(path.join(staging,'RELEASE.json'),`${JSON.stringify({name:'experiment-kit',version:manifest.version,createdAt:new Date().toISOString(),node:process.version,dependencyLockDigest:hash(lock),distribution:'unified source toolkit and static gallery',modelReview:'unreviewed',learnerEvidence:'not_evaluated',scope:'Trusted local authoring; analytical and parametric models; no hostile-code isolation.'},null,2)}\n`);
+ await writeFile(path.join(staging,'RELEASE.json'),`${JSON.stringify({name:'explorable-models',version:manifest.version,createdAt:new Date().toISOString(),node:process.version,dependencyLockDigest:hash(lock),distribution:'unified source toolkit and static gallery',modelReview:'unreviewed',learnerEvidence:'not_evaluated',scope:'Trusted local authoring; analytical and parametric models; no hostile-code isolation.'},null,2)}\n`);
  const dryRun=JSON.parse(run('npm',['pack','--dry-run','--json','--ignore-scripts']))[0];
  const files=dryRun.files.map(file=>file.path);
- if(files.some(file=>/(?:^|\/)(?:\.env(?:\.|$)|\.git(?:\/|$)|\.codex(?:\/|$)|node_modules(?:\/|$)|\.experiment-kit-session\.json|local-bridge\.js)/.test(file)))throw new Error('Disallowed local or credential-bearing path entered the package.');
- for(const required of ['npm-shrinkwrap.json','AGENTS.md','packages/cli/bin/experiment-kit.mjs','packages/player/src/main.tsx','packages/core/src/index.ts','examples/linear-map/model.ts','packages/activity/src/index.ts','packages/catalog/src/index.ts','packages/player-3d/src/index.ts','packages/cli/templates/activity/template.json','tests/reference/fixtures/activities/quadratic-gradient-descent.json','dist/index.html','dist/study-harness.html','dist/favicon.svg','dist/release-checks.json','dist/licenses/index.json'])if(!files.includes(required))throw new Error(`Missing release file: ${required}`);
+ if(files.some(file=>/(?:^|\/)(?:\.env(?:\.|$)|\.git(?:\/|$)|\.codex(?:\/|$)|node_modules(?:\/|$)|\.explorable-models-session\.json|local-bridge\.js)/.test(file)))throw new Error('Disallowed local or credential-bearing path entered the package.');
+ for(const required of ['npm-shrinkwrap.json','AGENTS.md','packages/cli/bin/explorable-models.mjs','packages/player/src/main.tsx','packages/core/src/index.ts','examples/linear-map/model.ts','packages/activity/src/index.ts','packages/catalog/src/index.ts','packages/player-3d/src/index.ts','packages/cli/templates/activity/template.json','tests/reference/fixtures/activities/quadratic-gradient-descent.json','dist/index.html','dist/study-harness.html','dist/favicon.svg','dist/release-checks.json','dist/licenses/index.json'])if(!files.includes(required))throw new Error(`Missing release file: ${required}`);
  const packed=JSON.parse(run('npm',['pack','--json','--ignore-scripts','--pack-destination',releaseDirectory]))[0];
  const tarball=path.join(releaseDirectory,packed.filename);
  const fresh=path.join(temporary,'fresh');await mkdir(fresh);
  run('tar',['-xzf',tarball,'-C',fresh],root);
  const installed=path.join(fresh,'package');
  run('npm',['ci','--ignore-scripts','--no-audit','--no-fund'],installed);
- const help=run(process.execPath,['packages/cli/bin/experiment-kit.mjs','--help'],installed);
+ const help=run(process.execPath,['packages/cli/bin/explorable-models.mjs','--help'],installed);
  if(!help.includes('Explorable Models'))throw new Error('Packaged executable did not start.');
- const report=JSON.parse(run(process.execPath,['packages/cli/bin/experiment-kit.mjs','verify','examples/linear-map'],installed));
+ const report=JSON.parse(run(process.execPath,['packages/cli/bin/explorable-models.mjs','verify','examples/linear-map'],installed));
  if(!report.passed)throw new Error('Fresh packaged source failed browser-worker verification.');
  const expected=(await readFile(path.join(installed,'examples/revisions.ts'),'utf8')).match(/"linear-map":\s*"([^"]+)"/)?.[1];
  if(expected!==report.definitionRevision)throw new Error('Packaged gallery and CLI definition revisions disagree.');
  // A56: activity authoring from the clean install, run from an unrelated directory so only the installed tree's
  // sources (no workspace links or tsconfig paths) are available. Authored code runs in browser workers only.
  const author=path.join(temporary,'author');await mkdir(author);
- const activity=(...args)=>{const output=run(process.execPath,[path.join(installed,'packages/cli/bin/experiment-kit.mjs'),'activity',...args],author);return JSON.parse(output);};
+ const activity=(...args)=>{const output=run(process.execPath,[path.join(installed,'packages/cli/bin/explorable-models.mjs'),'activity',...args],author);return JSON.parse(output);};
  const scaffolded=activity('scaffold','smoke-activity','--from','quadratic-gradient-descent');
  if(scaffolded.templateId!=='smoke-activity')throw new Error('Packaged activity scaffold failed.');
  const validated=activity('validate','smoke-activity');if(!validated.ok)throw new Error('Packaged activity validation failed.');

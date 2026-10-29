@@ -14,7 +14,7 @@ import { tmpdir } from 'node:os';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { afterAll, describe, expect, it } from 'vitest';
-import { conservativeExposures, type ActivityArtifact, type AudienceState, type ExposureRecord, type InteractionEvent } from '@experiment-kit/activity';
+import { conservativeExposures, type ActivityArtifact, type AudienceState, type ExposureRecord, type InteractionEvent } from '@explorable-models/activity';
 import {
   MODEL, TEMPLATE, activityGuard, authorizeExploration, enterExplore, guards, harness, manifest, okOf, op, open, presentationGuard, settled, template,
 } from './support/adapter-harness.js';
@@ -87,7 +87,7 @@ describe('portable host backup into an empty store in a fresh process (A48)', ()
     expect(state.exposures.map(record => record.scope).sort()).toEqual(['exploration', 'stage']);
 
     // The original machine: the host's durable store as files.
-    const root = await mkdtemp(join(tmpdir(), 'ek-portable-'));
+    const root = await mkdtemp(join(tmpdir(), 'em-portable-'));
     scratch.push(root);
     const original = join(root, 'original-machine'), bundleDirectory = join(root, 'transfer', 'bundle');
     await mkdir(original, { recursive: true });

@@ -1,6 +1,6 @@
 # Subject-review packet: Step size in gradient descent
 
-> Prepared automatically by `experiment-kit activity review-packet` (toolkit 0.3.0-preview.1) for a human subject reviewer.
+> Prepared automatically by `explorable-models activity review-packet` (toolkit 0.3.0-preview.1) for a human subject reviewer.
 > It is engineering evidence, **not** a subject review, an accessibility certification or evidence of learning benefit.
 > Catalogue status of this exact version: **reference-checked** — no independent human review is recorded.
 > The reviewer sign-off at the end is empty; an engineering agent cannot sign it.
@@ -10,10 +10,10 @@
 | Item | Value |
 | --- | --- |
 | Template | quadratic-gradient-descent@1.0.0 |
-| Template digest | `sha256:a6fdb69ad2598e7726de2d3d1d81d986677520eab7b29d48fbe9bc81b72ed8c3` |
+| Template digest | `sha256:1f18c149e65208e25df11fd2c173b6c4eae89752f526a7ffb3ba6295a88a4bb6` |
 | Model | quadratic-gradient-descent@1.0.0 |
-| Model digest | `sha256:5326283f785aed9a4d5fe0ba5ca32e3f03da6e05bb5c084ee3816fea7b41171e` |
-| Scientific revision | `sha256:e942314fe3ae98ce588d26cf266aab805f2f4771104159219c8ac13c33c12645` |
+| Model digest | `sha256:ec2a907540a0807662fd3483f34d0146079297a91cd799bf143b1801fc998f45` |
+| Scientific revision | `sha256:f4b471b6161d842bcbba32bee211c464c279481b42cb5c160d44bee338e5a52d` |
 | Presentation revision | `sha256:5dce53f8a1319574ae2fe48436e58404dff4c46dd38a1067c1763765d1cfeeb3` |
 | Reference suite bound by the model | quadratic-gradient-descent:1.0.0 `sha256:5e22c857c6557619b9634a0f8791e9567342d517e339883fc0c20b3e9b22c2f2` |
 | Reference fixture file | `tests/reference/fixtures/activities/quadratic-gradient-descent.json` `sha256:5e22c857c6557619b9634a0f8791e9567342d517e339883fc0c20b3e9b22c2f2` |
@@ -106,7 +106,7 @@ Suite `quadratic-gradient-descent:1.0.0` for quadratic-gradient-descent@1.0.0: *
 - Author of the cases: Reference cases from the implementation report §12.3 plus cases derived by exact rational arithmetic in tests/reference/oracles/quadratic.ts, which shares no code with the catalogue kernel.
 - Review statement of the fixture: No independent human subject reviewer has approved these cases. Automated agreement is engineering evidence only.
 - Semantics: f(x) = a·x²/2 with a > 0; x[n+1] = (1 − p)·x[n] where p = η·a is the IEEE-754 double product of the inputs, computed once. Positions, gradients a·x[n] and losses a·x[n]²/2 are exact values for those inputs, rounded once to the nearest double. The regime depends only on (x0, p): zero-start if x0 = 0, else stationary (p = 0), monotone-convergence (0 < p < 1), one-step (p = 1), alternating-convergence (1 < p < 2), oscillation (p = 2), divergence (p > 2).
-- Converted from `tests/reference/fixtures/activities/quadratic-gradient-descent.json` `sha256:5e22c857c6557619b9634a0f8791e9567342d517e339883fc0c20b3e9b22c2f2` (suite quadratic-gradient-descent:1.0.0): Converted by experiment-kit activity tooling: case IDs, labels, provenance, parameters and tolerances copied unchanged; quantity expectations restated as experiment-kit.reference-fixtures 1.0 expectations. Parameter-only quantities restated at every point of a case: start.position is the case's x0 (declared equal to it), start.loss is the case's own loss expectation at n = 0, and product is the IEEE-754 double product of the case's η and a, which the suite's declared semantics define as p (compared exactly).
+- Converted from `tests/reference/fixtures/activities/quadratic-gradient-descent.json` `sha256:5e22c857c6557619b9634a0f8791e9567342d517e339883fc0c20b3e9b22c2f2` (suite quadratic-gradient-descent:1.0.0): Converted by explorable-models activity tooling: case IDs, labels, provenance, parameters and tolerances copied unchanged; quantity expectations restated as explorable-models.reference-fixtures 1.0 expectations. Parameter-only quantities restated at every point of a case: start.position is the case's x0 (declared equal to it), start.loss is the case's own loss expectation at n = 0, and product is the IEEE-754 double product of the case's η and a, which the suite's declared semantics define as p (compared exactly).
 - Not compared by this runner: Trace geometry (the trace ends at the current position or stops with a reason), the starting marker, the sampled objective curve and the current-iterate marker are checked by tests/reference/activities/quadratic.test.ts.
 
 | Case | Label | Provenance | Tolerance | Result |
@@ -290,7 +290,7 @@ Instruction: Before any iterations are shown, predict what the positions x_n wil
 
 Host-owned prediction request: For η = 0.25, 0.75 and 1.25 with a = 2 and x₀ = 4, what do you expect the positions to do over the first few iterations, and why? (task family quadratic-step-size-prediction)
 
-Revealed by the host for this stage: nothing (no solution-bearing groups). Review notice shown: “Reference-checked; no independent subject review”. Projection `sha256:3528bb5869ef250943977c5a56706271f28711c3eb7a91bdaf165f38b1cf35d0`, frame `sha256:0bd49038d3e9818df0848ec3e35e0d8d14385daf2b4197dd377ad3a669163608`.
+Revealed by the host for this stage: nothing (no solution-bearing groups). Review notice shown: “Reference-checked; no independent subject review”. Projection `sha256:45a6d596c9a8321615bf2aed325eb993f227924587032be301285c542c7bbc28`, frame `sha256:a21cf05deb601ba072b6525378c63f4bc471fad38cde32d3fde0b75a18cdeb9f`.
 
 ![Step size in gradient descent, stage predict](captures/predict.png)
 
@@ -302,7 +302,7 @@ Equations: 2 of 2 rendered with KaTeX.
 
 Instruction: Change the step size η and step through the iterations one at a time. Use the scenarios to compare η = 0.25, 0.75 and 1.25, and compare what you see with your prediction.
 
-Revealed by the host for this stage: trace, observations. Review notice shown: “Reference-checked; no independent subject review”. Projection `sha256:dc6a996a3dc77207ccf90c4bb05ddb47806bd6c9a1b4a9b6c6a26cc2af21e348`, frame `sha256:fbbb93cdc83e2aa95e79c7f56345b3ed75c6a833fb05adf9f2969d4120e092a0`, n = 4.
+Revealed by the host for this stage: trace, observations. Review notice shown: “Reference-checked; no independent subject review”. Projection `sha256:e7f631f46ef039b0512d2c5e8bf80913d9751d01690ad7818d7c23d3ebed6a51`, frame `sha256:5f1863453341e2f4112a2eff851231d5c61d281e1895d516c15d4e7e72b13e1f`, n = 4.
 
 ![Step size in gradient descent, stage explore-step](captures/explore-step.png)
 
@@ -314,7 +314,7 @@ Equations: 2 of 2 rendered with KaTeX.
 
 Instruction: Now change the curvature a as well as the step size. Notice how the step sizes that give each kind of behaviour change with a.
 
-Revealed by the host for this stage: trace, observations, substituted-rule. Review notice shown: “Reference-checked; no independent subject review”. Projection `sha256:65076740fe33141bc9dda942cea74058adbdfaddacf7fbdfe20085438118733a`, frame `sha256:b2b143a97b5c13aa89b458a409ea762ba849bc22cbab0275896a7137db85725e`, n = 4.
+Revealed by the host for this stage: trace, observations, substituted-rule. Review notice shown: “Reference-checked; no independent subject review”. Projection `sha256:a09c59d196d2fac797f2b38977b1eae132b19bce51ddb76f420b425f74337764`, frame `sha256:d810a30db5989190062a3c0c17d47a4ce54abccea7de772e81bb9f07aad5a577`, n = 4.
 
 ![Step size in gradient descent, stage explore-curvature](captures/explore-curvature.png)
 
@@ -328,7 +328,7 @@ Instruction: Explain in your own words how the step size and the curvature toget
 
 Host-owned explanation request: How do η and a together determine whether the positions shrink, change sign, keep the same size or grow? (task family quadratic-step-size-explanation)
 
-Revealed by the host for this stage: trace, observations, substituted-rule. Review notice shown: “Reference-checked; no independent subject review”. Projection `sha256:1f8c85024407ff889fca036cdd4d16a56ca530c3aeef05f9746d80f58e3c271c`, frame `sha256:5dd81136512c7a703a98bbaec64d37f0bbfd002b5941451c38b4ce874be83109`.
+Revealed by the host for this stage: trace, observations, substituted-rule. Review notice shown: “Reference-checked; no independent subject review”. Projection `sha256:d560e54d962e656489019359da913441e9101957ac8398c33392b8a89acea905`, frame `sha256:f3827b99192ff76fe3437632fcd5b409a4474c3129f9f8a2e76fc730fed95e80`.
 
 ![Step size in gradient descent, stage explain](captures/explain.png)
 
@@ -340,7 +340,7 @@ Equations: 3 of 3 rendered with KaTeX.
 
 Instruction: This activity is closed.
 
-Revealed by the host for this stage: nothing (no solution-bearing groups). Review notice shown: “Reference-checked; no independent subject review”. Projection `sha256:b267de1b68f7f4b7a1f902e70cecee5b1092e4d339886a6a10a0c557fbd21d6f`, frame `sha256:1d1fea04ea9aca8c6233234dc4acf1ee6bf8f6667713072b4acc842753d540ee`.
+Revealed by the host for this stage: nothing (no solution-bearing groups). Review notice shown: “Reference-checked; no independent subject review”. Projection `sha256:970eea69e05daee6889b93ed60653f053b5b160b275eba6ea122b63af5d67d36`, frame `sha256:6390977866e8798874bde75202ef99516660caaf8cb32ef87becbeb05cc20bef`.
 
 ![Step size in gradient descent, stage closed](captures/closed.png)
 
@@ -350,7 +350,7 @@ Files: [PNG](captures/closed.png) · [companion text](captures/closed.txt) · no
 
 Instruction: Explore freely: change the step size, curvature and starting position, step through the iterations and compare the scenarios.
 
-Revealed by the host for this stage: trace, observations, regime, substituted-rule. Review notice shown: “Reference-checked; no independent subject review”. Projection `sha256:a777f70d8873ad5d15b5824a8f51ec74257c417fdb10db7fcd3c574dabcd303c`, frame `sha256:ec335f94051727ae2ba69122e6e2797af3c817042938271d8520438c0583d159`, n = 4.
+Revealed by the host for this stage: trace, observations, regime, substituted-rule. Review notice shown: “Reference-checked; no independent subject review”. Projection `sha256:b1eef37c8f204e395e8a385e2c1ce501defd4764e52bd3a4722080774db362d9`, frame `sha256:5460cac2ecf8fef06452c62402f945a87253a5e1f2e61e72cac40dbf489f9f85`, n = 4.
 
 ![Step size in gradient descent, stage free-explore](captures/free-explore.png)
 
@@ -406,6 +406,6 @@ reference-suite digest listed under “Exact identity”; a review of any other 
 ## Regenerate
 
 ```sh
-experiment-kit activity review-packet --installed quadratic-gradient-descent --out docs/study-harness/review-packets/quadratic-gradient-descent --width 720 --theme light --index 4
+explorable-models activity review-packet --installed quadratic-gradient-descent --out docs/study-harness/review-packets/quadratic-gradient-descent --width 720 --theme light --index 4
 ```
 

@@ -7,7 +7,7 @@ import type {
   ExposureRecord, HostPolicy, HostPort, InteractionSummary, JournalCursor, MarkSpec, PersistenceStatus, PresentationSnapshot,
   ResponseRef, ScientificSnapshot, StageKind, TemplateRef, ToolOperation, ViewKind,
 } from './contracts.js';
-import type { FramePosition, GeometryResult, ModelRef, PositionRequest, UnitId } from '@experiment-kit/core/model';
+import type { FramePosition, GeometryResult, ModelRef, PositionRequest, UnitId } from '@explorable-models/core/model';
 import type { CapabilityRecord } from './capabilities.js';
 
 // ---------------------------------------------------------------------------------------------

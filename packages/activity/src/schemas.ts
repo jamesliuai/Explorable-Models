@@ -1,11 +1,11 @@
 /**
- * Authoritative JSON Schemas (2020-12 subset, see `@experiment-kit/core/model` json-schema) for every Study
+ * Authoritative JSON Schemas (2020-12 subset, see `@explorable-models/core/model` json-schema) for every Study
  * Harness record and host-port message, schema 1.0. `npm run generate:contracts` emits them to
  * `packages/activity/schema/*.schema.json`; the Rust crate in `packages/activity/rust` validates the same files.
  * Every object rejects unknown fields and every string, array, map and number is bounded. Cross-references are
  * checked separately by ./semantic.ts. Enum lists are proven against the TypeScript unions at compile time.
  */
-import { CAPABILITY_VERSION_PATTERN, MANIFEST_DATA_LIMITS, MANIFEST_LIMITS, MODEL_MANIFEST_SCHEMA, S, type JsonSchema, type UnitId } from '@experiment-kit/core/model';
+import { CAPABILITY_VERSION_PATTERN, MANIFEST_DATA_LIMITS, MANIFEST_LIMITS, MODEL_MANIFEST_SCHEMA, S, type JsonSchema, type UnitId } from '@explorable-models/core/model';
 import {
   ACTIVITY_SCHEMA_VERSION, CONTRACTS, SUMMARY_LIMITS, type ActivityArtifact, type ActorKind, type AlternativeSpec, type ContentRef,
   type ContractName, type DiagnosticCode, type DisplayEndReason, type DisplayStatus, type EventType, type GroupKind, type LifecycleStatus, type MarkKind,
@@ -14,7 +14,7 @@ import {
 import { DISCRETE_ITERATION_LIMITS, SPATIAL_3D_GEOMETRY_KINDS, SPATIAL_3D_LIMITS } from './capabilities.js';
 import { INTEGRITY_FIELDS } from './identity.js';
 
-export const MODEL_MANIFEST_CONTRACT = 'experiment-kit.model-manifest' as const;
+export const MODEL_MANIFEST_CONTRACT = 'explorable-models.model-manifest' as const;
 /** Host-port messages validated at the native/host boundary. Names are stable schema identities. */
 export const MESSAGES = Object.freeze({
   activityRequest: 'study-harness.activity-request',
@@ -509,7 +509,7 @@ const freeze = <T>(value: T): T => {
 function document(name: SchemaName, title: string, body: JsonSchema): JsonSchema {
   const names = [...references(body, new Set())].sort();
   const $defs = Object.fromEntries(names.map(key => [key, structuredClone(DEFINITIONS[key]!)]));
-  return freeze({ $schema: DRAFT, $id: `https://experiment-kit.invalid/schema/${name}-${ACTIVITY_SCHEMA_VERSION}.json`, title, ...structuredClone(body), ...(names.length ? { $defs } : {}) });
+  return freeze({ $schema: DRAFT, $id: `https://explorable-models.invalid/schema/${name}-${ACTIVITY_SCHEMA_VERSION}.json`, title, ...structuredClone(body), ...(names.length ? { $defs } : {}) });
 }
 
 const TITLES: Record<Exclude<SchemaName, typeof MODEL_MANIFEST_CONTRACT>, string> = {

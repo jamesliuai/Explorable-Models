@@ -1,5 +1,5 @@
 /**
- * `experiment-kit activity <command>`: the Study Harness authoring workflow (report §15.2, A56). Node reads, validates
+ * `explorable-models activity <command>`: the Study Harness authoring workflow (report §15.2, A56). Node reads, validates
  * and packages data; every authored kernel and check runs only in browser module workers (activity-bundle.ts). Reports
  * are JSON on stdout; a failed command sets exit code 1. Outputs that replace earlier ones (captures, packets, the
  * last-good candidate record) are written to a staging directory and swapped in only after the run completed.
@@ -18,14 +18,14 @@ import { scaffoldActivity } from './activity-scaffold.js';
 import { packageActivity } from './activity-archive.js';
 import { packetData, packetMarkdown, type BoundaryRun, type CheckRun, type MutationRun, type PacketInput, type ReferenceRun, type StageCapture } from './activity-packet.js';
 import { loopbackHost, readPolicyFile, startActivityPreview } from './activity-preview.js';
-import type { ActivityTemplate, HostPolicy } from '@experiment-kit/activity';
-import type { ModelManifest } from '@experiment-kit/core/model';
+import type { ActivityTemplate, HostPolicy } from '@explorable-models/activity';
+import type { ModelManifest } from '@explorable-models/core/model';
 import type { AuthorDiagnostic, ValidationOutcome } from './activity-validation.js';
 import type { BoundaryCase, ReferenceSuite } from './activity-fixtures.js';
 
 export const ACTIVITY_HELP = `Activity authoring (Study Harness templates; authored code runs only in browser workers)
 
-Usage: experiment-kit activity <command> <directory> [options]
+Usage: explorable-models activity <command> <directory> [options]
 
   scaffold <dir>        New authoring package (example), or --from <installedTemplateId> for an
                         exploratory copy with a new template ID and lifecycle "authored"
@@ -127,7 +127,7 @@ const scenariosOf = (template: ActivityTemplate | null) => (template?.scenarios 
 // ---------------------------------------------------------------------------------------------
 // Last working candidate
 // ---------------------------------------------------------------------------------------------
-const LAST_GOOD = '.experiment-kit/last-good';
+const LAST_GOOD = '.explorable-models/last-good';
 interface LastGood { checkedAt: string; template: unknown; model: unknown; scientificRevision: string | null; kernelSourceDigest: string | null; checksSourceDigest: string | null; files: { path: string; sha256: string }[]; directory: string }
 async function readLastGood(root: string): Promise<LastGood | null> {
   try { return { ...JSON.parse(await readFile(path.join(root, LAST_GOOD, 'record.json'), 'utf8')) as LastGood, directory: path.join(root, LAST_GOOD) }; } catch { return null; }
@@ -336,7 +336,7 @@ async function reviewPacketCommand(directory: string | undefined, values: Values
     } else unavailable = `the installed reference suite is not present at ${path.relative(TOOLKIT_ROOT, fixturePath)} in this toolkit tree`;
     const binding = !entry.manifest.referenceSuite ? 'unbound' : file && file.digest === entry.manifest.referenceSuite.digest ? 'matches' : file ? 'differs' : 'none';
     input = {
-      kind: 'installed', regenerate: `experiment-kit activity review-packet --installed ${installedId} --out ${shown(target)} ${regenerateFlags}`.trim(), toolkitVersion: toolkitVersion(),
+      kind: 'installed', regenerate: `explorable-models activity review-packet --installed ${installedId} --out ${shown(target)} ${regenerateFlags}`.trim(), toolkitVersion: toolkitVersion(),
       template: entry.template, manifest: entry.manifest, identity: { template: entry.templateRef, model: entry.modelRef, modelIdentity: entry.modelIdentity, groups: entry.groups },
       lifecycle: entry.lifecycle, reviewScope: entry.reviewScope, relation: null, recordedRelation: null,
       execution: { source: entry.manifest.execution.kind === 'document' ? 'document' : 'installed-kernel', ...(entry.kernel ? { kernelId: entry.kernel.id, kernelVersion: entry.kernel.version } : {}), mode: entry.kernel?.mode ?? 'parametric', kernelSourceDigest: null, kernelSources: [] },
@@ -356,7 +356,7 @@ async function reviewPacketCommand(directory: string | undefined, values: Values
     declared = pkg.snapshot.files['fixtures/boundaries.json'] ? (JSON.parse(pkg.snapshot.files['fixtures/boundaries.json']) as { cases: BoundaryCase[] }).cases : null;
     const execution = validation.execution!;
     input = {
-      kind: 'package', regenerate: `experiment-kit activity review-packet ${shown(pkg.root)}${text(values, 'out') ? ` --out ${shown(target)}` : ''}${fixture?.external ? ` --fixtures ${shown(fixture.path)}` : ''} ${regenerateFlags}`.trim(),
+      kind: 'package', regenerate: `explorable-models activity review-packet ${shown(pkg.root)}${text(values, 'out') ? ` --out ${shown(target)}` : ''}${fixture?.external ? ` --fixtures ${shown(fixture.path)}` : ''} ${regenerateFlags}`.trim(),
       toolkitVersion: toolkitVersion(), template: loaded.template, manifest: loaded.manifest,
       identity: { template: validation.template, model: validation.model, modelIdentity: validation.modelIdentity, groups: validation.groups },
       lifecycle: validation.lifecycle, reviewScope: [], relation: validation.relation, recordedRelation: validation.recordedRelation,
@@ -454,7 +454,7 @@ export async function runActivityCommand(argv: string[]): Promise<void> {
   if (!command || values.help) { process.stdout.write(ACTIVITY_HELP); return; }
   if (positionals.length > 2) throw new CliError('INVALID_PARAMETER', `Unexpected arguments: ${positionals.slice(2).join(' ')}`);
   const directory = positionals[1];
-  const needDirectory = (): string => { if (!directory) throw new CliError('INVALID_PARAMETER', `activity ${command} needs a package directory.`, 'Run experiment-kit activity --help.'); return path.resolve(directory); };
+  const needDirectory = (): string => { if (!directory) throw new CliError('INVALID_PARAMETER', `activity ${command} needs a package directory.`, 'Run explorable-models activity --help.'); return path.resolve(directory); };
   switch (command) {
     case 'scaffold': {
       const result = await scaffoldActivity(needDirectory(), { from: values.from, id: values.id, kernel: values.kernel === undefined ? undefined : choice(values, 'kernel', ['copy', 'installed'] as const, 'copy') });
@@ -468,6 +468,6 @@ export async function runActivityCommand(argv: string[]): Promise<void> {
     case 'review-packet': await reviewPacketCommand(directory ? path.resolve(directory) : undefined, values); return;
     case 'preview': await previewCommand(directory ? path.resolve(directory) : undefined, values); return;
     case 'package': await packageCommand(needDirectory(), values); return;
-    default: throw new CliError('INVALID_COMMAND', `Unknown activity command: ${command}`, 'Run experiment-kit activity --help.');
+    default: throw new CliError('INVALID_COMMAND', `Unknown activity command: ${command}`, 'Run explorable-models activity --help.');
   }
 }

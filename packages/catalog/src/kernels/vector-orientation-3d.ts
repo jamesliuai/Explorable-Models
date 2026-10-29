@@ -19,7 +19,7 @@
  * the turn from u to v is not unique. A nonzero exact value that rounds to zero is `numerical-limit`/`UNDERFLOW`; an
  * inexact result below the smallest normal double is valid with an `UNDERFLOW` approximation note.
  */
-import type { GeometryResult, KernelInput, KernelOutput, ModelKernel, PolylineSegment, QuantityResult, Vec2, Vec3 } from '@experiment-kit/core/model';
+import type { GeometryResult, KernelInput, KernelOutput, ModelKernel, PolylineSegment, QuantityResult, Vec2, Vec3 } from '@explorable-models/core/model';
 
 export const VECTOR_ORIENTATION_KERNEL_ID = 'vector-orientation-3d';
 export const VECTOR_ORIENTATION_KERNEL_VERSION = '1.0.0';

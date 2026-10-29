@@ -21,7 +21,7 @@ vi.mock('../../packages/catalog/src/content/loaders.ts', async () => {
   };
 });
 
-import { createStudyHarnessAdapter, type ActivityCatalog } from '@experiment-kit/activity';
+import { createStudyHarnessAdapter, type ActivityCatalog } from '@explorable-models/activity';
 import { createLazyCatalog } from '../../packages/catalog/src/lazy.js';
 import { policyFor } from './support/adapter-harness.js';
 import { MemoryHost } from './support/memory-host.js';

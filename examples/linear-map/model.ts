@@ -1,4 +1,4 @@
-import type { AnalyticModel, ScalarParams } from '@experiment-kit/core';
+import type { AnalyticModel, ScalarParams } from '@explorable-models/core';
 
 export type LinearMapParameters = ScalarParams & {
   a: number; b: number; c: number; d: number; x: number; y: number;

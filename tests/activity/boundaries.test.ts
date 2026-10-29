@@ -66,7 +66,7 @@ const BOUNDARIES: BoundaryRule[] = [
     name: 'core is pure (no UI, native, filesystem, providers or higher packages)',
     entries: ['packages/core/src/**/*.ts'],
     visualization: true,
-    forbidden: [...UI, ...NOT_IN_VISUALIZATION, '@experiment-kit/player*', '@experiment-kit/activity', '@experiment-kit/catalog', '@experiment-kit/agent', '@experiment-kit/cli'],
+    forbidden: [...UI, ...NOT_IN_VISUALIZATION, '@explorable-models/player*', '@explorable-models/activity', '@explorable-models/catalog', '@explorable-models/agent', '@explorable-models/cli'],
     forbiddenPaths: ['packages/player', 'packages/player-3d', 'packages/activity', 'packages/catalog', 'packages/agent', 'packages/cli'],
     forbiddenCode: BROWSER_STORAGE,
   },
@@ -74,15 +74,15 @@ const BOUNDARIES: BoundaryRule[] = [
     name: 'activity adapter is provider-neutral, DOM-free and catalogue-injected',
     entries: ['packages/activity/src/**/*.ts'],
     visualization: true,
-    forbidden: [...UI, ...NOT_IN_VISUALIZATION, '@experiment-kit/catalog', '@experiment-kit/player*', '@experiment-kit/agent', '@experiment-kit/cli'],
+    forbidden: [...UI, ...NOT_IN_VISUALIZATION, '@explorable-models/catalog', '@explorable-models/player*', '@explorable-models/agent', '@explorable-models/cli'],
     forbiddenPaths: ['packages/player', 'packages/player-3d', 'packages/catalog', 'packages/agent', 'packages/cli'],
     forbiddenCode: [...DOM_RENDERING, ...BROWSER_STORAGE],
   },
   {
-    name: 'host conformance kit (@experiment-kit/activity/conformance) is plain TypeScript: no Node, DOM, native, UI, network or storage code, so it runs in Node, a browser and a WebView',
+    name: 'host conformance kit (@explorable-models/activity/conformance) is plain TypeScript: no Node, DOM, native, UI, network or storage code, so it runs in Node, a browser and a WebView',
     entries: ['packages/activity/src/conformance/**/*.ts'],
     visualization: true,
-    forbidden: [...UI, ...NOT_IN_VISUALIZATION, '@experiment-kit/catalog', '@experiment-kit/player*', '@experiment-kit/agent', '@experiment-kit/cli'],
+    forbidden: [...UI, ...NOT_IN_VISUALIZATION, '@explorable-models/catalog', '@explorable-models/player*', '@explorable-models/agent', '@explorable-models/cli'],
     forbiddenPaths: ['packages/player', 'packages/player-3d', 'packages/catalog', 'packages/agent', 'packages/cli'],
     forbiddenCode: [...DOM_RENDERING, ...BROWSER_STORAGE, ...NETWORK],
   },
@@ -90,7 +90,7 @@ const BOUNDARIES: BoundaryRule[] = [
     name: 'catalogue holds data and pure kernels only',
     entries: ['packages/catalog/src/**/*.ts'],
     visualization: true,
-    forbidden: [...UI, ...NOT_IN_VISUALIZATION, '@experiment-kit/player*', '@experiment-kit/agent', '@experiment-kit/cli'],
+    forbidden: [...UI, ...NOT_IN_VISUALIZATION, '@explorable-models/player*', '@explorable-models/agent', '@explorable-models/cli'],
     forbiddenPaths: ['packages/player', 'packages/player-3d', 'packages/agent', 'packages/cli'],
     forbiddenCode: BROWSER_STORAGE,
   },
@@ -98,16 +98,16 @@ const BOUNDARIES: BoundaryRule[] = [
     name: 'learner surface loads 3D and math lazily and never imports authoring, CLI or native code',
     entries: ['packages/player/src/activity/**/*.ts', 'packages/player/src/activity/**/*.tsx'],
     visualization: true,
-    forbidden: ['three', ...NOT_IN_VISUALIZATION, 'playwright', '@playwright/*', '@experiment-kit/cli', '@experiment-kit/agent', '@experiment-kit/player-3d', 'katex'],
-    lazyOnly: ['@experiment-kit/player-3d', 'katex', 'three'],
+    forbidden: ['three', ...NOT_IN_VISUALIZATION, 'playwright', '@playwright/*', '@explorable-models/cli', '@explorable-models/agent', '@explorable-models/player-3d', 'katex'],
+    lazyOnly: ['@explorable-models/player-3d', 'katex', 'three'],
     forbiddenPaths: ['packages/cli', 'packages/agent', 'packages/player-3d'],
     forbiddenCode: BROWSER_STORAGE,
   },
   {
-    name: 'legacy 2D player entry (@experiment-kit/player) imports no Tauri, filesystem, provider, credential, authoring or CLI code',
+    name: 'legacy 2D player entry (@explorable-models/player) imports no Tauri, filesystem, provider, credential, authoring or CLI code',
     entries: ['packages/player/src/public.ts'],
     visualization: true,
-    forbidden: [...NOT_IN_VISUALIZATION, 'playwright', '@playwright/*', '@experiment-kit/cli', '@experiment-kit/agent', '@experiment-kit/player-3d'],
+    forbidden: [...NOT_IN_VISUALIZATION, 'playwright', '@playwright/*', '@explorable-models/cli', '@explorable-models/agent', '@explorable-models/player-3d'],
     forbiddenPaths: ['packages/cli', 'packages/agent', 'packages/player-3d'],
     forbiddenCode: BROWSER_STORAGE,
   },
@@ -115,15 +115,15 @@ const BOUNDARIES: BoundaryRule[] = [
     name: 'spatial renderer depends on core types only',
     entries: ['packages/player-3d/src/**/*.ts', 'packages/player-3d/src/**/*.tsx'],
     visualization: true,
-    forbidden: [...NOT_IN_VISUALIZATION, '@experiment-kit/activity', '@experiment-kit/catalog', '@experiment-kit/player', '@experiment-kit/agent', '@experiment-kit/cli'],
-    typeOnly: ['@experiment-kit/core*'],
+    forbidden: [...NOT_IN_VISUALIZATION, '@explorable-models/activity', '@explorable-models/catalog', '@explorable-models/player', '@explorable-models/agent', '@explorable-models/cli'],
+    typeOnly: ['@explorable-models/core*'],
     forbiddenPaths: ['packages/activity', 'packages/catalog', 'packages/player', 'packages/agent', 'packages/cli'],
     forbiddenCode: BROWSER_STORAGE,
   },
   {
     name: 'agent tools and relays are provider-neutral: no provider clients, credential stores, native, UI or network code',
     entries: ['packages/agent/src/**/*.ts'],
-    forbidden: [...UI, ...NODE_BUILTINS, ...FILESYSTEM_LIBRARIES, ...PROVIDER_SDKS, ...CREDENTIAL_STORES, '@experiment-kit/catalog', '@experiment-kit/player*', '@experiment-kit/cli'],
+    forbidden: [...UI, ...NODE_BUILTINS, ...FILESYSTEM_LIBRARIES, ...PROVIDER_SDKS, ...CREDENTIAL_STORES, '@explorable-models/catalog', '@explorable-models/player*', '@explorable-models/cli'],
     forbiddenPaths: ['packages/catalog', 'packages/player', 'packages/player-3d', 'packages/cli'],
     forbiddenCode: [...DOM_RENDERING, ...BROWSER_STORAGE, ...NETWORK],
   },
@@ -298,7 +298,7 @@ describe('package boundaries (A01)', () => {
       const write = (path: string, text: string) => { mkdirSync(dirname(join(root, path)), { recursive: true }); writeFileSync(join(root, path), text); };
       // A clean copy of the real entry shape passes the real row.
       write('packages/agent/src/index.ts', "export * from './tools.js';");
-      write('packages/agent/src/tools.ts', "import { sha256 } from '@experiment-kit/core';\nimport type { ToolOperation } from '@experiment-kit/activity';\nexport const digest = (text: string) => sha256(text);");
+      write('packages/agent/src/tools.ts', "import { sha256 } from '@explorable-models/core';\nimport type { ToolOperation } from '@explorable-models/activity';\nexport const digest = (text: string) => sha256(text);");
       expect(scanBoundary(root, agent).violations).toEqual([]);
       const cases: [string, string, RegExp][] = [
         ["import OpenAI from 'openai';\nexport const client = new OpenAI();", 'openai', /imports forbidden openai/],
@@ -308,7 +308,7 @@ describe('package boundaries (A01)', () => {
         ["import { readFileSync } from 'node:fs';\nexport const read = () => readFileSync('.env', 'utf8');", 'fs', /imports forbidden node:fs/],
         ["export const send = (body: string) => fetch('https://api.example/v1', { method: 'POST', body });", 'fetch', /network access/],
         ["export const keep = (text: string) => localStorage.setItem('transcript', text);", 'storage', /browser storage/],
-        ["export const load = () => import('@experiment-kit/catalog');", 'catalog', /dynamically imports forbidden @experiment-kit\/catalog/],
+        ["export const load = () => import('@explorable-models/catalog');", 'catalog', /dynamically imports forbidden @explorable-models\/catalog/],
       ];
       for (const [code, name, expected] of cases) {
         write('packages/agent/src/tools.ts', code);
@@ -323,7 +323,7 @@ describe('package boundaries (A01)', () => {
   it('every visualization package row forbids Tauri APIs, filesystem libraries, provider clients and credential stores (report §16, R25)', () => {
     const rows = BOUNDARIES.filter(rule => rule.visualization);
     // The visualization packages: core, activity (and its conformance kit), catalogue, the learner surface and the legacy
-    // 2D player entry of @experiment-kit/player, and the spatial renderer.
+    // 2D player entry of @explorable-models/player, and the spatial renderer.
     const covered = (glob: string) => rows.some(rule => rule.entries.includes(glob));
     for (const glob of ['packages/core/src/**/*.ts', 'packages/activity/src/**/*.ts', 'packages/activity/src/conformance/**/*.ts', 'packages/catalog/src/**/*.ts',
       'packages/player/src/activity/**/*.ts', 'packages/player/src/public.ts', 'packages/player-3d/src/**/*.ts']) expect(covered(glob), glob).toBe(true);
@@ -356,7 +356,7 @@ describe('package boundaries (A01)', () => {
         // One entry file matching the row's first entry pattern, holding the sabotage import.
         const entry = rule.entries[0]!.replace(/\*\*\/\*(\.tsx?)$/, 'sabotage$1');
         const write = (text: string) => { mkdirSync(dirname(join(root, entry)), { recursive: true }); writeFileSync(join(root, entry), text); };
-        write("import type { Thing } from '@experiment-kit/core';\nexport const clean = (thing: Thing) => thing;");
+        write("import type { Thing } from '@explorable-models/core';\nexport const clean = (thing: Thing) => thing;");
         expect(scanBoundary(root, rule).violations.filter(item => /forbidden/.test(item)), `${rule.name}: control`).toEqual([]);
         for (const [code, expected] of sabotage) {
           write(code);

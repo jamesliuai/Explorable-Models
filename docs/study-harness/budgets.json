@@ -15,7 +15,7 @@
     "legacy2dConsumer": {
       "maxGzipBytes": 180000,
       "consumer": "examples/consumer (dom.html + react.html, its own vite.config.mjs)",
-      "rule": "Sum over every emitted dist/assets/*.js file of gzipSync(bytes) at the zlib default level, exactly as scripts/verify-packages.mjs measures it. Includes React, ReactDOM, @experiment-kit/core/declarative, @experiment-kit/player, the @experiment-kit/agent document tools and the document worker of both entries.",
+      "rule": "Sum over every emitted dist/assets/*.js file of gzipSync(bytes) at the zlib default level, exactly as scripts/verify-packages.mjs measures it. Includes React, ReactDOM, @explorable-models/core/declarative, @explorable-models/player, the @explorable-models/agent document tools and the document worker of both entries.",
       "forbidden": "No Three.js, Playwright or MCP SDK code in any emitted JS (text markers THREE.REVISION, WebGLRenderer, playwright-core, @modelcontextprotocol).",
       "measurements": [
         "scripts/verify-packages.mjs from the release/preview tarballs (core, activity, player, agent)",
@@ -28,15 +28,15 @@
       "entries": ["activity.html", "activity-react.html"],
       "compression": "gzip9",
       "rule": "Sum of gzip9 sizes of every .js file statically reachable from the entry HTML: the HTML's <script type=\"module\" src> and <link rel=\"modulepreload\"> files, their transitive static imports (import-statement edges of an esbuild metafile over the emitted files), and every .js file referenced with new URL('…', import.meta.url) from those files (the catalogue kernel module worker) together with its static imports. It therefore includes React, ReactDOM, the activity runtime, the installed catalogue's eager index and review authority, the learner surface, the consumer's host code and the kernel worker.",
-      "excludes": "Targets of dynamic import() and their closures, from the page and from the kernel worker: the KaTeX chunk, @experiment-kit/player-3d and Three.js, the per-template catalogue content chunks fetched by createLazyCatalog().load(), the per-kernel modules the catalogue worker loads on first use (INSTALLED_KERNEL_SOURCE), optional capture-rendering and saved-record migration implementations reached only by their asynchronous operations, and the KaTeX font URL table requested only by visible math with bundled fonts. Their emitted raw/gzip bytes are reported individually in consumer evidence (lazy.other); the asset ceilings below still apply to math, 3D and catalogue content. CSS, fonts and source maps are not JS and are not counted here.",
+      "excludes": "Targets of dynamic import() and their closures, from the page and from the kernel worker: the KaTeX chunk, @explorable-models/player-3d and Three.js, the per-template catalogue content chunks fetched by createLazyCatalog().load(), the per-kernel modules the catalogue worker loads on first use (INSTALLED_KERNEL_SOURCE), optional capture-rendering and saved-record migration implementations reached only by their asynchronous operations, and the KaTeX font URL table requested only by visible math with bundled fonts. Their emitted raw/gzip bytes are reported individually in consumer evidence (lazy.other); the asset ceilings below still apply to math, 3D and catalogue content. CSS, fonts and source maps are not JS and are not counted here.",
       "note": "Unchanged rule and ceiling. The Phase 4a measurement (281,836 B plain DOM, 280,246 B React) exceeded the ceiling (performance.md F1); the cause was fixed, not re-budgeted: the consumer uses the on-demand catalogue (content per template on demand, verified against the installed index), the catalogue worker loads kernel code per kernel on first use and the schema 2.0 document compiler is opt-in (enableDocumentExecution), so neither reaches a kernel-only page or worker.",
       "forbiddenInEagerGraph": {
-        "rule": "No source of an eager chunk (from its hidden source map) may come from: three, @experiment-kit/player-3d, katex (or the player's bundled KaTeX chunk), playwright / playwright-core / @playwright, @modelcontextprotocol, provider SDKs (openai, @anthropic-ai, @google/generative-ai, @google/genai, @mistralai, cohere-ai, ollama, @aws-sdk/client-bedrock*), @tauri-apps, @experiment-kit/cli or @experiment-kit/agent; no eager JS may contain the text markers THREE.REVISION, WebGLRenderer, \"KaTeX parse error\", playwright-core or @modelcontextprotocol; the entry HTML has no inline script.",
+        "rule": "No source of an eager chunk (from its hidden source map) may come from: three, @explorable-models/player-3d, katex (or the player's bundled KaTeX chunk), playwright / playwright-core / @playwright, @modelcontextprotocol, provider SDKs (openai, @anthropic-ai, @google/generative-ai, @google/genai, @mistralai, cohere-ai, ollama, @aws-sdk/client-bedrock*), @tauri-apps, @explorable-models/cli or @explorable-models/agent; no eager JS may contain the text markers THREE.REVISION, WebGLRenderer, \"KaTeX parse error\", playwright-core or @modelcontextprotocol; the entry HTML has no inline script.",
         "sourceOfTruth": "FORBIDDEN_EAGER and FORBIDDEN_TEXT in scripts/study-harness/verify-consumer.mjs"
       }
     },
     "lazyMath": {
-      "freeze": "First freeze: KaTeX 0.19.0 as bundled by @experiment-kit/player and minified by the consumer's Vite build, measured 259,208 B (76,670 B gzip9) JS, 24,793 B (3,518 B gzip9) CSS and 259,792 B of fonts on 2026-10-26; ceilings are those measurements plus about 10 % headroom, rounded.",
+      "freeze": "First freeze: KaTeX 0.19.0 as bundled by @explorable-models/player and minified by the consumer's Vite build, measured 259,208 B (76,670 B gzip9) JS, 24,793 B (3,518 B gzip9) CSS and 259,792 B of fonts on 2026-10-26; ceilings are those measurements plus about 10 % headroom, rounded.",
       "rule": "KaTeX code reached only through the learner surface's default mathLoader (dynamic import), the KaTeX stylesheet fetched when math first renders, and the KaTeX woff2 fonts (registered only with fonts: 'bundled'; a browser downloads only the faces it uses).",
       "js": { "maxBytes": 285000, "maxGzipBytes": 85000 },
       "css": { "maxBytes": 27500, "maxGzipBytes": 4000 },
@@ -49,12 +49,12 @@
     },
     "lazy3d": {
       "freeze": "First freeze from 615,373 B (157,110 B gzip9) measured for player-3d with three 0.186.1, plus about 10 % headroom.",
-      "rule": "Every .js file reachable from a dynamic import() whose source map includes @experiment-kit/player-3d or three: the renderer loaded through the host's spatialLoader. Never fetched by a 2D template.",
+      "rule": "Every .js file reachable from a dynamic import() whose source map includes @explorable-models/player-3d or three: the renderer loaded through the host's spatialLoader. Never fetched by a 2D template.",
       "js": { "maxBytes": 680000, "maxGzipBytes": 175000 }
     },
     "catalogueContent": {
       "freeze": "First freeze from 158,169 B measured for the five installed packages plus about 10 % headroom. This is a record of content size, not a relaxation of the activity-entry ceiling.",
-      "rule": "Uncompressed bytes that the source maps of the single-page plain-DOM activity build attribute to @experiment-kit/catalog templates/, copy/, models/ and content/<template-id> (activity templates, learner copy, model manifests): the eager graph must carry none of it (content is loaded per template on demand by createLazyCatalog), the main thread no kernel code, and the content of all five installed templates in its lazy chunks, together, at most maxBytes. Kernel modules (loaded by the catalogue worker on first use) and the kernel constants that templates and manifests reuse (IDs, versions, domains) are reported per chunk in the evidence.",
+      "rule": "Uncompressed bytes that the source maps of the single-page plain-DOM activity build attribute to @explorable-models/catalog templates/, copy/, models/ and content/<template-id> (activity templates, learner copy, model manifests): the eager graph must carry none of it (content is loaded per template on demand by createLazyCatalog), the main thread no kernel code, and the content of all five installed templates in its lazy chunks, together, at most maxBytes. Kernel modules (loaded by the catalogue worker on first use) and the kernel constants that templates and manifests reuse (IDs, versions, domains) are reported per chunk in the evidence.",
       "maxBytes": 175000
     }
   },

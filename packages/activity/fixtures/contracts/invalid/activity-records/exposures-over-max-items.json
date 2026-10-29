@@ -25,12 +25,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -61,12 +61,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -97,12 +97,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -133,12 +133,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -169,12 +169,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -205,12 +205,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -241,12 +241,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -277,12 +277,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -313,12 +313,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -349,12 +349,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -385,12 +385,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -421,12 +421,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -457,12 +457,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -493,12 +493,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -529,12 +529,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -565,12 +565,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -601,12 +601,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -637,12 +637,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -673,12 +673,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -709,12 +709,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -745,12 +745,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -781,12 +781,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -817,12 +817,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -853,12 +853,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -889,12 +889,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -925,12 +925,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -961,12 +961,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -997,12 +997,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -1033,12 +1033,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -1069,12 +1069,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -1105,12 +1105,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -1141,12 +1141,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -1177,12 +1177,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -1213,12 +1213,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -1249,12 +1249,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -1285,12 +1285,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -1321,12 +1321,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -1357,12 +1357,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -1393,12 +1393,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -1429,12 +1429,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -1465,12 +1465,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -1501,12 +1501,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -1537,12 +1537,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -1573,12 +1573,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -1609,12 +1609,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -1645,12 +1645,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -1681,12 +1681,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -1717,12 +1717,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -1753,12 +1753,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -1789,12 +1789,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -1825,12 +1825,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -1861,12 +1861,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -1897,12 +1897,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -1933,12 +1933,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -1969,12 +1969,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -2005,12 +2005,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -2041,12 +2041,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -2077,12 +2077,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -2113,12 +2113,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -2149,12 +2149,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -2185,12 +2185,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -2221,12 +2221,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -2257,12 +2257,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -2293,12 +2293,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -2329,12 +2329,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -2365,12 +2365,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -2401,12 +2401,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -2437,12 +2437,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -2473,12 +2473,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -2509,12 +2509,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -2545,12 +2545,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -2581,12 +2581,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -2617,12 +2617,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -2653,12 +2653,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -2689,12 +2689,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -2725,12 +2725,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -2761,12 +2761,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -2797,12 +2797,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -2833,12 +2833,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -2869,12 +2869,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -2905,12 +2905,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -2941,12 +2941,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -2977,12 +2977,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -3013,12 +3013,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -3049,12 +3049,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -3085,12 +3085,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -3121,12 +3121,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -3157,12 +3157,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -3193,12 +3193,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -3229,12 +3229,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -3265,12 +3265,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -3301,12 +3301,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -3337,12 +3337,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -3373,12 +3373,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -3409,12 +3409,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -3445,12 +3445,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -3481,12 +3481,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -3517,12 +3517,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -3553,12 +3553,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -3589,12 +3589,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -3625,12 +3625,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -3661,12 +3661,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -3697,12 +3697,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -3733,12 +3733,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -3769,12 +3769,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -3805,12 +3805,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -3841,12 +3841,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -3877,12 +3877,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -3913,12 +3913,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -3949,12 +3949,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -3985,12 +3985,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -4021,12 +4021,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -4057,12 +4057,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -4093,12 +4093,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -4129,12 +4129,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -4165,12 +4165,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -4201,12 +4201,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -4237,12 +4237,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -4273,12 +4273,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -4309,12 +4309,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -4345,12 +4345,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -4381,12 +4381,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -4417,12 +4417,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -4453,12 +4453,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -4489,12 +4489,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -4525,12 +4525,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -4561,12 +4561,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -4597,12 +4597,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -4633,12 +4633,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -4669,12 +4669,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -4705,12 +4705,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -4741,12 +4741,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -4777,12 +4777,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -4813,12 +4813,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -4849,12 +4849,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -4885,12 +4885,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -4921,12 +4921,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -4957,12 +4957,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -4993,12 +4993,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -5029,12 +5029,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -5065,12 +5065,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -5101,12 +5101,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -5137,12 +5137,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -5173,12 +5173,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -5209,12 +5209,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -5245,12 +5245,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -5281,12 +5281,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -5317,12 +5317,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -5353,12 +5353,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -5389,12 +5389,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -5425,12 +5425,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -5461,12 +5461,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -5497,12 +5497,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -5533,12 +5533,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -5569,12 +5569,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -5605,12 +5605,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -5641,12 +5641,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -5677,12 +5677,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -5713,12 +5713,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -5749,12 +5749,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -5785,12 +5785,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -5821,12 +5821,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -5857,12 +5857,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -5893,12 +5893,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -5929,12 +5929,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -5965,12 +5965,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -6001,12 +6001,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -6037,12 +6037,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -6073,12 +6073,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -6109,12 +6109,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -6145,12 +6145,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -6181,12 +6181,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -6217,12 +6217,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -6253,12 +6253,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -6289,12 +6289,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -6325,12 +6325,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -6361,12 +6361,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -6397,12 +6397,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -6433,12 +6433,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -6469,12 +6469,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -6505,12 +6505,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -6541,12 +6541,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -6577,12 +6577,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -6613,12 +6613,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -6649,12 +6649,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -6685,12 +6685,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -6721,12 +6721,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -6757,12 +6757,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -6793,12 +6793,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -6829,12 +6829,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -6865,12 +6865,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -6901,12 +6901,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -6937,12 +6937,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -6973,12 +6973,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -7009,12 +7009,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -7045,12 +7045,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -7081,12 +7081,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -7117,12 +7117,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -7153,12 +7153,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -7189,12 +7189,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -7225,12 +7225,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -7261,12 +7261,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -7297,12 +7297,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -7333,12 +7333,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -7369,12 +7369,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -7405,12 +7405,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -7441,12 +7441,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -7477,12 +7477,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -7513,12 +7513,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -7549,12 +7549,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -7585,12 +7585,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -7621,12 +7621,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -7657,12 +7657,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -7693,12 +7693,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -7729,12 +7729,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -7765,12 +7765,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -7801,12 +7801,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -7837,12 +7837,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -7873,12 +7873,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -7909,12 +7909,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -7945,12 +7945,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -7981,12 +7981,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -8017,12 +8017,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -8053,12 +8053,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -8089,12 +8089,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -8125,12 +8125,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -8161,12 +8161,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -8197,12 +8197,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -8233,12 +8233,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -8269,12 +8269,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -8305,12 +8305,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -8341,12 +8341,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -8377,12 +8377,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -8413,12 +8413,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -8449,12 +8449,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -8485,12 +8485,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -8521,12 +8521,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -8557,12 +8557,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -8593,12 +8593,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -8629,12 +8629,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -8665,12 +8665,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -8701,12 +8701,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -8737,12 +8737,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -8773,12 +8773,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -8809,12 +8809,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -8845,12 +8845,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -8881,12 +8881,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -8917,12 +8917,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -8953,12 +8953,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -8989,12 +8989,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -9025,12 +9025,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -9061,12 +9061,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -9097,12 +9097,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -9133,12 +9133,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -9169,12 +9169,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -9205,12 +9205,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -9241,12 +9241,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",

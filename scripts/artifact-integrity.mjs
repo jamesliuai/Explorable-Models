@@ -6,7 +6,7 @@ import { unzipSync } from 'fflate';
 export const sha256 = bytes => createHash('sha256').update(bytes).digest('hex');
 function safePath(name) {
   if (!name || name.startsWith('/') || name.includes('\\') || name.includes(':') || name.includes('\0') || name.split('/').some(part => !part || part === '.' || part === '..')) throw new Error(`Unsafe artifact path: ${name}`);
-  if (/(?:^|\/)(?:\.env(?:\.|$)|\.npmrc$|\.git(?:\/|$)|\.codex(?:\/|$)|node_modules(?:\/|$)|\.experiment-kit-session\.json$|local-bridge\.js$)|\.(?:pem|key)$/i.test(name)) throw new Error(`Private/local path in artifact: ${name}`);
+  if (/(?:^|\/)(?:\.env(?:\.|$)|\.npmrc$|\.git(?:\/|$)|\.codex(?:\/|$)|node_modules(?:\/|$)|\.explorable-models-session\.json$|local-bridge\.js$)|\.(?:pem|key)$/i.test(name)) throw new Error(`Private/local path in artifact: ${name}`);
 }
 
 export async function verifyInventory(directory) {

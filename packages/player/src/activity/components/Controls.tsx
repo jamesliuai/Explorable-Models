@@ -30,8 +30,8 @@
  */
 import { useEffect, useMemo, useRef, useState } from 'react';
 import type { ChangeEvent, KeyboardEvent } from 'react';
-import type { GestureKind, ProjectedControl, ProjectedScenario } from '@experiment-kit/activity';
-import { unitLabel } from '@experiment-kit/core/model';
+import type { GestureKind, ProjectedControl, ProjectedScenario } from '@explorable-models/activity';
+import { unitLabel } from '@explorable-models/core/model';
 import { checkDraft, decimalSeparator, formatShown } from '../format.js';
 import { PreviewGesture } from '../runtime.js';
 import { Heading, useRoving, useRuntime, useStableId } from './context.js';
@@ -45,7 +45,7 @@ const draftText = (value: number, locale?: string) => {
 export function ParameterControl({ control, activePreviewId }: { control: ProjectedControl; activePreviewId: string | null }) {
   const runtime = useRuntime();
   const { binding, locale } = runtime;
-  const ids = { label: useStableId('eka-control'), hint: useStableId('eka-hint'), reason: useStableId('eka-reason'), error: useStableId('eka-error'), input: useStableId('eka-input') };
+  const ids = { label: useStableId('ema-control'), hint: useStableId('ema-hint'), reason: useStableId('ema-reason'), error: useStableId('ema-error'), input: useStableId('ema-input') };
   const [sliderDraft, setSliderDraft] = useState<number | null>(null);
   const [draft, setDraft] = useState(() => draftText(control.value, locale));
   const [dirty, setDirty] = useState(false);
@@ -147,16 +147,16 @@ export function ParameterControl({ control, activePreviewId }: { control: Projec
 
   const describedBy = [ids.hint, reason ? ids.reason : null, error ? ids.error : null].filter(Boolean).join(' ');
   return (
-    <div className="eka-control" role="group" aria-labelledby={ids.label} data-parameter={control.parameter}>
-      <div className="eka-control-head">
-        <span className="eka-control-label" id={ids.label}>{control.label}</span>
-        <output className="eka-control-value" data-tentative={tentative || undefined} aria-live="off">
-          {formatShown(shown, locale)}{unit}{tentative ? <span className="eka-badge">preview</span> : null}
+    <div className="ema-control" role="group" aria-labelledby={ids.label} data-parameter={control.parameter}>
+      <div className="ema-control-head">
+        <span className="ema-control-label" id={ids.label}>{control.label}</span>
+        <output className="ema-control-value" data-tentative={tentative || undefined} aria-live="off">
+          {formatShown(shown, locale)}{unit}{tentative ? <span className="ema-badge">preview</span> : null}
         </output>
       </div>
       {control.slider ? (
         <input
-          type="range" className="eka-slider" aria-labelledby={ids.label} aria-describedby={describedBy}
+          type="range" className="ema-slider" aria-labelledby={ids.label} aria-describedby={describedBy}
           min={control.min} max={control.max} step={control.integer ? Math.max(1, control.step) : control.step > 0 ? control.step : 'any'} value={shown}
           aria-valuetext={`${formatShown(shown, locale)}${unit}${tentative ? ' (preview, not applied yet)' : ''}`}
           aria-disabled={disabled || undefined} onChange={onSliderChange} onKeyDown={onSliderKeyDown} onKeyUp={onSliderKeyUp}
@@ -188,27 +188,27 @@ export function ParameterControl({ control, activePreviewId }: { control: Projec
         />
       ) : null}
       {control.exact ? (
-        <div className="eka-exact">
-          <label className="eka-sr" htmlFor={ids.input}>Exact value for {control.label}{unit ? ` in ${control.unitLabel}` : ''}</label>
+        <div className="ema-exact">
+          <label className="ema-sr" htmlFor={ids.input}>Exact value for {control.label}{unit ? ` in ${control.unitLabel}` : ''}</label>
           <input
-            id={ids.input} className="eka-input" type="text" inputMode="decimal" autoComplete="off" spellCheck={false} value={draft}
+            id={ids.input} className="ema-input" type="text" inputMode="decimal" autoComplete="off" spellCheck={false} value={draft}
             readOnly={disabled} aria-disabled={disabled || undefined} aria-invalid={error ? true : undefined} aria-describedby={describedBy}
             onChange={event => { setDraft(event.currentTarget.value); setDirty(true); }}
             onCompositionStart={() => { composing.current = true; }} onCompositionEnd={() => { composing.current = false; }}
             onKeyDown={onDraftKeyDown}
           />
           {control.displayUnits.length > 1 ? (
-            <select className="eka-select" aria-label={`Unit for ${control.label}`} value={control.displayUnit} aria-disabled={runtime.busy || undefined}
+            <select className="ema-select" aria-label={`Unit for ${control.label}`} value={control.displayUnit} aria-disabled={runtime.busy || undefined}
               onChange={event => { const unitId = event.currentTarget.value as ProjectedControl['displayUnit']; void runtime.run(() => binding.setDisplayUnit({ operationId: runtime.opId(), expectedPresentationRevision: binding.getProjection().presentationRevision, parameter: control.parameter, unit: unitId }), 'presentation'); }}>
               {control.displayUnits.map(unitId => <option key={unitId} value={unitId}>{unitLabel(unitId, true)}{unitLabel(unitId) ? ` (${unitLabel(unitId)})` : ''}</option>)}
             </select>
-          ) : control.unitLabel ? <span className="eka-unit">{control.unitLabel}</span> : null}
-          <button type="button" className="eka-button" aria-disabled={disabled || runtime.settling || undefined} onClick={() => void apply()}>Apply</button>
+          ) : control.unitLabel ? <span className="ema-unit">{control.unitLabel}</span> : null}
+          <button type="button" className="ema-button" aria-disabled={disabled || runtime.settling || undefined} onClick={() => void apply()}>Apply</button>
         </div>
       ) : null}
-      {reason ? <p className="eka-reason" id={ids.reason}><span className="eka-glyph" aria-hidden="true">–</span>{reason}</p> : null}
-      {error ? <p className="eka-error" id={ids.error}><span className="eka-glyph" aria-hidden="true">!</span>{error}</p> : null}
-      <p className="eka-control-hint" id={ids.hint}>{control.description} Range {formatShown(control.min, locale)} to {formatShown(control.max, locale)}{unit}.</p>
+      {reason ? <p className="ema-reason" id={ids.reason}><span className="ema-glyph" aria-hidden="true">–</span>{reason}</p> : null}
+      {error ? <p className="ema-error" id={ids.error}><span className="ema-glyph" aria-hidden="true">!</span>{error}</p> : null}
+      <p className="ema-control-hint" id={ids.hint}>{control.description} Range {formatShown(control.min, locale)} to {formatShown(control.max, locale)}{unit}.</p>
     </div>
   );
 }
@@ -216,9 +216,9 @@ export function ParameterControl({ control, activePreviewId }: { control: Projec
 export function Scenarios({ scenarios, title, headingLevel }: { scenarios: ProjectedScenario[]; title: string; headingLevel: number }) {
   const runtime = useRuntime();
   const roving = useRoving(scenarios.length, 'horizontal');
-  const headingId = useStableId('eka-scenarios');
-  const describe = useStableId('eka-scenario-desc');
-  const reasonId = useStableId('eka-scenario-reason');
+  const headingId = useStableId('ema-scenarios');
+  const describe = useStableId('ema-scenario-desc');
+  const reasonId = useStableId('ema-scenario-reason');
   const active = scenarios.find(scenario => scenario.active);
   const unavailable = runtime.busy || runtime.settling || !!runtime.inert;
   const apply = (scenario: ProjectedScenario) => {
@@ -227,16 +227,16 @@ export function Scenarios({ scenarios, title, headingLevel }: { scenarios: Proje
     void runtime.run(() => runtime.binding.applyScenario({ operationId: runtime.opId(), ...runtime.binding.getProjection().guards, scenarioId: scenario.scenarioId }), 'science');
   };
   return (
-    <section className="eka-panel" aria-labelledby={headingId}>
-      <Heading level={headingLevel} id={headingId} className="eka-panel-title">{title}</Heading>
-      <div className="eka-scenarios" role="toolbar" aria-label={title} aria-describedby={runtime.inert ? `${describe} ${reasonId}` : describe} onKeyDown={roving.onKeyDown}>
+    <section className="ema-panel" aria-labelledby={headingId}>
+      <Heading level={headingLevel} id={headingId} className="ema-panel-title">{title}</Heading>
+      <div className="ema-scenarios" role="toolbar" aria-label={title} aria-describedby={runtime.inert ? `${describe} ${reasonId}` : describe} onKeyDown={roving.onKeyDown}>
         {scenarios.map((scenario, index) => (
-          <button key={scenario.scenarioId} type="button" className="eka-button" aria-pressed={scenario.active} title={scenario.description}
+          <button key={scenario.scenarioId} type="button" className="ema-button" aria-pressed={scenario.active} title={scenario.description}
             aria-describedby={runtime.inert ? reasonId : undefined} aria-disabled={unavailable || undefined} {...roving.itemProps(index)} onClick={() => apply(scenario)}>{scenario.label}</button>
         ))}
       </div>
-      <p className="eka-panel-note" id={describe}>{active ? active.description : 'Each scenario starts a new run from the beginning.'}</p>
-      {runtime.inert ? <p className="eka-reason" id={reasonId}><span className="eka-glyph" aria-hidden="true">–</span>{runtime.inert}</p> : null}
+      <p className="ema-panel-note" id={describe}>{active ? active.description : 'Each scenario starts a new run from the beginning.'}</p>
+      {runtime.inert ? <p className="ema-reason" id={reasonId}><span className="ema-glyph" aria-hidden="true">–</span>{runtime.inert}</p> : null}
     </section>
   );
 }
@@ -249,20 +249,20 @@ export function Scenarios({ scenarios, title, headingLevel }: { scenarios: Proje
  */
 export function ResetExperiment({ previewActive }: { previewActive: boolean }) {
   const runtime = useRuntime();
-  const hintId = useStableId('eka-reset-hint');
-  const reasonId = useStableId('eka-reset-reason');
+  const hintId = useStableId('ema-reset-hint');
+  const reasonId = useStableId('ema-reset-reason');
   const unavailable = runtime.busy || runtime.settling || previewActive || !!runtime.inert;
   const reset = () => {
     if (unavailable || runtime.scienceBusy()) return;
     void runtime.run(() => runtime.binding.resetExperiment({ operationId: runtime.opId(), ...runtime.binding.getProjection().guards }), 'science');
   };
   return (
-    <div className="eka-reset" data-eka-action="reset-experiment">
-      <button type="button" className="eka-button" aria-describedby={runtime.inert ? `${hintId} ${reasonId}` : hintId} aria-disabled={unavailable || undefined} onClick={reset}>
+    <div className="ema-reset" data-ema-action="reset-experiment">
+      <button type="button" className="ema-button" aria-describedby={runtime.inert ? `${hintId} ${reasonId}` : hintId} aria-disabled={unavailable || undefined} onClick={reset}>
         <span aria-hidden="true">⟲</span>Reset experiment
       </button>
-      <p className="eka-control-hint" id={hintId}>Starts a new run from the starting values. Earlier work stays recorded.</p>
-      {runtime.inert ? <p className="eka-reason" id={reasonId}><span className="eka-glyph" aria-hidden="true">–</span>{runtime.inert}</p> : null}
+      <p className="ema-control-hint" id={hintId}>Starts a new run from the starting values. Earlier work stays recorded.</p>
+      {runtime.inert ? <p className="ema-reason" id={reasonId}><span className="ema-glyph" aria-hidden="true">–</span>{runtime.inert}</p> : null}
     </div>
   );
 }

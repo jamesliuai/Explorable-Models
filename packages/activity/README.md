@@ -1,8 +1,8 @@
-# @experiment-kit/activity
+# @explorable-models/activity
 
 Versioned contracts for the Study Harness visualization subsystem: activity templates, instances, host policy,
 snapshots, interaction events, exposure records, summaries, artifacts, review records, host receipts and host-port
-messages (schema `1.0`). The package is DOM-free and provider-neutral. It imports `@experiment-kit/core` only, and
+messages (schema `1.0`). The package is DOM-free and provider-neutral. It imports `@explorable-models/core` only, and
 never imports the catalogue, the player, a native bridge or a provider SDK.
 
 Status: developer preview (`0.3.0-preview.1`, unreleased). Passing schema or semantic validation shows that a record is
@@ -31,12 +31,12 @@ and [compatibility and rollback](../../docs/study-harness/compatibility.md).
 | `study-harness.exposure-record`, `.interaction-summary`, `.activity-artifact`, `.review-record` | matching interfaces |
 | `study-harness.exposure-receipt`, `.stage-receipt`, `.assistance-receipt` | host receipts |
 | `study-harness.*-request`, `.append-result`, `.journal-cursor`, `.host-ack`, `.activity-records` | `HostPort` messages (`MESSAGES` in `src/schemas.ts`; `.activity-records` is the reply of the optional `getActivityRecords`) |
-| `experiment-kit.model-manifest` | `ModelManifest` (schema owned by `@experiment-kit/core/model`) |
+| `explorable-models.model-manifest` | `ModelManifest` (schema owned by `@explorable-models/core/model`) |
 
 ## Schema files
 
 `src/schemas.ts` is the authoritative source. It uses the bounded JSON Schema 2020-12 subset from
-`@experiment-kit/core/model`. `node scripts/study-harness/generate-contracts.mjs` writes:
+`@explorable-models/core/model`. `node scripts/study-harness/generate-contracts.mjs` writes:
 
 - `schema/<name>.schema.json`: one standalone document per contract, with only the `$defs` it references.
 - `schema/index.json`: the file list, the sha256 of each file, the canonical digests, and the data limits of each contract.
@@ -53,14 +53,14 @@ Every object rejects unknown fields, and every string, array, map and number has
 in Unicode code points. Patterns are ASCII-only. The main limits are in `LIMITS`: IDs 128, labels 200, learner text
 4000, TeX 4096, 64 groups, 16 views, 256 marks per view, 16 stages, 32 transitions, 64 scenarios and 64 parameters.
 The summary bounds come from `SUMMARY_LIMITS`. Model-derived bounds follow the manifest contract
-(`MANIFEST_LIMITS` in `@experiment-kit/core/model`): quantity values in events and summaries may be any finite double
+(`MANIFEST_LIMITS` in `@explorable-models/core/model`): quantity values in events and summaries may be any finite double
 (only values beyond the double range are numerical-limit statuses) with up to 4096 numbers, and positions and
 `lastFiniteIndex` go up to index 10,000,000, the largest manifest `maxIndex`.
 
 ## Validation
 
 ```ts
-import { validateRecord, validateTemplateSemantics, readRecord, CONTRACTS } from '@experiment-kit/activity';
+import { validateRecord, validateTemplateSemantics, readRecord, CONTRACTS } from '@explorable-models/activity';
 
 const shape = validateRecord(CONTRACTS.template, input);            // data limits, then schema
 const meaning = validateTemplateSemantics(template, manifest);      // cross-references, units, disclosure
@@ -91,19 +91,19 @@ const read = readRecord(CONTRACTS.artifact, stored);                // classify 
 - Identities: `templateDigest`, `templateRef`, `groupContentDigest` (the content of each exposure group, including all
   learner and accessible text), `artifactIntegrity` and `schemaDigest`.
 
-## HostPort conformance kit (`@experiment-kit/activity/conformance`)
+## HostPort conformance kit (`@explorable-models/activity/conformance`)
 
 A separate entry for hosts and their test harnesses (the adapter and the learner surface never import it): the
 host-agnostic conformance kit for external gate G2 (requirement A54 preparation). It is plain TypeScript with no Node,
 DOM or native imports, so the same kit runs in Node, a browser and a packaged WebView.
 
 ```ts
-import { runHostPortConformance } from '@experiment-kit/activity/conformance';
+import { runHostPortConformance } from '@explorable-models/activity/conformance';
 
 const run = await runHostPortConformance(hostPort, {
   subject: 'actual-host',                 // or 'reference-fixture-host' / 'memory-fixture-host'; always the caller's label
   host: { name, commit, dirty, binarySha256, platform: { os, osVersion, arch } },
-  packages,                               // the packed @experiment-kit/* tarballs (name, version, sha256)
+  packages,                               // the packed @explorable-models/* tarballs (name, version, sha256)
   catalog,                                // the installed catalogue the host serves
   hooks: { openActivity, restart, respond, hostSessionRevision, authorizeReveal, startIndependentTask, armCrash },
 });

@@ -30,18 +30,18 @@
       }
     ],
     "runtime": {
-      "id": "experiment-kit-activity",
+      "id": "explorable-models-activity",
       "version": "0.3.0-preview.1"
     },
     "template": {
       "templateId": "quadratic-descent-regimes",
       "version": "1.0.0",
-      "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+      "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
     },
     "model": {
       "modelId": "quadratic-descent",
       "version": "1.0.0",
-      "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+      "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
     },
     "policyRef": {
       "policyId": "policy-unit-4",
@@ -59,12 +59,12 @@
       "template": {
         "templateId": "quadratic-descent-regimes",
         "version": "1.0.0",
-        "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+        "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
       },
       "model": {
         "modelId": "quadratic-descent",
         "version": "1.0.0",
-        "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+        "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
       },
       "initialParameters": {
         "a": 1,
@@ -100,11 +100,11 @@
       "model": {
         "modelId": "quadratic-descent",
         "version": "1.0.0",
-        "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+        "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
       },
-      "scientificRevision": "sha256:7cf73b2641a4662e810d2cadd1ff615f7675eb59866ec0f34d291c55217e59f4",
+      "scientificRevision": "sha256:c090f3b7bd3b4810c11d03ab8a061181f1d0a3a90c1a36c2ac444a85e1694bb7",
       "runtime": {
-        "id": "experiment-kit-activity",
+        "id": "explorable-models-activity",
         "version": "0.3.0-preview.1"
       },
       "runId": "run-0002",
@@ -194,12 +194,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 3,
         "intendedStage": "explore",
@@ -234,12 +234,12 @@
         "template": {
           "templateId": "quadratic-descent-regimes",
           "version": "1.0.0",
-          "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+          "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
         },
         "model": {
           "modelId": "quadratic-descent",
           "version": "1.0.0",
-          "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+          "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
         },
         "activityRevision": 4,
         "intendedStage": "explore",
@@ -307,15 +307,15 @@
         },
         {
           "path": "runtime",
-          "digest": "sha256:00d75eed4b6326fd8ec0435a806b0721b9f80cb41331a86885f299a55aef017f"
+          "digest": "sha256:7cb32578c719f3193ef09b2cbc0e8c12f900f102815ca5856dbb5265c9ef5cd1"
         },
         {
           "path": "template",
-          "digest": "sha256:1ccabad3a28b20f388f6cf6a513b73c1b12785bf93a371d27276687a4efae1bb"
+          "digest": "sha256:40aaea4b4865558e0803dae24b7fa8cc6c8b707a480f48f4c7227ea9bb33a509"
         },
         {
           "path": "model",
-          "digest": "sha256:05b68b1f36cc81ae15fcfb7d1484770cf04fa4bf3ac69009c10a937e6c005599"
+          "digest": "sha256:3cd54752dd370c3abcd910de35fe6ce36ff8b8fe6b5df6d7fdb879e5fb1d234f"
         },
         {
           "path": "policyRef",
@@ -323,11 +323,11 @@
         },
         {
           "path": "instance",
-          "digest": "sha256:74bd2703cbd43268c12e1acf21bf66f443d3165e81791eb95e566f3805b9eae8"
+          "digest": "sha256:863ca07d779371df1670ce64b0645d7d390a9da509c6103cb1174fd05b8b5a85"
         },
         {
           "path": "scientific",
-          "digest": "sha256:d63315d1cfc160137da370ce268088bdbf4743eadf8c2e41a687357c613052e1"
+          "digest": "sha256:13588cc18c3ec52e2ed01bd928875cc7668462ee70f07bc0c445daa3f36d26b1"
         },
         {
           "path": "presentation",
@@ -335,7 +335,7 @@
         },
         {
           "path": "exposures",
-          "digest": "sha256:0c843e38b3a409c6d22e0cd8ccf7a1d5a6a89300bb27ad4b5c48e64defab1654"
+          "digest": "sha256:e2b75c9297ac0fcbc460db7e7a58983d6af375de53025395a0ea086bdc0deb40"
         },
         {
           "path": "journal",
@@ -354,7 +354,7 @@
           "digest": "sha256:7b6d7250754c16d2a3ca7054391638a57fdde73f434a0b4bfe798207058ad2f5"
         }
       ],
-      "digest": "sha256:394928acaa15bb3f754325a04f5651bbf7e5a32bec4c2539e349e8c094713791"
+      "digest": "sha256:d48548275146901efe1c73b39c67d0617497ac5da2135a10ec9af8b874f17f64"
     }
   }
 }

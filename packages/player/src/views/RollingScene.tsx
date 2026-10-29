@@ -1,5 +1,5 @@
 import { useLayoutEffect, useRef, useState } from 'react';
-import type { RunFrame, ScalarParams } from '@experiment-kit/core';
+import type { RunFrame, ScalarParams } from '@explorable-models/core';
 import { binding, bodyNames, format, scalar, vector } from '../utils';
 export interface RollingSceneProps {frame:RunFrame;parameters:ScalarParams;comparison?:RunFrame;comparisonParameters?:ScalarParams;selectedIds:readonly string[];onSelect:(id:string)=>void;forces:boolean}
 

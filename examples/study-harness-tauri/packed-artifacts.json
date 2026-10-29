@@ -2,12 +2,12 @@
   "schema": "study-harness-reference.packed-artifacts/1",
   "note": "Written by scripts/install-packed.mjs: identities of the packed tarballs installed into node_modules (sha256 checked against the pack manifest; integrity checked against package-lock.json).",
   "packManifest": {
-    "createdAt": "2026-10-29T04:04:38.116Z",
+    "createdAt": "2026-10-29T06:59:27.793Z",
     "source": {
-      "commit": "910c03a3ef278532024df6ffedc878572e8dc093",
+      "commit": "1e2b3d7b796962f4b031257a402ce3db3e0854a1",
       "dirty": true
     },
-    "lockSha256": "804030326e78de3671cfd34d787f8509479bdd36dc306b72fde41b5b011de0de",
+    "lockSha256": "bb4ad9a5e06a4cb57c5552e2485fd18ba666c25fd9b4d98ac0705845811fb961",
     "node": "v22.22.3"
   },
   "react": "19.3.1",
@@ -15,49 +15,49 @@
   "three": "0.186.1",
   "packages": [
     {
-      "name": "@experiment-kit/core",
+      "name": "@explorable-models/core",
       "version": "0.3.0-preview.1",
-      "file": "experiment-kit-core-0.3.0-preview.1.tgz",
-      "sha256": "b4b7b8a602e3908882ea9ccc34b6c288224fccd1dae1c12ef5846e7b6c7c4dd1",
-      "integrity": "sha512-RImLrEiMjI1TiB0dcWD4guZWayssTgPhuw5WvtJMUKWCYRbfoJRutuozr3KVU/0gwVkvc1Qmn4VwbZFYcrp+yw==",
-      "bytes": 454992,
-      "resolved": "file:../../release/study-harness/packages/experiment-kit-core-0.3.0-preview.1.tgz"
+      "file": "explorable-models-core-0.3.0-preview.1.tgz",
+      "sha256": "4012a599af0943d849810d2a69899736e890bbb73902bbebde4f4661b649b431",
+      "integrity": "sha512-egwQRp5XdserKbpnbK061YlIY8Gvh1uwNY56lwGqZSS9RXH/xCBon2hPQ4+zQcchaEZFPDPOl7GGF0UI0xYiKg==",
+      "bytes": 455083,
+      "resolved": "file:../../release/study-harness/packages/explorable-models-core-0.3.0-preview.1.tgz"
     },
     {
-      "name": "@experiment-kit/activity",
+      "name": "@explorable-models/activity",
       "version": "0.3.0-preview.1",
-      "file": "experiment-kit-activity-0.3.0-preview.1.tgz",
-      "sha256": "63beb9982b0683b650c5425fe2089f152d80f503b6f705fd576693f66c6313d5",
-      "integrity": "sha512-3z0DDE4+TpVT4G+GCY5SoDKIoWQJ45zuEwt64mbXD1AyMDEKCBI0fgfc72Fk2ivnDxY9tU+OSxI1HNm/xPqH0Q==",
-      "bytes": 855800,
-      "resolved": "file:../../release/study-harness/packages/experiment-kit-activity-0.3.0-preview.1.tgz"
+      "file": "explorable-models-activity-0.3.0-preview.1.tgz",
+      "sha256": "df034f089245cbc1245e9521ea0f5a76103a7532c496d904f6d7c11d9ebdfa25",
+      "integrity": "sha512-bf1lEnfNihnYQU/M1pd/REXYbZLfvJfeOzUtcC6dVbc7Smc0yoTtKm3oA/MDVzBnychunXuFCYuI1JfQOBU09A==",
+      "bytes": 857180,
+      "resolved": "file:../../release/study-harness/packages/explorable-models-activity-0.3.0-preview.1.tgz"
     },
     {
-      "name": "@experiment-kit/catalog",
+      "name": "@explorable-models/catalog",
       "version": "0.3.0-preview.1",
-      "file": "experiment-kit-catalog-0.3.0-preview.1.tgz",
-      "sha256": "0138850db9ae2115dcc7d9fb94b14e793153862b0626930d65f4411303f09134",
-      "integrity": "sha512-ruTWOzqv341uxjgwIUGyooqB1kR7Y6v95xm0VnHF5ghGSfHv/3/41k3Z5UqQmsKNZsoddF1pTqewBnFBIsYqKw==",
-      "bytes": 265427,
-      "resolved": "file:../../release/study-harness/packages/experiment-kit-catalog-0.3.0-preview.1.tgz"
+      "file": "explorable-models-catalog-0.3.0-preview.1.tgz",
+      "sha256": "17785a1defdbc385d4e4e8414074f58c9a2bf1cbdab0212f9b3480a469374859",
+      "integrity": "sha512-MGfaLSjquwAC29GObwgyV7LvtRSRHZYVIIx3EQLHSsmMxjXBQ68acJtfwqf/yo7qFH+4TryfXZuVhKQptmucfQ==",
+      "bytes": 265469,
+      "resolved": "file:../../release/study-harness/packages/explorable-models-catalog-0.3.0-preview.1.tgz"
     },
     {
-      "name": "@experiment-kit/player",
+      "name": "@explorable-models/player",
       "version": "0.3.0-preview.1",
-      "file": "experiment-kit-player-0.3.0-preview.1.tgz",
-      "sha256": "21b3f1d6543c48c1c7735a624d1da5c706193782c79bbd5f5e5fceeaf09d7bad",
-      "integrity": "sha512-R0V6LQM8OOz4tPg9KZW2TOR3t/TclyYbKVI9uE6m9xqehVopNiaRUC5Gn+Byt+dyQsOy9g24o2oA25g/ER2W6w==",
-      "bytes": 1064904,
-      "resolved": "file:../../release/study-harness/packages/experiment-kit-player-0.3.0-preview.1.tgz"
+      "file": "explorable-models-player-0.3.0-preview.1.tgz",
+      "sha256": "e08d3e108fd32e00e9d5bce8162bd46f9a9dfb16ea3fa79c7659817a49d4bb38",
+      "integrity": "sha512-2tHNCVEGd4BJfdtSrJMgoYPmlKue7y09XVu9cZM4Yc3DGpGgSGEG9r4sB4caKrrrPHMYaMNd2ynlk6iPQkLJpA==",
+      "bytes": 1064898,
+      "resolved": "file:../../release/study-harness/packages/explorable-models-player-0.3.0-preview.1.tgz"
     },
     {
-      "name": "@experiment-kit/player-3d",
+      "name": "@explorable-models/player-3d",
       "version": "0.3.0-preview.1",
-      "file": "experiment-kit-player-3d-0.3.0-preview.1.tgz",
-      "sha256": "0de6c36733b8182b5ab9e21ed31cace1cbcac5e326bfa2d8b1fb70ca8b729f77",
-      "integrity": "sha512-G0iJrAGtL9qN/fAvxd6K38R2Ueuoa8lur1vm+GbOQys3rSrqnQHG9Y2LIMEQzEv/HalVAy2sO/vIMPxgQ8OHvQ==",
-      "bytes": 122370,
-      "resolved": "file:../../release/study-harness/packages/experiment-kit-player-3d-0.3.0-preview.1.tgz"
+      "file": "explorable-models-player-3d-0.3.0-preview.1.tgz",
+      "sha256": "bb8710116a5b5f4ff447b812d0c5f191c8d16845a0f67f9f9ccd98af4061fc51",
+      "integrity": "sha512-FZp1DsJaFlGYvZeKtQ/5NTLTEp7ov7WxcwWuUvB2vZsnXZII0DUK3AedQzv1e3VSTQEiqK5xeWwOI/EwF5+CvA==",
+      "bytes": 122359,
+      "resolved": "file:../../release/study-harness/packages/explorable-models-player-3d-0.3.0-preview.1.tgz"
     }
   ]
 }

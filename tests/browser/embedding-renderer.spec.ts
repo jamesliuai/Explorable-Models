@@ -1,5 +1,5 @@
 import { expect, test, type Page } from '@playwright/test';
-import type { MutationGuard, VisualizationSession } from '@experiment-kit/core/declarative';
+import type { MutationGuard, VisualizationSession } from '@explorable-models/core/declarative';
 
 interface Studio { session: VisualizationSession; guard(): MutationGuard }
 async function studioState(page: Page) {

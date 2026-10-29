@@ -1,6 +1,6 @@
 /**
  * Archival read-only record of a saved activity (report §14, A49). Renders an `ArchivalView` from
- * `@experiment-kit/activity`'s `archivalView(artifact, { audience })` — the saved stage, position, the parameter values
+ * `@explorable-models/activity`'s `archivalView(artifact, { audience })` — the saved stage, position, the parameter values
  * the audience may read and the exposure history — and nothing else: no model is evaluated, no control can change the
  * saved activity and no template content is looked up, so a missing or revoked model is never replaced by a similar one.
  * A host shows it when `restore` reports `UNSUPPORTED_ARTIFACT` or `CONTENT_REVOKED`.
@@ -17,7 +17,7 @@
 import { useLayoutEffect, useMemo, useRef, type CSSProperties } from 'react';
 import { createRoot } from 'react-dom/client';
 import { flushSync } from 'react-dom';
-import type { ActivityTemplate, ArchivalView, FramePosition, StageKind } from '@experiment-kit/activity';
+import type { ActivityTemplate, ArchivalView, FramePosition, StageKind } from '@explorable-models/activity';
 import { Heading, useStableId } from './components/context.js';
 import { formatShown } from './format.js';
 import { adoptActivityStyles } from './styles.js';
@@ -87,10 +87,10 @@ const nameOf = (names: Readonly<Record<string, string>> | undefined, id: string)
 /** Read-only record of a saved activity (see module comment). */
 export function ArchivalRecord({ view, headingLevel = 2, theme = 'light', tokens, locale, labels, returnAction }: ArchivalRecordProps) {
   const rootRef = useRef<HTMLElement>(null);
-  const titleId = useStableId('eka-archival');
-  const stateId = useStableId('eka-archival-state');
-  const valuesId = useStableId('eka-archival-values');
-  const exposureId = useStableId('eka-archival-exposure');
+  const titleId = useStableId('ema-archival');
+  const stateId = useStableId('ema-archival-state');
+  const valuesId = useStableId('ema-archival-values');
+  const exposureId = useStableId('ema-archival-exposure');
   const tokenKey = JSON.stringify(tokens ?? null);
   const variables = useMemo(() => tokenVariables(resolveTheme(theme, tokens).tokens) as CSSProperties, [theme, tokenKey]);
   useLayoutEffect(() => {
@@ -134,36 +134,36 @@ export function ArchivalRecord({ view, headingLevel = 2, theme = 'light', tokens
     return [...names, ...(unnamed ? [names.length ? `${count(unnamed, 'other part', 'other parts')} of the activity` : `${count(unnamed, 'part', 'parts')} of the activity`] : [])].join(', ');
   };
   return (
-    <section ref={rootRef} className="eka" data-theme={theme} lang={locale} style={variables} aria-labelledby={titleId} data-eka-archival={view.artifact.artifactId} data-audience={view.audience}>
-      <div className="eka-card">
-        <header className="eka-header">
-          <div className="eka-heading">
-            <Heading level={headingLevel} id={titleId} className="eka-title">{!full && named?.title ? `${named.title} — saved, read-only` : 'Saved activity — read-only record'}</Heading>
-            <p className="eka-subtitle">Nothing is calculated again and no other model is used in its place.</p>
+    <section ref={rootRef} className="ema" data-theme={theme} lang={locale} style={variables} aria-labelledby={titleId} data-ema-archival={view.artifact.artifactId} data-audience={view.audience}>
+      <div className="ema-card">
+        <header className="ema-header">
+          <div className="ema-heading">
+            <Heading level={headingLevel} id={titleId} className="ema-title">{!full && named?.title ? `${named.title} — saved, read-only` : 'Saved activity — read-only record'}</Heading>
+            <p className="ema-subtitle">Nothing is calculated again and no other model is used in its place.</p>
           </div>
-          <div className="eka-meta"><span className="eka-chip">Read-only</span></div>
+          <div className="ema-meta"><span className="ema-chip">Read-only</span></div>
         </header>
-        <section className="eka-panel" aria-labelledby={stateId}>
-          <Heading level={sub} id={stateId} className="eka-panel-title">What was saved</Heading>
-          <dl className="eka-values">
-            {facts.map(([label, value]) => <div key={label} className="eka-value-row"><dt>{label}</dt><dd>{value}</dd></div>)}
+        <section className="ema-panel" aria-labelledby={stateId}>
+          <Heading level={sub} id={stateId} className="ema-panel-title">What was saved</Heading>
+          <dl className="ema-values">
+            {facts.map(([label, value]) => <div key={label} className="ema-value-row"><dt>{label}</dt><dd>{value}</dd></div>)}
           </dl>
         </section>
-        <section className="eka-panel" aria-labelledby={valuesId}>
-          <Heading level={sub} id={valuesId} className="eka-panel-title">Saved values</Heading>
+        <section className="ema-panel" aria-labelledby={valuesId}>
+          <Heading level={sub} id={valuesId} className="ema-panel-title">Saved values</Heading>
           {parameters ? (
             parameters.length ? (
-              <div className="eka-table-region" role="region" aria-labelledby={valuesId} tabIndex={0}>
-                <table className="eka-table">
+              <div className="ema-table-region" role="region" aria-labelledby={valuesId} tabIndex={0}>
+                <table className="ema-table">
                   <thead><tr><th scope="col">Parameter</th><th scope="col">Value (model units)</th></tr></thead>
                   <tbody>{parameters.map(item => <tr key={item.parameter}><th scope="row">{item.name}</th><td>{formatShown(item.value, locale)}</td></tr>)}</tbody>
                 </table>
               </div>
-            ) : unnamedParameters ? null : <p className="eka-panel-note">No parameter values are listed.</p>
-          ) : <p className="eka-panel-note">{full ? 'Saved values are listed for the host. A learner snapshot carries the values that were visible.' : 'The saved settings are kept with the record; a copy of what was shown lists the values that were visible.'}</p>}
-          {unnamedParameters ? <p className="eka-panel-note">{count(unnamedParameters, 'saved value is', 'saved values are')} kept but not listed here, because {unnamedParameters === 1 ? 'its name is' : 'their names are'} not available.</p> : null}
+            ) : unnamedParameters ? null : <p className="ema-panel-note">No parameter values are listed.</p>
+          ) : <p className="ema-panel-note">{full ? 'Saved values are listed for the host. A learner snapshot carries the values that were visible.' : 'The saved settings are kept with the record; a copy of what was shown lists the values that were visible.'}</p>}
+          {unnamedParameters ? <p className="ema-panel-note">{count(unnamedParameters, 'saved value is', 'saved values are')} kept but not listed here, because {unnamedParameters === 1 ? 'its name is' : 'their names are'} not available.</p> : null}
           {view.comparisons.length ? (
-            <ul className="eka-notes">
+            <ul className="ema-notes">
               {view.comparisons.map((item, index) => {
                 const values = item.parameters?.flatMap(entry => { const name = parameterName(entry.parameter); return name ? [`${name} = ${formatShown(entry.value, locale)}`] : []; }) ?? [];
                 return <li key={`${index}:${item.label}`}>Comparison “{item.label}” at {positionText(item.position, locale)}{values.length ? `: ${values.join(', ')}` : ''}</li>;
@@ -171,21 +171,21 @@ export function ArchivalRecord({ view, headingLevel = 2, theme = 'light', tokens
             </ul>
           ) : null}
         </section>
-        <section className="eka-panel" aria-labelledby={exposureId}>
-          <Heading level={sub} id={exposureId} className="eka-panel-title">Content shown</Heading>
+        <section className="ema-panel" aria-labelledby={exposureId}>
+          <Heading level={sub} id={exposureId} className="ema-panel-title">Content shown</Heading>
           {view.exposures.length ? (
-            <ul className="eka-notes">
+            <ul className="ema-notes">
               {view.exposures.map((item, index) => <li key={`${index}:${item.groups.join(',')}`}>{groupText(item.groups)}: {STATUS_TEXT[item.displayStatus]}{item.uncertainty ? ` (${item.uncertainty})` : ''}</li>)}
             </ul>
-          ) : <p className="eka-panel-note">No exposure records are listed.</p>}
+          ) : <p className="ema-panel-note">No exposure records are listed.</p>}
         </section>
-        {view.notes.length ? <ul className="eka-notes" aria-label="Notes">{view.notes.map((note, index) => <li key={`${index}:${note}`}>{note}</li>)}</ul> : null}
+        {view.notes.length ? <ul className="ema-notes" aria-label="Notes">{view.notes.map((note, index) => <li key={`${index}:${note}`}>{note}</li>)}</ul> : null}
         {returnAction ? (
-          <footer className="eka-footer">
-            <p className="eka-review">This saved activity cannot be opened again here; nothing in it was changed.</p>
-            <div className="eka-footer-actions">
-              {returnAction.status ? <span className="eka-next-status" role="status">{returnAction.status}</span> : null}
-              <button type="button" className="eka-button eka-button-primary" aria-disabled={returnAction.disabled || undefined}
+          <footer className="ema-footer">
+            <p className="ema-review">This saved activity cannot be opened again here; nothing in it was changed.</p>
+            <div className="ema-footer-actions">
+              {returnAction.status ? <span className="ema-next-status" role="status">{returnAction.status}</span> : null}
+              <button type="button" className="ema-button ema-button-primary" aria-disabled={returnAction.disabled || undefined}
                 onClick={() => { if (!returnAction.disabled) returnAction.onSelect(); }}>{returnAction.label}</button>
             </div>
           </footer>
@@ -201,7 +201,7 @@ export function mountArchivalRecord(container: HTMLElement, view: ArchivalView, 
   if (!container || typeof container.appendChild !== 'function' || !container.ownerDocument) throw new TypeError('mountArchivalRecord requires a browser HTMLElement container.');
   if (!view || view.kind !== 'archival-view' || view.readOnly !== true) throw new TypeError('mountArchivalRecord requires an ArchivalView from archivalView().');
   const element = container.ownerDocument.createElement('div');
-  element.setAttribute('data-experiment-kit-archival', view.artifact.artifactId);
+  element.setAttribute('data-explorable-models-archival', view.artifact.artifactId);
   const shadow = element.attachShadow({ mode: 'open' });
   const styles = adoptActivityStyles(shadow);
   container.appendChild(element);

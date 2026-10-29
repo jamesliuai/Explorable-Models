@@ -1,9 +1,9 @@
 {
-  "contract": "experiment-kit.model-manifest",
+  "contract": "explorable-models.model-manifest",
   "expect": "valid",
   "why": "Static 3D kernel manifest in radians.",
   "value": {
-    "contract": "experiment-kit.model-manifest",
+    "contract": "explorable-models.model-manifest",
     "schemaVersion": "1.0",
     "modelId": "vector-orientation",
     "version": "1.0.0",

@@ -1,4 +1,4 @@
-import type { AnalyticModel, ScalarParams } from '@experiment-kit/core';
+import type { AnalyticModel, ScalarParams } from '@explorable-models/core';
 
 export type BaseRateParameters = ScalarParams & {
   prevalence: number; sensitivity: number; falsePositiveRate: number; population: number;

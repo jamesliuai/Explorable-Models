@@ -1,6 +1,6 @@
 import { useEffect, useId, useRef, useState } from 'react';
 import type { CSSProperties, PointerEvent as ReactPointerEvent } from 'react';
-import type { DocumentInteractionController, InteractionState, ParameterSpec } from '@experiment-kit/core/declarative';
+import type { DocumentInteractionController, InteractionState, ParameterSpec } from '@explorable-models/core/declarative';
 import { fmt } from './scenes/shared';
 
 const NAVIGATION_KEYS = ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Home', 'End', 'PageUp', 'PageDown'];

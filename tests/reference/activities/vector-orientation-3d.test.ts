@@ -2,7 +2,7 @@ import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { isDeepStrictEqual } from 'node:util';
 import { describe, expect, it } from 'vitest';
-import { evaluateRequest, validateKernelOutput, type GeometryResult, type KernelOutput, type QuantityResult } from '@experiment-kit/core/model';
+import { evaluateRequest, validateKernelOutput, type GeometryResult, type KernelOutput, type QuantityResult } from '@explorable-models/core/model';
 import { ANGLE_ARC, vectorOrientationKernel as kernel } from '../../../packages/catalog/src/kernels/vector-orientation-3d.js';
 import { vectorOrientationManifest as manifest } from '../../../packages/catalog/src/models/vector-orientation-3d.js';
 import {

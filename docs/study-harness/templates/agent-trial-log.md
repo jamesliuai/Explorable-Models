@@ -4,7 +4,7 @@ Fill one log per run of the G3 sequence (external gate G3, requirement A57): a r
 actual Study Harness agent path, with owner-supplied provider credentials, a pinned model configuration and a bounded
 budget supplied by the host. The machine-readable form is
 [`agent-trial-record.schema.json`](agent-trial-record.schema.json) (`study-harness.agent-trial-record/1`), produced by
-the opt-in recorder in `@experiment-kit/agent` (`createTrialRecorder`, see `docs/study-harness/agent-tools.md`).
+the opt-in recorder in `@explorable-models/agent` (`createTrialRecorder`, see `docs/study-harness/agent-tools.md`).
 
 **What this log may contain:** request identifiers, tool names, outcome codes, fixed-vocabulary repairs, the G3 step
 each request evidences, the provider and pinned model identifiers, a digest of the configuration, and numeric usage
@@ -29,7 +29,7 @@ conformance sequence in `tests/agent/activity-trial.test.ts`, mock transports an
 | Configuration digest (`configuration.digest` from the record) | |
 | Budget (max requests, tokens, cost and currency) | |
 | Budget used (from `totals`) and `withinBudget` | |
-| Packed `@experiment-kit/*` tarball sha256 set | |
+| Packed `@explorable-models/*` tarball sha256 set | |
 
 ## G3 sequence
 

@@ -13,7 +13,7 @@ import { attachObservations, checkPosition, validateKernelOutput, type ResolvedP
 import { analyzeManifest } from './manifest.js';
 import type { FramePosition, GeometryGap, GeometryResult, KernelOutput, ModelEvaluationRequest, ModelFrame, ModelKernel, ModelManifest, PolylineSegment, QuantityResult, Vec2 } from './types.js';
 
-export const MODEL_WORKER_PROTOCOL = 'experiment-kit.model-worker/1.0' as const;
+export const MODEL_WORKER_PROTOCOL = 'explorable-models.model-worker/1.0' as const;
 export type EvaluationData = Omit<ModelFrame, 'frameId' | 'run' | 'model'>;
 export interface EvaluateMessage { type: 'evaluate'; id: string; request: ModelEvaluationRequest }
 export type WorkerReply = { type: 'result'; id: string; data: EvaluationData } | { type: 'error'; id: string; diagnostics: Diagnostic[] };

@@ -1,7 +1,7 @@
 # Architecture and supported contract
 
-> **Current architecture:** the Study Harness visualization subsystem (`@experiment-kit/activity`,
-> `@experiment-kit/catalog`, `@experiment-kit/player/activity`, `@experiment-kit/player-3d`, the activity tools and
+> **Current architecture:** the Study Harness visualization subsystem (`@explorable-models/activity`,
+> `@explorable-models/catalog`, `@explorable-models/player/activity`, `@explorable-models/player-3d`, the activity tools and
 > authoring commands) is described in [docs/study-harness/architecture.md](study-harness/architecture.md), with
 > decisions D1–D16, and indexed in the [handoff](study-harness/README.md). This page still describes the original
 > schema 1.0 runtime, which is unchanged and retained for existing exports.

@@ -41,7 +41,7 @@ describe('one presentation per cause (G41, report §10.4)', () => {
       const projection = fixtureProjection('quadratic', state);
       const status = presentStatus(projection);
       const html = render(projection);
-      const banners = html.match(/class="eka-banner"/g) ?? [];
+      const banners = html.match(/class="ema-banner"/g) ?? [];
       const retries = html.match(/>(Try again|Retry saving)</g) ?? [];
       expect(retries.length, 'retry controls').toBeLessThanOrEqual(1);
       expect(banners.length, 'banners').toBeLessThanOrEqual(1);
@@ -72,7 +72,7 @@ describe('one presentation per cause (G41, report §10.4)', () => {
       expect([status.cause, status.tone, status.actions, chipPersistence(projection)], cause).toEqual([cause, tone, actions, chip]);
       const html = render(projection);
       expect(html.match(/>(Try again|Retry saving)</g) ?? [], cause).toHaveLength(actions.length);
-      expect(html).not.toContain('class="eka-pending"');
+      expect(html).not.toContain('class="ema-pending"');
     }
     expect(presentStatus(cases[0]![0])!.message).toBe('The host is recording this step before showing Iteration trace. What you see stays as it is until then.');
   });
@@ -100,7 +100,7 @@ describe('one presentation per cause (G41, report §10.4)', () => {
   it('a 2D view outside its range is presented by its figure, a 3D view by the banner', () => {
     const clipped = fixtureProjection('quadratic', 'clipped');
     expect(presentStatus(clipped)).toMatchObject({ cause: 'clipped', placement: 'inline' });
-    expect(render(clipped)).not.toContain('class="eka-banner"');
+    expect(render(clipped)).not.toContain('class="ema-banner"');
     const spatial = fixtureProjection('spatial', 'clipped');
     expect(presentStatus(spatial)).toMatchObject({ cause: 'clipped', placement: 'banner' });
   });
@@ -109,14 +109,14 @@ describe('one presentation per cause (G41, report §10.4)', () => {
 describe('placeholder before a binding exists (G45)', () => {
   it('renders the card frame in preparing and empty with the runtime status text', () => {
     const preparing = renderToString(createElement(StudyActivityPlaceholder, { state: 'preparing', title: 'Step size in gradient descent', theme: 'light' }));
-    expect(preparing).toContain('data-eka-ui-state="preparing"');
-    expect(preparing).toContain('class="eka-card"');
+    expect(preparing).toContain('data-ema-ui-state="preparing"');
+    expect(preparing).toContain('class="ema-card"');
     expect(preparing).toContain('aria-busy="true"');
     expect(preparing).toContain('>Step size in gradient descent</h2>');
     expect(preparing).toContain('Preparing the activity…');
     expect(preparing).toContain('role="status"');
     const empty = renderToString(createElement(StudyActivityPlaceholder, { state: 'empty' })).replace(/<!-- -->/g, '');
-    expect(empty).toContain('data-eka-ui-state="empty"');
+    expect(empty).toContain('data-ema-ui-state="empty"');
     expect(empty).toContain(UI_STATUS.empty.message!.replace(/\.$/, ''));
   });
 });

@@ -1,9 +1,9 @@
 {
-  "contract": "experiment-kit.model-manifest",
+  "contract": "explorable-models.model-manifest",
   "expect": "invalid",
   "why": "Capability versions have at most three parts.",
   "value": {
-    "contract": "experiment-kit.model-manifest",
+    "contract": "explorable-models.model-manifest",
     "schemaVersion": "1.0",
     "modelId": "quadratic-descent",
     "version": "1.0.0",

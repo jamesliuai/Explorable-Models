@@ -1,6 +1,6 @@
 import { useEffect, useId, useRef, useState, useSyncExternalStore } from 'react';
 import type { CSSProperties } from 'react';
-import type { ParameterSpec } from '@experiment-kit/core/declarative';
+import type { ParameterSpec } from '@explorable-models/core/declarative';
 import type { RodController } from './controller';
 import { rodDocument } from './document';
 import { format, RodDiagram, scalar } from './RodDiagram';

@@ -18,7 +18,7 @@ import { verifyArtifact } from '../../../packages/activity/src/artifacts.js';
 import { validateRecord } from '../../../packages/activity/src/validator.js';
 import type { MemoryHostSnapshot } from './memory-host.js';
 
-export const PORTABLE_BACKUP_FORMAT = 'experiment-kit.fixture.portable-host-backup';
+export const PORTABLE_BACKUP_FORMAT = 'explorable-models.fixture.portable-host-backup';
 export const PORTABLE_BACKUP_VERSION = '1.0';
 type Table = MemoryHostSnapshot['activities'][string];
 type Receipt = Table['receipts'][number];

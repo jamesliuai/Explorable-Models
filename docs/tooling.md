@@ -9,11 +9,11 @@ Use Node.js 22.12 or later. From the toolkit checkout or unpacked release:
 ```sh
 npm ci
 npx playwright install chromium
-npm run kit -- init my-experiment --template linear-map
-npm run kit -- dev my-experiment
+npm run models -- init my-experiment --template linear-map
+npm run models -- dev my-experiment
 ```
 
-The preview command prints a loopback URL and writes `my-experiment/.experiment-kit-session.json` with mode `0600`. Open the URL in an ordinary browser. Stop the command with Ctrl+C. The connection file is removed on a clean shutdown and is never included in exports.
+The preview command prints a loopback URL and writes `my-experiment/.explorable-models-session.json` with mode `0600`. Open the URL in an ordinary browser. Stop the command with Ctrl+C. The connection file is removed on a clean shutdown and is never included in exports.
 
 Available templates are `rolling`, `linear-map`, `base-rates`, `riemann-sums`, and `oscillator`. Initialization refuses to overwrite a nonempty directory. Source is ordinary TypeScript plus JSON:
 
@@ -26,20 +26,20 @@ Available templates are `rolling`, `linear-map`, `base-rates`, `riemann-sums`, a
 | `fixtures.json` | Transparent fixture data for readers and independent harnesses |
 | `model.md` | Model derivation, assumptions, units, sources, and limitations |
 
-Use `import type { AnalyticModel, CheckSuite } from '@experiment-kit/core'` for public types. Static relative imports of TypeScript or JSON helper files are allowed inside the experiment directory. Symlink escapes, remote imports, arbitrary packages, and dynamic imports are rejected. Imported helper files enter the source digest and export. The limit is 128 files and 2 MiB of source. The toolkit lockfile and exact core and player sources also enter definition identity.
+Use `import type { AnalyticModel, CheckSuite } from '@explorable-models/core'` for public types. Static relative imports of TypeScript or JSON helper files are allowed inside the experiment directory. Symlink escapes, remote imports, arbitrary packages, and dynamic imports are rejected. Imported helper files enter the source digest and export. The limit is 128 files and 2 MiB of source. The toolkit lockfile and exact core and player sources also enter definition identity.
 
 Scientific parameter edits always start a new run. Presentation changes use separate view state. Angles are radians in models; a control may declare a degrees conversion. Undefined values must use `value: null`, an explicit status, and a reason.
 
 ## Check before sharing
 
 ```sh
-npm run kit -- check my-experiment
-npm run kit -- verify my-experiment --out check-report.json
-npm run kit -- inspect my-experiment
-npm run kit -- sample my-experiment --args '{"parameters":{"a":2,"b":0,"c":0,"d":3},"times":[0]}'
-npm run kit -- capture my-experiment --out frame.png
-npm run kit -- export my-experiment --out exported-experiment --zip
-npm run kit -- serve exported-experiment
+npm run models -- check my-experiment
+npm run models -- verify my-experiment --out check-report.json
+npm run models -- inspect my-experiment
+npm run models -- sample my-experiment --args '{"parameters":{"a":2,"b":0,"c":0,"d":3},"times":[0]}'
+npm run models -- capture my-experiment --out frame.png
+npm run models -- export my-experiment --out exported-experiment --zip
+npm run models -- serve exported-experiment
 ```
 
 `check` validates schemas, builds the worker, launches Chromium, and validates a default frame. `verify` asks the worker for the author suite and runs the same mathematical evaluation path used in playback. Candidate assertions are reported as **author** provenance even if the supplied object calls itself a reference suite. The independent reference tests in the toolkit repository are separate evidence. A failed check returns a nonzero exit status. Passing quantitative checks does not imply subject review, accessibility certification, or learning efficacy.
@@ -55,10 +55,10 @@ Serve the directory through HTTP. Direct `file://` execution is not supported. T
 Every agent mutation must carry the current version and active-run identity. Do not cache those guards across learner changes.
 
 ```sh
-npm run kit -- inspect my-experiment --session my-experiment/.experiment-kit-session.json
-npm run kit -- command my-experiment --session my-experiment/.experiment-kit-session.json \
+npm run models -- inspect my-experiment --session my-experiment/.explorable-models-session.json
+npm run models -- command my-experiment --session my-experiment/.explorable-models-session.json \
   --args '{"type":"set_parameters","parameters":{"a":2},"expectedRunVersion":0,"expectedActiveRunId":"run-ID-FROM-INSPECT"}'
-npm run kit -- checkpoint my-experiment --session my-experiment/.experiment-kit-session.json --out saved-state.json
+npm run models -- checkpoint my-experiment --session my-experiment/.explorable-models-session.json --out saved-state.json
 ```
 
 Inspect returns the real frame, parameter values, units, statuses, view version, selected objects, and preview status. A stale mutation returns `CONFLICT`; an active preview gesture returns `BUSY` to agent mutations and checkpoint operations. Restore with `command` type `restore`, the snapshot object, and current guards. Restoration creates a new run and preserves provenance. Definition or schema incompatibility returns `INCOMPATIBLE_SNAPSHOT`.
@@ -68,7 +68,7 @@ When several preview tabs are open, run `sessions --session <connection-file>` a
 After editing source, activate the candidate deliberately:
 
 ```sh
-npm run kit -- activate my-experiment --session my-experiment/.experiment-kit-session.json \
+npm run models -- activate my-experiment --session my-experiment/.explorable-models-session.json \
   --args '{"expectedDefinitionRevision":"sha256:CURRENT-DIGEST","expectedRunVersion":0,"expectedActiveRunId":"run-CURRENT"}'
 ```
 
@@ -81,10 +81,10 @@ Use the standard stdio MCP server. A headless session persists across calls for 
 ```json
 {
   "mcpServers": {
-    "experiment-kit": {
+    "explorable-models": {
       "command": "node",
       "args": [
-        "/absolute/path/to/experiment-kit/packages/cli/bin/experiment-kit.mjs",
+        "/absolute/path/to/explorable-models/packages/cli/bin/explorable-models.mjs",
         "mcp",
         "/absolute/path/to/my-experiment"
       ]
@@ -112,14 +112,14 @@ The model import surface and restrictive local response policies reduce accident
 Introduced in the 0.2 preview and unchanged in 0.3.0-preview.1 (the document schema 2.0 tools; the Study Harness
 activity tools are separate, see `docs/study-harness/agent-tools.md`).
 
-`experiment-kit mcp-document` creates a blank v2 session without a source directory. Its nine `visualization_*` tools are the same schemas and executor as `@experiment-kit/agent`: discover, create, revise, inspect, commit, discard, operate, save and restore. Existing `experiment-kit mcp <directory>` retains the legacy source-project workflow.
+`explorable-models mcp-document` creates a blank v2 session without a source directory. Its nine `visualization_*` tools are the same schemas and executor as `@explorable-models/agent`: discover, create, revise, inspect, commit, discard, operate, save and restore. Existing `explorable-models mcp <directory>` retains the legacy source-project workflow.
 
 ```json
 {
   "mcpServers": {
-    "experiment-kit-document": {
+    "explorable-models-document": {
       "command": "node",
-      "args": ["/absolute/path/to/experiment-kit/packages/cli/bin/experiment-kit.mjs", "mcp-document"]
+      "args": ["/absolute/path/to/explorable-models/packages/cli/bin/explorable-models.mjs", "mcp-document"]
     }
   }
 }

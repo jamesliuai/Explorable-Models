@@ -1,7 +1,7 @@
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { describe, expect, it } from 'vitest';
-import { evaluateRequest, ModelError, validateKernelOutput, type GeometryResult, type KernelOutput, type QuantityResult } from '@experiment-kit/core/model';
+import { evaluateRequest, ModelError, validateKernelOutput, type GeometryResult, type KernelOutput, type QuantityResult } from '@explorable-models/core/model';
 import { FUNCTION_DERIVATIVE_CURVE, FUNCTION_DERIVATIVE_DOMAIN, functionDerivativeKernel as kernel } from '../../../packages/catalog/src/kernels/function-derivative';
 import { functionDerivativeManifest as manifest } from '../../../packages/catalog/src/models/function-derivative';
 import fixtureJson from '../fixtures/activities/function-derivative.json';

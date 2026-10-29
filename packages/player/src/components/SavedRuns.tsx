@@ -1,5 +1,5 @@
 import { Download, FolderOpen, Trash2, GitCompareArrows } from 'lucide-react';
-import type { Snapshot } from '@experiment-kit/core';
+import type { Snapshot } from '@explorable-models/core';
 import { downloadJSON, format } from '../utils';
 export interface SavedRun { id:string;name:string;snapshot:Snapshot }
 export function SavedRuns({runs,onRestore,onDelete,onCompare,onImport,currentId}:{runs:SavedRun[];onRestore:(s:SavedRun)=>void;onDelete:(id:string)=>void;onCompare:(s:SavedRun)=>void;onImport:(file:File)=>void;currentId:string}) {

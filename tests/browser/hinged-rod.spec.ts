@@ -21,7 +21,7 @@ async function countRangeCaptures(page: Page): Promise<() => Promise<number>> {
   });
   return () => page.evaluate(() => (window as unknown as { __rangeCaptures: number }).__rangeCaptures);
 }
-const shots = '/tmp/experiment-kit-hinged-rod';
+const shots = '/tmp/explorable-models-hinged-rod';
 async function exact(page: Page, name: string, value: number) {
   const input = page.getByRole('textbox', { name: `${name} exact value` });
   await input.fill(String(value)); await input.press('Enter');

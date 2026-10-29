@@ -8,11 +8,11 @@
     "model": {
       "modelId": "quadratic-descent",
       "version": "1.0.0",
-      "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+      "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
     },
     "scientificRevision": "rev-7",
     "runtime": {
-      "id": "experiment-kit-activity",
+      "id": "explorable-models-activity",
       "version": "0.3.0-preview.1"
     },
     "runId": "run-0002",

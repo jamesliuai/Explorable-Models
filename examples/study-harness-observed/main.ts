@@ -7,9 +7,9 @@
  * `?explore=1` (with compare) also authorizes slider previews; `?width=<px>`, `?theme=light|dark`, `?text=200`.
  * `window.observedExample` exposes read-only hooks and the two host actions for browser tests.
  */
-import { createStudyHarnessAdapter, templateRef, type ActivityCatalog, type CatalogEntryStatus, type CommandOutcome, type HostPolicy, type LearnerProjection } from '@experiment-kit/activity';
-import { modelIdentity } from '@experiment-kit/core/model';
-import { mountStudyActivity, type CaptureResult, type SurfaceDiagnostic } from '@experiment-kit/player/activity';
+import { createStudyHarnessAdapter, templateRef, type ActivityCatalog, type CatalogEntryStatus, type CommandOutcome, type HostPolicy, type LearnerProjection } from '@explorable-models/activity';
+import { modelIdentity } from '@explorable-models/core/model';
+import { mountStudyActivity, type CaptureResult, type SurfaceDiagnostic } from '@explorable-models/player/activity';
 import { fallingBallManifest as manifest, fallingBallTemplate as template } from './content';
 import { ExampleHost } from './host';
 

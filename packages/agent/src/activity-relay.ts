@@ -12,8 +12,8 @@
  *   still recorded for its operation, so a cancellation after commit returns the committed result idempotently.
  * - Read-only results (inspection, summaries, samples) carry no operationId and are never retained by the relay.
  */
-import { canonicalJSON, sha256 } from '@experiment-kit/core';
-import { jsonDataErrors } from '@experiment-kit/core/model';
+import { canonicalJSON, sha256 } from '@explorable-models/core';
+import { jsonDataErrors } from '@explorable-models/core/model';
 import { ACTIVITY_TOOL_DESCRIPTORS, ACTIVITY_TOOL_LIMITS, ACTIVITY_TOOL_MESSAGES, AUTHORITY_FIELDS, type ActivityToolResult, type ActivityTools } from './activity-tools.js';
 import { RelayError } from './relay.js';
 

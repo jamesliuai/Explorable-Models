@@ -5,8 +5,8 @@
  * loads content per template on demand and keeps kernel code out of the page. Both share status resolution and
  * validation (./catalog.ts) and serve identical references, statuses and discovery entries.
  */
-import { groupDigests, templateDiscovery, templateRef, type ActivityTemplate, type CatalogLoadResult, type Diagnostic, type TemplateRef } from '@experiment-kit/activity';
-import type { ModelIdentity, ModelKernel, ModelManifest, ModelRef } from '@experiment-kit/core/model';
+import { groupDigests, templateDiscovery, templateRef, type ActivityTemplate, type CatalogLoadResult, type Diagnostic, type TemplateRef } from '@explorable-models/activity';
+import type { ModelIdentity, ModelKernel, ModelManifest, ModelRef } from '@explorable-models/core/model';
 import {
   catalogMarks, key, statusResolver, validateInstalledModel, validateInstalledTemplate,
   type CatalogIdentity, type CatalogProblem, type IndexedModel, type InstalledCatalog, type InstalledCatalogOptions,

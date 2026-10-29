@@ -29,7 +29,7 @@ export function auditedMathObserver(Native: typeof IntersectionObserver): typeof
       this.token = token;
     }
     override observe(target: Element): void {
-      if (target.classList.contains('eka-equation')) observations.set(target, { token: this.token, firstVisibleAt: null });
+      if (target.classList.contains('ema-equation')) observations.set(target, { token: this.token, firstVisibleAt: null });
       super.observe(target);
     }
   };

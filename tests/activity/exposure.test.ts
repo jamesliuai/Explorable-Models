@@ -6,7 +6,7 @@
  * from the memory host double (fixture-host results).
  */
 import { afterEach, describe, expect, it } from 'vitest';
-import { createStudyHarnessAdapter, HOST_SUSPENDED_MESSAGE, UI_STATUS, type ExposureRecord, type HostPort, type InteractionEvent } from '@experiment-kit/activity';
+import { createStudyHarnessAdapter, HOST_SUSPENDED_MESSAGE, UI_STATUS, type ExposureRecord, type HostPort, type InteractionEvent } from '@explorable-models/activity';
 import {
   ackCurrent, activityGuard, authorizeExploration, codesOf, DIGESTS, enterExplore, expectValidEvents, guards, harness, okOf, op, open, requestFor, settled, until,
   type Harness, type Opened,

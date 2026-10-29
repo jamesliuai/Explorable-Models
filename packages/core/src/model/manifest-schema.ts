@@ -11,7 +11,7 @@ import { DIMENSION_IDS, UNIT_IDS } from './units.js';
 
 /**
  * Bounds of manifest 1.0 (report §5.1). `maxIndex` is the largest discrete iteration index; activity records that
- * carry positions or `lastFiniteIndex` (`@experiment-kit/activity` schemas) use the same bound, so every position of
+ * carry positions or `lastFiniteIndex` (`@explorable-models/activity` schemas) use the same bound, so every position of
  * a valid manifest is recordable.
  */
 export const MANIFEST_LIMITS = Object.freeze({
@@ -89,8 +89,8 @@ const execution = S.oneOf(
 
 export const MODEL_MANIFEST_SCHEMA: JsonSchema = deepFreeze({
   $schema: 'https://json-schema.org/draft/2020-12/schema',
-  $id: 'https://experiment-kit.invalid/schema/model-manifest-1.0.json',
-  title: 'Experiment Kit model manifest 1.0',
+  $id: 'https://explorable-models.invalid/schema/model-manifest-1.0.json',
+  title: 'Explorable Models model manifest 1.0',
   ...optional(S.object({
     contract: S.constant(MODEL_CONTRACT),
     schemaVersion: S.constant(MODEL_SCHEMA_VERSION),

@@ -1,10 +1,10 @@
-import type { CheckSuite } from '@experiment-kit/core';
+import type { CheckSuite } from '@explorable-models/core';
 
 /** Fixed reference assertions; execution and value evaluation occur in the browser worker. */
 export const checks: CheckSuite = {
   "id": "oscillator-reference",
   "version": "1.0.0",
-  "author": "Experiment Kit specification reference cases and transparent derived fixtures",
+  "author": "Explorable Models specification reference cases and transparent derived fixtures",
   "provenance": "reference",
   "cases": [
     {

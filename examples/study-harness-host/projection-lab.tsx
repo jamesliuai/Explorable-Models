@@ -10,8 +10,8 @@
  */
 import { createRoot } from 'react-dom/client';
 import { StrictMode } from 'react';
-import type { ActivityBinding, CommandOutcome, LearnerProjection, UiState } from '@experiment-kit/activity';
-import { adoptActivityStyles, mountStudyActivity, StudyActivitySurface, type StudyActivitySurfaceProps, type SurfaceDiagnostic } from '@experiment-kit/player/activity';
+import type { ActivityBinding, CommandOutcome, LearnerProjection, UiState } from '@explorable-models/activity';
+import { adoptActivityStyles, mountStudyActivity, StudyActivitySurface, type StudyActivitySurfaceProps, type SurfaceDiagnostic } from '@explorable-models/player/activity';
 import { FIXTURES, fixtureProjection, UI_STATES, type FixtureName } from './projection-lab.fixtures';
 
 const params = new URLSearchParams(location.search);

@@ -25,8 +25,8 @@ npm run typecheck
 npm test
 npm run build
 npm run test:browser
-npm run build --workspace @experiment-kit/core
-npm pack --workspace @experiment-kit/core --dry-run
+npm run build --workspace @explorable-models/core
+npm pack --workspace @explorable-models/core --dry-run
 ```
 
 Core and reference tests ran during implementation with 109 passing cases after the active-revision domain and fixed coordinate-bounds regressions were added. The broader browser, CLI, export, and protocol tests are separate suites: use their current command output and generated artifacts for the release result. Test counts can change as regressions are added; a historical count is not a guarantee that another revision passes.
@@ -78,20 +78,20 @@ The following exercise the delivered software and can be rerun by another author
 
 ```sh
 # Build and inspect source without importing the candidate into Node.
-node packages/cli/bin/experiment-kit.mjs init /tmp/kit-linear --template linear-map
-node packages/cli/bin/experiment-kit.mjs check /tmp/kit-linear
-node packages/cli/bin/experiment-kit.mjs verify /tmp/kit-linear --out /tmp/linear-checks.json
-node packages/cli/bin/experiment-kit.mjs sample /tmp/kit-linear \
+node packages/cli/bin/explorable-models.mjs init /tmp/kit-linear --template linear-map
+node packages/cli/bin/explorable-models.mjs check /tmp/kit-linear
+node packages/cli/bin/explorable-models.mjs verify /tmp/kit-linear --out /tmp/linear-checks.json
+node packages/cli/bin/explorable-models.mjs sample /tmp/kit-linear \
   --args '{"parameters":{"a":1,"b":2,"c":0.5,"d":-1,"x":1.25,"y":-0.875},"times":[0]}'
 
 # Exercise both additional model families using the unchanged core.
-node packages/cli/bin/experiment-kit.mjs verify examples/riemann-sums --out /tmp/riemann-checks.json
-node packages/cli/bin/experiment-kit.mjs verify examples/oscillator --out /tmp/oscillator-checks.json
+node packages/cli/bin/explorable-models.mjs verify examples/riemann-sums --out /tmp/riemann-checks.json
+node packages/cli/bin/explorable-models.mjs verify examples/oscillator --out /tmp/oscillator-checks.json
 
 # Produce a self-contained player and frozen visual evidence.
-node packages/cli/bin/experiment-kit.mjs export /tmp/kit-linear --out /tmp/kit-linear-export --zip
-node packages/cli/bin/experiment-kit.mjs capture /tmp/kit-linear --out /tmp/kit-linear.png
-node packages/cli/bin/experiment-kit.mjs serve /tmp/kit-linear-export
+node packages/cli/bin/explorable-models.mjs export /tmp/kit-linear --out /tmp/kit-linear-export --zip
+node packages/cli/bin/explorable-models.mjs capture /tmp/kit-linear --out /tmp/kit-linear.png
+node packages/cli/bin/explorable-models.mjs serve /tmp/kit-linear-export
 ```
 
 Use a fresh empty destination for each run. Expected nonsymmetric-map output is `[-0.5, 1.5]` and determinant `-2`. At `n=100`, the Riemann right estimate is `0.33835` and midpoint estimate is `0.333325`. The default oscillator has zero position and velocity `-2` at `t=π/4`, within recorded tolerance. The default rolling sphere reaches the four-metre boundary at about `1.511087125792 s`, retaining speed about `5.294201680005 m/s`. These are model fixtures, not real-world experimental measurements.
@@ -119,7 +119,7 @@ Each attempt should produce this record, with actual observed values rather than
 ```json
 {
   "attemptId": "topic-approach-repeat",
-  "approach": "ordinary-web | existing-extension | experiment-kit",
+  "approach": "ordinary-web | existing-extension | explorable-models",
   "topic": "rolling | linear-map",
   "agentConfiguration": {},
   "budget": {},

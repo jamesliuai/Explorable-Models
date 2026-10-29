@@ -2,9 +2,9 @@
 
 This guide covers two separate entry points:
 
-- the schema 2.0 declarative player (`@experiment-kit/player`), documented in the sections up to
+- the schema 2.0 declarative player (`@explorable-models/player`), documented in the sections up to
   [Capture and export](#capture-and-export);
-- the Study Harness learner surface (`@experiment-kit/player/activity`), documented in
+- the Study Harness learner surface (`@explorable-models/player/activity`), documented in
   [Study Harness learner surface](#study-harness-learner-surface).
 
 They share the worker runtime but use different contracts.
@@ -22,24 +22,24 @@ The last command packs core, activity, player and agent. It installs the four ta
 application with an isolated, initially empty npm cache, runs a production build without repository aliases, verifies
 SSR imports, and exercises React and DOM consumers under a self-only worker/script CSP. Installation may fetch
 dependency metadata and pinned dependencies from npm; playback remains local. Evidence and tarballs are in
-`release/preview/`. Browser screenshots go to `/tmp/experiment-kit-preview/`.
+`release/preview/`. Browser screenshots go to `/tmp/explorable-models-preview/`.
 
 Install those exact tarballs in your application, alongside React and ReactDOM. All package versions must match. The
-agent package depends on `@experiment-kit/activity`, so install that tarball too. The imperative surface uses React
+agent package depends on `@explorable-models/activity`, so install that tarball too. The imperative surface uses React
 internally; React applications share the host's peer runtime.
 
 ```sh
-npm install /absolute/path/to/experiment-kit-core-0.3.0-preview.1.tgz \
-  /absolute/path/to/experiment-kit-activity-0.3.0-preview.1.tgz \
-  /absolute/path/to/experiment-kit-player-0.3.0-preview.1.tgz \
-  /absolute/path/to/experiment-kit-agent-0.3.0-preview.1.tgz react react-dom
+npm install /absolute/path/to/explorable-models-core-0.3.0-preview.1.tgz \
+  /absolute/path/to/explorable-models-activity-0.3.0-preview.1.tgz \
+  /absolute/path/to/explorable-models-player-0.3.0-preview.1.tgz \
+  /absolute/path/to/explorable-models-agent-0.3.0-preview.1.tgz react react-dom
 ```
 
 ## Plain DOM
 
 ```ts
-import { createVisualizationSession, createPreset } from '@experiment-kit/core/declarative';
-import { mountVisualization } from '@experiment-kit/player';
+import { createVisualizationSession, createPreset } from '@explorable-models/core/declarative';
+import { mountVisualization } from '@explorable-models/player';
 
 const session = await createVisualizationSession();
 const guard = () => {
@@ -73,7 +73,7 @@ The imperative mount owns a ShadowRoot to isolate controls from host CSS. Mount 
 Construct the session in a client lifecycle and retain it outside individual render calls. Dispose it when its owner unmounts. Do not dispose a shared session when only one of its surfaces unmounts.
 
 ```tsx
-import { VisualizationSurface } from '@experiment-kit/player';
+import { VisualizationSurface } from '@explorable-models/player';
 
 export function Explanation({ session }) {
   return <VisualizationSurface session={session} controls theme="light" />;
@@ -92,7 +92,7 @@ The default worker uses a package-relative URL. Vite production builds are verif
 const session = await createVisualizationSession({
   workerFactory: () => new Worker(new URL('./worker.ts', import.meta.url), { type: 'module' }),
 });
-// worker.ts contains: import '@experiment-kit/core/document-worker';
+// worker.ts contains: import '@explorable-models/core/document-worker';
 ```
 
 Serve every worker dependency from an allowed origin. The CSP tested for this player uses `script-src 'self'; worker-src 'self'` and scoped inline styles (`style-src 'self' 'unsafe-inline'`). The Study Harness learner surface needs no inline styles; see [its policy](#content-security-policy-n1n6). There is no `unsafe-eval`. A host requiring a nonce-only style policy needs a style injection adapter; that policy is not claimed supported. Set the bundler asset base for subpath hosting. Do not supply arbitrary agent-selected worker URLs.
@@ -107,11 +107,11 @@ JSON document artifacts are portable within the exact declared runtime. Persist 
 
 ## Study Harness learner surface
 
-`@experiment-kit/player/activity` mounts Study Harness activities: the learner card, the adapter around it, and the
+`@explorable-models/player/activity` mounts Study Harness activities: the learner card, the adapter around it, and the
 `HostPort` the host implements. The card renders only the `LearnerProjection` that the host's policy permits. Hidden
 groups are left out of that object, not styled away. Every learner interaction goes back through a guarded binding
-command. The entry does not import Three.js, `@experiment-kit/player-3d`, the studio, Playwright, the CLI or provider
-SDKs. The package reference is [`packages/player/README.md`](../packages/player/README.md#study-harness-learner-surface-experiment-kitplayeractivity),
+command. The entry does not import Three.js, `@explorable-models/player-3d`, the studio, Playwright, the CLI or provider
+SDKs. The package reference is [`packages/player/README.md`](../packages/player/README.md#study-harness-learner-surface-explorable-modelsplayeractivity),
 and the integration checklist is in the [handoff index](study-harness/README.md#3-integrate-into-study-harness).
 
 ### Packages
@@ -122,18 +122,18 @@ A host needs:
 
 | Package | Why |
 | --- | --- |
-| `@experiment-kit/core` | Model contract, sessions and worker evaluation |
-| `@experiment-kit/activity` | Contracts, adapter and `HostPort`. It is an optional peer of the player, but `/activity` imports it at runtime. Its separate `/conformance` entry is the host-agnostic HostPort conformance kit for the host's own tests ([external gate G2](study-harness/external-gates.md#g2-actual-study-harness-integration-a54)); the learner surface never imports it. |
-| `@experiment-kit/catalog` | Installed activities, the kernel worker and the host review registry |
-| `@experiment-kit/player` | The `./activity` entry |
+| `@explorable-models/core` | Model contract, sessions and worker evaluation |
+| `@explorable-models/activity` | Contracts, adapter and `HostPort`. It is an optional peer of the player, but `/activity` imports it at runtime. Its separate `/conformance` entry is the host-agnostic HostPort conformance kit for the host's own tests ([external gate G2](study-harness/external-gates.md#g2-actual-study-harness-integration-a54)); the learner surface never imports it. |
+| `@explorable-models/catalog` | Installed activities, the kernel worker and the host review registry |
+| `@explorable-models/player` | The `./activity` entry |
 | `react`, `react-dom` (`>=18.3.1 <20`) | Peers. The plain-DOM mount also uses React internally. |
-| `@experiment-kit/player-3d` and `three@0.186.1` | Optional. Install them only to render spatial activities in 3D. |
+| `@explorable-models/player-3d` and `three@0.186.1` | Optional. Install them only to render spatial activities in 3D. |
 
 ### Six operations: `createStudyHarnessVisualizer`
 
 ```ts
-import { createInstalledCatalog } from '@experiment-kit/catalog';
-import { createStudyHarnessVisualizer } from '@experiment-kit/player/activity';
+import { createInstalledCatalog } from '@explorable-models/catalog';
+import { createStudyHarnessVisualizer } from '@explorable-models/player/activity';
 
 const catalog = createInstalledCatalog({ reviews: hostReviewRecords, revocations: hostRevocations });
 const visualizer = createStudyHarnessVisualizer({
@@ -161,7 +161,7 @@ adapter (see [Host diagnostics](#host-diagnostics-and-developer-inspection)). `s
 state. `prepare` and `restore` return a `PreparedActivity`. Its `host` field (`HostActivityControl`) is the privileged
 host binding: stage transitions, reveals, exploration scope, response references, independent tasks, assistance,
 policy updates, revocation, suspension, save, close, `reconcile` and `forget`. Keep it in host code. Hosts that do not
-want the wrapper can call `createStudyHarnessAdapter` from `@experiment-kit/activity` and mount surfaces themselves.
+want the wrapper can call `createStudyHarnessAdapter` from `@explorable-models/activity` and mount surfaces themselves.
 
 ### `HostPort`
 
@@ -222,7 +222,7 @@ const surface = visualizer.mount(container, opened.prepared, {
   headingLevel: 3,
   nextAction: { label: 'Submit prediction', onSelect: submitPrediction }, // host-owned
   responseSlot: <HostComposer />,                                           // see below
-  spatialLoader: () => import('@experiment-kit/player-3d'),                 // optional
+  spatialLoader: () => import('@explorable-models/player-3d'),                 // optional
   onError: event => reportToHost(event),
 });
 await surface.ready;      // first committed render (and settled bundled fonts); rejects with DISPOSED if disposed first
@@ -354,7 +354,7 @@ These rules are tested in `tests/browser/study-presentation.spec.ts` and `tests/
 - **Before a binding exists.** `mountStudyActivityPlaceholder(container, { state: 'preparing' | 'empty', title, theme,
   … })` (React: `<StudyActivityPlaceholder />`) shows the same card frame and status vocabulary while the host prepares
   or restores an activity; dispose it before mounting the surface. Its host element carries
-  `data-experiment-kit-activity-placeholder`.
+  `data-explorable-models-activity-placeholder`.
 - **One presentation per cause.** The status banner is for states that need attention or action, with one title, the
   projection's message (never repeating the title), a tone that matches the cause and at most one recovery control: an
   in-flight reveal says it is saving and offers nothing; a reveal or display acknowledgement the host did not record
@@ -447,14 +447,14 @@ When `restore` refuses a verified artifact with `UNSUPPORTED_ARTIFACT` (the exac
 re-evaluation does not reproduce the saved state, the artifact is a learner snapshot, or the host cannot confirm the
 saved stage, activity revision and closure of a backup that is not its latest checkpoint: it provides no
 `getActivityRecords`, or its records report no activity state or a stage the template does not declare) or
-`CONTENT_REVOKED`, the recovery names `archivalView(artifact, { audience })` from `@experiment-kit/activity`. A records
+`CONTENT_REVOKED`, the recovery names `archivalView(artifact, { audience })` from `@explorable-models/activity`. A records
 read that failed is not one of these causes: it is a retryable `PERSISTENCE_FAILED`. `archivalView` verifies the
 artifact's integrity (applying registered migrations only) and describes the artifact's own records — identities, saved stage and
 position, the parameter values the audience may read, exposure history and journal checkpoint — without evaluating a
 model, consulting the catalogue or substituting anything. Learner and tutor views never list a backup's parameter
 values (a learner snapshot's visible values are listed), receipts, digests or task references. Render it with
 `mountArchivalRecord(container, view, { theme, headingLevel, labels, returnAction })` or the `ArchivalRecord` React
-component from `@experiment-kit/player/activity`. For the `learner` and `tutor` audiences the record shows
+component from `@explorable-models/player/activity`. For the `learner` and `tutor` audiences the record shows
 learner-facing words only (report §10.4, no unexplained identifiers): the view carries identities, not names, so the
 host supplies `labels` — `archivalLabels(template)` builds the activity title, step names, control labels and content
 group labels from the exact saved template it still holds (names for another template version are ignored) — and

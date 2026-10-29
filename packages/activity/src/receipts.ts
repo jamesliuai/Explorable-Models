@@ -8,8 +8,8 @@
  * reported with `history`: the host committed it, so the caller follows the host-owned activity revision and keeps the
  * grant as history that never counts for visibility.
  */
-import { canonicalJSON } from '@experiment-kit/core';
-import type { ModelRef } from '@experiment-kit/core/model';
+import { canonicalJSON } from '@explorable-models/core';
+import type { ModelRef } from '@explorable-models/core/model';
 import type { AssistanceReceipt, Diagnostic, ExposureGrant, ExposureReceipt, GroupDigest, StageReceipt, TemplateRef } from './contracts.js';
 import { CONTRACTS } from './contracts.js';
 import { timestampMs } from './semantic.js';

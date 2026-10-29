@@ -1,6 +1,6 @@
 # Third-party notices
 
-Experiment Kit's original code and examples are MIT licensed. Scientific source references are linked from model cards; no textbook illustrations, restricted lesson text, or competitor source code is incorporated.
+Explorable Models's original code and examples are MIT licensed. Scientific source references are linked from model cards; no textbook illustrations, restricted lesson text, or competitor source code is incorporated.
 
 The exact dependency graph and integrity records are in `package-lock.json`. The release packages preserve upstream licenses. Direct dependencies include:
 
@@ -29,12 +29,12 @@ next to the bundled files.
 
 | Component | Version | License | Where it is redistributed | License text shipped |
 | --- | --- | --- | --- | --- |
-| KaTeX code and stylesheet | 0.19.0 | MIT, Copyright (c) 2013-2020 Khan Academy and other contributors | `@experiment-kit/player/activity`: lazy math chunk, `dist/activity/math/katex.min.css` | `dist/activity/math/LICENSE` (the katex package license) |
-| KaTeX fonts (`KaTeX_*.woff2`, from the katex 0.19.0 package, unmodified) | 0.19.0 | SIL Open Font License 1.1, Copyright (c) 2009-2010 Design Science, Inc. and (c) 2014-2018 Khan Academy, Reserved Font Names `KaTeX_AMS`, `KaTeX_Caligraphic`, `KaTeX_Fraktur`, `KaTeX_Main`, `KaTeX_Math`, `KaTeX_SansSerif`, `KaTeX_Script`, `KaTeX_Size1`–`KaTeX_Size4`, `KaTeX_Typewriter` (as declared in the fonts' name tables) | `@experiment-kit/player/activity`: `dist/activity/math/fonts/` | `dist/activity/math/fonts/LICENSE` (written by the player build from the fonts' declarations and the full OFL 1.1 text, because the katex package ships no OFL file) |
-| Inter variable font (Fontsource packaging `@fontsource-variable/inter`) | 5.3.0 | SIL Open Font License 1.1, Copyright 2016 The Inter Project Authors | `@experiment-kit/player/activity`: `dist/activity/fonts/inter/*.woff2` (used only with `fonts: 'bundled'`) | `dist/activity/fonts/inter/LICENSE` (full OFL 1.1 text) |
-| Three.js | 0.186.1 | MIT, Copyright © 2010-2026 three.js authors | `@experiment-kit/player-3d` declares it as a peer dependency and does not bundle it; application builds that include the spatial renderer (the site build and the Tauri reference host) bundle it | the `three` package's `LICENSE` in the consumer's installation; reproduce it with any application bundle that contains Three.js |
+| KaTeX code and stylesheet | 0.19.0 | MIT, Copyright (c) 2013-2020 Khan Academy and other contributors | `@explorable-models/player/activity`: lazy math chunk, `dist/activity/math/katex.min.css` | `dist/activity/math/LICENSE` (the katex package license) |
+| KaTeX fonts (`KaTeX_*.woff2`, from the katex 0.19.0 package, unmodified) | 0.19.0 | SIL Open Font License 1.1, Copyright (c) 2009-2010 Design Science, Inc. and (c) 2014-2018 Khan Academy, Reserved Font Names `KaTeX_AMS`, `KaTeX_Caligraphic`, `KaTeX_Fraktur`, `KaTeX_Main`, `KaTeX_Math`, `KaTeX_SansSerif`, `KaTeX_Script`, `KaTeX_Size1`–`KaTeX_Size4`, `KaTeX_Typewriter` (as declared in the fonts' name tables) | `@explorable-models/player/activity`: `dist/activity/math/fonts/` | `dist/activity/math/fonts/LICENSE` (written by the player build from the fonts' declarations and the full OFL 1.1 text, because the katex package ships no OFL file) |
+| Inter variable font (Fontsource packaging `@fontsource-variable/inter`) | 5.3.0 | SIL Open Font License 1.1, Copyright 2016 The Inter Project Authors | `@explorable-models/player/activity`: `dist/activity/fonts/inter/*.woff2` (used only with `fonts: 'bundled'`) | `dist/activity/fonts/inter/LICENSE` (full OFL 1.1 text) |
+| Three.js | 0.186.1 | MIT, Copyright © 2010-2026 three.js authors | `@explorable-models/player-3d` declares it as a peer dependency and does not bundle it; application builds that include the spatial renderer (the site build and the Tauri reference host) bundle it | the `three` package's `LICENSE` in the consumer's installation; reproduce it with any application bundle that contains Three.js |
 
-`dist/activity/THIRD_PARTY_NOTICES.md` in `@experiment-kit/player` lists the bundled components with their versions,
+`dist/activity/THIRD_PARTY_NOTICES.md` in `@explorable-models/player` lists the bundled components with their versions,
 and the player build fails if a directory of bundled fonts has no license file beside it. The Inter and KaTeX fonts
 are redistributed unmodified; under the OFL they may be bundled and redistributed with software but not sold by
 themselves, and modified versions may not use a Reserved Font Name.

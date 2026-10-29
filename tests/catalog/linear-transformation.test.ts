@@ -5,10 +5,10 @@ import { fileURLToPath } from 'node:url';
 import { describe, expect, it } from 'vitest';
 import {
   groupContentDigest, groupDigests, templateDigest, templateRef, validateRecord, validateTemplateSemantics, type ActivityTemplate, type MarkSpec,
-} from '@experiment-kit/activity';
+} from '@explorable-models/activity';
 import {
   checkParameters, createModelEvaluator, isCompatible, modelIdentity, validateManifest, type ModelManifest, type QuantityResult,
-} from '@experiment-kit/core/model';
+} from '@explorable-models/core/model';
 import { LINEAR_COPY } from '../../packages/catalog/src/copy/linear-transformation';
 import {
   LINEAR_GRID, LINEAR_KERNEL_ID, LINEAR_KERNEL_VERSION, linearTransformationKernel as kernel,
@@ -293,7 +293,7 @@ describe('linear-transformation content boundaries (report §12.6)', () => {
 
   it('keeps the kernel module free of templates, copy and manifests', () => {
     const source = readFileSync(SOURCES[0]!, 'utf8');
-    expect([...source.matchAll(/from\s+'([^']+)'/g)].map(match => match[1])).toEqual(['@experiment-kit/core/model']);
+    expect([...source.matchAll(/from\s+'([^']+)'/g)].map(match => match[1])).toEqual(['@explorable-models/core/model']);
     expect(source).toMatch(/import type/);
   });
 });

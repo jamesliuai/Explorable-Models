@@ -1,5 +1,5 @@
 {
-  "name": "@experiment-kit/activity",
+  "name": "@explorable-models/activity",
   "version": "0.3.0-preview.1",
   "description": "Study Harness activity contracts, projection policy, exposure protocol, journal and adapter.",
   "type": "module",
@@ -47,6 +47,6 @@
     "url": "https://github.com/jamesliuai/Explorable-Models/issues"
   },
   "dependencies": {
-    "@experiment-kit/core": "0.3.0-preview.1"
+    "@explorable-models/core": "0.3.0-preview.1"
   }
 }

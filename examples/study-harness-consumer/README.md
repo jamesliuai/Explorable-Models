@@ -16,11 +16,11 @@ Results obtained with it say nothing about the Study Harness application, a pack
 | --- | --- | --- |
 | `activity.html` | `src/activity-dom.ts` | Plain-DOM host: `createStudyHarnessVisualizer` with `mountStudyActivity` (shadow root per card) |
 | `activity-react.html` | `src/activity-react.tsx` | React host: one React root renders every card as `<StudyActivitySurface binding={…} />`, adapter from `createStudyHarnessAdapter` |
-| `spatial.html` | `src/spatial.ts` | Plain-DOM host with `spatialLoader: () => import('@experiment-kit/player-3d')`; Three.js loads only for a `scene3d` view |
+| `spatial.html` | `src/spatial.ts` | Plain-DOM host with `spatialLoader: () => import('@explorable-models/player-3d')`; Three.js loads only for a `scene3d` view |
 | `bench.html` | `src/bench.ts` | Benchmark fixture (not budgeted): measured cards, a wrapped catalogue worker with optional reply delay, the fixture host with controllable latency, and the schema 2.0 document player for the document-path workloads |
 
 All pages use the catalogue's own kernel module worker (`new Worker(new URL('./worker.js', import.meta.url), { type:
-'module' })` inside `@experiment-kit/catalog`), bundled by Vite into a separate worker asset. Styles: the host chrome is
+'module' })` inside `@explorable-models/catalog`), bundled by Vite into a separate worker asset. Styles: the host chrome is
 a linked stylesheet (`src/page.css`); the learner surface adopts its own constructable stylesheet. No page has inline
 scripts or style attributes, so `style-src 'self'` and `script-src 'self'` suffice.
 

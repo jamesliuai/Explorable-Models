@@ -10,7 +10,7 @@
     "model": {
       "modelId": "vector-orientation",
       "version": "1.0.0",
-      "digest": "sha256:86d4baefcc949c683671165445b18f1211b6db294977432135f5842038522264"
+      "digest": "sha256:ea7b1b14301616597051092b082a76e59255a42e92c52fa65882ac22252d9301"
     },
     "title": "Orienting a unit vector",
     "purpose": "Relate the polar angle and azimuth of a unit vector to its Cartesian components.",

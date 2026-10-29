@@ -1,12 +1,12 @@
 // The reference host's lazy spatial renderer (report §13, A44, native G76). The learner card asks for it only when a
-// `scene3d` view of a spatial activity is on screen; `import('@experiment-kit/player-3d')` is a separate chunk (with
+// `scene3d` view of a spatial activity is on screen; `import('@explorable-models/player-3d')` is a separate chunk (with
 // Three.js) loaded from the packaged bundle under the production CSP, so a 2D activity never loads it. If the chunk
 // cannot load, the card shows its tested 2D projection and coordinate table instead.
 //
 // Every mounted renderer is also kept in a small host-side registry (view, mount and disposal times and the renderer's
 // own `stats()` counters) so the host can see that a spatial view rendered frames and released its resources when the
 // card went away. The registry holds no projection data and is never shown to the learner.
-import type { SpatialMountOptions, SpatialRendererInstance, SpatialRendererModule, SpatialRendererStats } from '@experiment-kit/player/activity';
+import type { SpatialMountOptions, SpatialRendererInstance, SpatialRendererModule, SpatialRendererStats } from '@explorable-models/player/activity';
 
 export interface SpatialRecord {
   viewId: string;
@@ -40,8 +40,8 @@ function tracked(module: SpatialRendererModule): SpatialRendererModule {
 }
 
 let loading: Promise<SpatialRendererModule> | null = null;
-/** `spatialLoader` for the learner card: the packed `@experiment-kit/player-3d` chunk, loaded once. */
+/** `spatialLoader` for the learner card: the packed `@explorable-models/player-3d` chunk, loaded once. */
 export function loadSpatialRenderer(): Promise<SpatialRendererModule> {
-  loading ??= import('@experiment-kit/player-3d').then(module => tracked(module), error => { loading = null; throw error; });
+  loading ??= import('@explorable-models/player-3d').then(module => tracked(module), error => { loading = null; throw error; });
   return loading;
 }

@@ -1,9 +1,9 @@
 {
-  "contract": "experiment-kit.reference-fixtures",
+  "contract": "explorable-models.reference-fixtures",
   "version": "1.0",
   "suiteId": "linear-function-example:0.1.0",
   "model": { "modelId": "linear-function-example", "version": "0.1.0" },
-  "author": "Example cases shipped with the experiment-kit activity scaffold, derived by hand from y = m·x + b and x_r = −b/m with binary-fraction inputs so every value is exact.",
+  "author": "Example cases shipped with the explorable-models activity scaffold, derived by hand from y = m·x + b and x_r = −b/m with binary-fraction inputs so every value is exact.",
   "review": "No independent human subject reviewer has approved these cases. Replace or extend them with independently derived cases for your model.",
   "semantics": "probe.value = m·p + b; slope = m; intercept = b; probe.x = p; root = −b/m for m ≠ 0, undefined NO_ROOT for m = 0 and b ≠ 0, undefined EVERY_X_IS_A_ROOT for m = 0 and b = 0. Parameters with |m·p + b| > 10 are rejected by the constraint probe-in-view.",
   "derivedFrom": null,

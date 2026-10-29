@@ -1,5 +1,5 @@
 import { useEffect, useState, useId, useRef } from 'react';
-import type { ParameterDefinition, Scalar } from '@experiment-kit/core';
+import type { ParameterDefinition, Scalar } from '@explorable-models/core';
 import { format } from '../utils';
 export function ParameterControl({name,definition,value,onCommit,onPreview,onCancel,compact=false}:{name:string;definition:ParameterDefinition;value:Scalar;onCommit:(value:Scalar)=>void;onPreview?:(value:number,commit:boolean)=>void;onCancel?:()=>void;compact?:boolean}) {
  const id=useId();const scale=definition.display?.scale??1;const [draft,setDraft]=useState(String(typeof value==='number'?Number((value*scale).toPrecision(12)):value));

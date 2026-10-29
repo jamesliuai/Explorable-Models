@@ -1,5 +1,5 @@
 /**
- * `experiment-kit activity capture` (report §15.2, §19, A50): every stage is prepared through the adapter and the
+ * `explorable-models activity capture` (report §15.2, §19, A50): every stage is prepared through the adapter and the
  * fixture host, its solution-bearing groups are authorized by the host, and the learner surface is mounted with the
  * learner projection. Outputs: a PNG of the card, the surface's pure-SVG capture and projection-only companion text.
  * Content a stage does not show is absent from every output; a failed run keeps the previous captures.

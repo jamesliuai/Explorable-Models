@@ -14,8 +14,8 @@ import { afterEach, describe, expect, it } from 'vitest';
 import {
   artifactIntegrity, createStudyHarnessAdapter, verifyReceipt,
   type ActivityArtifact, type ActivityCatalog, type CatalogEntryStatus, type ExposureRecord, type HostPort, type StudyHarnessAdapter,
-} from '@experiment-kit/activity';
-import { createInstalledCatalog } from '@experiment-kit/catalog';
+} from '@explorable-models/activity';
+import { createInstalledCatalog } from '@explorable-models/catalog';
 import {
   ackCurrent, activityGuard, codesOf, DIGESTS, enterExplore, expectValidEvents, harness, MODEL, okOf, op, open, policyFor, presentationGuard, requestFor, settled, TEMPLATE, until,
   type Harness, type HarnessOptions, type Opened,

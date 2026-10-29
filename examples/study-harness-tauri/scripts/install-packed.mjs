@@ -6,7 +6,7 @@
 // --pack  first runs `node scripts/study-harness/pack.mjs --only=core,activity,catalog,player,player-3d` at the
 //         repository root (builds the packages and packs them into release/study-harness/packages with a hash manifest).
 //
-// `@experiment-kit/player-3d` (with its pinned peer `three`) is installed so spatial activities load the real lazy 3D
+// `@explorable-models/player-3d` (with its pinned peer `three`) is installed so spatial activities load the real lazy 3D
 // chunk in the packaged app (native.md, G76); 2D activities never load it.
 //
 // The tarballs are referenced by `file:` paths in package.json (no monorepo aliases, no workspace links). Each
@@ -46,7 +46,7 @@ const manifest = JSON.parse(readFileSync(manifestPath, 'utf8'));
 const appManifest = JSON.parse(readFileSync(path.join(appRoot, 'package.json'), 'utf8'));
 
 const expected = PACKAGES.map((short) => {
-  const name = `@experiment-kit/${short}`;
+  const name = `@explorable-models/${short}`;
   const entry = manifest.packages.find((item) => item.name === name);
   if (!entry) throw new Error(`${name} is missing from ${path.relative(repoRoot, manifestPath)}; re-run with --pack.`);
   const spec = appManifest.dependencies[name];
@@ -71,7 +71,7 @@ if (existsSync(lockPath)) {
   }
   if (changed) writeFileSync(lockPath, `${JSON.stringify(lock, null, 2)}\n`);
 }
-for (const short of PACKAGES) rmSync(path.join(appRoot, 'node_modules/@experiment-kit', short), { recursive: true, force: true });
+for (const short of PACKAGES) rmSync(path.join(appRoot, 'node_modules/@explorable-models', short), { recursive: true, force: true });
 
 const cache = mkdtempSync(path.join(tmpdir(), 'sh-reference-npm-cache-'));
 console.log(`[install-packed] npm install with isolated cache ${cache}`);

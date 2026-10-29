@@ -2,7 +2,7 @@
  * Model manifest for fixed-step gradient descent on f(x) = a·x²/2 (report §12.3). Data only; the installed kernel
  * `quadratic-gradient-descent@1.0.0` evaluates it in the catalogue worker.
  */
-import type { ModelManifest } from '@experiment-kit/core/model';
+import type { ModelManifest } from '@explorable-models/core/model';
 import {
   QUADRATIC_CURVE, QUADRATIC_DOMAIN, QUADRATIC_KERNEL_ID, QUADRATIC_KERNEL_VERSION, QUADRATIC_MAX_INDEX, QUADRATIC_REGIMES,
 } from '../kernels/quadratic-gradient-descent.js';
@@ -19,7 +19,7 @@ const TRACE_PLANE = 'index-position plane';
 const traceLength = QUADRATIC_MAX_INDEX + 1;
 
 export const quadraticGradientDescentManifest: ModelManifest = {
-  contract: 'experiment-kit.model-manifest',
+  contract: 'explorable-models.model-manifest',
   schemaVersion: '1.0',
   modelId: 'quadratic-gradient-descent',
   version: '1.0.0',

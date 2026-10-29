@@ -1,4 +1,4 @@
-import { createDocumentInteractionController, type DocumentInteractionController } from '@experiment-kit/core/declarative';
+import { createDocumentInteractionController, type DocumentInteractionController } from '@explorable-models/core/declarative';
 import { rodDocument } from './document';
 
 /** The supported document interaction controller (primary/scratch sessions, coalesced previews, suspension). */

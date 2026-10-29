@@ -21,9 +21,9 @@
  * - a segment mark with `extent: 'line'` depicts unbounded lines: each segment is extended to the edges of the view and
  *   clipped there silently, and its endpoints are neither counted as out-of-view data nor part of the data extent.
  */
-import type { MarkSpec, ProjectedMark, ProjectedView } from '@experiment-kit/activity';
-import type { GeometryResult } from '@experiment-kit/core/model';
-import type { LabelPlacement } from '@experiment-kit/activity';
+import type { MarkSpec, ProjectedMark, ProjectedView } from '@explorable-models/activity';
+import type { GeometryResult } from '@explorable-models/core/model';
+import type { LabelPlacement } from '@explorable-models/activity';
 import type { LabelObstacle, LabelRequest } from './labels.js';
 import { formatShown } from './format.js';
 import { clipLine, clipSegment, expandDomain, insideDomain, isFiniteNumber, type Bounds2, type PlotFrame, type Point } from './scale.js';

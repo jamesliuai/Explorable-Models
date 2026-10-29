@@ -5,8 +5,8 @@
  * restore never delete a record (A19). Each record belongs to a lineage (the context epoch it was granted in);
  * reveal grants count for visibility only within their lineage, so entering an independent context ends them.
  */
-import { deepFreeze } from '@experiment-kit/core';
-import type { ModelRef } from '@experiment-kit/core/model';
+import { deepFreeze } from '@explorable-models/core';
+import type { ModelRef } from '@explorable-models/core/model';
 import type { DisplayEndReason, ExposureGrant, ExposureRecord, TemplateRef } from './contracts.js';
 import { ACTIVITY_SCHEMA_VERSION, CONTRACTS } from './contracts.js';
 

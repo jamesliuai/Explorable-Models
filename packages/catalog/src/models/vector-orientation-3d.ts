@@ -2,7 +2,7 @@
  * Model manifest for the orientation of two vectors in a right-handed three-dimensional frame (report §12.4). Data
  * only; the installed kernel `vector-orientation-3d@1.0.0` evaluates it in the catalogue worker.
  */
-import type { ModelGeometryDefinition, ModelManifest, ModelParameterDefinition, ModelQuantityDefinition } from '@experiment-kit/core/model';
+import type { ModelGeometryDefinition, ModelManifest, ModelParameterDefinition, ModelQuantityDefinition } from '@explorable-models/core/model';
 import {
   ANGLE_ARC, RELATIONSHIP_TOLERANCE, VECTOR_ORIENTATION_DOMAIN, VECTOR_ORIENTATION_KERNEL_ID, VECTOR_ORIENTATION_KERNEL_VERSION, VECTOR_RELATIONSHIPS,
 } from '../kernels/vector-orientation-3d.js';
@@ -47,7 +47,7 @@ const projectionGeometry = (plane: keyof typeof PLANES): ModelGeometryDefinition
     `Segments from the origin to the projections of u (ID "u") and v (ID "v") onto the ${plane} plane. A vector perpendicular to the plane projects to a point and has no segment there.`);
 
 export const vectorOrientationManifest: ModelManifest = {
-  contract: 'experiment-kit.model-manifest',
+  contract: 'explorable-models.model-manifest',
   schemaVersion: '1.0',
   modelId: 'vector-orientation-3d',
   version: '1.0.0',

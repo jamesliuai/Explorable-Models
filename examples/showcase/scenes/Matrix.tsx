@@ -1,5 +1,5 @@
 import { useId } from 'react';
-import type { SessionState } from '@experiment-kit/core/declarative';
+import type { SessionState } from '@explorable-models/core/declarative';
 import { Arrow, C, FrameSvg, n, point, type XY } from './shared';
 export function Matrix({ state }: { state: SessionState }) {
   const f = state.frame!, uid = useId(), project = ([x, y]: XY): XY => [300 + x * 55, 235 - y * 55];

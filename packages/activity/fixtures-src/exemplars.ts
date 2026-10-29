@@ -6,8 +6,8 @@
  *
  * Content is fixture data for contract tests; it is not a reviewed teaching activity.
  */
-import { sha256 } from '@experiment-kit/core';
-import { modelIdentity, type ModelManifest, type ModelRef } from '@experiment-kit/core/model';
+import { sha256 } from '@explorable-models/core';
+import { modelIdentity, type ModelManifest, type ModelRef } from '@explorable-models/core/model';
 import {
   CONTRACTS, type ActivityArtifact, type ActivityInstance, type ActivityRecords, type ActivityRequest, type ActivityTemplate, type AppendResult, type AssistanceReceipt,
   type AssistanceRequest, type DisplayAckRequest, type EventType, type ExposureGrant, type ExposureIntentRequest, type ExposureReceipt, type ExposureRecord,
@@ -26,7 +26,7 @@ const PI = Math.PI;
 // Model manifests
 // ---------------------------------------------------------------------------------------------
 export const quadraticManifest: ModelManifest = {
-  contract: 'experiment-kit.model-manifest', schemaVersion: '1.0', modelId: 'quadratic-descent', version: '1.0.0',
+  contract: 'explorable-models.model-manifest', schemaVersion: '1.0', modelId: 'quadratic-descent', version: '1.0.0',
   title: 'Gradient descent on a quadratic loss',
   summary: 'Fixed-step gradient descent on f(x) = a·x²/2. Each step multiplies the position by r = 1 − η·a.',
   execution: { kind: 'kernel', kernelId: 'quadratic-gradient-descent', kernelVersion: '1.0.0', mode: 'discrete', maxIndex: 1000 },
@@ -61,7 +61,7 @@ export const quadraticManifest: ModelManifest = {
 };
 
 export const orientationManifest: ModelManifest = {
-  contract: 'experiment-kit.model-manifest', schemaVersion: '1.0', modelId: 'vector-orientation', version: '1.0.0',
+  contract: 'explorable-models.model-manifest', schemaVersion: '1.0', modelId: 'vector-orientation', version: '1.0.0',
   title: 'Orientation of a unit vector',
   summary: 'A unit vector set by polar angle θ and azimuth φ, with its Cartesian components.',
   execution: { kind: 'kernel', kernelId: 'vector-orientation', kernelVersion: '1.0.0', mode: 'static' },
@@ -93,7 +93,7 @@ export const orientationManifest: ModelManifest = {
 
 /** Static kernel with an observed dataset (report §8.5): units, a missing cell with its reason and provenance. */
 export const observedManifest: ModelManifest = {
-  contract: 'experiment-kit.model-manifest', schemaVersion: '1.0', modelId: 'observed-fall', version: '1.0.0',
+  contract: 'explorable-models.model-manifest', schemaVersion: '1.0', modelId: 'observed-fall', version: '1.0.0',
   title: 'Recorded heights beside a constant-gravity prediction',
   summary: 'Predicted height h(t) = h0 − g·t²/2 beside recorded heights that are never joined or fitted.',
   execution: { kind: 'kernel', kernelId: 'observed-fall', kernelVersion: '1.0.0', mode: 'static' },
@@ -350,7 +350,7 @@ export const independentInstance: ActivityInstance = {
 // ---------------------------------------------------------------------------------------------
 // Snapshots, exposure, receipts
 // ---------------------------------------------------------------------------------------------
-const RUNTIME = { id: 'experiment-kit-activity', version: '0.3.0-preview.1' };
+const RUNTIME = { id: 'explorable-models-activity', version: '0.3.0-preview.1' };
 export const quadraticScientific: ScientificSnapshot = {
   contract: CONTRACTS.scientific, schemaVersion: '1.0', model: QUADRATIC_MODEL, scientificRevision: modelIdentity(quadraticManifest).scientificRevision,
   runtime: RUNTIME, runId: 'run-0002', params: { a: 1, eta: 1.5, x0: 8 }, position: { kind: 'index', index: 3, maxIndex: 1000 }, terminal: false,

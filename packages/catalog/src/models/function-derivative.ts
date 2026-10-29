@@ -3,7 +3,7 @@
  * second point (report §12.1). Data only; the installed kernel `function-derivative@1.0.0` evaluates it in the
  * catalogue worker.
  */
-import type { ModelManifest } from '@experiment-kit/core/model';
+import type { ModelManifest } from '@explorable-models/core/model';
 import {
   FUNCTION_DERIVATIVE_CURVATURES, FUNCTION_DERIVATIVE_CURVE, FUNCTION_DERIVATIVE_DOMAIN, FUNCTION_DERIVATIVE_KERNEL_ID, FUNCTION_DERIVATIVE_KERNEL_VERSION,
   FUNCTION_DERIVATIVE_SLOPE_SIGNS,
@@ -27,7 +27,7 @@ const parameter = (label: string, symbol: string, description: string, [min, max
 } as const);
 
 export const functionDerivativeManifest: ModelManifest = {
-  contract: 'experiment-kit.model-manifest',
+  contract: 'explorable-models.model-manifest',
   schemaVersion: '1.0',
   modelId: 'function-derivative',
   version: '1.0.0',

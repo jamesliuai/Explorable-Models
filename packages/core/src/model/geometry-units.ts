@@ -9,7 +9,7 @@ export const dependentCoordinate = (kind: GeometryKind): 'y' | 'z' => SPATIAL_KI
 /**
  * Canonical units of the coordinates of geometry `id` (report §8.3): its declared `coordinates`; absent, the units of
  * an observed geometry's x and y columns, or `unit` for every coordinate of any other geometry. Null for an unknown ID.
- * Template axes drawing the geometry must name these units exactly (`@experiment-kit/activity` semantic validation).
+ * Template axes drawing the geometry must name these units exactly (`@explorable-models/activity` semantic validation).
  */
 export function geometryCoordinates(manifest: ModelManifest, id: string): GeometryCoordinates | null {
   const g = Object.hasOwn(manifest.geometry, id) ? manifest.geometry[id] : undefined;

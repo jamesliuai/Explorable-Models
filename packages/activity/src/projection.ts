@@ -19,11 +19,11 @@
  * `projectionDigest` is sha256 of the canonical projection without `projectionId`, `status.live` and
  * `presentation.revision`.
  */
-import { digest } from '@experiment-kit/core';
+import { digest } from '@explorable-models/core';
 import {
   convert, isCompatible, observationGeometryIds, positionMode, unitLabel,
   type FramePosition, type GeometryResult, type ModelFrame, type ModelManifest, type ObservationGeometry, type QuantityResult, type UnitId,
-} from '@experiment-kit/core/model';
+} from '@explorable-models/core/model';
 import type {
   DataOrigin, LearnerProjection, ProjectedAlternative, ProjectedComparison, ProjectedControl, ProjectedControlRef, ProjectedEquation, ProjectedMark, ProjectedNavigation,
   ProjectedPermissions, ProjectedScenario, ProjectedStatus, ProjectedTable, ProjectedValue, ProjectedView, ScientificGuard, UiState,

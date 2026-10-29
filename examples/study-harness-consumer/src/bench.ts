@@ -7,16 +7,16 @@
  * Measurement primitives (all in-page, `performance.now()` time base):
  * - `paint`: a requestAnimationFrame callback followed by a MessageChannel task, i.e. after the frame's rendering work;
  * - projection publication: the learner binding's subscription callback;
- * - DOM commit: a MutationObserver on the surface root's `data-eka-projection` attribute (the projection now in the DOM);
+ * - DOM commit: a MutationObserver on the surface root's `data-ema-projection` attribute (the projection now in the DOM);
  * - worker evaluation: the catalogue worker is wrapped (`MeasuredWorker`) to time each `evaluate` request from
  *   postMessage to its reply, and optionally to hold replies (`workerDelayMs`, the slow-evaluator scenario);
  * - storage acknowledgement: the fixture host's own call log (`appendEvents`, `recordExposureIntent`, `recordDisplayAck`).
  */
-import type { Camera3D, CommandOutcome, LearnerProjection } from '@experiment-kit/activity';
-import { createLazyCatalog } from '@experiment-kit/catalog';
-import { createPreset, createVisualizationSession, type VisualizationSession } from '@experiment-kit/core/declarative';
-import { mountVisualization } from '@experiment-kit/player';
-import { createStudyHarnessVisualizer, mountStudyActivity, type SpatialRendererModule } from '@experiment-kit/player/activity';
+import type { Camera3D, CommandOutcome, LearnerProjection } from '@explorable-models/activity';
+import { createLazyCatalog } from '@explorable-models/catalog';
+import { createPreset, createVisualizationSession, type VisualizationSession } from '@explorable-models/core/declarative';
+import { mountVisualization } from '@explorable-models/player';
+import { createStudyHarnessVisualizer, mountStudyActivity, type SpatialRendererModule } from '@explorable-models/player/activity';
 import { ConsumerHost, type HostMethod } from './host';
 import { ConsumerSession, type CardMounter, type OpenCard } from './session';
 import './page.css';
@@ -105,7 +105,7 @@ let spatialModule: (SpatialRendererModule & { inspect?(element: Element): { stat
 const spatialLoads: number[] = [];
 const spatialLoader = async (): Promise<SpatialRendererModule> => {
   spatialLoads.push(now());
-  const module = await import('@experiment-kit/player-3d');
+  const module = await import('@explorable-models/player-3d');
   spatialModule = module as unknown as typeof spatialModule;
   return module;
 };
@@ -158,14 +158,14 @@ class Probe {
     record(card.learner.getProjection());
     this.unsubscribe = card.learner.subscribe(record);
     this.observer = new MutationObserver(() => {
-      const projectionId = this.root.dataset.ekaProjection;
+      const projectionId = this.root.dataset.emaProjection;
       if (!projectionId || this.dom.at(-1)?.projectionId === projectionId) return;
       const entry: DomCommit = { projectionId, at: now(), paintAt: null };
       this.dom.push(entry);
       if (this.dom.length > 4000) this.dom.splice(0, 2000);
       afterPaint(at => { entry.paintAt = at; });
     });
-    this.observer.observe(root, { attributes: true, attributeFilter: ['data-eka-projection'] });
+    this.observer.observe(root, { attributes: true, attributeFilter: ['data-ema-projection'] });
   }
   /** First DOM commit at or after `since` whose projection satisfies `test`, once painted. */
   painted(since: number, test: (published: Published) => boolean, timeoutMs = 10_000): Promise<DomCommit & { paintAt: number; published: Published }> {
@@ -297,7 +297,7 @@ async function showTables(activityId: string): Promise<number> {
   const toggle = root.querySelector<HTMLButtonElement>('[role="group"][aria-label="Also show"] button');
   if (toggle && toggle.getAttribute('aria-pressed') !== 'true') toggle.click();
   await nextPaint();
-  return root.querySelectorAll('[data-eka-panel="table"] tbody tr').length;
+  return root.querySelectorAll('[data-ema-panel="table"] tbody tr').length;
 }
 const svgElements = (activityId: string) => main.session.surfaceRoot(activityId)?.querySelectorAll('svg *').length ?? 0;
 
@@ -435,10 +435,10 @@ async function resizeSeries(activityId: string, input: { widths: number[]; repea
   let unchanged = 0;
   for (let repeat = 0; repeat < input.repeats; repeat++) {
     for (const width of input.widths) {
-      const svg = root.querySelector('svg.eka-plot');
+      const svg = root.querySelector('svg.ema-plot');
       const previous = svg?.getAttribute('width') ?? null;
       let changedAt: number | null = null;
-      const observer = new MutationObserver(() => { if (changedAt === null && root.querySelector('svg.eka-plot')?.getAttribute('width') !== previous) changedAt = now(); });
+      const observer = new MutationObserver(() => { if (changedAt === null && root.querySelector('svg.ema-plot')?.getAttribute('width') !== previous) changedAt = now(); });
       observer.observe(root, { subtree: true, attributes: true, attributeFilter: ['width'] });
       const t0 = now();
       card.wrapper.style.width = `${width}px`;
@@ -492,7 +492,7 @@ async function stalledPersistence(input: { outboxLimit: number; maxCommits: numb
     await session.settle(activityId);
     const probe = probeOf(activityId, session);
     const learner = session.card(activityId).learner;
-    const chip = () => { const element = session.surfaceRoot(activityId)?.querySelector<HTMLElement>('.eka-chip'); return element ? { tone: element.dataset.tone ?? null, text: (element.textContent ?? '').trim() } : null; };
+    const chip = () => { const element = session.surfaceRoot(activityId)?.querySelector<HTMLElement>('.ema-chip'); return element ? { tone: element.dataset.tone ?? null, text: (element.textContent ?? '').trim() } : null; };
     runtime.host.hold('appendEvents');
     const heldAt = now();
     const samples: CommandSample[] = [];
@@ -624,7 +624,7 @@ async function revealTiming(input: { latencyMs: number; repeats: number }) {
 // ---------------------------------------------------------------------------------------------------------------------
 // Spatial activities: commit → renderer frame, camera command → renderer frame, pointer orbit → renderer frame
 // ---------------------------------------------------------------------------------------------------------------------
-const spatialContainer = (activityId: string) => main.session.surfaceRoot(activityId)?.querySelector<HTMLElement>('.eka-spatial') ?? null;
+const spatialContainer = (activityId: string) => main.session.surfaceRoot(activityId)?.querySelector<HTMLElement>('.ema-spatial') ?? null;
 function rendererFrames(activityId: string): number | null {
   const container = spatialContainer(activityId);
   return container && spatialModule?.inspect ? spatialModule.inspect(container)?.stats.frames ?? null : null;
@@ -640,10 +640,10 @@ async function rendererFrameAfter(activityId: string, frames: number): Promise<n
 }
 async function openSpatial(templateId: string) {
   const summary = await open(templateId, { region: 'spatial' });
-  main.session.surfaceRoot(summary.activityId)?.querySelector('[data-eka-spatial]')?.scrollIntoView({ block: 'center' });
+  main.session.surfaceRoot(summary.activityId)?.querySelector('[data-ema-spatial]')?.scrollIntoView({ block: 'center' });
   const state = await until(() => {
-    const element = main.session.surfaceRoot(summary.activityId)?.querySelector<HTMLElement>('[data-eka-spatial]');
-    const value = element?.dataset.ekaSpatialState;
+    const element = main.session.surfaceRoot(summary.activityId)?.querySelector<HTMLElement>('[data-ema-spatial]');
+    const value = element?.dataset.emaSpatialState;
     return value === 'ready' || value === 'fallback' || value === 'failed' ? value : null;
   }, 15_000, 'the spatial view');
   if (state === 'ready') await until(() => (rendererFrames(summary.activityId) ?? 0) > 0, 10_000, 'the first renderer frame');
@@ -731,7 +731,7 @@ async function stopOrbit() {
 }
 
 // ---------------------------------------------------------------------------------------------------------------------
-// Legacy schema 2.0 document path (@experiment-kit/player + @experiment-kit/core/declarative)
+// Legacy schema 2.0 document path (@explorable-models/player + @explorable-models/core/declarative)
 // ---------------------------------------------------------------------------------------------------------------------
 /** The parts of a schema 2.0 document the workloads change (the session validates the whole document). */
 type LegacyDocument = { quantities: Record<string, unknown>; views: { marks: unknown[]; bounds?: unknown }[]; series: Record<string, unknown>; datasets?: unknown };
@@ -839,7 +839,7 @@ async function lifecycle(input: { cycles: number; heapEvery: number; prefix?: st
     cycles: input.cycles, durationsMs: durations, heap, gcForced: typeof gc === 'function',
     workers: { created: workerStats.created - workersBefore.created, terminated: workerStats.terminated - workersBefore.terminated, live: workerStats.live, peak: workerStats.peak },
     openCardsInSession: main.session.cards.size,
-    connectedSurfaces: document.querySelectorAll('#stress [data-experiment-kit-activity]').length,
+    connectedSurfaces: document.querySelectorAll('#stress [data-explorable-models-activity]').length,
     adapterStillOpen: opened.filter(id => { const state = main.visualizer.getState(id, 'learner'); return !('ok' in state && state.ok === false) && (state as { projection?: LearnerProjection }).projection?.status.ui !== 'disposed'; }).length,
   };
 }
@@ -874,7 +874,7 @@ const bench = {
       dom: probe.dom.slice(-last).map(entry => ({ id: entry.projectionId.slice(0, 8), at: Math.round(entry.at * 10) / 10, paintAt: entry.paintAt === null ? null : Math.round(entry.paintAt * 10) / 10 })),
     };
   },
-  connectedSurfaces: () => document.querySelectorAll('[data-experiment-kit-activity]').length,
+  connectedSurfaces: () => document.querySelectorAll('[data-explorable-models-activity]').length,
 };
 export type Bench = typeof bench;
 Object.assign(window, { bench });

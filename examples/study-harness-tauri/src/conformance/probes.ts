@@ -2,8 +2,8 @@
 // negative probes, module workers, Web Crypto, KaTeX output and fonts inside the learner card, SVG/PNG capture of the
 // card, an optional WebGL probe, resource origins and the native command boundary (raw bodies, bounds, stable errors,
 // ACL rejection of ungranted and plugin commands).
-import { isHostRefusal } from '@experiment-kit/activity';
-import type { StudyHarnessSurface } from '@experiment-kit/player/activity';
+import { isHostRefusal } from '@explorable-models/activity';
+import type { StudyHarnessSurface } from '@explorable-models/player/activity';
 import { call, callBytes, callJsonObject, NativeHostError, toNativeError } from '../native-bridge';
 import { NativeHostPort } from '../native-host';
 import type { ProbeWorkerReply } from './probe-worker';
@@ -198,9 +198,9 @@ export async function mathProbe(surface: StudyHarnessSurface, timeoutMs = 20_000
   return probe('katex-in-card', async () => {
     const root = surface.element.shadowRoot;
     if (!root) return { status: 'fail', summary: 'no shadow root', details: {} };
-    const panel = root.querySelector<HTMLElement>('[data-eka-panel="equations"]');
+    const panel = root.querySelector<HTMLElement>('[data-ema-panel="equations"]');
     if (!panel) return { status: 'fail', summary: 'the card shows no equations panel', details: {} };
-    const equations = panel.querySelectorAll('.eka-equation').length;
+    const equations = panel.querySelectorAll('.ema-equation').length;
     const katexFaces = (status?: FontFaceLoadStatus) => [...document.fonts].filter(face => /^["']?KaTeX_/.test(face.family) && (!status || face.status === status));
     const mainLoaded = () => katexFaces('loaded').some(face => /KaTeX_Main/.test(face.family));
     const typeset = (node: Element) => [...node.querySelectorAll('.katex')].filter(math => !math.closest('[hidden]'));
@@ -209,8 +209,8 @@ export async function mathProbe(surface: StudyHarnessSurface, timeoutMs = 20_000
       const rect = panel.getBoundingClientRect();
       return { top: Math.round(rect.top), bottom: Math.round(rect.bottom), viewportHeight: innerHeight, inViewport: rect.bottom > 0 && rect.top < innerHeight };
     };
-    const history = [...panel.querySelectorAll('.eka-equation')].map(node => ({
-      equationId: node.getAttribute('data-eka-equation'), ...equationVisibility(node), rendered: typeset(node).length > 0,
+    const history = [...panel.querySelectorAll('.ema-equation')].map(node => ({
+      equationId: node.getAttribute('data-ema-equation'), ...equationVisibility(node), rendered: typeset(node).length > 0,
     }));
     const visibility = mathVisibilityState();
     const resources = mathResources(performance.getEntriesByType('resource'));

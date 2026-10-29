@@ -35,9 +35,9 @@ export const INTER_FONT_FILES: readonly FontFile[] = Object.freeze([
 ]);
 
 const STYLESHEET_FILE = './activity.css';
-declare const __EKA_PACKAGE_BUILD__: boolean | undefined;
+declare const __EMA_PACKAGE_BUILD__: boolean | undefined;
 /** True only in the esbuild package output, where `build.mjs` defines the constant. */
-export const PACKAGED = typeof __EKA_PACKAGE_BUILD__ === 'boolean' && __EKA_PACKAGE_BUILD__;
+export const PACKAGED = typeof __EMA_PACKAGE_BUILD__ === 'boolean' && __EMA_PACKAGE_BUILD__;
 /**
  * Component stylesheet asset (`dist/activity/activity.css`), used only where constructable stylesheets are missing.
  * Not a literal URL on purpose: hosts that rebundle the package and need the fallback pass `assetBase`.

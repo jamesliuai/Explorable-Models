@@ -13,14 +13,14 @@ interface WorkerScope {
     addEventListener(type: string, listener: (event: any) => void): void;
 }
 interface WorkerRequest {
-    namespace: 'experiment-kit';
+    namespace: 'explorable-models';
     id: number;
     method: 'evaluate' | 'timeDomain';
     params: ScalarParams;
     time?: number;
 }
 interface WorkerResponse {
-    namespace: 'experiment-kit';
+    namespace: 'explorable-models';
     id: number;
     ok: boolean;
     modelKind?: 'analytic' | 'parametric';
@@ -54,7 +54,7 @@ export class WorkerExecutor implements ModelExecutor {
         data: WorkerResponse;
     }) => {
         const response = event.data;
-        if (response?.namespace !== 'experiment-kit' || !Number.isInteger(response.id))
+        if (response?.namespace !== 'explorable-models' || !Number.isInteger(response.id))
             return;
         const pending = this.pending.get(response.id);
         if (!pending)
@@ -93,7 +93,7 @@ export class WorkerExecutor implements ModelExecutor {
             const timer = setTimeout(() => this.shutdown(new ExperimentError('TIMEOUT', `Model did not respond within ${this.timeoutMs} ms. The last accepted frame is preserved.`)), this.timeoutMs);
             this.pending.set(id, { resolve, reject, timer });
             try {
-                this.worker.postMessage({ namespace: 'experiment-kit', id, method, params, time } satisfies WorkerRequest);
+                this.worker.postMessage({ namespace: 'explorable-models', id, method, params, time } satisfies WorkerRequest);
             }
             catch (error) {
                 clearTimeout(timer);
@@ -117,7 +117,7 @@ export function exposeModelWorker<P extends ScalarParams>(model: AnalyticModel<P
         data: WorkerRequest;
     }) => {
         const request = event.data;
-        if (request?.namespace !== 'experiment-kit' || !Number.isInteger(request.id) || !['evaluate', 'timeDomain'].includes(request.method))
+        if (request?.namespace !== 'explorable-models' || !Number.isInteger(request.id) || !['evaluate', 'timeDomain'].includes(request.method))
             return;
         try {
             const params = deepFreeze(clone(request.params)) as P;
@@ -134,10 +134,10 @@ export function exposeModelWorker<P extends ScalarParams>(model: AnalyticModel<P
                     throw new ExperimentError('OUT_OF_DOMAIN', 'Invalid worker time.');
                 result = model.evaluate(deepFreeze({ params, time: request.time }));
             }
-            scope.postMessage({ namespace: 'experiment-kit', id: request.id, ok: true, modelKind: model.kind, result } satisfies WorkerResponse);
+            scope.postMessage({ namespace: 'explorable-models', id: request.id, ok: true, modelKind: model.kind, result } satisfies WorkerResponse);
         }
         catch (error) {
-            scope.postMessage({ namespace: 'experiment-kit', id: request.id, ok: false, modelKind: model.kind, error: asExperimentError(error).toJSON() } satisfies WorkerResponse);
+            scope.postMessage({ namespace: 'explorable-models', id: request.id, ok: false, modelKind: model.kind, error: asExperimentError(error).toJSON() } satisfies WorkerResponse);
         }
     });
 }

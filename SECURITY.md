@@ -6,8 +6,8 @@ CLI and the schema 2.0 declarative player.
 
 ## Study Harness visualization subsystem (0.3.0-preview.1)
 
-This section covers `@experiment-kit/activity`, `@experiment-kit/catalog`, `@experiment-kit/player/activity`,
-`@experiment-kit/player-3d`, the activity tools in `@experiment-kit/agent`, and the packaged reference host
+This section covers `@explorable-models/activity`, `@explorable-models/catalog`, `@explorable-models/player/activity`,
+`@explorable-models/player-3d`, the activity tools in `@explorable-models/agent`, and the packaged reference host
 `examples/study-harness-tauri`. The specification is report §16.
 
 ### Supported threat model

@@ -2,7 +2,7 @@
  * Study Harness activity contracts, schema 1.0. JSON-compatible, DOM-free and provider-neutral.
  * The JSON Schemas in ./schemas.ts are authoritative; these types are checked against them by tests.
  */
-import type { CapabilityRef, FramePosition, ModelManifest, ModelRef, PositionRequest, QuantityResult, UnitId } from '@experiment-kit/core/model';
+import type { CapabilityRef, FramePosition, ModelManifest, ModelRef, PositionRequest, QuantityResult, UnitId } from '@explorable-models/core/model';
 import type { TemplateDiscovery } from './api.js';
 
 export const ACTIVITY_SCHEMA_VERSION = '1.0' as const;
@@ -627,7 +627,7 @@ export function hostRefusal(code: HostRefusalCode, message = 'The host refused t
   return Object.assign(new Error(message), { name: 'HostRefusal', code });
 }
 
-/** Catalogue interface injected into the adapter; implemented by @experiment-kit/catalog. */
+/** Catalogue interface injected into the adapter; implemented by @explorable-models/catalog. */
 export interface CatalogEntryStatus { lifecycle: LifecycleStatus; reviews: ReviewRecord[]; revoked: boolean; revocationReason?: string }
 export interface ActivityCatalog {
   listTemplates(): { template: TemplateRef; model: ModelRef; title: string; dimension: '2d' | '3d'; status: CatalogEntryStatus }[];

@@ -1,4 +1,4 @@
-import type { VisualizationSession } from '@experiment-kit/core/declarative';
+import type { VisualizationSession } from '@explorable-models/core/declarative';
 
 const surfaces = new WeakMap<VisualizationSession, Set<HTMLElement>>();
 
@@ -32,7 +32,7 @@ export function exportSceneSvg(session: VisualizationSession, viewId: string): F
   clone.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
   clone.setAttribute('width', String(source.viewBox.baseVal.width)); clone.setAttribute('height', String(source.viewBox.baseVal.height));
   const palette = getComputedStyle(source);
-  const variables = ['--ek-bg', '--ek-ink', '--ek-muted', '--ek-border'].map(key => `${key}:${palette.getPropertyValue(key).trim()}`).join(';');
+  const variables = ['--em-bg', '--em-ink', '--em-muted', '--em-border'].map(key => `${key}:${palette.getPropertyValue(key).trim()}`).join(';');
   clone.setAttribute('style', variables);
   const meta = source.ownerDocument.createElementNS('http://www.w3.org/2000/svg', 'metadata');
   meta.textContent = JSON.stringify(metadata); clone.prepend(meta);

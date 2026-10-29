@@ -8,10 +8,10 @@
  */
 import { mkdirSync } from 'node:fs';
 import { expect, type Page } from '@playwright/test';
-import type { LearnerProjection, ProjectedValue } from '@experiment-kit/activity';
+import type { LearnerProjection, ProjectedValue } from '@explorable-models/activity';
 import { card, cardDom, control, focusKey, focused, projection, readCurrentValues, settle, tabTo, type FocusInfo } from '../../browser/support/study-harness';
 
-export const SHOTS_2D = '/tmp/experiment-kit-playwright/study-2d';
+export const SHOTS_2D = '/tmp/explorable-models-playwright/study-2d';
 mkdirSync(SHOTS_2D, { recursive: true });
 
 /** Outcome of a generic driver call (`window.studyHarnessFixture.<call>`), read after the fixture settled. */
@@ -34,7 +34,7 @@ export const quiet = (page: Page) => settle(page);
 
 /** Full-card screenshot under SHOTS_2D (equations scrolled into view first so KaTeX output is in the picture). */
 export async function shot(page: Page, name: string): Promise<void> {
-  const equations = card(page).locator('[data-eka-panel="equations"]');
+  const equations = card(page).locator('[data-ema-panel="equations"]');
   if (await equations.count()) {
     await equations.last().scrollIntoViewIfNeeded();
     await expect(equations.last().locator('.katex').first()).toBeVisible();
@@ -50,7 +50,7 @@ export const valueOf = (projected: LearnerProjection, id: string): ProjectedValu
   projected.views.flatMap(view => view.values).find(value => value.quantityId === id);
 /** Text of the rendered value row of a quantity (`dd` cells joined), or null when the row is absent. */
 export async function rowText(page: Page, quantityId: string): Promise<string | null> {
-  const row = card(page).locator(`[data-eka-panel="values"] .eka-value-row[data-quantity="${quantityId}"]`);
+  const row = card(page).locator(`[data-ema-panel="values"] .ema-value-row[data-quantity="${quantityId}"]`);
   if (!await row.count()) return null;
   return ((await row.first().locator('dd').allTextContents()).join(' ')).replace(/\s+/g, ' ').trim();
 }
@@ -94,7 +94,7 @@ export async function expectPresent(page: Page, markers: readonly string[], labe
 /** Exact entry of one control in display units; resolves after the committed run (or returns the shown error). */
 export async function exact(page: Page, parameter: string, value: string, options: { expectError?: boolean } = {}): Promise<string | null> {
   const box = control(page, parameter).getByRole('textbox');
-  const error = control(page, parameter).locator('.eka-error');
+  const error = control(page, parameter).locator('.ema-error');
   const previous = await error.count() ? (await error.textContent())?.trim() ?? '' : null;
   await box.fill(value);
   await box.press('Enter');
@@ -156,11 +156,11 @@ export async function countPointer(page: Page): Promise<() => Promise<number>> {
 
 /** Rendered SVG facts of one view: path data per primitive class and the label texts drawn on the plot. */
 export async function drawnView(page: Page, viewId: string): Promise<{ labels: string[]; notes: string[]; arrows: { shaft: string; head: boolean; role: string }[]; dots: number }> {
-  return card(page).locator(`figure[data-eka-figure="${viewId}"]`).evaluate(figure => ({
+  return card(page).locator(`figure[data-ema-figure="${viewId}"]`).evaluate(figure => ({
     // A wrapped label is one text element with one tspan per line.
-    labels: [...figure.querySelectorAll('.eka-labels text')].map(text => [...text.querySelectorAll('tspan')].map(line => line.textContent ?? '').join(' ') || (text.textContent ?? '')),
-    notes: [...figure.querySelectorAll('.eka-notes li')].map(item => item.textContent ?? ''),
-    arrows: [...figure.querySelectorAll('.eka-marks g.eka-stroke')].map(group => ({ shaft: group.querySelector('path')?.getAttribute('d') ?? '', head: group.querySelectorAll('path').length > 1, role: [...group.classList].find(name => name.startsWith('eka-role-')) ?? '' })),
-    dots: figure.querySelectorAll('.eka-marks path.eka-fill, .eka-marks path.eka-hollow').length,
+    labels: [...figure.querySelectorAll('.ema-labels text')].map(text => [...text.querySelectorAll('tspan')].map(line => line.textContent ?? '').join(' ') || (text.textContent ?? '')),
+    notes: [...figure.querySelectorAll('.ema-notes li')].map(item => item.textContent ?? ''),
+    arrows: [...figure.querySelectorAll('.ema-marks g.ema-stroke')].map(group => ({ shaft: group.querySelector('path')?.getAttribute('d') ?? '', head: group.querySelectorAll('path').length > 1, role: [...group.classList].find(name => name.startsWith('ema-role-')) ?? '' })),
+    dots: figure.querySelectorAll('.ema-marks path.ema-fill, .ema-marks path.ema-hollow').length,
   }));
 }

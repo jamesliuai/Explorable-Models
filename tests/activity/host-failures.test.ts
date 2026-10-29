@@ -9,7 +9,7 @@ import { afterEach, describe, expect, it } from 'vitest';
 import {
   CONTRACTS, DRAFT_0_9, DRAFT_0_9_TO_1_0, commandCapacity, createMigrationRegistry, createStudyHarnessAdapter, draft09Integrity, migrateArtifact, systemReserve,
   type ActivityArtifact, type HostPort, type InteractionEvent, type LearnerProjection, type MigrationStep,
-} from '@experiment-kit/activity';
+} from '@explorable-models/activity';
 import {
   ackCurrent, activityGuard, codesOf, enterExplore, guards, harness, manifest, okOf, op, open, policyFor, settled, template, until, type Harness, type Opened,
 } from './support/adapter-harness.js';

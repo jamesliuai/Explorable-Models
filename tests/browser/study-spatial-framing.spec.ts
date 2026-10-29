@@ -1,6 +1,6 @@
 /**
  * The 3D view on a narrow learner card (report §10.4, §13; G55, G52), in a real browser through the integration
- * fixture (`study-harness.html?template=<id>&spatial=1`) with `@experiment-kit/player-3d` loaded lazily:
+ * fixture (`study-harness.html?template=<id>&spatial=1`) with `@explorable-models/player-3d` loaded lazily:
  *
  * - at 320 and 390 px the default vectors of the vector-orientation activity span a readable fraction of the 3D view
  *   (the default camera frames the axes, their names and the drawn data instead of the box's bounding sphere);
@@ -15,10 +15,10 @@
  */
 import { mkdirSync } from 'node:fs';
 import { expect, test, type Page } from '@playwright/test';
-import type { SpatialInspection, SpatialStats } from '@experiment-kit/player-3d';
+import type { SpatialInspection, SpatialStats } from '@explorable-models/player-3d';
 import { card, openFixture, settle } from './support/study-harness';
 
-const SHOTS = '/tmp/experiment-kit-playwright/study-spatial-framing';
+const SHOTS = '/tmp/explorable-models-playwright/study-spatial-framing';
 mkdirSync(SHOTS, { recursive: true });
 const VECTOR = '?template=vector-orientation-3d';
 const SURFACE = '?template=quadratic-surface-gradient';
@@ -30,11 +30,11 @@ interface SpatialModule { inspect(element: Element): Inspection | null }
 type Fixture = { options: { spatialLoader: (() => Promise<SpatialModule>) | null } };
 interface LabelBox { text: string; kind: string; box: [number, number, number, number] }
 
-const spatial = (page: Page) => card(page).locator('[data-ek3-root]');
+const spatial = (page: Page) => card(page).locator('[data-em3-root]');
 async function inspect3d(page: Page): Promise<Inspection | null> {
   return page.evaluate(async () => {
     const hooks = window.studyHarnessFixture as unknown as Fixture;
-    const root = document.querySelector('[data-fx-card] [data-experiment-kit-activity]')?.shadowRoot?.querySelector('[data-ek3-root]');
+    const root = document.querySelector('[data-fx-card] [data-explorable-models-activity]')?.shadowRoot?.querySelector('[data-em3-root]');
     if (!root || !hooks.options.spatialLoader) return null;
     const result = (await hooks.options.spatialLoader()).inspect(root);
     return result ? JSON.parse(JSON.stringify(result)) as Inspection : null;
@@ -42,10 +42,10 @@ async function inspect3d(page: Page): Promise<Inspection | null> {
 }
 async function ready3d(page: Page): Promise<Inspection> {
   // The 3D view loads and renders only while on screen: bring it into the (narrow, short) viewport first.
-  await card(page).locator('[data-eka-spatial]').first().scrollIntoViewIfNeeded();
+  await card(page).locator('[data-ema-spatial]').first().scrollIntoViewIfNeeded();
   await expect(spatial(page)).toHaveCount(1, { timeout: 15_000 });
-  await card(page).locator('.ek3-viewport').scrollIntoViewIfNeeded();
-  await expect(spatial(page)).toHaveAttribute('data-ek3-status', 'ready', { timeout: 15_000 });
+  await card(page).locator('.em3-viewport').scrollIntoViewIfNeeded();
+  await expect(spatial(page)).toHaveAttribute('data-em3-status', 'ready', { timeout: 15_000 });
   await expect.poll(async () => (await inspect3d(page))?.stats.frames ?? 0).toBeGreaterThan(0);
   await page.waitForTimeout(150);
   return (await inspect3d(page))!;
@@ -57,9 +57,9 @@ async function until3d(page: Page, check: (view: Inspection) => boolean, what: s
 }
 /** Visible label boxes in the 3D viewport's coordinates (CSS pixels, y down). */
 async function labelBoxes(page: Page): Promise<LabelBox[]> {
-  return card(page).locator('.ek3-viewport').evaluate(viewport => {
+  return card(page).locator('.em3-viewport').evaluate(viewport => {
     const origin = viewport.getBoundingClientRect();
-    return [...viewport.querySelectorAll<HTMLElement>('.ek3-label')].filter(node => !node.hidden).map(node => {
+    return [...viewport.querySelectorAll<HTMLElement>('.em3-label')].filter(node => !node.hidden).map(node => {
       const rect = node.getBoundingClientRect();
       return { text: node.textContent ?? '', kind: node.dataset.kind ?? '', box: [rect.left - origin.left, rect.top - origin.top, rect.right - origin.left, rect.bottom - origin.top] as [number, number, number, number] };
     });

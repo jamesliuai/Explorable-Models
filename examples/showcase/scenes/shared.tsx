@@ -1,6 +1,6 @@
 import { useId } from 'react';
 import type { ReactNode } from 'react';
-import type { DocumentFrame, SeriesPoint, SessionState } from '@experiment-kit/core/declarative';
+import type { DocumentFrame, SeriesPoint, SessionState } from '@explorable-models/core/declarative';
 export type XY = [number, number];
 export const C = { teal: '#09877c', blue: '#477caf', amber: '#b8791d', violet: '#8660cb', ink: '#233344', muted: '#6e7c8c', grid: '#e9edf1' };
 export const fmt = (value: number, digits = 2) => value !== 0 && Math.abs(value) < .5 * 10 ** -digits ? value.toExponential(2) : value.toLocaleString('en-US', { minimumFractionDigits: digits, maximumFractionDigits: digits });

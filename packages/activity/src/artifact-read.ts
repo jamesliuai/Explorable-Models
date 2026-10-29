@@ -1,6 +1,6 @@
 /** Artifact decoding, verification and restore claims; reached on demand by the adapter restore operation. */
-import { canonicalJSON, sha256 } from '@experiment-kit/core';
-import { jsonDataErrors } from '@experiment-kit/core/model';
+import { canonicalJSON, sha256 } from '@explorable-models/core';
+import { jsonDataErrors } from '@explorable-models/core/model';
 import type { ActivityArtifact, Diagnostic, ExposureRecord } from './contracts.js';
 import { CONTRACTS } from './contracts.js';
 import { diagnostic, snapshotProblems } from './artifact-validation.js';

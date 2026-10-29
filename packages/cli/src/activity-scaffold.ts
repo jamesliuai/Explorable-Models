@@ -1,5 +1,5 @@
 /**
- * `experiment-kit activity scaffold <dir> [--from <installedTemplateId>] [--id <templateId>] [--kernel copy|installed]`.
+ * `explorable-models activity scaffold <dir> [--from <installedTemplateId>] [--id <templateId>] [--kernel copy|installed]`.
  *
  * Without `--from`, copies the toolkit's example package (packages/cli/templates/activity). With `--from`, copies an
  * installed package's data as an editable exploratory starting point: always a NEW template ID with version 0.1.0 and
@@ -17,8 +17,8 @@ import path from 'node:path';
 import { CliError, ensureEmptyDestination } from './files.js';
 import { sha256File, stableJSON } from './activity-files.js';
 import { ACTIVITY_TEMPLATE_DIRECTORY, INSTALLED_FIXTURE_DIRECTORY, INSTALLED_KERNEL_DIRECTORY, TOOLKIT_ROOT, loadToolkit, toolkitVersion } from './activity-loader.js';
-import type { ActivityTemplate, TemplateRef } from '@experiment-kit/activity';
-import type { ModelManifest } from '@experiment-kit/core/model';
+import type { ActivityTemplate, TemplateRef } from '@explorable-models/activity';
+import type { ModelManifest } from '@explorable-models/core/model';
 import type { AuthoringRecord } from './activity-validation.js';
 
 const ID = /^[a-z][a-z0-9-]{0,62}[a-z0-9]$/;
@@ -62,11 +62,11 @@ export function learnerCopy(template: ActivityTemplate, note: string): string {
 
 const GENERIC_CHECKS = `/**
  * Author checks for a package scaffolded from an installed template. They run only in the browser checks worker
- * (experiment-kit activity check). \`context.evaluate(params, position?)\` merges params over the defaults and evaluates
+ * (explorable-models activity check). \`context.evaluate(params, position?)\` merges params over the defaults and evaluates
  * through the worker-side request validation. Return true to pass, or a string/false/{ passed: false, detail } to fail.
  * Add checks that state what this model must do; independent reference cases belong in fixtures/reference.json.
  */
-import type { QuantityResult } from '@experiment-kit/core/model';
+import type { QuantityResult } from '@explorable-models/core/model';
 
 interface Frame { ok: boolean; quantities?: Record<string, QuantityResult>; diagnostics?: { code: string }[] }
 interface CheckContext { evaluate(params?: Record<string, number>): Frame }
@@ -129,7 +129,7 @@ export async function scaffoldActivity(destination: string, options: ScaffoldOpt
     await ensureEmptyDestination(directory);
     if (requested === 'copy' && execution.kind === 'kernel') {
       manifest = { ...manifest, modelId: templateId, version: '0.1.0', execution: { ...execution, kernelId: templateId, kernelVersion: '0.1.0' } };
-      const appended = `${kernelSource!.trimEnd()}\n\n/**\n * Authored copy made by experiment-kit activity scaffold from the installed kernel ${execution.kernelId}@${execution.kernelVersion}.\n * It runs as authored code in the browser worker under its own identity; edits never change the installed kernel.\n */\nexport const kernel: ModelKernel = Object.freeze({ id: ${JSON.stringify(templateId)}, version: '0.1.0', mode: ${exportName}.mode, evaluate: ${exportName}.evaluate });\n`;
+      const appended = `${kernelSource!.trimEnd()}\n\n/**\n * Authored copy made by explorable-models activity scaffold from the installed kernel ${execution.kernelId}@${execution.kernelVersion}.\n * It runs as authored code in the browser worker under its own identity; edits never change the installed kernel.\n */\nexport const kernel: ModelKernel = Object.freeze({ id: ${JSON.stringify(templateId)}, version: '0.1.0', mode: ${exportName}.mode, evaluate: ${exportName}.evaluate });\n`;
       await write(directory, 'kernel.ts', appended, files);
       kernelKind = 'copied-from-installed';
       notes.push(`kernel.ts is a copy of packages/catalog/src/kernels/${execution.kernelId}.ts under the new kernel and model ID ${templateId}@0.1.0.`);
@@ -150,7 +150,7 @@ export async function scaffoldActivity(destination: string, options: ScaffoldOpt
     } else notes.push('No installed reference suite is available in this toolkit tree; add fixtures/reference.json before claiming reference checks.');
     if (template.alternatives.length) notes.push('Accessible-alternative verification IDs name tests of the installed template; they have not exercised this copy. Re-verify and update verifiedBy.');
     await write(directory, 'checks.ts', GENERIC_CHECKS, files);
-    await write(directory, 'copy.md', learnerCopy(template, `Copied from the installed template ${from.templateId}@${from.version} (${from.digest}) by experiment-kit activity scaffold. Every learner-visible string of template.json, collected for review; edit the template, then keep this file in step.`), files);
+    await write(directory, 'copy.md', learnerCopy(template, `Copied from the installed template ${from.templateId}@${from.version} (${from.digest}) by explorable-models activity scaffold. Every learner-visible string of template.json, collected for review; edit the template, then keep this file in step.`), files);
   }
 
   // Identities: fixture bytes → reference-suite digest → model digest → template model reference.
@@ -166,13 +166,13 @@ export async function scaffoldActivity(destination: string, options: ScaffoldOpt
   const record: AuthoringRecord = {
     contract: tk.AUTHORING_CONTRACT, version: '1.0', lifecycle: 'authored',
     relation: { kind: 'new-composition', derivedFrom: from, model: from ? { modelId: manifest.modelId, version: manifest.version, digest: identity.digest } : null, kernel: kernelKind },
-    createdBy: `experiment-kit activity scaffold (toolkit ${toolkitVersion()})`,
+    createdBy: `explorable-models activity scaffold (toolkit ${toolkitVersion()})`,
     notes,
   };
   await write(directory, 'authoring.json', stableJSON(record), files);
   const quoted = JSON.stringify(directory);
   return {
     directory, templateId, from, kernel: kernelKind, files: files.sort(), notes,
-    next: [`experiment-kit activity validate ${quoted}`, `experiment-kit activity check ${quoted}`, `experiment-kit activity reference ${quoted}`, `experiment-kit activity capture ${quoted} --all-stages`, `experiment-kit activity review-packet ${quoted}`],
+    next: [`explorable-models activity validate ${quoted}`, `explorable-models activity check ${quoted}`, `explorable-models activity reference ${quoted}`, `explorable-models activity capture ${quoted} --all-stages`, `explorable-models activity review-packet ${quoted}`],
   };
 }

@@ -15,11 +15,11 @@ export class DocumentBrowserSession {
   private disposed = false;
   private constructor(private directory: string, private browser: Browser, private page: Page, private server: StaticServer, public readonly descriptors: readonly ToolDescriptor[]) {}
   static async create(): Promise<DocumentBrowserSession> {
-    const directory = await mkdtemp(path.join(tmpdir(), 'experiment-kit-document-'));
+    const directory = await mkdtemp(path.join(tmpdir(), 'explorable-models-document-'));
     let server: StaticServer | undefined, browser: Browser | undefined;
     try {
       // Only fixed toolkit entries are compiled. Documents arrive later as JSON via the tool protocol.
-      await build({ absWorkingDir: TOOLKIT_ROOT, entryPoints: { harness: 'packages/cli/src/document-harness.ts', 'document-worker': 'packages/core/src/declarative/document-worker.ts' }, outdir: directory, bundle: true, format: 'esm', platform: 'browser', target: 'es2022', logLevel: 'silent', alias: { '@experiment-kit/core/declarative': path.join(TOOLKIT_ROOT, 'packages/core/src/declarative/index.ts') } });
+      await build({ absWorkingDir: TOOLKIT_ROOT, entryPoints: { harness: 'packages/cli/src/document-harness.ts', 'document-worker': 'packages/core/src/declarative/document-worker.ts' }, outdir: directory, bundle: true, format: 'esm', platform: 'browser', target: 'es2022', logLevel: 'silent', alias: { '@explorable-models/core/declarative': path.join(TOOLKIT_ROOT, 'packages/core/src/declarative/index.ts') } });
       await writeFile(path.join(directory, 'index.html'), '<!doctype html><html lang="en"><meta charset="utf-8"><title>Explorable Models declarative tool worker</title><script type="module" src="/harness.js"></script></html>');
       server = await serveStatic(directory);
       try { browser = await chromium.launch({ headless: true }); }

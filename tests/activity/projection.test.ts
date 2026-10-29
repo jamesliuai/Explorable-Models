@@ -4,8 +4,8 @@
  * display units at the boundary, the digest contract and content-derived UI states.
  */
 import { afterEach, describe, expect, it } from 'vitest';
-import { projectionDigest, projectLearnerView, type LearnerProjection, type Visibility } from '@experiment-kit/activity';
-import { modelIdentity, type ModelFrame } from '@experiment-kit/core/model';
+import { projectionDigest, projectLearnerView, type LearnerProjection, type Visibility } from '@explorable-models/activity';
+import { modelIdentity, type ModelFrame } from '@explorable-models/core/model';
 import {
   activityGuard, ackCurrent, authorizeExploration, codesOf, enterExplore, guards, harness, manifest, okOf, op, open, presentationGuard, rectangleCatalog,
   rectangleModel, rectanglePolicy, rectangleRequest, rectangleTemplate, requestFor, settled, template, until, type Harness,

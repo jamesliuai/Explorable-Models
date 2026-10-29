@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://experiment-kit.dev/schema/study-harness/host-conformance-result-1.json",
+  "$id": "https://explorable-models.dev/schema/study-harness/host-conformance-result-1.json",
   "title": "Study Harness host conformance result (external gate G2, A54)",
   "description": "One run of the G2 conformance sequence against a host. subject labels whether the run used the actual Study Harness application or a fixture host (the packaged reference host or an in-memory host); fixture results never satisfy A54. Every step of the sequence is listed, with not-run and not-run (environment) kept distinct from pass. Do not put learner data, study content or credentials in this record.",
   "type": "object",
@@ -107,7 +107,7 @@
         "properties": {
           "name": {
             "type": "string",
-            "pattern": "^@experiment-kit/[a-z0-9-]{1,32}$"
+            "pattern": "^@explorable-models/[a-z0-9-]{1,32}$"
           },
           "version": {
             "type": "string",
@@ -127,7 +127,7 @@
         "name",
         "version"
       ],
-      "description": "The conformance kit that produced this record (for example @experiment-kit/activity/conformance); absent when the host ran the sequence with its own harness.",
+      "description": "The conformance kit that produced this record (for example @explorable-models/activity/conformance); absent when the host ran the sequence with its own harness.",
       "properties": {
         "name": {
           "type": "string",

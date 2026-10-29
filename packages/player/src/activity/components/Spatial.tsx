@@ -6,7 +6,7 @@
  * uses); it is shown automatically while the renderer reports a lost or unrecoverable graphics context.
  */
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
-import { SPATIAL_3D_CAPABILITY, type Camera3D, type LearnerProjection, type ProjectedControl, type ProjectedView } from '@experiment-kit/activity';
+import { SPATIAL_3D_CAPABILITY, type Camera3D, type LearnerProjection, type ProjectedControl, type ProjectedView } from '@explorable-models/activity';
 import { formatShown } from '../format.js';
 import { coordinateTable, projectView, PROJECTION_PLANES, spatialEquivalence, type CoordinateRow, type CoordinateTable as CoordinateTableData, type ProjectionPlane } from '../project3d.js';
 import type { SpatialPresentation, SpatialRendererInstance, SpatialRendererModule, SpatialStatus } from '../spatial-contract.js';
@@ -38,8 +38,8 @@ function useSeen(ref: { current: Element | null }): boolean {
 
 export function SpatialView({ view, projection, controls, showSummary, headingLevel }: { view: ProjectedView; projection: LearnerProjection; controls: readonly ProjectedControl[]; showSummary: boolean; headingLevel: number }) {
   const runtime = useRuntime();
-  const titleId = useStableId('eka-view');
-  const projectionTitleId = useStableId('eka-projection');
+  const titleId = useStableId('ema-view');
+  const projectionTitleId = useStableId('ema-projection');
   const rootRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const instance = useRef<SpatialRendererInstance | null>(null);
@@ -115,31 +115,31 @@ export function SpatialView({ view, projection, controls, showSummary, headingLe
   const unavailable = active && UNAVAILABLE.has(status.status);
   const projected = useMemo(() => projectView(view, plane), [view, plane]);
   const planeSelector = (
-    <div className="eka-segmented" role="toolbar" aria-label="Projection plane" onKeyDown={roving.onKeyDown}>
+    <div className="ema-segmented" role="toolbar" aria-label="Projection plane" onKeyDown={roving.onKeyDown}>
       {PROJECTION_PLANES.map((candidate, index) => (
-        <button key={candidate} type="button" className="eka-button" aria-pressed={plane === candidate} {...roving.itemProps(index)} onClick={() => setPlane(candidate)}>{PLANE_LABEL[candidate]}</button>
+        <button key={candidate} type="button" className="ema-button" aria-pressed={plane === candidate} {...roving.itemProps(index)} onClick={() => setPlane(candidate)}>{PLANE_LABEL[candidate]}</button>
       ))}
     </div>
   );
   const showFallback = !active || showProjection || unavailable;
   return (
-    <div className="eka-main" data-eka-spatial={view.viewId} data-eka-spatial-state={active ? status.status : 'fallback'} ref={rootRef}>
+    <div className="ema-main" data-ema-spatial={view.viewId} data-ema-spatial-state={active ? status.status : 'fallback'} ref={rootRef}>
       {active ? (
-        <figure className="eka-figure" aria-labelledby={titleId} data-eka-frame-id={projection.frame?.frameId ?? undefined} data-tentative={projection.frame?.kind === 'tentative' || undefined}>
-          <div className="eka-figure-head">
-            <Heading level={headingLevel} id={titleId} className="eka-figure-title">{view.title}</Heading>
-            <button type="button" className="eka-button" aria-pressed={showFallback} aria-disabled={unavailable || undefined}
+        <figure className="ema-figure" aria-labelledby={titleId} data-ema-frame-id={projection.frame?.frameId ?? undefined} data-tentative={projection.frame?.kind === 'tentative' || undefined}>
+          <div className="ema-figure-head">
+            <Heading level={headingLevel} id={titleId} className="ema-figure-title">{view.title}</Heading>
+            <button type="button" className="ema-button" aria-pressed={showFallback} aria-disabled={unavailable || undefined}
               onClick={() => { if (!unavailable) setShowProjection(value => !value); }}>2D projection and table</button>
           </div>
-          <div className="eka-figure-body"><div className="eka-spatial" ref={containerRef} /></div>
-          <div className="eka-figure-foot">
-            {unavailable ? <p className="eka-description">The 3D view is unavailable right now. {equivalence}</p> : null}
-            <p className={showSummary ? 'eka-description' : 'eka-sr'}>{view.summary}</p>
+          <div className="ema-figure-body"><div className="ema-spatial" ref={containerRef} /></div>
+          <div className="ema-figure-foot">
+            {unavailable ? <p className="ema-description">The 3D view is unavailable right now. {equivalence}</p> : null}
+            <p className={showSummary ? 'ema-description' : 'ema-sr'}>{view.summary}</p>
           </div>
         </figure>
       ) : (
-        <div className="eka-pending" data-state="spatial-fallback">
-          <span className="eka-glyph" aria-hidden="true">i</span>
+        <div className="ema-pending" data-state="spatial-fallback">
+          <span className="ema-glyph" aria-hidden="true">i</span>
           <p>{fallback ?? (seen ? 'Loading the 3D view…' : 'The 3D view loads when it is on screen.')} {equivalence}</p>
         </div>
       )}
@@ -158,19 +158,19 @@ export function SpatialView({ view, projection, controls, showSummary, headingLe
 }
 
 function CoordinateTable({ table, title, headingLevel }: { table: CoordinateTableData; title: string; headingLevel: number }) {
-  const headingId = useStableId('eka-coordinates');
+  const headingId = useStableId('ema-coordinates');
   const rows: CoordinateRow[] = table.rows;
   if (!rows.length) return null;
   return (
-    <section className="eka-panel" aria-labelledby={headingId}>
-      <Heading level={headingLevel} id={headingId} className="eka-panel-title">{title}</Heading>
-      <div className="eka-table-region" role="region" aria-labelledby={headingId} tabIndex={0}>
-        <table className="eka-table">
+    <section className="ema-panel" aria-labelledby={headingId}>
+      <Heading level={headingLevel} id={headingId} className="ema-panel-title">{title}</Heading>
+      <div className="ema-table-region" role="region" aria-labelledby={headingId} tabIndex={0}>
+        <table className="ema-table">
           <thead><tr><th scope="col">Item</th><th scope="col">Coordinates (x, y, z)</th><th scope="col">Value</th></tr></thead>
           <tbody>{rows.map(row => <tr key={row.key}><th scope="row">{row.label}</th>{row.cells.map((cell, i) => <td key={i}>{cell}</td>)}</tr>)}</tbody>
         </table>
       </div>
-      {table.notes.length ? <ul className="eka-notes" aria-label={`What ${title} does not list in full`} data-eka-coordinate-notes="">{table.notes.map(note => <li key={note}>{note}</li>)}</ul> : null}
+      {table.notes.length ? <ul className="ema-notes" aria-label={`What ${title} does not list in full`} data-ema-coordinate-notes="">{table.notes.map(note => <li key={note}>{note}</li>)}</ul> : null}
     </section>
   );
 }

@@ -8,7 +8,7 @@ import {
   artifactDigest, CONTRACTS, hostRefusal,
   type ActivityArtifact, type AppendResult, type AssistanceReceipt, type AssistanceRequest, type DisplayAckRequest, type ExposureIntentRequest, type ExposureReceipt,
   type HostAck, type HostPolicy, type HostPort, type InteractionEvent, type JournalCursor, type StageReceipt, type StageTransitionRequest,
-} from '@experiment-kit/activity';
+} from '@explorable-models/activity';
 
 type ReceiptRequest = StageTransitionRequest | ExposureIntentRequest;
 

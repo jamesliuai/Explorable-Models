@@ -20,7 +20,7 @@
  * are exact and carry none. Entries are bounded by 3 in magnitude, so nothing can overflow. A zero test vector and
  * the zero matrix are valid inputs whose images are the zero vector.
  */
-import type { GeometryResult, KernelInput, KernelOutput, ModelKernel, QuantityResult, Vec2 } from '@experiment-kit/core/model';
+import type { GeometryResult, KernelInput, KernelOutput, ModelKernel, QuantityResult, Vec2 } from '@explorable-models/core/model';
 
 export const LINEAR_KERNEL_ID = 'linear-transformation';
 export const LINEAR_KERNEL_VERSION = '1.0.0';

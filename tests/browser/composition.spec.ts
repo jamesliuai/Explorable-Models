@@ -1,7 +1,7 @@
 import { expect, test, type Page } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
-import type { VisualizationSession, MutationGuard } from '@experiment-kit/core/declarative';
-import type { VisualizationTools } from '@experiment-kit/agent';
+import type { VisualizationSession, MutationGuard } from '@explorable-models/core/declarative';
+import type { VisualizationTools } from '@explorable-models/agent';
 interface Studio { session: VisualizationSession; tools: VisualizationTools; guard(): MutationGuard }
 async function open(page: Page) { await page.goto('/agent.html'); await page.waitForFunction(() => Boolean((window as unknown as {__COMPOSITION_STUDIO__?: Studio}).__COMPOSITION_STUDIO__)); }
 async function state(page: Page) { return page.evaluate(() => (window as unknown as {__COMPOSITION_STUDIO__: Studio}).__COMPOSITION_STUDIO__.session.getState()); }
@@ -55,13 +55,13 @@ test('tool-only focused edits preserve first curve, guard human changes, and reo
 test('presentation revision preserves time and exact input handles undefined and small errors', async ({page})=>{
   await open(page);await preset(page,'oscillator');await page.evaluate(async()=>{const s=(window as unknown as {__COMPOSITION_STUDIO__:Studio}).__COMPOSITION_STUDIO__;await s.session.seek(2,s.guard());});
   const before=await state(page);await page.getByRole('button',{name:'Try a targeted revision'}).click();await expect(page.getByRole('status').first()).toContainText('scientific run and time preserved');const after=await state(page);expect(after.run?.id).toBe(before.run?.id);expect(after.frame?.time).toBe(2);expect(after.identity?.documentRevision).not.toBe(before.identity?.documentRevision);
-  await preset(page,'triangle');await page.getByRole('textbox',{name:'Base x exact value'}).fill('0');await page.getByRole('button',{name:'Apply Base x',exact:true}).click();await expect.poll(async()=>(await state(page)).frame?.quantities.angleA.status).toBe('undefined');await expect(page.locator('.ek-values')).toContainText(/undefined/i);
-  await preset(page,'riemann-sums');await expect(page.locator('.ek-values')).toContainText(/8\.333/);expect((await state(page)).frame?.quantities.error.value).not.toBe(0);
+  await preset(page,'triangle');await page.getByRole('textbox',{name:'Base x exact value'}).fill('0');await page.getByRole('button',{name:'Apply Base x',exact:true}).click();await expect.poll(async()=>(await state(page)).frame?.quantities.angleA.status).toBe('undefined');await expect(page.locator('.em-values')).toContainText(/undefined/i);
+  await preset(page,'riemann-sums');await expect(page.locator('.em-values')).toContainText(/8\.333/);expect((await state(page)).frame?.quantities.error.value).not.toBe(0);
 });
 
 test('responsive compositions expose keyboard controls without serious automated accessibility findings', async ({page})=>{
   await open(page);await page.getByRole('slider',{name:'Amplitude',exact:true}).focus();await page.keyboard.press('ArrowRight');await expect.poll(async()=>(await state(page)).run?.params.amplitude).toBeCloseTo(2.1);
   const results=await new AxeBuilder({page}).analyze();expect(results.violations.filter(v=>['serious','critical'].includes(v.impact??''))).toEqual([]);
-  for(const width of [1440,1024,390]) {await page.setViewportSize({width,height:900});await expect(page.getByRole('textbox',{name:'Amplitude exact value'})).toBeVisible();expect(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth+1)).toBe(true);await page.screenshot({path:`/tmp/experiment-kit-composition-${width}.png`,fullPage:true});}
-  await preset(page,'triangle');await page.getByRole('textbox',{name:'Base x exact value'}).fill('0');await page.getByRole('button',{name:'Apply Base x',exact:true}).click();await expect.poll(async()=>(await state(page)).frame?.quantities.angleA.status).toBe('undefined');await page.screenshot({path:'/tmp/experiment-kit-composition-boundary-390.png',fullPage:true});
+  for(const width of [1440,1024,390]) {await page.setViewportSize({width,height:900});await expect(page.getByRole('textbox',{name:'Amplitude exact value'})).toBeVisible();expect(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth+1)).toBe(true);await page.screenshot({path:`/tmp/explorable-models-composition-${width}.png`,fullPage:true});}
+  await preset(page,'triangle');await page.getByRole('textbox',{name:'Base x exact value'}).fill('0');await page.getByRole('button',{name:'Apply Base x',exact:true}).click();await expect.poll(async()=>(await state(page)).frame?.quantities.angleA.status).toBe('undefined');await page.screenshot({path:'/tmp/explorable-models-composition-boundary-390.png',fullPage:true});
 });

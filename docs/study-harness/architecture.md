@@ -10,34 +10,34 @@ The [requirement ledger](requirement-ledger.md) tracks A01–A60.
 ```mermaid
 flowchart TD
   Host[Study Harness host or reference host] -->|HostPort: policy, receipts, journal, artifacts| Adapter
-  Catalog[@experiment-kit/catalog: installed manifests, templates, kernels, review registry] --> Adapter
-  Adapter[@experiment-kit/activity: contracts, reducer, projection, exposure, journal, summaries] --> Session
-  Session[@experiment-kit/core/model: guarded model session, units, constraints, sampling] --> Worker
+  Catalog[@explorable-models/catalog: installed manifests, templates, kernels, review registry] --> Adapter
+  Adapter[@explorable-models/activity: contracts, reducer, projection, exposure, journal, summaries] --> Session
+  Session[@explorable-models/core/model: guarded model session, units, constraints, sampling] --> Worker
   Worker[Catalog kernel worker: installed pure kernels, each loaded on first use] --> Frame[Identified ModelFrame]
   Frame --> Projection[LearnerProjection: only authorized groups]
-  Projection --> Surface[@experiment-kit/player/activity: StudyActivitySurface]
-  Surface -.lazy, only for 3D templates.-> Spatial[@experiment-kit/player-3d]
+  Projection --> Surface[@explorable-models/player/activity: StudyActivitySurface]
+  Surface -.lazy, only for 3D templates.-> Spatial[@explorable-models/player-3d]
   Surface -->|intents, display acknowledgements| Adapter
-  Tools[@experiment-kit/agent activity tools] -->|bound host context| Adapter
-  CLI[@experiment-kit/cli activity commands] -->|browser worker only| Worker
+  Tools[@explorable-models/agent activity tools] -->|bound host context| Adapter
+  CLI[@explorable-models/cli activity commands] -->|browser worker only| Worker
 ```
 
 | Package / entry | Responsibility | Must not depend on / do |
 | --- | --- | --- |
-| `@experiment-kit/core` (`/model`) | Model manifest contract, units, constraints, numerical statuses, `ModelFrame`, worker evaluator, guarded `ModelSession`, preview coordinator, worker budget, isolated sampling | React, DOM rendering, tutor policy, Tauri, filesystem, provider SDKs |
-| `@experiment-kit/activity` | Versioned activity JSON schemas (authoritative), validator, activity reducer, projection policy, exposure protocol, journal/outbox, deterministic summaries, artifacts/migrations, `HostPort` interface, `createStudyHarnessAdapter` | React, provider SDKs, Tauri/native bridge, mastery or grading decisions, implicit durable storage |
-| `@experiment-kit/catalog` | Installed model manifests, activity templates, pure kernels, kernel worker entry, constraint data, sources, learner copy, review registry, revocation list | Agent-selected URLs/paths, self-issued review approval |
-| `@experiment-kit/player` (`.`) | Legacy generic schema 2.0 surface (unchanged budget) | — |
-| `@experiment-kit/player/activity` | `StudyActivitySurface`, `mountStudyActivity`, controls, math, 2D primitives, accessible equivalents, presentation state, SVG/PNG capture, `createStudyHarnessVisualizer` (six operations) | Studio/authoring compiler, Three.js (eager), Playwright, CLI |
-| `@experiment-kit/player-3d` | Lazy bounded spatial renderer (Three.js) | Imported eagerly by any 2D path |
-| `@experiment-kit/agent` | Existing document tools + policy-scoped activity tools and host relay ([agent-tools.md](agent-tools.md)) | Caller-selected principals, review elevation |
-| `@experiment-kit/cli` | Authoring: scaffold, validate, worker-backed check/reference/boundaries, stage capture, review packet, package ([authoring.md](authoring.md), [review packets](review-packets/README.md)) | Importing authored model/check code into Node |
+| `@explorable-models/core` (`/model`) | Model manifest contract, units, constraints, numerical statuses, `ModelFrame`, worker evaluator, guarded `ModelSession`, preview coordinator, worker budget, isolated sampling | React, DOM rendering, tutor policy, Tauri, filesystem, provider SDKs |
+| `@explorable-models/activity` | Versioned activity JSON schemas (authoritative), validator, activity reducer, projection policy, exposure protocol, journal/outbox, deterministic summaries, artifacts/migrations, `HostPort` interface, `createStudyHarnessAdapter` | React, provider SDKs, Tauri/native bridge, mastery or grading decisions, implicit durable storage |
+| `@explorable-models/catalog` | Installed model manifests, activity templates, pure kernels, kernel worker entry, constraint data, sources, learner copy, review registry, revocation list | Agent-selected URLs/paths, self-issued review approval |
+| `@explorable-models/player` (`.`) | Legacy generic schema 2.0 surface (unchanged budget) | — |
+| `@explorable-models/player/activity` | `StudyActivitySurface`, `mountStudyActivity`, controls, math, 2D primitives, accessible equivalents, presentation state, SVG/PNG capture, `createStudyHarnessVisualizer` (six operations) | Studio/authoring compiler, Three.js (eager), Playwright, CLI |
+| `@explorable-models/player-3d` | Lazy bounded spatial renderer (Three.js) | Imported eagerly by any 2D path |
+| `@explorable-models/agent` | Existing document tools + policy-scoped activity tools and host relay ([agent-tools.md](agent-tools.md)) | Caller-selected principals, review elevation |
+| `@explorable-models/cli` | Authoring: scaffold, validate, worker-backed check/reference/boundaries, stage capture, review packet, package ([authoring.md](authoring.md), [review packets](review-packets/README.md)) | Importing authored model/check code into Node |
 | `examples/study-harness-host` | Browser integration fixture with injectable persistence/policy failures and the quadratic learning-and-return fixture | Pretending to be the tutor |
 | `examples/study-harness-tauri` | Packaged Tauri 2 reference host: narrow Rust commands, SQLite records, production CSP, conformance runner | Credentials, grading, curriculum |
 
 Dependency direction: `core ← activity ← catalog`; `core, activity ← player/activity`; `player-3d` depends on
 `core` types only and is loaded through a host-supplied loader. The activity adapter receives the catalogue as an
-injected interface; it never imports `@experiment-kit/catalog`.
+injected interface; it never imports `@explorable-models/catalog`.
 
 ## 2 Decisions
 
@@ -58,7 +58,7 @@ and authority checks (receipts it issued, policy revisions it owns) and does not
 **D3 Installed kernels plus bounded documents.** A model manifest selects either an installed kernel
 (`kernelId@kernelVersion`, bundled in the catalogue worker) or a schema 2.0 document. Requests carry IDs and
 data only, never executable source. Kernels are trusted repository code; candidate/authored kernels run only in
-browser workers through the CLI path. Document execution is an opt-in capability of `@experiment-kit/core/model`
+browser workers through the CLI path. Document execution is an opt-in capability of `@explorable-models/core/model`
 (`enableDocumentExecution()`, called in each page and worker that serves document-kind models; until then such a
 manifest is refused with `UNSUPPORTED_CAPABILITY`), so the schema 2.0 compiler and interpreter are not part of a
 kernel-only learner page or of the catalogue worker, which serves installed kernels only and loads each kernel's code on
@@ -78,7 +78,7 @@ attribution (`learner`, `tutor`, `host`) is fixed by which binding issued the co
 executor, host API); no input field can choose it. Review approval is resolved only from the host-constructed
 `ReviewRegistry`; review claims inside imported data are untrusted provenance.
 
-**D6 One projection for every channel.** `projectLearnerView()` in `@experiment-kit/activity` produces the only
+**D6 One projection for every channel.** `projectLearnerView()` in `@explorable-models/activity` produces the only
 object the learner surface, learner-scoped tools, learner snapshots and captures receive. Hidden groups are
 omitted from the object, not styled away. Developer inspection is a separate entry,
 `StudyHarnessAdapter.inspectDeveloper(activityId)` (passed through by the visualizer), refused with `POLICY_DENIED`
@@ -105,12 +105,12 @@ indices; interpolation is presentation-only and flagged. Fractional indices are 
 `OUT_OF_DOMAIN`); worker failures are operation errors (`WORKER_ERROR`, `WORKER_TIMEOUT`). None becomes zero.
 
 **D11 Interaction controller in core.** The primary/scratch coalescing pattern from `examples/shared/controller.ts`
-becomes `createPreviewCoordinator` (`@experiment-kit/core/model`): one active preview evaluation plus one newest
+becomes `createPreviewCoordinator` (`@explorable-models/core/model`): one active preview evaluation plus one newest
 queued value per activity, epochs that discard stale replies, a shared `WorkerBudget` across activities, and
 release of scratch workers on suspension. The activity controller keeps at most one preview submission outstanding
 and holds only the newest accepted value behind it, so a burst of updates never grows the session's 64-operation
 window and the shown tentative frame converges to the newest value. Examples consume it; the duplicate controller is removed. The
-document-level consumer is `createDocumentInteractionController` (`@experiment-kit/core/declarative`), which the
+document-level consumer is `createDocumentInteractionController` (`@explorable-models/core/declarative`), which the
 showcase and hinged-rod examples use in place of `examples/shared/controller.ts` (see [lifecycle.md](lifecycle.md)).
 
 **D12 Math rendering.** KaTeX 0.19.0 is lazy-loaded by the activity surface with `trust:false`, `maxExpand:1000`,
@@ -122,7 +122,7 @@ in-app scenario runner and crash-injection points into a *separate* test binary;
 the feature and is checked for the absence of those commands. The decision and its verification are recorded in
 `docs/study-harness/native.md` (updated after the feasibility spike).
 
-**D14 Budgets.** Existing `@experiment-kit/player` 2D consumer: ≤ 180,000 B gzip JS including React (unchanged).
+**D14 Budgets.** Existing `@explorable-models/player` 2D consumer: ≤ 180,000 B gzip JS including React (unchanged).
 New activity entry: ≤ 250,000 B gzip JS including React, the kernel worker and the activity runtime, excluding
 lazy KaTeX/fonts and `player-3d`. The frozen measurement rules, consumers and ceilings are recorded in
 [`budgets.json`](budgets.json) (contract-milestone freeze for 0.3.0-preview.1): `legacy2dConsumer` (zlib default

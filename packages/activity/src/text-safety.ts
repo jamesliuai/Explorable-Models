@@ -1,7 +1,7 @@
 /**
  * Hostile-TeX screen shared by every channel that accepts TeX for learner-visible output (report §10.3 and §16, A35):
- * the learner surface's math renderer (`@experiment-kit/player/activity`) and the agent tools' screen for exploratory
- * content (`@experiment-kit/agent`) both import this list, so the two can never disagree about what is refused.
+ * the learner surface's math renderer (`@explorable-models/player/activity`) and the agent tools' screen for exploratory
+ * content (`@explorable-models/agent`) both import this list, so the two can never disagree about what is refused.
  *
  * The screen is defence in depth: KaTeX still runs with `trust: false`, bounded expansion and size, and a fresh macro
  * object per render. Refused here, before any parser sees the source, are commands that define or expand macros

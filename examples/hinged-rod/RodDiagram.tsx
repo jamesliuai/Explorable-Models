@@ -1,5 +1,5 @@
 import { useId, useLayoutEffect, useRef, useState } from 'react';
-import type { DocumentFrame, SessionState } from '@experiment-kit/core/declarative';
+import type { DocumentFrame, SessionState } from '@explorable-models/core/declarative';
 
 type Point = [number, number];
 export function scalar(frame: DocumentFrame, id: string): number {

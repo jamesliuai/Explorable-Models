@@ -1,7 +1,7 @@
-// Builds @experiment-kit/player-3d: one ESM bundle (dist/index.js) with Three.js and @experiment-kit/core external,
+// Builds @explorable-models/player-3d: one ESM bundle (dist/index.js) with Three.js and @explorable-models/core external,
 // declarations from tsc (emitDeclarationOnly), and dist/build-manifest.json recording sizes and inputs. The build fails
 // if any Three.js source is bundled (it must stay a peer dependency resolved by the consumer) or if the bundle reaches
-// another Experiment Kit package.
+// another Explorable Models package.
 import { build } from 'esbuild';
 import { execFileSync } from 'node:child_process';
 import { mkdir, readFile, rm, writeFile } from 'node:fs/promises';
@@ -14,7 +14,7 @@ execFileSync('tsc', ['-p', 'tsconfig.build.json', '--emitDeclarationOnly'], { st
 const result = await build({
   entryPoints: ['src/index.ts'], outfile: 'dist/index.js', bundle: true,
   platform: 'browser', format: 'esm', target: 'es2022', sourcemap: true,
-  external: ['three', 'three/*', '@experiment-kit/core', '@experiment-kit/core/*'],
+  external: ['three', 'three/*', '@explorable-models/core', '@explorable-models/core/*'],
   metafile: true, legalComments: 'linked',
 });
 const inputs = Object.keys(result.metafile.inputs);

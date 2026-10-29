@@ -1,5 +1,5 @@
 /**
- * `experiment-kit activity reference` and `boundaries` (report §12.6, §15.2, A30): external reference fixtures run
+ * `explorable-models activity reference` and `boundaries` (report §12.6, §15.2, A30): external reference fixtures run
  * against frames evaluated in the browser worker with declared tolerances, per-case results keep their provenance,
  * and boundary cases are classified as valid / undefined / numerical-limit / out-of-domain.
  */

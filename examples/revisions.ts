@@ -1,8 +1,8 @@
 // Generated from source, dependency lock, and exact runtime/player identity.
 export const revisions = {
-  "rolling": "sha256:37d4770398185f1b212147afa3a0d898e9ae4d2f716bcc74b656b7ccf5726456",
-  "linear-map": "sha256:9561687f86bc1ce49013895c21eb3a2703c138f86af8935b2a138a61d76b5c37",
-  "base-rates": "sha256:e1277eb79d4f93467d172c6aadc55275c7c01049ededb0a7882d209a22a0010f",
-  "riemann-sums": "sha256:563d578cb509b9a2f1de7e73dea1e10318629d2438baab63ae2f97a721429134",
-  "oscillator": "sha256:45c6fac4c05605cfef22c4b884af239937975b2d7e3f848fb91ade665529e8d3"
+  "rolling": "sha256:f26c01b4e8c280b335766cef9bbac6957d19bcb2e128a4f4c7f3b582b94bdc23",
+  "linear-map": "sha256:41b129519582a4651359ee98099111b81f1db6a4a9ec14f5818bd54201fd50b3",
+  "base-rates": "sha256:ab368aef829b9bebf527b7a6c1e3c6feb62517e15f5e861441b2d0bb767adeba",
+  "riemann-sums": "sha256:1189c96285b189889a752fcc50b1c89485e842a19971d99c05f3d8d2ebcefbcf",
+  "oscillator": "sha256:7674a89927fca16bd11df320a931328a71af3b8e0b3eb441dc853a08884995ee"
 } as const;

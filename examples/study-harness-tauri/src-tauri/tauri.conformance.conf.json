@@ -1,6 +1,6 @@
 {
   "productName": "StudyHarnessReferenceConformance",
-  "identifier": "dev.experimentkit.studyharness.reference.conformance",
+  "identifier": "dev.explorablemodels.studyharness.reference.conformance",
   "build": {
     "beforeBuildCommand": "npm run build:web:conformance",
     "frontendDist": "../.conformance-out/dist"

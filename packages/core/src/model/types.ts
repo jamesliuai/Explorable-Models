@@ -4,7 +4,7 @@
  */
 import type { Diagnostic, VisualizationDocument } from '../declarative/types.js';
 
-export const MODEL_CONTRACT = 'experiment-kit.model-manifest' as const;
+export const MODEL_CONTRACT = 'explorable-models.model-manifest' as const;
 export const MODEL_SCHEMA_VERSION = '1.0' as const;
 
 /** Units supported for the bundled activities only; this is not a universal unit engine. */

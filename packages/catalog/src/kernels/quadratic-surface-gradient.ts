@@ -21,7 +21,7 @@
  * field vectors use double-double (≈ 106-bit) intermediates rounded once (within the fixture's grid tolerance). The
  * kernel has no camera or other presentation input.
  */
-import type { GeometryResult, KernelInput, KernelOutput, ModelKernel, QuantityResult, Vec2, Vec3 } from '@experiment-kit/core/model';
+import type { GeometryResult, KernelInput, KernelOutput, ModelKernel, QuantityResult, Vec2, Vec3 } from '@explorable-models/core/model';
 
 export const SURFACE_GRADIENT_KERNEL_ID = 'quadratic-surface-gradient';
 export const SURFACE_GRADIENT_KERNEL_VERSION = '1.1.0';

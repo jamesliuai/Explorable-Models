@@ -8,7 +8,7 @@ import { DOCUMENT_RUNTIME_VERSION } from '../../core/src/declarative-session.js'
 export interface DocumentToolExecutor { readonly descriptors: readonly ToolDescriptor[]; execute(name: string, input: unknown, options?: { signal?: AbortSignal }): Promise<VisualizationToolResult> }
 /** Direct JSON-schema adapter over exactly the same provider-neutral authoring service. */
 export function createDocumentMcpServer(executor: DocumentToolExecutor): Server {
-  const server = new Server({ name: 'experiment-kit-document', version: DOCUMENT_RUNTIME_VERSION }, { capabilities: { tools: {}, resources: {} } });
+  const server = new Server({ name: 'explorable-models-document', version: DOCUMENT_RUNTIME_VERSION }, { capabilities: { tools: {}, resources: {} } });
   const resources = new Map<string, string>();
   server.setRequestHandler(ListToolsRequestSchema, async () => ({ tools: executor.descriptors.map(tool => ({ ...tool, inputSchema: { ...tool.inputSchema, type: 'object' as const }, outputSchema: { ...tool.outputSchema, type: 'object' as const }, annotations: { readOnlyHint: ['visualization_discover', 'visualization_inspect', 'visualization_save'].includes(tool.name), destructiveHint: false, openWorldHint: false } })) }));
   server.setRequestHandler(ListResourcesRequestSchema, async () => ({ resources: [...resources.keys()].map(uri => ({ uri, name: 'Retained declarative tool result', mimeType: 'application/json' })) }));
@@ -19,7 +19,7 @@ export function createDocumentMcpServer(executor: DocumentToolExecutor): Server 
     if (bytes <= 96 * 1024) return { content: [{ type: 'text' as const, text }], structuredContent: result, isError: !result.ok };
     if (bytes > 4_100_000) { const error = { ok: false, diagnostics: [{ code: 'RESOURCE_LIMIT', path: '$', message: 'MCP result exceeds the bounded resource size.', recovery: 'Request fewer quantities or a smaller document.' }] }; return { content: [{ type: 'text' as const, text: JSON.stringify(error) }], structuredContent: error, isError: true }; }
     while (resources.size >= 16 || [...resources.values()].reduce((size, value) => size + Buffer.byteLength(value), 0) + bytes > 16_000_000) resources.delete(resources.keys().next().value!);
-    const uri = `experiment-kit://document-results/${randomUUID()}`; resources.set(uri, text);
+    const uri = `explorable-models://document-results/${randomUUID()}`; resources.set(uri, text);
     const summary = { ok: true, data: { resource: { uri, mimeType: 'application/json', bytes }, note: 'Read this session-owned resource for the exact tool result. Save artifacts to host storage for durable persistence.' } };
     return { content: [{ type: 'text' as const, text: JSON.stringify(summary) }, { type: 'resource_link' as const, uri, name: 'Declarative tool result', mimeType: 'application/json' }], structuredContent: summary, isError: !result.ok };
   });

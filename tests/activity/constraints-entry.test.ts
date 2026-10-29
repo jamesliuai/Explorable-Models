@@ -5,7 +5,7 @@
  * moves single values into their bounds visibly; coupled violations are never clamped.
  */
 import { afterEach, describe, expect, it } from 'vitest';
-import { artifactIntegrity, LEARNER_MESSAGES, validateTemplateSemantics, type ActivityArtifact } from '@experiment-kit/activity';
+import { artifactIntegrity, LEARNER_MESSAGES, validateTemplateSemantics, type ActivityArtifact } from '@explorable-models/activity';
 import {
   authorizeExploration, codesOf, enterExplore, guards, harness, manifest, okOf, op, open, policyFor, rectangleCatalog, rectangleModel, rectanglePolicy, rectangleRequest,
   rectangleTemplate, requestFor, settled, template, until, type Harness,

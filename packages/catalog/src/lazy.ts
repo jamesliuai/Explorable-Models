@@ -10,9 +10,9 @@
  * entry is withdrawn and reported by `problems()` — nothing else is substituted. Kernel code never enters this realm:
  * it is bundled in the catalogue worker only.
  */
-import { groupDigests, templateDiscovery, templateRef, type ActivityTemplate, type CatalogLoadResult, type Diagnostic, type TemplateRef } from '@experiment-kit/activity';
-import { canonicalJSON } from '@experiment-kit/core';
-import type { ModelManifest, ModelRef } from '@experiment-kit/core/model';
+import { groupDigests, templateDiscovery, templateRef, type ActivityTemplate, type CatalogLoadResult, type Diagnostic, type TemplateRef } from '@explorable-models/activity';
+import { canonicalJSON } from '@explorable-models/core';
+import type { ModelManifest, ModelRef } from '@explorable-models/core/model';
 import {
   catalogMarks, key, statusResolver, validateInstalledModel, validateInstalledTemplate,
   type CatalogIdentity, type CatalogProblem, type InstalledCatalogOptions, type LazyInstalledCatalog,

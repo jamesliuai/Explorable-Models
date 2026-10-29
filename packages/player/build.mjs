@@ -14,7 +14,7 @@ await mkdir('dist', { recursive: true });
 const result = await build({
   entryPoints: ['src/public.ts'], outfile: 'dist/index.js', bundle: true,
   platform: 'browser', format: 'esm', target: 'es2022', sourcemap: true,
-  jsx: 'automatic', external: ['react', 'react/jsx-runtime', 'react-dom', 'react-dom/client', '@experiment-kit/core', '@experiment-kit/core/*'],
+  jsx: 'automatic', external: ['react', 'react/jsx-runtime', 'react-dom', 'react-dom/client', '@explorable-models/core', '@explorable-models/core/*'],
   define: { __EKP_PACKAGE_BUILD__: 'true' }, banner: { js: '"use client";' }, metafile: true,
 });
 // Surface stylesheet asset for hosts without constructable stylesheets (the surface adopts it otherwise; no inline style).
@@ -27,9 +27,9 @@ await writeFile('dist/build-manifest.json', JSON.stringify({
   externalImports: result.metafile.outputs['dist/index.js'].imports.map(item => item.path),
 }, null, 2) + '\n');
 
-// Study Harness learner entry (@experiment-kit/player/activity).
+// Study Harness learner entry (@explorable-models/player/activity).
 // Decision: KaTeX is bundled as a lazy chunk, reached only through the default mathLoader's dynamic import, so its JS
-// always matches the copied CSS and fonts exactly; React and @experiment-kit/* stay external. All chunks are emitted
+// always matches the copied CSS and fonts exactly; React and @explorable-models/* stay external. All chunks are emitted
 // next to index.js, and the static asset URLs in asset-urls.ts are rewritten from node_modules to the copied layout.
 const require = createRequire(import.meta.url);
 const katexDist = dirname(require.resolve('katex/dist/katex.min.css'));
@@ -105,8 +105,8 @@ const assetUrls = {
 const activity = await build({
   entryPoints: { index: 'src/activity/index.ts' }, outdir: 'dist/activity', bundle: true, splitting: true,
   platform: 'browser', format: 'esm', target: 'es2022', sourcemap: true, jsx: 'automatic',
-  external: ['react', 'react/jsx-runtime', 'react-dom', 'react-dom/client', '@experiment-kit/*'],
-  define: { __EKA_PACKAGE_BUILD__: 'true' }, plugins: [assetUrls],
+  external: ['react', 'react/jsx-runtime', 'react-dom', 'react-dom/client', '@explorable-models/*'],
+  define: { __EMA_PACKAGE_BUILD__: 'true' }, plugins: [assetUrls],
   banner: { js: '"use client";' }, metafile: true, legalComments: 'linked',
 });
 for (const [target, source] of ASSETS) {
@@ -115,14 +115,14 @@ for (const [target, source] of ASSETS) {
 }
 for (const [target, text] of GENERATED) await writeFile(join('dist/activity', target), text);
 await writeFile('dist/activity/THIRD_PARTY_NOTICES.md', [
-  '# Third-party components in @experiment-kit/player/activity', '',
+  '# Third-party components in @explorable-models/player/activity', '',
   'These components are bundled in this directory under their own licenses; the license texts are the files listed.', '',
   '| Component | Version | License | Bundled files | License text |', '| --- | --- | --- | --- | --- |',
   ...THIRD_PARTY.map(entry => `| ${entry.name} | ${entry.version} | ${entry.license} | ${entry.files.join(', ')} | ${entry.text.join(', ')} |`), '',
 ].join('\n'));
 
 // Component stylesheet asset for hosts without constructable stylesheets (native.md N4 fallback).
-const styles = await build({ entryPoints: ['src/activity/styles.ts'], bundle: true, write: false, format: 'esm', platform: 'neutral', define: { __EKA_PACKAGE_BUILD__: 'true' }, logLevel: 'silent' });
+const styles = await build({ entryPoints: ['src/activity/styles.ts'], bundle: true, write: false, format: 'esm', platform: 'neutral', define: { __EMA_PACKAGE_BUILD__: 'true' }, logLevel: 'silent' });
 const { ACTIVITY_STYLESHEET } = await import(`data:text/javascript;base64,${Buffer.from(styles.outputFiles[0].text).toString('base64')}`);
 await writeFile('dist/activity/activity.css', `${ACTIVITY_STYLESHEET.trim()}\n`);
 

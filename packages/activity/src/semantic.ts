@@ -4,8 +4,8 @@
  * ones every runtime entry point applies), so a scenario that validates here is never rejected when applied.
  * Diagnostics name IDs and fields only; they never quote learner text, TeX or hidden values.
  */
-import { canonicalJSON, sha256 } from '@experiment-kit/core';
-import { checkParameters, geometryCoordinates, isAdmissible, isCompatible, modelIdentity, type GeometryCoordinates, type GeometryKind, type ModelManifest, type QuantityShape, type UnitId } from '@experiment-kit/core/model';
+import { canonicalJSON, sha256 } from '@explorable-models/core';
+import { checkParameters, geometryCoordinates, isAdmissible, isCompatible, modelIdentity, type GeometryCoordinates, type GeometryKind, type ModelManifest, type QuantityShape, type UnitId } from '@explorable-models/core/model';
 import type { ActivityArtifact, ActivityInstance, ActivityTemplate, Diagnostic, DiagnosticCode, EquationSpec, GroupKind, HostPolicy, MarkKind, MarkSpec, StageSpec } from './contracts.js';
 import { ACTIVITY_SCHEMA_VERSION, CONTRACTS } from './contracts.js';
 import { capabilityDiagnostics } from './capabilities.js';

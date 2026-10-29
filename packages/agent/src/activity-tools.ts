@@ -15,14 +15,14 @@
  * diagnostic uses the fixed vocabulary below with paths that name only the caller's own input fields, so recovery
  * text and serialized errors cannot carry hidden content.
  */
-import { canonicalJSON, sha256 } from '@experiment-kit/core';
-import { checkParameters, convert, jsonDataErrors, S, schemaErrors, type JsonSchema, type ModelManifest, type ModelRef, type PositionRequest } from '@experiment-kit/core/model';
+import { canonicalJSON, sha256 } from '@explorable-models/core';
+import { checkParameters, convert, jsonDataErrors, S, schemaErrors, type JsonSchema, type ModelManifest, type ModelRef, type PositionRequest } from '@explorable-models/core/model';
 import {
   forbiddenTexCommand, isHostRefusalDiagnostic, policyDiagnostics, safePath, TOOL_OPERATIONS,
   type ActivityBinding, type ActivityCatalog, type ActivityTemplate, type AudienceState, type CatalogEntryStatus, type CommandOutcome, type Diagnostic,
   type DiagnosticCode, type HostActivityControl, type HostPolicy, type LearnerProjection, type LifecycleStatus, type PreparedActivity,
   type StudyHarnessAdapter, type TemplateRef, type ToolOperation,
-} from '@experiment-kit/activity';
+} from '@explorable-models/activity';
 import type { ToolDescriptor, VisualizationToolResult, VisualizationTools } from './tools.js';
 
 // ---------------------------------------------------------------------------------------------
@@ -432,7 +432,7 @@ function checkInput(input: Record<string, unknown>, descriptor: ActivityToolDesc
 const MARKUP = /<\s*[A-Za-z!/?]|\b(?:javascript|vbscript|data|file|blob)\s*:|\b(?:https?|ftp|wss?):\/\/|\burl\s*\(/i;
 /**
  * First string in exploratory content that carries markup, a resource URL or a disallowed TeX command. The TeX list is
- * `FORBIDDEN_TEX_COMMANDS` from `@experiment-kit/activity`, the same list the learner surface's math renderer refuses.
+ * `FORBIDDEN_TEX_COMMANDS` from `@explorable-models/activity`, the same list the learner surface's math renderer refuses.
  */
 function unsafeText(value: unknown, path: string): string | null {
   if (typeof value === 'string') return MARKUP.test(value) || forbiddenTexCommand(value) !== null ? path : null;

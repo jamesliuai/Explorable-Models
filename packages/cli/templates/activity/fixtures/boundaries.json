@@ -1,5 +1,5 @@
 {
-  "contract": "experiment-kit.boundary-cases",
+  "contract": "explorable-models.boundary-cases",
   "version": "1.0",
   "cases": [
     { "id": "zero-slope", "label": "Slope 0 with intercept 1", "rationale": "The root is mathematically undefined (no crossing); it must be reported as undefined, not as zero.", "params": { "m": 0, "b": 1 }, "expect": { "outcome": "undefined", "statuses": { "root": "undefined:NO_ROOT" } } },

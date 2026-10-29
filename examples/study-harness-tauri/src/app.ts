@@ -7,23 +7,23 @@
 // by a process termination is resumed after the relaunch with the same idempotency key, and the native host returns the
 // receipt it already committed instead of issuing a second one.
 //
-// The library is used through `createStudyHarnessVisualizer` (@experiment-kit/player/activity): one supported API for
+// The library is used through `createStudyHarnessVisualizer` (@explorable-models/player/activity): one supported API for
 // prepare/restore, mounting the learner surface, audience state and disposal around the adapter and the HostPort.
 // While an activity is prepared or restored the card area shows `mountStudyActivityPlaceholder` (`preparing`, or `empty`
 // with nothing open); a restore refused because the saved content is not installed or no longer approved
 // (UNSUPPORTED_ARTIFACT, CONTENT_REVOKED) shows the artifact's archival read-only record instead (`archivalView` +
 // `mountArchivalRecord`: nothing evaluated, no controls, no other template substituted). Spatial activities load the
-// packed `@experiment-kit/player-3d` chunk through `spatialLoader` (src/spatial.ts).
+// packed `@explorable-models/player-3d` chunk through `spatialLoader` (src/spatial.ts).
 import {
   archivalView,
   type ActivityBinding, type ActivityTemplate, type AudienceState, type CommandOutcome, type Diagnostic, type ExposureRecord, type HostPolicy, type LearnerProjection,
   type ModelManifest, type PreparedActivity, type RestoreResult,
-} from '@experiment-kit/activity';
-import { createInstalledCatalog, type InstalledCatalog } from '@experiment-kit/catalog';
+} from '@explorable-models/activity';
+import { createInstalledCatalog, type InstalledCatalog } from '@explorable-models/catalog';
 import {
   archivalLabels, createStudyHarnessVisualizer, mountArchivalRecord, mountStudyActivityPlaceholder,
   type MountedArchivalRecord, type MountedStudyActivityPlaceholder, type StudyHarnessSurface, type StudyHarnessVisualizer, type SurfaceDiagnostic, type SurfaceErrorEvent,
-} from '@experiment-kit/player/activity';
+} from '@explorable-models/player/activity';
 import { composerElement } from './composer';
 import { NativeHostError } from './native-bridge';
 import { hostCommands, NativeHostPort, type ExportedBackup, type HostActivitySummary, type HostStatus, type ImportableBackup, type ImportSummary } from './native-host';

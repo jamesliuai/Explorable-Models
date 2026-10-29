@@ -8,11 +8,11 @@ import katex from 'katex';
 import {
   checkTexSource, codePointLength, FORBIDDEN_TEX_COMMANDS, forbiddenTexCommand, manifestTexSources, TEX_RENDER_LIMITS, TEX_SOURCE_LIMIT, TEX_VALUE_FORMS, LIMITS,
   templateTexSources, texParseDiagnostics, texParseOptions, type TexParser,
-} from '@experiment-kit/activity';
-import { INSTALLED_MODELS, INSTALLED_TEMPLATES } from '@experiment-kit/catalog';
+} from '@explorable-models/activity';
+import { INSTALLED_MODELS, INSTALLED_TEMPLATES } from '@explorable-models/catalog';
 import { MATH_LIMITS } from '../../packages/player/src/activity/math';
 
-/** The toolkit's bounded parser (as `experiment-kit activity validate` runs it): KaTeX with the learner limits, MathML only. */
+/** The toolkit's bounded parser (as `explorable-models activity validate` runs it): KaTeX with the learner limits, MathML only. */
 const parse: TexParser = (source, options) => katex.renderToString(source, { ...options, output: 'mathml' });
 
 describe('hostile-TeX screen', () => {

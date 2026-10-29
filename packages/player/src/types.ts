@@ -1,4 +1,4 @@
-import type { CheckSuite, ExperimentDefinition, ModelExecutor } from '@experiment-kit/core';
+import type { CheckSuite, ExperimentDefinition, ModelExecutor } from '@explorable-models/core';
 export interface ExperimentEntry {
   id: string;
   definition: ExperimentDefinition;

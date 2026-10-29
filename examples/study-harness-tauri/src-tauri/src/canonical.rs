@@ -1,4 +1,4 @@
-//! Canonical JSON identical to `canonicalJSON` in `@experiment-kit/core`: object keys sorted by UTF-16 code units,
+//! Canonical JSON identical to `canonicalJSON` in `@explorable-models/core`: object keys sorted by UTF-16 code units,
 //! arrays in order, strings escaped like `JSON.stringify`, numbers formatted like ECMAScript `Number::toString`.
 //! Artifact integrity entries and `artifactDigest` computed here must equal the TypeScript values; the host verifies
 //! every saved artifact's integrity manifest with it, so a formatting difference would be rejected, not hidden.
@@ -109,7 +109,7 @@ pub fn sha256_hex(bytes: &[u8]) -> String {
     out
 }
 
-/// `'sha256:' + sha256(canonicalJSON(value))`, the identity used by `@experiment-kit/activity`.
+/// `'sha256:' + sha256(canonicalJSON(value))`, the identity used by `@explorable-models/activity`.
 pub fn digest(value: &Value) -> String {
     format!("sha256:{}", sha256_hex(canonical_json(value).as_bytes()))
 }

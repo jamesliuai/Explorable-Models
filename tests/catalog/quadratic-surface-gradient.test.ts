@@ -14,11 +14,11 @@ import {
   createStudyHarnessAdapter, groupDigests, templateDigest, templateRef, validateRecord, validateTemplateSemantics,
   type ActivityBinding, type ActivityCatalog, type ActivityTemplate, type CatalogEntryStatus, type CommandOutcome, type ContentGroup, type HostPolicy, type LearnerProjection,
   type StudyHarnessAdapter,
-} from '@experiment-kit/activity';
+} from '@explorable-models/activity';
 import {
   checkParameters, clampForPreview, createModelSession, defaultParameters, evaluateRequest, ModelError, modelIdentity, validateManifest,
   type GeometryResult, type ModelGuard, type ModelManifest, type ModelSession,
-} from '@experiment-kit/core/model';
+} from '@explorable-models/core/model';
 import { SURFACE_GRADIENT_COPY as COPY } from '../../packages/catalog/src/copy/quadratic-surface-gradient.js';
 import {
   ARROW_MAX_LENGTH, CONTOUR_LEVELS, CONTOUR_SAMPLES, FIELD_GRID, quadraticSurfaceGradientKernel as kernel, SECTION_SAMPLES, SURFACE_GRADIENT_DOMAIN,
@@ -289,7 +289,7 @@ describe('quadratic-surface-gradient content boundaries (report §12.6)', () => 
 
   it('keeps the kernel free of templates, copy and manifests', () => {
     const source = readFileSync(SOURCES[0]!, 'utf8');
-    expect([...source.matchAll(/from\s+'([^']+)'/g)].map(match => match[1])).toEqual(['@experiment-kit/core/model']);
+    expect([...source.matchAll(/from\s+'([^']+)'/g)].map(match => match[1])).toEqual(['@explorable-models/core/model']);
   });
 
   it('changes the template digest when learner text changes, so approval does not carry over', () => {

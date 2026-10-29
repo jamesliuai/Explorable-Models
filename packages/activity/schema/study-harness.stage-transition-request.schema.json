@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://experiment-kit.invalid/schema/study-harness.stage-transition-request-1.0.json",
+  "$id": "https://explorable-models.invalid/schema/study-harness.stage-transition-request-1.0.json",
   "title": "Study Harness stage transition request",
   "type": "object",
   "properties": {

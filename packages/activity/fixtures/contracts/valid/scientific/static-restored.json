@@ -8,11 +8,11 @@
     "model": {
       "modelId": "vector-orientation",
       "version": "1.0.0",
-      "digest": "sha256:86d4baefcc949c683671165445b18f1211b6db294977432135f5842038522264"
+      "digest": "sha256:ea7b1b14301616597051092b082a76e59255a42e92c52fa65882ac22252d9301"
     },
-    "scientificRevision": "sha256:62d38fcf1a1ec7a2e76644cdd5727cabf00e0932ef38fab4758af484ba7f9136",
+    "scientificRevision": "sha256:2e9e0d6c755fd24af5fbcd8ee00fa215f57a6c5186e11cbc73515bfbef0239dc",
     "runtime": {
-      "id": "experiment-kit-activity",
+      "id": "explorable-models-activity",
       "version": "0.3.0-preview.1"
     },
     "runId": "run-orient-7",

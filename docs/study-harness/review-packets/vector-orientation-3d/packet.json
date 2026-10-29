@@ -1,12 +1,12 @@
 {
-  "contract": "experiment-kit.review-packet",
+  "contract": "explorable-models.review-packet",
   "version": "1.0",
   "kind": "installed",
   "generator": {
-    "tool": "experiment-kit activity review-packet",
+    "tool": "explorable-models activity review-packet",
     "toolkitVersion": "0.3.0-preview.1",
     "browser": "Chromium 156.0.8078.4",
-    "regenerate": "experiment-kit activity review-packet --installed vector-orientation-3d --out docs/study-harness/review-packets/vector-orientation-3d --width 720 --theme light --index 4"
+    "regenerate": "explorable-models activity review-packet --installed vector-orientation-3d --out docs/study-harness/review-packets/vector-orientation-3d --width 720 --theme light --index 4"
   },
   "status": {
     "lifecycle": "reference-checked",
@@ -19,16 +19,16 @@
     "template": {
       "templateId": "vector-orientation-3d",
       "version": "1.0.0",
-      "digest": "sha256:af54a2ba93d0e1790d4c884d09cdebf9c8e8f48b746f16a79b7998c63179f430"
+      "digest": "sha256:df6de7b7ab572ad15f3fd4cec50302b88d5bda4da1f8a1b3206b5435a5892615"
     },
     "model": {
       "modelId": "vector-orientation-3d",
       "version": "1.0.0",
-      "digest": "sha256:4cbfe83e8927ecf3d0edb8b4f299a13557899f98250c9a697a3620597e834e5f"
+      "digest": "sha256:5406433b6fd86fa353ccb113cc0d6c69af346b74ba0e1021d63d39429a9f32bc"
     },
     "modelIdentity": {
-      "digest": "sha256:4cbfe83e8927ecf3d0edb8b4f299a13557899f98250c9a697a3620597e834e5f",
-      "scientificRevision": "sha256:9bb9e1d8faf6a4f6ff99b5ade0e605d266c4bb3049bde95471ae89c54ef1559a",
+      "digest": "sha256:5406433b6fd86fa353ccb113cc0d6c69af346b74ba0e1021d63d39429a9f32bc",
+      "scientificRevision": "sha256:61285ee348b6ad94028b90282cc6f2faf7a9c32aeae193e7276e37acb7dc9746",
       "presentationRevision": "sha256:3a03ab54774c576ca7cb0c8ad65873b2586c0de81014e47440aa00aa15b1ce8b"
     },
     "groups": [
@@ -534,7 +534,7 @@
         "path": "tests/reference/fixtures/activities/vector-orientation-3d.json",
         "digest": "sha256:ae6ee27be8c85f6c6d209a3a3361f443ea01d8d0d651ccb051b6aa64fa560f02",
         "suiteId": "vector-orientation-3d:1.0.0",
-        "conversion": "Converted by experiment-kit activity tooling: case IDs, labels, provenance, parameters and tolerances copied unchanged; quantity expectations restated as experiment-kit.reference-fixtures 1.0 expectations."
+        "conversion": "Converted by explorable-models activity tooling: case IDs, labels, provenance, parameters and tolerances copied unchanged; quantity expectations restated as explorable-models.reference-fixtures 1.0 expectations."
       },
       "notCovered": [
         "The angle-arc flag and the exact geometry of u, v and their projections are checked by tests/reference/activities/vector-orientation-3d.test.ts."
@@ -3153,8 +3153,8 @@
         "svgError": null,
         "revealed": [],
         "revealError": null,
-        "projectionDigest": "sha256:804441b0ccd450ddc2fcbe03df67a67a4f9fd0a4975b48757f3498756c3c5a17",
-        "frameId": "sha256:9857e17eb39fa72d6de38c31cabde963b947d0755c709e5a0b4aee249f969adf",
+        "projectionDigest": "sha256:b2520248b7efad67da5454f4a27c4edaa1664d591c1ebeaffd25dff4d80dc323",
+        "frameId": "sha256:48f6b7a9bfee86c604f3a75b385d658a1de94b21504d91c431856353de31fe1d",
         "ui": "ready",
         "reviewNotice": "Reference-checked; no independent subject review",
         "views": [
@@ -3218,8 +3218,8 @@
         "svgError": null,
         "revealed": [],
         "revealError": null,
-        "projectionDigest": "sha256:361b00d7f5c5f110c9851d0a28e48dad2215d1cb11dd5a05297c3c66c097377e",
-        "frameId": "sha256:46afbc0d03fc484f907e8af2f0b0dabc66cebdcf3bf4ef1b583fed96652d5d1d",
+        "projectionDigest": "sha256:794c17f43f0b09d655c59a66748b9e633d69f1355a1cdc3e44b07adcf361140c",
+        "frameId": "sha256:5a5832b12c1eee26ce93524f3d8526a708509236c35068f0eecfa5cb4e8ffc09",
         "ui": "ready",
         "reviewNotice": "Reference-checked; no independent subject review",
         "views": [
@@ -3283,8 +3283,8 @@
           "dot-values"
         ],
         "revealError": null,
-        "projectionDigest": "sha256:79200cb9e023835baebdac859c31750fb609049ee669ca9bcb8065e956ad8571",
-        "frameId": "sha256:f731910fb86cb210981c7446a05df3a9a6d3516dd8b0644d2455351b00ac8176",
+        "projectionDigest": "sha256:6ade1ccfb33474beb62d34c5a2d096d0653537799245c2fea52f7df66598a5c0",
+        "frameId": "sha256:e96a4b4b00a84a4d3f451b22d73db50ef6de9d79a3fe0b2359d7124691348eb8",
         "ui": "ready",
         "reviewNotice": "Reference-checked; no independent subject review",
         "views": [
@@ -3356,8 +3356,8 @@
           "cross-values"
         ],
         "revealError": null,
-        "projectionDigest": "sha256:58a1c4d6a036435a393be23710af309e849071a11657333a24425415a076575a",
-        "frameId": "sha256:6d5a9c66a29fbccced7f9ded86c9b57d5fadf78ecfbdb5da60a10ebe99ead038",
+        "projectionDigest": "sha256:c3854806f2d9b85feb0256832ee278305b5000b8b16532b7cc8e81d2ae92ad53",
+        "frameId": "sha256:336e5c38ac7f2e8b4d530d142fe1458c4ae430c2a721dd692ddb4480f81bd343",
         "ui": "ready",
         "reviewNotice": "Reference-checked; no independent subject review",
         "views": [
@@ -3433,8 +3433,8 @@
           "cross-values"
         ],
         "revealError": null,
-        "projectionDigest": "sha256:bf5622797d84193867e07e955b76640a853b49b0b067316f643e1c35b0a9db0f",
-        "frameId": "sha256:6367289c820e476004352cde5d35072b1c7f598d2151a11445e86923b75a80c2",
+        "projectionDigest": "sha256:598bdd3824b1c42df76d1e6f77ba23839a2917a8bdc3eb4369c428da8a8beab7",
+        "frameId": "sha256:72c7de1621ac9167a6920e597f110ea298227ace6be2a2fb9ecc4380746ab9da",
         "ui": "ready",
         "reviewNotice": "Reference-checked; no independent subject review",
         "views": [
@@ -3502,8 +3502,8 @@
         },
         "revealed": [],
         "revealError": null,
-        "projectionDigest": "sha256:b858a90cf5e4e95add30fd3e571eadf13ba2d03d1e86fc890d5fd9c73a29b1a3",
-        "frameId": "sha256:bcf4479ae9d38a5e54754354e88fc5454e7f13153c4e954d93f3d403114ebe56",
+        "projectionDigest": "sha256:5ad6405f30a61bf1573a7863be697008520e6e735c4bc6960a78c99d5134e5c6",
+        "frameId": "sha256:6a0a65a933520c2958286d309b0bcba2a10351cdaec29bb4b83d0e2aa9cee669",
         "ui": "empty",
         "reviewNotice": "Reference-checked; no independent subject review",
         "views": [],
@@ -3534,8 +3534,8 @@
           "cross-values"
         ],
         "revealError": null,
-        "projectionDigest": "sha256:ffbf7ec9ff72dd53a58c83a83edd4a049e755854c750bf0990ec3a0d5c989c31",
-        "frameId": "sha256:b40c5aaf9ac55156f3366ca9594ea5a17ff8851cce3c874702cfba454aadf5f4",
+        "projectionDigest": "sha256:9d21547507e979dc0fa6f1185335a4e2478efde134e7931e780359674a7df787",
+        "frameId": "sha256:72a4d6b00cd39aa76db6e109791a191837aab8f94dec1924734205cab576aae2",
         "ui": "ready",
         "reviewNotice": "Reference-checked; no independent subject review",
         "views": [

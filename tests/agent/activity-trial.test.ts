@@ -8,8 +8,8 @@
  * actual Study Harness agent path, credentials and budget.
  */
 import { afterEach, describe, expect, it } from 'vitest';
-import type { ToolOperation } from '@experiment-kit/activity';
-import { createActivityRelay, createActivityToolEndpoint, type ActivityRelay, type ActivityToolResult, type ActivityTools } from '@experiment-kit/agent';
+import type { ToolOperation } from '@explorable-models/activity';
+import { createActivityRelay, createActivityToolEndpoint, type ActivityRelay, type ActivityToolResult, type ActivityTools } from '@explorable-models/agent';
 import { harness, policyFor, settled } from '../activity/support/adapter-harness.js';
 import { MemoryHost } from '../activity/support/memory-host.js';
 import { ACTIVITY_ID, SESSION_ID, acknowledge, expectNoRestricted, rig, type Rig } from './support/activity-tools.js';

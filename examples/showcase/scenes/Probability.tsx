@@ -1,4 +1,4 @@
-import type { SessionState } from '@experiment-kit/core/declarative';
+import type { SessionState } from '@explorable-models/core/declarative';
 import { C, fmt, FrameSvg, n } from './shared';
 export function Probability({ state }: { state: SessionState }) {
   const f = state.frame!, trueFlags = n(f, 'trueFlags'), flagged = n(f, 'flagged'), falseFlags = n(f, 'falseFlags');

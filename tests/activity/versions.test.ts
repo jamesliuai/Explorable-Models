@@ -15,7 +15,7 @@ const packageRoot = fileURLToPath(new URL('../../packages/activity/', import.met
 const repositoryRoot = fileURLToPath(new URL('../../', import.meta.url));
 const lock = JSON.parse(readFileSync(join(packageRoot, 'schema/frozen-1.0.json'), 'utf8')) as { version: string; schemas: Record<string, string>; baseline: Record<string, string> };
 const index = JSON.parse(readFileSync(join(packageRoot, 'schema/index.json'), 'utf8')) as { contracts: { name: SchemaName; file: string; sha256: string; digest: string; version: string }[] };
-const RECORD_NAMES = new Set<string>([...Object.values(CONTRACTS), 'experiment-kit.model-manifest']);
+const RECORD_NAMES = new Set<string>([...Object.values(CONTRACTS), 'explorable-models.model-manifest']);
 
 describe('frozen schema identities (A04)', () => {
   it.each(Object.entries(lock.schemas))('%s 1.0 is unchanged', (name, digest) => {
@@ -30,7 +30,7 @@ describe('frozen schema identities (A04)', () => {
   });
 
   it('keeps the baseline schema 2.0 document schema identity', () => {
-    expect(schemaDigest(DOCUMENT_SCHEMA), 'the schema 2.0 document schema must never change; introduce a new document version instead').toBe(lock.baseline['experiment-kit.document-2.0']);
+    expect(schemaDigest(DOCUMENT_SCHEMA), 'the schema 2.0 document schema must never change; introduce a new document version instead').toBe(lock.baseline['explorable-models.document-2.0']);
   });
 
   it('publishes each schema file with the sha256 and digest recorded in index.json', () => {
@@ -100,7 +100,7 @@ describe('record classification and readers', () => {
   describe('legacy formats keep their own identity and are never relabelled', () => {
     const document = createPreset(presetCatalog[0]!.id);
     const documentArtifact = {
-      format: 'experiment-kit-document', version: '2.0', runtimeVersion: DOCUMENT_RUNTIME_VERSION, document,
+      format: 'explorable-models-document', version: '2.0', runtimeVersion: DOCUMENT_RUNTIME_VERSION, document,
       identity: { documentRevision: 'sha256:' + '1'.repeat(64), modelRevision: 'sha256:' + '2'.repeat(64), presentationRevision: 'sha256:' + '3'.repeat(64) },
       run: { id: 'run-1', version: 1, params: {}, time: 0, modelRevision: 'sha256:' + '2'.repeat(64) }, selection: null, comparisons: [],
     };

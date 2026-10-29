@@ -8,7 +8,7 @@ import { spawnSync } from 'node:child_process';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { chromium, firefox, webkit } from 'playwright';
 import { crossBrowserEvidence, crossBrowserRecord, parsePlaywrightReport } from './study-harness/release-pipeline.mjs';
-const output='/tmp/experiment-kit-final-verification';await mkdir(output,{recursive:true});await mkdir('release/preview',{recursive:true});
+const output='/tmp/explorable-models-final-verification';await mkdir(output,{recursive:true});await mkdir('release/preview',{recursive:true});
 // Per-engine, per-spec counts of test:cross-browser (G73): from the pipeline gate's record, or from the JSON report of
 // the run below.
 let crossBrowser=null;const crossBrowserReport=`${output}/test-cross-browser.report.json`;

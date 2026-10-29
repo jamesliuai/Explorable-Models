@@ -1,4 +1,4 @@
-import type { ExperimentDefinition, RunFrame } from '@experiment-kit/core';
+import type { ExperimentDefinition, RunFrame } from '@explorable-models/core';
 import { format, binding } from '../utils';
 export function GenericScene({definition,frame,onSelect}:{definition:ExperimentDefinition;frame:RunFrame;onSelect:(id:string)=>void}) {
  const geometry=Object.entries(frame.geometry??{}).filter(([id])=>definition.manifest.geometry?.[id]?.shape.endsWith('2'));

@@ -60,7 +60,7 @@ export type SemanticEdit =
   | { op: 'removeMark'; viewId: string; id: string }
   | { op: 'presentation'; value: NonNullable<VisualizationDocument['presentation']> }
   | { op: 'metadata'; title?: string; description?: string };
-export interface DocumentArtifact { format: 'experiment-kit-document'; version: '2.0'; runtimeVersion: string; document: VisualizationDocument; identity: DocumentIdentity; run: DocumentRun; selection: string | null; comparisons: { document: VisualizationDocument; identity: DocumentIdentity; run: DocumentRun }[] }
+export interface DocumentArtifact { format: 'explorable-models-document'; version: '2.0'; runtimeVersion: string; document: VisualizationDocument; identity: DocumentIdentity; run: DocumentRun; selection: string | null; comparisons: { document: VisualizationDocument; identity: DocumentIdentity; run: DocumentRun }[] }
 export interface EvaluationRequest { document: VisualizationDocument; params: Record<string, number>; time: number }
 export interface DocumentEvaluator { evaluate(request: EvaluationRequest, signal?: AbortSignal): Promise<DocumentFrame>; dispose(): void }
 export interface SessionOptions { workerFactory?: () => Worker; evaluator?: DocumentEvaluator; maxRuns?: number; maxCandidates?: number; }

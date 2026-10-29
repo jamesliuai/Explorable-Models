@@ -1,17 +1,17 @@
-# @experiment-kit/player-3d
+# @explorable-models/player-3d
 
 Optional, lazily loaded spatial renderer for the `scene3d` views of Study Harness activities. It implements the
-learner surface's `SpatialRendererModule` contract from `@experiment-kit/player/activity` and draws **bounded
+learner surface's `SpatialRendererModule` contract from `@explorable-models/player/activity` and draws **bounded
 scientific primitives only**, strictly from the authorized learner projection: it never evaluates, differentiates or
 re-derives model values.
 
 ```ts
-import { mountStudyActivity } from '@experiment-kit/player/activity';
+import { mountStudyActivity } from '@explorable-models/player/activity';
 
 mountStudyActivity(container, {
   binding,
   // Loaded only when a card shows a scene3d view; the 2D path never imports this package or Three.js.
-  spatialLoader: () => import('@experiment-kit/player-3d'),
+  spatialLoader: () => import('@explorable-models/player-3d'),
 });
 ```
 
@@ -42,7 +42,7 @@ When equal aspect is off, only the vertical axis is rescaled and the scale ratio
 ## Limits (the `spatial-3d@1.0` capability)
 
 The limits are contract data: the `spatial-3d@1.0` capability record (`SPATIAL_3D_CAPABILITY` in
-`@experiment-kit/activity`, schema `study-harness.capability-record` 1.0). Template validation checks a 3D template's
+`@explorable-models/activity`, schema `study-harness.capability-record` 1.0). Template validation checks a 3D template's
 declared worst-case geometry against them. `getCapabilities()` reports them. The learner surface passes them to
 `mount(…, { limits })`. `SPATIAL_LIMITS` are the renderer's own maxima, equal to the record (a test checks this).
 Limits passed at mount can only lower them.

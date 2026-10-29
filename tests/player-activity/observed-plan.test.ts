@@ -86,10 +86,10 @@ const catalog = (createWorker: () => Worker): ActivityCatalog => {
     status, createWorker,
   };
 };
-/** The `<g class="eka-marks">` groups of a rendered figure: every drawn data primitive of the plot. */
+/** The `<g class="ema-marks">` groups of a rendered figure: every drawn data primitive of the plot. */
 const markGroups = (html: string, viewId: string): string => {
-  const figure = html.slice(html.indexOf(`data-eka-figure="${viewId}"`));
-  return [...figure.slice(0, figure.indexOf('</figure>')).matchAll(/<g class="eka-marks"[^>]*>([\s\S]*?)<\/g>/g)].map(match => match[1]).join('');
+  const figure = html.slice(html.indexOf(`data-ema-figure="${viewId}"`));
+  return [...figure.slice(0, figure.indexOf('</figure>')).matchAll(/<g class="ema-marks"[^>]*>([\s\S]*?)<\/g>/g)].map(match => match[1]).join('');
 };
 
 describe('server render of observed data through the real adapter (§8.5, A13)', () => {
@@ -100,15 +100,15 @@ describe('server render of observed data through the real adapter (§8.5, A13)',
     let html = renderToString(createElement(StudyActivitySurface, { binding: opened.learner, theme: 'light' }));
     let marks = markGroups(html, 'fall-plot');
     // Observe stage: only the observations are drawn — 8 diamond markers (11 rows, 3 with a missing value), no stroke.
-    expect(marks.match(/<path class="eka-role-secondary eka-fill"/g)).toHaveLength(8);
-    expect(marks).not.toMatch(/eka-stroke/);
+    expect(marks.match(/<path class="ema-role-secondary ema-fill"/g)).toHaveLength(8);
+    expect(marks).not.toMatch(/ema-stroke/);
     expect(html).toContain('Recorded heights (observed): 8 observed points are drawn separately; no line joins, interpolates or fits them.');
     expect(html).toContain('Recorded heights (observed): 3 of 11 observations have a missing value — The ball was hidden behind the stand in this frame; Motion blur: no height could be read in this frame; The frame timestamp was not recorded. They are not drawn.');
     // The table is offered as the equivalent alternative (its rows and source line are checked through the capture text below).
     expect(html).toContain('Tables of recorded and predicted heights');
     expect(html).not.toContain('Predicted height');
     // Every y tick label fits left of the plot: the margin follows the fitted ticks (17.5 needs more room than 20).
-    const yTicks = [...html.slice(html.indexOf('data-eka-figure="fall-plot"')).matchAll(/<text class="eka-tick" x="([0-9.]+)"[^>]*text-anchor="end">([^<]+)<\/text>/g)].map(match => ({ x: Number(match[1]), text: match[2]! }));
+    const yTicks = [...html.slice(html.indexOf('data-ema-figure="fall-plot"')).matchAll(/<text class="ema-tick" x="([0-9.]+)"[^>]*text-anchor="end">([^<]+)<\/text>/g)].map(match => ({ x: Number(match[1]), text: match[2]! }));
     expect(yTicks.map(tick => tick.text)).toContain('17.5');
     for (const tick of yTicks) expect(tick.x, tick.text).toBeGreaterThanOrEqual([...tick.text].length * 15 * 0.75 * 0.58);
 
@@ -117,9 +117,9 @@ describe('server render of observed data through the real adapter (§8.5, A13)',
     await settled(current, ACTIVITY);
     html = renderToString(createElement(StudyActivitySurface, { binding: opened.learner, theme: 'light' }));
     marks = markGroups(html, 'fall-plot');
-    expect(marks.match(/<path class="eka-role-secondary eka-fill"/g)).toHaveLength(8);
-    expect(marks.match(/eka-role-secondary eka-stroke/g)).toBeNull();
-    expect(marks.match(/<path class="eka-role-primary eka-stroke"/g)).toHaveLength(1);
+    expect(marks.match(/<path class="ema-role-secondary ema-fill"/g)).toHaveLength(8);
+    expect(marks.match(/ema-role-secondary ema-stroke/g)).toBeNull();
+    expect(marks.match(/<path class="ema-role-primary ema-stroke"/g)).toHaveLength(1);
     expect(html).toMatch(/Recorded heights \(observed\)<\/tspan>/);
     expect(html).toMatch(/Predicted height \(model\)<\/tspan>/);
     expect(html).toContain('Predicted height (model): 101 samples of its sampling variable from 0 to 1 (spacing 0.01); straight lines join neighbouring samples');

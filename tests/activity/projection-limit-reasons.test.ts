@@ -5,8 +5,8 @@
  * mathematically undefined values are not listed. Fixture-host results with in-process test workers.
  */
 import { afterEach, describe, expect, it } from 'vitest';
-import { projectLearnerView, TERMINAL_TEXT, type ProjectedMark, type Visibility } from '@experiment-kit/activity';
-import { modelIdentity, type ModelFrame } from '@experiment-kit/core/model';
+import { projectLearnerView, TERMINAL_TEXT, type ProjectedMark, type Visibility } from '@explorable-models/activity';
+import { modelIdentity, type ModelFrame } from '@explorable-models/core/model';
 import { enterExplore, guards, harness, okOf, op, open, rectangleModel, rectangleTemplate, requestFor, type Harness } from './support/adapter-harness.js';
 
 let current: Harness | null = null;

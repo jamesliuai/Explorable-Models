@@ -1,4 +1,4 @@
-import type { SessionState } from '@experiment-kit/core/declarative';
+import type { SessionState } from '@explorable-models/core/declarative';
 import { Arrow, C, fmt, FrameSvg, n, point, type XY } from './shared';
 export function Forces({ state }: { state: SessionState }) {
   const f = state.frame!;

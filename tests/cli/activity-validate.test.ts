@@ -1,5 +1,5 @@
 /**
- * `experiment-kit activity scaffold` and `validate` (report §15.2, A08, A56): data-only validation of authoring
+ * `explorable-models activity scaffold` and `validate` (report §15.2, A08, A56): data-only validation of authoring
  * packages, the distinction between a new exploratory composition and an edit of an installed template, and the
  * import allowlist checked by parsing (never by running) authored code.
  */
@@ -8,9 +8,9 @@ import { existsSync } from 'node:fs';
 import { readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
-import { modelIdentity } from '@experiment-kit/core/model';
-import { quadraticGradientDescentManifest, quadraticGradientDescentTemplate } from '@experiment-kit/catalog';
-import { templateRef } from '@experiment-kit/activity';
+import { modelIdentity } from '@explorable-models/core/model';
+import { quadraticGradientDescentManifest, quadraticGradientDescentTemplate } from '@explorable-models/catalog';
+import { templateRef } from '@explorable-models/activity';
 import { activity, codes, editJson, readJson, temporaryDirectory, type Diagnostic } from './activity-support';
 
 type Validation = { ok: boolean; diagnostics: Diagnostic[]; relation: { kind: string; of?: { templateId: string }; derivedFrom?: unknown }; recordedRelation: { kind: string; derivedFrom: unknown; kernel: string } | null; lifecycle: string; referenceSuite: { binding: string; fixture: { digest: string } | null }; execution: { source: string; kernelId?: string }; model: { modelId: string; digest: string }; codeExecuted: boolean };
@@ -145,7 +145,7 @@ describe('activity scaffold and validate', () => {
     await activity('scaffold', directory);
     const marker = path.join(work.path, 'validate-marker.txt');
     const kernel = await readFile(path.join(directory, 'kernel.ts'), 'utf8');
-    await writeFile(path.join(directory, 'kernel.ts'), `import { writeFileSync } from 'node:fs';\nimport { checkParameters } from '@experiment-kit/core/model';\nwriteFileSync(${JSON.stringify(marker)}, 'ran');\nvoid checkParameters;\nvoid import('./model.json');\n${kernel}`);
+    await writeFile(path.join(directory, 'kernel.ts'), `import { writeFileSync } from 'node:fs';\nimport { checkParameters } from '@explorable-models/core/model';\nwriteFileSync(${JSON.stringify(marker)}, 'ran');\nvoid checkParameters;\nvoid import('./model.json');\n${kernel}`);
     await editJson<{ cases: { points?: { expect: Record<string, unknown> }[] }[] }>(path.join(directory, 'fixtures/reference.json'), suite => { suite.cases[0]!.points![0]!.expect['probe.value'] = 4; });
     const { report, exitCode } = await activity<Validation>('validate', directory);
     expect(exitCode).toBe(1);

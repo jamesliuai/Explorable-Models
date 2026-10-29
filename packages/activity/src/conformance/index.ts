@@ -1,5 +1,5 @@
 /**
- * `@experiment-kit/activity/conformance`: the host-agnostic HostPort conformance kit (external gate G2, A54
+ * `@explorable-models/activity/conformance`: the host-agnostic HostPort conformance kit (external gate G2, A54
  * preparation). A separate entry from the adapter: hosts and their test harnesses import it; the learner surface and
  * the adapter never do. Pure TypeScript with no Node, DOM or native imports, so the same kit runs in Node, a browser and
  * a packaged WebView against any `HostPort`.

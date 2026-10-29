@@ -1,4 +1,4 @@
-import type { ValueResult } from '@experiment-kit/core/declarative';
+import type { ValueResult } from '@explorable-models/core/declarative';
 
 /** Significant digits preserve small nonzero errors; only actual negative zero becomes zero. */
 export function formatNumber(value: number, precision = 6, locale = 'en-US'): string {

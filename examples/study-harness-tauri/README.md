@@ -1,7 +1,7 @@
 # Study Harness reference host (Tauri 2) — conformance fixture
 
 A small packaged desktop host that exercises the Study Harness visualizer boundary the way the real application must
-(report §17): the learner card from the **packed** `@experiment-kit/*` tarballs (used through
+(report §17): the learner card from the **packed** `@explorable-models/*` tarballs (used through
 `createStudyHarnessVisualizer`), host-owned stage controls, a host-owned response composer, durable host records in
 SQLite, persist-before-reveal with receipts, save / terminate / reopen recovery, an independent task with the teaching
 visual unavailable whose answer is stored with its frozen assistance/exposure snapshot (§6.4, A26), and an
@@ -17,7 +17,7 @@ kept separate from the actual Study Harness integration (A54, `docs/study-harnes
 | Path | Role |
 | --- | --- |
 | `src/app.ts`, `src/ui.ts`, `src/composer.ts`, `src/main.ts` | Host chrome and host steps (plain DOM; `createStudyHarnessVisualizer` prepares, restores and mounts the card; the composer is passed to the card through `responseSlot`; `mountStudyActivityPlaceholder` while preparing or restoring; the archival read-only record when a restore is refused as unsupported or revoked) |
-| `src/spatial.ts` | `spatialLoader`: the packed `@experiment-kit/player-3d` chunk (with Three.js), loaded only when a spatial view is on screen; a host-side registry of mounted renderers and their counters (never shown to the learner) |
+| `src/spatial.ts` | `spatialLoader`: the packed `@explorable-models/player-3d` chunk (with Three.js), loaded only when a spatial view is on screen; a host-side registry of mounted renderers and their counters (never shown to the learner) |
 | `src/native-bridge.ts` | The only module that touches `@tauri-apps/api`; every request is a raw UTF-8 JSON byte body; rejections carry `{ code, message, reason? }` |
 | `src/native-host.ts` | `HostPort` over the native commands (the nine required methods and the optional `getActivityRecords`; HostPort refusal convention, below), plus the host-owned operations |
 | `src/conformance/*` | In-app scenario runner and probes — emitted only by `vite --mode conformance` (includes the HostPort conformance kit run, `hostport-kit`) |
@@ -45,7 +45,7 @@ npx tauri build --bundles app --no-sign     # release app: src-tauri/target/rele
 open src-tauri/target/release/bundle/macos/StudyHarnessReference.app
 ```
 
-The app stores its records in `~/Library/Application Support/dev.experimentkit.studyharness.reference/`
+The app stores its records in `~/Library/Application Support/dev.explorablemodels.studyharness.reference/`
 (`reference-host.sqlite3`, store schema 3; `exports/` receives portable backups written by **Export portable backup**;
 backups placed in `imports/` are offered for import, named by their sha256). Portable backups contain the host's full
 records, including response text and the frozen answer snapshots: treat them as the learner's study record. Backups
@@ -61,7 +61,7 @@ exactly the shapes this host writes, and rows must agree with the records they r
 with `valid: false` and `INTEGRITY_FAILURE`, and importing it changes nothing (R06; the tests are listed in
 `src-tauri/src/tests.rs` under "R06").
 
-The app's Vite config has no monorepo aliases: `@experiment-kit/*` resolve to the extracted tarballs in this
+The app's Vite config has no monorepo aliases: `@explorable-models/*` resolve to the extracted tarballs in this
 directory's `node_modules`. After library changes, re-run `node scripts/install-packed.mjs --pack`. Note that `--pack`
 replaces `release/study-harness/packages` with a five-package pack (`complete: false`); when a complete release pack
 already exists there (`npm run release`), run `node scripts/install-packed.mjs` without `--pack` to install from it
@@ -128,7 +128,7 @@ refused (`OPERATION_CONFLICT`). `get_response_snapshot` returns the stored snaps
 
 ## HostPort refusal convention
 
-The `HostPort` commands (the nine required methods and `get_activity_records`) follow the convention exported by `@experiment-kit/activity` (`HOST_REFUSAL_CODES`,
+The `HostPort` commands (the nine required methods and `get_activity_records`) follow the convention exported by `@explorable-models/activity` (`HOST_REFUSAL_CODES`,
 `isHostRefusal`): a host decision rejects with `POLICY_DENIED`, `POLICY_EXPIRED`, `CONTENT_REVOKED`,
 `STALE_POLICY_REVISION` or `INVALID_INPUT` and is not retried by the adapter; the specific host code travels as
 `reason` (for example `{ code: 'INVALID_INPUT', reason: 'NOT_FOUND' }`, `{ code: 'POLICY_DENIED', reason:
@@ -227,9 +227,9 @@ directory per scenario chain (Tauri's app-data directory follows `HOME` on macOS
 | `crash:*` | `std::process::abort()` at `intent-before-commit`, `intent-after-commit`, `intent-after-reply` (next command after the receipt) and `display-ack-before-commit`; relaunch; honest unseen / uncertain / displayed-uncertain host records; one reveal record and receipt; after resume in a visible window the host holds exactly one display acknowledgement, committed after its restart (`recoveries`) record, which stays — for `display-ack-before-commit` the checkpoint must mark the in-flight acknowledgement `ACK_NOT_PERSISTED` and the acknowledgement the restored adapter resends must carry the original display's projection digest; no duplicate reveal or prediction events; the host journal is complete (exactly one `reveal.authorized` and one `reveal.displayed` for the reveal exposure, every event the checkpoint carried present by eventId) or holds the durable loss record |
 | `crash:save-before-commit` | Abort inside `save_artifact` after its writes and before its commit, armed by the runner only for the explicit Save: no partial row (no orphan or missing blob, checkpoint unchanged), the relaunch restores the previous checkpoint with every earlier event and exposure, and the repeated save commits |
 | `restore` | The exported backup imported into an EMPTY store after the original store is deleted; journal, receipts, assistance and frozen answer snapshots preserved by identity; re-import adds nothing; restored state equals the original (the camera read from the restored presentation snapshot: the restored activity is closed and its learner projection shows no view); then, with the template's approval withdrawn in the process, reopening shows the archival read-only record (`CONTENT_REVOKED`; nothing evaluated, and its only control is the host's "Return to the session") and the records stay |
-| `hostport-kit` | The host-agnostic HostPort conformance kit (`@experiment-kit/activity/conformance`) against the Rust store through `NativeHostPort` (subject `reference-fixture-host`): all twelve G2 steps with their HostPort assertions; restarts reopen the same SQLite store in the running app (`conformance_reopen_store`), interruptions are in-process simulated faults (`conformance_fault`). The record is checked against the docs template file (the kit's embedded schema must equal it) and written to `docs/study-harness/evidence/host-conformance-reference-fixture.json` |
+| `hostport-kit` | The host-agnostic HostPort conformance kit (`@explorable-models/activity/conformance`) against the Rust store through `NativeHostPort` (subject `reference-fixture-host`): all twelve G2 steps with their HostPort assertions; restarts reopen the same SQLite store in the running app (`conformance_reopen_store`), interruptions are in-process simulated faults (`conformance_fault`). The record is checked against the docs template file (the kit's embedded schema must equal it) and written to `docs/study-harness/evidence/host-conformance-reference-fixture.json` |
 | `performance` | Report §18 targets that apply to a host, measured in this app's WKWebView against the Rust host on a fresh store (`src/conformance/performance.ts`, judged by `scripts/performance-targets.mjs` against `docs/study-harness/budgets.json`): 100 lifecycle cycles after a warm-up with no surviving activity-owned workers, timers, intervals, listeners, surfaces or open activities; then, with those activities retained in the store, the quadratic activity's commit → visible frame (p95 ≤ 100 ms; worker, render, paint and the native journal acknowledgement reported separately), 60 Hz slider drags (input feedback p95 ≤ 100 ms, display frame rate ≥ 30 fps with tentative frames keeping up), playback suspended by the host and by a hidden window (no work in a 2 s window after 1 s to settle, resume without catch-up); and each spatial activity's pointer orbit input → renderer frame (p95 ≤ 100 ms) with a suspended renderer drawing nothing. Inputs are DOM events dispatched by the runner, not OS input |
-| `templates` | Every installed template opened through the host (each kernel evaluated in the catalogue worker, loaded as its own chunk on first use); both spatial templates render through the packed `@experiment-kit/player-3d` chunk (frames counted from the renderer's own counters) and release every renderer resource when the card goes away; no CSP violation, no remote request, no socket |
+| `templates` | Every installed template opened through the host (each kernel evaluated in the catalogue worker, loaded as its own chunk on first use); both spatial templates render through the packed `@explorable-models/player-3d` chunk (frames counted from the renderer's own counters) and release every renderer resource when the card goes away; no CSP violation, no remote request, no socket |
 
 The `restart` scenario also checks the placeholder: the card area shows `empty`, then `preparing`, before the first
 surface, and `preparing` until the restored surface replaces it after a relaunch (the host's own card-state record).

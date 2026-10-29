@@ -4,7 +4,7 @@
  * presentation numbers the surface itself owns: axis ticks, the integer navigation index, camera readouts and the
  * bounds quoted in input explanations.
  */
-import type { ProjectedControl, ProjectedNavigation, ProjectedValue } from '@experiment-kit/activity';
+import type { ProjectedControl, ProjectedNavigation, ProjectedValue } from '@explorable-models/activity';
 
 export const MINUS = '−';
 const SUPERSCRIPT: Record<string, string> = { '0': '⁰', '1': '¹', '2': '²', '3': '³', '4': '⁴', '5': '⁵', '6': '⁶', '7': '⁷', '8': '⁸', '9': '⁹', '-': '⁻' };

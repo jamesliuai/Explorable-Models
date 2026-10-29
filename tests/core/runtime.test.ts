@@ -75,7 +75,7 @@ describe('worker isolation and watchdog', () => {
 describe('malformed worker and state messages', () => {
     function responder(result: unknown, kind: 'analytic' | 'parametric' = 'analytic') {
         let listener: ((event: any) => void) | undefined;
-        return { postMessage(request: any) { queueMicrotask(() => listener?.({ data: { namespace: 'unrelated-tool', id: request.id, ok: true, result: 'ignore' } })); queueMicrotask(() => listener?.({ data: { namespace: 'experiment-kit', id: request.id, ok: true, modelKind: kind, result } })); }, addEventListener(type: string, fn: (e: any) => void) { if (type === 'message')
+        return { postMessage(request: any) { queueMicrotask(() => listener?.({ data: { namespace: 'unrelated-tool', id: request.id, ok: true, result: 'ignore' } })); queueMicrotask(() => listener?.({ data: { namespace: 'explorable-models', id: request.id, ok: true, modelKind: kind, result } })); }, addEventListener(type: string, fn: (e: any) => void) { if (type === 'message')
                 listener = fn; }, removeEventListener() { }, terminate() { } };
     }
     it('ignores unrelated messages and rejects nonfinite data from its worker', async () => { const executor = new WorkerExecutor(responder({ quantities: { position: { status: 'valid', value: NaN }, speed: { status: 'valid', value: 2 }, vector: { status: 'valid', value: [2, 0] } } }), manifest); await expect(executor.evaluate({ a: 2, length: 5 }, 1)).rejects.toMatchObject({ code: 'MODEL_ERROR' }); executor.dispose(); });

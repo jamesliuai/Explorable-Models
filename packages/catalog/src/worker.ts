@@ -4,9 +4,9 @@
  * (`INSTALLED_KERNEL_SOURCE`), so the worker starts without any kernel code and fetches only the kernels its activity
  * needs. It imports no templates, copy or manifests, and does not enable schema 2.0 document execution: the installed
  * catalogue serves kernel models only (a host serving document-kind models supplies its own worker, see
- * `enableDocumentExecution` in @experiment-kit/core/model).
+ * `enableDocumentExecution` in @explorable-models/core/model).
  */
-import { serveModelWorker, type WorkerScope } from '@experiment-kit/core/model';
+import { serveModelWorker, type WorkerScope } from '@explorable-models/core/model';
 import { INSTALLED_KERNEL_SOURCE } from './kernels/loaders.js';
 
 serveModelWorker(self as unknown as WorkerScope, INSTALLED_KERNEL_SOURCE);

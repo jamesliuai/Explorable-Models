@@ -1,11 +1,11 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://experiment-kit.invalid/schema/model-manifest-1.0.json",
-  "title": "Experiment Kit model manifest 1.0",
+  "$id": "https://explorable-models.invalid/schema/model-manifest-1.0.json",
+  "title": "Explorable Models model manifest 1.0",
   "type": "object",
   "properties": {
     "contract": {
-      "const": "experiment-kit.model-manifest"
+      "const": "explorable-models.model-manifest"
     },
     "schemaVersion": {
       "const": "1.0"

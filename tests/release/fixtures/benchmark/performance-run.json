@@ -15,32 +15,32 @@
   },
   "packages": [
    {
-    "name": "@experiment-kit/core",
+    "name": "@explorable-models/core",
     "version": "0.3.0-preview.1",
     "sha256": "dbd6f58dbf24d974e0b04e23387d12526cba8d69ad1e7ec57578c5b0f737d365"
    },
    {
-    "name": "@experiment-kit/activity",
+    "name": "@explorable-models/activity",
     "version": "0.3.0-preview.1",
     "sha256": "9c4b1c52d269bd2c3f9cc3c727cc5149b370ed6d3eb25b4c21254de3ad117caa"
    },
    {
-    "name": "@experiment-kit/catalog",
+    "name": "@explorable-models/catalog",
     "version": "0.3.0-preview.1",
     "sha256": "70e549f61f00ddecbf251115ddf4d1562b5bd6af4ac5fa4664504b0311659ca8"
    },
    {
-    "name": "@experiment-kit/player",
+    "name": "@explorable-models/player",
     "version": "0.3.0-preview.1",
     "sha256": "eeb24d1078119715059d3dfdf4691270bb089b3933cabc92e4fd6d871a85464c"
    },
    {
-    "name": "@experiment-kit/player-3d",
+    "name": "@explorable-models/player-3d",
     "version": "0.3.0-preview.1",
     "sha256": "0a94db4622aa31e3d4f2129f56a04ad2a5c2d660774ef986dffb38eb10768f8c"
    },
    {
-    "name": "@experiment-kit/agent",
+    "name": "@explorable-models/agent",
     "version": "0.3.0-preview.1",
     "sha256": "0b719777ab648a5fa9d14527aef05362d52dd327b77cb3ac86067b81df393735"
    }

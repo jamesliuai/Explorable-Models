@@ -1,4 +1,4 @@
-import type { SessionState } from '@experiment-kit/core/declarative';
+import type { SessionState } from '@explorable-models/core/declarative';
 import { C, FrameSvg, seriesPath, type XY } from './shared';
 export function Waves({ state }: { state: SessionState }) {
   const f = state.frame!;

@@ -6,8 +6,8 @@
  * results with in-process test workers.
  */
 import { afterEach, describe, expect, it } from 'vitest';
-import { policyStanding } from '@experiment-kit/activity';
-import { createActivityTools } from '@experiment-kit/agent';
+import { policyStanding } from '@explorable-models/activity';
+import { createActivityTools } from '@explorable-models/agent';
 import { guards, op, settled, until } from '../activity/support/adapter-harness.js';
 import { ACTIVITY_ID, codesOf, dataOf, opId, prepareThroughTools, rig, type Rig } from './support/activity-tools.js';
 

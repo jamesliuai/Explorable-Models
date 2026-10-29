@@ -24,7 +24,7 @@ is a custom representation of the same declarative quantities, with a specialize
 diagram, controls and typography. Geometry tests cover the adapter.
 
 The controller is the supported `createDocumentInteractionController` from
-`@experiment-kit/core/declarative` (`controller.ts` only binds it to the rod
+`@explorable-models/core/declarative` (`controller.ts` only binds it to the rod
 document). It owns two toolkit sessions. The primary session records a tentative
 parameter preview during dragging. A scratch session, created on the first preview,
 evaluates complete frames for immediate display, with at most one retained run.
@@ -68,7 +68,7 @@ not independent human scientific review. The browser tests evaluate the actual
 worker, compare reference values, verify perpendicular vectors and midpoint
 geometry, exercise live pointer and keyboard previews, cancellation, newest-value
 coalescing, failure retention, exact input, zero/boundary states and mobile layout.
-Screenshots are written outside source to `/tmp/experiment-kit-hinged-rod/`.
+Screenshots are written outside source to `/tmp/explorable-models-hinged-rod/`.
 
 ```sh
 npm run typecheck

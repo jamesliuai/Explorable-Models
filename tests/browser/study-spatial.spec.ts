@@ -2,7 +2,7 @@
  * The two spatial activities with the optional 3D renderer in a real browser (report §11, §12.4, §12.5, §13, §18;
  * A22, A36, A44–A47). It drives the generic flow of the integration fixture page
  * (`study-harness.html?template=<id>&spatial=1`): the fixture host, the real catalogue kernel module worker, the
- * activity adapter, the learner card in its shadow root and `@experiment-kit/player-3d` loaded through the host's lazy
+ * activity adapter, the learner card in its shadow root and `@explorable-models/player-3d` loaded through the host's lazy
  * loader. Rendered-scene facts come from the renderer's inspection hook (`inspect(element)`: world-space and screen
  * positions of the drawn arrows and axis ends, the camera, labels, notes, frame and resource counters).
  *
@@ -15,11 +15,11 @@
  */
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { expect, test, type Page } from '@playwright/test';
-import type { LearnerProjection } from '@experiment-kit/activity';
-import type { SpatialInspection, SpatialStats } from '@experiment-kit/player-3d';
+import type { LearnerProjection } from '@explorable-models/activity';
+import type { SpatialInspection, SpatialStats } from '@explorable-models/player-3d';
 import { card, control, expectAccessible, focusKey, focused, openFixture, overflow, projection, respond, settle, tabTo, type FocusInfo } from './support/study-harness';
 
-const SHOTS = '/tmp/experiment-kit-playwright/study-spatial';
+const SHOTS = '/tmp/explorable-models-playwright/study-spatial';
 mkdirSync(SHOTS, { recursive: true });
 const VECTOR = '?template=vector-orientation-3d';
 const SURFACE = '?template=quadratic-surface-gradient';
@@ -43,14 +43,14 @@ type Fixture = {
 // ---------------------------------------------------------------------------------------------
 // Helpers
 // ---------------------------------------------------------------------------------------------
-const spatial = (page: Page) => card(page).locator('[data-ek3-root]');
-const viewport3d = (page: Page) => card(page).locator('.ek3-viewport');
+const spatial = (page: Page) => card(page).locator('[data-em3-root]');
+const viewport3d = (page: Page) => card(page).locator('.em3-viewport');
 
 /** The renderer's inspection of the card's 3D view (null when no renderer is mounted). */
 async function inspect3d(page: Page): Promise<Inspection | null> {
   return page.evaluate(async () => {
     const hooks = window.studyHarnessFixture as unknown as Fixture;
-    const root = document.querySelector('[data-fx-card] [data-experiment-kit-activity]')?.shadowRoot?.querySelector('[data-ek3-root]');
+    const root = document.querySelector('[data-fx-card] [data-explorable-models-activity]')?.shadowRoot?.querySelector('[data-em3-root]');
     if (!root || !hooks.options.spatialLoader) return null;
     const result = (await hooks.options.spatialLoader()).inspect(root);
     return result ? JSON.parse(JSON.stringify(result)) as Inspection : null;
@@ -58,7 +58,7 @@ async function inspect3d(page: Page): Promise<Inspection | null> {
 }
 /** Waits until the renderer is mounted, ready and has drawn at least one frame. */
 async function ready3d(page: Page): Promise<Inspection> {
-  await expect(spatial(page)).toHaveAttribute('data-ek3-status', 'ready', { timeout: 15_000 });
+  await expect(spatial(page)).toHaveAttribute('data-em3-status', 'ready', { timeout: 15_000 });
   await expect.poll(async () => (await inspect3d(page))?.stats.frames ?? 0).toBeGreaterThan(0);
   return (await inspect3d(page))!;
 }
@@ -90,13 +90,13 @@ async function scenario(page: Page, id: string): Promise<void> {
   await settle(page);
 }
 async function rowText(page: Page, quantityId: string): Promise<string | null> {
-  const row = card(page).locator(`[data-eka-panel="values"] .eka-value-row[data-quantity="${quantityId}"]`);
+  const row = card(page).locator(`[data-ema-panel="values"] .ema-value-row[data-quantity="${quantityId}"]`);
   if (!await row.count()) return null;
   return (await row.first().locator('dd').allTextContents()).join(' ').replace(/\s+/g, ' ').trim();
 }
 /** Body rows of a rendered table panel (cell texts), by its heading. */
 async function tableRows(page: Page, title: string): Promise<string[][]> {
-  const panel = card(page).locator('section[data-eka-panel="table"]').filter({ has: page.locator(`.eka-panel-title:text-is("${title}")`) });
+  const panel = card(page).locator('section[data-ema-panel="table"]').filter({ has: page.locator(`.ema-panel-title:text-is("${title}")`) });
   await expect(panel).toHaveCount(1);
   return panel.locator('tbody tr').evaluateAll(rows => rows.map(row => [...row.querySelectorAll('th, td')].map(cell => (cell.textContent ?? '').trim())));
 }
@@ -366,7 +366,7 @@ test.describe('spatial vector orientation with the 3D renderer', () => {
       const note = view.notes.find(item => item.markId === 'cross-direction-arrow')!;
       expect(note.kind).toBe('undefined');
       expect(note.text).toContain(reason);
-      await expect(spatial(page).locator('.ek3-notes li[data-kind="undefined"]')).toContainText('Direction of u × v (length 1, not to scale): undefined');
+      await expect(spatial(page).locator('.em3-notes li[data-kind="undefined"]')).toContainText('Direction of u × v (length 1, not to scale): undefined');
       expect(await rowText(page, 'relationship'), id).toMatch(new RegExp(`^${relationship}\\b`));
       expect(nums((await rowText(page, 'angle'))!)[0], `${id}: ${await rowText(page, 'angle')}`).toBeCloseTo(degrees, 9);
       expect(view.notes.some(item => item.markId === 'angle-arc-curve' && item.kind === 'gap'), `${id}: arc gap`).toBe(true);
@@ -403,7 +403,7 @@ test.describe('spatial vector orientation with the 3D renderer', () => {
       }
     }
     // The 3D view's own projection and coordinate table are available while the renderer runs.
-    await card(page).locator('[data-eka-spatial="space"]').getByRole('button', { name: '2D projection and table' }).click();
+    await card(page).locator('[data-ema-spatial="space"]').getByRole('button', { name: '2D projection and table' }).click();
     await expect(card(page).getByRole('heading', { name: '3D view: x–y projection' })).toBeVisible();
     expect(errors).toEqual([]);
   });
@@ -430,10 +430,10 @@ test.describe('spatial vector orientation with the 3D renderer', () => {
   test('alternative text-description (vector-orientation-3d): generated summaries of the 3D view from visible values only', async ({ page }) => {
     const errors = await openFixture(page, `${VECTOR}&spatial=1`);
     await ready3d(page);
-    const summary = card(page).locator('[data-eka-spatial="space"] figure .eka-figure-foot p').last();
-    await expect(summary).toHaveClass(/eka-sr/);
+    const summary = card(page).locator('[data-ema-spatial="space"] figure .ema-figure-foot p').last();
+    await expect(summary).toHaveClass(/ema-sr/);
     await card(page).getByRole('button', { name: 'Text description' }).click();
-    await expect(summary).toHaveClass(/eka-description/);
+    await expect(summary).toHaveClass(/ema-description/);
     const text = (await summary.textContent())!;
     expect(text.length).toBeGreaterThan(20);
     for (const hidden of ['θ', 'u × v', 'Angle between', 'Cross product']) expect(text, hidden).not.toContain(hidden);
@@ -457,7 +457,7 @@ test.describe('spatial vector orientation with the 3D renderer', () => {
     expect(arrowsOf(view, 'vector-segments').map(arrow => arrow.model.tip)).toEqual([[1, 0, 0], [0, 1, 0]]);
     const run = (await projection(page)).guards.expectedRunId;
     await type('uz', '4');
-    await expect(control(page, 'uz').locator('.eka-error')).toBeVisible();
+    await expect(control(page, 'uz').locator('.ema-error')).toBeVisible();
     expect((await projection(page)).guards.expectedRunId).toBe(run);
     expect(controls(await projection(page)).uz).toBe(0);
     expect(errors).toEqual([]);
@@ -522,8 +522,8 @@ test.describe('quadratic surface and gradient with the 3D renderer', () => {
     let view = await ready3d(page);
     expect(view.arrows).toEqual([]);
     expect(view.counts).toMatchObject({ vertices: 41 * 41 + 1, indices: 40 * 40 * 6 + 2 * 40 * 41 * 2 });
-    await expect(spatial(page).locator('.ek3-notes')).toContainText('Surface z = f(x, y): sampled on a 41 × 41 grid over x from −2 to 2 and y from −2 to 2');
-    await expect(spatial(page).locator('.ek3-notes li[data-kind="aspect"]')).toContainText('The vertical axis f(x, y) is drawn at its own scale');
+    await expect(spatial(page).locator('.em3-notes')).toContainText('Surface z = f(x, y): sampled on a 41 × 41 grid over x from −2 to 2 and y from −2 to 2');
+    await expect(spatial(page).locator('.em3-notes li[data-kind="aspect"]')).toContainText('The vertical axis f(x, y) is drawn at its own scale');
     expect(await rowText(page, 'gradient')).toBeNull();
     await expectAccessible(page, 'surface orient (3D)');
     await shot(page, 'surface-default');
@@ -540,7 +540,7 @@ test.describe('quadratic surface and gradient with the 3D renderer', () => {
     await drive(page, 'transition', 'explore-field');
     await expect(card(page)).not.toContainText('Arrow lengths are scaled by');
     for (const group of FIELD_GROUPS) await drive(page, 'reveal', group);
-    await expect(card(page).locator('figure').filter({ has: page.locator('svg[data-eka-view-id="contour-plot"]') })).toContainText('Arrow lengths are scaled by');
+    await expect(card(page).locator('figure').filter({ has: page.locator('svg[data-ema-view-id="contour-plot"]') })).toContainText('Arrow lengths are scaled by');
     await expectAccessible(page, 'surface explore-field (3D)');
     await shot(page, 'surface-explore-field');
     await spatial(page).getByRole('button', { name: 'Wireframe surface' }).click();
@@ -587,8 +587,8 @@ test.describe('quadratic surface and gradient with the 3D renderer', () => {
       const tangent = unit([next[0]! - previous[0]!, next[1]! - previous[1]!]);
       expect(Math.abs(tangent[0]! * unit(g)[0]! + tangent[1]! * unit(g)[1]!), `${id}: contour tangent · gradient direction`).toBeLessThan(0.02);
     }
-    await expect(spatial(page).locator('.ek3-notes')).toContainText('sampled on a 41 × 41 grid');
-    await expect(card(page).locator('figure').filter({ has: page.locator('svg[data-eka-view-id="contour-plot"]') })).toContainText('Arrow lengths are scaled by');
+    await expect(spatial(page).locator('.em3-notes')).toContainText('sampled on a 41 × 41 grid');
+    await expect(card(page).locator('figure').filter({ has: page.locator('svg[data-ema-view-id="contour-plot"]') })).toContainText('Arrow lengths are scaled by');
     await scenario(page, 'point-at-origin');
     const view = await until3d(page, current => arrowsOf(current, 'gradient-arrow-3d').length === 0, 'no gradient arrow at the minimum');
     expect(view.arrows).toEqual([]);
@@ -675,7 +675,7 @@ test.describe('quadratic surface and gradient with the 3D renderer', () => {
   test('alternative equation-values-equivalent: the equation with the coefficient values fixes the cross-sections, contours and gradient values shown', async ({ page }) => {
     const errors = await openFixture(page, `${SURFACE}&spatial=1&mode=free`);
     await ready3d(page);
-    await expect(card(page).locator('[data-eka-panel="equations"]').first()).toContainText('Surface');
+    await expect(card(page).locator('[data-ema-panel="equations"]').first()).toContainText('Surface');
     const shown = await projection(page);
     const equations = shown.views.flatMap(view => view.equations).map(equation => equation.plain);
     expect(equations).toContain('f(x, y) = (a·x² + 2b·x·y + c·y²)/2');
@@ -749,7 +749,7 @@ test.describe('quadratic surface and gradient with the 3D renderer', () => {
     const errors = await openFixture(page, `${SURFACE}&spatial=1`);
     await ready3d(page);
     await card(page).getByRole('button', { name: 'Text description' }).click();
-    const summary = card(page).locator('[data-eka-spatial="surface-view"] figure .eka-figure-foot p.eka-description');
+    const summary = card(page).locator('[data-ema-spatial="surface-view"] figure .ema-figure-foot p.ema-description');
     await expect(summary).toBeVisible();
     const text = (await summary.textContent())!;
     expect(text.length).toBeGreaterThan(20);
@@ -775,7 +775,7 @@ test.describe('quadratic surface and gradient with the 3D renderer', () => {
     const box = control(page, 'b').getByRole('textbox');
     await box.fill('3');
     await box.press('Enter');
-    await expect(control(page, 'b').locator('.eka-error')).toBeVisible();
+    await expect(control(page, 'b').locator('.ema-error')).toBeVisible();
     expect((await projection(page)).guards.expectedRunId).toBe(run);
     expect(errors).toEqual([]);
   });
@@ -849,7 +849,7 @@ test.describe('without WebGL and on the 2D path (A44)', () => {
     // On the x–y projection u × v = e_z is seen end-on: the drawing says where it points and how long it is, never that
     // it is a zero vector.
     const xyProjection = card(page).locator('figure').filter({ has: page.getByRole('heading', { name: '3D view: x–y projection' }) });
-    await expect(xyProjection.locator('.eka-notes')).toContainText('points along +z (length 1), straight along the axis this projection leaves out');
+    await expect(xyProjection.locator('.ema-notes')).toContainText('points along +z (length 1), straight along the axis this projection leaves out');
     await expect(xyProjection).toContainText('u × v (points along +z, seen end-on)');
     await expect(xyProjection).not.toContainText('zero vector (no direction)');
     await expect(xyProjection).not.toContainText('(zero vector)');
@@ -877,7 +877,7 @@ test.describe('without WebGL and on the 2D path (A44)', () => {
     expect(nums((await rowText(page, 'gradient'))!)).toEqual([2.5, 1.5]);
     await drive(page, 'transition', 'explore-field');
     await revealAll(page, FIELD_GROUPS);
-    await expect(card(page).locator('figure').filter({ has: page.locator('svg[data-eka-view-id="contour-plot"]') })).toContainText('Arrow lengths are scaled by');
+    await expect(card(page).locator('figure').filter({ has: page.locator('svg[data-ema-view-id="contour-plot"]') })).toContainText('Arrow lengths are scaled by');
     await card(page).getByRole('button', { name: 'Values table' }).click();
     expect(await tableRows(page, 'Gradient field table')).toHaveLength(81);
     await drive(page, 'transition', 'explain');
@@ -916,25 +916,25 @@ test.describe('3D renderer lifecycle (A47)', () => {
   test('WebGL context loss shows a visible state and the 2D projection, then the renderer restores itself and draws again', async ({ page }) => {
     const errors = await openFixture(page, `${VECTOR}&spatial=1&mode=free`);
     const before = await ready3d(page);
-    await card(page).locator('.ek3-canvas').evaluate(canvas => {
+    await card(page).locator('.em3-canvas').evaluate(canvas => {
       const gl = (canvas as HTMLCanvasElement).getContext('webgl2')!;
       gl.getExtension('WEBGL_lose_context')!.loseContext();
     });
-    await expect(spatial(page)).toHaveAttribute('data-ek3-status', 'context-lost');
-    await expect(spatial(page).locator('.ek3-state')).toBeVisible();
-    await expect(spatial(page).locator('.ek3-state')).toContainText('Graphics context lost');
-    await expect(card(page).locator('[data-eka-spatial="space"]')).toHaveAttribute('data-eka-spatial-state', 'context-lost');
+    await expect(spatial(page)).toHaveAttribute('data-em3-status', 'context-lost');
+    await expect(spatial(page).locator('.em3-state')).toBeVisible();
+    await expect(spatial(page).locator('.em3-state')).toContainText('Graphics context lost');
+    await expect(card(page).locator('[data-ema-spatial="space"]')).toHaveAttribute('data-ema-spatial-state', 'context-lost');
     await expect(card(page).getByRole('heading', { name: '3D view: x–y projection' })).toBeVisible();
     // The free-explore view draws the angle arc (a sampled curve the coordinate table summarises), so neither the surface
     // nor the renderer's own state claims that the projection and table show the same values (G54 wording, S2).
     const lostWording = 'The 2D projection shows the same drawing seen along one axis; the coordinate table below lists the positioned items and summarises the rest';
-    await expect(card(page).locator('[data-eka-spatial="space"]')).toContainText(`The 3D view is unavailable right now. ${lostWording}`);
-    await expect(spatial(page).locator('.ek3-state')).toContainText(`Trying to restore the 3D view… ${lostWording}`);
-    await expect(spatial(page).locator('.ek3-state')).not.toContainText('show the same values');
+    await expect(card(page).locator('[data-ema-spatial="space"]')).toContainText(`The 3D view is unavailable right now. ${lostWording}`);
+    await expect(spatial(page).locator('.em3-state')).toContainText(`Trying to restore the 3D view… ${lostWording}`);
+    await expect(spatial(page).locator('.em3-state')).not.toContainText('show the same values');
     await shot(page, 'vector-context-lost');
     // Automatic restore attempt (no user action).
-    await expect(spatial(page)).toHaveAttribute('data-ek3-status', 'ready', { timeout: 10_000 });
-    await expect(spatial(page).locator('.ek3-state')).toBeHidden();
+    await expect(spatial(page)).toHaveAttribute('data-em3-status', 'ready', { timeout: 10_000 });
+    await expect(spatial(page).locator('.em3-state')).toBeHidden();
     await expect(card(page).getByRole('heading', { name: '3D view: x–y projection' })).toHaveCount(0);
     const after = await until3d(page, view => view.stats.frames > before.stats.frames, 'a frame after restore');
     expect(after.arrows.map(arrow => arrow.segmentId)).toEqual(before.arrows.map(arrow => arrow.segmentId));
@@ -961,25 +961,25 @@ test.describe('3D renderer lifecycle (A47)', () => {
     await card(page).evaluate(host => host.scrollIntoView({ block: 'start' }));
     // Lose the context and keep it lost: the context's own WEBGL_lose_context extension object (the one the renderer
     // restores through) ignores restore requests, as when the GPU process cannot give the page a context back.
-    await card(page).locator('.ek3-canvas').evaluate(canvas => {
+    await card(page).locator('.em3-canvas').evaluate(canvas => {
       const extension = (canvas as HTMLCanvasElement).getContext('webgl2')!.getExtension('WEBGL_lose_context')!;
       (window as unknown as { keptLost: WEBGL_lose_context }).keptLost = extension;
       Object.defineProperty(extension, 'restoreContext', { configurable: true, value: () => undefined });
       extension.loseContext();
     });
-    await expect(spatial(page)).toHaveAttribute('data-ek3-status', 'context-lost');
+    await expect(spatial(page)).toHaveAttribute('data-em3-status', 'context-lost');
     const lostAt = Date.now();
     // Three automatic attempts (0.8 s, 1.5 s and 3 s apart) fail, then the renderer reports `failed`.
-    await expect(spatial(page)).toHaveAttribute('data-ek3-status', 'failed', { timeout: 20_000 });
+    await expect(spatial(page)).toHaveAttribute('data-em3-status', 'failed', { timeout: 20_000 });
     expect(Date.now() - lostAt).toBeGreaterThanOrEqual(5_000);
-    const state = spatial(page).locator('.ek3-state');
-    const surface = card(page).locator('[data-eka-spatial="space"]');
+    const state = spatial(page).locator('.em3-state');
+    const surface = card(page).locator('[data-ema-spatial="space"]');
     await expect(state).toBeVisible();
     await expect(state).toContainText('The 3D view could not be restored');
     await expect(state).toContainText('The 2D projection shows the same drawing seen along one axis; the coordinate table below lists the positioned items and summarises the rest');
     await expect(state).not.toContainText('show the same values');
     await expect(state.getByRole('button', { name: 'Try again' })).toBeVisible();
-    await expect(surface).toHaveAttribute('data-eka-spatial-state', 'failed');
+    await expect(surface).toHaveAttribute('data-ema-spatial-state', 'failed');
     await expect(surface).toContainText('The 3D view is unavailable right now');
     await expect(card(page).getByRole('button', { name: '2D projection and table' })).toHaveAttribute('aria-disabled', 'true');
     await expect(card(page).getByRole('heading', { name: '3D view: x–y projection' })).toBeVisible();
@@ -998,7 +998,7 @@ test.describe('3D renderer lifecycle (A47)', () => {
     expect(tableValue(await projection(page), 'cross')).toBe('(0, 0, 1)');
     await card(page).getByRole('toolbar', { name: 'Projection plane' }).getByRole('button', { name: 'x–z' }).click();
     await expect(card(page).getByRole('heading', { name: '3D view: x–z projection' })).toBeVisible();
-    await expect(spatial(page)).toHaveAttribute('data-ek3-status', 'failed');
+    await expect(spatial(page)).toHaveAttribute('data-em3-status', 'failed');
 
     // Graphics are available again: Try again replaces the canvas and context, and the new renderer reports `ready`
     // to the surface, which hides its fallback and draws the committed frame in 3D.
@@ -1008,23 +1008,23 @@ test.describe('3D renderer lifecycle (A47)', () => {
     await page.waitForTimeout(300);
     const transitions = await page.evaluate(() => {
       const log: string[] = [];
-      const shadow = document.querySelector('[data-fx-card] [data-experiment-kit-activity]')!.shadowRoot!;
+      const shadow = document.querySelector('[data-fx-card] [data-explorable-models-activity]')!.shadowRoot!;
       new MutationObserver(records => { for (const record of records) log.push(`${record.attributeName}=${(record.target as Element).getAttribute(record.attributeName!)}`); })
-        .observe(shadow, { subtree: true, attributes: true, attributeFilter: ['data-eka-spatial-state', 'data-ek3-status'] });
+        .observe(shadow, { subtree: true, attributes: true, attributeFilter: ['data-ema-spatial-state', 'data-em3-status'] });
       (window as unknown as { spatialTransitions: string[] }).spatialTransitions = log;
     }).then(() => () => page.evaluate(() => (window as unknown as { spatialTransitions: string[] }).spatialTransitions));
     await state.getByRole('button', { name: 'Try again' }).click();
-    await expect(spatial(page)).toHaveAttribute('data-ek3-status', 'ready');
+    await expect(spatial(page)).toHaveAttribute('data-em3-status', 'ready');
     await expect(state).toBeHidden();
-    await expect(surface).toHaveAttribute('data-eka-spatial-state', 'ready');
+    await expect(surface).toHaveAttribute('data-ema-spatial-state', 'ready');
     await expect(card(page).getByRole('heading', { name: '3D view: x–z projection' })).toHaveCount(0);
     await expect(card(page).getByRole('button', { name: '2D projection and table' })).not.toHaveAttribute('aria-disabled', 'true');
     const view = await until3d(page, current => current.stats.frames > 0 && arrowsOf(current, 'cross-segment').length === 1, 'the new renderer draws the committed frame');
     expect(close(arrowsOf(view, 'cross-segment')[0]!.model.tip, [0, 0, 1])).toBe(true);
     // Straight from failed to ready, reported to the surface (never through an offscreen suspension).
-    expect(await transitions()).toEqual(['data-ek3-status=ready', 'data-eka-spatial-state=ready']);
+    expect(await transitions()).toEqual(['data-em3-status=ready', 'data-ema-spatial-state=ready']);
     // One canvas with a live context; focus moved from the hidden Try again button to the 3D view.
-    expect(await card(page).locator('.ek3-canvas').evaluateAll(canvases => canvases.map(canvas => (canvas as HTMLCanvasElement).getContext('webgl2')?.isContextLost()))).toEqual([false]);
+    expect(await card(page).locator('.em3-canvas').evaluateAll(canvases => canvases.map(canvas => (canvas as HTMLCanvasElement).getContext('webgl2')?.isContextLost()))).toEqual([false]);
     expect(await focused(page)).toMatchObject({ tag: 'div', inCard: true, name: expect.stringMatching(/^3D view: /) });
     await shot3d(page, 'vector-context-retried');
     expect(consoleErrors).toEqual([]);
@@ -1039,12 +1039,12 @@ test.describe('3D renderer lifecycle (A47)', () => {
     await page.setViewportSize({ width: 900, height: 1000 });
     const resized = await until3d(page, view => view.viewport.width !== first.viewport.width && view.stats.frames > first.stats.frames, 'resized drawing');
     expect(resized.stats.frames).toBeGreaterThan(first.stats.frames);
-    const canvas = await card(page).locator('.ek3-canvas').evaluate(element => ({ width: (element as HTMLCanvasElement).width, css: element.getBoundingClientRect().width, ratio: Math.min(2, Math.max(1, devicePixelRatio)) }));
+    const canvas = await card(page).locator('.em3-canvas').evaluate(element => ({ width: (element as HTMLCanvasElement).width, css: element.getBoundingClientRect().width, ratio: Math.min(2, Math.max(1, devicePixelRatio)) }));
     expect(Math.abs(canvas.width - Math.floor(canvas.css) * canvas.ratio)).toBeLessThanOrEqual(canvas.ratio);
 
     // Offscreen: scroll the card away; a presentation change while offscreen draws nothing.
     await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
-    await expect(spatial(page)).toHaveAttribute('data-ek3-status', 'suspended');
+    await expect(spatial(page)).toHaveAttribute('data-em3-status', 'suspended');
     const hidden = (await inspect3d(page))!.stats.frames;
     await page.evaluate(() => {
       const binding = (window.studyHarnessFixture as unknown as Fixture).binding!;
@@ -1055,7 +1055,7 @@ test.describe('3D renderer lifecycle (A47)', () => {
     await page.waitForTimeout(500);
     expect((await inspect3d(page))!.stats.frames).toBe(hidden);
     await card(page).evaluate(host => host.scrollIntoView({ block: 'start' }));
-    await expect(spatial(page)).toHaveAttribute('data-ek3-status', 'ready');
+    await expect(spatial(page)).toHaveAttribute('data-em3-status', 'ready');
     await until3d(page, current => current.stats.frames > hidden, 'a frame on resume');
     await page.waitForTimeout(500);
     expect((await inspect3d(page))!.stats.frames - hidden, 'frames after resuming').toBe(1);
@@ -1065,7 +1065,7 @@ test.describe('3D renderer lifecycle (A47)', () => {
       Object.defineProperty(document, 'visibilityState', { configurable: true, get: () => 'hidden' });
       document.dispatchEvent(new Event('visibilitychange'));
     });
-    await expect(spatial(page)).toHaveAttribute('data-ek3-status', 'suspended');
+    await expect(spatial(page)).toHaveAttribute('data-em3-status', 'suspended');
     const tabHidden = (await inspect3d(page))!.stats.frames;
     await page.setViewportSize({ width: 1100, height: 1000 });
     await page.waitForTimeout(500);
@@ -1074,7 +1074,7 @@ test.describe('3D renderer lifecycle (A47)', () => {
       Object.defineProperty(document, 'visibilityState', { configurable: true, get: () => 'visible' });
       document.dispatchEvent(new Event('visibilitychange'));
     });
-    await expect(spatial(page)).toHaveAttribute('data-ek3-status', 'ready');
+    await expect(spatial(page)).toHaveAttribute('data-em3-status', 'ready');
     await until3d(page, current => current.stats.frames === tabHidden + 1, 'one frame after the tab is visible again');
     expect(errors).toEqual([]);
   });
@@ -1161,14 +1161,14 @@ test.describe('3D renderer lifecycle (A47)', () => {
     expect(end.page.nodes, 'connected DOM nodes after 50 cycles').toBe(baseline.page.nodes);
     expect(end.page.listeners, 'listeners on window, document, media queries and connected nodes after 50 cycles').toEqual(baseline.page.listeners);
     expect(end.page.lostWhileConnected, 'WebGL contexts lost while their canvas was in the page').toBe(0);
-    await expect(spatial(page)).toHaveAttribute('data-ek3-status', 'ready');
-    expect(await card(page).locator('.ek3-canvas').evaluateAll(canvases => canvases.map(canvas => (canvas as HTMLCanvasElement).getContext('webgl2')?.isContextLost())), 'the card\'s context').toEqual([false]);
+    await expect(spatial(page)).toHaveAttribute('data-em3-status', 'ready');
+    expect(await card(page).locator('.em3-canvas').evaluateAll(canvases => canvases.map(canvas => (canvas as HTMLCanvasElement).getContext('webgl2')?.isContextLost())), 'the card\'s context').toEqual([false]);
     // Releasing the idle renderers returns the live contexts to the card's one (the count before any cycle).
     const released = await page.evaluate(async () => (await (window.studyHarnessFixture as unknown as Fixture).options.spatialLoader!()).releaseIdleRenderers());
     expect(released, 'idle renderers released').toBe(1);
     expect((await resources()).contexts, 'contexts after releasing the idle renderers').toEqual({ created: end.page.contexts.created, live: beforeWarmUp.contexts.live });
     expect(await page.evaluate(async () => (await (window.studyHarnessFixture as unknown as Fixture).options.spatialLoader!()).releaseIdleRenderers()), 'a second release finds none').toBe(0);
-    await expect(spatial(page)).toHaveAttribute('data-ek3-status', 'ready');
+    await expect(spatial(page)).toHaveAttribute('data-em3-status', 'ready');
     if (end.cdp && baseline.cdp) {
       expect(end.cdp.listeners - baseline.cdp.listeners, 'JS event listeners after 50 cycles').toBeLessThanOrEqual(5);
       expect(end.cdp.nodes - baseline.cdp.nodes, 'DOM nodes after 50 cycles').toBeLessThanOrEqual(50);
@@ -1197,8 +1197,8 @@ test.describe('spatial workloads (§18)', () => {
       const input = await page.evaluate(async () => {
         const hooks = window.studyHarnessFixture as unknown as Fixture;
         const module = await hooks.options.spatialLoader!();
-        const shadow = document.querySelector('[data-fx-card] [data-experiment-kit-activity]')!.shadowRoot!;
-        const root = shadow.querySelector('[data-ek3-root]')!, viewport = shadow.querySelector<HTMLElement>('.ek3-viewport')!;
+        const shadow = document.querySelector('[data-fx-card] [data-explorable-models-activity]')!.shadowRoot!;
+        const root = shadow.querySelector('[data-em3-root]')!, viewport = shadow.querySelector<HTMLElement>('.em3-viewport')!;
         viewport.focus();
         const frames = () => module.inspect(root)!.stats.frames;
         const samples: number[] = [];
@@ -1218,8 +1218,8 @@ test.describe('spatial workloads (§18)', () => {
         const elapsed = await page.evaluate(async text => {
           const hooks = window.studyHarnessFixture as unknown as Fixture;
           const module = await hooks.options.spatialLoader!();
-          const shadow = document.querySelector('[data-fx-card] [data-experiment-kit-activity]')!.shadowRoot!;
-          const root = shadow.querySelector('[data-ek3-root]')!;
+          const shadow = document.querySelector('[data-fx-card] [data-explorable-models-activity]')!.shadowRoot!;
+          const root = shadow.querySelector('[data-em3-root]')!;
           const target = [...shadow.querySelectorAll('button')].find(item => item.textContent === text)!;
           const before = module.inspect(root)!;
           const start = performance.now();
@@ -1269,7 +1269,7 @@ test.describe('3D views at 390 px and in dark mode', () => {
         expect(viewport.height).toBeGreaterThan(200);
         expect(view.viewport.width).toBeGreaterThan(200);
         if (configuration.id === 'dark') {
-          await expect(card(page).locator('.eka')).toHaveAttribute('data-theme', 'dark');
+          await expect(card(page).locator('.ema')).toHaveAttribute('data-theme', 'dark');
           expect(await viewport3d(page).evaluate(element => getComputedStyle(element).backgroundColor)).toBe('rgb(25, 33, 43)');
         }
         await expectAccessible(page, `${name} ${configuration.id}`);

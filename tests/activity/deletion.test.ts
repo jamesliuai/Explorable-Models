@@ -6,7 +6,7 @@
  * or turn supported work into independent work. Fixture-host results (memory host, inline workers).
  */
 import { afterEach, describe, expect, it } from 'vitest';
-import { createStudyHarnessAdapter, type ExposureRecord, type InteractionSummary, type ResponseRef } from '@experiment-kit/activity';
+import { createStudyHarnessAdapter, type ExposureRecord, type InteractionSummary, type ResponseRef } from '@explorable-models/activity';
 import {
   activityGuard, authorizeExploration, codesOf, enterExplore, guards, harness, okOf, op, open, requestFor, settled, until, type Harness, type Opened,
 } from './support/adapter-harness.js';

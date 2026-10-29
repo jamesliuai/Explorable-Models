@@ -1,5 +1,5 @@
 /**
- * Colours for the WebGL scene, read from the learner surface's `--eka-*` custom properties (so host themes, dark mode
+ * Colours for the WebGL scene, read from the learner surface's `--ema-*` custom properties (so host themes, dark mode
  * and contrast-validated overrides apply to the 3D view as well) with the surface's default palettes as fallback.
  * Axes use the negative (red), positive (green) and primary (blue) tokens for x, y and z; colour is never the only
  * cue: each axis also has its own line pattern, an arrowhead and a text label.
@@ -40,7 +40,7 @@ export const DARK_THEME: Readonly<SpatialTheme> = Object.freeze(themeFrom(DARK))
 
 const kebab = (name: string) => name.replace(/[A-Z]/g, c => `-${c.toLowerCase()}`);
 
-/** Theme from the computed `--eka-*` properties of `element`; malformed or missing values fall back to the defaults. */
+/** Theme from the computed `--ema-*` properties of `element`; malformed or missing values fall back to the defaults. */
 export function readTheme(element: Element): SpatialTheme {
   const view = element.ownerDocument.defaultView;
   const style = view?.getComputedStyle(element);
@@ -48,7 +48,7 @@ export function readTheme(element: Element): SpatialTheme {
     || (!element.closest('[data-theme]') && !!view?.matchMedia?.('(prefers-color-scheme: dark)').matches);
   const fallback: Palette = dark ? DARK : LIGHT;
   const read = (key: keyof Palette): string => {
-    const value = style?.getPropertyValue(`--eka-${kebab(key)}`).trim() ?? '';
+    const value = style?.getPropertyValue(`--ema-${kebab(key)}`).trim() ?? '';
     return COLOR.test(value) ? value : fallback[key];
   };
   const palette = Object.fromEntries((Object.keys(LIGHT) as (keyof Palette)[]).map(key => [key, read(key)])) as Palette;

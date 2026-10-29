@@ -4,7 +4,7 @@
  * reopening go through `HostPort.recordAssistance` before any display change; frozen assistance snapshots never change.
  */
 import { afterEach, describe, expect, it } from 'vitest';
-import { artifactIntegrity, createStudyHarnessAdapter, verifyArtifact, type ActivityArtifact, type HostPolicy } from '@experiment-kit/activity';
+import { artifactIntegrity, createStudyHarnessAdapter, verifyArtifact, type ActivityArtifact, type HostPolicy } from '@explorable-models/activity';
 import {
   ackCurrent, activityGuard, authorizeExploration, codesOf, enterExplore, guards, harness, okOf, op, open, policyFor, requestFor, settled, type Harness, type Opened,
 } from './support/adapter-harness.js';

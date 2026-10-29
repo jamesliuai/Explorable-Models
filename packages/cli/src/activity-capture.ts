@@ -14,10 +14,10 @@
 import {
   createStudyHarnessAdapter, solutionGroupsFor,
   type ActivityCatalog, type ActivityTemplate, type HostPolicy, type LearnerProjection, type ToolOperation,
-} from '@experiment-kit/activity';
-import { createInstalledCatalog } from '@experiment-kit/catalog';
-import { enableDocumentExecution, validateManifest } from '@experiment-kit/core/model';
-import { companionText, mountStudyActivity, type CaptureResult, type SurfaceDiagnostic } from '@experiment-kit/player/activity';
+} from '@explorable-models/activity';
+import { createInstalledCatalog } from '@explorable-models/catalog';
+import { enableDocumentExecution, validateManifest } from '@explorable-models/core/model';
+import { companionText, mountStudyActivity, type CaptureResult, type SurfaceDiagnostic } from '@explorable-models/player/activity';
 import { FixtureHost } from '../../../examples/study-harness-host/fixture-host.js';
 import { authoredCatalog, frames, modelWorker, wait } from './activity-page-support.js';
 
@@ -112,7 +112,7 @@ async function capture(text: string) {
   for (let attempt = 0; attempt < 100; attempt++) {
     const projection = binding.getProjection();
     const acknowledged = !projection.pendingReveal || projection.pendingReveal.state === 'failed';
-    const pendingMath = [...shadow.querySelectorAll('.eka-math')].filter(node => node.querySelector('.eka-plain')).length;
+    const pendingMath = [...shadow.querySelectorAll('.ema-math')].filter(node => node.querySelector('.ema-plain')).length;
     const fallbacks = diagnostics.filter(item => item.code === 'MATH_FALLBACK' || item.code === 'MATH_ASSETS_UNAVAILABLE').length;
     if (acknowledged && pendingMath <= fallbacks && projection.status.ui !== 'preparing' && projection.status.ui !== 'awaiting-persistence') break;
     await wait(80);
@@ -120,7 +120,7 @@ async function capture(text: string) {
   await document.fonts.ready;
   await frames(3);
   const style = getComputedStyle(shadow.firstElementChild ?? surface.element);
-  const background = style.getPropertyValue('--eka-background').trim();
+  const background = style.getPropertyValue('--ema-background').trim();
   if (background) document.body.style.background = background;
 
   const projection: LearnerProjection = binding.getProjection();
@@ -136,8 +136,8 @@ async function capture(text: string) {
     const failure = error as { code?: string; message?: string };
     svgError = { code: failure.code ?? 'CAPTURE_REJECTED', message: failure.message ?? String(error) };
   }
-  const equations = shadow.querySelectorAll('.eka-math').length;
-  const mathPlain = [...shadow.querySelectorAll('.eka-math')].filter(node => node.querySelector('.eka-plain')).length;
+  const equations = shadow.querySelectorAll('.ema-math').length;
+  const mathPlain = [...shadow.querySelectorAll('.ema-math')].filter(node => node.querySelector('.ema-plain')).length;
   return {
     ok: true,
     stage: { id: stage.id, kind: stage.kind, instruction: stage.instruction, response: stage.response ?? null, visible: stage.visible, controls: stage.controls },

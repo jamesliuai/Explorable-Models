@@ -2,7 +2,7 @@
 // Nothing here decides authority: the Rust host validates every request again, owns policy revisions, receipts,
 // idempotency keys and the journal, and refuses anything its embedded approval does not cover.
 //
-// HostPort refusal convention (`@experiment-kit/activity`, `isHostRefusal`): a HostPort method rejects with one of
+// HostPort refusal convention (`@explorable-models/activity`, `isHostRefusal`): a HostPort method rejects with one of
 // `HOST_REFUSAL_CODES` when the host decided against the request (the adapter reports it and does not retry); any other
 // rejection is a retryable persistence failure. The Rust HostPort commands already report their decisions that way
 // (`src-tauri/src/errors.rs`: the specific host code travels as `reason`) and keep storage failures distinct
@@ -11,7 +11,7 @@
 import type {
   ActivityArtifact, ActivityInstance, ActivityRecords, AppendResult, AssistanceReceipt, AssistanceRequest, AssistanceSnapshot, DisplayAckRequest, ExposureIntentRequest,
   ExposureReceipt, HostAck, HostPolicy, HostPort, InteractionEvent, JournalCursor, ResponseRef, StageReceipt, StageTransitionRequest,
-} from '@experiment-kit/activity';
+} from '@explorable-models/activity';
 import { call, NativeHostError } from './native-bridge';
 
 /** Calls a HostPort command: a rejection is a host refusal under its convention code or a retryable failure. */

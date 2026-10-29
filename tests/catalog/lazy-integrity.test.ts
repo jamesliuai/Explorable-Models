@@ -5,7 +5,7 @@
  * without withdrawing the entry. The adapter returns these failures from prepare.
  */
 import { describe, expect, it, vi } from 'vitest';
-import type { ActivityTemplate } from '@experiment-kit/activity';
+import type { ActivityTemplate } from '@explorable-models/activity';
 
 vi.mock(import('../../packages/catalog/src/content/linear-transformation.js'), async importOriginal => {
   const original = await importOriginal();

@@ -1,4 +1,4 @@
-import type { AnalyticModel, ScalarParams } from '@experiment-kit/core';
+import type { AnalyticModel, ScalarParams } from '@explorable-models/core';
 
 export type OscillatorParameters = ScalarParams & { amplitude: number; mass: number; stiffness: number; periods: number };
 export const defaults: OscillatorParameters = { amplitude: 1, mass: 1, stiffness: 4, periods: 3 };

@@ -54,32 +54,32 @@
     },
     "packages": [
       {
-        "name": "@experiment-kit/core",
+        "name": "@explorable-models/core",
         "version": "0.3.0-preview.1",
         "sha256": "b4b7b8a602e3908882ea9ccc34b6c288224fccd1dae1c12ef5846e7b6c7c4dd1"
       },
       {
-        "name": "@experiment-kit/activity",
+        "name": "@explorable-models/activity",
         "version": "0.3.0-preview.1",
         "sha256": "63beb9982b0683b650c5425fe2089f152d80f503b6f705fd576693f66c6313d5"
       },
       {
-        "name": "@experiment-kit/catalog",
+        "name": "@explorable-models/catalog",
         "version": "0.3.0-preview.1",
         "sha256": "0138850db9ae2115dcc7d9fb94b14e793153862b0626930d65f4411303f09134"
       },
       {
-        "name": "@experiment-kit/player",
+        "name": "@explorable-models/player",
         "version": "0.3.0-preview.1",
         "sha256": "21b3f1d6543c48c1c7735a624d1da5c706193782c79bbd5f5e5fceeaf09d7bad"
       },
       {
-        "name": "@experiment-kit/player-3d",
+        "name": "@explorable-models/player-3d",
         "version": "0.3.0-preview.1",
         "sha256": "0de6c36733b8182b5ab9e21ed31cace1cbcac5e326bfa2d8b1fb70ca8b729f77"
       },
       {
-        "name": "@experiment-kit/agent",
+        "name": "@explorable-models/agent",
         "version": "0.3.0-preview.1",
         "sha256": "223b69a085e8bd192241da1c32c6c67caa45f5aaf18c578c9bc5ceac3e1e820c"
       }
@@ -97,7 +97,7 @@
   "method": {
     "statistics": "Nearest-rank p50/p95 and max with the sample count, after warmup samples that are discarded.",
     "paint": "requestAnimationFrame callback followed by a MessageChannel task (after the frame's rendering work)",
-    "commit": "learner-binding command call → paint of the first frame whose DOM (data-eka-projection) shows the projection with the new committed frame; worker = evaluate postMessage → reply; render = projection publication → DOM commit; paint = DOM commit → paint; storageAck = first journal append started after the command → host acknowledgement",
+    "commit": "learner-binding command call → paint of the first frame whose DOM (data-ema-projection) shows the projection with the new committed frame; worker = evaluate postMessage → reply; render = projection publication → DOM commit; paint = DOM commit → paint; storageAck = first journal append started after the command → host acknowledgement",
     "inputAck": "input event timeStamp (real pointer drag sent by Playwright at a 60 Hz pacing) → paint of the frame whose control output shows that value or a later one",
     "frameRate": "requestAnimationFrame cadence between the first and last input of a drag; dropped frames = Σ(round(Δ/refresh) − 1) against the idle refresh interval; preview update rate = distinct tentative frames painted per second",
     "instrumentation": "Worker construction/messages/termination, timers, intervals, animation frames, window/document/MediaQueryList listeners and attachShadow, counted by phase by an init script installed before any page script"
@@ -2659,5 +2659,11 @@
     "problems": [],
     "environmentGaps": []
   },
-  "history": "history/performance-2026-10-29T04-59-48.530Z.json"
+  "history": "history/performance-2026-10-29T04-59-48.530Z.json",
+  "terminologyProjection": {
+    "sourceCommit": "1e2b3d7b796962f4b031257a402ce3db3e0854a1",
+    "sourceBlob": "6e3c69bc2b1b925715b58fe39dfce2f458c456ea",
+    "originalSha256": "2204ae220e373e4797822c748e70ac4dc2f80dc070039aa54d781b924b3887ac",
+    "scope": "Terminology-normalized historical evidence. Measurements, outcomes, and original artifact digests are retained from the preceding namespace. This is not verification of current packages or native binaries. The unmodified original bytes remain in the recorded Git blob."
+  }
 }

@@ -4,9 +4,9 @@
  * revision; host session = echoed host revision on response references.
  */
 import { afterEach, describe, expect, it } from 'vitest';
-import { groupDigests, templateRef, type ActivityTemplate } from '@experiment-kit/activity';
-import { createInstalledCatalog, INSTALLED_KERNELS } from '@experiment-kit/catalog';
-import { modelIdentity, type ModelManifest } from '@experiment-kit/core/model';
+import { groupDigests, templateRef, type ActivityTemplate } from '@explorable-models/activity';
+import { createInstalledCatalog, INSTALLED_KERNELS } from '@explorable-models/catalog';
+import { modelIdentity, type ModelManifest } from '@explorable-models/core/model';
 import {
   activityGuard, codesOf, enterExplore, guards, harness, manifest, okOf, op, open, policyFor, presentationGuard, requestFor, settled, template, until, type Harness, type Opened,
 } from './support/adapter-harness.js';

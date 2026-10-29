@@ -4,7 +4,7 @@
  * references in `policy.approved` and non-revoked catalogue entries; exploratory mode needs `exploratory.allowed`.
  * Review claims in requests or artifacts are never consulted; the review notice is derived from catalogue status.
  */
-import type { ModelRef } from '@experiment-kit/core/model';
+import type { ModelRef } from '@explorable-models/core/model';
 import type { ActivityCatalog, CatalogEntryStatus, Diagnostic, HostPolicy, TemplateRef, ToolOperation } from './contracts.js';
 import { CONTRACTS } from './contracts.js';
 import { timestampMs, validatePolicySemantics } from './semantic.js';

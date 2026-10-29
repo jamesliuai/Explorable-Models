@@ -5,11 +5,11 @@
  * model session, so many cards never allocate unbounded workers. The adapter never imports the catalogue package and
  * never substitutes a template or model: references resolve exactly or fail.
  */
-import { canonicalJSON, sha256 } from '@experiment-kit/core';
+import { canonicalJSON, sha256 } from '@explorable-models/core';
 import {
   assembleFrame, checkParameters, createWorkerBudget, initialPosition, isModelError, validateManifest,
   type ModelIdentity, type ModelManifest, type ModelRef, type WorkerBudget,
-} from '@experiment-kit/core/model';
+} from '@explorable-models/core/model';
 import type { AdapterDiagnostics, AdapterOptions, CapabilityReport, CommandFailure, DiagnosticExport, PreparedActivity, RestoreResult, StudyHarnessAdapter, ValidationReport } from './api.js';
 import type { ActivityInstance, ActivityRequest, ActivityTemplate, CatalogEntryStatus, Diagnostic, DiagnosticCode, HostPolicy, TemplateRef } from './contracts.js';
 import { ACTIVITY_SCHEMA_VERSION, CONTRACTS, isHostRefusal } from './contracts.js';

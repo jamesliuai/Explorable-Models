@@ -4,7 +4,7 @@ coverage/
 playwright-report/
 test-results/
 local-captures/
-.experiment-kit/
+.explorable-models/
 *.tgz
 .DS_Store
 
@@ -19,7 +19,7 @@ public/source-manifest.json
 .npmrc
 *.pem
 *.key
-.experiment-kit-session.json
+.explorable-models-session.json
 local-bridge.js
 .codex/
 .agents/

@@ -37,7 +37,7 @@ separate repository not available here.
 **Handoff:** implement `HostPort` (`packages/activity/src/contracts.ts`) over the application's authoritative
 store; validate every native argument with the Rust contract crate (`packages/activity/rust`) or the emitted JSON
 Schemas (`packages/activity/schema/`); create windows with the worker CSP hook and production CSP from
-`docs/study-harness/native.md`; mount `@experiment-kit/player/activity` from the packed tarballs.
+`docs/study-harness/native.md`; mount `@explorable-models/player/activity` from the packed tarballs.
 
 **Conformance sequence:** open quadratic → host response reference → authorize and reveal → commit exploration →
 camera change → save → terminate → reopen → verify state/presentation/event order/conservative exposure → independent
@@ -46,7 +46,7 @@ before display, and after display before display-ack persistence. Record results
 binary hash and platform.
 
 **Run (the command the application runs):** the host-agnostic HostPort conformance kit, a separate entry of the packed
-`@experiment-kit/activity` tarball: `import { runHostPortConformance } from '@experiment-kit/activity/conformance'`.
+`@explorable-models/activity` tarball: `import { runHostPortConformance } from '@explorable-models/activity/conformance'`.
 It is plain TypeScript (no Node, DOM or native imports), so the application runs it in its own test harness — Node
 against its core, a browser, or its packaged WebView:
 
@@ -106,7 +106,7 @@ actual host, separate from the reference-fixture results.
 **Why external:** requires the real Study Harness agent path with owner-supplied provider credentials, a pinned
 model configuration and a budget. This repository never stores keys or calls paid providers.
 
-**Procedure:** using the policy-scoped activity tools (`@experiment-kit/agent`, activity tools), the agent must:
+**Procedure:** using the policy-scoped activity tools (`@explorable-models/agent`, activity tools), the agent must:
 discover an approved activity; prepare it with personalised allowed parameters; inspect learner-visible state;
 attempt a rejected request (out-of-domain parameter or forbidden reveal) and repair it; request a reveal through
 the host; summarise interaction; save; reopen; handle a stale operation (expected revision mismatch); decline an
@@ -114,7 +114,7 @@ unsupported request (e.g. "plot a general ODE") with the advertised alternative.
 
 **Record:** sanitized request/response identifiers, tool names, outcomes and repairs, provider/model identifier
 and configuration digest, budget used; no keys, no unrelated study content. Use the opt-in recorder in
-`@experiment-kit/agent` (`createTrialRecorder({ trialId, kind: 'real-agent-trial', configuration, budget, host })`;
+`@explorable-models/agent` (`createTrialRecorder({ trialId, kind: 'real-agent-trial', configuration, budget, host })`;
 wrap the activity relay with `recorder.relay(relay)`, mark G3 steps with `markStep`, repairs with `noteRepair` and
 host-measured usage with `noteUsage`). It keeps identifiers, tool names, outcome codes, fixed-vocabulary repairs and a
 configuration digest only, refuses credential-like settings, and produces a record that validates against

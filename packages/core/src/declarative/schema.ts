@@ -35,7 +35,7 @@ const map = (schema: Schema, maxProperties: number, symbols = false): Schema => 
 const expression: Schema = { anyOf: [number, { type: 'string', minLength: 1, maxLength: 2048 }, array(number, 256, 2)] };
 const mark: Schema = object({ id, type: { enum: ['point', 'segment', 'path', 'polygon', 'circle', 'ellipse', 'arrow', 'angle', 'label', 'line', 'scatter', 'bar', 'region', 'group'] }, label: nonempty(), description: string(), bindings: map(id, 12), series: id, text: string(), style: object({ stroke: nonempty(80), fill: nonempty(80), strokeWidth: { type: 'number', minimum: 0, maximum: 20 }, dash: { enum: ['solid', 'dashed', 'dotted'] }, opacity: { type: 'number', minimum: 0, maximum: 1 }, hidden: { type: 'boolean' } }), offset: array(number, 2, 2), children: array({ $ref: '#/$defs/mark' }, 256), drag: object({ x: id, y: id }, ['x', 'y']), semanticId: id }, ['id', 'type', 'label']);
 export const DOCUMENT_SCHEMA: Schema = deepFreeze({
-    $schema: 'https://json-schema.org/draft/2020-12/schema', $id: 'https://experiment-kit.invalid/schema/document-2.0.json',
+    $schema: 'https://json-schema.org/draft/2020-12/schema', $id: 'https://explorable-models.invalid/schema/document-2.0.json',
     ...object({
         schemaVersion: { const: '2.0' }, id, title: nonempty(), description: nonempty(4000),
         capabilities: array(object({ id: nonempty(100), version: nonempty(40) }, ['id', 'version']), 16),

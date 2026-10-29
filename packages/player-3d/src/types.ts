@@ -1,10 +1,10 @@
 /**
- * Input and output types of the spatial renderer. They are structural: the renderer depends on `@experiment-kit/core`
+ * Input and output types of the spatial renderer. They are structural: the renderer depends on `@explorable-models/core`
  * types only (architecture §1), and the activity surface's `ProjectedView`, `Camera3D` and `SpatialPresentation`
- * (`@experiment-kit/player/activity` spatial contract) are assignable to them. A compile-time conformance test in
+ * (`@explorable-models/player/activity` spatial contract) are assignable to them. A compile-time conformance test in
  * `tests/player-3d` checks that this module satisfies the surface's `SpatialRendererModule` contract.
  */
-import type { GeometryResult } from '@experiment-kit/core/model';
+import type { GeometryResult } from '@explorable-models/core/model';
 
 export type LabelAnchor = 'n' | 'ne' | 'e' | 'se' | 's' | 'sw' | 'w' | 'nw' | 'center';
 export interface SpatialMarkStyle { role: string; dash: 'solid' | 'dashed' | 'dotted'; marker: string; weight: 'thin' | 'regular' | 'bold' }

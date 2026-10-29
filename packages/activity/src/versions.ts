@@ -3,8 +3,8 @@
  * before validation. Legacy formats keep their own readers and are never relabelled; unknown or future versions are
  * rejected with `UNSUPPORTED_ARTIFACT` and a recovery route that keeps the original bytes.
  */
-import { canonicalJSON, sha256 } from '@experiment-kit/core';
-import type { JsonSchema } from '@experiment-kit/core/model';
+import { canonicalJSON, sha256 } from '@explorable-models/core';
+import type { JsonSchema } from '@explorable-models/core/model';
 import type { Diagnostic } from './contracts.js';
 import { MESSAGES, SCHEMAS, SCHEMA_NAMES, SCHEMA_VERSIONS, type SchemaName } from './schemas.js';
 import { validateRecord, type SchemaTypes } from './validator.js';
@@ -15,7 +15,7 @@ export const CONTRACT_VERSIONS: Readonly<Record<SchemaName, readonly string[]>> 
 
 /** Legacy formats that remain readable through their own runtimes (docs/architecture.md, agent-first-contract.md). */
 export const LEGACY_FORMATS = Object.freeze({
-  documentArtifact: { format: 'experiment-kit-document', version: '2.0' },
+  documentArtifact: { format: 'explorable-models-document', version: '2.0' },
   document: { schemaVersion: '2.0' },
   sourceBundle: { schemaVersion: '1.0' },
   experimentSnapshot: { schemaVersion: '1.0' },
@@ -23,8 +23,8 @@ export const LEGACY_FORMATS = Object.freeze({
 
 /** Compatibility matrix (report §14): every recognised format, the versions read, its reader and restore route. */
 export const COMPATIBILITY = Object.freeze([
-  { kind: 'study-harness', format: 'study-harness.* records and experiment-kit.model-manifest', versions: ['1.0'], reader: '@experiment-kit/activity readRecord + validate*Semantics', route: 'Restore revalidates catalogue status, current host policy and the exact model digest; no substitution.' },
-  { kind: 'legacy-document-artifact', format: 'experiment-kit-document', versions: ['2.0'], reader: 'core DeclarativeSession.restoreDocument', route: 'Exact recorded runtimeVersion only; otherwise keep the original bytes (it is not an activity artifact, so archivalView does not read it). Never converted into an activity artifact implicitly.' },
+  { kind: 'study-harness', format: 'study-harness.* records and explorable-models.model-manifest', versions: ['1.0'], reader: '@explorable-models/activity readRecord + validate*Semantics', route: 'Restore revalidates catalogue status, current host policy and the exact model digest; no substitution.' },
+  { kind: 'legacy-document-artifact', format: 'explorable-models-document', versions: ['2.0'], reader: 'core DeclarativeSession.restoreDocument', route: 'Exact recorded runtimeVersion only; otherwise keep the original bytes (it is not an activity artifact, so archivalView does not read it). Never converted into an activity artifact implicitly.' },
   { kind: 'visualization-document', format: 'schema 2.0 VisualizationDocument', versions: ['2.0'], reader: 'core normalizeDocument', route: 'Usable as a model execution kind (document); it is not an activity record.' },
   { kind: 'legacy-source-bundle', format: 'bundle-manifest.json / source-manifest.json', versions: ['1.0'], reader: 'schema 1.0 exported playback bundle', route: 'Independently playable as exported; not an activity artifact.' },
   { kind: 'legacy-experiment-snapshot', format: 'schema 1.0 experiment snapshot', versions: ['1.0'], reader: 'core validateSnapshot', route: 'Restored only against its exact definition revision by the 1.0 runtime.' },

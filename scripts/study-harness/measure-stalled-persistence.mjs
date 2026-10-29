@@ -56,7 +56,7 @@ try {
 
 const transition = samples.map(sample => sample.stageTransition.resolvedAfterMs);
 const record = {
-  contract: 'experiment-kit.measurement', scenario: 'stalled-persistence stage transition (benchmark bench.stalledPersistence)',
+  contract: 'explorable-models.measurement', scenario: 'stalled-persistence stage transition (benchmark bench.stalledPersistence)',
   createdAt: new Date().toISOString(), runs: samples.length, warmups: 1,
   adapter: { persistenceWaitMs: 1000, outboxLimit: 24 },
   environment: { platform: process.platform, arch: process.arch, cpu: os.cpus()[0]?.model ?? null, cores: os.cpus().length, node: process.version, chromium: browser.version(), loadavg: os.loadavg() },

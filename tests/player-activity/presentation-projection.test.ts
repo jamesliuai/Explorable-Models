@@ -77,7 +77,7 @@ describe('control sections (G46, report §10.2)', () => {
       expect(controlSections(projection.controls).map(section => [section.section?.label, section.controls.map(control => control.parameter)]), template.templateId).toEqual(expected);
       const html = render(opened);
       for (const [label, parameters] of expected) {
-        const group = new RegExp(`<div class="eka-control-section" role="group" aria-labelledby="([^"]+)" data-eka-section="[^"]+"><h3 id="\\1" class="eka-section-title">${label}</h3>(.*?)</div></div>(?=<div class="eka-control-section"|<div class="eka-reset|<div class="eka-inline-status|</section>)`);
+        const group = new RegExp(`<div class="ema-control-section" role="group" aria-labelledby="([^"]+)" data-ema-section="[^"]+"><h3 id="\\1" class="ema-section-title">${label}</h3>(.*?)</div></div>(?=<div class="ema-control-section"|<div class="ema-reset|<div class="ema-inline-status|</section>)`);
         const match = group.exec(html);
         expect(match, `${template.templateId}: group ${label}`).not.toBeNull();
         expect([...match![2]!.matchAll(/data-parameter="([^"]+)"/g)].map(item => item[1])).toEqual(parameters);
@@ -193,7 +193,7 @@ describe('comparisons (G29, G44, report §8.4, §10.2)', () => {
     const html = render(opened);
     expect(textOf(html)).toContain('Kept run 1: η = 0.25');
     expect(textOf(html)).toContain('Position x_n at n = 12');
-    expect(html).toContain('data-eka-comparison-frame-id=');
+    expect(html).toContain('data-ema-comparison-frame-id=');
     expect(html).not.toMatch(/progress/i);
     expect(textOf(html)).toContain('Stop comparing with kept run 1');
   });
@@ -251,7 +251,7 @@ describe('comparisons (G29, G44, report §8.4, §10.2)', () => {
     expect(html).not.toMatch(/progress/i);
     expect(textOf(html)).toContain(`Kept run 1: ${comparison!.name}`);
     // Never the garbled “1) = 1.5, 2) = 1” built from the last word of each control label.
-    expect(html).toContain(`<span class="eka-comparison-name">${comparison!.name}</span>`);
+    expect(html).toContain(`<span class="ema-comparison-name">${comparison!.name}</span>`);
     expect(comparison!.name).not.toMatch(/\d\) = /);
   });
 

@@ -1,6 +1,6 @@
 # Subject-review packet: Slope of a curve and its derivative
 
-> Prepared automatically by `experiment-kit activity review-packet` (toolkit 0.3.0-preview.1) for a human subject reviewer.
+> Prepared automatically by `explorable-models activity review-packet` (toolkit 0.3.0-preview.1) for a human subject reviewer.
 > It is engineering evidence, **not** a subject review, an accessibility certification or evidence of learning benefit.
 > Catalogue status of this exact version: **reference-checked** — no independent human review is recorded.
 > The reviewer sign-off at the end is empty; an engineering agent cannot sign it.
@@ -10,10 +10,10 @@
 | Item | Value |
 | --- | --- |
 | Template | function-derivative@1.0.0 |
-| Template digest | `sha256:8906edd91542d30c17ff41aa7b551fbb79a7a6d7d32c607ec39db4e0389a2f94` |
+| Template digest | `sha256:0ef8d14fad5ae765deae38438b8b9043f887659d0c0c96168f76afc6740020e6` |
 | Model | function-derivative@1.0.0 |
-| Model digest | `sha256:bfeaa64ae40e41254f46d193a1aefc1ff9d900664571aba51e26492f1ff778ba` |
-| Scientific revision | `sha256:e6436111cefe2448afeae498d425491f6b284f66f8141804c55255de793baa93` |
+| Model digest | `sha256:7a7365f9a0661f42f998465050dc95abadbe5cad7fae6fcc2dece3b65447fc1f` |
+| Scientific revision | `sha256:c706c3ed3446c6afa46cfa74b1556e1dfadb3c467bf5868d38b350930166ac5a` |
 | Presentation revision | `sha256:6b7f39443087f6a470fbd39b3cd6ada3d6f62504b1e3bbb1c7044da9bc8a9053` |
 | Reference suite bound by the model | function-derivative:1.0.0 `sha256:07404667c68ff04613998c5a4d8e7ce5acf21c53e84cb28d37384fe8a21394f4` |
 | Reference fixture file | `tests/reference/fixtures/activities/function-derivative.json` `sha256:07404667c68ff04613998c5a4d8e7ce5acf21c53e84cb28d37384fe8a21394f4` |
@@ -110,7 +110,7 @@ Suite `function-derivative:1.0.0` for function-derivative@1.0.0: **40 of 40 case
 - Author of the cases: Reference cases for report §12.1 derived by hand where the values are exact binary fractions, plus cases computed by exact rational arithmetic in tests/reference/oracles/function-derivative.ts, which shares no code with the catalogue kernel.
 - Review statement of the fixture: No independent human subject reviewer has approved these cases. Automated agreement is engineering evidence only.
 - Semantics: f(x) = A·x² + B·x + C with the analytical derivative f′(x) = 2A·x + B. Inputs are doubles taken at their exact values. P = (p, f(p)); Q = (p + h, f(p + h)) for the exact sum p + h. The secant slope is (f(p + h) − f(p))/h for h ≠ 0 and undefined (COINCIDENT_POINTS) for h = 0; the difference is secant slope − f′(p). slope.sign is the exact sign of f′(p); curvature is positive-curvature (A > 0), negative-curvature (A < 0), linear (A = 0, B ≠ 0) or constant (A = B = 0); vertex.x = −B/(2A), undefined (NO_VERTEX) when A = 0. Parameters are admissible when each lies in its domain interval and the double sum p + h lies in [−5, 5].
-- Converted from `tests/reference/fixtures/activities/function-derivative.json` `sha256:07404667c68ff04613998c5a4d8e7ce5acf21c53e84cb28d37384fe8a21394f4` (suite function-derivative:1.0.0): Converted by experiment-kit activity tooling: case IDs, labels, provenance, parameters and tolerances copied unchanged; quantity expectations restated as experiment-kit.reference-fixtures 1.0 expectations.
+- Converted from `tests/reference/fixtures/activities/function-derivative.json` `sha256:07404667c68ff04613998c5a4d8e7ce5acf21c53e84cb28d37384fe8a21394f4` (suite function-derivative:1.0.0): Converted by explorable-models activity tooling: case IDs, labels, provenance, parameters and tolerances copied unchanged; quantity expectations restated as explorable-models.reference-fixtures 1.0 expectations.
 - Not compared by this runner: Tangent and secant endpoints and the sampled curves (lines, sampling tolerance) are checked by tests/reference/activities/function-derivative.test.ts.
 
 | Case | Label | Provenance | Tolerance | Result |
@@ -240,7 +240,7 @@ Each stage was prepared through the activity adapter with the browser integratio
 
 Instruction: Look at the graph of f(x) = A·x² + B·x + C and the probe point P. You can change the coefficients A, B and C to see different curves. Slopes, tangents and the derivative are not shown yet.
 
-Revealed by the host for this stage: nothing (no solution-bearing groups). Review notice shown: “Reference-checked; no independent subject review”. Projection `sha256:df19a4dd47f8a4ccc2e7f5a9670a83a848696c611d47995ed45e53fda60ca118`, frame `sha256:0e1c0e5a88447afaafe3a64632bca0058a18c8c4b264e483ea06f1e69057e245`.
+Revealed by the host for this stage: nothing (no solution-bearing groups). Review notice shown: “Reference-checked; no independent subject review”. Projection `sha256:e01a281c13e6f98a8bd1e3dac5051753b09a49de9ab1177e4b90270e27bd91ba`, frame `sha256:7b95de472ae9035ef2f05098eea26a7d80eb4323fcb2d709e49b5a679df8409b`.
 
 ![Slope of a curve and its derivative, stage prepare](captures/prepare.png)
 
@@ -254,7 +254,7 @@ Instruction: Before any slopes are shown, predict the slope of the curve at the 
 
 Host-owned prediction request: Is the curve rising, falling or level at P, and roughly how steep is it there? How would the slope change if P moved to the right? (task family function-derivative-slope-prediction)
 
-Revealed by the host for this stage: nothing (no solution-bearing groups). Review notice shown: “Reference-checked; no independent subject review”. Projection `sha256:7a08fe32189da472af25d65da2ba8a18913a12d233547853e51c2202399460be`, frame `sha256:bdd559212f7f56527a4e9f99ea1d745fcc77dba8b3794b35c082d9c742b436af`.
+Revealed by the host for this stage: nothing (no solution-bearing groups). Review notice shown: “Reference-checked; no independent subject review”. Projection `sha256:45b127f1bebdc2e602578a3f60fa991a8e8b8aa3173382d2cbc8bc05ce1a25c0`, frame `sha256:49d9ad3367f720e3375d19b7ccd4dfe339de5465660b88acef63cb84c6ab1a58`.
 
 ![Slope of a curve and its derivative, stage predict](captures/predict.png)
 
@@ -266,7 +266,7 @@ Equations: 1 of 1 rendered with KaTeX.
 
 Instruction: Once the tangent at P and its slope f′(p) are shown, move P along the curve and compare the slope with your prediction. Then set the offset h to place a second point Q, and watch the secant slope as h gets closer to 0 from either side.
 
-Revealed by the host for this stage: tangent, slope, slope-equations, secant, secant-values, secant-equations. Review notice shown: “Reference-checked; no independent subject review”. Projection `sha256:585475edb3060e47d983f1fa01448e6cb439f17c46757a6c246369ed1f01ba9e`, frame `sha256:b2ffee3658bb9879506cd878def442f86c5c1bf5c5fce18178f85f8d270f6cf0`.
+Revealed by the host for this stage: tangent, slope, slope-equations, secant, secant-values, secant-equations. Review notice shown: “Reference-checked; no independent subject review”. Projection `sha256:b1914ac55fa51205037dbc963881efbf5cf196d3fd8120d78e2ffdc348017c0b`, frame `sha256:5b6f3c905119e4341e1b8d40e27bb15a7a91b0cbf5bdabd5f977b6e0fef1d30c`.
 
 ![Slope of a curve and its derivative, stage explore-slope](captures/explore-slope.png)
 
@@ -278,7 +278,7 @@ Equations: 5 of 5 rendered with KaTeX.
 
 Instruction: Once the graph of the derivative f′ is shown, move P and change the coefficients, and compare the height of the derivative graph at x = p with the slope of the tangent at P.
 
-Revealed by the host for this stage: tangent, slope, slope-equations, secant, secant-values, secant-equations, derivative-plot, shape, derivative-rule. Review notice shown: “Reference-checked; no independent subject review”. Projection `sha256:ee80fb41a3ebe9b2997c4e089bfcbe1450b28645643e12317a4857ceb2d477b5`, frame `sha256:13a726e476aaff23f1f921d70b4ddb6d880f409fb3fcd2ca40f95c3a219d9cd7`.
+Revealed by the host for this stage: tangent, slope, slope-equations, secant, secant-values, secant-equations, derivative-plot, shape, derivative-rule. Review notice shown: “Reference-checked; no independent subject review”. Projection `sha256:0582873c5770f1ab53e1e610f46dd23a88355f249c6caf859860e2d13c73348d`, frame `sha256:353e83ff55c4224c738e5ab6d10b15d9098c8015cae843616c6d52fa782f6799`.
 
 ![Slope of a curve and its derivative, stage explore-derivative](captures/explore-derivative.png)
 
@@ -292,7 +292,7 @@ Instruction: Explain in your own words how the slope of f changes along the curv
 
 Host-owned explanation request: How does the slope of the tangent at P change as P moves, how does the secant slope behave as h gets close to 0, and what does the derivative graph show? (task family function-derivative-explanation)
 
-Revealed by the host for this stage: tangent, slope, slope-equations, secant, secant-values, secant-equations, derivative-plot, shape, derivative-rule. Review notice shown: “Reference-checked; no independent subject review”. Projection `sha256:66c08f4cd0b419b82b6606195e1523bee58e755f431c89bb7ccc2f9220ce41bd`, frame `sha256:7746fbaae4a58303300a2c4341711e9c8f52ec6f46638cb8c39713b378680a0b`.
+Revealed by the host for this stage: tangent, slope, slope-equations, secant, secant-values, secant-equations, derivative-plot, shape, derivative-rule. Review notice shown: “Reference-checked; no independent subject review”. Projection `sha256:740175e11a231cc4bdf0b3d2e311ae30b2181719f4e7ac943bf5bcd3b542d04f`, frame `sha256:a03a20c3e9e6b32a7b56572470a8e1ac5f2d8ead3e20582d3e90b71a8ca1d39b`.
 
 ![Slope of a curve and its derivative, stage explain](captures/explain.png)
 
@@ -304,7 +304,7 @@ Equations: 7 of 7 rendered with KaTeX.
 
 Instruction: This activity is closed.
 
-Revealed by the host for this stage: nothing (no solution-bearing groups). Review notice shown: “Reference-checked; no independent subject review”. Projection `sha256:6684125850b74bca5b2bf91520e7f8637ed1b5c4fa48fcddbd461b46d1f1ba57`, frame `sha256:66130cde18c3953052cb1a6c66a26a0dbd72e91a04324d2802931edf468028aa`.
+Revealed by the host for this stage: nothing (no solution-bearing groups). Review notice shown: “Reference-checked; no independent subject review”. Projection `sha256:0c0784745f21a50be7ab4a5b32f59880fd79fdd971640ef0fa2e06231755400a`, frame `sha256:b0824bc3023a247f4e538a27af7dc2d0f99c2c2c9aca45d638855adb5410199d`.
 
 ![Slope of a curve and its derivative, stage closed](captures/closed.png)
 
@@ -314,7 +314,7 @@ Files: [PNG](captures/closed.png) · [companion text](captures/closed.txt) · no
 
 Instruction: Explore freely: change the coefficients, move the probe and the second point, and compare the tangent, the secant and the derivative graph.
 
-Revealed by the host for this stage: tangent, slope, slope-equations, secant, secant-values, secant-equations, derivative-plot, shape, derivative-rule. Review notice shown: “Reference-checked; no independent subject review”. Projection `sha256:6b955fe3be3579c7199bd775e72197f7f7adbd5e54da6b2db62fb821e729a700`, frame `sha256:848484dc116aed81136650b437ef763719c3312381add611d07630a43ff140bc`.
+Revealed by the host for this stage: tangent, slope, slope-equations, secant, secant-values, secant-equations, derivative-plot, shape, derivative-rule. Review notice shown: “Reference-checked; no independent subject review”. Projection `sha256:86d0cec59637049ebb45bff047e43e5fc2cab9f77c5490982d4eb80dea7546f1`, frame `sha256:38ab0e41d076e8f3185800fd81199946e755d50d097a7d1008962347585eb146`.
 
 ![Slope of a curve and its derivative, stage free-explore](captures/free-explore.png)
 
@@ -375,6 +375,6 @@ reference-suite digest listed under “Exact identity”; a review of any other 
 ## Regenerate
 
 ```sh
-experiment-kit activity review-packet --installed function-derivative --out docs/study-harness/review-packets/function-derivative --width 720 --theme light --index 4
+explorable-models activity review-packet --installed function-derivative --out docs/study-harness/review-packets/function-derivative --width 720 --theme light --index 4
 ```
 

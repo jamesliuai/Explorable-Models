@@ -1,11 +1,11 @@
 /**
  * Authored pure kernel for the scaffold example: y = m·x + b, its value at a probe position and its root.
  *
- * Authoring rules (experiment-kit activity check enforces them): import only relative .ts/.json files of this package
- * and types from @experiment-kit/core/model; export `kernel`; keep evaluation pure and deterministic. The kernel runs
+ * Authoring rules (explorable-models activity check enforces them): import only relative .ts/.json files of this package
+ * and types from @explorable-models/core/model; export `kernel`; keep evaluation pure and deterministic. The kernel runs
  * only in a browser module worker, never in the CLI process. Undefined values are statuses with a reason, never 0.
  */
-import type { KernelInput, KernelOutput, ModelKernel, QuantityResult } from '@experiment-kit/core/model';
+import type { KernelInput, KernelOutput, ModelKernel, QuantityResult } from '@explorable-models/core/model';
 import model from './model.json';
 
 const X_RANGE = [-5, 5] as const;

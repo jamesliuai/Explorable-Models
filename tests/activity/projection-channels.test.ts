@@ -12,9 +12,9 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 import {
   BLOCKED_INSTRUCTION, createStudyHarnessAdapter, DIAGNOSTIC_CODES, EXPLORATORY_SUMMARY_SENTENCE, HOST_RECOVERY, PLAYBACK_LIMIT_NOTICE, projectLearnerView, templateRef, VALUE_STATUS_TEXT,
   type ActivityCatalog, type Diagnostic, type HostPolicy, type InteractionEvent, type Visibility,
-} from '@experiment-kit/activity';
-import { createInstalledCatalog, functionDerivativeManifest, functionDerivativeTemplate } from '@experiment-kit/catalog';
-import { modelIdentity, type ModelFrame } from '@experiment-kit/core/model';
+} from '@explorable-models/activity';
+import { createInstalledCatalog, functionDerivativeManifest, functionDerivativeTemplate } from '@explorable-models/catalog';
+import { modelIdentity, type ModelFrame } from '@explorable-models/core/model';
 import {
   activityGuard, authorizeExploration, enterExplore, guards, harness, manifest, okOf, op, open, policyFor, presentationGuard, rectangleModel, rectangleTemplate, requestFor,
   settled, template, TEMPLATE, until, type Harness, type Opened,

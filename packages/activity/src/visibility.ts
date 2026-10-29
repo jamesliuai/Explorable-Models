@@ -10,7 +10,7 @@
  *   content digest).
  * - A mark is shown when its own group is visible and every quantity and geometry it binds is readable.
  */
-import { positionMode, type ModelManifest, type ModelRef } from '@experiment-kit/core/model';
+import { positionMode, type ModelManifest, type ModelRef } from '@explorable-models/core/model';
 import type { ActivityTemplate, ContentGroup, ExposureRecord, HostPolicy, MarkSpec, StageSpec, TemplateRef, Visibility } from './contracts.js';
 
 export interface VisibilityContext {

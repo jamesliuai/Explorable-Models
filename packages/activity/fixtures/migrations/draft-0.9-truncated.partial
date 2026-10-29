@@ -26,18 +26,18 @@
     }
   ],
   "runtime": {
-    "id": "experiment-kit-activity",
+    "id": "explorable-models-activity",
     "version": "0.3.0-preview.1"
   },
   "template": {
     "templateId": "quadratic-descent-regimes",
     "version": "1.0.0",
-    "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+    "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
   },
   "model": {
     "modelId": "quadratic-descent",
     "version": "1.0.0",
-    "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+    "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
   },
   "policyRef": {
     "policyId": "policy-unit-4",
@@ -55,12 +55,12 @@
     "template": {
       "templateId": "quadratic-descent-regimes",
       "version": "1.0.0",
-      "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+      "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
     },
     "model": {
       "modelId": "quadratic-descent",
       "version": "1.0.0",
-      "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+      "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
     },
     "initialParameters": {
       "a": 1,
@@ -96,11 +96,11 @@
     "model": {
       "modelId": "quadratic-descent",
       "version": "1.0.0",
-      "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+      "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
     },
-    "scientificRevision": "sha256:7cf73b2641a4662e810d2cadd1ff615f7675eb59866ec0f34d291c55217e59f4",
+    "scientificRevision": "sha256:c090f3b7bd3b4810c11d03ab8a061181f1d0a3a90c1a36c2ac444a85e1694bb7",
     "runtime": {
-      "id": "experiment-kit-activity",
+      "id": "explorable-models-activity",
       "version": "0.3.0-preview.1"
     },
     "runId": "run-0002",
@@ -186,12 +186,12 @@
       "template": {
         "templateId": "quadratic-descent-regimes",
         "version": "1.0.0",
-        "digest": "sha256:be3e1b9698dd38859ef3839d1bcca967be3e1be9350e81c9f5915fa779d4b263"
+        "digest": "sha256:1d8a9648653b9c6e605d84041b01e4dc5801f34609cd00b97dc9569a328e382f"
       },
       "model": {
         "modelId": "quadratic-descent",
         "version": "1.0.0",
-        "digest": "sha256:5628bdae56bfc31447adfef3c4acb42a8eccf7d1fd34940061f37a633e270901"
+        "digest": "sha256:866918b63f15ce66a11c6bc514d1b5b2090709e8621807e86aa895616f126e17"
       },
       "activityRevision": 3,
       "intendedStage": "explore",
@@ -216,4 +216,4 @@
         },
         {
           "groupId": "g-position",
-          "contentDigest": "sha256:75a956941d3d3f400c356eed1ce88741744c119d1050a3f316
+          "contentDigest": "sha256:75a956941d3d3f400c356eed1ce88741744c119d1050a3f3

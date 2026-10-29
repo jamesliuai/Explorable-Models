@@ -1,7 +1,7 @@
 import { lazy, Suspense, useEffect, useMemo, useRef, useState } from 'react';
 import { Bookmark, ChartNoAxesCombined, ChevronRight, Download, FlaskConical, Info, Menu, Pause, Play, RotateCcw, Save, SkipForward, X, GitCompareArrows } from 'lucide-react';
-import { WorkerExecutor, type CheckReport, type CheckSuite, type ExperimentDefinition, type RuntimeCommand, type ScalarParams, type Snapshot, type ViewState } from '@experiment-kit/core';
-import { experimentEntries } from '@experiment-kit/examples';
+import { WorkerExecutor, type CheckReport, type CheckSuite, type ExperimentDefinition, type RuntimeCommand, type ScalarParams, type Snapshot, type ViewState } from '@explorable-models/core';
+import { experimentEntries } from '@explorable-models/examples';
 import { useExperiment } from './hooks/useExperiment';
 import { useRollingComparison } from './hooks/useRollingComparison';
 import { ParameterControl } from './components/ParameterControl';
@@ -21,9 +21,9 @@ import type { ExperimentEntry } from './types';
 const Rolling3D=lazy(()=>import('./views/Rolling3D'));
 interface Request {method:string;args?:Record<string,unknown>}
 declare global {interface Window {
- __EXPERIMENT_KIT__?:{request:(r:Request)=>Promise<unknown>};
- __EXPERIMENT_KIT_CAPTURE__?:Snapshot;
- __EXPERIMENT_KIT_CAPTURE_READY__?:{frameId:string;definitionRevision:string;viewVersion:number;timePoint:unknown};
+ __EXPLORABLE_MODELS__?:{request:(r:Request)=>Promise<unknown>};
+ __EXPLORABLE_MODELS_CAPTURE__?:Snapshot;
+ __EXPLORABLE_MODELS_CAPTURE_READY__?:{frameId:string;definitionRevision:string;viewVersion:number;timePoint:unknown};
 }}
 const metadata:Record<string,{title:string;subtitle:string;category:string}>={
  rolling:{title:'Same ramp. Different motion.',subtitle:'Why does a sphere reach the bottom before a hoop?',category:'Mechanics'},
@@ -33,8 +33,8 @@ const metadata:Record<string,{title:string;subtitle:string;category:string}>={
  oscillator:{title:'A rhythm in the mathematics.',subtitle:'Follow position, velocity, and energy through one oscillation.',category:'Mechanics'},
 };
 const presets:Record<string,ScalarParams>={Identity:{a:1,b:0,c:0,d:1},Scaling:{a:2,b:0,c:0,d:3},Shear:{a:1,b:2,c:0,d:1},Reflection:{a:-1,b:0,c:0,d:1},Rotation:{a:0,b:-1,c:1,d:0},Singular:{a:1,b:2,c:1.5,d:3}};
-const storageKey='experiment-kit:saved:v1';
-const startupSnapshot=(()=>{try{const content=document.getElementById('experiment-kit-snapshot')?.textContent;return content?JSON.parse(content) as Snapshot:undefined;}catch{return undefined;}})();
+const storageKey='explorable-models:saved:v1';
+const startupSnapshot=(()=>{try{const content=document.getElementById('explorable-models-snapshot')?.textContent;return content?JSON.parse(content) as Snapshot:undefined;}catch{return undefined;}})();
 const readSaved=():SavedRun[]=>{try{const parsed=JSON.parse(localStorage.getItem(storageKey)??'[]');return Array.isArray(parsed)?parsed.filter(r=>r&&typeof r.id==='string'&&typeof r.name==='string'&&r.snapshot?.schemaVersion==='1.0').slice(0,64):[];}catch{return [];}};
 export function App() {
  const initial=startupSnapshot?.experimentId??new URLSearchParams(location.search).get('experiment');
@@ -86,16 +86,16 @@ export function App() {
     default:return {error:{code:'UNSUPPORTED_CAPABILITY',message:`Unknown method ${method}`}};
    }
   }catch(e){const failure=e as Error&{code?:string;toJSON?:()=>unknown};return {error:failure.toJSON?.()??{code:failure.code??'MODEL_ERROR',message:failure.message}};}};
-  window.__EXPERIMENT_KIT__={request};return()=>{delete window.__EXPERIMENT_KIT__;};
+  window.__EXPLORABLE_MODELS__={request};return()=>{delete window.__EXPLORABLE_MODELS__;};
  },[runtime,entry]);
  useEffect(()=>{
-  if(!runtime||!isCapture||!window.__EXPERIMENT_KIT_CAPTURE__||restoredCapture.current===entry.id)return;
-  restoredCapture.current=entry.id;runtime.command({type:'restore',snapshot:window.__EXPERIMENT_KIT_CAPTURE__,...runtime.guard()}).then(result=>setCaptureFrame(result.state.frame.frameId)).catch(e=>setError(e.message));
+  if(!runtime||!isCapture||!window.__EXPLORABLE_MODELS_CAPTURE__||restoredCapture.current===entry.id)return;
+  restoredCapture.current=entry.id;runtime.command({type:'restore',snapshot:window.__EXPLORABLE_MODELS_CAPTURE__,...runtime.guard()}).then(result=>setCaptureFrame(result.state.frame.frameId)).catch(e=>setError(e.message));
  },[runtime,entry.id,isCapture,setError]);
  useEffect(()=>{
   if(!isCapture||!state||!runtime||captureFrame!==state.frame.frameId)return;
-  let active=true,raf=0;delete window.__EXPERIMENT_KIT_CAPTURE_READY__;
-  void document.fonts.ready.then(()=>{const ready=()=>{if(!active)return;if(document.querySelector('[data-render-pending]')||(entry.id==='rolling'&&compareEnabled&&(!comparison.comparison||!comparison.trace.length))){raf=requestAnimationFrame(ready);return;}raf=requestAnimationFrame(()=>{if(active)window.__EXPERIMENT_KIT_CAPTURE_READY__={frameId:state.frame.frameId,definitionRevision:state.frame.definitionRevision,viewVersion:state.viewVersion,timePoint:state.frame.timePoint};});};raf=requestAnimationFrame(ready);});return()=>{active=false;cancelAnimationFrame(raf);};
+  let active=true,raf=0;delete window.__EXPLORABLE_MODELS_CAPTURE_READY__;
+  void document.fonts.ready.then(()=>{const ready=()=>{if(!active)return;if(document.querySelector('[data-render-pending]')||(entry.id==='rolling'&&compareEnabled&&(!comparison.comparison||!comparison.trace.length))){raf=requestAnimationFrame(ready);return;}raf=requestAnimationFrame(()=>{if(active)window.__EXPLORABLE_MODELS_CAPTURE_READY__={frameId:state.frame.frameId,definitionRevision:state.frame.definitionRevision,viewVersion:state.viewVersion,timePoint:state.frame.timePoint};});};raf=requestAnimationFrame(ready);});return()=>{active=false;cancelAnimationFrame(raf);};
  },[state,runtime,entry.id,isCapture,captureFrame,compareEnabled,comparison.comparison,comparison.trace.length]);
  useEffect(()=>{
   if(!compareSaved||!runtime||entry.id==='rolling')return;let active=true;

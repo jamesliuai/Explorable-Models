@@ -1,4 +1,4 @@
-import type { SessionState } from '@experiment-kit/core/declarative';
+import type { SessionState } from '@explorable-models/core/declarative';
 import { Arrow, C, fmt, FrameSvg, maybePoint, n, point, type XY } from './shared';
 export function Light({ state }: { state: SessionState }) {
   const f = state.frame!, origin: XY = [300, 205], tir = n(f, 'sine') > 1;

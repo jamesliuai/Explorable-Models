@@ -10,7 +10,7 @@
  * `onHostTime`, so host-clock checks (policy expiry) follow the host's time. The outbox is not durable storage; the host
  * is (report §14: no second learning database in the browser).
  */
-import { canonicalJSON, sha256 } from '@experiment-kit/core';
+import { canonicalJSON, sha256 } from '@explorable-models/core';
 import { CONTRACTS, HOST_REFUSAL_CODES, type Diagnostic, type DiagnosticCode, type EventType, type HostPort, type InteractionEvent, type JournalCursor, type PersistenceStatus } from './contracts.js';
 import { DIAGNOSTIC_CODES, LIMITS, MESSAGES } from './schemas.js';
 import { validateRecord } from './validator.js';

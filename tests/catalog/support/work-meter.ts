@@ -24,7 +24,7 @@ const COUNTED_BINARY = new Set<ts.SyntaxKind>([
   ts.SyntaxKind.AsteriskAsteriskEqualsToken, ts.SyntaxKind.AmpersandEqualsToken, ts.SyntaxKind.BarEqualsToken, ts.SyntaxKind.CaretEqualsToken,
   ts.SyntaxKind.LessThanLessThanEqualsToken, ts.SyntaxKind.GreaterThanGreaterThanEqualsToken, ts.SyntaxKind.GreaterThanGreaterThanGreaterThanEqualsToken,
 ]);
-const METER = '__ekWork';
+const METER = '__emWork';
 
 function counter(context: ts.TransformationContext): ts.Transformer<ts.SourceFile> {
   const f = context.factory;
@@ -54,16 +54,16 @@ export async function meteredKernel(sourceFile: string, exportName: string): Pro
     compilerOptions: { module: ts.ModuleKind.ESNext, target: ts.ScriptTarget.ES2022, removeComments: false },
     transformers: { before: [counter] }, fileName: sourceFile,
   });
-  const directory = mkdtempSync(join(tmpdir(), 'ek-work-'));
+  const directory = mkdtempSync(join(tmpdir(), 'em-work-'));
   const file = join(directory, 'kernel.mjs');
-  writeFileSync(file, `let __ekOps = 0;\nconst ${METER} = () => { __ekOps++; };\nexport const __ekRead = () => __ekOps;\nexport const __ekReset = () => { __ekOps = 0; };\n${outputText}`);
+  writeFileSync(file, `let __emOps = 0;\nconst ${METER} = () => { __emOps++; };\nexport const __emRead = () => __emOps;\nexport const __emReset = () => { __emOps = 0; };\n${outputText}`);
   try {
-    const module = await import(pathToFileURL(file).href) as Record<string, unknown> & { __ekRead(): number; __ekReset(): void };
+    const module = await import(pathToFileURL(file).href) as Record<string, unknown> & { __emRead(): number; __emReset(): void };
     const kernel = module[exportName] as ModelKernel;
     if (!kernel || typeof kernel.evaluate !== 'function') throw new Error(`${sourceFile} has no kernel export ${exportName}.`);
     return {
       kernel,
-      measure(input) { module.__ekReset(); const output = kernel.evaluate(input); return { operations: module.__ekRead(), output }; },
+      measure(input) { module.__emReset(); const output = kernel.evaluate(input); return { operations: module.__emRead(), output }; },
     };
   } finally { rmSync(directory, { recursive: true, force: true }); }
 }

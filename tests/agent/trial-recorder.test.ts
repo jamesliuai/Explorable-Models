@@ -7,11 +7,11 @@
  */
 import { readFileSync } from 'node:fs';
 import { afterEach, describe, expect, it } from 'vitest';
-import { schemaErrors, type JsonSchema } from '@experiment-kit/core/model';
+import { schemaErrors, type JsonSchema } from '@explorable-models/core/model';
 import {
   AGENT_TRIAL_RECORD_SCHEMA, G3_STEPS, TRIAL_LIMITS, TRIAL_REPAIRS, createActivityRelay, createActivityToolEndpoint, createTrialRecorder, sanitizedOutcome,
   type ActivityRelay, type ActivityTools, type TrialRecorder,
-} from '@experiment-kit/agent';
+} from '@explorable-models/agent';
 import { RelayError } from '../../packages/agent/src/relay';
 import { harness, policyFor, settled } from '../activity/support/adapter-harness.js';
 import { ACTIVITY_ID, ALL_OPERATIONS, QUADRATIC, SESSION_ID, acknowledge, rig, type Rig } from './support/activity-tools.js';

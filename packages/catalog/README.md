@@ -1,4 +1,4 @@
-# @experiment-kit/catalog
+# @explorable-models/catalog
 
 Installed, versioned Study Harness activity catalogue: model manifests, activity templates, learner copy, pure
 kernels, a kernel worker entry and the host review authority. Discovery returns only what is bundled in this package.
@@ -60,7 +60,7 @@ accessibility certification or evidence of learning benefit.
 ## Host review records, revocations and deprecations
 
 ```ts
-import { createInstalledCatalog } from '@experiment-kit/catalog';
+import { createInstalledCatalog } from '@explorable-models/catalog';
 
 const catalog = createInstalledCatalog({
   reviews: hostReviewRecords,          // study-harness.review-record 1.0, from the host's trusted store
@@ -84,7 +84,7 @@ templates uses `createLazyCatalog` instead. It takes the same options (`reviews`
 `workerFactory`, `include`) and serves the same references, statuses and discovery entries:
 
 ```ts
-import { createLazyCatalog } from '@experiment-kit/catalog';
+import { createLazyCatalog } from '@explorable-models/catalog';
 
 const catalog = createLazyCatalog({ reviews: hostReviewRecords, revocations: hostRevocations });
 catalog.listTemplates();                 // exact references and statuses at once, no content fetched
@@ -112,13 +112,13 @@ package `build` regenerates it, and `tests/catalog/lazy.test.ts` fails while the
 
 ## Worker entry
 
-`@experiment-kit/catalog/worker` serves `{ type: 'evaluate' }` requests with the installed kernels through
+`@explorable-models/catalog/worker` serves `{ type: 'evaluate' }` requests with the installed kernels through
 `serveModelWorker`. It imports no templates, copy or manifests. It also imports no kernel code at start:
 `INSTALLED_KERNEL_SOURCE` lists the installed kernel identities, and each kernel's module is loaded in the worker the
 first time a request names it (a `KernelSource`). A request for any other kernel is refused without loading. The
 worker does not enable schema 2.0 document execution, because the installed catalogue serves kernel models only. A
 host that serves document-kind models supplies its own worker, which calls `enableDocumentExecution()` (see
-`@experiment-kit/core`). `catalog.createWorker()` creates the worker with
+`@explorable-models/core`). `catalog.createWorker()` creates the worker with
 `new Worker(new URL('./worker.js', import.meta.url), { type: 'module' })`. Hosts whose bundler needs a different
 construction pass `workerFactory`. `catalog.kernels()` (eager catalogue) returns the same trusted kernels for
 in-process tests.

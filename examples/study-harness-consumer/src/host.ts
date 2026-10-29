@@ -15,7 +15,7 @@ import {
   type ActivityArtifact, type ActivityCatalog, type ActivityInstance, type ActivityRecords, type AppendResult, type AssistanceReceipt, type AssistanceRequest, type DiagnosticCode,
   type DisplayAckRequest, type ExposureGrant, type ExposureIntentRequest, type ExposureReceipt, type ExposureRecord, type HostAck, type HostPolicy, type HostPort,
   type InteractionEvent, type JournalCursor, type SchemaName, type StageReceipt, type StageTransitionRequest, type ToolOperation,
-} from '@experiment-kit/activity';
+} from '@explorable-models/activity';
 
 export type HostMethod = keyof HostPort;
 type Receipt = StageReceipt | ExposureReceipt | AssistanceReceipt;

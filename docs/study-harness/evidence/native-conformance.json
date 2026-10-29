@@ -1044,57 +1044,57 @@
     },
     "packages": [
       {
-        "name": "@experiment-kit/core",
+        "name": "@explorable-models/core",
         "version": "0.3.0-preview.1",
-        "file": "experiment-kit-core-0.3.0-preview.1.tgz",
+        "file": "explorable-models-core-0.3.0-preview.1.tgz",
         "sha256": "b4b7b8a602e3908882ea9ccc34b6c288224fccd1dae1c12ef5846e7b6c7c4dd1",
         "integrity": "sha512-RImLrEiMjI1TiB0dcWD4guZWayssTgPhuw5WvtJMUKWCYRbfoJRutuozr3KVU/0gwVkvc1Qmn4VwbZFYcrp+yw==",
         "bytes": 454992,
-        "resolved": "file:../../release/study-harness/packages/experiment-kit-core-0.3.0-preview.1.tgz",
+        "resolved": "file:../../release/study-harness/packages/explorable-models-core-0.3.0-preview.1.tgz",
         "lockIntegrity": "sha512-RImLrEiMjI1TiB0dcWD4guZWayssTgPhuw5WvtJMUKWCYRbfoJRutuozr3KVU/0gwVkvc1Qmn4VwbZFYcrp+yw==",
         "matchesCurrentPackManifest": true
       },
       {
-        "name": "@experiment-kit/activity",
+        "name": "@explorable-models/activity",
         "version": "0.3.0-preview.1",
-        "file": "experiment-kit-activity-0.3.0-preview.1.tgz",
+        "file": "explorable-models-activity-0.3.0-preview.1.tgz",
         "sha256": "63beb9982b0683b650c5425fe2089f152d80f503b6f705fd576693f66c6313d5",
         "integrity": "sha512-3z0DDE4+TpVT4G+GCY5SoDKIoWQJ45zuEwt64mbXD1AyMDEKCBI0fgfc72Fk2ivnDxY9tU+OSxI1HNm/xPqH0Q==",
         "bytes": 855800,
-        "resolved": "file:../../release/study-harness/packages/experiment-kit-activity-0.3.0-preview.1.tgz",
+        "resolved": "file:../../release/study-harness/packages/explorable-models-activity-0.3.0-preview.1.tgz",
         "lockIntegrity": "sha512-3z0DDE4+TpVT4G+GCY5SoDKIoWQJ45zuEwt64mbXD1AyMDEKCBI0fgfc72Fk2ivnDxY9tU+OSxI1HNm/xPqH0Q==",
         "matchesCurrentPackManifest": true
       },
       {
-        "name": "@experiment-kit/catalog",
+        "name": "@explorable-models/catalog",
         "version": "0.3.0-preview.1",
-        "file": "experiment-kit-catalog-0.3.0-preview.1.tgz",
+        "file": "explorable-models-catalog-0.3.0-preview.1.tgz",
         "sha256": "0138850db9ae2115dcc7d9fb94b14e793153862b0626930d65f4411303f09134",
         "integrity": "sha512-ruTWOzqv341uxjgwIUGyooqB1kR7Y6v95xm0VnHF5ghGSfHv/3/41k3Z5UqQmsKNZsoddF1pTqewBnFBIsYqKw==",
         "bytes": 265427,
-        "resolved": "file:../../release/study-harness/packages/experiment-kit-catalog-0.3.0-preview.1.tgz",
+        "resolved": "file:../../release/study-harness/packages/explorable-models-catalog-0.3.0-preview.1.tgz",
         "lockIntegrity": "sha512-ruTWOzqv341uxjgwIUGyooqB1kR7Y6v95xm0VnHF5ghGSfHv/3/41k3Z5UqQmsKNZsoddF1pTqewBnFBIsYqKw==",
         "matchesCurrentPackManifest": true
       },
       {
-        "name": "@experiment-kit/player",
+        "name": "@explorable-models/player",
         "version": "0.3.0-preview.1",
-        "file": "experiment-kit-player-0.3.0-preview.1.tgz",
+        "file": "explorable-models-player-0.3.0-preview.1.tgz",
         "sha256": "21b3f1d6543c48c1c7735a624d1da5c706193782c79bbd5f5e5fceeaf09d7bad",
         "integrity": "sha512-R0V6LQM8OOz4tPg9KZW2TOR3t/TclyYbKVI9uE6m9xqehVopNiaRUC5Gn+Byt+dyQsOy9g24o2oA25g/ER2W6w==",
         "bytes": 1064904,
-        "resolved": "file:../../release/study-harness/packages/experiment-kit-player-0.3.0-preview.1.tgz",
+        "resolved": "file:../../release/study-harness/packages/explorable-models-player-0.3.0-preview.1.tgz",
         "lockIntegrity": "sha512-R0V6LQM8OOz4tPg9KZW2TOR3t/TclyYbKVI9uE6m9xqehVopNiaRUC5Gn+Byt+dyQsOy9g24o2oA25g/ER2W6w==",
         "matchesCurrentPackManifest": true
       },
       {
-        "name": "@experiment-kit/player-3d",
+        "name": "@explorable-models/player-3d",
         "version": "0.3.0-preview.1",
-        "file": "experiment-kit-player-3d-0.3.0-preview.1.tgz",
+        "file": "explorable-models-player-3d-0.3.0-preview.1.tgz",
         "sha256": "0de6c36733b8182b5ab9e21ed31cace1cbcac5e326bfa2d8b1fb70ca8b729f77",
         "integrity": "sha512-G0iJrAGtL9qN/fAvxd6K38R2Ueuoa8lur1vm+GbOQys3rSrqnQHG9Y2LIMEQzEv/HalVAy2sO/vIMPxgQ8OHvQ==",
         "bytes": 122370,
-        "resolved": "file:../../release/study-harness/packages/experiment-kit-player-3d-0.3.0-preview.1.tgz",
+        "resolved": "file:../../release/study-harness/packages/explorable-models-player-3d-0.3.0-preview.1.tgz",
         "lockIntegrity": "sha512-G0iJrAGtL9qN/fAvxd6K38R2Ueuoa8lur1vm+GbOQys3rSrqnQHG9Y2LIMEQzEv/HalVAy2sO/vIMPxgQ8OHvQ==",
         "matchesCurrentPackManifest": true
       }
@@ -1120,31 +1120,31 @@
         },
         "packages": [
           {
-            "name": "@experiment-kit/activity",
+            "name": "@explorable-models/activity",
             "version": "0.3.0-preview.1",
             "sha256": "63beb9982b0683b650c5425fe2089f152d80f503b6f705fd576693f66c6313d5",
             "integrity": "sha512-3z0DDE4+TpVT4G+GCY5SoDKIoWQJ45zuEwt64mbXD1AyMDEKCBI0fgfc72Fk2ivnDxY9tU+OSxI1HNm/xPqH0Q=="
           },
           {
-            "name": "@experiment-kit/catalog",
+            "name": "@explorable-models/catalog",
             "version": "0.3.0-preview.1",
             "sha256": "0138850db9ae2115dcc7d9fb94b14e793153862b0626930d65f4411303f09134",
             "integrity": "sha512-ruTWOzqv341uxjgwIUGyooqB1kR7Y6v95xm0VnHF5ghGSfHv/3/41k3Z5UqQmsKNZsoddF1pTqewBnFBIsYqKw=="
           },
           {
-            "name": "@experiment-kit/core",
+            "name": "@explorable-models/core",
             "version": "0.3.0-preview.1",
             "sha256": "b4b7b8a602e3908882ea9ccc34b6c288224fccd1dae1c12ef5846e7b6c7c4dd1",
             "integrity": "sha512-RImLrEiMjI1TiB0dcWD4guZWayssTgPhuw5WvtJMUKWCYRbfoJRutuozr3KVU/0gwVkvc1Qmn4VwbZFYcrp+yw=="
           },
           {
-            "name": "@experiment-kit/player",
+            "name": "@explorable-models/player",
             "version": "0.3.0-preview.1",
             "sha256": "21b3f1d6543c48c1c7735a624d1da5c706193782c79bbd5f5e5fceeaf09d7bad",
             "integrity": "sha512-R0V6LQM8OOz4tPg9KZW2TOR3t/TclyYbKVI9uE6m9xqehVopNiaRUC5Gn+Byt+dyQsOy9g24o2oA25g/ER2W6w=="
           },
           {
-            "name": "@experiment-kit/player-3d",
+            "name": "@explorable-models/player-3d",
             "version": "0.3.0-preview.1",
             "sha256": "0de6c36733b8182b5ab9e21ed31cace1cbcac5e326bfa2d8b1fb70ca8b729f77",
             "integrity": "sha512-G0iJrAGtL9qN/fAvxd6K38R2Ueuoa8lur1vm+GbOQys3rSrqnQHG9Y2LIMEQzEv/HalVAy2sO/vIMPxgQ8OHvQ=="
@@ -1432,7 +1432,7 @@
             "sha256": "ecb5bd276d9f381146f06e7b67e1bafca6e596cdc9e15addf447168c7aaf207c"
           },
           {
-            "path": "packages/activity/schema/experiment-kit.model-manifest.schema.json",
+            "path": "packages/activity/schema/explorable-models.model-manifest.schema.json",
             "sha256": "ff218bb9249d1406caa1bb116d548299df69c95da41318f00bfb2aaae55a8d0d"
           },
           {
@@ -1571,31 +1571,31 @@
         },
         "packages": [
           {
-            "name": "@experiment-kit/activity",
+            "name": "@explorable-models/activity",
             "version": "0.3.0-preview.1",
             "sha256": "63beb9982b0683b650c5425fe2089f152d80f503b6f705fd576693f66c6313d5",
             "integrity": "sha512-3z0DDE4+TpVT4G+GCY5SoDKIoWQJ45zuEwt64mbXD1AyMDEKCBI0fgfc72Fk2ivnDxY9tU+OSxI1HNm/xPqH0Q=="
           },
           {
-            "name": "@experiment-kit/catalog",
+            "name": "@explorable-models/catalog",
             "version": "0.3.0-preview.1",
             "sha256": "0138850db9ae2115dcc7d9fb94b14e793153862b0626930d65f4411303f09134",
             "integrity": "sha512-ruTWOzqv341uxjgwIUGyooqB1kR7Y6v95xm0VnHF5ghGSfHv/3/41k3Z5UqQmsKNZsoddF1pTqewBnFBIsYqKw=="
           },
           {
-            "name": "@experiment-kit/core",
+            "name": "@explorable-models/core",
             "version": "0.3.0-preview.1",
             "sha256": "b4b7b8a602e3908882ea9ccc34b6c288224fccd1dae1c12ef5846e7b6c7c4dd1",
             "integrity": "sha512-RImLrEiMjI1TiB0dcWD4guZWayssTgPhuw5WvtJMUKWCYRbfoJRutuozr3KVU/0gwVkvc1Qmn4VwbZFYcrp+yw=="
           },
           {
-            "name": "@experiment-kit/player",
+            "name": "@explorable-models/player",
             "version": "0.3.0-preview.1",
             "sha256": "21b3f1d6543c48c1c7735a624d1da5c706193782c79bbd5f5e5fceeaf09d7bad",
             "integrity": "sha512-R0V6LQM8OOz4tPg9KZW2TOR3t/TclyYbKVI9uE6m9xqehVopNiaRUC5Gn+Byt+dyQsOy9g24o2oA25g/ER2W6w=="
           },
           {
-            "name": "@experiment-kit/player-3d",
+            "name": "@explorable-models/player-3d",
             "version": "0.3.0-preview.1",
             "sha256": "0de6c36733b8182b5ab9e21ed31cace1cbcac5e326bfa2d8b1fb70ca8b729f77",
             "integrity": "sha512-G0iJrAGtL9qN/fAvxd6K38R2Ueuoa8lur1vm+GbOQys3rSrqnQHG9Y2LIMEQzEv/HalVAy2sO/vIMPxgQ8OHvQ=="
@@ -1883,7 +1883,7 @@
             "sha256": "ecb5bd276d9f381146f06e7b67e1bafca6e596cdc9e15addf447168c7aaf207c"
           },
           {
-            "path": "packages/activity/schema/experiment-kit.model-manifest.schema.json",
+            "path": "packages/activity/schema/explorable-models.model-manifest.schema.json",
             "sha256": "ff218bb9249d1406caa1bb116d548299df69c95da41318f00bfb2aaae55a8d0d"
           },
           {
@@ -2010,7 +2010,7 @@
       "executable": "examples/study-harness-tauri/src-tauri/target/release/bundle/macos/StudyHarnessReference.app/Contents/MacOS/study-harness-reference",
       "sha256": "ec1326175861bb619a42dd732dec967f2fd44c86d602cc710eec259868e900bb",
       "bytes": 19109424,
-      "bundleIdentifier": "dev.experimentkit.studyharness.reference",
+      "bundleIdentifier": "dev.explorablemodels.studyharness.reference",
       "bundleVersion": "0.1.0",
       "minimumSystemVersion": "13.0",
       "signature": "adhoc",
@@ -2021,7 +2021,7 @@
       "executable": "examples/study-harness-tauri/src-tauri/target/conformance/release/bundle/macos/StudyHarnessReferenceConformance.app/Contents/MacOS/study-harness-reference",
       "sha256": "46545ff01ea37b7cc817b7be8a9b84c83468ea91608ceb5450cd91df4223f32b",
       "bytes": 19216624,
-      "bundleIdentifier": "dev.experimentkit.studyharness.reference.conformance",
+      "bundleIdentifier": "dev.explorablemodels.studyharness.reference.conformance",
       "bundleVersion": "0.1.0",
       "minimumSystemVersion": "13.0",
       "signature": "adhoc",
@@ -2393,11 +2393,11 @@
                 "classification": "JSON Schema $schema identifier (never fetched)"
               },
               {
-                "url": "https://experiment-kit.invalid/schema/model-manifest-1.0.json",
+                "url": "https://explorable-models.invalid/schema/model-manifest-1.0.json",
                 "classification": "schema $id under the reserved .invalid name (never fetched)"
               },
               {
-                "url": "https://experiment-kit.invalid/schema/$",
+                "url": "https://explorable-models.invalid/schema/$",
                 "classification": "schema $id under the reserved .invalid name (never fetched)"
               },
               {
@@ -2435,11 +2435,11 @@
                 "classification": "JSON Schema $schema identifier (never fetched)"
               },
               {
-                "url": "https://experiment-kit.invalid/schema/model-manifest-1.0.json",
+                "url": "https://explorable-models.invalid/schema/model-manifest-1.0.json",
                 "classification": "schema $id under the reserved .invalid name (never fetched)"
               },
               {
-                "url": "https://experiment-kit.invalid/schema/$",
+                "url": "https://explorable-models.invalid/schema/$",
                 "classification": "schema $id under the reserved .invalid name (never fetched)"
               },
               {
@@ -2459,7 +2459,7 @@
                 "classification": "XML/SVG/MathML namespace identifier (never fetched)"
               },
               {
-                "url": "https://experiment-kit.dev/schema/study-harness/host-conformance-result-1.json",
+                "url": "https://explorable-models.dev/schema/study-harness/host-conformance-result-1.json",
                 "classification": "JSON Schema $id of the host conformance result template (identifier, never fetched; conformance build only)"
               },
               {
@@ -2528,11 +2528,11 @@
               "classification": "JSON Schema $schema identifier (never fetched)"
             },
             {
-              "url": "https://experiment-kit.invalid/schema/model-manifest-1.0.json",
+              "url": "https://explorable-models.invalid/schema/model-manifest-1.0.json",
               "classification": "schema $id under the reserved .invalid name (never fetched)"
             },
             {
-              "url": "https://experiment-kit.invalid/schema/$",
+              "url": "https://explorable-models.invalid/schema/$",
               "classification": "schema $id under the reserved .invalid name (never fetched)"
             },
             {
@@ -2574,11 +2574,11 @@
               "classification": "JSON Schema $schema identifier (never fetched)"
             },
             {
-              "url": "https://experiment-kit.invalid/schema/model-manifest-1.0.json",
+              "url": "https://explorable-models.invalid/schema/model-manifest-1.0.json",
               "classification": "schema $id under the reserved .invalid name (never fetched)"
             },
             {
-              "url": "https://experiment-kit.invalid/schema/$",
+              "url": "https://explorable-models.invalid/schema/$",
               "classification": "schema $id under the reserved .invalid name (never fetched)"
             },
             {
@@ -2598,7 +2598,7 @@
               "classification": "XML/SVG/MathML namespace identifier (never fetched)"
             },
             {
-              "url": "https://experiment-kit.dev/schema/study-harness/host-conformance-result-1.json",
+              "url": "https://explorable-models.dev/schema/study-harness/host-conformance-result-1.json",
               "classification": "JSON Schema $id of the host conformance result template (identifier, never fetched; conformance build only)"
             },
             {
@@ -2634,10 +2634,10 @@
           "listening": []
         },
         "outputTail": [
-          "2026-10-28 22:54:40.839 study-harness-reference[10682:1702342] ApplePersistenceIgnoreState: Existing state will not be touched. New state will be written to /var/folders/3q/n6ygm4hd7hl0hy3tkmvbnsn00000gn/T/dev.experimentkit.studyharness.reference.savedState"
+          "2026-10-28 22:54:40.839 study-harness-reference[10682:1702342] ApplePersistenceIgnoreState: Existing state will not be touched. New state will be written to /var/folders/3q/n6ygm4hd7hl0hy3tkmvbnsn00000gn/T/dev.explorablemodels.studyharness.reference.savedState"
         ],
         "reports": {},
-        "appData": "<work>/release/home/Library/Application Support/dev.experimentkit.studyharness.reference"
+        "appData": "<work>/release/home/Library/Application Support/dev.explorablemodels.studyharness.reference"
       },
       "acl": {
         "release": {
@@ -3636,7 +3636,7 @@
           "listening": []
         },
         "outputTail": [
-          "2026-10-28 22:54:49.884 study-harness-reference[11493:1703568] ApplePersistenceIgnoreState: Existing state will not be touched. New state will be written to /var/folders/3q/n6ygm4hd7hl0hy3tkmvbnsn00000gn/T/dev.experimentkit.studyharness.reference.conformance.savedState"
+          "2026-10-28 22:54:49.884 study-harness-reference[11493:1703568] ApplePersistenceIgnoreState: Existing state will not be touched. New state will be written to /var/folders/3q/n6ygm4hd7hl0hy3tkmvbnsn00000gn/T/dev.explorablemodels.studyharness.reference.conformance.savedState"
         ],
         "reports": {
           "report.gen2.json": {
@@ -3813,7 +3813,7 @@
               }
             ],
             "scenario": {
-              "appDataDir": "<work>/offline/home/Library/Application Support/dev.experimentkit.studyharness.reference.conformance",
+              "appDataDir": "<work>/offline/home/Library/Application Support/dev.explorablemodels.studyharness.reference.conformance",
               "armedPoints": [
                 "save-before-commit"
               ],
@@ -3833,7 +3833,7 @@
                 "display-ack-before-commit"
               ],
               "generation": 2,
-              "identifier": "dev.experimentkit.studyharness.reference.conformance",
+              "identifier": "dev.explorablemodels.studyharness.reference.conformance",
               "identity": {
                 "arch": "aarch64",
                 "executableSha256": "46545ff01ea37b7cc817b7be8a9b84c83468ea91608ceb5450cd91df4223f32b",
@@ -4882,7 +4882,7 @@
               }
             ],
             "scenario": {
-              "appDataDir": "<work>/offline/home/Library/Application Support/dev.experimentkit.studyharness.reference.conformance",
+              "appDataDir": "<work>/offline/home/Library/Application Support/dev.explorablemodels.studyharness.reference.conformance",
               "armedPoints": [
                 "save-before-commit"
               ],
@@ -4902,7 +4902,7 @@
                 "display-ack-before-commit"
               ],
               "generation": 1,
-              "identifier": "dev.experimentkit.studyharness.reference.conformance",
+              "identifier": "dev.explorablemodels.studyharness.reference.conformance",
               "identity": {
                 "arch": "aarch64",
                 "executableSha256": "46545ff01ea37b7cc817b7be8a9b84c83468ea91608ceb5450cd91df4223f32b",
@@ -5003,7 +5003,7 @@
             "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko)"
           }
         },
-        "appData": "<work>/offline/home/Library/Application Support/dev.experimentkit.studyharness.reference.conformance"
+        "appData": "<work>/offline/home/Library/Application Support/dev.explorablemodels.studyharness.reference.conformance"
       },
       "captures": "<work>/offline/out/captures",
       "csp": {
@@ -5634,7 +5634,7 @@
             "listening": []
           },
           "outputTail": [
-            "2026-10-28 22:54:57.026 study-harness-reference[12022:1704519] ApplePersistenceIgnoreState: Existing state will not be touched. New state will be written to /var/folders/3q/n6ygm4hd7hl0hy3tkmvbnsn00000gn/T/dev.experimentkit.studyharness.reference.conformance.savedState"
+            "2026-10-28 22:54:57.026 study-harness-reference[12022:1704519] ApplePersistenceIgnoreState: Existing state will not be touched. New state will be written to /var/folders/3q/n6ygm4hd7hl0hy3tkmvbnsn00000gn/T/dev.explorablemodels.studyharness.reference.conformance.savedState"
           ],
           "reports": {
             "report.json": {
@@ -6128,7 +6128,7 @@
                 }
               ],
               "scenario": {
-                "appDataDir": "<work>/restart/home/Library/Application Support/dev.experimentkit.studyharness.reference.conformance",
+                "appDataDir": "<work>/restart/home/Library/Application Support/dev.explorablemodels.studyharness.reference.conformance",
                 "armedPoints": [
                   "save-before-commit"
                 ],
@@ -6148,7 +6148,7 @@
                   "display-ack-before-commit"
                 ],
                 "generation": 1,
-                "identifier": "dev.experimentkit.studyharness.reference.conformance",
+                "identifier": "dev.explorablemodels.studyharness.reference.conformance",
                 "identity": {
                   "arch": "aarch64",
                   "executableSha256": "46545ff01ea37b7cc817b7be8a9b84c83468ea91608ceb5450cd91df4223f32b",
@@ -6308,7 +6308,7 @@
               "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko)"
             }
           },
-          "appData": "<work>/restart/home/Library/Application Support/dev.experimentkit.studyharness.reference.conformance"
+          "appData": "<work>/restart/home/Library/Application Support/dev.explorablemodels.studyharness.reference.conformance"
         },
         {
           "build": "conformance",
@@ -6332,7 +6332,7 @@
             "listening": []
           },
           "outputTail": [
-            "2026-10-28 22:54:58.999 study-harness-reference[12340:1704958] ApplePersistenceIgnoreState: Existing state will not be touched. New state will be written to /var/folders/3q/n6ygm4hd7hl0hy3tkmvbnsn00000gn/T/dev.experimentkit.studyharness.reference.conformance.savedState"
+            "2026-10-28 22:54:58.999 study-harness-reference[12340:1704958] ApplePersistenceIgnoreState: Existing state will not be touched. New state will be written to /var/folders/3q/n6ygm4hd7hl0hy3tkmvbnsn00000gn/T/dev.explorablemodels.studyharness.reference.conformance.savedState"
           ],
           "reports": {
             "report.json": {
@@ -6873,7 +6873,7 @@
                 }
               ],
               "scenario": {
-                "appDataDir": "<work>/restart/home/Library/Application Support/dev.experimentkit.studyharness.reference.conformance",
+                "appDataDir": "<work>/restart/home/Library/Application Support/dev.explorablemodels.studyharness.reference.conformance",
                 "armedPoints": [
                   "save-before-commit"
                 ],
@@ -6893,7 +6893,7 @@
                   "display-ack-before-commit"
                 ],
                 "generation": 1,
-                "identifier": "dev.experimentkit.studyharness.reference.conformance",
+                "identifier": "dev.explorablemodels.studyharness.reference.conformance",
                 "identity": {
                   "arch": "aarch64",
                   "executableSha256": "46545ff01ea37b7cc817b7be8a9b84c83468ea91608ceb5450cd91df4223f32b",
@@ -6963,7 +6963,7 @@
               "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko)"
             }
           },
-          "appData": "<work>/restart/home/Library/Application Support/dev.experimentkit.studyharness.reference.conformance"
+          "appData": "<work>/restart/home/Library/Application Support/dev.explorablemodels.studyharness.reference.conformance"
         },
         {
           "build": "conformance",
@@ -6987,7 +6987,7 @@
             "listening": []
           },
           "outputTail": [
-            "2026-10-28 22:55:00.424 study-harness-reference[12616:1705315] ApplePersistenceIgnoreState: Existing state will not be touched. New state will be written to /var/folders/3q/n6ygm4hd7hl0hy3tkmvbnsn00000gn/T/dev.experimentkit.studyharness.reference.conformance.savedState"
+            "2026-10-28 22:55:00.424 study-harness-reference[12616:1705315] ApplePersistenceIgnoreState: Existing state will not be touched. New state will be written to /var/folders/3q/n6ygm4hd7hl0hy3tkmvbnsn00000gn/T/dev.explorablemodels.studyharness.reference.conformance.savedState"
           ],
           "reports": {
             "report.json": {
@@ -7422,7 +7422,7 @@
               "origin": "tauri://localhost",
               "probes": [],
               "scenario": {
-                "appDataDir": "<work>/restart/home/Library/Application Support/dev.experimentkit.studyharness.reference.conformance",
+                "appDataDir": "<work>/restart/home/Library/Application Support/dev.explorablemodels.studyharness.reference.conformance",
                 "armedPoints": [
                   "save-before-commit"
                 ],
@@ -7442,7 +7442,7 @@
                   "display-ack-before-commit"
                 ],
                 "generation": 1,
-                "identifier": "dev.experimentkit.studyharness.reference.conformance",
+                "identifier": "dev.explorablemodels.studyharness.reference.conformance",
                 "identity": {
                   "arch": "aarch64",
                   "executableSha256": "46545ff01ea37b7cc817b7be8a9b84c83468ea91608ceb5450cd91df4223f32b",
@@ -7529,7 +7529,7 @@
               "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko)"
             }
           },
-          "appData": "<work>/restart/home/Library/Application Support/dev.experimentkit.studyharness.reference.conformance"
+          "appData": "<work>/restart/home/Library/Application Support/dev.explorablemodels.studyharness.reference.conformance"
         }
       ],
       "db": {
@@ -9582,7 +9582,7 @@
           }
         }
       },
-      "exportFile": "<work>/restart/home/Library/Application Support/dev.experimentkit.studyharness.reference.conformance/exports/backup-7b70d538e1d40e40.json",
+      "exportFile": "<work>/restart/home/Library/Application Support/dev.explorablemodels.studyharness.reference.conformance/exports/backup-7b70d538e1d40e40.json",
       "before": {
         "activityId": "act-ce36ae0065d34027b01f32dc1f72952c",
         "context": {
@@ -9713,7 +9713,7 @@
             "exitCode": null,
             "statusBeforeCrash": "crash-armed",
             "outputTail": [
-              "2026-10-28 22:55:01.914 study-harness-reference[12949:1705732] ApplePersistenceIgnoreState: Existing state will not be touched. New state will be written to /var/folders/3q/n6ygm4hd7hl0hy3tkmvbnsn00000gn/T/dev.experimentkit.studyharness.reference.conformance.savedState",
+              "2026-10-28 22:55:01.914 study-harness-reference[12949:1705732] ApplePersistenceIgnoreState: Existing state will not be touched. New state will be written to /var/folders/3q/n6ygm4hd7hl0hy3tkmvbnsn00000gn/T/dev.explorablemodels.studyharness.reference.conformance.savedState",
               "[conformance] crash point intent-before-commit: std::process::abort()"
             ]
           }
@@ -9909,7 +9909,7 @@
             "listening": []
           },
           "outputTail": [
-            "2026-10-28 22:55:01.914 study-harness-reference[12949:1705732] ApplePersistenceIgnoreState: Existing state will not be touched. New state will be written to /var/folders/3q/n6ygm4hd7hl0hy3tkmvbnsn00000gn/T/dev.experimentkit.studyharness.reference.conformance.savedState",
+            "2026-10-28 22:55:01.914 study-harness-reference[12949:1705732] ApplePersistenceIgnoreState: Existing state will not be touched. New state will be written to /var/folders/3q/n6ygm4hd7hl0hy3tkmvbnsn00000gn/T/dev.explorablemodels.studyharness.reference.conformance.savedState",
             "[conformance] crash point intent-before-commit: std::process::abort()"
           ],
           "reports": {
@@ -10161,7 +10161,7 @@
               "origin": "tauri://localhost",
               "probes": [],
               "scenario": {
-                "appDataDir": "<work>/crash-intent-before-commit/home/Library/Application Support/dev.experimentkit.studyharness.reference.conformance",
+                "appDataDir": "<work>/crash-intent-before-commit/home/Library/Application Support/dev.explorablemodels.studyharness.reference.conformance",
                 "armedPoints": [
                   "save-before-commit"
                 ],
@@ -10181,7 +10181,7 @@
                   "display-ack-before-commit"
                 ],
                 "generation": 1,
-                "identifier": "dev.experimentkit.studyharness.reference.conformance",
+                "identifier": "dev.explorablemodels.studyharness.reference.conformance",
                 "identity": {
                   "arch": "aarch64",
                   "executableSha256": "46545ff01ea37b7cc817b7be8a9b84c83468ea91608ceb5450cd91df4223f32b",
@@ -10256,7 +10256,7 @@
               "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko)"
             }
           },
-          "appData": "<work>/crash-intent-before-commit/home/Library/Application Support/dev.experimentkit.studyharness.reference.conformance"
+          "appData": "<work>/crash-intent-before-commit/home/Library/Application Support/dev.explorablemodels.studyharness.reference.conformance"
         },
         {
           "build": "conformance",
@@ -10280,7 +10280,7 @@
             "listening": []
           },
           "outputTail": [
-            "2026-10-28 22:55:03.323 study-harness-reference[13236:1706099] ApplePersistenceIgnoreState: Existing state will not be touched. New state will be written to /var/folders/3q/n6ygm4hd7hl0hy3tkmvbnsn00000gn/T/dev.experimentkit.studyharness.reference.conformance.savedState"
+            "2026-10-28 22:55:03.323 study-harness-reference[13236:1706099] ApplePersistenceIgnoreState: Existing state will not be touched. New state will be written to /var/folders/3q/n6ygm4hd7hl0hy3tkmvbnsn00000gn/T/dev.explorablemodels.studyharness.reference.conformance.savedState"
           ],
           "reports": {
             "report.json": {
@@ -10708,7 +10708,7 @@
               "origin": "tauri://localhost",
               "probes": [],
               "scenario": {
-                "appDataDir": "<work>/crash-intent-before-commit/home/Library/Application Support/dev.experimentkit.studyharness.reference.conformance",
+                "appDataDir": "<work>/crash-intent-before-commit/home/Library/Application Support/dev.explorablemodels.studyharness.reference.conformance",
                 "armedPoints": [
                   "save-before-commit"
                 ],
@@ -10728,7 +10728,7 @@
                   "display-ack-before-commit"
                 ],
                 "generation": 1,
-                "identifier": "dev.experimentkit.studyharness.reference.conformance",
+                "identifier": "dev.explorablemodels.studyharness.reference.conformance",
                 "identity": {
                   "arch": "aarch64",
                   "executableSha256": "46545ff01ea37b7cc817b7be8a9b84c83468ea91608ceb5450cd91df4223f32b",
@@ -10791,7 +10791,7 @@
               "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko)"
             }
           },
-          "appData": "<work>/crash-intent-before-commit/home/Library/Application Support/dev.experimentkit.studyharness.reference.conformance"
+          "appData": "<work>/crash-intent-before-commit/home/Library/Application Support/dev.explorablemodels.studyharness.reference.conformance"
         }
       ],
       "db": {
@@ -11357,7 +11357,7 @@
             "exitCode": null,
             "statusBeforeCrash": "crash-armed",
             "outputTail": [
-              "2026-10-28 22:55:05.224 study-harness-reference[13540:1706490] ApplePersistenceIgnoreState: Existing state will not be touched. New state will be written to /var/folders/3q/n6ygm4hd7hl0hy3tkmvbnsn00000gn/T/dev.experimentkit.studyharness.reference.conformance.savedState",
+              "2026-10-28 22:55:05.224 study-harness-reference[13540:1706490] ApplePersistenceIgnoreState: Existing state will not be touched. New state will be written to /var/folders/3q/n6ygm4hd7hl0hy3tkmvbnsn00000gn/T/dev.explorablemodels.studyharness.reference.conformance.savedState",
               "[conformance] crash point intent-after-commit: std::process::abort()"
             ]
           }
@@ -11592,7 +11592,7 @@
             "listening": []
           },
           "outputTail": [
-            "2026-10-28 22:55:05.224 study-harness-reference[13540:1706490] ApplePersistenceIgnoreState: Existing state will not be touched. New state will be written to /var/folders/3q/n6ygm4hd7hl0hy3tkmvbnsn00000gn/T/dev.experimentkit.studyharness.reference.conformance.savedState",
+            "2026-10-28 22:55:05.224 study-harness-reference[13540:1706490] ApplePersistenceIgnoreState: Existing state will not be touched. New state will be written to /var/folders/3q/n6ygm4hd7hl0hy3tkmvbnsn00000gn/T/dev.explorablemodels.studyharness.reference.conformance.savedState",
             "[conformance] crash point intent-after-commit: std::process::abort()"
           ],
           "reports": {
@@ -11844,7 +11844,7 @@
               "origin": "tauri://localhost",
               "probes": [],
               "scenario": {
-                "appDataDir": "<work>/crash-intent-after-commit/home/Library/Application Support/dev.experimentkit.studyharness.reference.conformance",
+                "appDataDir": "<work>/crash-intent-after-commit/home/Library/Application Support/dev.explorablemodels.studyharness.reference.conformance",
                 "armedPoints": [
                   "save-before-commit"
                 ],
@@ -11864,7 +11864,7 @@
                   "display-ack-before-commit"
                 ],
                 "generation": 1,
-                "identifier": "dev.experimentkit.studyharness.reference.conformance",
+                "identifier": "dev.explorablemodels.studyharness.reference.conformance",
                 "identity": {
                   "arch": "aarch64",
                   "executableSha256": "46545ff01ea37b7cc817b7be8a9b84c83468ea91608ceb5450cd91df4223f32b",
@@ -11939,7 +11939,7 @@
               "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko)"
             }
           },
-          "appData": "<work>/crash-intent-after-commit/home/Library/Application Support/dev.experimentkit.studyharness.reference.conformance"
+          "appData": "<work>/crash-intent-after-commit/home/Library/Application Support/dev.explorablemodels.studyharness.reference.conformance"
         },
         {
           "build": "conformance",
@@ -11963,7 +11963,7 @@
             "listening": []
           },
           "outputTail": [
-            "2026-10-28 22:55:06.656 study-harness-reference[13841:1706877] ApplePersistenceIgnoreState: Existing state will not be touched. New state will be written to /var/folders/3q/n6ygm4hd7hl0hy3tkmvbnsn00000gn/T/dev.experimentkit.studyharness.reference.conformance.savedState"
+            "2026-10-28 22:55:06.656 study-harness-reference[13841:1706877] ApplePersistenceIgnoreState: Existing state will not be touched. New state will be written to /var/folders/3q/n6ygm4hd7hl0hy3tkmvbnsn00000gn/T/dev.explorablemodels.studyharness.reference.conformance.savedState"
           ],
           "reports": {
             "report.json": {
@@ -12409,7 +12409,7 @@
               "origin": "tauri://localhost",
               "probes": [],
               "scenario": {
-                "appDataDir": "<work>/crash-intent-after-commit/home/Library/Application Support/dev.experimentkit.studyharness.reference.conformance",
+                "appDataDir": "<work>/crash-intent-after-commit/home/Library/Application Support/dev.explorablemodels.studyharness.reference.conformance",
                 "armedPoints": [
                   "save-before-commit"
                 ],
@@ -12429,7 +12429,7 @@
                   "display-ack-before-commit"
                 ],
                 "generation": 1,
-                "identifier": "dev.experimentkit.studyharness.reference.conformance",
+                "identifier": "dev.explorablemodels.studyharness.reference.conformance",
                 "identity": {
                   "arch": "aarch64",
                   "executableSha256": "46545ff01ea37b7cc817b7be8a9b84c83468ea91608ceb5450cd91df4223f32b",
@@ -12492,7 +12492,7 @@
               "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko)"
             }
           },
-          "appData": "<work>/crash-intent-after-commit/home/Library/Application Support/dev.experimentkit.studyharness.reference.conformance"
+          "appData": "<work>/crash-intent-after-commit/home/Library/Application Support/dev.explorablemodels.studyharness.reference.conformance"
         }
       ],
       "db": {
@@ -13059,7 +13059,7 @@
             "exitCode": null,
             "statusBeforeCrash": "crash-armed",
             "outputTail": [
-              "2026-10-28 22:55:08.490 study-harness-reference[14147:1707267] ApplePersistenceIgnoreState: Existing state will not be touched. New state will be written to /var/folders/3q/n6ygm4hd7hl0hy3tkmvbnsn00000gn/T/dev.experimentkit.studyharness.reference.conformance.savedState",
+              "2026-10-28 22:55:08.490 study-harness-reference[14147:1707267] ApplePersistenceIgnoreState: Existing state will not be touched. New state will be written to /var/folders/3q/n6ygm4hd7hl0hy3tkmvbnsn00000gn/T/dev.explorablemodels.studyharness.reference.conformance.savedState",
               "[conformance] crash point intent-after-reply: next command, std::process::abort()"
             ]
           }
@@ -13294,7 +13294,7 @@
             "listening": []
           },
           "outputTail": [
-            "2026-10-28 22:55:08.490 study-harness-reference[14147:1707267] ApplePersistenceIgnoreState: Existing state will not be touched. New state will be written to /var/folders/3q/n6ygm4hd7hl0hy3tkmvbnsn00000gn/T/dev.experimentkit.studyharness.reference.conformance.savedState",
+            "2026-10-28 22:55:08.490 study-harness-reference[14147:1707267] ApplePersistenceIgnoreState: Existing state will not be touched. New state will be written to /var/folders/3q/n6ygm4hd7hl0hy3tkmvbnsn00000gn/T/dev.explorablemodels.studyharness.reference.conformance.savedState",
             "[conformance] crash point intent-after-reply: next command, std::process::abort()"
           ],
           "reports": {
@@ -13546,7 +13546,7 @@
               "origin": "tauri://localhost",
               "probes": [],
               "scenario": {
-                "appDataDir": "<work>/crash-intent-after-reply/home/Library/Application Support/dev.experimentkit.studyharness.reference.conformance",
+                "appDataDir": "<work>/crash-intent-after-reply/home/Library/Application Support/dev.explorablemodels.studyharness.reference.conformance",
                 "armedPoints": [
                   "save-before-commit"
                 ],
@@ -13566,7 +13566,7 @@
                   "display-ack-before-commit"
                 ],
                 "generation": 1,
-                "identifier": "dev.experimentkit.studyharness.reference.conformance",
+                "identifier": "dev.explorablemodels.studyharness.reference.conformance",
                 "identity": {
                   "arch": "aarch64",
                   "executableSha256": "46545ff01ea37b7cc817b7be8a9b84c83468ea91608ceb5450cd91df4223f32b",
@@ -13641,7 +13641,7 @@
               "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko)"
             }
           },
-          "appData": "<work>/crash-intent-after-reply/home/Library/Application Support/dev.experimentkit.studyharness.reference.conformance"
+          "appData": "<work>/crash-intent-after-reply/home/Library/Application Support/dev.explorablemodels.studyharness.reference.conformance"
         },
         {
           "build": "conformance",
@@ -13665,7 +13665,7 @@
             "listening": []
           },
           "outputTail": [
-            "2026-10-28 22:55:09.864 study-harness-reference[14435:1707637] ApplePersistenceIgnoreState: Existing state will not be touched. New state will be written to /var/folders/3q/n6ygm4hd7hl0hy3tkmvbnsn00000gn/T/dev.experimentkit.studyharness.reference.conformance.savedState"
+            "2026-10-28 22:55:09.864 study-harness-reference[14435:1707637] ApplePersistenceIgnoreState: Existing state will not be touched. New state will be written to /var/folders/3q/n6ygm4hd7hl0hy3tkmvbnsn00000gn/T/dev.explorablemodels.studyharness.reference.conformance.savedState"
           ],
           "reports": {
             "report.json": {
@@ -14111,7 +14111,7 @@
               "origin": "tauri://localhost",
               "probes": [],
               "scenario": {
-                "appDataDir": "<work>/crash-intent-after-reply/home/Library/Application Support/dev.experimentkit.studyharness.reference.conformance",
+                "appDataDir": "<work>/crash-intent-after-reply/home/Library/Application Support/dev.explorablemodels.studyharness.reference.conformance",
                 "armedPoints": [
                   "save-before-commit"
                 ],
@@ -14131,7 +14131,7 @@
                   "display-ack-before-commit"
                 ],
                 "generation": 1,
-                "identifier": "dev.experimentkit.studyharness.reference.conformance",
+                "identifier": "dev.explorablemodels.studyharness.reference.conformance",
                 "identity": {
                   "arch": "aarch64",
                   "executableSha256": "46545ff01ea37b7cc817b7be8a9b84c83468ea91608ceb5450cd91df4223f32b",
@@ -14194,7 +14194,7 @@
               "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko)"
             }
           },
-          "appData": "<work>/crash-intent-after-reply/home/Library/Application Support/dev.experimentkit.studyharness.reference.conformance"
+          "appData": "<work>/crash-intent-after-reply/home/Library/Application Support/dev.explorablemodels.studyharness.reference.conformance"
         }
       ],
       "db": {
@@ -14761,7 +14761,7 @@
             "exitCode": null,
             "statusBeforeCrash": "crash-armed",
             "outputTail": [
-              "2026-10-28 22:55:11.767 study-harness-reference[14740:1708043] ApplePersistenceIgnoreState: Existing state will not be touched. New state will be written to /var/folders/3q/n6ygm4hd7hl0hy3tkmvbnsn00000gn/T/dev.experimentkit.studyharness.reference.conformance.savedState",
+              "2026-10-28 22:55:11.767 study-harness-reference[14740:1708043] ApplePersistenceIgnoreState: Existing state will not be touched. New state will be written to /var/folders/3q/n6ygm4hd7hl0hy3tkmvbnsn00000gn/T/dev.explorablemodels.studyharness.reference.conformance.savedState",
               "[conformance] crash point display-ack-before-commit: std::process::abort()"
             ]
           },
@@ -15010,7 +15010,7 @@
             "listening": []
           },
           "outputTail": [
-            "2026-10-28 22:55:11.767 study-harness-reference[14740:1708043] ApplePersistenceIgnoreState: Existing state will not be touched. New state will be written to /var/folders/3q/n6ygm4hd7hl0hy3tkmvbnsn00000gn/T/dev.experimentkit.studyharness.reference.conformance.savedState",
+            "2026-10-28 22:55:11.767 study-harness-reference[14740:1708043] ApplePersistenceIgnoreState: Existing state will not be touched. New state will be written to /var/folders/3q/n6ygm4hd7hl0hy3tkmvbnsn00000gn/T/dev.explorablemodels.studyharness.reference.conformance.savedState",
             "[conformance] crash point display-ack-before-commit: std::process::abort()"
           ],
           "reports": {
@@ -15262,7 +15262,7 @@
               "origin": "tauri://localhost",
               "probes": [],
               "scenario": {
-                "appDataDir": "<work>/crash-display-ack-before-commit/home/Library/Application Support/dev.experimentkit.studyharness.reference.conformance",
+                "appDataDir": "<work>/crash-display-ack-before-commit/home/Library/Application Support/dev.explorablemodels.studyharness.reference.conformance",
                 "armedPoints": [
                   "save-before-commit"
                 ],
@@ -15282,7 +15282,7 @@
                   "display-ack-before-commit"
                 ],
                 "generation": 1,
-                "identifier": "dev.experimentkit.studyharness.reference.conformance",
+                "identifier": "dev.explorablemodels.studyharness.reference.conformance",
                 "identity": {
                   "arch": "aarch64",
                   "executableSha256": "46545ff01ea37b7cc817b7be8a9b84c83468ea91608ceb5450cd91df4223f32b",
@@ -15357,7 +15357,7 @@
               "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko)"
             }
           },
-          "appData": "<work>/crash-display-ack-before-commit/home/Library/Application Support/dev.experimentkit.studyharness.reference.conformance"
+          "appData": "<work>/crash-display-ack-before-commit/home/Library/Application Support/dev.explorablemodels.studyharness.reference.conformance"
         },
         {
           "build": "conformance",
@@ -15381,7 +15381,7 @@
             "listening": []
           },
           "outputTail": [
-            "2026-10-28 22:55:13.233 study-harness-reference[15041:1708440] ApplePersistenceIgnoreState: Existing state will not be touched. New state will be written to /var/folders/3q/n6ygm4hd7hl0hy3tkmvbnsn00000gn/T/dev.experimentkit.studyharness.reference.conformance.savedState"
+            "2026-10-28 22:55:13.233 study-harness-reference[15041:1708440] ApplePersistenceIgnoreState: Existing state will not be touched. New state will be written to /var/folders/3q/n6ygm4hd7hl0hy3tkmvbnsn00000gn/T/dev.explorablemodels.studyharness.reference.conformance.savedState"
           ],
           "reports": {
             "report.json": {
@@ -15778,7 +15778,7 @@
               "origin": "tauri://localhost",
               "probes": [],
               "scenario": {
-                "appDataDir": "<work>/crash-display-ack-before-commit/home/Library/Application Support/dev.experimentkit.studyharness.reference.conformance",
+                "appDataDir": "<work>/crash-display-ack-before-commit/home/Library/Application Support/dev.explorablemodels.studyharness.reference.conformance",
                 "armedPoints": [
                   "save-before-commit"
                 ],
@@ -15798,7 +15798,7 @@
                   "display-ack-before-commit"
                 ],
                 "generation": 1,
-                "identifier": "dev.experimentkit.studyharness.reference.conformance",
+                "identifier": "dev.explorablemodels.studyharness.reference.conformance",
                 "identity": {
                   "arch": "aarch64",
                   "executableSha256": "46545ff01ea37b7cc817b7be8a9b84c83468ea91608ceb5450cd91df4223f32b",
@@ -15861,7 +15861,7 @@
               "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko)"
             }
           },
-          "appData": "<work>/crash-display-ack-before-commit/home/Library/Application Support/dev.experimentkit.studyharness.reference.conformance"
+          "appData": "<work>/crash-display-ack-before-commit/home/Library/Application Support/dev.explorablemodels.studyharness.reference.conformance"
         }
       ],
       "db": {
@@ -16446,7 +16446,7 @@
             },
             "failed": [],
             "outputTail": [
-              "2026-10-28 22:55:14.956 study-harness-reference[15345:1708825] ApplePersistenceIgnoreState: Existing state will not be touched. New state will be written to /var/folders/3q/n6ygm4hd7hl0hy3tkmvbnsn00000gn/T/dev.experimentkit.studyharness.reference.conformance.savedState",
+              "2026-10-28 22:55:14.956 study-harness-reference[15345:1708825] ApplePersistenceIgnoreState: Existing state will not be touched. New state will be written to /var/folders/3q/n6ygm4hd7hl0hy3tkmvbnsn00000gn/T/dev.explorablemodels.studyharness.reference.conformance.savedState",
               "[conformance] crash point save-before-commit: std::process::abort()"
             ]
           }
@@ -16575,7 +16575,7 @@
             "listening": []
           },
           "outputTail": [
-            "2026-10-28 22:55:14.956 study-harness-reference[15345:1708825] ApplePersistenceIgnoreState: Existing state will not be touched. New state will be written to /var/folders/3q/n6ygm4hd7hl0hy3tkmvbnsn00000gn/T/dev.experimentkit.studyharness.reference.conformance.savedState",
+            "2026-10-28 22:55:14.956 study-harness-reference[15345:1708825] ApplePersistenceIgnoreState: Existing state will not be touched. New state will be written to /var/folders/3q/n6ygm4hd7hl0hy3tkmvbnsn00000gn/T/dev.explorablemodels.studyharness.reference.conformance.savedState",
             "[conformance] crash point save-before-commit: std::process::abort()"
           ],
           "reports": {
@@ -16940,7 +16940,7 @@
               "origin": "tauri://localhost",
               "probes": [],
               "scenario": {
-                "appDataDir": "<work>/crash-save-before-commit/home/Library/Application Support/dev.experimentkit.studyharness.reference.conformance",
+                "appDataDir": "<work>/crash-save-before-commit/home/Library/Application Support/dev.explorablemodels.studyharness.reference.conformance",
                 "armedPoints": [
                   "save-before-commit"
                 ],
@@ -16960,7 +16960,7 @@
                   "display-ack-before-commit"
                 ],
                 "generation": 1,
-                "identifier": "dev.experimentkit.studyharness.reference.conformance",
+                "identifier": "dev.explorablemodels.studyharness.reference.conformance",
                 "identity": {
                   "arch": "aarch64",
                   "executableSha256": "46545ff01ea37b7cc817b7be8a9b84c83468ea91608ceb5450cd91df4223f32b",
@@ -17067,7 +17067,7 @@
               "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko)"
             }
           },
-          "appData": "<work>/crash-save-before-commit/home/Library/Application Support/dev.experimentkit.studyharness.reference.conformance"
+          "appData": "<work>/crash-save-before-commit/home/Library/Application Support/dev.explorablemodels.studyharness.reference.conformance"
         },
         {
           "build": "conformance",
@@ -17091,7 +17091,7 @@
             "listening": []
           },
           "outputTail": [
-            "2026-10-28 22:55:16.606 study-harness-reference[15637:1709213] ApplePersistenceIgnoreState: Existing state will not be touched. New state will be written to /var/folders/3q/n6ygm4hd7hl0hy3tkmvbnsn00000gn/T/dev.experimentkit.studyharness.reference.conformance.savedState"
+            "2026-10-28 22:55:16.606 study-harness-reference[15637:1709213] ApplePersistenceIgnoreState: Existing state will not be touched. New state will be written to /var/folders/3q/n6ygm4hd7hl0hy3tkmvbnsn00000gn/T/dev.explorablemodels.studyharness.reference.conformance.savedState"
           ],
           "reports": {
             "report.json": {
@@ -17423,7 +17423,7 @@
               "origin": "tauri://localhost",
               "probes": [],
               "scenario": {
-                "appDataDir": "<work>/crash-save-before-commit/home/Library/Application Support/dev.experimentkit.studyharness.reference.conformance",
+                "appDataDir": "<work>/crash-save-before-commit/home/Library/Application Support/dev.explorablemodels.studyharness.reference.conformance",
                 "armedPoints": [
                   "save-before-commit"
                 ],
@@ -17443,7 +17443,7 @@
                   "display-ack-before-commit"
                 ],
                 "generation": 1,
-                "identifier": "dev.experimentkit.studyharness.reference.conformance",
+                "identifier": "dev.explorablemodels.studyharness.reference.conformance",
                 "identity": {
                   "arch": "aarch64",
                   "executableSha256": "46545ff01ea37b7cc817b7be8a9b84c83468ea91608ceb5450cd91df4223f32b",
@@ -17480,7 +17480,7 @@
               "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko)"
             }
           },
-          "appData": "<work>/crash-save-before-commit/home/Library/Application Support/dev.experimentkit.studyharness.reference.conformance"
+          "appData": "<work>/crash-save-before-commit/home/Library/Application Support/dev.explorablemodels.studyharness.reference.conformance"
         }
       ],
       "db": {
@@ -18418,7 +18418,7 @@
           "listening": []
         },
         "outputTail": [
-          "2026-10-28 22:55:17.902 study-harness-reference[15913:1709563] ApplePersistenceIgnoreState: Existing state will not be touched. New state will be written to /var/folders/3q/n6ygm4hd7hl0hy3tkmvbnsn00000gn/T/dev.experimentkit.studyharness.reference.conformance.savedState"
+          "2026-10-28 22:55:17.902 study-harness-reference[15913:1709563] ApplePersistenceIgnoreState: Existing state will not be touched. New state will be written to /var/folders/3q/n6ygm4hd7hl0hy3tkmvbnsn00000gn/T/dev.explorablemodels.studyharness.reference.conformance.savedState"
         ],
         "reports": {
           "report.json": {
@@ -18971,7 +18971,7 @@
               }
             ],
             "scenario": {
-              "appDataDir": "<work>/restore/home/Library/Application Support/dev.experimentkit.studyharness.reference.conformance",
+              "appDataDir": "<work>/restore/home/Library/Application Support/dev.explorablemodels.studyharness.reference.conformance",
               "armedPoints": [
                 "save-before-commit"
               ],
@@ -18991,7 +18991,7 @@
                 "display-ack-before-commit"
               ],
               "generation": 1,
-              "identifier": "dev.experimentkit.studyharness.reference.conformance",
+              "identifier": "dev.explorablemodels.studyharness.reference.conformance",
               "identity": {
                 "arch": "aarch64",
                 "executableSha256": "46545ff01ea37b7cc817b7be8a9b84c83468ea91608ceb5450cd91df4223f32b",
@@ -19122,7 +19122,7 @@
             "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko)"
           }
         },
-        "appData": "<work>/restore/home/Library/Application Support/dev.experimentkit.studyharness.reference.conformance"
+        "appData": "<work>/restore/home/Library/Application Support/dev.explorablemodels.studyharness.reference.conformance"
       },
       "db": {
         "activities": [
@@ -20208,7 +20208,7 @@
           "listening": []
         },
         "outputTail": [
-          "2026-10-28 22:55:19.539 study-harness-reference[16203:1709929] ApplePersistenceIgnoreState: Existing state will not be touched. New state will be written to /var/folders/3q/n6ygm4hd7hl0hy3tkmvbnsn00000gn/T/dev.experimentkit.studyharness.reference.conformance.savedState",
+          "2026-10-28 22:55:19.539 study-harness-reference[16203:1709929] ApplePersistenceIgnoreState: Existing state will not be touched. New state will be written to /var/folders/3q/n6ygm4hd7hl0hy3tkmvbnsn00000gn/T/dev.explorablemodels.studyharness.reference.conformance.savedState",
           "[conformance] simulated fault at intent-before-commit: the command fails and the host stays down until the store is reopened",
           "[conformance] simulated fault at intent-after-commit: the command fails and the host stays down until the store is reopened",
           "[conformance] simulated fault at display-ack-before-commit: the command fails and the host stays down until the store is reopened"
@@ -21249,7 +21249,7 @@
                     "signed": false
                   },
                   "kit": {
-                    "name": "@experiment-kit/activity/conformance",
+                    "name": "@explorable-models/activity/conformance",
                     "version": "0.3.0-preview.1"
                   },
                   "limitations": [
@@ -21261,27 +21261,27 @@
                   ],
                   "packages": [
                     {
-                      "name": "@experiment-kit/core",
+                      "name": "@explorable-models/core",
                       "sha256": "b4b7b8a602e3908882ea9ccc34b6c288224fccd1dae1c12ef5846e7b6c7c4dd1",
                       "version": "0.3.0-preview.1"
                     },
                     {
-                      "name": "@experiment-kit/activity",
+                      "name": "@explorable-models/activity",
                       "sha256": "63beb9982b0683b650c5425fe2089f152d80f503b6f705fd576693f66c6313d5",
                       "version": "0.3.0-preview.1"
                     },
                     {
-                      "name": "@experiment-kit/catalog",
+                      "name": "@explorable-models/catalog",
                       "sha256": "0138850db9ae2115dcc7d9fb94b14e793153862b0626930d65f4411303f09134",
                       "version": "0.3.0-preview.1"
                     },
                     {
-                      "name": "@experiment-kit/player",
+                      "name": "@explorable-models/player",
                       "sha256": "21b3f1d6543c48c1c7735a624d1da5c706193782c79bbd5f5e5fceeaf09d7bad",
                       "version": "0.3.0-preview.1"
                     },
                     {
-                      "name": "@experiment-kit/player-3d",
+                      "name": "@explorable-models/player-3d",
                       "sha256": "0de6c36733b8182b5ab9e21ed31cace1cbcac5e326bfa2d8b1fb70ca8b729f77",
                       "version": "0.3.0-preview.1"
                     }
@@ -21689,7 +21689,7 @@
             "origin": "tauri://localhost",
             "probes": [],
             "scenario": {
-              "appDataDir": "<work>/hostport-kit/home/Library/Application Support/dev.experimentkit.studyharness.reference.conformance",
+              "appDataDir": "<work>/hostport-kit/home/Library/Application Support/dev.explorablemodels.studyharness.reference.conformance",
               "armedPoints": [
                 "save-before-commit"
               ],
@@ -21709,7 +21709,7 @@
                 "display-ack-before-commit"
               ],
               "generation": 1,
-              "identifier": "dev.experimentkit.studyharness.reference.conformance",
+              "identifier": "dev.explorablemodels.studyharness.reference.conformance",
               "identity": {
                 "arch": "aarch64",
                 "executableSha256": "46545ff01ea37b7cc817b7be8a9b84c83468ea91608ceb5450cd91df4223f32b",
@@ -21750,7 +21750,7 @@
             "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko)"
           }
         },
-        "appData": "<work>/hostport-kit/home/Library/Application Support/dev.experimentkit.studyharness.reference.conformance"
+        "appData": "<work>/hostport-kit/home/Library/Application Support/dev.explorablemodels.studyharness.reference.conformance"
       },
       "result": {
         "host": {
@@ -21767,7 +21767,7 @@
           "signed": false
         },
         "kit": {
-          "name": "@experiment-kit/activity/conformance",
+          "name": "@explorable-models/activity/conformance",
           "version": "0.3.0-preview.1"
         },
         "limitations": [
@@ -21779,27 +21779,27 @@
         ],
         "packages": [
           {
-            "name": "@experiment-kit/core",
+            "name": "@explorable-models/core",
             "sha256": "b4b7b8a602e3908882ea9ccc34b6c288224fccd1dae1c12ef5846e7b6c7c4dd1",
             "version": "0.3.0-preview.1"
           },
           {
-            "name": "@experiment-kit/activity",
+            "name": "@explorable-models/activity",
             "sha256": "63beb9982b0683b650c5425fe2089f152d80f503b6f705fd576693f66c6313d5",
             "version": "0.3.0-preview.1"
           },
           {
-            "name": "@experiment-kit/catalog",
+            "name": "@explorable-models/catalog",
             "sha256": "0138850db9ae2115dcc7d9fb94b14e793153862b0626930d65f4411303f09134",
             "version": "0.3.0-preview.1"
           },
           {
-            "name": "@experiment-kit/player",
+            "name": "@explorable-models/player",
             "sha256": "21b3f1d6543c48c1c7735a624d1da5c706193782c79bbd5f5e5fceeaf09d7bad",
             "version": "0.3.0-preview.1"
           },
           {
-            "name": "@experiment-kit/player-3d",
+            "name": "@explorable-models/player-3d",
             "sha256": "0de6c36733b8182b5ab9e21ed31cace1cbcac5e326bfa2d8b1fb70ca8b729f77",
             "version": "0.3.0-preview.1"
           }
@@ -22970,7 +22970,7 @@
           "listening": []
         },
         "outputTail": [
-          "2026-10-28 22:55:21.233 study-harness-reference[16331:1710148] ApplePersistenceIgnoreState: Existing state will not be touched. New state will be written to /var/folders/3q/n6ygm4hd7hl0hy3tkmvbnsn00000gn/T/dev.experimentkit.studyharness.reference.conformance.savedState"
+          "2026-10-28 22:55:21.233 study-harness-reference[16331:1710148] ApplePersistenceIgnoreState: Existing state will not be touched. New state will be written to /var/folders/3q/n6ygm4hd7hl0hy3tkmvbnsn00000gn/T/dev.explorablemodels.studyharness.reference.conformance.savedState"
         ],
         "reports": {
           "report.json": {
@@ -23592,7 +23592,7 @@
               }
             ],
             "scenario": {
-              "appDataDir": "<work>/templates/home/Library/Application Support/dev.experimentkit.studyharness.reference.conformance",
+              "appDataDir": "<work>/templates/home/Library/Application Support/dev.explorablemodels.studyharness.reference.conformance",
               "armedPoints": [
                 "save-before-commit"
               ],
@@ -23612,7 +23612,7 @@
                 "display-ack-before-commit"
               ],
               "generation": 1,
-              "identifier": "dev.experimentkit.studyharness.reference.conformance",
+              "identifier": "dev.explorablemodels.studyharness.reference.conformance",
               "identity": {
                 "arch": "aarch64",
                 "executableSha256": "46545ff01ea37b7cc817b7be8a9b84c83468ea91608ceb5450cd91df4223f32b",
@@ -23694,7 +23694,7 @@
             "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko)"
           }
         },
-        "appData": "<work>/templates/home/Library/Application Support/dev.experimentkit.studyharness.reference.conformance"
+        "appData": "<work>/templates/home/Library/Application Support/dev.explorablemodels.studyharness.reference.conformance"
       },
       "run": "full-2026-10-29T05:53:42.866Z"
     },
@@ -23979,91 +23979,91 @@
                   {
                     "atMs": 8,
                     "attribute": null,
-                    "target": "span.eka-glyph #text",
+                    "target": "span.ema-glyph #text",
                     "type": "characterData"
                   },
                   {
                     "atMs": 8,
                     "attribute": null,
-                    "target": "span.eka-chip-label #text",
+                    "target": "span.ema-chip-label #text",
                     "type": "characterData"
                   },
                   {
                     "atMs": 8,
                     "attribute": null,
-                    "target": "span.eka-sr #text",
+                    "target": "span.ema-sr #text",
                     "type": "characterData"
                   },
                   {
                     "atMs": 8,
                     "attribute": "data-tone",
-                    "target": "span.eka-chip[data-tone,data-persistence]",
+                    "target": "span.ema-chip[data-tone,data-persistence]",
                     "type": "attributes"
                   },
                   {
                     "atMs": 8,
                     "attribute": "data-persistence",
-                    "target": "span.eka-chip[data-tone,data-persistence]",
+                    "target": "span.ema-chip[data-tone,data-persistence]",
                     "type": "attributes"
                   },
                   {
                     "atMs": 8,
                     "attribute": "title",
-                    "target": "span.eka-chip[data-tone,data-persistence]",
+                    "target": "span.ema-chip[data-tone,data-persistence]",
                     "type": "attributes"
                   },
                   {
                     "atMs": 8,
                     "attribute": null,
-                    "target": "section.eka-card",
+                    "target": "section.ema-card",
                     "type": "childList"
                   },
                   {
                     "atMs": 8,
-                    "attribute": "data-eka-projection-id",
-                    "target": "svg.eka-plot[data-eka-view-id,data-eka-surface-id,data-eka-projection-id]",
+                    "attribute": "data-ema-projection-id",
+                    "target": "svg.ema-plot[data-ema-view-id,data-ema-surface-id,data-ema-projection-id]",
                     "type": "attributes"
                   },
                   {
                     "atMs": 8,
-                    "attribute": "data-eka-projection-id",
-                    "target": "svg.eka-plot[data-eka-view-id,data-eka-surface-id,data-eka-projection-id]",
-                    "type": "attributes"
-                  },
-                  {
-                    "atMs": 8,
-                    "attribute": "aria-disabled",
-                    "target": "button.eka-button[data-roving]",
-                    "type": "attributes"
-                  },
-                  {
-                    "atMs": 8,
-                    "attribute": "aria-describedby",
-                    "target": "button.eka-button[data-roving]",
+                    "attribute": "data-ema-projection-id",
+                    "target": "svg.ema-plot[data-ema-view-id,data-ema-surface-id,data-ema-projection-id]",
                     "type": "attributes"
                   },
                   {
                     "atMs": 8,
                     "attribute": "aria-disabled",
-                    "target": "button.eka-button[data-roving]",
+                    "target": "button.ema-button[data-roving]",
                     "type": "attributes"
                   },
                   {
                     "atMs": 8,
                     "attribute": "aria-describedby",
-                    "target": "button.eka-button[data-roving]",
+                    "target": "button.ema-button[data-roving]",
                     "type": "attributes"
                   },
                   {
                     "atMs": 8,
                     "attribute": "aria-disabled",
-                    "target": "button.eka-button[data-roving]",
+                    "target": "button.ema-button[data-roving]",
                     "type": "attributes"
                   },
                   {
                     "atMs": 8,
                     "attribute": "aria-describedby",
-                    "target": "button.eka-button[data-roving]",
+                    "target": "button.ema-button[data-roving]",
+                    "type": "attributes"
+                  },
+                  {
+                    "atMs": 8,
+                    "attribute": "aria-disabled",
+                    "target": "button.ema-button[data-roving]",
+                    "type": "attributes"
+                  },
+                  {
+                    "atMs": 8,
+                    "attribute": "aria-describedby",
+                    "target": "button.ema-button[data-roving]",
                     "type": "attributes"
                   },
                   {
@@ -24075,7 +24075,7 @@
                   {
                     "atMs": 8,
                     "attribute": null,
-                    "target": "span.eka-play-face #text",
+                    "target": "span.ema-play-face #text",
                     "type": "characterData"
                   },
                   {
@@ -24087,37 +24087,37 @@
                   {
                     "atMs": 8,
                     "attribute": null,
-                    "target": "span.eka-play-face.eka-play-spare #text",
+                    "target": "span.ema-play-face.ema-play-spare #text",
                     "type": "characterData"
                   },
                   {
                     "atMs": 8,
                     "attribute": "aria-disabled",
-                    "target": "button.eka-button.eka-play[data-roving]",
+                    "target": "button.ema-button.ema-play[data-roving]",
                     "type": "attributes"
                   },
                   {
                     "atMs": 8,
                     "attribute": "aria-describedby",
-                    "target": "button.eka-button.eka-play[data-roving]",
+                    "target": "button.ema-button.ema-play[data-roving]",
                     "type": "attributes"
                   },
                   {
                     "atMs": 8,
                     "attribute": "aria-disabled",
-                    "target": "button.eka-button[data-roving]",
+                    "target": "button.ema-button[data-roving]",
                     "type": "attributes"
                   },
                   {
                     "atMs": 8,
                     "attribute": "aria-describedby",
-                    "target": "button.eka-button[data-roving]",
+                    "target": "button.ema-button[data-roving]",
                     "type": "attributes"
                   },
                   {
                     "atMs": 8,
                     "attribute": null,
-                    "target": "section.eka-panel.eka-nav[data-eka-frame-id]",
+                    "target": "section.ema-panel.ema-nav[data-ema-frame-id]",
                     "type": "childList"
                   }
                 ]
@@ -24184,145 +24184,145 @@
                   {
                     "atMs": 7,
                     "attribute": null,
-                    "target": "span.eka-glyph #text",
+                    "target": "span.ema-glyph #text",
                     "type": "characterData"
                   },
                   {
                     "atMs": 7,
                     "attribute": null,
-                    "target": "span.eka-chip-label #text",
+                    "target": "span.ema-chip-label #text",
                     "type": "characterData"
                   },
                   {
                     "atMs": 7,
                     "attribute": null,
-                    "target": "span.eka-sr #text",
+                    "target": "span.ema-sr #text",
                     "type": "characterData"
                   },
                   {
                     "atMs": 7,
                     "attribute": "data-tone",
-                    "target": "span.eka-chip[data-tone,data-persistence]",
+                    "target": "span.ema-chip[data-tone,data-persistence]",
                     "type": "attributes"
                   },
                   {
                     "atMs": 7,
                     "attribute": "data-persistence",
-                    "target": "span.eka-chip[data-tone,data-persistence]",
+                    "target": "span.ema-chip[data-tone,data-persistence]",
                     "type": "attributes"
                   },
                   {
                     "atMs": 7,
                     "attribute": "title",
-                    "target": "span.eka-chip[data-tone,data-persistence]",
+                    "target": "span.ema-chip[data-tone,data-persistence]",
                     "type": "attributes"
                   },
                   {
                     "atMs": 7,
-                    "attribute": "data-eka-projection-id",
-                    "target": "svg.eka-plot[data-eka-view-id,data-eka-surface-id,data-eka-projection-id]",
+                    "attribute": "data-ema-projection-id",
+                    "target": "svg.ema-plot[data-ema-view-id,data-ema-surface-id,data-ema-projection-id]",
                     "type": "attributes"
                   },
                   {
                     "atMs": 7,
-                    "attribute": "data-eka-projection-id",
-                    "target": "svg.eka-plot[data-eka-view-id,data-eka-surface-id,data-eka-projection-id]",
+                    "attribute": "data-ema-projection-id",
+                    "target": "svg.ema-plot[data-ema-view-id,data-ema-surface-id,data-ema-projection-id]",
                     "type": "attributes"
                   },
                   {
                     "atMs": 7,
                     "attribute": "name",
-                    "target": "input.eka-input",
+                    "target": "input.ema-input",
                     "type": "attributes"
                   },
                   {
                     "atMs": 7,
                     "attribute": "type",
-                    "target": "input.eka-input",
+                    "target": "input.ema-input",
                     "type": "attributes"
                   },
                   {
                     "atMs": 7,
                     "attribute": "name",
-                    "target": "input.eka-input",
+                    "target": "input.ema-input",
                     "type": "attributes"
                   },
                   {
                     "atMs": 7,
                     "attribute": "name",
-                    "target": "input.eka-slider",
+                    "target": "input.ema-slider",
                     "type": "attributes"
                   },
                   {
                     "atMs": 7,
                     "attribute": "type",
-                    "target": "input.eka-slider",
+                    "target": "input.ema-slider",
                     "type": "attributes"
                   },
                   {
                     "atMs": 7,
                     "attribute": "name",
-                    "target": "input.eka-slider",
+                    "target": "input.ema-slider",
                     "type": "attributes"
                   },
                   {
                     "atMs": 7,
                     "attribute": "name",
-                    "target": "input.eka-input",
+                    "target": "input.ema-input",
                     "type": "attributes"
                   },
                   {
                     "atMs": 7,
                     "attribute": "type",
-                    "target": "input.eka-input",
+                    "target": "input.ema-input",
                     "type": "attributes"
                   },
                   {
                     "atMs": 7,
                     "attribute": "name",
-                    "target": "input.eka-input",
+                    "target": "input.ema-input",
                     "type": "attributes"
                   },
                   {
                     "atMs": 7,
                     "attribute": "name",
-                    "target": "input.eka-slider",
+                    "target": "input.ema-slider",
                     "type": "attributes"
                   },
                   {
                     "atMs": 7,
                     "attribute": "type",
-                    "target": "input.eka-slider",
+                    "target": "input.ema-slider",
                     "type": "attributes"
                   },
                   {
                     "atMs": 7,
                     "attribute": "name",
-                    "target": "input.eka-slider",
+                    "target": "input.ema-slider",
                     "type": "attributes"
                   },
                   {
                     "atMs": 7,
                     "attribute": "name",
-                    "target": "input.eka-input",
+                    "target": "input.ema-input",
                     "type": "attributes"
                   },
                   {
                     "atMs": 7,
                     "attribute": "type",
-                    "target": "input.eka-input",
+                    "target": "input.ema-input",
                     "type": "attributes"
                   },
                   {
                     "atMs": 7,
                     "attribute": "name",
-                    "target": "input.eka-input",
+                    "target": "input.ema-input",
                     "type": "attributes"
                   },
                   {
                     "atMs": 7,
                     "attribute": "name",
-                    "target": "input.eka-slider",
+                    "target": "input.ema-slider",
                     "type": "attributes"
                   }
                 ]
@@ -24390,91 +24390,91 @@
                     {
                       "atMs": 8,
                       "attribute": null,
-                      "target": "span.eka-glyph #text",
+                      "target": "span.ema-glyph #text",
                       "type": "characterData"
                     },
                     {
                       "atMs": 8,
                       "attribute": null,
-                      "target": "span.eka-chip-label #text",
+                      "target": "span.ema-chip-label #text",
                       "type": "characterData"
                     },
                     {
                       "atMs": 8,
                       "attribute": null,
-                      "target": "span.eka-sr #text",
+                      "target": "span.ema-sr #text",
                       "type": "characterData"
                     },
                     {
                       "atMs": 8,
                       "attribute": "data-tone",
-                      "target": "span.eka-chip[data-tone,data-persistence]",
+                      "target": "span.ema-chip[data-tone,data-persistence]",
                       "type": "attributes"
                     },
                     {
                       "atMs": 8,
                       "attribute": "data-persistence",
-                      "target": "span.eka-chip[data-tone,data-persistence]",
+                      "target": "span.ema-chip[data-tone,data-persistence]",
                       "type": "attributes"
                     },
                     {
                       "atMs": 8,
                       "attribute": "title",
-                      "target": "span.eka-chip[data-tone,data-persistence]",
+                      "target": "span.ema-chip[data-tone,data-persistence]",
                       "type": "attributes"
                     },
                     {
                       "atMs": 8,
                       "attribute": null,
-                      "target": "section.eka-card",
+                      "target": "section.ema-card",
                       "type": "childList"
                     },
                     {
                       "atMs": 8,
-                      "attribute": "data-eka-projection-id",
-                      "target": "svg.eka-plot[data-eka-view-id,data-eka-surface-id,data-eka-projection-id]",
+                      "attribute": "data-ema-projection-id",
+                      "target": "svg.ema-plot[data-ema-view-id,data-ema-surface-id,data-ema-projection-id]",
                       "type": "attributes"
                     },
                     {
                       "atMs": 8,
-                      "attribute": "data-eka-projection-id",
-                      "target": "svg.eka-plot[data-eka-view-id,data-eka-surface-id,data-eka-projection-id]",
-                      "type": "attributes"
-                    },
-                    {
-                      "atMs": 8,
-                      "attribute": "aria-disabled",
-                      "target": "button.eka-button[data-roving]",
-                      "type": "attributes"
-                    },
-                    {
-                      "atMs": 8,
-                      "attribute": "aria-describedby",
-                      "target": "button.eka-button[data-roving]",
+                      "attribute": "data-ema-projection-id",
+                      "target": "svg.ema-plot[data-ema-view-id,data-ema-surface-id,data-ema-projection-id]",
                       "type": "attributes"
                     },
                     {
                       "atMs": 8,
                       "attribute": "aria-disabled",
-                      "target": "button.eka-button[data-roving]",
+                      "target": "button.ema-button[data-roving]",
                       "type": "attributes"
                     },
                     {
                       "atMs": 8,
                       "attribute": "aria-describedby",
-                      "target": "button.eka-button[data-roving]",
+                      "target": "button.ema-button[data-roving]",
                       "type": "attributes"
                     },
                     {
                       "atMs": 8,
                       "attribute": "aria-disabled",
-                      "target": "button.eka-button[data-roving]",
+                      "target": "button.ema-button[data-roving]",
                       "type": "attributes"
                     },
                     {
                       "atMs": 8,
                       "attribute": "aria-describedby",
-                      "target": "button.eka-button[data-roving]",
+                      "target": "button.ema-button[data-roving]",
+                      "type": "attributes"
+                    },
+                    {
+                      "atMs": 8,
+                      "attribute": "aria-disabled",
+                      "target": "button.ema-button[data-roving]",
+                      "type": "attributes"
+                    },
+                    {
+                      "atMs": 8,
+                      "attribute": "aria-describedby",
+                      "target": "button.ema-button[data-roving]",
                       "type": "attributes"
                     },
                     {
@@ -24486,7 +24486,7 @@
                     {
                       "atMs": 8,
                       "attribute": null,
-                      "target": "span.eka-play-face #text",
+                      "target": "span.ema-play-face #text",
                       "type": "characterData"
                     },
                     {
@@ -24498,37 +24498,37 @@
                     {
                       "atMs": 8,
                       "attribute": null,
-                      "target": "span.eka-play-face.eka-play-spare #text",
+                      "target": "span.ema-play-face.ema-play-spare #text",
                       "type": "characterData"
                     },
                     {
                       "atMs": 8,
                       "attribute": "aria-disabled",
-                      "target": "button.eka-button.eka-play[data-roving]",
+                      "target": "button.ema-button.ema-play[data-roving]",
                       "type": "attributes"
                     },
                     {
                       "atMs": 8,
                       "attribute": "aria-describedby",
-                      "target": "button.eka-button.eka-play[data-roving]",
+                      "target": "button.ema-button.ema-play[data-roving]",
                       "type": "attributes"
                     },
                     {
                       "atMs": 8,
                       "attribute": "aria-disabled",
-                      "target": "button.eka-button[data-roving]",
+                      "target": "button.ema-button[data-roving]",
                       "type": "attributes"
                     },
                     {
                       "atMs": 8,
                       "attribute": "aria-describedby",
-                      "target": "button.eka-button[data-roving]",
+                      "target": "button.ema-button[data-roving]",
                       "type": "attributes"
                     },
                     {
                       "atMs": 8,
                       "attribute": null,
-                      "target": "section.eka-panel.eka-nav[data-eka-frame-id]",
+                      "target": "section.ema-panel.ema-nav[data-ema-frame-id]",
                       "type": "childList"
                     }
                   ]
@@ -24569,145 +24569,145 @@
                     {
                       "atMs": 7,
                       "attribute": null,
-                      "target": "span.eka-glyph #text",
+                      "target": "span.ema-glyph #text",
                       "type": "characterData"
                     },
                     {
                       "atMs": 7,
                       "attribute": null,
-                      "target": "span.eka-chip-label #text",
+                      "target": "span.ema-chip-label #text",
                       "type": "characterData"
                     },
                     {
                       "atMs": 7,
                       "attribute": null,
-                      "target": "span.eka-sr #text",
+                      "target": "span.ema-sr #text",
                       "type": "characterData"
                     },
                     {
                       "atMs": 7,
                       "attribute": "data-tone",
-                      "target": "span.eka-chip[data-tone,data-persistence]",
+                      "target": "span.ema-chip[data-tone,data-persistence]",
                       "type": "attributes"
                     },
                     {
                       "atMs": 7,
                       "attribute": "data-persistence",
-                      "target": "span.eka-chip[data-tone,data-persistence]",
+                      "target": "span.ema-chip[data-tone,data-persistence]",
                       "type": "attributes"
                     },
                     {
                       "atMs": 7,
                       "attribute": "title",
-                      "target": "span.eka-chip[data-tone,data-persistence]",
+                      "target": "span.ema-chip[data-tone,data-persistence]",
                       "type": "attributes"
                     },
                     {
                       "atMs": 7,
-                      "attribute": "data-eka-projection-id",
-                      "target": "svg.eka-plot[data-eka-view-id,data-eka-surface-id,data-eka-projection-id]",
+                      "attribute": "data-ema-projection-id",
+                      "target": "svg.ema-plot[data-ema-view-id,data-ema-surface-id,data-ema-projection-id]",
                       "type": "attributes"
                     },
                     {
                       "atMs": 7,
-                      "attribute": "data-eka-projection-id",
-                      "target": "svg.eka-plot[data-eka-view-id,data-eka-surface-id,data-eka-projection-id]",
+                      "attribute": "data-ema-projection-id",
+                      "target": "svg.ema-plot[data-ema-view-id,data-ema-surface-id,data-ema-projection-id]",
                       "type": "attributes"
                     },
                     {
                       "atMs": 7,
                       "attribute": "name",
-                      "target": "input.eka-input",
+                      "target": "input.ema-input",
                       "type": "attributes"
                     },
                     {
                       "atMs": 7,
                       "attribute": "type",
-                      "target": "input.eka-input",
+                      "target": "input.ema-input",
                       "type": "attributes"
                     },
                     {
                       "atMs": 7,
                       "attribute": "name",
-                      "target": "input.eka-input",
+                      "target": "input.ema-input",
                       "type": "attributes"
                     },
                     {
                       "atMs": 7,
                       "attribute": "name",
-                      "target": "input.eka-slider",
+                      "target": "input.ema-slider",
                       "type": "attributes"
                     },
                     {
                       "atMs": 7,
                       "attribute": "type",
-                      "target": "input.eka-slider",
+                      "target": "input.ema-slider",
                       "type": "attributes"
                     },
                     {
                       "atMs": 7,
                       "attribute": "name",
-                      "target": "input.eka-slider",
+                      "target": "input.ema-slider",
                       "type": "attributes"
                     },
                     {
                       "atMs": 7,
                       "attribute": "name",
-                      "target": "input.eka-input",
+                      "target": "input.ema-input",
                       "type": "attributes"
                     },
                     {
                       "atMs": 7,
                       "attribute": "type",
-                      "target": "input.eka-input",
+                      "target": "input.ema-input",
                       "type": "attributes"
                     },
                     {
                       "atMs": 7,
                       "attribute": "name",
-                      "target": "input.eka-input",
+                      "target": "input.ema-input",
                       "type": "attributes"
                     },
                     {
                       "atMs": 7,
                       "attribute": "name",
-                      "target": "input.eka-slider",
+                      "target": "input.ema-slider",
                       "type": "attributes"
                     },
                     {
                       "atMs": 7,
                       "attribute": "type",
-                      "target": "input.eka-slider",
+                      "target": "input.ema-slider",
                       "type": "attributes"
                     },
                     {
                       "atMs": 7,
                       "attribute": "name",
-                      "target": "input.eka-slider",
+                      "target": "input.ema-slider",
                       "type": "attributes"
                     },
                     {
                       "atMs": 7,
                       "attribute": "name",
-                      "target": "input.eka-input",
+                      "target": "input.ema-input",
                       "type": "attributes"
                     },
                     {
                       "atMs": 7,
                       "attribute": "type",
-                      "target": "input.eka-input",
+                      "target": "input.ema-input",
                       "type": "attributes"
                     },
                     {
                       "atMs": 7,
                       "attribute": "name",
-                      "target": "input.eka-input",
+                      "target": "input.ema-input",
                       "type": "attributes"
                     },
                     {
                       "atMs": 7,
                       "attribute": "name",
-                      "target": "input.eka-slider",
+                      "target": "input.ema-slider",
                       "type": "attributes"
                     }
                   ]
@@ -25012,7 +25012,7 @@
           "listening": []
         },
         "outputTail": [
-          "2026-10-28 22:55:24.849 study-harness-reference[16585:1710531] ApplePersistenceIgnoreState: Existing state will not be touched. New state will be written to /var/folders/3q/n6ygm4hd7hl0hy3tkmvbnsn00000gn/T/dev.experimentkit.studyharness.reference.conformance.savedState"
+          "2026-10-28 22:55:24.849 study-harness-reference[16585:1710531] ApplePersistenceIgnoreState: Existing state will not be touched. New state will be written to /var/folders/3q/n6ygm4hd7hl0hy3tkmvbnsn00000gn/T/dev.explorablemodels.studyharness.reference.conformance.savedState"
         ],
         "reports": {
           "report.json": {
@@ -26456,145 +26456,145 @@
                         {
                           "atMs": 8,
                           "attribute": null,
-                          "target": "span.eka-glyph #text",
+                          "target": "span.ema-glyph #text",
                           "type": "characterData"
                         },
                         {
                           "atMs": 8,
                           "attribute": null,
-                          "target": "span.eka-chip-label #text",
+                          "target": "span.ema-chip-label #text",
                           "type": "characterData"
                         },
                         {
                           "atMs": 8,
                           "attribute": null,
-                          "target": "span.eka-sr #text",
+                          "target": "span.ema-sr #text",
                           "type": "characterData"
                         },
                         {
                           "atMs": 8,
                           "attribute": "data-tone",
-                          "target": "span.eka-chip[data-tone,data-persistence]",
+                          "target": "span.ema-chip[data-tone,data-persistence]",
                           "type": "attributes"
                         },
                         {
                           "atMs": 8,
                           "attribute": "data-persistence",
-                          "target": "span.eka-chip[data-tone,data-persistence]",
+                          "target": "span.ema-chip[data-tone,data-persistence]",
                           "type": "attributes"
                         },
                         {
                           "atMs": 8,
                           "attribute": "title",
-                          "target": "span.eka-chip[data-tone,data-persistence]",
+                          "target": "span.ema-chip[data-tone,data-persistence]",
                           "type": "attributes"
                         },
                         {
                           "atMs": 8,
                           "attribute": null,
-                          "target": "section.eka-card",
+                          "target": "section.ema-card",
                           "type": "childList"
                         },
                         {
                           "atMs": 8,
-                          "attribute": "data-eka-projection-id",
-                          "target": "svg.eka-plot[data-eka-view-id,data-eka-surface-id,data-eka-projection-id]",
+                          "attribute": "data-ema-projection-id",
+                          "target": "svg.ema-plot[data-ema-view-id,data-ema-surface-id,data-ema-projection-id]",
                           "type": "attributes"
                         },
                         {
                           "atMs": 8,
-                          "attribute": "data-eka-projection-id",
-                          "target": "svg.eka-plot[data-eka-view-id,data-eka-surface-id,data-eka-projection-id]",
+                          "attribute": "data-ema-projection-id",
+                          "target": "svg.ema-plot[data-ema-view-id,data-ema-surface-id,data-ema-projection-id]",
                           "type": "attributes"
                         },
                         {
                           "atMs": 8,
-                          "attribute": "data-eka-projection-id",
-                          "target": "svg.eka-plot[data-eka-view-id,data-eka-surface-id,data-eka-projection-id]",
+                          "attribute": "data-ema-projection-id",
+                          "target": "svg.ema-plot[data-ema-view-id,data-ema-surface-id,data-ema-projection-id]",
                           "type": "attributes"
                         },
                         {
                           "atMs": 8,
                           "attribute": "name",
-                          "target": "input.eka-slider",
+                          "target": "input.ema-slider",
                           "type": "attributes"
                         },
                         {
                           "atMs": 8,
                           "attribute": "type",
-                          "target": "input.eka-slider",
+                          "target": "input.ema-slider",
                           "type": "attributes"
                         },
                         {
                           "atMs": 8,
                           "attribute": "name",
-                          "target": "input.eka-slider",
+                          "target": "input.ema-slider",
                           "type": "attributes"
                         },
                         {
                           "atMs": 8,
                           "attribute": "name",
-                          "target": "input.eka-input",
+                          "target": "input.ema-input",
                           "type": "attributes"
                         },
                         {
                           "atMs": 8,
                           "attribute": "type",
-                          "target": "input.eka-input",
+                          "target": "input.ema-input",
                           "type": "attributes"
                         },
                         {
                           "atMs": 8,
                           "attribute": "name",
-                          "target": "input.eka-input",
+                          "target": "input.ema-input",
                           "type": "attributes"
                         },
                         {
                           "atMs": 8,
                           "attribute": null,
-                          "target": "p.eka-reason #text",
+                          "target": "p.ema-reason #text",
                           "type": "characterData"
                         },
                         {
                           "atMs": 8,
                           "attribute": "name",
-                          "target": "input.eka-slider",
+                          "target": "input.ema-slider",
                           "type": "attributes"
                         },
                         {
                           "atMs": 8,
                           "attribute": "type",
-                          "target": "input.eka-slider",
+                          "target": "input.ema-slider",
                           "type": "attributes"
                         },
                         {
                           "atMs": 8,
                           "attribute": "name",
-                          "target": "input.eka-slider",
+                          "target": "input.ema-slider",
                           "type": "attributes"
                         },
                         {
                           "atMs": 8,
                           "attribute": "name",
-                          "target": "input.eka-input",
+                          "target": "input.ema-input",
                           "type": "attributes"
                         },
                         {
                           "atMs": 8,
                           "attribute": "type",
-                          "target": "input.eka-input",
+                          "target": "input.ema-input",
                           "type": "attributes"
                         },
                         {
                           "atMs": 8,
                           "attribute": "name",
-                          "target": "input.eka-input",
+                          "target": "input.ema-input",
                           "type": "attributes"
                         },
                         {
                           "atMs": 8,
                           "attribute": null,
-                          "target": "p.eka-reason #text",
+                          "target": "p.ema-reason #text",
                           "type": "characterData"
                         }
                       ]
@@ -26956,145 +26956,145 @@
                         {
                           "atMs": 4,
                           "attribute": null,
-                          "target": "span.eka-glyph #text",
+                          "target": "span.ema-glyph #text",
                           "type": "characterData"
                         },
                         {
                           "atMs": 4,
                           "attribute": null,
-                          "target": "span.eka-chip-label #text",
+                          "target": "span.ema-chip-label #text",
                           "type": "characterData"
                         },
                         {
                           "atMs": 4,
                           "attribute": null,
-                          "target": "span.eka-sr #text",
+                          "target": "span.ema-sr #text",
                           "type": "characterData"
                         },
                         {
                           "atMs": 4,
                           "attribute": "data-tone",
-                          "target": "span.eka-chip[data-tone,data-persistence]",
+                          "target": "span.ema-chip[data-tone,data-persistence]",
                           "type": "attributes"
                         },
                         {
                           "atMs": 4,
                           "attribute": "data-persistence",
-                          "target": "span.eka-chip[data-tone,data-persistence]",
+                          "target": "span.ema-chip[data-tone,data-persistence]",
                           "type": "attributes"
                         },
                         {
                           "atMs": 4,
                           "attribute": "title",
-                          "target": "span.eka-chip[data-tone,data-persistence]",
+                          "target": "span.ema-chip[data-tone,data-persistence]",
                           "type": "attributes"
                         },
                         {
                           "atMs": 4,
                           "attribute": null,
-                          "target": "section.eka-card",
+                          "target": "section.ema-card",
                           "type": "childList"
                         },
                         {
                           "atMs": 4,
-                          "attribute": "data-eka-projection-id",
-                          "target": "svg.eka-plot[data-eka-view-id,data-eka-surface-id,data-eka-projection-id]",
+                          "attribute": "data-ema-projection-id",
+                          "target": "svg.ema-plot[data-ema-view-id,data-ema-surface-id,data-ema-projection-id]",
                           "type": "attributes"
                         },
                         {
                           "atMs": 4,
-                          "attribute": "data-eka-projection-id",
-                          "target": "svg.eka-plot[data-eka-view-id,data-eka-surface-id,data-eka-projection-id]",
+                          "attribute": "data-ema-projection-id",
+                          "target": "svg.ema-plot[data-ema-view-id,data-ema-surface-id,data-ema-projection-id]",
                           "type": "attributes"
                         },
                         {
                           "atMs": 4,
-                          "attribute": "data-eka-projection-id",
-                          "target": "svg.eka-plot[data-eka-view-id,data-eka-surface-id,data-eka-projection-id]",
+                          "attribute": "data-ema-projection-id",
+                          "target": "svg.ema-plot[data-ema-view-id,data-ema-surface-id,data-ema-projection-id]",
                           "type": "attributes"
                         },
                         {
                           "atMs": 4,
                           "attribute": "name",
-                          "target": "input.eka-slider",
+                          "target": "input.ema-slider",
                           "type": "attributes"
                         },
                         {
                           "atMs": 4,
                           "attribute": "type",
-                          "target": "input.eka-slider",
+                          "target": "input.ema-slider",
                           "type": "attributes"
                         },
                         {
                           "atMs": 4,
                           "attribute": "name",
-                          "target": "input.eka-slider",
+                          "target": "input.ema-slider",
                           "type": "attributes"
                         },
                         {
                           "atMs": 4,
                           "attribute": "name",
-                          "target": "input.eka-input",
+                          "target": "input.ema-input",
                           "type": "attributes"
                         },
                         {
                           "atMs": 4,
                           "attribute": "type",
-                          "target": "input.eka-input",
+                          "target": "input.ema-input",
                           "type": "attributes"
                         },
                         {
                           "atMs": 4,
                           "attribute": "name",
-                          "target": "input.eka-input",
+                          "target": "input.ema-input",
                           "type": "attributes"
                         },
                         {
                           "atMs": 4,
                           "attribute": null,
-                          "target": "p.eka-reason #text",
+                          "target": "p.ema-reason #text",
                           "type": "characterData"
                         },
                         {
                           "atMs": 4,
                           "attribute": "name",
-                          "target": "input.eka-slider",
+                          "target": "input.ema-slider",
                           "type": "attributes"
                         },
                         {
                           "atMs": 4,
                           "attribute": "type",
-                          "target": "input.eka-slider",
+                          "target": "input.ema-slider",
                           "type": "attributes"
                         },
                         {
                           "atMs": 4,
                           "attribute": "name",
-                          "target": "input.eka-slider",
+                          "target": "input.ema-slider",
                           "type": "attributes"
                         },
                         {
                           "atMs": 4,
                           "attribute": "name",
-                          "target": "input.eka-input",
+                          "target": "input.ema-input",
                           "type": "attributes"
                         },
                         {
                           "atMs": 4,
                           "attribute": "type",
-                          "target": "input.eka-input",
+                          "target": "input.ema-input",
                           "type": "attributes"
                         },
                         {
                           "atMs": 4,
                           "attribute": "name",
-                          "target": "input.eka-input",
+                          "target": "input.ema-input",
                           "type": "attributes"
                         },
                         {
                           "atMs": 4,
                           "attribute": null,
-                          "target": "p.eka-reason #text",
+                          "target": "p.ema-reason #text",
                           "type": "characterData"
                         }
                       ]
@@ -30534,145 +30534,145 @@
                         {
                           "atMs": 7,
                           "attribute": null,
-                          "target": "span.eka-glyph #text",
+                          "target": "span.ema-glyph #text",
                           "type": "characterData"
                         },
                         {
                           "atMs": 7,
                           "attribute": null,
-                          "target": "span.eka-chip-label #text",
+                          "target": "span.ema-chip-label #text",
                           "type": "characterData"
                         },
                         {
                           "atMs": 7,
                           "attribute": null,
-                          "target": "span.eka-sr #text",
+                          "target": "span.ema-sr #text",
                           "type": "characterData"
                         },
                         {
                           "atMs": 7,
                           "attribute": "data-tone",
-                          "target": "span.eka-chip[data-tone,data-persistence]",
+                          "target": "span.ema-chip[data-tone,data-persistence]",
                           "type": "attributes"
                         },
                         {
                           "atMs": 7,
                           "attribute": "data-persistence",
-                          "target": "span.eka-chip[data-tone,data-persistence]",
+                          "target": "span.ema-chip[data-tone,data-persistence]",
                           "type": "attributes"
                         },
                         {
                           "atMs": 7,
                           "attribute": "title",
-                          "target": "span.eka-chip[data-tone,data-persistence]",
+                          "target": "span.ema-chip[data-tone,data-persistence]",
                           "type": "attributes"
                         },
                         {
                           "atMs": 7,
-                          "attribute": "data-eka-projection-id",
-                          "target": "svg.eka-plot[data-eka-view-id,data-eka-surface-id,data-eka-projection-id]",
+                          "attribute": "data-ema-projection-id",
+                          "target": "svg.ema-plot[data-ema-view-id,data-ema-surface-id,data-ema-projection-id]",
                           "type": "attributes"
                         },
                         {
                           "atMs": 7,
-                          "attribute": "data-eka-projection-id",
-                          "target": "svg.eka-plot[data-eka-view-id,data-eka-surface-id,data-eka-projection-id]",
+                          "attribute": "data-ema-projection-id",
+                          "target": "svg.ema-plot[data-ema-view-id,data-ema-surface-id,data-ema-projection-id]",
                           "type": "attributes"
                         },
                         {
                           "atMs": 7,
                           "attribute": "name",
-                          "target": "input.eka-input",
+                          "target": "input.ema-input",
                           "type": "attributes"
                         },
                         {
                           "atMs": 7,
                           "attribute": "type",
-                          "target": "input.eka-input",
+                          "target": "input.ema-input",
                           "type": "attributes"
                         },
                         {
                           "atMs": 7,
                           "attribute": "name",
-                          "target": "input.eka-input",
+                          "target": "input.ema-input",
                           "type": "attributes"
                         },
                         {
                           "atMs": 7,
                           "attribute": "name",
-                          "target": "input.eka-slider",
+                          "target": "input.ema-slider",
                           "type": "attributes"
                         },
                         {
                           "atMs": 7,
                           "attribute": "type",
-                          "target": "input.eka-slider",
+                          "target": "input.ema-slider",
                           "type": "attributes"
                         },
                         {
                           "atMs": 7,
                           "attribute": "name",
-                          "target": "input.eka-slider",
+                          "target": "input.ema-slider",
                           "type": "attributes"
                         },
                         {
                           "atMs": 7,
                           "attribute": "name",
-                          "target": "input.eka-input",
+                          "target": "input.ema-input",
                           "type": "attributes"
                         },
                         {
                           "atMs": 7,
                           "attribute": "type",
-                          "target": "input.eka-input",
+                          "target": "input.ema-input",
                           "type": "attributes"
                         },
                         {
                           "atMs": 7,
                           "attribute": "name",
-                          "target": "input.eka-input",
+                          "target": "input.ema-input",
                           "type": "attributes"
                         },
                         {
                           "atMs": 7,
                           "attribute": "name",
-                          "target": "input.eka-slider",
+                          "target": "input.ema-slider",
                           "type": "attributes"
                         },
                         {
                           "atMs": 7,
                           "attribute": "type",
-                          "target": "input.eka-slider",
+                          "target": "input.ema-slider",
                           "type": "attributes"
                         },
                         {
                           "atMs": 7,
                           "attribute": "name",
-                          "target": "input.eka-slider",
+                          "target": "input.ema-slider",
                           "type": "attributes"
                         },
                         {
                           "atMs": 7,
                           "attribute": "name",
-                          "target": "input.eka-input",
+                          "target": "input.ema-input",
                           "type": "attributes"
                         },
                         {
                           "atMs": 7,
                           "attribute": "type",
-                          "target": "input.eka-input",
+                          "target": "input.ema-input",
                           "type": "attributes"
                         },
                         {
                           "atMs": 7,
                           "attribute": "name",
-                          "target": "input.eka-input",
+                          "target": "input.ema-input",
                           "type": "attributes"
                         },
                         {
                           "atMs": 7,
                           "attribute": "name",
-                          "target": "input.eka-slider",
+                          "target": "input.ema-slider",
                           "type": "attributes"
                         }
                       ]
@@ -30713,91 +30713,91 @@
                         {
                           "atMs": 8,
                           "attribute": null,
-                          "target": "span.eka-glyph #text",
+                          "target": "span.ema-glyph #text",
                           "type": "characterData"
                         },
                         {
                           "atMs": 8,
                           "attribute": null,
-                          "target": "span.eka-chip-label #text",
+                          "target": "span.ema-chip-label #text",
                           "type": "characterData"
                         },
                         {
                           "atMs": 8,
                           "attribute": null,
-                          "target": "span.eka-sr #text",
+                          "target": "span.ema-sr #text",
                           "type": "characterData"
                         },
                         {
                           "atMs": 8,
                           "attribute": "data-tone",
-                          "target": "span.eka-chip[data-tone,data-persistence]",
+                          "target": "span.ema-chip[data-tone,data-persistence]",
                           "type": "attributes"
                         },
                         {
                           "atMs": 8,
                           "attribute": "data-persistence",
-                          "target": "span.eka-chip[data-tone,data-persistence]",
+                          "target": "span.ema-chip[data-tone,data-persistence]",
                           "type": "attributes"
                         },
                         {
                           "atMs": 8,
                           "attribute": "title",
-                          "target": "span.eka-chip[data-tone,data-persistence]",
+                          "target": "span.ema-chip[data-tone,data-persistence]",
                           "type": "attributes"
                         },
                         {
                           "atMs": 8,
                           "attribute": null,
-                          "target": "section.eka-card",
+                          "target": "section.ema-card",
                           "type": "childList"
                         },
                         {
                           "atMs": 8,
-                          "attribute": "data-eka-projection-id",
-                          "target": "svg.eka-plot[data-eka-view-id,data-eka-surface-id,data-eka-projection-id]",
+                          "attribute": "data-ema-projection-id",
+                          "target": "svg.ema-plot[data-ema-view-id,data-ema-surface-id,data-ema-projection-id]",
                           "type": "attributes"
                         },
                         {
                           "atMs": 8,
-                          "attribute": "data-eka-projection-id",
-                          "target": "svg.eka-plot[data-eka-view-id,data-eka-surface-id,data-eka-projection-id]",
-                          "type": "attributes"
-                        },
-                        {
-                          "atMs": 8,
-                          "attribute": "aria-disabled",
-                          "target": "button.eka-button[data-roving]",
-                          "type": "attributes"
-                        },
-                        {
-                          "atMs": 8,
-                          "attribute": "aria-describedby",
-                          "target": "button.eka-button[data-roving]",
+                          "attribute": "data-ema-projection-id",
+                          "target": "svg.ema-plot[data-ema-view-id,data-ema-surface-id,data-ema-projection-id]",
                           "type": "attributes"
                         },
                         {
                           "atMs": 8,
                           "attribute": "aria-disabled",
-                          "target": "button.eka-button[data-roving]",
+                          "target": "button.ema-button[data-roving]",
                           "type": "attributes"
                         },
                         {
                           "atMs": 8,
                           "attribute": "aria-describedby",
-                          "target": "button.eka-button[data-roving]",
+                          "target": "button.ema-button[data-roving]",
                           "type": "attributes"
                         },
                         {
                           "atMs": 8,
                           "attribute": "aria-disabled",
-                          "target": "button.eka-button[data-roving]",
+                          "target": "button.ema-button[data-roving]",
                           "type": "attributes"
                         },
                         {
                           "atMs": 8,
                           "attribute": "aria-describedby",
-                          "target": "button.eka-button[data-roving]",
+                          "target": "button.ema-button[data-roving]",
+                          "type": "attributes"
+                        },
+                        {
+                          "atMs": 8,
+                          "attribute": "aria-disabled",
+                          "target": "button.ema-button[data-roving]",
+                          "type": "attributes"
+                        },
+                        {
+                          "atMs": 8,
+                          "attribute": "aria-describedby",
+                          "target": "button.ema-button[data-roving]",
                           "type": "attributes"
                         },
                         {
@@ -30809,7 +30809,7 @@
                         {
                           "atMs": 8,
                           "attribute": null,
-                          "target": "span.eka-play-face #text",
+                          "target": "span.ema-play-face #text",
                           "type": "characterData"
                         },
                         {
@@ -30821,37 +30821,37 @@
                         {
                           "atMs": 8,
                           "attribute": null,
-                          "target": "span.eka-play-face.eka-play-spare #text",
+                          "target": "span.ema-play-face.ema-play-spare #text",
                           "type": "characterData"
                         },
                         {
                           "atMs": 8,
                           "attribute": "aria-disabled",
-                          "target": "button.eka-button.eka-play[data-roving]",
+                          "target": "button.ema-button.ema-play[data-roving]",
                           "type": "attributes"
                         },
                         {
                           "atMs": 8,
                           "attribute": "aria-describedby",
-                          "target": "button.eka-button.eka-play[data-roving]",
+                          "target": "button.ema-button.ema-play[data-roving]",
                           "type": "attributes"
                         },
                         {
                           "atMs": 8,
                           "attribute": "aria-disabled",
-                          "target": "button.eka-button[data-roving]",
+                          "target": "button.ema-button[data-roving]",
                           "type": "attributes"
                         },
                         {
                           "atMs": 8,
                           "attribute": "aria-describedby",
-                          "target": "button.eka-button[data-roving]",
+                          "target": "button.ema-button[data-roving]",
                           "type": "attributes"
                         },
                         {
                           "atMs": 8,
                           "attribute": null,
-                          "target": "section.eka-panel.eka-nav[data-eka-frame-id]",
+                          "target": "section.ema-panel.ema-nav[data-ema-frame-id]",
                           "type": "childList"
                         }
                       ]
@@ -30876,7 +30876,7 @@
             "origin": "tauri://localhost",
             "probes": [],
             "scenario": {
-              "appDataDir": "<work>/performance/home/Library/Application Support/dev.experimentkit.studyharness.reference.conformance",
+              "appDataDir": "<work>/performance/home/Library/Application Support/dev.explorablemodels.studyharness.reference.conformance",
               "armedPoints": [
                 "save-before-commit"
               ],
@@ -30896,7 +30896,7 @@
                 "display-ack-before-commit"
               ],
               "generation": 1,
-              "identifier": "dev.experimentkit.studyharness.reference.conformance",
+              "identifier": "dev.explorablemodels.studyharness.reference.conformance",
               "identity": {
                 "arch": "aarch64",
                 "executableSha256": "46545ff01ea37b7cc817b7be8a9b84c83468ea91608ceb5450cd91df4223f32b",
@@ -30951,7 +30951,7 @@
             "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko)"
           }
         },
-        "appData": "<work>/performance/home/Library/Application Support/dev.experimentkit.studyharness.reference.conformance"
+        "appData": "<work>/performance/home/Library/Application Support/dev.explorablemodels.studyharness.reference.conformance"
       },
       "environment": {
         "devicePixelRatio": 2,
@@ -31007,5 +31007,11 @@
     "The hostport-kit scenario runs the host-agnostic HostPort conformance kit inside the packaged app: its restarts reopen the same SQLite store in the running process and its interruptions are in-process simulated faults at the named crash points; process terminations are covered by the restart and crash:* scenarios. Its display acknowledgements come from the kit acting as the learner surface (no rendering).",
     "Packaged-host performance (scenario performance): one launch on this one machine, which was also used for other work (load average recorded). Inputs are DOM events dispatched by the runner, so OS input delivery is not included; the reference host mounts one learner card at a time, so simultaneous cards are measured only in Chromium (benchmark.mjs); WebKit exposes no JavaScript heap figures, so no memory is reported; the host-level launch and memory targets concern the Study Harness application and are not measured here.",
     "Runs marked superseded are kept as history only: they ran earlier binaries or sources, and none of their scenario results is part of this evidence."
-  ]
+  ],
+  "terminologyProjection": {
+    "sourceCommit": "1e2b3d7b796962f4b031257a402ce3db3e0854a1",
+    "sourceBlob": "a123af620698199dfabc1fed0c1ce926d6d82c8e",
+    "originalSha256": "ac6af91a10ecac4509eacf2b667232b3f21a4745205eb3f3913c16261219b51e",
+    "scope": "Terminology-normalized historical evidence. Measurements, outcomes, and original artifact digests are retained from the preceding namespace. This is not verification of current packages or native binaries. The unmodified original bytes remain in the recorded Git blob."
+  }
 }

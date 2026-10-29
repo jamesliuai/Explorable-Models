@@ -14,7 +14,7 @@ export const timePointJsonSchema = { oneOf: [
         { type: 'object', required: ['kind', 'time'], properties: { kind: { const: 'sample' }, time: { type: 'number', minimum: 0 } }, additionalProperties: false },
     ] } as const;
 export const snapshotJsonSchema = {
-    $schema: 'https://json-schema.org/draft/2020-12/schema', title: 'Experiment Kit snapshot', type: 'object',
+    $schema: 'https://json-schema.org/draft/2020-12/schema', title: 'Explorable Models snapshot', type: 'object',
     required: ['schemaVersion', 'experimentId', 'definitionRevision', 'runtimeVersion', 'runId', 'runVersion', 'parameters', 'timePoint', 'view', 'viewVersion', 'comparisonReferences', 'createdAt'],
     properties: { schemaVersion: { const: '1.0' }, experimentId: { type: 'string' }, definitionRevision: { type: 'string', pattern: '^sha256:[a-f0-9]{64}$' }, runtimeVersion: { type: 'string' }, runId: { type: 'string', maxLength: 200 }, runVersion: { type: 'integer', minimum: 0 }, parameters: params, timePoint: timePointJsonSchema,
         view: { type: 'object', required: ['selectedIds', 'layers', 'playbackSpeed'], properties: viewProperties, additionalProperties: false }, viewVersion: { type: 'integer', minimum: 0 }, comparisonReferences: { type: 'array', maxItems: 16, items: { type: 'string', maxLength: 200 } }, annotations: { type: 'string', maxLength: 10000 }, createdAt: { type: 'string', format: 'date-time' } }, additionalProperties: false,
@@ -22,7 +22,7 @@ export const snapshotJsonSchema = {
 const guard = { expectedRunVersion: { type: 'integer', minimum: 0 }, expectedActiveRunId: { type: 'string', minLength: 1, maxLength: 200 } } as const;
 function mutation(type: string, properties: Record<string, unknown> = {}, required: string[] = []) { return { type: 'object', required: ['type', 'expectedRunVersion', 'expectedActiveRunId', ...required], properties: { type: { const: type }, ...guard, ...properties }, additionalProperties: false }; }
 export const commandJsonSchema = {
-    $schema: 'https://json-schema.org/draft/2020-12/schema', title: 'Experiment Kit command', oneOf: [
+    $schema: 'https://json-schema.org/draft/2020-12/schema', title: 'Explorable Models command', oneOf: [
         ...['play', 'pause', 'reset', 'step'].map(type => mutation(type)), mutation('seek', { time: { type: 'number', minimum: 0 } }, ['time']),
         mutation('set_parameters', { parameters: params }, ['parameters']), mutation('restore', { snapshot: snapshotJsonSchema }, ['snapshot']),
         mutation('begin_preview', { parameters: params }, ['parameters']), mutation('update_preview', { parameters: params, previewId: { type: 'string', minLength: 1 } }, ['parameters', 'previewId']),
@@ -31,7 +31,7 @@ export const commandJsonSchema = {
     ],
 } as const;
 export const manifestJsonSchema = {
-    $schema: 'https://json-schema.org/draft/2020-12/schema', title: 'Experiment Kit manifest', type: 'object',
+    $schema: 'https://json-schema.org/draft/2020-12/schema', title: 'Explorable Models manifest', type: 'object',
     required: ['schemaVersion', 'id', 'title', 'description', 'question', 'kind', 'parameters', 'quantities', 'assumptions', 'limitations', 'sources', 'capabilities'],
     properties: {
         schemaVersion: { const: '1.0' }, id: { type: 'string', pattern: '^[a-zA-Z][a-zA-Z0-9_.-]{0,99}$' }, title: { type: 'string', minLength: 1 }, description: { type: 'string', minLength: 1 }, question: { type: 'string', minLength: 1 }, kind: { enum: ['analytic', 'parametric'] },

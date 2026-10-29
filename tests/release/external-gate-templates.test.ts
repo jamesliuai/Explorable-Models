@@ -6,8 +6,8 @@
  */
 import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
-import { schemaErrors, type JsonSchema } from '@experiment-kit/core/model';
-import { AGENT_TRIAL_RECORD_SCHEMA, G3_STEPS, TRIAL_REPAIRS } from '@experiment-kit/agent';
+import { schemaErrors, type JsonSchema } from '@explorable-models/core/model';
+import { AGENT_TRIAL_RECORD_SCHEMA, G3_STEPS, TRIAL_REPAIRS } from '@explorable-models/agent';
 
 const read = (path: string) => readFileSync(new URL(`../../${path}`, import.meta.url), 'utf8');
 const hostSchema = JSON.parse(read('docs/study-harness/templates/host-conformance-result.schema.json')) as JsonSchema & { properties: { steps: { required: string[] } } };
@@ -19,7 +19,7 @@ function result(subject: string, outcome = 'pass'): Record<string, unknown> {
   return {
     schema: 'study-harness.host-conformance-result/1', subject, runAt: '2026-10-26T12:00:00.000Z',
     host: { name: 'host-under-test', commit: 'a'.repeat(40), dirty: false, binarySha256: 'b'.repeat(64), platform: { os: 'macOS', osVersion: '26.6.2', arch: 'arm64', webview: 'WKWebView' } },
-    packages: [{ name: '@experiment-kit/activity', version: '0.3.0-preview.1', sha256: 'c'.repeat(64) }],
+    packages: [{ name: '@explorable-models/activity', version: '0.3.0-preview.1', sha256: 'c'.repeat(64) }],
     steps: Object.fromEntries(STEP_IDS.map(id => [id, { outcome, assertions: [{ id: `${id}-holds`, outcome }] }])),
     result: outcome === 'pass' ? 'pass' : 'incomplete',
   };

@@ -1,18 +1,18 @@
 /**
- * The host-agnostic HostPort conformance kit (`@experiment-kit/activity/conformance`, external gate G2, A54 preparation)
+ * The host-agnostic HostPort conformance kit (`@explorable-models/activity/conformance`, external gate G2, A54 preparation)
  * run against the test-only memory host in its `conformant` profile, and against sabotaged variants of it: each defect
  * a real host could have must make the kit fail the step that checks that semantics. Results produced here are
  * memory-fixture-host results and never evidence about the Study Harness application.
  */
 import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
-import { isHostRefusal, templateRef, type ActivityRequest, type HostPolicy, type HostPort } from '@experiment-kit/activity';
+import { isHostRefusal, templateRef, type ActivityRequest, type HostPolicy, type HostPort } from '@explorable-models/activity';
 import {
   HOST_CONFORMANCE_RESULT_JSON_SCHEMA, HOST_CONFORMANCE_STEPS, runHostPortConformance, stepOutcome,
   type HostConformanceHooks, type HostConformanceOptions, type HostConformanceRun, type HostCrashPoint,
-} from '@experiment-kit/activity/conformance';
-import { createInstalledCatalog, INSTALLED_KERNELS, quadraticGradientDescentManifest as manifest, quadraticGradientDescentTemplate as template } from '@experiment-kit/catalog';
-import { modelIdentity, schemaErrors, type JsonSchema } from '@experiment-kit/core/model';
+} from '@explorable-models/activity/conformance';
+import { createInstalledCatalog, INSTALLED_KERNELS, quadraticGradientDescentManifest as manifest, quadraticGradientDescentTemplate as template } from '@explorable-models/catalog';
+import { modelIdentity, schemaErrors, type JsonSchema } from '@explorable-models/core/model';
 import { inlineWorkers } from '../core/support/inline-worker.js';
 import { MemoryHost, type CrashPoint, type MemoryHostSnapshot } from './support/memory-host.js';
 
@@ -84,7 +84,7 @@ function fixture(make: HostFactory = snapshot => snapshot ? MemoryHost.fromSnaps
   box.options = {
     subject: 'memory-fixture-host', catalog, hooks,
     host: { name: 'memory-host', commit: '0000000', dirty: true, binarySha256: '0'.repeat(64), platform: { os: 'macOS', osVersion: '26.0', arch: 'arm64' } },
-    packages: [{ name: '@experiment-kit/activity', version: '0.3.0-preview.1', sha256: '0'.repeat(64) }],
+    packages: [{ name: '@explorable-models/activity', version: '0.3.0-preview.1', sha256: '0'.repeat(64) }],
     limitations: ['Test-only memory host (tests/activity/support/memory-host.ts); not a reference host and not the Study Harness application.'],
     adapter: { persistenceWaitMs: 2000 },
   };
@@ -105,7 +105,7 @@ describe('HostPort conformance kit against the memory host (memory-fixture-host)
     for (const step of HOST_CONFORMANCE_STEPS) expect(result.result.steps[step].outcome, step).toBe('pass');
     expect(result.result.result).toBe('pass');
     expect(result.result.subject).toBe('memory-fixture-host');
-    expect(result.result.kit?.name).toBe('@experiment-kit/activity/conformance');
+    expect(result.result.kit?.name).toBe('@explorable-models/activity/conformance');
     // Every HostPort semantics the kit is meant to check was actually evaluated (not skipped).
     for (const [step, id] of [
       ['open-quadratic', 'unknown-activity-refused'], ['prediction-reference', 'host-revision-durable'], ['prediction-reference', 'registration-ahead-refused'],

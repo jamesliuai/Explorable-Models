@@ -1,7 +1,7 @@
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { describe, expect, it } from 'vitest';
-import { evaluateRequest, validateKernelOutput, type GeometryResult, type KernelOutput, type QuantityResult, type Vec2 } from '@experiment-kit/core/model';
+import { evaluateRequest, validateKernelOutput, type GeometryResult, type KernelOutput, type QuantityResult, type Vec2 } from '@explorable-models/core/model';
 import {
   ARROW_MAX_LENGTH, ARROW_SCALES, arrowDisclosure, CONTOUR_LEVELS, CONTOUR_SAMPLES, FIELD_GRID, quadraticSurfaceGradientKernel as kernel, SECTION_SAMPLES, SURFACE_GRID,
 } from '../../../packages/catalog/src/kernels/quadratic-surface-gradient.js';

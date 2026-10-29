@@ -3,10 +3,10 @@ import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { describe, expect, it } from 'vitest';
-import { groupDigests, templateDigest, validateRecord, validateTemplateSemantics, type ActivityTemplate, type ContentGroup } from '@experiment-kit/activity';
+import { groupDigests, templateDigest, validateRecord, validateTemplateSemantics, type ActivityTemplate, type ContentGroup } from '@explorable-models/activity';
 import {
   checkParameters, convert, defaultParameters, evaluateRequest, isCompatible, modelIdentity, validateManifest, type ModelManifest,
-} from '@experiment-kit/core/model';
+} from '@explorable-models/core/model';
 import { VECTOR_ORIENTATION_COPY as COPY } from '../../packages/catalog/src/copy/vector-orientation-3d.js';
 import {
   ANGLE_ARC, VECTOR_ORIENTATION_PARAMETERS, VECTOR_RELATIONSHIPS, vectorOrientationKernel as kernel,
@@ -220,7 +220,7 @@ describe('vector-orientation-3d content boundaries (report §12.6)', () => {
 
   it('keeps the kernel free of templates, copy and manifests', () => {
     const source = readFileSync(SOURCES[0]!, 'utf8');
-    expect([...source.matchAll(/from\s+'([^']+)'/g)].map(match => match[1])).toEqual(['@experiment-kit/core/model']);
+    expect([...source.matchAll(/from\s+'([^']+)'/g)].map(match => match[1])).toEqual(['@explorable-models/core/model']);
   });
 
   it('changes the template digest when learner text changes, so approval does not carry over', () => {

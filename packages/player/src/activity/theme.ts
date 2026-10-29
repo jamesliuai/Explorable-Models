@@ -187,10 +187,10 @@ export function resolveTheme(mode: ThemeMode, overrides: Partial<ThemeTokens> | 
 }
 
 const kebab = (name: string) => name.replace(/[A-Z]/g, c => `-${c.toLowerCase()}`);
-/** CSS custom properties (`--eka-*`) for a resolved token set; applied with CSSOM. */
+/** CSS custom properties (`--ema-*`) for a resolved token set; applied with CSSOM. */
 export function tokenVariables(tokens: ThemeTokens, reducedMotion = false): Record<string, string> {
   const variables: Record<string, string> = {};
-  for (const [key, value] of Object.entries(tokens)) variables[`--eka-${kebab(key)}`] = value;
-  if (reducedMotion) variables['--eka-motion-duration'] = '0ms';
+  for (const [key, value] of Object.entries(tokens)) variables[`--ema-${kebab(key)}`] = value;
+  if (reducedMotion) variables['--ema-motion-duration'] = '0ms';
   return variables;
 }

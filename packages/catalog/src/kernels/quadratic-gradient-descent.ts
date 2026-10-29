@@ -14,7 +14,7 @@
  * a nonzero value that rounds to zero is `numerical-limit`/`UNDERFLOW`; a subnormal result is valid with an
  * `UNDERFLOW` approximation note.
  */
-import type { GeometryResult, KernelInput, KernelOutput, ModelKernel, QuantityResult, Vec2 } from '@experiment-kit/core/model';
+import type { GeometryResult, KernelInput, KernelOutput, ModelKernel, QuantityResult, Vec2 } from '@explorable-models/core/model';
 
 export const QUADRATIC_KERNEL_ID = 'quadratic-gradient-descent';
 export const QUADRATIC_KERNEL_VERSION = '1.0.0';

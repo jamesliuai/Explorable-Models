@@ -1,5 +1,5 @@
 /**
- * `experiment-kit activity review-packet` and `package` (report §12.6, §15.2, A30, A56): the packet states exact
+ * `explorable-models activity review-packet` and `package` (report §12.6, §15.2, A30, A56): the packet states exact
  * identities, provenance, tolerances, mutation sensitivity, stage captures and alternatives, and leaves the reviewer
  * sign-off empty; the package archive is reproducible and its integrity manifest matches the archived bytes.
  */
@@ -9,9 +9,9 @@ import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { gunzipSync, unzipSync } from 'fflate';
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
-import { modelIdentity } from '@experiment-kit/core/model';
-import { createInstalledCatalog, quadraticGradientDescentManifest, quadraticGradientDescentTemplate, QUADRATIC_REFERENCE_SUITE_DIGEST } from '@experiment-kit/catalog';
-import { templateRef } from '@experiment-kit/activity';
+import { modelIdentity } from '@explorable-models/core/model';
+import { createInstalledCatalog, quadraticGradientDescentManifest, quadraticGradientDescentTemplate, QUADRATIC_REFERENCE_SUITE_DIGEST } from '@explorable-models/catalog';
+import { templateRef } from '@explorable-models/activity';
 import { activity, editJson, readJson, temporaryDirectory } from './activity-support';
 
 const sha = (bytes: Uint8Array | string) => `sha256:${createHash('sha256').update(bytes).digest('hex')}`;
@@ -44,7 +44,7 @@ describe('activity review packet and package', () => {
     expect(readme).toContain('![Where a line crosses zero, stage explore](captures/explore.png)');
     expect(readme).not.toMatch(/independently reviewed|has been reviewed|approved for/i);
     const packet = await readJson<{ contract: string; status: { signOff: unknown; lifecycle: string }; captures: { stages: { png: string }[] } }>(path.join(report.directory, 'packet.json'));
-    expect(packet).toMatchObject({ contract: 'experiment-kit.review-packet', status: { signOff: null, lifecycle: 'authored' } });
+    expect(packet).toMatchObject({ contract: 'explorable-models.review-packet', status: { signOff: null, lifecycle: 'authored' } });
     for (const stage of packet.captures.stages.filter(item => item.png)) expect(existsSync(path.join(report.directory, stage.png))).toBe(true);
   });
 
@@ -88,7 +88,7 @@ describe('activity review packet and package', () => {
       expect(sha(entries[`${root}${file.path}`]!)).toBe(file.sha256);
       expect(file.sha256).toBe(sha(await readFile(path.join(line, file.path))));
     }
-    expect(Object.keys(entries).some(name => name.includes('.experiment-kit'))).toBe(false);
+    expect(Object.keys(entries).some(name => name.includes('.explorable-models'))).toBe(false);
 
     const tgz = await activity<PackageReport>('package', line, '--format', 'tgz', '--out', path.join(work.path, 'one.tgz'));
     const tgzAgain = await activity<PackageReport>('package', line, '--format', 'tgz', '--out', path.join(work.path, 'two.tgz'));

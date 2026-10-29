@@ -1,5 +1,5 @@
 // Production build of the packed activity consumer. It runs only inside the clean install created by
-// scripts/study-harness/verify-consumer.mjs: @experiment-kit/* resolve to the extracted tarballs in that directory's
+// scripts/study-harness/verify-consumer.mjs: @explorable-models/* resolve to the extracted tarballs in that directory's
 // node_modules, never to monorepo sources (no aliases here).
 //
 // - assetsInlineLimit 0: fonts, stylesheets and images stay files, because the production CSP allows no data: URIs.

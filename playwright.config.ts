@@ -4,7 +4,7 @@ import { defineConfig, devices } from '@playwright/test';
 export default defineConfig({
   testDir: './tests/browser',
   fullyParallel: false,
-  projects: process.env.EXPERIMENT_KIT_CROSS_BROWSER ? [
+  projects: process.env.EXPLORABLE_MODELS_CROSS_BROWSER ? [
     { name: 'firefox', use: { ...devices['Desktop Firefox'] } },
     { name: 'webkit', use: { ...devices['Desktop Safari'] } },
   ] : [{ name: 'chromium', use: { ...devices['Desktop Chrome'] } }],
@@ -13,7 +13,7 @@ export default defineConfig({
   expect: { timeout: 8_000 },
   retries: process.env.CI ? 1 : 0,
   reporter: [['list']],
-  outputDir: '/tmp/experiment-kit-playwright',
+  outputDir: '/tmp/explorable-models-playwright',
   use: {
     ...devices['Desktop Chrome'],
     baseURL: 'http://127.0.0.1:4187',

@@ -3,7 +3,7 @@
  * learning database. One `createStudyHarnessAdapter` with a shared worker budget serves two simultaneously active 2D
  * activities (quadratic gradient descent and function/derivative) and a column of suspended history cards, all rendered
  * by the real learner surface with the real catalogue module workers. The two spatial activities (vector orientation and
- * the quadratic surface) are available for lifecycle cycles: their cards get the host's lazy `@experiment-kit/player-3d`
+ * the quadratic surface) are available for lifecycle cycles: their cards get the host's lazy `@explorable-models/player-3d`
  * loader, so the real `SpatialView` mounts the WebGL renderer. `tests/browser/study-lifecycle.spec.ts` drives the page
  * through `window.lifecycleFixture` to check isolation, coalescing, suspension (offscreen, collapsed, hidden, host),
  * repeated mount/interact/suspend/restore/dispose cycles of 2D and 3D cards and disposal during prepare, evaluate, save,
@@ -22,10 +22,10 @@ import {
   type CommandOutcome, type DiagnosticCode, type DisplayAckRequest, type ExposureGrant, type ExposureIntentRequest, type ExposureReceipt, type ExposureRecord,
   type HostAck, type HostPolicy, type HostPort, type InteractionEvent, type JournalCursor, type LearnerProjection, type PreparedActivity, type SchemaName,
   type StageReceipt, type StageTransitionRequest, type StudyHarnessAdapter,
-} from '@experiment-kit/activity';
-import { createInstalledCatalog, functionDerivativeTemplate, quadraticGradientDescentTemplate, quadraticSurfaceGradientTemplate, vectorOrientationTemplate } from '@experiment-kit/catalog';
-import { digest } from '@experiment-kit/core';
-import { mountStudyActivity, type MountedStudyActivity, type SpatialRendererModule } from '@experiment-kit/player/activity';
+} from '@explorable-models/activity';
+import { createInstalledCatalog, functionDerivativeTemplate, quadraticGradientDescentTemplate, quadraticSurfaceGradientTemplate, vectorOrientationTemplate } from '@explorable-models/catalog';
+import { digest } from '@explorable-models/core';
+import { mountStudyActivity, type MountedStudyActivity, type SpatialRendererModule } from '@explorable-models/player/activity';
 
 // ---------------------------------------------------------------------------------------------
 // In-memory host for this page
@@ -423,12 +423,12 @@ async function cycle(index: number): Promise<void> {
 // Spatial (3D) cycles: §13 resource counts over repeated mount/dispose and §18 lifecycle stress per spatial activity
 // ---------------------------------------------------------------------------------------------
 const shadowOf = (activityId: string) => cards.get(activityId)?.mounted?.element.shadowRoot ?? null;
-/** The renderer's own status (`data-ek3-status`) and the surface's view state (`data-eka-spatial-state`) of a card. */
+/** The renderer's own status (`data-em3-status`) and the surface's view state (`data-ema-spatial-state`) of a card. */
 const spatialState = (activityId: string) => {
   const shadow = shadowOf(activityId);
   return {
-    renderer: shadow?.querySelector('[data-ek3-root]')?.getAttribute('data-ek3-status') ?? null,
-    surface: shadow?.querySelector('[data-eka-spatial]')?.getAttribute('data-eka-spatial-state') ?? null,
+    renderer: shadow?.querySelector('[data-em3-root]')?.getAttribute('data-em3-status') ?? null,
+    surface: shadow?.querySelector('[data-ema-spatial]')?.getAttribute('data-ema-spatial-state') ?? null,
   };
 };
 const sceneViewId = (key: TemplateKey) => TEMPLATES[key].views.find(view => view.kind === 'scene3d')!.id;
@@ -441,7 +441,7 @@ async function spatialReady(activityId: string): Promise<void> {
 async function turnCamera(activityId: string): Promise<void> {
   const card = cards.get(activityId)!;
   const before = card.learner.getProjection().presentationRevision;
-  const viewport = shadowOf(activityId)!.querySelector<HTMLElement>('.ek3-viewport')!;
+  const viewport = shadowOf(activityId)!.querySelector<HTMLElement>('.em3-viewport')!;
   viewport.focus();
   viewport.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight', bubbles: true, cancelable: true }));
   await until(() => card.learner.getProjection().presentationRevision > before);

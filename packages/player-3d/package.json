@@ -1,5 +1,5 @@
 {
-  "name": "@experiment-kit/player-3d",
+  "name": "@explorable-models/player-3d",
   "version": "0.3.0-preview.1",
   "description": "Optional lazy spatial renderer for bounded Study Harness activities.",
   "type": "module",
@@ -40,11 +40,11 @@
     "url": "https://github.com/jamesliuai/Explorable-Models/issues"
   },
   "peerDependencies": {
-    "@experiment-kit/core": "0.3.0-preview.1",
+    "@explorable-models/core": "0.3.0-preview.1",
     "three": "0.186.1"
   },
   "peerDependenciesMeta": {
-    "@experiment-kit/core": {
+    "@explorable-models/core": {
       "optional": true
     }
   }

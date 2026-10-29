@@ -19,7 +19,7 @@ mkdirSync(SHOTS, { recursive: true });
 
 const shot = async (page: Page, name: string) => {
   // Equations render lazily once visible: bring the card's last panel into view so KaTeX output is in the picture.
-  const equations = card(page).locator('[data-eka-panel="equations"]');
+  const equations = card(page).locator('[data-ema-panel="equations"]');
   if (await equations.count()) {
     await equations.last().scrollIntoViewIfNeeded();
     await expect(equations.last().locator('.katex').first()).toBeVisible();
@@ -32,7 +32,7 @@ const shot = async (page: Page, name: string) => {
   await page.screenshot({ path: `${SHOTS}/${name}.png`, fullPage: true });
 };
 const valueOf = async (page: Page, label: string): Promise<string> =>
-  ((await card(page).locator('[data-eka-panel="values"] .eka-value-row').filter({ has: page.locator(`dt:text-is("${label}")`) }).locator('dd').first().textContent()) ?? '').trim();
+  ((await card(page).locator('[data-ema-panel="values"] .ema-value-row').filter({ has: page.locator(`dt:text-is("${label}")`) }).locator('dd').first().textContent()) ?? '').trim();
 
 /** Prediction → step-size exploration enabled → trace revealed and displayed (explore-step). */
 async function toRevealedTrace(page: Page): Promise<void> {
@@ -141,12 +141,12 @@ test.describe('quadratic learning-and-return fixture', () => {
     expect(task.pendingReveal).toBeNull();
     // The neutral scaffold keeps no position group, so the card offers no navigation or playback (R02).
     expect(task.navigation).toBeNull();
-    await expect(card(page).locator('.eka-nav')).toHaveCount(0);
+    await expect(card(page).locator('.ema-nav')).toHaveCount(0);
     // The teaching stage's instruction and prompt are withheld: the host owns the independent task's prompt.
     expect(task.stage.response).toBeUndefined();
     expect(task.stage.instruction).toBe('Independent work: follow the task given in your session. Teaching content from this activity is not shown here.');
     // With no drawing left, the scaffold takes the card's full width instead of leaving an empty column.
-    await expect(card(page).locator('.eka-workspace')).toHaveAttribute('data-single', 'true');
+    await expect(card(page).locator('.ema-workspace')).toHaveAttribute('data-single', 'true');
     await expect(card(page).getByText('Independent task', { exact: true })).toBeVisible();
     await expectHidden(page, ['trace', 'observations', 'regime', 'substituted'], 'independent task', { capture: false });
     const taskDom = await card(page).evaluate(host => host.shadowRoot!.textContent ?? '');
@@ -179,7 +179,7 @@ test.describe('quadratic learning-and-return fixture', () => {
     await step(page, 'enable-exploration');
     await page.locator('[data-fx-step="reveal-trace"]').click();
     // The banner names what is not shown yet and offers the one retry (G41: no second pending row or retry control).
-    const pending = card(page).locator('.eka-banner[data-cause="reveal-not-saved"]');
+    const pending = card(page).locator('.ema-banner[data-cause="reveal-not-saved"]');
     await expect(pending).toContainText(/so .+ (is|are) not shown yet/);
     await settle(page, { allowPending: true });
     expect((await projection(page)).pendingReveal).toMatchObject({ state: 'failed' });
@@ -213,7 +213,7 @@ test.describe('quadratic learning-and-return fixture', () => {
     const held = (await hostExposures(page)).find(record => record.scope === 'reveal')!;
     expect(held).toMatchObject({ displayStatus: 'authorized', acked: false });
     expect(types(await hostEvents(page))).toContain('reveal.uncertain');
-    const banner = card(page).locator('.eka-banner[data-ui-state="awaiting-persistence"]');
+    const banner = card(page).locator('.ema-banner[data-ui-state="awaiting-persistence"]');
     await expect(banner).toBeVisible();
     await expectAccessible(page, 'ack not persisted');
 
@@ -235,7 +235,7 @@ test.describe('quadratic learning-and-return fixture', () => {
     const slider = control(page, 'eta').getByRole('slider', { name: 'Step size η' });
     await slider.scrollIntoViewIfNeeded();
     await page.evaluate(() => {
-      const root = document.querySelector('[data-fx-card] [data-experiment-kit-activity]')!.shadowRoot!;
+      const root = document.querySelector('[data-fx-card] [data-explorable-models-activity]')!.shadowRoot!;
       root.addEventListener('pointerdown', event => { (window as unknown as { fxPointer: number }).fxPointer = (event as PointerEvent).pointerId; }, { capture: true });
     });
     const box = (await slider.boundingBox())!;
@@ -246,15 +246,15 @@ test.describe('quadratic learning-and-return fixture', () => {
     const coherent = async (label: string) => {
       await page.waitForFunction(() => {
         const current = window.studyHarnessFixture.binding!.getProjection();
-        const root = document.querySelector('[data-fx-card] [data-experiment-kit-activity]')?.shadowRoot?.querySelector('.eka');
-        return current.frame?.kind === 'tentative' && root?.getAttribute('data-eka-projection') === current.projectionId;
+        const root = document.querySelector('[data-fx-card] [data-explorable-models-activity]')?.shadowRoot?.querySelector('.ema');
+        return current.frame?.kind === 'tentative' && root?.getAttribute('data-ema-projection') === current.projectionId;
       });
       const shown = await projection(page);
       const ids = await renderedFrameIds(page);
       expect(ids.length, label).toBeGreaterThanOrEqual(5);
       expect(new Set(ids.map(item => item.frameId)), `${label}: ${JSON.stringify(ids)}`).toEqual(new Set([shown.frame!.frameId]));
       expect(shown.frame!.frameId).not.toBe(committedFrame);
-      await expect(card(page).locator('[data-eka-figure][data-tentative="true"]')).toHaveCount(2);
+      await expect(card(page).locator('[data-ema-figure][data-tentative="true"]')).toHaveCount(2);
       const eta = shown.controls.find(item => item.parameter === 'eta')!;
       expect(eta.previewValue, label).toBeDefined();
       await expect(control(page, 'eta').locator('output')).toContainText('preview');
@@ -269,7 +269,7 @@ test.describe('quadratic learning-and-return fixture', () => {
       expect(shown.preview, label).toBeNull();
       expect(shown.guards.expectedRunId, label).toBe(committedRun);
       expect(new Set((await renderedFrameIds(page)).map(item => item.frameId)), label).toEqual(new Set([committedFrame]));
-      await expect(card(page).locator('[data-eka-figure][data-tentative="true"]')).toHaveCount(0);
+      await expect(card(page).locator('[data-ema-figure][data-tentative="true"]')).toHaveCount(0);
       expect(numeral(await valueOf(page, 'Step size times curvature')), label).toBeCloseTo(0.5, 9);
     };
 
@@ -356,7 +356,7 @@ test.describe('quadratic learning-and-return fixture', () => {
     const now = await projection(page);
     expect(now.frame!.frameId).toBe(committed.frame!.frameId);
     expect(now.guards.expectedRunId).toBe(committed.guards.expectedRunId);
-    await expect(card(page).locator('[data-eka-figure][data-tentative="true"]')).toHaveCount(0);
+    await expect(card(page).locator('[data-ema-figure][data-tentative="true"]')).toHaveCount(0);
     expect(new Set((await renderedFrameIds(page)).map(item => item.frameId))).toEqual(new Set([committed.frame!.frameId]));
 
     // Disposal while a navigation evaluation is in flight: nothing is published afterwards, the card is gone and the
@@ -399,7 +399,7 @@ test.describe('quadratic learning-and-return fixture', () => {
     expect(now.preview).toBeNull();
     expect(now.views).toEqual([]);
     expect(now.guards.expectedRunId).toBe(committed.guards.expectedRunId);
-    await expect(card(page).locator('.eka-banner[data-ui-state="stale-policy"]')).toContainText('Permissions changed');
+    await expect(card(page).locator('.ema-banner[data-ui-state="stale-policy"]')).toContainText('Permissions changed');
     const events = await hostEvents(page);
     expect(events.filter(event => event.type === 'preview.cancelled').map(event => (event.payload as { reason: string }).reason)).toEqual(['revoked']);
     expect(events.filter(event => event.type === 'parameters.committed').map(event => (event.payload as { cause: string }).cause)).toEqual(['initial']);
@@ -410,7 +410,7 @@ test.describe('quadratic learning-and-return fixture', () => {
 
   test('a host policy revoked at startup (?revoke=1) shows nothing new and refuses host steps (A22 A40)', async ({ page }) => {
     const errors = await openFixture(page, '?revoke=1');
-    await expect(card(page).locator('.eka-banner[data-ui-state="stale-policy"]')).toBeVisible();
+    await expect(card(page).locator('.ema-banner[data-ui-state="stale-policy"]')).toBeVisible();
     expect((await projection(page)).views).toEqual([]);
     // The response reference is refused, the host rolls its record back and the next step stays blocked.
     await page.locator('#fx-response').fill('They shrink.');
@@ -432,7 +432,7 @@ test.describe('quadratic learning-and-return fixture', () => {
     // Commit an exploration (exact entry), move to an iteration and change the camera.
     await exact(page, 'eta', '0.75');
     await goTo(page, 3);
-    await card(page).locator('[data-eka-figure="landscape"]').getByRole('button', { name: 'Zoom in' }).click();
+    await card(page).locator('[data-ema-figure="landscape"]').getByRole('button', { name: 'Zoom in' }).click();
     await expect.poll(async () => (await projection(page)).presentation.views.landscape?.camera).toMatchObject({ kind: '2d' });
     await settle(page);
     await page.getByRole('button', { name: 'Save backup now' }).click();
@@ -458,8 +458,8 @@ test.describe('quadratic learning-and-return fixture', () => {
     expect(shown.presentation.views.landscape?.camera).toEqual(shownBefore.presentation.views.landscape?.camera);
     expect(shown.status.ui).toBe('restored');
     expect(shown.navigation).toMatchObject({ value: 3, playing: false });
-    await expect(card(page).locator('.eka-banner[data-ui-state="restored"]')).toContainText('Restored');
-    await expect(card(page).locator('[data-eka-figure="landscape"]')).toContainText('Moved view');
+    await expect(card(page).locator('.ema-banner[data-ui-state="restored"]')).toContainText('Restored');
+    await expect(card(page).locator('[data-ema-figure="landscape"]')).toContainText('Moved view');
     await expectShown(page, ['trace', 'observations'], 'restored');
     expect(numeral(await valueOf(page, 'Position'))).toBeCloseTo(-0.5, 12);
     await expectAccessible(page, 'restored');
@@ -584,14 +584,14 @@ test.describe('quadratic learning-and-return fixture', () => {
     await respond(page, 'They shrink.');
     await step(page, 'enable-exploration');
     await page.locator('[data-fx-step="reveal-trace"]').click();
-    await expect(card(page).locator('.eka-banner[data-cause="saving-reveal"]')).toContainText('The host is recording this step before showing');
+    await expect(card(page).locator('.ema-banner[data-cause="saving-reveal"]')).toContainText('The host is recording this step before showing');
     await expectHidden(page, ['trace', 'observations'], 'reveal requesting', { capture: false });
     await page.getByRole('button', { name: 'Interrupt: independent task here' }).click();
     await expect(card(page).getByText('Independent task', { exact: true })).toBeVisible();
     const interrupted = await projection(page);
     expect(interrupted).toMatchObject({ context: 'independent', pendingReveal: null, controls: [], navigation: null, comparisons: [] });
     expect(interrupted.views.map(view => view.viewId)).toEqual(['rules']);
-    await expect(card(page).locator('.eka-pending, .eka-banner[data-cause="saving-reveal"]')).toHaveCount(0);
+    await expect(card(page).locator('.ema-pending, .ema-banner[data-cause="saving-reveal"]')).toHaveCount(0);
     // The late receipt for the committed intent is never applied: nothing appears. The host committed it, so the adapter
     // follows the host-owned activity revision and keeps the authorization as history that never counts (R04).
     await page.waitForFunction(() => window.studyHarnessFixture.session.getSnapshot().steps.find(item => item.id === 'reveal-trace')?.state !== 'running');
@@ -650,11 +650,11 @@ test.describe('quadratic learning-and-return fixture', () => {
     await toRevealedTrace(page);
     const shown = await projection(page);
     const surfaceId = await page.evaluate(() => window.studyHarnessFixture.surface!.surfaceId);
-    const firstWidth = await card(page).locator('svg[data-eka-view-id="landscape"]').evaluate(svg => (svg as SVGSVGElement).viewBox.baseVal.width);
+    const firstWidth = await card(page).locator('svg[data-ema-view-id="landscape"]').evaluate(svg => (svg as SVGSVGElement).viewBox.baseVal.width);
     // A second card of the same activity at another width must not be the one captured.
     const extra = await page.evaluate(() => window.studyHarnessFixture.session.mountExtra(300));
-    await expect(page.locator('[data-fx-extra-card] [data-experiment-kit-activity]')).toHaveCount(1);
-    const extraWidth = await page.locator('[data-fx-extra-card] svg[data-eka-view-id="landscape"]').evaluate(svg => (svg as SVGSVGElement).viewBox.baseVal.width);
+    await expect(page.locator('[data-fx-extra-card] [data-explorable-models-activity]')).toHaveCount(1);
+    const extraWidth = await page.locator('[data-fx-extra-card] svg[data-ema-view-id="landscape"]').evaluate(svg => (svg as SVGSVGElement).viewBox.baseVal.width);
     expect(extraWidth).not.toBe(firstWidth);
     const now = await projection(page);
 
@@ -713,7 +713,7 @@ test.describe('quadratic learning-and-return fixture', () => {
     const plotted = (await projection(page)).views.find(view => view.viewId === 'trace-plot')!.marks[0]!.geometry as { points: { at: number[] }[] };
     expect(plotted.points.map(point => point.at)).toEqual(rows.map(row => row.map(numeral)));
     // The scrollable table region is a keyboard stop with the table's name.
-    await expect(card(page).locator('.eka-table-region')).toHaveAttribute('tabindex', '0');
+    await expect(card(page).locator('.ema-table-region')).toHaveAttribute('tabindex', '0');
     await expectAccessible(page, 'trace table');
   });
 
@@ -726,8 +726,8 @@ test.describe('quadratic learning-and-return fixture', () => {
     await card(page).getByRole('button', { name: 'Trace table' }).click();
     const a = numeral((await control(page, 'a').locator('output').textContent()) ?? '');
     expect(a).toBe(2);
-    await card(page).locator('[data-eka-panel="equations"]').getByRole('button', { name: 'Plain text' }).click();
-    await expect(card(page).locator('[data-eka-panel="equations"]')).toContainText('f(x) = (a/2)·x²');
+    await card(page).locator('[data-ema-panel="equations"]').getByRole('button', { name: 'Plain text' }).click();
+    await expect(card(page).locator('[data-ema-panel="equations"]')).toContainText('f(x) = (a/2)·x²');
     const objective = (x: number) => a * x * x / 2;
     const landscape = (await projection(page)).views.find(view => view.viewId === 'landscape')!;
     const mark = (id: string) => landscape.marks.find(item => item.markId === id)!;
@@ -749,23 +749,23 @@ test.describe('quadratic learning-and-return fixture', () => {
     const toggle = card(page).getByRole('button', { name: 'Text description' });
     await toggle.click();
     await expect(toggle).toHaveAttribute('aria-pressed', 'true');
-    const before = card(page).locator('[data-eka-figure="landscape"] .eka-description');
+    const before = card(page).locator('[data-ema-figure="landscape"] .ema-description');
     await expect(before).toHaveText('Objective landscape. Shows Objective f(x); Starting point (x₀, f(x₀)).');
     await toggle.click();
     await toRevealedTrace(page);
     await card(page).getByRole('button', { name: 'Text description' }).click();
     const views = (await projection(page)).views;
     for (const id of ['landscape', 'trace-plot']) {
-      const description = card(page).locator(`[data-eka-figure="${id}"] .eka-description`);
+      const description = card(page).locator(`[data-ema-figure="${id}"] .ema-description`);
       await expect(description).toBeVisible();
       await expect(description).toHaveText(views.find(view => view.viewId === id)!.summary);
-      const describedBy = await card(page).locator(`svg[data-eka-view-id="${id}"]`).getAttribute('aria-describedby');
+      const describedBy = await card(page).locator(`svg[data-ema-view-id="${id}"]`).getAttribute('aria-describedby');
       expect(await description.getAttribute('id')).toBe(describedBy);
     }
-    await expect(card(page).locator('[data-eka-figure="trace-plot"] .eka-description')).toContainText('Position x_n at each iteration n');
+    await expect(card(page).locator('[data-ema-figure="trace-plot"] .ema-description')).toContainText('Position x_n at each iteration n');
     // The equivalence is declared partial: the summary names what is drawn rather than listing every point.
     await card(page).getByText('Other ways to work with this activity').click();
-    await expect(card(page).locator('.eka-alternatives dt').filter({ hasText: 'Text description' })).toContainText('Partial');
+    await expect(card(page).locator('.ema-alternatives dt').filter({ hasText: 'Text description' })).toContainText('Partial');
   });
 
   test('alternative exact-entry: typed values commit exactly; invalid input is explained, kept as typed and never changed into another experiment', async ({ page }) => {
@@ -780,7 +780,7 @@ test.describe('quadratic learning-and-return fixture', () => {
       const box = control(page, 'eta').getByRole('textbox');
       await box.fill(value);
       await box.press('Enter');
-      await expect(control(page, 'eta').locator('.eka-error')).toContainText(message);
+      await expect(control(page, 'eta').locator('.ema-error')).toContainText(message);
       await expect(box).toHaveValue(value);
       await expect(box).toHaveAttribute('aria-invalid', 'true');
       expect((await projection(page)).guards.expectedRunId).toBe(run);
@@ -793,7 +793,7 @@ test.describe('quadratic learning-and-return fixture', () => {
     const box = control(page, 'a').getByRole('textbox');
     await box.fill('3');
     await box.press('Enter');
-    await expect(control(page, 'a').locator('.eka-error')).toContainText('The step size times the curvature (η·a) can be at most 4');
+    await expect(control(page, 'a').locator('.ema-error')).toContainText('The step size times the curvature (η·a) can be at most 4');
     await expect(box).toHaveValue('3');
     await expect(box).toHaveAttribute('aria-invalid', 'true');
     expect((await projection(page)).guards.expectedRunId).toBe(shown.guards.expectedRunId);
@@ -802,7 +802,7 @@ test.describe('quadratic learning-and-return fixture', () => {
     const goto = card(page).getByRole('textbox', { name: 'Go to n =' });
     await goto.fill('2.5');
     await goto.press('Enter');
-    await expect(card(page).locator('.eka-nav .eka-error')).toContainText('Iterations are whole numbers');
+    await expect(card(page).locator('.ema-nav .ema-error')).toContainText('Iterations are whole numbers');
     expect(errors).toEqual([]);
   });
 
@@ -892,7 +892,7 @@ test.describe('quadratic learning-and-return fixture', () => {
 
   /** Controls are inside the card, at least 24 px high and usable: an exact entry commits. */
   const expectUsable = async (page: Page, label: string) => {
-    const cardBox = (await card(page).locator('.eka').first().boundingBox())!;
+    const cardBox = (await card(page).locator('.ema').first().boundingBox())!;
     for (const target of [control(page, 'eta').getByRole('slider'), control(page, 'eta').getByRole('textbox'), control(page, 'eta').getByRole('button', { name: 'Apply' }), card(page).getByRole('button', { name: 'Next iteration' })]) {
       await expect(target, label).toBeVisible();
       const box = (await target.boundingBox())!;
@@ -914,7 +914,7 @@ test.describe('quadratic learning-and-return fixture', () => {
       expect(facts, `width ${width ?? 'desktop'}`).toMatchObject({ page: false, card: false, offenders: [] });
       if (width) expect(Math.abs(facts.cardWidth - width), `card width ${width}`).toBeLessThanOrEqual(2);
       for (const id of ['landscape', 'trace-plot']) {
-        const svg = (await card(page).locator(`svg[data-eka-view-id="${id}"]`).boundingBox())!;
+        const svg = (await card(page).locator(`svg[data-ema-view-id="${id}"]`).boundingBox())!;
         expect(svg.width, `${id} at ${width}`).toBeLessThanOrEqual(facts.cardWidth);
       }
       await expectUsable(page, `width ${width ?? 'desktop'}`);
@@ -940,9 +940,9 @@ test.describe('quadratic learning-and-return fixture', () => {
       const errors = await openFixture(page, configuration.query);
       await goTo(page, 3);
       expect(await overflow(page), configuration.name).toMatchObject({ page: false, card: false, offenders: [] });
-      if (configuration.name === 'dark') await expect(card(page).locator('.eka')).toHaveAttribute('data-theme', 'dark');
+      if (configuration.name === 'dark') await expect(card(page).locator('.ema')).toHaveAttribute('data-theme', 'dark');
       if (configuration.name.startsWith('text-200')) {
-        const size = await card(page).locator('.eka-title').evaluate(element => parseFloat(getComputedStyle(element).fontSize));
+        const size = await card(page).locator('.ema-title').evaluate(element => parseFloat(getComputedStyle(element).fontSize));
         expect(size, 'title font size doubles with the root text size').toBeGreaterThan(30);
       }
       await expectUsable(page, configuration.name);
@@ -962,7 +962,7 @@ test.describe('quadratic learning-and-return fixture', () => {
     const hidden = await projection(page);
     expect(hidden.status).toMatchObject({ ui: 'boundary', message: 'The last available step is reached.' });
     expect(hidden.frame).toMatchObject({ terminal: true, terminalDetail: 'The last available step is reached.' });
-    await expect(card(page).locator('.eka-terminal')).toHaveText('End of the computed run: The last available step is reached.');
+    await expect(card(page).locator('.ema-terminal')).toHaveText('End of the computed run: The last available step is reached.');
     const text = await card(page).evaluate(host => host.shadowRoot!.textContent ?? '');
     for (const outcome of ['numerical limit, not a computed value', 'Playback stopped before a value', 'Its last finite value', 'beyond the range that can be represented']) expect(text).not.toContain(outcome);
     await expectHidden(page, ['trace', 'observations', 'regime', 'substituted'], 'end of a run with the trace hidden', { capture: false });
@@ -984,8 +984,8 @@ test.describe('quadratic learning-and-return fixture', () => {
     // Revealed, the trace reaches the limit and the card says so.
     await step(page, 'reveal-trace');
     await settle(page);
-    await expect(card(page).locator('.eka-banner[data-ui-state="boundary"]')).toContainText('numerical limit, not a computed value');
-    await expect(card(page).locator('.eka-terminal')).toContainText('numerical limit, not a computed value');
+    await expect(card(page).locator('.ema-banner[data-ui-state="boundary"]')).toContainText('numerical limit, not a computed value');
+    await expect(card(page).locator('.ema-terminal')).toContainText('numerical limit, not a computed value');
     await shot(page, 'r02-revealed-end-of-run');
     expect(errors).toEqual([]);
   });
@@ -1002,23 +1002,23 @@ test.describe('quadratic learning-and-return fixture', () => {
     await card(page).getByRole('button', { name: 'Trace table' }).click();
     const xs = (await card(page).getByRole('table').locator('tbody tr td').allTextContents()).map(numeral);
     expect(xs).toEqual([4, -4, 4, -4, 4, -4]);
-    await expect(card(page).locator('[data-eka-panel="values"] dd').filter({ hasText: '-' })).toHaveCount(0);
+    await expect(card(page).locator('[data-ema-panel="values"] dd').filter({ hasText: '-' })).toHaveCount(0);
     // A paused run at n = 5 is a calm state: no status banner.
     expect((await projection(page)).status.ui).toBe('paused');
-    await expect(card(page).locator('.eka-banner')).toHaveCount(0);
+    await expect(card(page).locator('.ema-banner')).toHaveCount(0);
     // The out-of-view line's sizing copy reserves its height without text: the card's text, and what selecting the line
     // copies, never say values are outside the view while the visible line says every drawn value is inside it (F5).
-    const traceSlot = card(page).locator('[data-eka-figure="trace-plot"] [data-eka-clip-slot]');
+    const traceSlot = card(page).locator('[data-ema-figure="trace-plot"] [data-ema-clip-slot]');
     await expect(traceSlot).toContainText('All drawn values are inside the view.');
     const calmText = await card(page).evaluate(host => host.shadowRoot!.textContent ?? '');
     expect(calmText).toContain('All drawn values are inside the view.');
     expect(calmText).not.toContain('Some values are outside the view');
     expect(await traceSlot.evaluate(element => (element as HTMLElement).innerText)).not.toContain('Some values are outside the view');
-    const sizer = traceSlot.locator('[data-eka-clip-sizer]');
+    const sizer = traceSlot.locator('[data-ema-clip-sizer]');
     await expect(sizer).toHaveAttribute('aria-hidden', 'true');
     expect(await sizer.evaluate(element => element.textContent)).toBe('');
     expect((await sizer.boundingBox())!.height).toBeGreaterThan(10);
-    expect(await card(page).locator('[data-eka-clip-sizer]').evaluateAll(sizers => sizers.every(element => element.textContent === ''))).toBe(true);
+    expect(await card(page).locator('[data-ema-clip-sizer]').evaluateAll(sizers => sizers.every(element => element.textContent === ''))).toBe(true);
     await shot(page, 'boundary-eta-a-2');
 
     // Divergence (η·a = 4): beyond n = 644 the position is a numerical limit, never a fabricated number.
@@ -1029,29 +1029,29 @@ test.describe('quadratic learning-and-return fixture', () => {
     // The cause agrees with the message: a numerical-limit end (F6).
     expect(shown.status).toMatchObject({ message: 'The next value cannot be represented; this is a numerical limit, not a computed value.', cause: 'numerical-limit' });
     expect(shown.frame).toMatchObject({ terminal: true, terminalDetail: 'The next value cannot be represented; this is a numerical limit, not a computed value.' });
-    await expect(card(page).locator('.eka-banner[data-ui-state="boundary"]')).toContainText('numerical limit, not a computed value');
-    const position = card(page).locator('[data-eka-panel="values"] .eka-value-row').filter({ has: page.locator('dt:text-is("Position")') });
+    await expect(card(page).locator('.ema-banner[data-ui-state="boundary"]')).toContainText('numerical limit, not a computed value');
+    const position = card(page).locator('[data-ema-panel="values"] .ema-value-row').filter({ has: page.locator('dt:text-is("Position")') });
     await expect(position).toHaveAttribute('data-status', 'numerical-limit');
     await expect(position.locator('dd').first()).toHaveText(/^Beyond numerical range; last finite index 644\s*limit$/);
-    await expect(position.locator('.eka-value-reason')).toHaveText('The position exceeds the largest representable number from n = 645; the last finite value is at n = 644.');
+    await expect(position.locator('.ema-value-reason')).toHaveText('The position exceeds the largest representable number from n = 645; the last finite value is at n = 644.');
     expect(await valueOf(page, 'Regime')).toBe('divergence');
     const lastRows = await card(page).getByRole('table').locator('tbody tr').evaluateAll(rows => rows.slice(-2).map(row => [...row.children].map(cell => cell.textContent ?? '')));
     // Trace tables carry six significant digits (readouts keep four: the position readout states the limit instead).
     expect(lastRows[0]![1]).toBe('7.38156 × 10³⁰⁷');
     expect(lastRows[1]).toEqual([expect.stringMatching(/^Not available: Trace stops/)]);
     // The note row spans the table, so the position column stays in view without horizontal scrolling.
-    const region = card(page).locator('.eka-table-region');
+    const region = card(page).locator('.ema-table-region');
     expect(await region.evaluate(element => element.scrollWidth <= element.clientWidth + 1)).toBe(true);
-    await expect(card(page).locator('[data-eka-figure="trace-plot"] .eka-clip')).toContainText('Some values are outside the view');
+    await expect(card(page).locator('[data-ema-figure="trace-plot"] .ema-clip')).toContainText('Some values are outside the view');
     // The sizing copy still reserves at least the height of the visible line it stands in for (F5).
-    const limitSlot = card(page).locator('[data-eka-figure="trace-plot"] [data-eka-clip-slot]');
-    expect((await limitSlot.locator('[data-eka-clip-sizer]').boundingBox())!.height).toBeGreaterThanOrEqual((await limitSlot.locator('.eka-clip').boundingBox())!.height - 0.5);
-    await expect(card(page).locator('[data-eka-figure="landscape"] .eka-notes')).not.toContainText('..');
+    const limitSlot = card(page).locator('[data-ema-figure="trace-plot"] [data-ema-clip-slot]');
+    expect((await limitSlot.locator('[data-ema-clip-sizer]').boundingBox())!.height).toBeGreaterThanOrEqual((await limitSlot.locator('.ema-clip').boundingBox())!.height - 0.5);
+    await expect(card(page).locator('[data-ema-figure="landscape"] .ema-notes')).not.toContainText('..');
     await expectAccessible(page, 'numerical limit');
     await shot(page, 'divergence-limit');
-    await card(page).locator('[data-eka-panel="values"]').screenshot({ path: `${SHOTS}/limit-values.png` });
+    await card(page).locator('[data-ema-panel="values"]').screenshot({ path: `${SHOTS}/limit-values.png` });
     // The read-out and an SVG capture state the limit, not a value.
-    const readOut = await card(page).getByRole('button', { name: 'Read current values' }).click().then(() => card(page).locator('.eka-sr[role=status][aria-live=polite]').textContent());
+    const readOut = await card(page).getByRole('button', { name: 'Read current values' }).click().then(() => card(page).locator('.ema-sr[role=status][aria-live=polite]').textContent());
     expect(readOut).toContain('Position: Beyond numerical range');
     expect(errors).toEqual([]);
   });

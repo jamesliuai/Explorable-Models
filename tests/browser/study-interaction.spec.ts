@@ -9,7 +9,7 @@
  * results; they say nothing about the Study Harness host, a packaged WebView, assistive-technology use or learning.
  */
 import { expect, test, type Page } from '@playwright/test';
-import type { InteractionEvent, LearnerProjection } from '@experiment-kit/activity';
+import type { InteractionEvent, LearnerProjection } from '@explorable-models/activity';
 import { card, control, expectAccessible, focused, hostEvents, hostExposures, openFixture, projection, renderedFrameIds, respond, settle, step } from './support/study-harness';
 import { drive } from '../player-activity/support/study-2d-browser';
 
@@ -24,15 +24,15 @@ type W = { studyHarnessFixture: Fixture };
 type ProjectionLab = { __lab: { binding: { getProjection(): LearnerProjection; publish(change: (p: LearnerProjection) => LearnerProjection): unknown } } };
 const payloads = (events: InteractionEvent[], type: string) => events.filter(event => event.type === type).map(event => event.payload as Record<string, unknown>);
 const since = async (page: Page, mark: number) => (await hostEvents(page)).slice(mark);
-const ui = (page: Page) => card(page).locator('.eka');
+const ui = (page: Page) => card(page).locator('.ema');
 const current = (page: Page, parameter: string) => projection(page).then(p => p.controls.find(item => item.parameter === parameter)!.value);
 
 test('R14 graph dragging converts canonical metre displacements to centimetre control values on both axes', async ({ page }) => {
   const errors: string[] = [];
   page.on('pageerror', error => errors.push(error.message));
   await page.goto('/examples/study-harness-host/projection-lab.html?fixture=geometry&width=960');
-  const surface = page.locator('#lab-surface [data-experiment-kit-activity]');
-  await expect(surface.locator('.eka')).toHaveAttribute('data-eka-ui-state', 'ready');
+  const surface = page.locator('#lab-surface [data-explorable-models-activity]');
+  await expect(surface.locator('.ema')).toHaveAttribute('data-ema-ui-state', 'ready');
   // This is a renderer fixture: supply a consistent learner projection in centimetres while its drawing stays in
   // canonical metres. Its binding echoes commands, so the assertions measure the renderer's actual command values.
   await page.evaluate(() => (window as unknown as ProjectionLab).__lab.binding.publish(p => ({
@@ -42,11 +42,11 @@ test('R14 graph dragging converts canonical metre displacements to centimetre co
   })));
   const handle = surface.locator('[data-draggable="true"]').first();
   await handle.scrollIntoViewIfNeeded();
-  const position = await handle.locator('circle.eka-hit').boundingBox();
+  const position = await handle.locator('circle.ema-hit').boundingBox();
   expect(position).not.toBeNull();
   const scale = await surface.locator('figure').first().evaluate(figure => {
     const spacing = (anchor: string, coordinate: 'x' | 'y') => {
-      const ticks = [...figure.querySelectorAll<SVGTextElement>(`text.eka-tick[text-anchor="${anchor}"]`)].map(tick => {
+      const ticks = [...figure.querySelectorAll<SVGTextElement>(`text.ema-tick[text-anchor="${anchor}"]`)].map(tick => {
         const rect = tick.getBoundingClientRect();
         return { value: Number((tick.textContent ?? '').replace('−', '-')), pixel: coordinate === 'x' ? rect.x + rect.width / 2 : rect.y + rect.height / 2 };
       });
@@ -62,7 +62,7 @@ test('R14 graph dragging converts canonical metre displacements to centimetre co
   await page.mouse.move(x + scale.x, y - scale.y / 2, { steps: 4 });
   await expect.poll(values).toEqual([{ parameter: 'px', value: -150 }, { parameter: 'py', value: 200 }]);
   await page.mouse.up();
-  await expect(surface.locator('.eka')).toHaveAttribute('data-eka-ui-state', 'ready');
+  await expect(surface.locator('.ema')).toHaveAttribute('data-ema-ui-state', 'ready');
   await expect.poll(values).toEqual([{ parameter: 'px', value: -150 }, { parameter: 'py', value: 200 }]);
   await handle.press('ArrowRight');
   await expect.poll(values).toEqual([{ parameter: 'px', value: -140 }, { parameter: 'py', value: 200 }]);
@@ -87,7 +87,7 @@ async function sliderAt(page: Page, parameter: string) {
 /** Records the pointer ID of every pointerdown inside the card (for lost-capture and pointercancel dispatch). */
 async function trackPointer(page: Page): Promise<void> {
   await page.evaluate(() => {
-    const root = document.querySelector('[data-fx-card] [data-experiment-kit-activity]')!.shadowRoot!;
+    const root = document.querySelector('[data-fx-card] [data-explorable-models-activity]')!.shadowRoot!;
     root.addEventListener('pointerdown', event => { (window as unknown as { fxPointer: number }).fxPointer = (event as PointerEvent).pointerId; }, { capture: true });
   });
 }
@@ -100,7 +100,7 @@ async function trackPointer(page: Page): Promise<void> {
  */
 async function loseCapture(page: Page, selector: string): Promise<'released' | 'dispatched'> {
   return page.evaluate(css => {
-    const root = document.querySelector('[data-fx-card] [data-experiment-kit-activity]')!.shadowRoot!;
+    const root = document.querySelector('[data-fx-card] [data-explorable-models-activity]')!.shadowRoot!;
     const element = root.querySelector(css)!;
     const id = (window as unknown as { fxPointer: number }).fxPointer;
     if (element.hasPointerCapture(id)) { element.releasePointerCapture(id); return 'released' as const; }
@@ -114,7 +114,7 @@ async function loseCapture(page: Page, selector: string): Promise<'released' | '
  */
 async function recordLive(page: Page): Promise<{ now(): Promise<number>; since(mark: number): Promise<string[]> }> {
   await page.evaluate(() => {
-    const live = document.querySelector('[data-fx-card] [data-experiment-kit-activity]')!.shadowRoot!.querySelector('.eka-sr[role=status][aria-live=polite]')!;
+    const live = document.querySelector('[data-fx-card] [data-explorable-models-activity]')!.shadowRoot!.querySelector('.ema-sr[role=status][aria-live=polite]')!;
     const log: { at: number; text: string }[] = [];
     (window as unknown as { fxLiveLog: typeof log }).fxLiveLog = log;
     new MutationObserver(() => log.push({ at: performance.now(), text: live.textContent ?? '' })).observe(live, { childList: true, characterData: true, subtree: true });
@@ -126,11 +126,11 @@ async function recordLive(page: Page): Promise<{ now(): Promise<number>; since(m
 }
 const bindingErrors = (page: Page) => page.evaluate(() => (window as unknown as W).studyHarnessFixture.diagnostics.filter(item => item.code !== 'CLIPPED' && item.code !== 'LABEL_OVERLAP').map(item => item.code));
 const tentative = (page: Page) => page.waitForFunction(() => window.studyHarnessFixture.binding!.getProjection().frame?.kind === 'tentative');
-const handle = (page: Page, figure: string) => card(page).locator(`figure[data-eka-figure="${figure}"] [data-draggable="true"]`).first();
+const handle = (page: Page, figure: string) => card(page).locator(`figure[data-ema-figure="${figure}"] [data-draggable="true"]`).first();
 async function handleCenter(page: Page, figure: string): Promise<{ x: number; y: number }> {
   const target = handle(page, figure);
   await target.scrollIntoViewIfNeeded();
-  const box = (await target.locator('circle.eka-hit').boundingBox())!;
+  const box = (await target.locator('circle.ema-hit').boundingBox())!;
   return { x: box.x + box.width / 2, y: box.y + box.height / 2 };
 }
 
@@ -267,14 +267,14 @@ test.describe('interaction edge cases (report §9–§11)', () => {
     const mark = (await hostEvents(page)).length;
     await page.evaluate(() => { (window as unknown as W).studyHarnessFixture.workerFaults.drop = 1; });
     await card(page).getByRole('button', { name: 'Next iteration' }).click();
-    await expect(ui(page)).toHaveAttribute('data-eka-ui-state', 'recoverable-failure', { timeout: 9_000 });
+    await expect(ui(page)).toHaveAttribute('data-ema-ui-state', 'recoverable-failure', { timeout: 9_000 });
     expect(await page.evaluate(() => (window as unknown as W).studyHarnessFixture.workerFaults.dropped)).toBe(1);
     const failed = await projection(page);
     expect(failed.frame).toMatchObject({ frameId: before.frame!.frameId, kind: 'committed', position: { index: 0 } });
     expect(new Set((await renderedFrameIds(page)).map(item => item.frameId))).toEqual(new Set([before.frame!.frameId]));
     await expectAccessible(page, 'recoverable failure');
     await card(page).getByRole('button', { name: 'Try again' }).first().click();
-    await expect(ui(page)).toHaveAttribute('data-eka-ui-state', 'paused');
+    await expect(ui(page)).toHaveAttribute('data-ema-ui-state', 'paused');
     await settle(page);
     const after = await projection(page);
     expect(after.navigation?.value).toBe(1);
@@ -292,14 +292,14 @@ test.describe('interaction edge cases (report §9–§11)', () => {
     await toRevealedTrace(page);
     await card(page).getByRole('button', { name: 'Next iteration' }).focus();
     const timing = await page.evaluate(() => new Promise<{ logged: string | undefined; elapsed: number }>(resolve => {
-      const root = document.querySelector('[data-fx-card] [data-experiment-kit-activity]')!.shadowRoot!.querySelector<HTMLElement>('.eka')!;
+      const root = document.querySelector('[data-fx-card] [data-explorable-models-activity]')!.shadowRoot!.querySelector<HTMLElement>('.ema')!;
       let started = 0;
       const observer = new MutationObserver(() => {
-        if (root.dataset.ekaUiState !== 'disposed') return;
+        if (root.dataset.emaUiState !== 'disposed') return;
         observer.disconnect();
         resolve({ logged: (window as unknown as W).studyHarnessFixture.projectionLog.at(-1)?.ui, elapsed: performance.now() - started });
       });
-      observer.observe(root, { attributes: true, attributeFilter: ['data-eka-ui-state'] });
+      observer.observe(root, { attributes: true, attributeFilter: ['data-ema-ui-state'] });
       started = performance.now();
       (window as unknown as W).studyHarnessFixture.adapter.dispose((window as unknown as W).studyHarnessFixture.prepared!.activityId);
     }));
@@ -309,7 +309,7 @@ test.describe('interaction edge cases (report §9–§11)', () => {
     await expect(card(page).locator('figure')).toHaveCount(0);
     await expect(card(page).locator('input, select, [data-draggable]')).toHaveCount(0);
     await expect(card(page).getByRole('button', { name: /Next iteration|Reset experiment|Keep this run|Read current values/ })).toHaveCount(0);
-    await expect(card(page).locator('.eka-banner').first()).toContainText(/This activity has (ended|been closed)/);
+    await expect(card(page).locator('.ema-banner').first()).toContainText(/This activity has (ended|been closed)/);
     const focus = await focused(page);
     expect(focus).toMatchObject({ tag: expect.stringMatching(/^h[2-6]$/), inCard: true, name: (await projection(page)).title });
     await expectAccessible(page, 'disposed');
@@ -388,17 +388,17 @@ test.describe('interaction edge cases (report §9–§11)', () => {
     await expect(back).toHaveAttribute('aria-disabled', 'true');
     await expect(back).toHaveAccessibleDescription(/already at the start \(n = 0\)/);
     // Being at n = 0 is read from the position readout; its reason is announced, not shown, so the panel keeps its height (G40).
-    await expect(card(page).locator('.eka-position')).toHaveText('n = 0 of 1000');
+    await expect(card(page).locator('.ema-position')).toHaveText('n = 0 of 1000');
     const before = await projection(page);
     const mark = (await hostEvents(page)).length;
 
     await page.evaluate(() => (window as unknown as W).studyHarnessFixture.prepared!.host.suspend({ operationId: 'fx-test-suspend', reason: 'host' }));
-    await expect(ui(page)).toHaveAttribute('data-eka-ui-state', 'suspended');
-    const scientific = card(page).locator('input[type=range], .eka-control input.eka-input, .eka-control button, .eka-scenarios button, .eka-nav button, [data-eka-action="reset-experiment"] button');
+    await expect(ui(page)).toHaveAttribute('data-ema-ui-state', 'suspended');
+    const scientific = card(page).locator('input[type=range], .ema-control input.ema-input, .ema-control button, .ema-scenarios button, .ema-nav button, [data-ema-action="reset-experiment"] button');
     const count = await scientific.count();
     expect(count).toBeGreaterThan(10);
     for (let index = 0; index < count; index++) await expect(scientific.nth(index), `control ${index}`).toHaveAttribute('aria-disabled', 'true');
-    await expect(control(page, 'eta').locator('.eka-reason')).toContainText('Paused by the host.');
+    await expect(control(page, 'eta').locator('.ema-reason')).toContainText('Paused by the host.');
     await expect(card(page).getByRole('button', { name: 'Next iteration' })).toHaveAccessibleDescription(/Paused by the host/);
     await expect(card(page).getByRole('button', { name: 'Reset experiment' })).toHaveAccessibleDescription(/Paused by the host/);
     await expect(card(page).getByRole('button', { name: /Keep this run/ })).toHaveCount(0);
@@ -408,7 +408,7 @@ test.describe('interaction edge cases (report §9–§11)', () => {
     await slider.focus();
     await page.keyboard.press('ArrowRight');
     await card(page).getByRole('button', { name: 'Next iteration' }).click({ force: true });
-    await card(page).locator('.eka-scenarios button').nth(1).click({ force: true });
+    await card(page).locator('.ema-scenarios button').nth(1).click({ force: true });
     await card(page).getByRole('button', { name: 'Reset experiment' }).click({ force: true });
     await page.waitForTimeout(300);
     const suspended = await projection(page);
@@ -418,18 +418,18 @@ test.describe('interaction edge cases (report §9–§11)', () => {
     await expectAccessible(page, 'host suspension');
 
     await page.evaluate(() => (window as unknown as W).studyHarnessFixture.prepared!.host.resume({ operationId: 'fx-test-resume' }));
-    await expect(ui(page)).not.toHaveAttribute('data-eka-ui-state', 'suspended');
+    await expect(ui(page)).not.toHaveAttribute('data-ema-ui-state', 'suspended');
     await expect(slider).not.toHaveAttribute('aria-disabled', 'true');
     await expect(card(page).getByRole('button', { name: /Keep this run/ })).toHaveCount(1);
 
     await page.evaluate(() => (window as unknown as W).studyHarnessFixture.session.revokePolicy());
-    await expect(ui(page)).toHaveAttribute('data-eka-ui-state', 'stale-policy');
-    await expect(card(page).locator('.eka-instruction')).toHaveText('This activity is waiting for the host. Nothing new is shown until the permissions are updated.');
-    await expect(card(page).locator('input[type=range], .eka-scenarios button, [data-eka-action="reset-experiment"]')).toHaveCount(0);
+    await expect(ui(page)).toHaveAttribute('data-ema-ui-state', 'stale-policy');
+    await expect(card(page).locator('.ema-instruction')).toHaveText('This activity is waiting for the host. Nothing new is shown until the permissions are updated.');
+    await expect(card(page).locator('input[type=range], .ema-scenarios button, [data-ema-action="reset-experiment"]')).toHaveCount(0);
     await expect(card(page).getByRole('button', { name: /Keep this run/ })).toHaveCount(0);
     // A blocked card shows nothing to navigate and nothing that invites work it cannot accept (S4, report §10.4).
-    await expect(card(page).locator('.eka-nav')).toHaveCount(0);
-    await expect(card(page).locator('.eka-pending')).toHaveCount(0);
+    await expect(card(page).locator('.ema-nav')).toHaveCount(0);
+    await expect(card(page).locator('.ema-pending')).toHaveCount(0);
     expect(payloads(await since(page, mark), 'parameters.committed')).toEqual([]);
     expect(await bindingErrors(page)).toEqual([]);
     expect(errors).toEqual([]);
@@ -439,18 +439,18 @@ test.describe('interaction edge cases (report §9–§11)', () => {
     const errors = await openFixture(page);
     const before = await projection(page);
     expect(before.stage.response?.prompt).toBeTruthy();
-    await expect(card(page).locator('.eka-response .eka-panel-title')).toHaveText(before.stage.response!.prompt);
+    await expect(card(page).locator('.ema-response .ema-panel-title')).toHaveText(before.stage.response!.prompt);
     await page.evaluate(() => (window as unknown as W).studyHarnessFixture.session.revokePolicy());
-    await expect(ui(page)).toHaveAttribute('data-eka-ui-state', 'stale-policy');
-    await expect(card(page).locator('.eka-banner')).toHaveCount(1);
-    await expect(card(page).locator('.eka-banner .eka-banner-title')).toHaveText('Permissions changed');
-    await expect(card(page).locator('.eka-instruction')).toHaveText('This activity is waiting for the host. Nothing new is shown until the permissions are updated.');
+    await expect(ui(page)).toHaveAttribute('data-ema-ui-state', 'stale-policy');
+    await expect(card(page).locator('.ema-banner')).toHaveCount(1);
+    await expect(card(page).locator('.ema-banner .ema-banner-title')).toHaveText('Permissions changed');
+    await expect(card(page).locator('.ema-instruction')).toHaveText('This activity is waiting for the host. Nothing new is shown until the permissions are updated.');
     // The host's own response area (its slot) is the host's; the activity's prompt inviting a response is gone.
-    await expect(card(page).locator('.eka-response .eka-panel-title')).toHaveCount(0);
+    await expect(card(page).locator('.ema-response .ema-panel-title')).toHaveCount(0);
     const text = (await card(page).textContent()) ?? '';
     expect(text).not.toContain(before.stage.response!.prompt);
     expect(text).not.toContain(before.stage.instruction);
-    await expect(card(page).locator('.eka-nav, .eka-pending, figure, input[type=range]')).toHaveCount(0);
+    await expect(card(page).locator('.ema-nav, .ema-pending, figure, input[type=range]')).toHaveCount(0);
     expect((await projection(page)).stage.response).toBeUndefined();
     await expectAccessible(page, 'stale policy in a prompting stage');
     expect(errors).toEqual([]);
@@ -462,11 +462,11 @@ test.describe('interaction edge cases (report §9–§11)', () => {
     await control(page, 'eta').getByRole('slider').focus();
     expect(await focused(page)).toMatchObject({ tag: 'input', type: 'range', inCard: true });
     await page.evaluate(() => (window as unknown as W).studyHarnessFixture.session.revokePolicy());
-    await expect(ui(page)).toHaveAttribute('data-eka-ui-state', 'stale-policy');
+    await expect(ui(page)).toHaveAttribute('data-ema-ui-state', 'stale-policy');
     await expect.poll(() => focused(page)).toMatchObject({ tag: 'p', inCard: true, name: 'This activity is waiting for the host. Nothing new is shown until the permissions are updated.' });
     // Into a contentless state: the instruction goes as well, so focus moves on to the card heading.
     await page.evaluate(() => (window as unknown as W).studyHarnessFixture.adapter.dispose((window as unknown as W).studyHarnessFixture.prepared!.activityId));
-    await expect(ui(page)).toHaveAttribute('data-eka-ui-state', 'disposed');
+    await expect(ui(page)).toHaveAttribute('data-ema-ui-state', 'disposed');
     await expect.poll(() => focused(page)).toMatchObject({ tag: expect.stringMatching(/^h[2-6]$/), inCard: true });
     expect(errors).toEqual([]);
   });
@@ -477,7 +477,7 @@ test.describe('interaction edge cases (report §9–§11)', () => {
     await toRevealedTrace(page);
     await page.waitForTimeout(2_000);
     await page.evaluate(() => {
-      const live = document.querySelector('[data-fx-card] [data-experiment-kit-activity]')!.shadowRoot!.querySelector('.eka-sr[role=status][aria-live=polite]')!;
+      const live = document.querySelector('[data-fx-card] [data-explorable-models-activity]')!.shadowRoot!.querySelector('.ema-sr[role=status][aria-live=polite]')!;
       const log: { at: number; text: string }[] = [];
       (window as unknown as { fxLive: typeof log }).fxLive = log;
       new MutationObserver(() => log.push({ at: performance.now(), text: live.textContent ?? '' })).observe(live, { childList: true, characterData: true, subtree: true });
@@ -485,13 +485,13 @@ test.describe('interaction edge cases (report §9–§11)', () => {
     const now = () => page.evaluate(() => performance.now());
     const live = () => page.evaluate(() => (window as unknown as { fxLive: { at: number; text: string }[] }).fxLive.map(entry => ({ ...entry })));
     await card(page).getByRole('button', { name: 'Play' }).click();
-    await expect(ui(page)).toHaveAttribute('data-eka-ui-state', 'playing');
+    await expect(ui(page)).toHaveAttribute('data-ema-ui-state', 'playing');
     const playing = await now();
     await page.waitForTimeout(2_500);
     expect((await projection(page)).navigation!.value).toBeGreaterThan(2);
     const pauseAt = await now();
     await card(page).getByRole('button', { name: 'Pause' }).click();
-    await expect(ui(page)).not.toHaveAttribute('data-eka-ui-state', 'playing');
+    await expect(ui(page)).not.toHaveAttribute('data-ema-ui-state', 'playing');
     await page.waitForTimeout(2_000);
     const paused = await projection(page);
     let log = await live();
@@ -520,8 +520,8 @@ test.describe('interaction edge cases (report §9–§11)', () => {
     const restarted = await page.evaluate(() => (window as unknown as { studyHarnessFixture: { restartHost(): Promise<{ ok: boolean; message: string }> } }).studyHarnessFixture.restartHost());
     expect(restarted, restarted.message).toMatchObject({ ok: true });
     await settle(page);
-    await expect(ui(page)).toHaveAttribute('data-eka-ui-state', 'restored');
-    const liveRegion = card(page).locator('.eka-sr[role=status][aria-live=polite]');
+    await expect(ui(page)).toHaveAttribute('data-ema-ui-state', 'restored');
+    const liveRegion = card(page).locator('.ema-sr[role=status][aria-live=polite]');
     await expect(liveRegion).toContainText('Restored from a saved state');
     expect(errors).toEqual([]);
   });
@@ -560,7 +560,7 @@ test.describe('interaction edge cases (report §9–§11)', () => {
     await toRevealedTrace(page);
     await card(page).getByRole('button', { name: 'Next iteration' }).click();
     await settle(page);
-    const region = card(page).locator('.eka-sr[role=status][aria-live=polite]');
+    const region = card(page).locator('.ema-sr[role=status][aria-live=polite]');
     const instructional = (await projection(page)).views.flatMap(view => view.values).map(value => value.label);
     await card(page).getByRole('button', { name: 'Read current values' }).click();
     for (const label of instructional) await expect(region).toContainText(`${label}:`);
@@ -571,8 +571,8 @@ test.describe('interaction edge cases (report §9–§11)', () => {
     // Match the current projection and rendered ID in one read, rather than waiting for a superseded snapshot ID.
     await page.waitForFunction(() => {
       const current = window.studyHarnessFixture.binding!.getProjection();
-      const root = document.querySelector('[data-fx-card] [data-experiment-kit-activity]')?.shadowRoot?.querySelector('.eka');
-      return current.context === 'independent' && root?.getAttribute('data-eka-projection') === current.projectionId;
+      const root = document.querySelector('[data-fx-card] [data-explorable-models-activity]')?.shadowRoot?.querySelector('.ema');
+      return current.context === 'independent' && root?.getAttribute('data-ema-projection') === current.projectionId;
     }, null, { timeout: 8_000 });
     const independent = await projection(page);
     expect(independent.context).toBe('independent');
@@ -590,7 +590,7 @@ test.describe('interaction edge cases (report §9–§11)', () => {
     // Closing the mounted card (the host keeps it on screen): announced once, and nothing earlier stays.
     const closeAt = await live.now();
     await page.evaluate(() => (window as unknown as { studyHarnessFixture: { prepared: { host: { close(input: { operationId: string; reason?: string }): Promise<unknown> } } } }).studyHarnessFixture.prepared.host.close({ operationId: 'fx-test-close-live', reason: 'Lesson finished.' }));
-    await expect(ui(page)).toHaveAttribute('data-eka-ui-state', 'empty');
+    await expect(ui(page)).toHaveAttribute('data-ema-ui-state', 'empty');
     await page.waitForTimeout(2_000);
     expect(await live.since(closeAt)).toEqual(['This activity is closed.']);
     await expect(region).toHaveText('This activity is closed.');
@@ -611,7 +611,7 @@ test.describe('interaction edge cases (report §9–§11)', () => {
     await expect(stop).not.toHaveAttribute('aria-disabled', 'true');
     const live = await recordLive(page);
     await page.evaluate(() => (window as unknown as W).studyHarnessFixture.prepared!.host.suspend({ operationId: 'fx-test-suspend-compare', reason: 'host' }));
-    await expect(ui(page)).toHaveAttribute('data-eka-ui-state', 'suspended');
+    await expect(ui(page)).toHaveAttribute('data-ema-ui-state', 'suspended');
     await expect(stop).toHaveAttribute('aria-disabled', 'true');
     await expect(stop).toHaveAccessibleDescription(/Paused by the host\./);
     const mark = await live.now();
@@ -635,8 +635,8 @@ test.describe('interaction edge cases (report §9–§11)', () => {
     // Every worker reply is dropped: the step and each recovery time out (watchdog), so recovery is exhausted.
     await page.evaluate(() => { (window as unknown as W).studyHarnessFixture.workerFaults.drop = 1_000; });
     await card(page).getByRole('button', { name: 'Next iteration' }).click();
-    await expect(ui(page)).toHaveAttribute('data-eka-ui-state', 'recoverable-failure', { timeout: 15_000 });
-    const banner = card(page).locator('.eka-banner[data-ui-state="recoverable-failure"]');
+    await expect(ui(page)).toHaveAttribute('data-ema-ui-state', 'recoverable-failure', { timeout: 15_000 });
+    const banner = card(page).locator('.ema-banner[data-ui-state="recoverable-failure"]');
     // Each attempt is refused by the card's binding with a worker diagnostic once its evaluation times out.
     const workerRefusals = () => page.evaluate(() => (window as unknown as W).studyHarnessFixture.diagnostics.filter(item => item.code === 'WORKER_TIMEOUT' || item.code === 'WORKER_ERROR').length);
     const live = await recordLive(page);
@@ -648,14 +648,14 @@ test.describe('interaction edge cases (report §9–§11)', () => {
       await banner.getByRole('button', { name: 'Try again' }).click();
       await expect.poll(workerRefusals, { timeout: 15_000 }).toBeGreaterThan(refused);
       await expect.poll(async () => (await projection(page)).status.recovery?.action).toBe(attempt < 3 ? 'retry' : 'reload');
-      await expect(ui(page)).toHaveAttribute('data-eka-ui-state', 'recoverable-failure');
+      await expect(ui(page)).toHaveAttribute('data-ema-ui-state', 'recoverable-failure');
     }
     await expect(banner.getByRole('button', { name: 'Reload the activity' })).toHaveCount(1);
     await expect(banner).toContainText('Trying again did not restore the calculation.');
     await expect(card(page).getByRole('button', { name: 'Try again' })).toHaveCount(0);
     // The screen-reader channel agrees with the banner: the attempt that uses up the retries is announced with the new
     // status and Reload the activity, said once, and nothing after it tells the learner to try again (residual of R18).
-    const region = card(page).locator('.eka-sr[role=status][aria-live=polite]');
+    const region = card(page).locator('.ema-sr[role=status][aria-live=polite]');
     await expect(region).toContainText('Trying again did not restore the calculation. Reload the activity.');
     await page.waitForTimeout(2_000);
     const said = await live.since(lastAttempt);
@@ -681,7 +681,7 @@ test.describe('interaction edge cases (report §9–§11)', () => {
     await page.route(/katex/i, async route => { await held; await route.continue(); });
     const errors = await openFixture(page, '?template=linear-transformation');
     const read = card(page).getByRole('button', { name: 'Read current values' });
-    const equations = card(page).locator('[data-eka-panel="equations"]');
+    const equations = card(page).locator('[data-ema-panel="equations"]');
     await expect(equations.locator('.katex')).toHaveCount(0);
     await read.evaluate(element => element.scrollIntoView({ block: 'end' }));
     const box = (await read.boundingBox())!;
@@ -695,7 +695,7 @@ test.describe('interaction edge cases (report §9–§11)', () => {
     expect(Math.abs(after.y - box.y), 'the button under the pointer did not move').toBeLessThanOrEqual(1);
     await page.mouse.down();
     await page.mouse.up();
-    await expect(card(page).locator('.eka-sr[role=status][aria-live=polite]')).toContainText('Image of e');
+    await expect(card(page).locator('.ema-sr[role=status][aria-live=polite]')).toContainText('Image of e');
     expect(errors).toEqual([]);
   });
 
@@ -765,7 +765,7 @@ test.describe('interaction edge cases (report §9–§11)', () => {
     await page.mouse.down();
     await page.mouse.move(point.x + 50, point.y, { steps: 4 });
     await tentative(page);
-    const pointPath = await loseCapture(page, 'figure[data-eka-figure="function-plot"] [data-draggable="true"]');
+    const pointPath = await loseCapture(page, 'figure[data-ema-figure="function-plot"] [data-draggable="true"]');
     test.info().annotations.push({ type: 'G33 lost capture', description: `slider: ${sliderPath}; point: ${pointPath}` });
     await page.mouse.move(point.x + 80, point.y, { steps: 2 });
     await page.waitForFunction(() => window.studyHarnessFixture.binding!.getProjection().frame?.kind === 'committed');
@@ -871,7 +871,7 @@ test.describe('interaction edge cases (report §9–§11)', () => {
     await toRevealedTrace(page);
     const mark = (await hostEvents(page)).length;
     const clicked = await page.evaluate(() => {
-      const buttons = [...document.querySelector('[data-fx-card] [data-experiment-kit-activity]')!.shadowRoot!.querySelectorAll<HTMLButtonElement>('.eka-scenarios button')];
+      const buttons = [...document.querySelector('[data-fx-card] [data-explorable-models-activity]')!.shadowRoot!.querySelectorAll<HTMLButtonElement>('.ema-scenarios button')];
       buttons[1]!.click();
       buttons[2]!.click();
       return [buttons[1]!.textContent, buttons[2]!.textContent];
@@ -943,7 +943,7 @@ test.describe('interaction edge cases (report §9–§11)', () => {
 
   test('G47 function-derivative: P is draggable while exploring (pointer, keyboard, Escape), commits on the 0.25 grid, and the copy says so', async ({ page }) => {
     const errors = await openFixture(page, '?template=function-derivative&mode=free');
-    await expect(control(page, 'p').locator('.eka-control-hint')).toContainText('You can also drag P');
+    await expect(control(page, 'p').locator('.ema-control-hint')).toContainText('You can also drag P');
     const target = handle(page, 'function-plot');
     await expect(target).toHaveAttribute('aria-roledescription', 'movable point');
     await expectAccessible(page, 'draggable P');

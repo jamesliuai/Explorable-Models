@@ -39,8 +39,8 @@ const read = (path: string): string | null => { const file = join(directory, pat
 const { importPortableBackup, bundleCatalog } = await import('./portable-backup.js');
 const { MemoryHost } = await import('./memory-host.js');
 const { inlineWorkers, until } = await import('../../core/support/inline-worker.js');
-const { createStudyHarnessAdapter } = await import('@experiment-kit/activity');
-const { createInstalledCatalog, INSTALLED_KERNELS } = await import('@experiment-kit/catalog');
+const { createStudyHarnessAdapter } = await import('@explorable-models/activity');
+const { createInstalledCatalog, INSTALLED_KERNELS } = await import('@explorable-models/catalog');
 
 const imported = importPortableBackup(null, read);
 const activityId = imported.checkpoint.instance.activityId;

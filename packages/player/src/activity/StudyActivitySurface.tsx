@@ -27,8 +27,8 @@
  */
 import { useCallback, useEffect, useImperativeHandle, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import type { CSSProperties, ReactNode, Ref } from 'react';
-import type { CommandOutcome, LearnerProjection, ProjectedControl, ProjectedStatus, ProjectedView, UiState } from '@experiment-kit/activity';
-import { projectionDigest } from '@experiment-kit/activity';
+import type { CommandOutcome, LearnerProjection, ProjectedControl, ProjectedStatus, ProjectedView, UiState } from '@explorable-models/activity';
+import { projectionDigest } from '@explorable-models/activity';
 import { assetLocations, INTER_FONT_FILES, adoptSheet, mathStylesheet, registerFonts } from './assets.js';
 import { awaitRenderedProjection, captureRejection, loadCaptureView, CaptureError, type CaptureOptions } from './capture.js';
 import { formatPlain } from './format.js';
@@ -121,7 +121,7 @@ export function StudyActivitySurface(props: StudyActivitySurfaceProps & Internal
   const lifetime = useRef<AbortController | null>(null);
   const propsRef = useRef(props);
   propsRef.current = props;
-  const titleId = useStableId('eka-title');
+  const titleId = useStableId('ema-title');
 
   const prefersDark = useMediaQuery('(prefers-color-scheme: dark)');
   const reducedMotion = useMediaQuery('(prefers-reduced-motion: reduce)');
@@ -327,7 +327,7 @@ export function StudyActivitySurface(props: StudyActivitySurfaceProps & Internal
   });
   useEffect(() => {
     if (!inspectRequest) return;
-    const target = tableRegion.current ?? rootRef.current?.querySelector<HTMLElement>('[data-eka-panel="values"]');
+    const target = tableRegion.current ?? rootRef.current?.querySelector<HTMLElement>('[data-ema-panel="values"]');
     target?.focus();
     target?.scrollIntoView?.({ block: 'nearest' });
   }, [inspectRequest]);
@@ -360,7 +360,7 @@ export function StudyActivitySurface(props: StudyActivitySurfaceProps & Internal
       if (current.projectionId !== frozen.projectionId && projectionDigest({ ...current, status: frozen.status }) !== frozen.projectionDigest)
         throw new CaptureError('NOT_READY', 'The view changed while capture loaded.', 'Capture again after the view settles.');
       // Disposal aborts this wait even when an occluded page delivers no animation frames.
-      await awaitRenderedProjection({ projectionId: current.projectionId, shown: () => rootRef.current?.dataset.ekaProjection, signal: life.signal, nextFrame: nextAnimationFrame });
+      await awaitRenderedProjection({ projectionId: current.projectionId, shown: () => rootRef.current?.dataset.emaProjection, signal: life.signal, nextFrame: nextAnimationFrame });
       const root = rootRef.current;
       if (!root) throw new CaptureError('DISPOSED', 'This surface has been disposed.', 'Mount the activity again.');
       if (fonts === 'bundled') await root.ownerDocument.fonts?.ready;
@@ -396,46 +396,46 @@ export function StudyActivitySurface(props: StudyActivitySurfaceProps & Internal
   return (
     <RuntimeContext.Provider value={runtime}>
       <div
-        ref={rootRef} className="eka" style={variables} lang={locale} data-theme={mode} data-layout={projection.presentation.layout}
-        data-eka-surface={surfaceId} data-eka-projection={projection.projectionId} data-eka-ui-state={ui}
+        ref={rootRef} className="ema" style={variables} lang={locale} data-theme={mode} data-layout={projection.presentation.layout}
+        data-ema-surface={surfaceId} data-ema-projection={projection.projectionId} data-ema-ui-state={ui}
         onFocus={event => { lastFocus.current = event.target; }}
         onBlur={event => { if (!rootRef.current?.contains(event.relatedTarget as Node | null)) lastFocus.current = null; }}
         onPointerMove={event => trackPointer(event)} onWheel={event => trackPointer(event)}
         onPointerDown={event => trackPointer(event, true)} onPointerUp={event => trackPointer(event, false)}
         onPointerLeave={() => { pointer.current = null; }} onPointerCancel={() => { pointer.current = null; }}
       >
-        <section className="eka-card" aria-labelledby={titleId}>
-          <header className="eka-header">
-            <div className="eka-heading">
-              <Heading level={level} id={titleId} className="eka-title" ref={headingRef} tabIndex={-1}>{projection.title}</Heading>
-              {projection.context === 'independent' ? <span className="eka-subtitle">Independent task</span> : null}
+        <section className="ema-card" aria-labelledby={titleId}>
+          <header className="ema-header">
+            <div className="ema-heading">
+              <Heading level={level} id={titleId} className="ema-title" ref={headingRef} tabIndex={-1}>{projection.title}</Heading>
+              {projection.context === 'independent' ? <span className="ema-subtitle">Independent task</span> : null}
             </div>
             <PersistenceChip projection={projection} />
           </header>
           <StatusBanner projection={projection} onRecoveryAction={props.onRecoveryAction} />
           {commandError && !errorPresented ? (
-            <div className="eka-banner" data-tone="error">
-              <span className="eka-glyph" aria-hidden="true">×</span>
-              <div className="eka-banner-body"><p className="eka-banner-title">That change was not applied</p><p>{commandError}</p></div>
-              <div className="eka-banner-actions"><button type="button" className="eka-button eka-button-quiet" onClick={() => setCommandError(null)}>Dismiss</button></div>
+            <div className="ema-banner" data-tone="error">
+              <span className="ema-glyph" aria-hidden="true">×</span>
+              <div className="ema-banner-body"><p className="ema-banner-title">That change was not applied</p><p>{commandError}</p></div>
+              <div className="ema-banner-actions"><button type="button" className="ema-button ema-button-quiet" onClick={() => setCommandError(null)}>Dismiss</button></div>
             </div>
           ) : null}
           <PendingReveal projection={projection} />
-          {contentless ? null : <p className="eka-instruction" ref={instructionRef} tabIndex={-1}>{instruction}</p>}
+          {contentless ? null : <p className="ema-instruction" ref={instructionRef} tabIndex={-1}>{instruction}</p>}
           {contentless ? null : (
-            <div className="eka-workspace" data-single={mainContent ? undefined : 'true'}>
-              {mainContent ? <div className="eka-main">
+            <div className="ema-workspace" data-single={mainContent ? undefined : 'true'}>
+              {mainContent ? <div className="ema-main">
                 {graphical.map(view => view.kind === 'scene3d'
                   ? <SpatialView key={view.viewId} view={view} projection={projection} controls={projection.controls} showSummary={showText} headingLevel={level + 1} />
                   : <GraphicalView key={view.viewId} view={view} projection={projection} showText={showText} headingLevel={level + 1} />)}
                 {projection.navigation ? <Navigation navigation={projection.navigation} frame={projection.frame} headingLevel={level + 1} /> : null}
                 {projection.navigation ? <InlineStatus projection={projection} causes={NAVIGATION_NOTICES} /> : null}
                 {graphical.length && (tableViews.length || descriptionAlternative || tableAlternative) ? (
-                  <div className="eka-alternatives">
-                    <div className="eka-toolbar" role="group" aria-label="Also show">
-                      {tableViews.length ? <button type="button" className="eka-button" aria-pressed={showTables} onClick={() => setShowTables(value => !value)}>{tableAlternative?.label ?? 'Table'}</button> : null}
+                  <div className="ema-alternatives">
+                    <div className="ema-toolbar" role="group" aria-label="Also show">
+                      {tableViews.length ? <button type="button" className="ema-button" aria-pressed={showTables} onClick={() => setShowTables(value => !value)}>{tableAlternative?.label ?? 'Table'}</button> : null}
                       {/* The toggle always shows the generated view summaries, so it is named for that, not after the first description alternative. */}
-                      <button type="button" className="eka-button" aria-pressed={showText} onClick={() => setShowText(value => !value)}>Text description</button>
+                      <button type="button" className="ema-button" aria-pressed={showText} onClick={() => setShowText(value => !value)}>Text description</button>
                     </div>
                     <AlternativesInfo alternatives={projection.alternatives} />
                   </div>
@@ -444,9 +444,9 @@ export function StudyActivitySurface(props: StudyActivitySurfaceProps & Internal
                   <TablePanel key={view.viewId} table={view.table!} title={view.title} headingLevel={level + 1} frameId={projection.frame?.frameId ?? null} regionRef={index === 0 ? element => { tableRegion.current = element; } : undefined} />
                 )) : null}
               </div> : null}
-              <div className="eka-side">
+              <div className="ema-side">
                 {projection.controls.length ? (
-                  <section className="eka-panel" aria-label="Controls" data-eka-frame-id={projection.frame?.frameId}>
+                  <section className="ema-panel" aria-label="Controls" data-ema-frame-id={projection.frame?.frameId}>
                     {sections.map(section => section.section ? (
                       <ControlSection key={section.section.id} section={section.section} headingLevel={level + 1}>
                         {section.controls.map(control => <ParameterControl key={control.parameter} control={control} activePreviewId={projection.preview?.previewId ?? null} />)}
@@ -465,25 +465,25 @@ export function StudyActivitySurface(props: StudyActivitySurfaceProps & Internal
             </div>
           )}
           {!contentless && (projection.stage.response || props.responseSlot) ? (
-            <section className="eka-response" aria-label={projection.stage.response ? (projection.stage.response.kind === 'prediction' ? 'Your prediction' : 'Your explanation') : 'Your response'}>
-              {projection.stage.response ? <p className="eka-panel-title">{projection.stage.response.prompt}</p> : null}
+            <section className="ema-response" aria-label={projection.stage.response ? (projection.stage.response.kind === 'prediction' ? 'Your prediction' : 'Your explanation') : 'Your response'}>
+              {projection.stage.response ? <p className="ema-panel-title">{projection.stage.response.prompt}</p> : null}
               {props.responseSlot}
             </section>
           ) : null}
-          <footer className="eka-footer">
-            <p className="eka-review">{projection.reviewNotice}</p>
-            <div className="eka-footer-actions">
-              {contentless ? null : <button type="button" className="eka-button" onClick={() => announce(binding.describeCurrentValues(), 'request')}>Read current values</button>}
+          <footer className="ema-footer">
+            <p className="ema-review">{projection.reviewNotice}</p>
+            <div className="ema-footer-actions">
+              {contentless ? null : <button type="button" className="ema-button" onClick={() => announce(binding.describeCurrentValues(), 'request')}>Read current values</button>}
               {props.nextAction ? (
                 <>
-                  {props.nextAction.status ? <span className="eka-next-status" role="status">{props.nextAction.status}</span> : null}
-                  <button type="button" className="eka-button eka-button-primary" aria-disabled={props.nextAction.disabled || undefined}
+                  {props.nextAction.status ? <span className="ema-next-status" role="status">{props.nextAction.status}</span> : null}
+                  <button type="button" className="ema-button ema-button-primary" aria-disabled={props.nextAction.disabled || undefined}
                     onClick={() => { if (!props.nextAction?.disabled && !disposed.current) props.nextAction?.onSelect(); }}>{props.nextAction.label}</button>
                 </>
               ) : null}
             </div>
           </footer>
-          <div className="eka-sr" role="status" aria-live="polite" aria-atomic="true">{liveText}</div>
+          <div className="ema-sr" role="status" aria-live="polite" aria-atomic="true">{liveText}</div>
         </section>
       </div>
     </RuntimeContext.Provider>
@@ -491,7 +491,7 @@ export function StudyActivitySurface(props: StudyActivitySurfaceProps & Internal
 }
 
 function GraphicalView({ view, projection, showText, headingLevel }: { view: ProjectedView; projection: LearnerProjection; showText: boolean; headingLevel: number }) {
-  const titleId = useStableId('eka-view');
+  const titleId = useStableId('ema-view');
   const runtime = useRuntime();
   const camera = projection.presentation.views[view.viewId]?.camera;
   const guard = () => ({ operationId: runtime.opId(), expectedPresentationRevision: runtime.binding.getProjection().presentationRevision });
@@ -548,10 +548,10 @@ export function controlSections(controls: readonly ProjectedControl[]): { sectio
 
 /** One labelled group of related controls (report §10.2): a heading and the controls, exposed as one named group. */
 function ControlSection({ section, headingLevel, children }: { section: NonNullable<ProjectedControl['section']>; headingLevel: number; children: ReactNode }) {
-  const headingId = useStableId('eka-section');
+  const headingId = useStableId('ema-section');
   return (
-    <div className="eka-control-section" role="group" aria-labelledby={headingId} data-eka-section={section.id}>
-      <Heading level={headingLevel} id={headingId} className="eka-section-title">{section.label}</Heading>
+    <div className="ema-control-section" role="group" aria-labelledby={headingId} data-ema-section={section.id}>
+      <Heading level={headingLevel} id={headingId} className="ema-section-title">{section.label}</Heading>
       {children}
     </div>
   );

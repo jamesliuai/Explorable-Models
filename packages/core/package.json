@@ -1,5 +1,5 @@
 {
-  "name": "@experiment-kit/core",
+  "name": "@explorable-models/core",
   "version": "0.3.0-preview.1",
   "description": "Validated, inspectable analytical experiments for browsers and agent tools.",
   "type": "module",

@@ -62,12 +62,12 @@ const rel = (root: string, file: string): string => path.relative(root, file).sp
  */
 function authoredPolicy(root: string | null, collected: Map<string, string>): Plugin {
   return {
-    name: 'experiment-kit-authored-import-policy',
+    name: 'explorable-models-authored-import-policy',
     setup(context) {
       context.onResolve({ filter: /.*/ }, async args => {
         if (!inside(root, args.importer)) return undefined;
         if (!args.path.startsWith('./') && !args.path.startsWith('../'))
-          throw new CliError('INVALID_IMPORT', `${rel(root!, args.importer)}: import ${JSON.stringify(args.path)} is not allowed in authored code.`, 'Use relative .ts/.json files of the package and `import type` from @experiment-kit/core/model.');
+          throw new CliError('INVALID_IMPORT', `${rel(root!, args.importer)}: import ${JSON.stringify(args.path)} is not allowed in authored code.`, 'Use relative .ts/.json files of the package and `import type` from @explorable-models/core/model.');
         const resolved = await resolveInside(root!, args.importer, args.path);
         if ('problem' in resolved) throw new CliError('INVALID_IMPORT', `${rel(root!, args.importer)}: ${resolved.problem}`);
         return { path: resolved.file };
@@ -82,7 +82,7 @@ function authoredPolicy(root: string | null, collected: Map<string, string>): Pl
         const text = await readFile(args.path, 'utf8');
         if (name.endsWith('.ts')) for (const record of importsOf(args.path, text)) {
           const violation = importViolation(record);
-          if (violation) throw new CliError('INVALID_IMPORT', `${name} line ${record.line}: ${violation}`, 'Use relative .ts/.json files of the package and `import type` from @experiment-kit/core/model.');
+          if (violation) throw new CliError('INVALID_IMPORT', `${name} line ${record.line}: ${violation}`, 'Use relative .ts/.json files of the package and `import type` from @explorable-models/core/model.');
         }
         collected.set(name, text);
         const total = [...collected.values()].reduce((sum, item) => sum + Buffer.byteLength(item), 0);
@@ -97,7 +97,7 @@ function authoredPolicy(root: string | null, collected: Map<string, string>): Pl
 function kitModules(options: BundleOptions, withChecks: boolean): Plugin {
   const installedIndex = path.join(TOOLKIT_ROOT, 'packages/catalog/src/kernels/index.ts');
   return {
-    name: 'experiment-kit-kit-modules',
+    name: 'explorable-models-kit-modules',
     setup(context) {
       context.onResolve({ filter: /^kit:(kernel|checks)$/ }, args => {
         if (args.path === 'kit:kernel') {
@@ -109,7 +109,7 @@ function kitModules(options: BundleOptions, withChecks: boolean): Plugin {
       });
       context.onLoad({ filter: /.*/, namespace: 'kit' }, args => ({
         // Documented fallback when the catalogue source is absent: the published package's kernel list.
-        contents: args.path === 'installed' ? "export { INSTALLED_KERNELS } from '@experiment-kit/catalog';" : 'export {};', loader: 'ts', resolveDir: TOOLKIT_ROOT,
+        contents: args.path === 'installed' ? "export { INSTALLED_KERNELS } from '@explorable-models/catalog';" : 'export {};', loader: 'ts', resolveDir: TOOLKIT_ROOT,
       }));
     },
   };
@@ -149,9 +149,9 @@ async function copyAssets(directory: string): Promise<void> {
 export async function buildBundle(options: BundleOptions): Promise<BuiltBundle> {
   if (options.source === 'authored-kernel' && !options.root) throw new CliError('INVALID_PARAMETER', 'Authored kernels need a package root.');
   const entries = sourceEntries();
-  if (!entries['@experiment-kit/core/model'] && !existsSync(path.join(TOOLKIT_ROOT, 'node_modules/@experiment-kit/core'))) throw new CliError('TOOLKIT_INCOMPLETE', 'The toolkit tree has neither packages/core/src nor an installed @experiment-kit/core.');
-  if ((options.capture || options.preview) && !existsSync(FIXTURE_HOST_SOURCE)) throw new CliError('TOOLKIT_INCOMPLETE', `Stage captures and previews need the browser fixture host at ${path.relative(TOOLKIT_ROOT, FIXTURE_HOST_SOURCE)}.`, 'Use the unified experiment-kit toolkit tree, which ships examples/study-harness-host.');
-  const directory = await mkdtemp(path.join(tmpdir(), 'experiment-kit-activity-'));
+  if (!entries['@explorable-models/core/model'] && !existsSync(path.join(TOOLKIT_ROOT, 'node_modules/@explorable-models/core'))) throw new CliError('TOOLKIT_INCOMPLETE', 'The toolkit tree has neither packages/core/src nor an installed @explorable-models/core.');
+  if ((options.capture || options.preview) && !existsSync(FIXTURE_HOST_SOURCE)) throw new CliError('TOOLKIT_INCOMPLETE', `Stage captures and previews need the browser fixture host at ${path.relative(TOOLKIT_ROOT, FIXTURE_HOST_SOURCE)}.`, 'Use the unified explorable-models toolkit tree, which ships examples/study-harness-host.');
+  const directory = await mkdtemp(path.join(tmpdir(), 'explorable-models-activity-'));
   const kernelCollected = new Map<string, string>(), checksCollected = new Map<string, string>();
   const workerEntry = (checks: boolean) => [
     `import { startAuthorWorker } from ${JSON.stringify(path.join(CLI_SOURCE, 'activity-worker.ts'))};`,

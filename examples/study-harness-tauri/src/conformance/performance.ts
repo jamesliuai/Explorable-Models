@@ -20,7 +20,7 @@
 // not OS-level input: the time from the OS event to its dispatch is not part of these numbers. The raw series go to the
 // report; the driver (scripts/conformance.mjs) computes nearest-rank p50/p95 and judges the targets of
 // docs/study-harness/budgets.json. Nothing here changes host records outside this scenario's own fresh store.
-import type { ActivityBinding, Camera3D, LearnerProjection, PreparedActivity } from '@experiment-kit/activity';
+import type { ActivityBinding, Camera3D, LearnerProjection, PreparedActivity } from '@explorable-models/activity';
 import type { ReferenceHostApp } from '../app';
 import { call, onCall } from '../native-bridge';
 import { spatialRecords } from '../spatial';
@@ -238,14 +238,14 @@ class CardProbe {
     record(binding.getProjection());
     this.unsubscribe = binding.subscribe(record);
     this.observer = new MutationObserver(() => {
-      const projectionId = this.root.dataset.ekaProjection;
+      const projectionId = this.root.dataset.emaProjection;
       if (!projectionId || this.dom.at(-1)?.projectionId === projectionId) return;
       const entry: DomCommit = { projectionId, at: now(), paintAt: null };
       this.dom.push(entry);
       if (this.dom.length > 4000) this.dom.splice(0, 2000);
       afterPaint(at => { entry.paintAt = at; });
     });
-    this.observer.observe(root, { attributes: true, attributeFilter: ['data-eka-projection'] });
+    this.observer.observe(root, { attributes: true, attributeFilter: ['data-ema-projection'] });
   }
   /** The first DOM commit at or after `since` whose projection satisfies `test`, once painted. */
   painted(since: number, test: (published: Published) => boolean, timeoutMs = 10_000): Promise<DomCommit & { paintAt: number; published: Published }> {
@@ -262,7 +262,7 @@ class CardProbe {
 }
 
 function surfaceRoot(app: ReferenceHostApp): HTMLElement {
-  const root = app.surface?.element.shadowRoot?.querySelector<HTMLElement>('[data-eka-surface]');
+  const root = app.surface?.element.shadowRoot?.querySelector<HTMLElement>('[data-ema-surface]');
   if (!root) throw new Error('no mounted learner surface');
   return root;
 }
@@ -355,7 +355,7 @@ async function lifecycle(app: ReferenceHostApp, meter: Instrument) {
     timersPendingFromCycles: after.timers.pending.cycles ?? 0, intervalsLiveFromCycles: after.intervals.live.cycles ?? 0,
     windowListenersFromCycles: fromCycles(after.listeners.window), documentListenersFromCycles: fromCycles(after.listeners.document),
     mediaQueryListenersNet: after.mediaQueryListeners - before.mediaQueryListeners, shadowRootsAttached: after.shadowRoots - before.shadowRoots,
-    connectedSurfacesAfter: document.querySelectorAll('[data-experiment-kit-activity]').length,
+    connectedSurfacesAfter: document.querySelectorAll('[data-explorable-models-activity]').length,
     adapterActivitiesStillOpen: stillOpen,
     activitiesOpened: opened.length,
   };
@@ -653,16 +653,16 @@ async function cameraSeries(app: ReferenceHostApp, probe: CardProbe, viewId: str
 async function spatialActivity(app: ReferenceHostApp, meter: Instrument, templateId: string) {
   await openCard(app, templateId);
   const root = app.surface!.element.shadowRoot!;
-  const host = await until(() => root.querySelector<HTMLElement>('[data-eka-spatial]'), 'the spatial view', 15_000);
+  const host = await until(() => root.querySelector<HTMLElement>('[data-ema-spatial]'), 'the spatial view', 15_000);
   host.scrollIntoView({ block: 'center' });
-  const viewId = host.dataset.ekaSpatial!;
+  const viewId = host.dataset.emaSpatial!;
   // The view reads `fallback` until the lazily loaded renderer mounts (it loads once the view is on screen); a real
   // fallback or failure stays. Wait for `ready` and record whatever state the view settled in otherwise.
-  const state = await until(() => ['ready', 'failed'].includes(host.dataset.ekaSpatialState ?? '') ? host.dataset.ekaSpatialState! : null, 'the spatial renderer', 20_000)
-    .catch(() => host.dataset.ekaSpatialState ?? 'none');
+  const state = await until(() => ['ready', 'failed'].includes(host.dataset.emaSpatialState ?? '') ? host.dataset.emaSpatialState! : null, 'the spatial renderer', 20_000)
+    .catch(() => host.dataset.emaSpatialState ?? 'none');
   if (state !== 'ready') return { templateId, spatialState: state, note: (host.querySelector('[data-state="spatial-fallback"]')?.textContent ?? '').slice(0, 200) };
   await until(() => (rendererFrames(viewId) ?? 0) > 0, 'the first renderer frame', 15_000);
-  const viewport = host.querySelector<HTMLElement>('.ek3-viewport') ?? host.shadowRoot?.querySelector<HTMLElement>('.ek3-viewport') ?? null;
+  const viewport = host.querySelector<HTMLElement>('.em3-viewport') ?? host.shadowRoot?.querySelector<HTMLElement>('.em3-viewport') ?? null;
   if (!viewport) throw new Error('no 3D viewport element');
   const probe = new CardProbe(bindingOf(app), surfaceRoot(app));
   try {

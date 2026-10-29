@@ -4,7 +4,7 @@
  * name, and kernel code is never loaded outside the worker. New activity packages add their kernel here and to
  * ./index.ts; tests/catalog/lazy.test.ts checks that both lists name the same kernels.
  */
-import type { KernelSource } from '@experiment-kit/core/model';
+import type { KernelSource } from '@explorable-models/core/model';
 
 export const INSTALLED_KERNEL_SOURCE: KernelSource = Object.freeze({
   kernels: Object.freeze([

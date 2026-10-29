@@ -2,6 +2,14 @@
 
 ## 0.3.0-preview.1 — unreleased (local candidate; no publication, tag, Developer ID signing, notarization or deployment)
 
+**Breaking identity rename:** the project is Explorable Models, packages use `@explorable-models/*`, and the CLI is
+`explorable-models` (`npm run models` in this checkout). The previous namespace and command aliases are removed.
+Schema identifiers, configuration, browser attributes, and native identifiers follow the new identity. The third
+pre-release schema-lock amendment records this change and the preceding digests. See the
+[rename verification](docs/study-harness/evidence/namespace-rename.json) for current checks; the full-release,
+native-binary, and performance results below describe the candidate before the namespace rename. Normalized
+historical evidence identifies its original Git blob and cannot be resumed as a current release record.
+
 This version adds the Study Harness visualization subsystem specified in
 `docs/study-harness-visualizer-implementation-report.md`. Start with the
 [handoff index](docs/study-harness/README.md). Automated repository release verification passed 19/19 gates in `2026-10-29T05-29-41.307Z`; the owner-run network-disabled procedure remains unperformed. Approval for Study Harness use
@@ -13,9 +21,9 @@ Run `2026-10-29T05-29-41.307Z` is an audited resume of failed full run `2026-10-
 
 **New packages and entries**
 
-- `@experiment-kit/activity`:
+- `@explorable-models/activity`:
   - The `study-harness.*` schema 1.0 contracts, built in TypeScript and emitted as JSON Schema 2020-12 with a digest
-    lock (`packages/activity/schema/frozen-1.0.json`). Before 1.0 the lock was amended twice, deliberately and with the
+    lock (`packages/activity/schema/frozen-1.0.json`). Before 1.0 the lock was amended three times, deliberately and with the
     previous digests recorded (`preReleaseAmendments`); the second amendment also closes the payloads of seven event
     types that used an open generic payload.
   - Shared valid and invalid fixtures, and a Rust validator crate (`study-harness-contracts`) that validates the same
@@ -30,10 +38,10 @@ Run `2026-10-29T05-29-41.307Z` is an audited resume of failed full run `2026-10-
   - Learner playback crosses a numerical limit the card does not show: it plays on to the last index (or the end
     time), as for a run without a limit, so where playback stops never tells a hidden outcome apart (for example a
     diverging trace that is not shown). A limit the card shows still stops playback one step before it, with a notice.
-  - `@experiment-kit/activity/conformance`: the host-agnostic HostPort conformance kit (`runHostPortConformance`) for
+  - `@explorable-models/activity/conformance`: the host-agnostic HostPort conformance kit (`runHostPortConformance`) for
     external gate G2. It runs the G2 sequence through the real adapter against any `HostPort` and returns a record in
     the `host-conformance-result` template form, labelled by the caller (fixture results never satisfy A54).
-- `@experiment-kit/core/model`:
+- `@explorable-models/core/model`:
   - Model manifest 1.0, units, and coupled constraints.
   - The numerical statuses `valid`, `undefined` and `numerical-limit`, and identified frames.
   - A worker evaluator with a watchdog, a shared worker budget, and a guarded model session with discrete iteration,
@@ -43,13 +51,13 @@ Run `2026-10-29T05-29-41.307Z` is an audited resume of failed full run `2026-10-
     stays reachable by navigation) and play from a frame at a limit is refused (`OUT_OF_DOMAIN`).
     `throughNumericalLimit(frame)` is asked about each such frame; `true` crosses it and plays on to the position's own
     end.
-- `@experiment-kit/catalog`:
+- `@explorable-models/catalog`:
   - Five installed activities: quadratic gradient descent, function and derivative, linear transformation, 3D vector
     orientation, and quadratic surface and gradient.
   - Pure kernels and their module worker.
   - A host-trusted review registry, plus revocation and deprecation lists.
   - Without host review records, the highest lifecycle status is `reference-checked`.
-- `@experiment-kit/player/activity`:
+- `@explorable-models/player/activity`:
   - `StudyActivitySurface`, `mountStudyActivity`, and `createStudyHarnessVisualizer`, which provides the report's six
     operations.
   - Exact controls, lazy bounded KaTeX math, 2D primitives, accessible tables and descriptions, display units, and
@@ -57,12 +65,12 @@ Run `2026-10-29T05-29-41.307Z` is an audited resume of failed full run `2026-10-
   - Theme tokens with contrast checks.
   - Surface-specific SVG and PNG capture.
   - Bundled Inter and KaTeX fonts, with license files beside them.
-- `@experiment-kit/player-3d`: an optional, lazily loaded spatial renderer with a Three.js 0.186.1 peer. A 2D
+- `@explorable-models/player-3d`: an optional, lazily loaded spatial renderer with a Three.js 0.186.1 peer. A 2D
   projection and coordinate table serve as the fallback.
 
 **Agent tools and authoring**
 
-- `@experiment-kit/agent`:
+- `@explorable-models/agent`:
   - Twelve policy-scoped activity tools (`createActivityTools`). `createActivityTools` requires
     `adapter.policyStanding` (the policy's standing by the adapter's host clock) and throws a `TypeError` when it is
     missing, so an adapter wrapper must forward it.
@@ -71,9 +79,9 @@ Run `2026-10-29T05-29-41.307Z` is an audited resume of failed full run `2026-10-
   - `createTrialRecorder`, an opt-in sanitized recorder for the real host-agent trial (external gate G3): request
     identifiers, tool names, outcome codes, fixed-vocabulary repairs and a configuration digest only. Its record schema
     is `docs/study-harness/templates/agent-trial-record.schema.json`.
-- `@experiment-kit/core/declarative`: `createDocumentInteractionController`, the shared preview-coalescing controller.
+- `@explorable-models/core/declarative`: `createDocumentInteractionController`, the shared preview-coalescing controller.
   The showcase and hinged-rod examples use it.
-- CLI `experiment-kit activity` commands: `scaffold`, `validate`, `check`, `reference`, `boundaries`, `capture`,
+- CLI `explorable-models activity` commands: `scaffold`, `validate`, `check`, `reference`, `boundaries`, `capture`,
   `review-packet` and `package`. Authored kernels and checks run only in browser workers.
 - Independent reference fixtures and oracles for the five activities (`tests/reference/`), and subject-review packets
   with empty sign-off sections (`docs/study-harness/review-packets/`).
@@ -120,6 +128,11 @@ Run `2026-10-29T05-29-41.307Z` is an audited resume of failed full run `2026-10-
 
 ### Changed
 
+- Complete breaking rename to Explorable Models: `@explorable-models/*` packages, the `explorable-models` CLI,
+  `npm run models`, schema identifiers, browser selectors, environment variables, and native bundle identifiers.
+  Previous namespace and command aliases are intentionally removed. Historical evidence copies are explicitly
+  terminology-normalized; original bytes remain in the recorded Git blobs and are not claimed as current results.
+
 - Finished the final unit/identity and validation leftovers: canonical drag axes and conversion into selected display
   units, coherent document unit scales, scientific identity for invisible label edits, detached surface styling, strict
   benchmark failure/raw-result checks, safe release ACL handling and exactly one archival return action. The boundary
@@ -134,19 +147,19 @@ Run `2026-10-29T05-29-41.307Z` is an audited resume of failed full run `2026-10-
 
 - **Versions and dependencies.**
   - Every workspace package is versioned `0.3.0-preview.1`.
-  - `@experiment-kit/player` declares `@experiment-kit/activity` as an optional peer, which `./activity` requires.
-  - `@experiment-kit/agent` now depends on `@experiment-kit/activity`.
+  - `@explorable-models/player` declares `@explorable-models/activity` as an optional peer, which `./activity` requires.
+  - `@explorable-models/agent` now depends on `@explorable-models/activity`.
 - **Example controller.** `examples/shared/controller.ts` is removed. Examples use
   `createDocumentInteractionController` instead.
 - **Package gates.**
-  - `npm run verify:packages` also packs `@experiment-kit/activity`. The 2D consumer budget is unchanged: at most
+  - `npm run verify:packages` also packs `@explorable-models/activity`. The 2D consumer budget is unchanged: at most
     180,000 B gzip, including React.
   - The unified `npm run release` tarball includes the new packages, the contract crate sources and the fixture pages.
-    It runs `experiment-kit activity` scaffold, validate, check, reference and review-packet from a clean install
+    It runs `explorable-models activity` scaffold, validate, check, reference and review-packet from a clean install
     (A56).
 - **Licensing and CI.**
   - `THIRD_PARTY_NOTICES.md` lists the KaTeX code, stylesheet and fonts, and the Inter font, redistributed with
-    `@experiment-kit/player/activity`.
+    `@explorable-models/player/activity`.
   - CI installs a pinned Rust toolchain and runs the release pipeline (`npm run release:study-harness`), then packages
     the preview from that run. A manually dispatched macOS job can run the packaged conformance runner. Neither signs
     or publishes.
@@ -162,7 +175,7 @@ Run `2026-10-29T05-29-41.307Z` is an audited resume of failed full run `2026-10-
 
 ### Compatibility
 
-- Schema 2.0 documents and `experiment-kit-document` artifacts (document runtime `0.2.0-preview.1`) are unchanged, and
+- Schema 2.0 documents and `explorable-models-document` artifacts (document runtime `0.2.0-preview.1`) are unchanged, and
   so are schema 1.0 exports.
 - Activity records are a separate contract family. No record is relabelled or silently migrated.
 - The matrix, migration examples, support policy and rollback procedure are in

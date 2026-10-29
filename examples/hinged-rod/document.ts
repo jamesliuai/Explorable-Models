@@ -1,4 +1,4 @@
-import type { VisualizationDocument } from '@experiment-kit/core/declarative';
+import type { VisualizationDocument } from '@explorable-models/core/declarative';
 
 /** Data only. All expressions are evaluated by the toolkit's browser worker. */
 export const rodDocument: VisualizationDocument = {

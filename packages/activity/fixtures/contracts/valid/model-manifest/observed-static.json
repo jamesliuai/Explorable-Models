@@ -1,9 +1,9 @@
 {
-  "contract": "experiment-kit.model-manifest",
+  "contract": "explorable-models.model-manifest",
   "expect": "valid",
   "why": "Static kernel manifest with an observed dataset (units, a missing cell with its reason, provenance) beside model geometry.",
   "value": {
-    "contract": "experiment-kit.model-manifest",
+    "contract": "explorable-models.model-manifest",
     "schemaVersion": "1.0",
     "modelId": "observed-fall",
     "version": "1.0.0",

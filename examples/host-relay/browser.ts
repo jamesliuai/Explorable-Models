@@ -1,7 +1,7 @@
-import { createVisualizationSession } from '@experiment-kit/core/declarative';
-import { createVisualizationTools, createBrowserToolEndpoint } from '@experiment-kit/agent';
-import { mountVisualization } from '@experiment-kit/player';
-import type { RelayCall, RelayCancel } from '@experiment-kit/agent';
+import { createVisualizationSession } from '@explorable-models/core/declarative';
+import { createVisualizationTools, createBrowserToolEndpoint } from '@explorable-models/agent';
+import { mountVisualization } from '@explorable-models/player';
+import type { RelayCall, RelayCancel } from '@explorable-models/agent';
 
 // This is a local demonstration authentication credential, held only on the main thread.
 // Production applications replace it with their established session/authentication transport.

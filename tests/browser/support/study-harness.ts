@@ -6,9 +6,9 @@
  */
 import { expect, type Locator, type Page } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
-import type { AudienceState, ExposureRecord, InteractionEvent, LearnerProjection } from '@experiment-kit/activity';
+import type { AudienceState, ExposureRecord, InteractionEvent, LearnerProjection } from '@explorable-models/activity';
 
-export const SHOTS = '/tmp/experiment-kit-playwright/study-quadratic';
+export const SHOTS = '/tmp/explorable-models-playwright/study-quadratic';
 
 /** Learner-facing content of each solution-bearing group of the quadratic template (labels, titles and DOM IDs). */
 export const HIDDEN = {
@@ -53,7 +53,7 @@ export async function openFixture(page: Page, query = ''): Promise<string[]> {
 }
 
 /** The learner card (its shadow host); Playwright locators pierce the open shadow root. */
-export const card = (page: Page): Locator => page.locator('[data-fx-card] [data-experiment-kit-activity]');
+export const card = (page: Page): Locator => page.locator('[data-fx-card] [data-explorable-models-activity]');
 export const control = (page: Page, parameter: string): Locator => card(page).locator(`[data-parameter="${parameter}"]`);
 
 export const projection = (page: Page): Promise<LearnerProjection> => page.evaluate(() => JSON.parse(JSON.stringify(window.studyHarnessFixture.binding!.getProjection())));
@@ -85,8 +85,8 @@ export async function settle(page: Page, options: { allowPending?: boolean } = {
     const binding = fixture.binding;
     if (!binding) return true;
     const current = binding.getProjection();
-    const root = document.querySelector('[data-fx-card] [data-experiment-kit-activity]')?.shadowRoot?.querySelector('.eka');
-    if (root?.getAttribute('data-eka-projection') !== current.projectionId) return false;
+    const root = document.querySelector('[data-fx-card] [data-explorable-models-activity]')?.shadowRoot?.querySelector('.ema');
+    if (root?.getAttribute('data-ema-projection') !== current.projectionId) return false;
     if (allowPending) return true;
     return current.status.persistence === 'saved' && (!current.pendingReveal || current.pendingReveal.state === 'failed');
   }, options.allowPending ?? false);
@@ -112,16 +112,16 @@ export async function step(page: Page, id: string): Promise<void> {
 /** Learner card DOM (shadow root HTML and text). */
 export async function cardDom(page: Page): Promise<{ html: string; text: string }> {
   return page.evaluate(() => {
-    const root = document.querySelector('[data-fx-card] [data-experiment-kit-activity]')?.shadowRoot;
+    const root = document.querySelector('[data-fx-card] [data-explorable-models-activity]')?.shadowRoot;
     return { html: root?.innerHTML ?? '', text: root?.textContent ?? '' };
   });
 }
-export const valueLabels = async (page: Page): Promise<string[]> => (await card(page).locator('[data-eka-panel="values"] dt').allTextContents()).map(text => text.trim());
+export const valueLabels = async (page: Page): Promise<string[]> => (await card(page).locator('[data-ema-panel="values"] dt').allTextContents()).map(text => text.trim());
 
 /** Text the card announces for “Read current values” (the learner's copy/read-out channel). */
 export async function readCurrentValues(page: Page): Promise<string> {
   await card(page).getByRole('button', { name: 'Read current values' }).click();
-  const live = card(page).locator('.eka-sr[role=status][aria-live=polite]');
+  const live = card(page).locator('.ema-sr[role=status][aria-live=polite]');
   await expect(live).not.toHaveText('');
   return (await live.textContent()) ?? '';
 }
@@ -184,10 +184,10 @@ export async function expectAccessible(page: Page, label: string): Promise<void>
 /** Every element of the card that names a frame (drawings, panels, navigation, controls). */
 export async function renderedFrameIds(page: Page): Promise<{ where: string; frameId: string }[]> {
   return page.evaluate(() => {
-    const root = document.querySelector('[data-fx-card] [data-experiment-kit-activity]')?.shadowRoot;
-    return [...(root?.querySelectorAll<HTMLElement | SVGElement>('[data-eka-frame-id]') ?? [])].map(element => ({
-      where: element.getAttribute('data-eka-view-id') ?? element.getAttribute('data-eka-panel') ?? element.getAttribute('aria-label') ?? element.className.toString(),
-      frameId: element.getAttribute('data-eka-frame-id') ?? '',
+    const root = document.querySelector('[data-fx-card] [data-explorable-models-activity]')?.shadowRoot;
+    return [...(root?.querySelectorAll<HTMLElement | SVGElement>('[data-ema-frame-id]') ?? [])].map(element => ({
+      where: element.getAttribute('data-ema-view-id') ?? element.getAttribute('data-ema-panel') ?? element.getAttribute('aria-label') ?? element.className.toString(),
+      frameId: element.getAttribute('data-ema-frame-id') ?? '',
     }));
   });
 }
@@ -198,11 +198,11 @@ export const numeral = (text: string): number => Number(text.replace(/−/g, '-'
 /** Width/overflow facts of the card and the page. */
 export async function overflow(page: Page): Promise<{ page: boolean; card: boolean; offenders: string[]; cardWidth: number }> {
   return page.evaluate(() => {
-    const host = document.querySelector<HTMLElement>('[data-fx-card] [data-experiment-kit-activity]');
-    const root = host?.shadowRoot?.querySelector<HTMLElement>('.eka');
+    const host = document.querySelector<HTMLElement>('[data-fx-card] [data-explorable-models-activity]');
+    const root = host?.shadowRoot?.querySelector<HTMLElement>('.ema');
     const limit = root ? root.getBoundingClientRect().right + 1 : window.innerWidth;
     const offenders = root ? [...root.querySelectorAll<HTMLElement>('*')].filter(element => {
-      if (element.closest('.eka-sr, .eka-table-region, .eka-math')) return false;
+      if (element.closest('.ema-sr, .ema-table-region, .ema-math')) return false;
       const rect = element.getBoundingClientRect();
       return rect.width > 0 && rect.right > limit;
     }).slice(0, 8).map(element => `${element.tagName.toLowerCase()}.${element.className.toString().split(' ')[0]}`) : [];
@@ -224,7 +224,7 @@ export async function focused(page: Page): Promise<FocusInfo | null> {
   return page.evaluate(() => {
     let element = document.activeElement as Element | null;
     let inCard = false;
-    while (element?.shadowRoot?.activeElement) { inCard ||= element.hasAttribute('data-experiment-kit-activity'); element = element.shadowRoot.activeElement; }
+    while (element?.shadowRoot?.activeElement) { inCard ||= element.hasAttribute('data-explorable-models-activity'); element = element.shadowRoot.activeElement; }
     if (!element || element === document.body) return null;
     const root = element.getRootNode() as Document | ShadowRoot;
     const byIds = (ids: string | null) => (ids ?? '').split(/\s+/).filter(Boolean).map(id => root.getElementById(id)?.textContent ?? '').join(' ').trim();

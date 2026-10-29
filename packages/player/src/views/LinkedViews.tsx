@@ -1,7 +1,7 @@
 import { useLayoutEffect, useRef, useState } from 'react';
 import { scaleLinear } from 'd3-scale';
 import { line } from 'd3-shape';
-import type { RunFrame, ScalarParams } from '@experiment-kit/core';
+import type { RunFrame, ScalarParams } from '@explorable-models/core';
 import { binding, bodyNames, format, scalar } from '../utils';
 export function EnergyView({frame,comparison,parameters,comparisonParameters,onSelect}:{frame:RunFrame;comparison?:RunFrame;parameters:ScalarParams;comparisonParameters?:ScalarParams;onSelect:(id:string)=>void}) {
  const row=(f:RunFrame,p:ScalarParams,secondary=false)=>{

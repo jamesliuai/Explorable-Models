@@ -1,9 +1,9 @@
 import { createRoot } from 'react-dom/client';
 import { useEffect, useRef, useState } from 'react';
-import { createPreset, createVisualizationSession, presetCatalog } from '@experiment-kit/core/declarative';
-import type { MutationGuard, VisualizationSession } from '@experiment-kit/core/declarative';
-import { createVisualizationTools } from '@experiment-kit/agent';
-import { VisualizationSurface } from '@experiment-kit/player';
+import { createPreset, createVisualizationSession, presetCatalog } from '@explorable-models/core/declarative';
+import type { MutationGuard, VisualizationSession } from '@explorable-models/core/declarative';
+import { createVisualizationTools } from '@explorable-models/agent';
+import { VisualizationSurface } from '@explorable-models/player';
 import './agent-gallery.css';
 
 function guard(session: VisualizationSession): MutationGuard {

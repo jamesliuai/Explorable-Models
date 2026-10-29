@@ -1,5 +1,10 @@
 # Performance, dependency and lifecycle budgets
 
+> **Namespace rename.** Measurements and release records below describe the candidate before the breaking namespace
+> change. JSON copies with a `terminologyProjection` field normalize names for this checkout and identify their
+> unmodified original Git blob. They do not verify the current package hashes or native binaries. Current rename
+> checks are recorded separately; historical full-release results are not relabelled as a new release pass.
+
 Report §4.1, §16, §18, §19; architecture D11 and D14; ledger A44, A58 and the packed-consumer part of A59. This page
 states how the budgets are measured, what was measured on the reference machine, which targets were met, and the
 precise causes of the ones that were not. The run-specific numbers in §3–§6 are quoted from two append-only history
@@ -44,8 +49,8 @@ state when a later run differs from this text:
 tarballs are copied out and checked against the pack manifest's sha256 and integrity; `examples/study-harness-consumer`
 and `examples/consumer` are copied into a fresh temporary directory and installed from the tarballs with an empty,
 isolated npm cache, `--ignore-scripts`, pinned `react`/`react-dom`/`three`/`vite`/`typescript`/`@types/*` and no
-aliases (every `@experiment-kit/*` directory must be an extracted tarball whose lockfile integrity equals the manifest's).
-Then: every public entry is imported in plain Node with no DOM globals (`@experiment-kit/core`, `/model`,
+aliases (every `@explorable-models/*` directory must be an extracted tarball whose lockfile integrity equals the manifest's).
+Then: every public entry is imported in plain Node with no DOM globals (`@explorable-models/core`, `/model`,
 `/declarative`, `activity`, `catalog`, `player`, `player/activity`, `player-3d`, `agent`; the two worker entries start a
 worker loop on import and are browser-only); `tsc` checks the consumer against the packed declarations with
 `skipLibCheck: false`; Vite builds the four pages together (served to the browser) and each budgeted page alone
@@ -76,7 +81,7 @@ probes (an inserted inline script, a parsed style attribute, a `data:` image) to
 | --- | --- | --- |
 | Input feedback acknowledgement | `input` event `timeStamp` of a real pointer drag (Playwright mouse at a 60 Hz pacing) | paint of the first frame whose control output shows that value or a later one |
 | Preview frame rate | requestAnimationFrame cadence between the first and last input | dropped frames = Σ(round(Δ/refresh) − 1) against the idle refresh interval; tentative-frame rate = changes of the painted tentative frame per second |
-| Commit → visible frame | learner-binding command call | paint (rAF, then a task) of the first frame whose DOM (`data-eka-projection`) shows the projection with the new committed frame |
+| Commit → visible frame | learner-binding command call | paint (rAF, then a task) of the first frame whose DOM (`data-ema-projection`) shows the projection with the new committed frame |
 | Components | worker: `evaluate` postMessage → reply (catalogue worker wrapped for timing); render: projection publication → DOM commit; paint: DOM commit → paint | storage: first journal append after the command → host acknowledgement |
 | Spatial | command or pointer move | the renderer's frame counter (`player-3d` `inspect`) increments, then paint |
 
@@ -217,7 +222,7 @@ No test was removed and no budget was revised to hide a finding.
   it. The main thread carries no kernel code. Content chunks keep only the constants that templates and manifests
   reuse (IDs, versions, domains; 251–574 B each), because the kernel objects are marked pure.
 - **Document compiler out of the kernel-only path.** Schema 2.0 document execution is opt-in
-  (`enableDocumentExecution()` in `@experiment-kit/core/model`). Without it, a document-kind manifest is refused with
+  (`enableDocumentExecution()` in `@explorable-models/core/model`). Without it, a document-kind manifest is refused with
   `UNSUPPORTED_CAPABILITY`. Neither the page nor the catalogue worker bundles the compiler or interpreter
   (`tests/core/document-execution.test.ts` bundles the kernel-only API and checks this).
 

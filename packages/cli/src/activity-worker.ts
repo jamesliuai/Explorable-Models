@@ -4,16 +4,16 @@
  * here, inside a browser module worker served with `script-src 'self'; connect-src 'none'`, never in the CLI process.
  *
  * The worker serves the standard model protocol (`serveModelWorker`, the same path the activity runtime uses) and a
- * separate author protocol on `experiment-kit.activity-author` messages (no top-level `id`, so the model protocol
+ * separate author protocol on `explorable-models.activity-author` messages (no top-level `id`, so the model protocol
  * ignores them): `describe`, `run-checks` and `mutation-batch`.
  */
 import {
   enableDocumentExecution, evaluateRequest, serveModelWorker, toDiagnostics,
   type GeometryResult, type ModelKernel, type ModelManifest, type PositionRequest, type QuantityResult, type WorkerScope,
-} from '@experiment-kit/core/model';
+} from '@explorable-models/core/model';
 import { mutateOutput, mutateParams, pointPosition, pointProblems, rejectionProblems, type Mutation, type PointOutcome, type ReferenceSuite } from './activity-fixtures.js';
 
-export const AUTHOR_NAMESPACE = 'experiment-kit.activity-author';
+export const AUTHOR_NAMESPACE = 'explorable-models.activity-author';
 export const CHECK_LIMITS = Object.freeze({ checks: 200, detail: 500, idLength: 128 });
 
 export interface StartOptions {

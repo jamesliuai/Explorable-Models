@@ -1,12 +1,12 @@
 import { expect, test, type Page } from '@playwright/test';
 import { mkdir } from 'node:fs/promises';
 import fixtures from '../reference/fixtures/showcase.json' with { type: 'json' };
-import type { DocumentInteractionController } from '@experiment-kit/core/declarative';
+import type { DocumentInteractionController } from '@explorable-models/core/declarative';
 
 type TestWindow = { __SHOWCASE__: DocumentInteractionController };
 const inspect = (page: Page) => page.evaluate(() => (window as unknown as TestWindow).__SHOWCASE__.inspect());
 const commit = (page: Page, params: Record<string, number>) => page.evaluate(params => (window as unknown as TestWindow).__SHOWCASE__.commit(params), params);
-const shots = '/tmp/experiment-kit-showcase';
+const shots = '/tmp/explorable-models-showcase';
 /**
  * Counts explicit pointer captures taken by range inputs. A native slider keeps its pressed pointer itself; an explicit
  * `setPointerCapture` stops WebKit's thumb from following the pointer, so the example sliders must never take one.

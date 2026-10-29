@@ -12,9 +12,9 @@
  * Flow: `observe` shows the recorded heights and their table only; `compare` adds the model prediction, its landing
  * time and the h₀/g controls; `done` closes. No group is solution-bearing, so the example needs no exposure receipts.
  */
-import type { ActivityTemplate, ContentGroup, MarkSpec } from '@experiment-kit/activity';
-import { enableDocumentExecution, modelIdentity, MODEL_CONTRACT, MODEL_SCHEMA_VERSION, type ModelManifest, type ObservationDataset } from '@experiment-kit/core/model';
-import type { VisualizationDocument } from '@experiment-kit/core/declarative';
+import type { ActivityTemplate, ContentGroup, MarkSpec } from '@explorable-models/activity';
+import { enableDocumentExecution, modelIdentity, MODEL_CONTRACT, MODEL_SCHEMA_VERSION, type ModelManifest, type ObservationDataset } from '@explorable-models/core/model';
+import type { VisualizationDocument } from '@explorable-models/core/declarative';
 
 // A document-kind model needs the opt-in schema 2.0 runtime in every realm that identifies or evaluates it.
 enableDocumentExecution();
@@ -100,7 +100,7 @@ export const fallingBallManifest: ModelManifest = {
   limits: { maxGeometryElements: PREDICTION_SAMPLES + RECORDED_DROPS.rows.length, maxOperations: 100_000 },
   sources: [
     { id: 'constant-gravity', kind: 'derivation', citation: 'Integrating a constant acceleration −g twice from rest at height h₀ gives h(t) = h₀ − g t²/2, which is 0 at t = √(2h₀/g).' },
-    { id: 'example-drop-log', kind: 'dataset', citation: 'Illustrative drop log written for the Experiment Kit observed-data example (not a real measurement).' },
+    { id: 'example-drop-log', kind: 'dataset', citation: 'Illustrative drop log written for the Explorable Models observed-data example (not a real measurement).' },
   ],
   referenceSuite: null,
   observations: { drops: RECORDED_DROPS },

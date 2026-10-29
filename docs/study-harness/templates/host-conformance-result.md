@@ -4,7 +4,7 @@ Fill one result per run of the G2 conformance sequence (external gate G2, requir
 form is [`host-conformance-result.schema.json`](host-conformance-result.schema.json) (`study-harness.host-conformance-result/1`).
 A filled result is evidence only for the host, commit, binary and platform it names.
 
-The HostPort conformance kit (`runHostPortConformance` from `@experiment-kit/activity/conformance`, see
+The HostPort conformance kit (`runHostPortConformance` from `@explorable-models/activity/conformance`, see
 [external gates G2](../external-gates.md#g2-actual-study-harness-integration-a54)) produces this record directly
 (`run.result`) and names itself in the optional `kit` field. A host that runs the sequence with its own harness fills
 the same form and omits `kit`. Optional fields: a step's `reason` says why it did not run or failed (for example a hook
@@ -28,7 +28,7 @@ and credentials out of this record.
 | Signed build? | |
 | OS, version and architecture | |
 | WebView (WKWebView / WebView2 / WebKitGTK) and version | |
-| Packed `@experiment-kit/*` tarballs mounted: name, version, sha256 (from `release/study-harness/packages/manifest.json`) | |
+| Packed `@explorable-models/*` tarballs mounted: name, version, sha256 (from `release/study-harness/packages/manifest.json`) | |
 
 ## Sequence
 
@@ -67,8 +67,8 @@ List limitations (for example: network not disabled, one platform only, unsigned
   "subject": "actual-host",
   "runAt": "",
   "host": { "name": "", "commit": "", "dirty": false, "binarySha256": "", "platform": { "os": "macOS", "osVersion": "", "arch": "arm64", "webview": "" } },
-  "packages": [{ "name": "@experiment-kit/activity", "version": "0.3.0-preview.1", "sha256": "" }],
-  "kit": { "name": "@experiment-kit/activity/conformance", "version": "0.3.0-preview.1" },
+  "packages": [{ "name": "@explorable-models/activity", "version": "0.3.0-preview.1", "sha256": "" }],
+  "kit": { "name": "@explorable-models/activity/conformance", "version": "0.3.0-preview.1" },
   "steps": {
     "open-quadratic": { "outcome": "not-run" }, "prediction-reference": { "outcome": "not-run" }, "authorize-reveal": { "outcome": "not-run" },
     "commit-exploration": { "outcome": "not-run" }, "camera-change": { "outcome": "not-run" }, "save": { "outcome": "not-run" },

@@ -1,8 +1,8 @@
 /**
- * `@experiment-kit/player-3d`: the optional, lazily loaded spatial renderer for `scene3d` views of Study Harness
+ * `@explorable-models/player-3d`: the optional, lazily loaded spatial renderer for `scene3d` views of Study Harness
  * activities (report §13). It implements the learner surface's `SpatialRendererModule` contract
  * (`webglAvailable`, `mount`) and draws bounded scientific primitives strictly from the authorized projection.
- * Load it only through the host's `spatialLoader`, e.g. `() => import('@experiment-kit/player-3d')`; nothing on the
+ * Load it only through the host's `spatialLoader`, e.g. `() => import('@explorable-models/player-3d')`; nothing on the
  * 2D path imports it. Three.js is a peer dependency.
  */
 export { inspect, mount, releaseIdleRenderers, RESTORE_ATTEMPTS, webglAvailable } from './mount.js';

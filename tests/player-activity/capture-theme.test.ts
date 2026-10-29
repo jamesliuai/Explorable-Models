@@ -164,11 +164,11 @@ describe('theme tokens (report §10.1: host tokens cannot hide meaningful states
     expect(dark.tokens.background).toBe('#000000');
   });
 
-  it('exposes tokens as --eka-* custom properties and disables motion under reduced motion', () => {
+  it('exposes tokens as --ema-* custom properties and disables motion under reduced motion', () => {
     const variables = tokenVariables(DEFAULT_TOKENS.light, true);
-    expect(variables['--eka-border-strong']).toBe(DEFAULT_TOKENS.light.borderStrong);
-    expect(variables['--eka-motion-duration']).toBe('0ms');
-    expect(tokenVariables(DEFAULT_TOKENS.light)['--eka-motion-duration']).toBe('140ms');
+    expect(variables['--ema-border-strong']).toBe(DEFAULT_TOKENS.light.borderStrong);
+    expect(variables['--ema-motion-duration']).toBe('0ms');
+    expect(tokenVariables(DEFAULT_TOKENS.light)['--ema-motion-duration']).toBe('140ms');
   });
 });
 

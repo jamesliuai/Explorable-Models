@@ -34,7 +34,7 @@ activity, the card container shows the learner card's own `preparing` placeholde
 | `?flow=scripted\|generic` | The quadratic template runs the scripted flow unless `flow=generic`; every other template runs the generic flow. |
 | `?mode=guided\|free` | Guided flow from the template's initial stage (default) or the `free-explore` stage, authorized by the host at start (reveal of its solution-bearing groups, then an exploration scope). |
 | `?policy=held\|full` | Generic flow only (fixture host decision): `held` (default) keeps every solution-bearing group outside the policy ceiling until the host reveals it — the reveal button raises the ceiling for that group, then requests the reveal; `full` puts every group under the ceiling, so stage transitions carry stage-scope grants for the target stage's solution-bearing groups. |
-| `?spatial=1` | Passes `spatialLoader` (a lazy `import('@experiment-kit/player-3d')`, isolated in `spatial-loader.ts`) to the card. Absent or `0`: no loader, the card shows its 2D projection and coordinate table. The loader is called only when a card shows a `scene3d` view; if the import rejects, the card falls back to the 2D projection with a `SPATIAL_FALLBACK` diagnostic (visible in `studyHarnessFixture.diagnostics`). In the dev server, a renderer source that cannot be resolved or transformed also opens Vite's error overlay. |
+| `?spatial=1` | Passes `spatialLoader` (a lazy `import('@explorable-models/player-3d')`, isolated in `spatial-loader.ts`) to the card. Absent or `0`: no loader, the card shows its 2D projection and coordinate table. The loader is called only when a card shows a `scene3d` view; if the import rejects, the card falls back to the 2D projection with a `SPATIAL_FALLBACK` diagnostic (visible in `studyHarnessFixture.diagnostics`). In the dev server, a renderer source that cannot be resolved or transformed also opens Vite's error overlay. |
 | `?fail=<point>[:n][,…]` | One-shot host failures before commit, armed when the fixture session starts. Points: `exposure-intent`, `scope-intent`, `stage`, `display-ack`, `append`, `save`, `assistance`, `policy`, `cursor`, `register`. |
 | `?delay=<point>:<ms>[,…]` | Host call delays before processing (a bare number delays exposure intents). |
 | `?lag=<point>:<ms>[,…]` | Late host replies: the call commits at once, its reply arrives after `<ms>`. |
@@ -123,11 +123,11 @@ expect(result.ok).toBe(true);
 | `fixture-session.ts` | Scripted quadratic learning-and-return flow. |
 | `generic-session.ts` | Generic host flow and driver for any installed template. |
 | `host-card.tsx` | Generic flow's card: `StudyActivitySurface` in a host-owned shadow root with the host composer in `responseSlot`. |
-| `spatial-loader.ts` | Lazy `@experiment-kit/player-3d` loader for `?spatial=1`. |
+| `spatial-loader.ts` | Lazy `@explorable-models/player-3d` loader for `?spatial=1`. |
 | `fixture-worker.ts` | Wraps the catalogue's own module-worker factory to count workers and, optionally, delay replies. |
 | `main.tsx`, `study-harness.css` | Host chrome for both flows, fault-injection controls, host tables and `window.studyHarnessFixture`. |
 | `projection-lab.*` | Static projection fixtures for visual inspection of every UI state (no model, no host). |
-| `lifecycle.html`, `lifecycle.tsx` | Lifecycle fixture for `tests/browser/study-lifecycle.spec.ts`: two active 2D activities and 20 suspended history cards under one adapter, an in-page host with hold/release gates, mount/suspend/restore/dispose cycles and disposal during prepare, evaluate, save, reveal and capture (A41–A43); spatial cards (vector orientation, quadratic surface) with the lazy `@experiment-kit/player-3d` loader for the 3D mount/commit/camera/suspend/save/restore/dispose cycles (A47). |
+| `lifecycle.html`, `lifecycle.tsx` | Lifecycle fixture for `tests/browser/study-lifecycle.spec.ts`: two active 2D activities and 20 suspended history cards under one adapter, an in-page host with hold/release gates, mount/suspend/restore/dispose cycles and disposal during prepare, evaluate, save, reveal and capture (A41–A43); spatial cards (vector orientation, quadratic surface) with the lazy `@explorable-models/player-3d` loader for the 3D mount/commit/camera/suspend/save/restore/dispose cycles (A47). |
 
 Results obtained with this page are fixture-host results in a browser engine. They do not establish the behaviour of
 the Study Harness host, a packaged WebView, assistive-technology use or learning outcomes.

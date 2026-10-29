@@ -1,4 +1,4 @@
-import type { AnalyticModel, ScalarParams } from '@experiment-kit/core';
+import type { AnalyticModel, ScalarParams } from '@explorable-models/core';
 
 export type RiemannParameters = ScalarParams & { count: number; rule: 'right' | 'midpoint'; integrand: 'square' | 'signed' };
 export const defaults: RiemannParameters = { count: 20, rule: 'midpoint', integrand: 'square' };

@@ -1,4 +1,4 @@
-# Experiment Kit agent workflow
+# Explorable Models agent workflow
 
 This repository is a toolkit, not a tutoring or account platform. Read README.md and docs/authoring.md before changing the public contract.
 

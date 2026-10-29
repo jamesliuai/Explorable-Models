@@ -33,7 +33,7 @@ async function bundle(options: { missing?: boolean; gate?: { name: string; start
     stdin: { contents: `export { createStudyHarnessAdapter${options.synchronous ? ', migrateArtifact' : ''}${options.codec ? ', verifyArtifact' : ''} } from ${JSON.stringify(ENTRY)};`, resolveDir: ROOT, loader: 'ts' },
     bundle: true, splitting: true, format: 'esm', platform: 'browser', target: 'es2022', write: false, metafile: true,
     outdir: directory, outExtension: { '.js': '.mjs' }, entryNames: 'entry', logLevel: 'silent',
-    alias: { '@experiment-kit/core/model': path.join(ROOT, 'packages/core/src/model/index.ts'), '@experiment-kit/core': path.join(ROOT, 'packages/core/src/index.ts') },
+    alias: { '@explorable-models/core/model': path.join(ROOT, 'packages/core/src/model/index.ts'), '@explorable-models/core': path.join(ROOT, 'packages/core/src/index.ts') },
   });
   const outputs = new Map(Object.entries(result.metafile.outputs).map(([file, details]) => [path.resolve(ROOT, file), details]));
   const entry = path.join(directory, 'entry.mjs');

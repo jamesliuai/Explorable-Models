@@ -2,11 +2,11 @@
  * Authoring fixtures shared by the CLI (Node, through the bundled toolkit), the browser harness page and the candidate
  * worker. Pure data and functions: no DOM, no Node APIs, no authored code.
  *
- * - `experiment-kit.reference-fixtures` 1.0: external reference cases with provenance and declared tolerances, compared
+ * - `explorable-models.reference-fixtures` 1.0: external reference cases with provenance and declared tolerances, compared
  *   with frames evaluated in a browser worker. The five installed suites in `tests/reference/fixtures/activities/` keep
  *   their own richer formats; `convertInstalledSuite` maps their quantity expectations to this format and lists the
  *   geometry checks it does not carry (those stay in `tests/reference/activities/*.test.ts`).
- * - `experiment-kit.boundary-cases` 1.0: declared boundary cases and generated domain probes, classified as
+ * - `explorable-models.boundary-cases` 1.0: declared boundary cases and generated domain probes, classified as
  *   valid / undefined / numerical-limit / out-of-domain (or worker-error), never as zero.
  * - Mutation operators for the mutation-sensitivity summary: generic faults (sign, factor, unit, transposition, input
  *   swap, fabricated zeros, boundary nudges) applied to a kernel's inputs or outputs inside the worker.
@@ -14,10 +14,10 @@
 import {
   checkParameters, validateJson,
   type GeometryResult, type JsonSchema, type KernelOutput, type ModelManifest, type PositionRequest, type QuantityResult, type UnitId,
-} from '@experiment-kit/core/model';
+} from '@explorable-models/core/model';
 
-export const FIXTURE_CONTRACT = 'experiment-kit.reference-fixtures' as const;
-export const BOUNDARY_CONTRACT = 'experiment-kit.boundary-cases' as const;
+export const FIXTURE_CONTRACT = 'explorable-models.reference-fixtures' as const;
+export const BOUNDARY_CONTRACT = 'explorable-models.boundary-cases' as const;
 export const FIXTURE_VERSION = '1.0' as const;
 export const FIXTURE_LIMITS = Object.freeze({ cases: 2000, points: 2000, problemsPerCase: 8, boundaryCases: 256, mutations: 240 });
 
@@ -618,7 +618,7 @@ const CONVERTERS: Record<string, (raw: Raw) => Converted> = {
 export const CONVERTIBLE_SUITES: readonly string[] = Object.freeze(Object.keys(CONVERTERS));
 
 /**
- * Converts an installed activity suite to `experiment-kit.reference-fixtures` 1.0. Case IDs, labels, provenance,
+ * Converts an installed activity suite to `explorable-models.reference-fixtures` 1.0. Case IDs, labels, provenance,
  * parameters and tolerances are copied unchanged; quantity expectations are restated in the generic vocabulary.
  */
 export function convertInstalledSuite(templateId: string, raw: unknown, source: { path: string; digest: string }, target?: { modelId: string; version: string; suiteId: string }): ReferenceSuite {
@@ -631,7 +631,7 @@ export function convertInstalledSuite(templateId: string, raw: unknown, source: 
     suiteId: target?.suiteId ?? String(raw.suiteId),
     model: target ? { modelId: target.modelId, version: target.version } : { modelId: String(model.modelId), version: String(model.version) },
     author: String(raw.author), review: String(raw.review), semantics: String(raw.semantics),
-    derivedFrom: { path: source.path, digest: source.digest, suiteId: String(raw.suiteId), conversion: `Converted by experiment-kit activity tooling: case IDs, labels, provenance, parameters and tolerances copied unchanged; quantity expectations restated as experiment-kit.reference-fixtures 1.0 expectations.${converted.derivation ? ` ${converted.derivation}` : ''}` },
+    derivedFrom: { path: source.path, digest: source.digest, suiteId: String(raw.suiteId), conversion: `Converted by explorable-models activity tooling: case IDs, labels, provenance, parameters and tolerances copied unchanged; quantity expectations restated as explorable-models.reference-fixtures 1.0 expectations.${converted.derivation ? ` ${converted.derivation}` : ''}` },
     notCovered: converted.notCovered,
     cases: converted.cases,
   };

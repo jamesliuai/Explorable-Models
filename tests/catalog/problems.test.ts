@@ -3,7 +3,7 @@
  * `problems()`, absent from discovery, and any reference to them resolves as unvouched `authored` content.
  */
 import { describe, expect, it, vi } from 'vitest';
-import type { ActivityTemplate } from '@experiment-kit/activity';
+import type { ActivityTemplate } from '@explorable-models/activity';
 
 vi.mock(import('../../packages/catalog/src/templates/index.js'), async importOriginal => {
   const original = await importOriginal();

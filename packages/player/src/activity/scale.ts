@@ -3,7 +3,7 @@
  * fitting and camera operations. This is presentation only. It never evaluates the model: every coordinate it maps
  * comes from the projected frame, and a camera never changes scientific state (revisions.md, presentation space).
  */
-import type { Camera2D } from '@experiment-kit/activity';
+import type { Camera2D } from '@explorable-models/activity';
 
 /** `[xmin, xmax, ymin, ymax]` in the view's display units. */
 export type Bounds2 = [number, number, number, number];

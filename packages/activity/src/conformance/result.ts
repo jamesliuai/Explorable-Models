@@ -3,7 +3,7 @@
  * `docs/study-harness/templates/host-conformance-result.schema.json` (external gate G2, requirement A54). The JSON Schema
  * below is that template (a test keeps the two identical). Pure data and checks: no Node, DOM or native imports.
  */
-import { jsonDataErrors, schemaErrors, type JsonSchema } from '@experiment-kit/core/model';
+import { jsonDataErrors, schemaErrors, type JsonSchema } from '@explorable-models/core/model';
 
 export const HOST_CONFORMANCE_RESULT_SCHEMA = 'study-harness.host-conformance-result/1' as const;
 
@@ -104,7 +104,7 @@ const stepSchema = (description: string): JsonSchema => ({
 
 export const HOST_CONFORMANCE_RESULT_JSON_SCHEMA: JsonSchema = Object.freeze({
   $schema: 'https://json-schema.org/draft/2020-12/schema',
-  $id: 'https://experiment-kit.dev/schema/study-harness/host-conformance-result-1.json',
+  $id: 'https://explorable-models.dev/schema/study-harness/host-conformance-result-1.json',
   title: 'Study Harness host conformance result (external gate G2, A54)',
   description: 'One run of the G2 conformance sequence against a host. subject labels whether the run used the actual Study Harness application or a fixture host (the packaged reference host or an in-memory host); fixture results never satisfy A54. Every step of the sequence is listed, with not-run and not-run (environment) kept distinct from pass. Do not put learner data, study content or credentials in this record.',
   type: 'object',
@@ -146,7 +146,7 @@ export const HOST_CONFORMANCE_RESULT_JSON_SCHEMA: JsonSchema = Object.freeze({
         additionalProperties: false,
         required: ['name', 'version', 'sha256'],
         properties: {
-          name: { type: 'string', pattern: '^@experiment-kit/[a-z0-9-]{1,32}$' },
+          name: { type: 'string', pattern: '^@explorable-models/[a-z0-9-]{1,32}$' },
           version: { type: 'string', pattern: '^[0-9]{1,4}[.][0-9]{1,4}[.][0-9]{1,6}(-[0-9A-Za-z.-]{1,32})?$' },
           sha256: { type: 'string', pattern: '^[0-9a-f]{64}$' },
         },
@@ -156,7 +156,7 @@ export const HOST_CONFORMANCE_RESULT_JSON_SCHEMA: JsonSchema = Object.freeze({
       type: 'object',
       additionalProperties: false,
       required: ['name', 'version'],
-      description: 'The conformance kit that produced this record (for example @experiment-kit/activity/conformance); absent when the host ran the sequence with its own harness.',
+      description: 'The conformance kit that produced this record (for example @explorable-models/activity/conformance); absent when the host ran the sequence with its own harness.',
       properties: {
         name: { type: 'string', pattern: '^@?[A-Za-z0-9][A-Za-z0-9_.:@/+-]{0,127}$' },
         version: { type: 'string', pattern: '^[0-9]{1,4}[.][0-9]{1,4}[.][0-9]{1,6}(-[0-9A-Za-z.-]{1,32})?$' },

@@ -5,7 +5,7 @@
  * the surface's responsibility and are not covered here.
  */
 import { afterEach, describe, expect, it } from 'vitest';
-import { LEARNER_MESSAGES, type CommandOutcome, type InteractionSummary } from '@experiment-kit/activity';
+import { LEARNER_MESSAGES, type CommandOutcome, type InteractionSummary } from '@explorable-models/activity';
 import {
   activityGuard, codesOf, enterExplore, guards, harness, manifest, okOf, op, open, policyFor, presentationGuard, settled, template, type Harness, type Opened,
 } from './support/adapter-harness.js';

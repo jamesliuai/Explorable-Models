@@ -1,4 +1,4 @@
-import type { RunFrame } from '@experiment-kit/core';
+import type { RunFrame } from '@explorable-models/core';
 import { binding, format, scalar } from '../utils';
 export function ProbabilityScene({frame,onSelect,selectedIds,tree=false}:{frame:RunFrame;onSelect:(id:string)=>void;selectedIds:readonly string[];tree?:boolean}) {
  const tp=scalar(frame,'count.truePositive'),fp=scalar(frame,'count.falsePositive'),flagged=scalar(frame,'count.flagged'),total=scalar(frame,'count.population');

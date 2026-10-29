@@ -18,7 +18,7 @@ use crate::store;
 
 /// Artifacts kept per activity and kind (oldest dropped first; their blobs are removed when unreferenced).
 pub const ARTIFACT_RETENTION: i64 = 16;
-/// Top-level artifact fields covered by the integrity manifest (`INTEGRITY_FIELDS` in `@experiment-kit/activity`, same
+/// Top-level artifact fields covered by the integrity manifest (`INTEGRITY_FIELDS` in `@explorable-models/activity`, same
 /// order; fields added later are appended there, so an artifact without them keeps its manifest).
 pub const INTEGRITY_FIELDS: &[&str] = &[
     "contract",

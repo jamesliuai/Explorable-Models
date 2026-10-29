@@ -5,7 +5,7 @@
  * Conversion from the canonical unit to a display unit happens here, at the presentation boundary, with core
  * `convert()`; nothing is rescaled silently.
  */
-import { UNITS, convert, isCompatible, unitLabel, type QuantityResult, type UnitId } from '@experiment-kit/core/model';
+import { UNITS, convert, isCompatible, unitLabel, type QuantityResult, type UnitId } from '@explorable-models/core/model';
 
 export const DEFAULT_PRECISION = 4;
 export const DEFAULT_LOCALE = 'en-US';

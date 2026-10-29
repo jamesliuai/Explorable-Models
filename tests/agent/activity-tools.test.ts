@@ -11,7 +11,7 @@ import { renderToString } from 'react-dom/server';
 import { afterEach, describe, expect, it } from 'vitest';
 import { createVisualizationSession, evaluateDocument } from '../../packages/core/src/declarative/index';
 import type { VisualizationSession } from '../../packages/core/src/declarative/types';
-import { FORBIDDEN_TEX_COMMANDS, templateRef, type ToolOperation } from '@experiment-kit/activity';
+import { FORBIDDEN_TEX_COMMANDS, templateRef, type ToolOperation } from '@explorable-models/activity';
 import { prepareMath, REJECTED_TEX_COMMANDS } from '../../packages/player/src/activity/math';
 import { companionText } from '../../packages/player/src/activity/capture';
 import { captureMetadata, composeCaptureSvg, selectCaptureView } from '../../packages/player/src/activity/capture-renderer';
@@ -19,7 +19,7 @@ import type { ActivityBinding, LearnerProjection } from '../../packages/activity
 import {
   ACTIVITY_TOOL_DESCRIPTORS, ACTIVITY_TOOL_REASONS, AUTHORITY_FIELDS, createActivityTools, createVisualizationTools,
   type ActivityToolAudience, type ActivityToolResult,
-} from '@experiment-kit/agent';
+} from '@explorable-models/agent';
 import { codesOf as bindingCodes, policyFor, requestFor, settled, template } from '../activity/support/adapter-harness.js';
 import {
   ACTIVITY_ID, ALL_OPERATIONS, QUADRATIC, acknowledge, atExplore, codesOf, dataOf, expectNoRestricted, expectSafeFailure, expectedGuards, opId, prepareThroughTools, revealExploreStep, rig,
@@ -866,14 +866,14 @@ describe('misuse matrix through tools and direct APIs (§15.1, §16)', () => {
       get: (target, key) => key in target ? target[key as keyof ActivityBinding] : forbidden,
     });
     const html = renderToString(createElement(StudyActivitySurface, { binding, theme: 'light' }));
-    expect(html).toContain('data-eka-panel="comparisons"');
+    expect(html).toContain('data-ema-panel="comparisons"');
     inert(html);
 
     // SVG capture: the composer escapes every text line it draws (the companion lines built from the projection, the
     // projection's comparison labels and the server-rendered scene of the captured view); the companion is plain text.
     const view = selectCaptureView(projection as LearnerProjection);
     const companion = companionText(projection as LearnerProjection, view);
-    const start = html.indexOf(`data-eka-view-id="${view.viewId}"`);
+    const start = html.indexOf(`data-ema-view-id="${view.viewId}"`);
     const open = start < 0 ? -1 : html.lastIndexOf('<svg', start);
     const scene = open < 0 ? null : { svg: html.slice(open, html.indexOf('</svg>', open) + 6), width: 640, height: 400 };
     expect(scene?.svg, `server-rendered scene of ${view.viewId}`).toMatch(/^<svg[\s\S]*<\/svg>$/);

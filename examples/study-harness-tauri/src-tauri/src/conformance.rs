@@ -11,7 +11,7 @@
 //! * `SH_SOURCE_COMMIT`, `SH_SOURCE_DIRTY`, `SH_OS_VERSION` — run identity echoed to the runner for the HostPort
 //!   conformance kit's result record (the executable's sha256 is computed here from the running binary).
 //!
-//! The in-app HostPort conformance kit (`@experiment-kit/activity/conformance`) also uses two in-process hooks: a
+//! The in-app HostPort conformance kit (`@explorable-models/activity/conformance`) also uses two in-process hooks: a
 //! simulated fault at a named crash point (`conformance_fault`: the command fails there like a crashed host — nothing
 //! after the point is committed, no reply — and every later host command fails) and `conformance_reopen_store`, which
 //! drops the host and opens the same SQLite store again (the restart rule runs, as on a relaunch). Full process

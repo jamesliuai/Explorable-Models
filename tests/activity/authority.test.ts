@@ -8,8 +8,8 @@
  */
 import { readFileSync } from 'node:fs';
 import { afterEach, describe, expect, it } from 'vitest';
-import { artifactIntegrity, createStudyHarnessAdapter, type ActivityArtifact, type ActivityCatalog, type ExposureRecord, type InteractionEvent } from '@experiment-kit/activity';
-import { createInstalledCatalog } from '@experiment-kit/catalog';
+import { artifactIntegrity, createStudyHarnessAdapter, type ActivityArtifact, type ActivityCatalog, type ExposureRecord, type InteractionEvent } from '@explorable-models/activity';
+import { createInstalledCatalog } from '@explorable-models/catalog';
 import {
   ackCurrent, activityGuard, authorizeExploration, codesOf, enterExplore, expectValidEvents, guards, harness, okOf, op, open, policyFor, rectangleCatalog, rectanglePolicy,
   rectangleRequest, requestFor, settled, until, type Harness, type Opened,

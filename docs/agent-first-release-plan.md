@@ -87,9 +87,9 @@ Use a small number of public packages. The following is a proposed organization,
 
 | Surface | Responsibility |
 | --- | --- |
-| `@experiment-kit/core` | JSON contracts, validation, identities, sessions/runs, commands, snapshots, worker protocol; no React or DOM dependencies |
-| `@experiment-kit/player` | Browser surface, primitive rendering, controls, responsive layout, imperative mount API and React entry point |
-| `@experiment-kit/agent` | Capability/tool descriptions, tool dispatch, candidate authoring and diagnostics; no model-provider dependency |
+| `@explorable-models/core` | JSON contracts, validation, identities, sessions/runs, commands, snapshots, worker protocol; no React or DOM dependencies |
+| `@explorable-models/player` | Browser surface, primitive rendering, controls, responsive layout, imperative mount API and React entry point |
+| `@explorable-models/agent` | Capability/tool descriptions, tool dispatch, candidate authoring and diagnostics; no model-provider dependency |
 | CLI distribution | Trusted local compilation, development coordinator, MCP transport, static export and browser capture |
 | Gallery application | Navigation, examples, documentation links, saved-run UI and demonstration agent integration, consuming public APIs |
 

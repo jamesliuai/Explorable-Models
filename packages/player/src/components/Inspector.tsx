@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Check, Download, Play, X } from 'lucide-react';
-import type { ExperimentRuntime, CheckReport, RunFrame } from '@experiment-kit/core';
+import type { ExperimentRuntime, CheckReport, RunFrame } from '@explorable-models/core';
 import type { ExperimentEntry } from '../types';
 import { binding, downloadJSON, format } from '../utils';
 export function Inspector({entry,runtime,frame,onSelect}:{entry:ExperimentEntry;runtime:ExperimentRuntime;frame:RunFrame;onSelect:(id:string)=>void}) {

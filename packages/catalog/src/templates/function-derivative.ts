@@ -6,8 +6,8 @@
  * authorized free-exploration version. Response requests reference host-owned task families only; this template
  * carries no answers, rubrics or held-out items.
  */
-import type { ActivityTemplate, ContentGroup, MarkSpec, StageSpec } from '@experiment-kit/activity';
-import { modelIdentity } from '@experiment-kit/core/model';
+import type { ActivityTemplate, ContentGroup, MarkSpec, StageSpec } from '@explorable-models/activity';
+import { modelIdentity } from '@explorable-models/core/model';
 import { FUNCTION_DERIVATIVE_COPY as COPY } from '../copy/function-derivative.js';
 import { functionDerivativeManifest as manifest } from '../models/function-derivative.js';
 

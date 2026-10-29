@@ -5,7 +5,7 @@
  * collision-aware: a label avoids earlier labels, the drawn obstacles of other marks (arrowheads, point markers) and
  * every other labelled point, and a label moved away from its feature gets a leader line.
  */
-import type { LabelPlacement } from '@experiment-kit/activity';
+import type { LabelPlacement } from '@explorable-models/activity';
 import type { Rect } from './scale.js';
 
 export type Anchor = LabelPlacement['anchor'];

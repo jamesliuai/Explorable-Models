@@ -1,5 +1,5 @@
 import { useLayoutEffect, useRef, useState } from 'react';
-import type { RunFrame, ScalarParams } from '@experiment-kit/core';
+import type { RunFrame, ScalarParams } from '@explorable-models/core';
 import { scaleLinear } from 'd3-scale';
 import { binding, scalar, vector, format } from '../utils';
 

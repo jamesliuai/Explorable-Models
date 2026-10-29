@@ -3,7 +3,7 @@
  * mutation each. The expectation and reason are declared here by hand, independently of either validator; both the
  * TypeScript and the Rust validator must reach the declared decision for every fixture file.
  */
-import { sha256 } from '@experiment-kit/core';
+import { sha256 } from '@explorable-models/core';
 import { CONTRACTS } from '../src/contracts.js';
 import { MESSAGES, MODEL_MANIFEST_CONTRACT, SCHEMA_NAMES, SHORT_NAMES, type SchemaName } from '../src/schemas.js';
 import { EXEMPLARS, event } from './exemplars.js';

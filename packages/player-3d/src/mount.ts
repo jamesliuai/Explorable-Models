@@ -96,7 +96,7 @@ export function mount(element: HTMLElement, options: SpatialMountOptions): Spati
   const doc = element.ownerDocument;
   const win = doc.defaultView;
   if (!win) throw new TypeError('mount requires an element in a browsing context.');
-  const id = `ek3-${(++sequence).toString(36)}`;
+  const id = `em3-${(++sequence).toString(36)}`;
   const lifecycle = new LifecycleRegistry();
   const timers = new Set<number>();
   let disposed = false;
@@ -111,15 +111,15 @@ export function mount(element: HTMLElement, options: SpatialMountOptions): Spati
 
   // ---- DOM --------------------------------------------------------------------------------------------------------
   const releaseStyles = adoptSpatialStyles(element);
-  const root = create('div', 'ek3');
-  root.setAttribute('data-ek3-root', '');
-  const toolbar = create('div', 'ek3-toolbar');
+  const root = create('div', 'em3');
+  root.setAttribute('data-em3-root', '');
+  const toolbar = create('div', 'em3-toolbar');
   toolbar.setAttribute('role', 'toolbar');
   toolbar.setAttribute('aria-label', '3D view camera');
   const button = (label: string, action: string, options: { pressed?: boolean; aria?: string } = {}) => {
-    const node = create('button', 'eka-button ek3-button', label);
+    const node = create('button', 'ema-button em3-button', label);
     node.type = 'button';
-    node.setAttribute('data-ek3-action', action);
+    node.setAttribute('data-em3-action', action);
     if (options.pressed !== undefined) node.setAttribute('aria-pressed', String(options.pressed));
     if (options.aria) node.setAttribute('aria-label', options.aria);
     node.tabIndex = -1;
@@ -133,32 +133,32 @@ export function mount(element: HTMLElement, options: SpatialMountOptions): Spati
   const zoomIn = button('+', 'zoom-in', { aria: 'Zoom the 3D view in' });
   const zoomOut = button('−', 'zoom-out', { aria: 'Zoom the 3D view out' });
   const wireframeButton = button('Wireframe', 'wireframe', { pressed: false, aria: 'Wireframe surface' });
-  const separator = () => { const node = create('span', 'ek3-sep'); node.setAttribute('aria-hidden', 'true'); return node; };
+  const separator = () => { const node = create('span', 'em3-sep'); node.setAttribute('aria-hidden', 'true'); return node; };
   // View-size controls together (reset, whole box, zoom), then the projection and the surface style.
   toolbar.append(...presetButtons.values(), separator(), resetButton, wholeBoxButton, zoomOut, zoomIn, perspectiveButton, wireframeButton);
 
-  const viewport = create('div', 'ek3-viewport');
+  const viewport = create('div', 'em3-viewport');
   viewport.tabIndex = 0;
   viewport.setAttribute('role', 'application');
   viewport.setAttribute('aria-roledescription', '3D view');
-  const hint = create('p', 'ek3-hint', 'Drag to turn the view. With the view focused: arrow keys turn it by 15°, + and − zoom, Home resets.');
+  const hint = create('p', 'em3-hint', 'Drag to turn the view. With the view focused: arrow keys turn it by 15°, + and − zoom, Home resets.');
   hint.id = `${id}-hint`;
   viewport.setAttribute('aria-describedby', hint.id);
-  const labelsLayer = create('div', 'ek3-labels');
+  const labelsLayer = create('div', 'em3-labels');
   labelsLayer.setAttribute('aria-hidden', 'true');
-  const state = create('div', 'ek3-state');
+  const state = create('div', 'em3-state');
   state.hidden = true;
   state.setAttribute('role', 'status');
-  const stateTitle = create('p', 'ek3-state-title');
+  const stateTitle = create('p', 'em3-state-title');
   const stateText = create('p', '');
   const retry = button('Try again', 'retry');
   retry.tabIndex = 0;
   retry.hidden = true;
   state.append(stateTitle, stateText, retry);
-  const key = create('p', 'ek3-key', 'Axes: x red solid line, y green dashed line, z blue dotted line, each with an arrowhead and its name at the positive end. The frame is right-handed: x × y = z.');
-  const notes = create('ul', 'ek3-notes');
+  const key = create('p', 'em3-key', 'Axes: x red solid line, y green dashed line, z blue dotted line, each with an arrowhead and its name at the positive end. The frame is right-handed: x × y = z.');
+  const notes = create('ul', 'em3-notes');
   notes.setAttribute('aria-label', '3D view notes');
-  const live = create('div', 'ek3-sr');
+  const live = create('div', 'em3-sr');
   live.setAttribute('role', 'status');
   live.setAttribute('aria-live', 'polite');
   // Layout the renderer depends on, set through CSSOM (also where constructable stylesheets are unavailable).
@@ -205,7 +205,7 @@ export function mount(element: HTMLElement, options: SpatialMountOptions): Spati
     if (status === 'failed') stateText.textContent = [stateMessage ?? '', alternative()].filter(Boolean).join(' ');
   };
   const setState = (status: SpatialStatus, message: string | null) => {
-    root.setAttribute('data-ek3-status', status);
+    root.setAttribute('data-em3-status', status);
     const lost = status === 'context-lost', failed = status === 'failed';
     state.hidden = !(lost || failed);
     stateMessage = message;
@@ -227,7 +227,7 @@ export function mount(element: HTMLElement, options: SpatialMountOptions): Spati
   const buildLabels = (plan: SpatialPlan) => {
     labelsLayer.replaceChildren();
     labelNodes = plan.labels.map(label => {
-      const node = create('span', 'ek3-label', label.text);
+      const node = create('span', 'em3-label', label.text);
       node.setAttribute('data-kind', label.kind);
       if ((label.kind === 'mark' || label.kind === 'segment') && label.markId) {
         node.setAttribute('data-select', label.markId);
@@ -308,7 +308,7 @@ export function mount(element: HTMLElement, options: SpatialMountOptions): Spati
     const own = pool.acquire(() => new WebGLRenderer({ canvas: doc.createElement('canvas'), antialias: true, alpha: false, powerPreference: 'low-power', preserveDrawingBuffer: false })).renderer;
     renderer = own;
     canvas = own.domElement;
-    canvas.className = 'ek3-canvas';
+    canvas.className = 'em3-canvas';
     canvas.setAttribute('aria-hidden', 'true');
     canvas.style.display = 'block';
     canvas.style.width = '100%';
@@ -431,8 +431,8 @@ export function mount(element: HTMLElement, options: SpatialMountOptions): Spati
   const rove = (target: HTMLButtonElement) => { for (const node of toolbarButtons()) node.tabIndex = node === target ? 0 : -1; };
   rove(presetButtons.get(PRESET_ORDER[0]!)!);
   lifecycle.listen<MouseEvent>(root, 'click', event => {
-    const target = (event.target as Element | null)?.closest?.('button[data-ek3-action]') as HTMLButtonElement | null;
-    if (target && root.contains(target) && target.getAttribute('aria-disabled') !== 'true') { if (toolbar.contains(target)) rove(target); act(target.getAttribute('data-ek3-action')!); return; }
+    const target = (event.target as Element | null)?.closest?.('button[data-em3-action]') as HTMLButtonElement | null;
+    if (target && root.contains(target) && target.getAttribute('aria-disabled') !== 'true') { if (toolbar.contains(target)) rove(target); act(target.getAttribute('data-em3-action')!); return; }
     const label = (event.target as Element | null)?.closest?.('[data-select]');
     if (label) { const markId = label.getAttribute('data-select'); options.onSelect(presentation.selection === markId ? null : markId); }
   });
@@ -515,7 +515,7 @@ export function mount(element: HTMLElement, options: SpatialMountOptions): Spati
       controller.update(next, presentation);
       for (const entry of labelNodes) if (entry.node.hasAttribute('data-select')) entry.node.setAttribute('data-selected', String(presentation.selection === entry.label.markId));
       // A shown lost/failed state follows the surface's current wording (what its table lists can change with the view).
-      if (!state.hidden) writeStateText(root.getAttribute('data-ek3-status'));
+      if (!state.hidden) writeStateText(root.getAttribute('data-em3-status'));
     },
     dispose() {
       if (disposed) return;

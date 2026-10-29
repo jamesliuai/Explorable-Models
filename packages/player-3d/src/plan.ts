@@ -18,7 +18,7 @@
  *   several directed segments): at its tip, or, for a zero vector that has no tip, beside its dot (`u (zero vector)`);
  *   otherwise the mark's label names it, and the zero-length segments of an undirected mark are counted, never named.
  *
- * Bounds (`SPATIAL_LIMITS`, the limits of the `spatial-3d@1.0` capability record in `@experiment-kit/activity`, passed
+ * Bounds (`SPATIAL_LIMITS`, the limits of the `spatial-3d@1.0` capability record in `@explorable-models/activity`, passed
  * in by the learner surface): a mark whose primitives would exceed the remaining vertex, index or field-sample budget is
  * rejected as a whole (no partial surface or field) with a visible note pointing to the 2D projection and table;
  * labels beyond the label limit are dropped lowest priority first (ticks, then segment names) with a note. Scaffolding
@@ -31,7 +31,7 @@
  * builder issues (a transparent double-sided surface is drawn in two passes); a mark that would exceed the remaining
  * per-frame budget is rejected as a whole with the same note.
  */
-import type { GeometryResult } from '@experiment-kit/core/model';
+import type { GeometryResult } from '@explorable-models/core/model';
 import { formatNumber, formatTick, type ViewFrame } from './frame.js';
 import type { LabelAnchor, SpatialMark, SpatialView } from './types.js';
 import { sameVec, vec3, type Vec3 } from './vec.js';
@@ -52,7 +52,7 @@ export interface SpatialLimits {
 }
 /**
  * The renderer's own maxima, equal to the `spatial-3d@1.0` capability record (`SPATIAL_3D_LIMITS` in
- * `@experiment-kit/activity`, checked by tests/player-3d/limits.test.ts). Limits passed at mount can only lower them.
+ * `@explorable-models/activity`, checked by tests/player-3d/limits.test.ts). Limits passed at mount can only lower them.
  */
 export const SPATIAL_LIMITS: Readonly<SpatialLimits> = Object.freeze({ vertices: 20_000, indices: 120_000, fieldSamples: 1_000, labels: 32, textureSize: 1024, drawCallsPerFrame: 128 });
 /** Effective limits: each requested limit is honoured only up to the renderer's own maximum. */
@@ -111,7 +111,7 @@ export const isDirected = (mark: Pick<SpatialMark, 'kind' | 'style'>): boolean =
  * Whether the drawing names the `count` segments of this mark by their IDs (report §10.4: no unexplained IDs): only the
  * segments of a directed `segments` mark, or several directed segments, whose IDs are shown at their tips (a zero
  * vector's beside its dot). Undirected segments carry no name in the drawing, so neither notes nor the 2D alternative's
- * coordinate table (`coordinateTable` in `@experiment-kit/player`, which applies the same rule) use their IDs.
+ * coordinate table (`coordinateTable` in `@explorable-models/player`, which applies the same rule) use their IDs.
  */
 export const namesSegments = (mark: Pick<SpatialMark, 'kind' | 'style'>, count: number): boolean =>
   isDirected(mark) && (mark.kind === 'segments' || count > 1);

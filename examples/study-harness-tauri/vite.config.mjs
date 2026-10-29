@@ -1,4 +1,4 @@
-// Vite configuration of the packaged reference host. The app resolves @experiment-kit/* from the packed tarballs
+// Vite configuration of the packaged reference host. The app resolves @explorable-models/* from the packed tarballs
 // installed in this directory's node_modules (scripts/install-packed.mjs): there are no monorepo aliases here.
 // The packaged app loads its build through Tauri's custom protocol (no dev server, no devUrl).
 //

@@ -1,6 +1,6 @@
 //! Study Harness packaged reference host: a small Tauri 2 conformance fixture for the visualizer boundary (report §17).
 //!
-//! The webview runs the packed `@experiment-kit/*` libraries; this process owns durable records and authority:
+//! The webview runs the packed `@explorable-models/*` libraries; this process owns durable records and authority:
 //! narrow raw-body commands for every `HostPort` method plus host-owned lifecycle operations (`commands.rs`), SQLite
 //! storage (`store.rs`, `host.rs`), policies issued from the embedded approval (`approved.rs`, `policy.rs`) and the
 //! portable backup (`backup.rs`). The main window is created here so the worker CSP hook is attached (`csp.rs`).

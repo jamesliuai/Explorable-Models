@@ -2,7 +2,7 @@
  * The driver interface every consumer entry exposes as `window.consumer` (JSON-serializable results only), and the
  * page readiness flag (`document.body.dataset.ready`).
  */
-import type { CapabilityReport, ExposureRecord, InteractionEvent } from '@experiment-kit/activity';
+import type { CapabilityReport, ExposureRecord, InteractionEvent } from '@explorable-models/activity';
 import type { ConsumerHost } from './host';
 import type { CardSummary, ConsumerSession, Outcome, SerializedCapture } from './session';
 

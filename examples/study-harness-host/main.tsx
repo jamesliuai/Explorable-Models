@@ -14,7 +14,7 @@
  *   ?flow=scripted|generic      the quadratic template runs the scripted flow unless flow=generic; other templates are generic
  *   ?mode=guided|free           guided flow from the initial stage (default) or authorized free exploration
  *   ?policy=held|full           generic flow: solution-bearing groups held outside the policy ceiling until revealed (default) or inside it
- *   ?spatial=1                  pass a lazy `@experiment-kit/player-3d` loader to the card (absent/0: the card's 2D projection fallback)
+ *   ?spatial=1                  pass a lazy `@explorable-models/player-3d` loader to the card (absent/0: the card's 2D projection fallback)
  *   ?fail=<point>[:n][,…]       one-shot host failures before commit, armed when the fixture session starts
  *                               (points: exposure-intent, scope-intent, stage, display-ack, append, save, assistance, policy, cursor, register)
  *   ?delay=<point>:<ms>[,…]     host call delays before processing (a bare number delays exposure intents)
@@ -27,9 +27,9 @@
 import { createRoot } from 'react-dom/client';
 import { useEffect, useRef, useState, useSyncExternalStore } from 'react';
 import type { FormEvent } from 'react';
-import { validateRecord, type ActivityArtifact, type SchemaName } from '@experiment-kit/activity';
-import { INSTALLED_TEMPLATES, quadraticGradientDescentTemplate } from '@experiment-kit/catalog';
-import type { SpatialRendererModule } from '@experiment-kit/player/activity';
+import { validateRecord, type ActivityArtifact, type SchemaName } from '@explorable-models/activity';
+import { INSTALLED_TEMPLATES, quadraticGradientDescentTemplate } from '@explorable-models/catalog';
+import type { SpatialRendererModule } from '@explorable-models/player/activity';
 import { CRASH_POINTS, INJECTION_POINTS, type CrashPoint, type InjectionPoint } from './fixture-host';
 import type { FixtureOptions } from './fixture-runtime';
 import { FixtureSession, STEP_LABELS, type SessionSnapshot, type StepId } from './fixture-session';

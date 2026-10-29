@@ -1,12 +1,12 @@
 {
-  "contract": "experiment-kit.review-packet",
+  "contract": "explorable-models.review-packet",
   "version": "1.0",
   "kind": "installed",
   "generator": {
-    "tool": "experiment-kit activity review-packet",
+    "tool": "explorable-models activity review-packet",
     "toolkitVersion": "0.3.0-preview.1",
     "browser": "Chromium 156.0.8078.4",
-    "regenerate": "experiment-kit activity review-packet --installed quadratic-surface-gradient --out docs/study-harness/review-packets/quadratic-surface-gradient --width 720 --theme light --index 4"
+    "regenerate": "explorable-models activity review-packet --installed quadratic-surface-gradient --out docs/study-harness/review-packets/quadratic-surface-gradient --width 720 --theme light --index 4"
   },
   "status": {
     "lifecycle": "reference-checked",
@@ -19,16 +19,16 @@
     "template": {
       "templateId": "quadratic-surface-gradient",
       "version": "1.0.0",
-      "digest": "sha256:be8ee71cf73606c8fa0676a0c83e2f0ea3f6a1d3c77bf13278d30fd23bf95985"
+      "digest": "sha256:fbe01be3bda8b56f18869360e30f7f6dedf596786fa3eb1217d3a90039799f36"
     },
     "model": {
       "modelId": "quadratic-surface-gradient",
       "version": "1.0.0",
-      "digest": "sha256:cf14845fdc52ac67d2bdfca8f2434a15499f0555045882acfc287bcd14381294"
+      "digest": "sha256:bf6c7a28455d5b882d12e287894347d8acf4468db0a6681cb82c780b0ec34963"
     },
     "modelIdentity": {
-      "digest": "sha256:cf14845fdc52ac67d2bdfca8f2434a15499f0555045882acfc287bcd14381294",
-      "scientificRevision": "sha256:515644892b2fc883491e6e6d34f6e650a86ec88a76c9a5cb0d952019d49d5668",
+      "digest": "sha256:bf6c7a28455d5b882d12e287894347d8acf4468db0a6681cb82c780b0ec34963",
+      "scientificRevision": "sha256:3072ed7787d54b53890013aede217082d9b0ab9f3bf2040379cbf13662965030",
       "presentationRevision": "sha256:868aa8fd30ca9161d24c91830ce62769cedb3b61ba5aaa0e88c2d1b81ce8e72f"
     },
     "groups": [
@@ -446,7 +446,7 @@
         "path": "tests/reference/fixtures/activities/quadratic-surface-gradient.json",
         "digest": "sha256:4982408532970c0fca1657884b9307956e4f20ee91e0c68cdff00e8b66c2af20",
         "suiteId": "quadratic-surface-gradient:1.0.0",
-        "conversion": "Converted by experiment-kit activity tooling: case IDs, labels, provenance, parameters and tolerances copied unchanged; quantity expectations restated as experiment-kit.reference-fixtures 1.0 expectations."
+        "conversion": "Converted by explorable-models activity tooling: case IDs, labels, provenance, parameters and tolerances copied unchanged; quantity expectations restated as explorable-models.reference-fixtures 1.0 expectations."
       },
       "notCovered": [
         "Surface, section and field grids, contour levels and the perpendicularity of contours to the gradient direction are checked by tests/reference/activities/quadratic-surface-gradient.test.ts."
@@ -2496,8 +2496,8 @@
         "svgError": null,
         "revealed": [],
         "revealError": null,
-        "projectionDigest": "sha256:376c69d3c64ab1dc1492c799566cb82592ab8e4aba030f0d6ad0a3c9ffeed5e2",
-        "frameId": "sha256:0b2a0d0124e506719fb1f1d5aa5af47beca712257d60f77ab7ffa1bc19a43146",
+        "projectionDigest": "sha256:55ad53104dba34bd2348241f956d754cd974f9b15af4ef39dbece11423e60506",
+        "frameId": "sha256:6eaaa15be1d64cbf6462288b8bb30eca16b8f7fb99c77f6c6d5bcc5a794448bb",
         "ui": "ready",
         "reviewNotice": "Reference-checked; no independent subject review",
         "views": [
@@ -2571,8 +2571,8 @@
         "svgError": null,
         "revealed": [],
         "revealError": null,
-        "projectionDigest": "sha256:fe189972ec9b68fde5e29b929dbf85a48431ef8d3f72c6b1455832b90db97272",
-        "frameId": "sha256:7cd8a1a1e2d48c0d069e86049aa92b479a6dfa22826eb2c1c2096d0f2fc57f50",
+        "projectionDigest": "sha256:43c5e08b5f8af98c9768ac74faac564e7d45ceb36b95fac38638f273e4f786a4",
+        "frameId": "sha256:8f9de7ec58537088f06f541a4d7c5e8eecfcff78b4c1e2357f8dd1458b07f0ff",
         "ui": "ready",
         "reviewNotice": "Reference-checked; no independent subject review",
         "views": [
@@ -2646,8 +2646,8 @@
           "gradient-values"
         ],
         "revealError": null,
-        "projectionDigest": "sha256:55fe26a45bdd96070ed1a859bf261c3384bf3b83c337c950b18a9325720e0de6",
-        "frameId": "sha256:2942c109d8d1c9009938fb66292306a543c7fcd384477fd2fcdfaf4e78163fd4",
+        "projectionDigest": "sha256:e56c50abf041ae6a37a911b42e209bb95104482b31d3039232cacd71efb989e4",
+        "frameId": "sha256:a36031edb84bdf1af0ac9eba7a2e661adfc14f6cd06b084908a0372996ebc997",
         "ui": "ready",
         "reviewNotice": "Reference-checked; no independent subject review",
         "views": [
@@ -2724,8 +2724,8 @@
           "minimum-values"
         ],
         "revealError": null,
-        "projectionDigest": "sha256:7086ff8e789a03b9a2f28c5fdce1616b6385dc513a60072e4ded5ca0a185740f",
-        "frameId": "sha256:1a8c1c87f6a565e3b408e61e7a154f64975860bb04a56cbf950ecddd886acc14",
+        "projectionDigest": "sha256:1514530b5fae85d4ff53569454cdbc57a44f764d6df087265a5858533a786cbc",
+        "frameId": "sha256:5c6f1463dd67806278c6430f9ecd3502d00da113a3c69e2a5817539738005b86",
         "ui": "ready",
         "reviewNotice": "Reference-checked; no independent subject review",
         "views": [
@@ -2811,8 +2811,8 @@
           "minimum-values"
         ],
         "revealError": null,
-        "projectionDigest": "sha256:06afa6758274fd94cb7dc525293c3c02cf0a8674ac54d7176696176ca033ab1c",
-        "frameId": "sha256:860cc50276ebdd6d4b3adc63f3968ab8dc2642139368cf8261b83935ef73b5f7",
+        "projectionDigest": "sha256:64ee403dcebeac88049f75ddd4fbe0d6b8a654d5f89a48eaec2c176fd0be0d3c",
+        "frameId": "sha256:f169784ca1f8711a79c9acc8812097c96bab8e70b8aadc8a75898fe64e90ef56",
         "ui": "ready",
         "reviewNotice": "Reference-checked; no independent subject review",
         "views": [
@@ -2890,8 +2890,8 @@
         },
         "revealed": [],
         "revealError": null,
-        "projectionDigest": "sha256:38f9d7baf1a475b70bb1d09219615e61cb0cb07a89fecec16b9edd75e3a3ca02",
-        "frameId": "sha256:7d032eaa12fa31ab2aa31c2abfe8e1c28401459e9332d1234133e449da6d4abe",
+        "projectionDigest": "sha256:b4b599c5f5dfd7c2956d260a1620c9f1a1f1adc2202608ed4e207b5c1a832256",
+        "frameId": "sha256:96a5001616f62cbe7b48c1558f294878921e5ac1007f65ed54f8d104e9fd17dd",
         "ui": "empty",
         "reviewNotice": "Reference-checked; no independent subject review",
         "views": [],
@@ -2922,8 +2922,8 @@
           "minimum-values"
         ],
         "revealError": null,
-        "projectionDigest": "sha256:71c874a561b215fe4be6e78d1c73f39af95304700c59a221a14f1b8a182f1012",
-        "frameId": "sha256:1b4dc6ac0bb3302cfde7fca7b485bc636352c542d2b3e7b5a077573abbb653ee",
+        "projectionDigest": "sha256:cbfeba3a47f22dbe20dc1a8d7058fb5206840434681f6272c2a92d007fde39ef",
+        "frameId": "sha256:adbfa5d7136d94541c2fb8953ead28f94a85be451285de5489cc5c3da01bfb7a",
         "ui": "ready",
         "reviewNotice": "Reference-checked; no independent subject review",
         "views": [

@@ -7,8 +7,8 @@
  * rather than claimed as the same spatial experience. Response requests reference host-owned task families only; this
  * template carries no answers, rubrics or held-out items.
  */
-import type { ActivityTemplate, ContentGroup, MarkSpec, StageSpec } from '@experiment-kit/activity';
-import { modelIdentity } from '@experiment-kit/core/model';
+import type { ActivityTemplate, ContentGroup, MarkSpec, StageSpec } from '@explorable-models/activity';
+import { modelIdentity } from '@explorable-models/core/model';
 import { VECTOR_ORIENTATION_COPY as COPY } from '../copy/vector-orientation-3d.js';
 import { VECTOR_ORIENTATION_PARAMETERS } from '../kernels/vector-orientation-3d.js';
 import { vectorOrientationManifest as manifest } from '../models/vector-orientation-3d.js';

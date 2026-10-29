@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Download, FileJson, Package, Code } from 'lucide-react';
 import { zipSync, strToU8 } from 'fflate';
-import { sha256, type ExperimentRuntime } from '@experiment-kit/core';
+import { sha256, type ExperimentRuntime } from '@explorable-models/core';
 import type { ExperimentEntry } from '../types';
 import { download, downloadJSON } from '../utils';
 export function ExportPanel({entry,runtime}:{entry:ExperimentEntry;runtime:ExperimentRuntime}) {
@@ -22,8 +22,8 @@ export function ExportPanel({entry,runtime}:{entry:ExperimentEntry;runtime:Exper
    for(const item of manifest.assets){const path=typeof item==='string'?item:item.path;if(typeof path!=='string'||path.includes('..')||path.startsWith('/')||path.includes(':'))throw new Error('Invalid bundle asset path.');const data=await fetch(new URL(path,document.baseURI));if(!data.ok)throw new Error(`Could not load ${path}`);files[path]=new Uint8Array(await data.arrayBuffer());}
    const html=new TextDecoder().decode(files['index.html']);
    const json=JSON.stringify(snapshot).replace(/</g,'\\u003c');
-   const startup=`<script type="application/json" id="experiment-kit-snapshot">${json}</script>`;
-   const rewritten=html.replace(/<script type="application\/json" id="experiment-kit-snapshot">[\s\S]*?<\/script>/,'').replace('</head>',`${startup}</head>`);
+   const startup=`<script type="application/json" id="explorable-models-snapshot">${json}</script>`;
+   const rewritten=html.replace(/<script type="application\/json" id="explorable-models-snapshot">[\s\S]*?<\/script>/,'').replace('</head>',`${startup}</head>`);
    files['index.html']=strToU8(rewritten);
    manifest.assets=manifest.assets.map((item:{path:string})=>item.path==='index.html'?{path:'index.html',sha256:`sha256:${sha256(rewritten)}`,bytes:files['index.html'].byteLength}:item);
    const snapshotJSON=JSON.stringify(snapshot,null,2);files['snapshot.json']=strToU8(snapshotJSON);
@@ -34,5 +34,5 @@ export function ExportPanel({entry,runtime}:{entry:ExperimentEntry;runtime:Exper
   files['snapshot.json']=strToU8(JSON.stringify(snapshot,null,2));
   download(`${entry.id}-${sourceOnly?'source':'experiment'}.zip`,zipSync(files,{level:6}),'application/zip');setMessage('Download prepared. Serve a runnable export over HTTP.');
  }catch(e){setMessage(e instanceof Error?e.message:String(e));}finally{setBusy(false);}};
- return <div className="export-options"><p>Take the experiment with you. A snapshot preserves this moment; a runnable bundle includes everything needed for offline playback over HTTP.</p><button onClick={()=>downloadJSON(`${entry.id}-snapshot.json`,runtime.checkpoint())}><FileJson/><span><strong>Download snapshot</strong><small>Parameters, exact time, selection, and view state</small></span><Download size={17}/></button><button onClick={()=>bundle(true)} disabled={busy}><Code/><span><strong>Download source</strong><small>Editable model, manifest, views, and checks</small></span><Download size={17}/></button><button onClick={()=>bundle(false)} disabled={busy}><Package/><span><strong>Download runnable bundle</strong><small>Self-contained static player from a production build</small></span><Download size={17}/></button>{message?<p role="status" className="notice-inline">{message}</p>:null}<h3>From your terminal</h3><pre>npm run kit -- export examples/{entry.id} --out exports/{entry.id} --zip</pre><p className="tiny-note">Exports contain no AI credentials or chat history. Source revisions are identified by a content digest.</p></div>;
+ return <div className="export-options"><p>Take the experiment with you. A snapshot preserves this moment; a runnable bundle includes everything needed for offline playback over HTTP.</p><button onClick={()=>downloadJSON(`${entry.id}-snapshot.json`,runtime.checkpoint())}><FileJson/><span><strong>Download snapshot</strong><small>Parameters, exact time, selection, and view state</small></span><Download size={17}/></button><button onClick={()=>bundle(true)} disabled={busy}><Code/><span><strong>Download source</strong><small>Editable model, manifest, views, and checks</small></span><Download size={17}/></button><button onClick={()=>bundle(false)} disabled={busy}><Package/><span><strong>Download runnable bundle</strong><small>Self-contained static player from a production build</small></span><Download size={17}/></button>{message?<p role="status" className="notice-inline">{message}</p>:null}<h3>From your terminal</h3><pre>npm run models -- export examples/{entry.id} --out exports/{entry.id} --zip</pre><p className="tiny-note">Exports contain no AI credentials or chat history. Source revisions are identified by a content digest.</p></div>;
 }

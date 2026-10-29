@@ -43,11 +43,11 @@ export class BrowserSession {
     try {
       await page.setViewportSize(viewport);
       // A separate, frozen instance cannot alter the interactive or headless source run.
-      await page.addInitScript(value => { (window as unknown as Record<string, unknown>).__EXPERIMENT_KIT_CAPTURE__ = value; }, snapshot);
+      await page.addInitScript(value => { (window as unknown as Record<string, unknown>).__EXPLORABLE_MODELS_CAPTURE__ = value; }, snapshot);
       await page.goto(`${this.server.url}/?experiment=${encodeURIComponent(this.project.definition.manifest.id)}&capture=1`, { waitUntil: 'networkidle' });
-      await page.waitForFunction(() => Boolean((window as unknown as Record<string, unknown>).__EXPERIMENT_KIT_CAPTURE_READY__), undefined, { timeout: 15000 });
+      await page.waitForFunction(() => Boolean((window as unknown as Record<string, unknown>).__EXPLORABLE_MODELS_CAPTURE_READY__), undefined, { timeout: 15000 });
       await page.evaluate(() => document.fonts.ready);
-      const identity = await page.evaluate(() => (window as unknown as Record<string, unknown>).__EXPERIMENT_KIT_CAPTURE_READY__);
+      const identity = await page.evaluate(() => (window as unknown as Record<string, unknown>).__EXPLORABLE_MODELS_CAPTURE_READY__);
       await page.screenshot({ path: output, fullPage: true, animations: 'disabled' });
       const result = { path: output, snapshot, viewport, identity, externalNetwork: 'blocked', capture: 'frozen separate player instance' };
       await writeJSON(`${output}.json`, result);

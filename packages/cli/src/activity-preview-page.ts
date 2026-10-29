@@ -1,5 +1,5 @@
 /**
- * Fixed toolkit page for `experiment-kit activity preview` (report §15.2). No authored code is in this page: the model
+ * Fixed toolkit page for `explorable-models activity preview` (report §15.2). No authored code is in this page: the model
  * (authored kernel, installed kernels or bounded document execution) runs only in the bundle's module worker. The page
  * reads `preview-input.json` (written by the CLI) and runs two clearly separated lanes, each a real adapter activity
  * against its own in-page browser integration fixture host (a conformance fixture, not a Study Harness host):
@@ -24,10 +24,10 @@ import {
   computeVisibility, createStudyHarnessAdapter, groupDigests, solutionGroupsFor,
   type ActivityBinding, type ActivityCatalog, type ActivityTemplate, type Diagnostic, type HostPolicy, type LearnerProjection,
   type PreparedActivity, type StudyHarnessAdapter, type TemplateRef, type TransitionSpec, type Visibility,
-} from '@experiment-kit/activity';
-import { createInstalledCatalog } from '@experiment-kit/catalog';
-import { enableDocumentExecution, validateManifest, type ModelRef } from '@experiment-kit/core/model';
-import { mountStudyActivity, type MountedStudyActivity, type SurfaceDiagnostic } from '@experiment-kit/player/activity';
+} from '@explorable-models/activity';
+import { createInstalledCatalog } from '@explorable-models/catalog';
+import { enableDocumentExecution, validateManifest, type ModelRef } from '@explorable-models/core/model';
+import { mountStudyActivity, type MountedStudyActivity, type SurfaceDiagnostic } from '@explorable-models/player/activity';
 import { FixtureHost } from '../../../examples/study-harness-host/fixture-host.js';
 import { authoredCatalog, modelWorker, wait } from './activity-page-support.js';
 import type { AuthorDiagnostic } from './activity-validation.js';
@@ -331,7 +331,7 @@ function startBlocked(root: HTMLElement, input: BlockedPreviewInput): void {
   const errors = input.diagnostics.filter(item => item.severity === 'error').length;
   root.replaceChildren(
     element('header', { class: 'pv-header' },
-      element('p', { class: 'pv-eyebrow' }, 'Experiment Kit · activity preview · author aid'),
+      element('p', { class: 'pv-eyebrow' }, 'Explorable Models · activity preview · author aid'),
       element('h1', {}, input.title),
       element('p', { class: 'pv-identity' }, input.source.kind === 'package' ? input.source.directory : input.source.templateId)),
     element('p', { class: 'pv-blocked', role: 'status', 'data-preview': 'blocked' },
@@ -384,7 +384,7 @@ async function start(): Promise<void> {
 
   root.replaceChildren(
     element('header', { class: 'pv-header' },
-      element('p', { class: 'pv-eyebrow' }, 'Experiment Kit · activity preview · author aid'),
+      element('p', { class: 'pv-eyebrow' }, 'Explorable Models · activity preview · author aid'),
       element('h1', {}, input.title),
       element('p', { class: 'pv-identity' },
         `${input.identity.template.templateId}@${input.identity.template.version} · model ${input.identity.model.modelId}@${input.identity.model.version} · lifecycle ${input.identity.lifecycle}`),

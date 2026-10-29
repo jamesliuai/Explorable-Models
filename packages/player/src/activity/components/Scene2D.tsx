@@ -20,7 +20,7 @@
  */
 import { useEffect, useMemo, useRef, useState } from 'react';
 import type { KeyboardEvent, PointerEvent as ReactPointerEvent, ReactNode } from 'react';
-import type { Camera2D, GestureKind, ProjectedControl, ProjectedMark, ProjectedView } from '@experiment-kit/activity';
+import type { Camera2D, GestureKind, ProjectedControl, ProjectedMark, ProjectedView } from '@explorable-models/activity';
 import { dragAxisValue, dragControlStep, snapToStep } from '../drag.js';
 import { formatPlain, formatShown, formatTick } from '../format.js';
 import { labelMetrics, layoutLabelKey, layoutLegend, placeLabels, wrapText, type LegendEntry } from '../labels.js';
@@ -75,12 +75,12 @@ export { snapToStep } from '../drag.js';
 interface DragState { gesture: PreviewGesture; mark: PlannedMark; pointerId: number | null; origin: Point | null; start: Record<string, number>; moved: Set<string> }
 
 function primitiveClass(primitive: Primitive): string {
-  const role = `eka-role-${primitive.style.role}`;
+  const role = `ema-role-${primitive.style.role}`;
   switch (primitive.shape.type) {
-    case 'path': return `${role} ${primitive.shape.fill ? 'eka-region' : 'eka-stroke'}`;
-    case 'marker': return `${role} ${primitive.shape.glyph === 'cross' ? 'eka-stroke' : primitive.shape.hollow ? 'eka-hollow' : 'eka-fill'}`;
-    case 'arrow': return `${role} eka-stroke`;
-    case 'bar': return `${role} eka-region`;
+    case 'path': return `${role} ${primitive.shape.fill ? 'ema-region' : 'ema-stroke'}`;
+    case 'marker': return `${role} ${primitive.shape.glyph === 'cross' ? 'ema-stroke' : primitive.shape.hollow ? 'ema-hollow' : 'ema-fill'}`;
+    case 'arrow': return `${role} ema-stroke`;
+    case 'bar': return `${role} ema-region`;
   }
 }
 
@@ -94,7 +94,7 @@ function PrimitiveShape({ primitive, selected }: { primitive: Primitive; selecte
     case 'arrow': return (
       <g className={primitiveClass(primitive)}>
         <path d={shape.shaft} strokeWidth={width} strokeDasharray={dash} />
-        {shape.head ? <path d={shape.head} className={`eka-role-${primitive.style.role} eka-fill`} strokeWidth={1} /> : null}
+        {shape.head ? <path d={shape.head} className={`ema-role-${primitive.style.role} ema-fill`} strokeWidth={1} /> : null}
       </g>
     );
     case 'bar': return <rect className={primitiveClass(primitive)} x={shape.x} y={shape.y} width={shape.width} height={shape.height} strokeWidth={1.25} />;
@@ -103,15 +103,15 @@ function PrimitiveShape({ primitive, selected }: { primitive: Primitive; selecte
 
 function LegendSwatch({ entry, y }: { entry: LegendEntry; y: number }) {
   const style = entry.style as Primitive['style'];
-  const role = `eka-role-${style.role}`;
+  const role = `ema-role-${style.role}`;
   const showLine = !['point', 'points', 'bar', 'label'].includes(entry.kind);
   const marker = style.marker !== 'none' ? style.marker : ['point', 'points', 'trace'].includes(entry.kind) ? 'circle' : null;
   return (
     <g aria-hidden="true">
       {entry.kind === 'region' || entry.kind === 'polygon' || entry.kind === 'bar'
-        ? <rect className={`${role} eka-region`} x={entry.x + 3} y={y - 6} width={24} height={12} strokeWidth={1.25} />
-        : showLine ? <line className={`${role} eka-stroke`} x1={entry.x} x2={entry.x + 30} y1={y} y2={y} strokeWidth={STROKE_WIDTH[style.weight]} strokeDasharray={DASH[style.dash]} /> : null}
-      {marker ? <path className={`${role} ${marker === 'cross' ? 'eka-stroke' : entry.markId.startsWith('kept-') ? 'eka-hollow' : 'eka-fill'}`} d={markerPath(marker as 'circle', entry.x + 15, y, MARKER_RADIUS[style.weight] ?? 4.5)} strokeWidth={1.25} /> : null}
+        ? <rect className={`${role} ema-region`} x={entry.x + 3} y={y - 6} width={24} height={12} strokeWidth={1.25} />
+        : showLine ? <line className={`${role} ema-stroke`} x1={entry.x} x2={entry.x + 30} y1={y} y2={y} strokeWidth={STROKE_WIDTH[style.weight]} strokeDasharray={DASH[style.dash]} /> : null}
+      {marker ? <path className={`${role} ${marker === 'cross' ? 'ema-stroke' : entry.markId.startsWith('kept-') ? 'ema-hollow' : 'ema-fill'}`} d={markerPath(marker as 'circle', entry.x + 15, y, MARKER_RADIUS[style.weight] ?? 4.5)} strokeWidth={1.25} /> : null}
     </g>
   );
 }
@@ -121,9 +121,9 @@ export function Scene2D(props: Scene2DProps) {
   const runtime = useRuntime();
   const [bodyRef, measuredWidth, fontPx] = useElementWidth<HTMLDivElement>(560);
   const svgRef = useRef<SVGSVGElement>(null);
-  const clipId = useStableId('eka-clip');
-  const markerClipId = useStableId('eka-clip-markers');
-  const summaryId = useStableId('eka-summary');
+  const clipId = useStableId('ema-clip');
+  const markerClipId = useStableId('ema-clip-markers');
+  const summaryId = useStableId('ema-summary');
   const [ownCamera, setOwnCamera] = useState<Camera2D | null>(null);
   const [tentative, setTentative] = useState<Camera2D | null | undefined>(undefined);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -378,27 +378,27 @@ export function Scene2D(props: Scene2DProps) {
   const clippedCount = outOfView.reduce((sum, item) => sum + item.count, 0);
 
   return (
-    <figure className="eka-figure" aria-labelledby={props.titleId} data-eka-figure={view.viewId} data-tentative={props.tentative || undefined}>
-      <div className="eka-figure-head">
-        <div className="eka-heading">
-          <Heading level={props.headingLevel} id={props.titleId} className="eka-figure-title">{props.heading ?? view.title}</Heading>
+    <figure className="ema-figure" aria-labelledby={props.titleId} data-ema-figure={view.viewId} data-tentative={props.tentative || undefined}>
+      <div className="ema-figure-head">
+        <div className="ema-heading">
+          <Heading level={props.headingLevel} id={props.titleId} className="ema-figure-title">{props.heading ?? view.title}</Heading>
           {/* One line either way: during a preview it names the preview instead of the view range, so nothing moves. */}
-          <span className="eka-subtitle" data-tentative={props.tentative || undefined}>{props.tentative ? 'Preview, not applied yet' : authored ? (camera ? `Moved view (${cameraLabel})` : 'Authored view') : 'View fitted to the data'}</span>
+          <span className="ema-subtitle" data-tentative={props.tentative || undefined}>{props.tentative ? 'Preview, not applied yet' : authored ? (camera ? `Moved view (${cameraLabel})` : 'Authored view') : 'View fitted to the data'}</span>
         </div>
         {props.headExtra}
-        <div className="eka-toolbar" role="toolbar" aria-label={`View controls for ${view.title}`} onKeyDown={toolbar.onKeyDown}>
-          <button type="button" className="eka-button" {...toolbar.itemProps(0)} aria-label="Zoom in" title="Zoom in" onClick={() => commitCamera(zoomCamera(baseBounds, camera, CAMERA_LIMITS.zoomStep))}><span aria-hidden="true">+</span></button>
-          <button type="button" className="eka-button" {...toolbar.itemProps(1)} aria-label="Zoom out" title="Zoom out" onClick={() => commitCamera(zoomCamera(baseBounds, camera, 1 / CAMERA_LIMITS.zoomStep))}><span aria-hidden="true">−</span></button>
-          <button type="button" className="eka-button" {...toolbar.itemProps(2)} aria-disabled={!fitTarget || undefined} onClick={() => { if (fitTarget) commitCamera(fitTarget); }}>Fit to data</button>
-          <button type="button" className="eka-button" {...toolbar.itemProps(3)} aria-disabled={!committedCamera || undefined} onClick={() => { if (committedCamera) commitCamera(null); }}>Reset view</button>
+        <div className="ema-toolbar" role="toolbar" aria-label={`View controls for ${view.title}`} onKeyDown={toolbar.onKeyDown}>
+          <button type="button" className="ema-button" {...toolbar.itemProps(0)} aria-label="Zoom in" title="Zoom in" onClick={() => commitCamera(zoomCamera(baseBounds, camera, CAMERA_LIMITS.zoomStep))}><span aria-hidden="true">+</span></button>
+          <button type="button" className="ema-button" {...toolbar.itemProps(1)} aria-label="Zoom out" title="Zoom out" onClick={() => commitCamera(zoomCamera(baseBounds, camera, 1 / CAMERA_LIMITS.zoomStep))}><span aria-hidden="true">−</span></button>
+          <button type="button" className="ema-button" {...toolbar.itemProps(2)} aria-disabled={!fitTarget || undefined} onClick={() => { if (fitTarget) commitCamera(fitTarget); }}>Fit to data</button>
+          <button type="button" className="ema-button" {...toolbar.itemProps(3)} aria-disabled={!committedCamera || undefined} onClick={() => { if (committedCamera) commitCamera(null); }}>Reset view</button>
         </div>
       </div>
-      <div className="eka-figure-body" ref={bodyRef}>
+      <div className="ema-figure-body" ref={bodyRef}>
         <svg
-          ref={svgRef} className="eka-plot" viewBox={`0 0 ${width} ${layout.height}`} width={width} height={layout.height}
+          ref={svgRef} className="ema-plot" viewBox={`0 0 ${width} ${layout.height}`} width={width} height={layout.height}
           role="group" aria-labelledby={props.titleId} aria-describedby={summaryId}
-          data-eka-view-id={props.captureViewId ?? undefined} data-eka-surface-id={props.captureViewId ? runtime.surfaceId : undefined}
-          data-eka-projection-id={props.captureViewId ? props.projectionId : undefined} data-eka-frame-id={props.captureViewId ? props.frameId ?? '' : undefined}
+          data-ema-view-id={props.captureViewId ?? undefined} data-ema-surface-id={props.captureViewId ? runtime.surfaceId : undefined}
+          data-ema-projection-id={props.captureViewId ? props.projectionId : undefined} data-ema-frame-id={props.captureViewId ? props.frameId ?? '' : undefined}
         >
           <title>{view.title}</title>
           <desc>{view.summary}</desc>
@@ -407,56 +407,56 @@ export function Scene2D(props: Scene2DProps) {
             {/* Markers on the frame edge stay whole; lines are cut exactly at the frame. */}
             <clipPath id={markerClipId}><rect x={plot.x - 8} y={plot.y - 8} width={plot.width + 16} height={plot.height + 16} /></clipPath>
           </defs>
-          <g className="eka-axes" aria-hidden="true">
-            {layout.xTicks.ticks.map(tick => { const x = frame.toScreen(tick, 0)[0]; return <line key={`gx${tick}`} className="eka-grid-line" x1={x} x2={x} y1={plot.y} y2={plot.y + plot.height} />; })}
-            {layout.yTicks.ticks.map(tick => { const y = frame.toScreen(0, tick)[1]; return <line key={`gy${tick}`} className="eka-grid-line" x1={plot.x} x2={plot.x + plot.width} y1={y} y2={y} />; })}
-            {zeroX !== null ? <line className="eka-zero-line" x1={zeroX} x2={zeroX} y1={plot.y} y2={plot.y + plot.height} /> : null}
-            {zeroY !== null ? <line className="eka-zero-line" x1={plot.x} x2={plot.x + plot.width} y1={zeroY} y2={zeroY} /> : null}
-            <rect className="eka-axis-line" x={plot.x} y={plot.y} width={plot.width} height={plot.height} fill="none" />
-            {layout.xTicks.ticks.map(tick => <text key={`tx${tick}`} className="eka-tick" x={frame.toScreen(tick, 0)[0]} y={plot.y + plot.height + layout.tickPx * 1.45} textAnchor="middle">{formatTick(tick, layout.xTicks.step, runtime.locale)}</text>)}
-            {layout.yTicks.ticks.map(tick => <text key={`ty${tick}`} className="eka-tick" x={plot.x - 6} y={frame.toScreen(0, tick)[1]} dy="0.32em" textAnchor="end">{formatTick(tick, layout.yTicks.step, runtime.locale)}</text>)}
-            {layout.yTitle.map((line, i) => <text key={`yt${i}`} className="eka-axis-title" x={4} y={(i + 1) * layout.metrics.lineHeight}>{line}</text>)}
-            {layout.xTitle.map((line, i) => <text key={`xt${i}`} className="eka-axis-title" x={plot.x + plot.width} y={plot.y + plot.height + layout.tickPx * 1.9 + (i + 1) * layout.metrics.lineHeight} textAnchor="end">{line}</text>)}
+          <g className="ema-axes" aria-hidden="true">
+            {layout.xTicks.ticks.map(tick => { const x = frame.toScreen(tick, 0)[0]; return <line key={`gx${tick}`} className="ema-grid-line" x1={x} x2={x} y1={plot.y} y2={plot.y + plot.height} />; })}
+            {layout.yTicks.ticks.map(tick => { const y = frame.toScreen(0, tick)[1]; return <line key={`gy${tick}`} className="ema-grid-line" x1={plot.x} x2={plot.x + plot.width} y1={y} y2={y} />; })}
+            {zeroX !== null ? <line className="ema-zero-line" x1={zeroX} x2={zeroX} y1={plot.y} y2={plot.y + plot.height} /> : null}
+            {zeroY !== null ? <line className="ema-zero-line" x1={plot.x} x2={plot.x + plot.width} y1={zeroY} y2={zeroY} /> : null}
+            <rect className="ema-axis-line" x={plot.x} y={plot.y} width={plot.width} height={plot.height} fill="none" />
+            {layout.xTicks.ticks.map(tick => <text key={`tx${tick}`} className="ema-tick" x={frame.toScreen(tick, 0)[0]} y={plot.y + plot.height + layout.tickPx * 1.45} textAnchor="middle">{formatTick(tick, layout.xTicks.step, runtime.locale)}</text>)}
+            {layout.yTicks.ticks.map(tick => <text key={`ty${tick}`} className="ema-tick" x={plot.x - 6} y={frame.toScreen(0, tick)[1]} dy="0.32em" textAnchor="end">{formatTick(tick, layout.yTicks.step, runtime.locale)}</text>)}
+            {layout.yTitle.map((line, i) => <text key={`yt${i}`} className="ema-axis-title" x={4} y={(i + 1) * layout.metrics.lineHeight}>{line}</text>)}
+            {layout.xTitle.map((line, i) => <text key={`xt${i}`} className="ema-axis-title" x={plot.x + plot.width} y={plot.y + plot.height + layout.tickPx * 1.9 + (i + 1) * layout.metrics.lineHeight} textAnchor="end">{line}</text>)}
           </g>
-          <g className="eka-canvas" tabIndex={0} role="img" aria-roledescription="plot area"
+          <g className="ema-canvas" tabIndex={0} role="img" aria-roledescription="plot area"
             aria-label={`${view.title}: ${cameraLabel}. Arrow keys pan, plus and minus zoom, 0 resets the view.`} onKeyDown={onCanvasKey}
             onBlur={() => { if (timer.current && tentative) commitCamera(tentative); }}>
-            <rect className="eka-plot-area eka-hit" data-panning={panning || undefined} x={plot.x} y={plot.y} width={plot.width} height={plot.height}
+            <rect className="ema-plot-area ema-hit" data-panning={panning || undefined} x={plot.x} y={plot.y} width={plot.width} height={plot.height}
               onPointerDown={onAreaPointerDown} onPointerMove={onAreaPointerMove} onPointerUp={event => endPan(event, true)}
               onPointerCancel={event => endPan(event, false)} onLostPointerCapture={event => endPan(event, true)} />
-            <rect className="eka-plot-focus" data-eka-capture="omit" x={plot.x + 1.5} y={plot.y + 1.5} width={Math.max(0, plot.width - 3)} height={Math.max(0, plot.height - 3)} />
+            <rect className="ema-plot-focus" data-ema-capture="omit" x={plot.x + 1.5} y={plot.y + 1.5} width={Math.max(0, plot.width - 3)} height={Math.max(0, plot.height - 3)} />
           </g>
           {layout.kept.map(({ overlay, primitives }) => primitives.length ? (
-            <g key={overlay.runId} className="eka-marks eka-comparison" aria-hidden="true" data-eka-comparison={overlay.runId} data-eka-comparison-frame-id={overlay.frameId ?? undefined}>
+            <g key={overlay.runId} className="ema-marks ema-comparison" aria-hidden="true" data-ema-comparison={overlay.runId} data-ema-comparison-frame-id={overlay.frameId ?? undefined}>
               <g clipPath={`url(#${clipId})`}>{primitives.filter(primitive => primitive.shape.type !== 'marker').map(primitive => <PrimitiveShape key={primitive.key} primitive={primitive} selected={false} />)}</g>
               <g clipPath={`url(#${markerClipId})`}>{primitives.filter(primitive => primitive.shape.type === 'marker').map(primitive => <PrimitiveShape key={primitive.key} primitive={primitive} selected={false} />)}</g>
             </g>
           ) : null)}
-          <g className="eka-marks" clipPath={`url(#${clipId})`} aria-hidden="true">
+          <g className="ema-marks" clipPath={`url(#${clipId})`} aria-hidden="true">
             {plan.marks.flatMap(mark => mark.primitives.filter(primitive => primitive.shape.type !== 'marker').map(primitive => <PrimitiveShape key={primitive.key} primitive={primitive} selected={props.selection === mark.markId} />))}
           </g>
-          <g className="eka-marks" clipPath={`url(#${markerClipId})`} aria-hidden="true">
+          <g className="ema-marks" clipPath={`url(#${markerClipId})`} aria-hidden="true">
             {plan.marks.flatMap(mark => mark.primitives.filter(primitive => primitive.shape.type === 'marker').map(primitive => <PrimitiveShape key={primitive.key} primitive={primitive} selected={props.selection === mark.markId} />))}
           </g>
-          <g className="eka-labels" aria-hidden="true">
+          <g className="ema-labels" aria-hidden="true">
             {placed.labels.map(label => (
-              <g key={label.id} data-eka-callout={label.callout}>
-                {label.leader ? <line className="eka-leader" x1={label.leader.x1} y1={label.leader.y1} x2={label.leader.x2} y2={label.leader.y2} /> : null}
-                {label.callout !== undefined ? <rect className="eka-callout-plate" x={label.box.x} y={label.box.y} width={label.box.width} height={label.box.height} rx={3} /> : null}
-                <text className={label.callout !== undefined ? 'eka-label eka-callout' : 'eka-label'} x={label.x} y={label.y} textAnchor={label.textAnchor}>{label.lines.map((line, i) => <tspan key={i} x={label.x} dy={i ? layout.metrics.lineHeight : 0}>{line}</tspan>)}</text>
+              <g key={label.id} data-ema-callout={label.callout}>
+                {label.leader ? <line className="ema-leader" x1={label.leader.x1} y1={label.leader.y1} x2={label.leader.x2} y2={label.leader.y2} /> : null}
+                {label.callout !== undefined ? <rect className="ema-callout-plate" x={label.box.x} y={label.box.y} width={label.box.width} height={label.box.height} rx={3} /> : null}
+                <text className={label.callout !== undefined ? 'ema-label ema-callout' : 'ema-label'} x={label.x} y={label.y} textAnchor={label.textAnchor}>{label.lines.map((line, i) => <tspan key={i} x={label.x} dy={i ? layout.metrics.lineHeight : 0}>{line}</tspan>)}</text>
               </g>
             ))}
             {/* The label key: each callout's number and full text (an alternate representation; report §10.2, §10.3). */}
             {layout.key.entries.length ? (
-              <g className="eka-label-key" data-eka-label-key="">
+              <g className="ema-label-key" data-ema-label-key="">
                 {layout.key.entries.map(entry => {
                   const y = layout.keyTop + entry.y;
                   const plateWidth = Math.ceil(String(entry.number).length * layout.metrics.charWidth) + 8;
                   return (
-                    <g key={entry.labelId} data-eka-callout={entry.number}>
-                      <rect className="eka-callout-plate" x={4} y={y} width={plateWidth} height={layout.metrics.lineHeight} rx={3} />
-                      <text className="eka-label eka-callout" x={4 + plateWidth / 2} y={y + layout.metrics.lineHeight * 0.8} textAnchor="middle">{entry.number}</text>
-                      <text className="eka-legend-text" x={KEY_INDENT} y={y + layout.metrics.lineHeight * 0.8}>{entry.lines.map((line, i) => <tspan key={i} x={KEY_INDENT} dy={i ? layout.metrics.lineHeight : 0}>{line}</tspan>)}</text>
+                    <g key={entry.labelId} data-ema-callout={entry.number}>
+                      <rect className="ema-callout-plate" x={4} y={y} width={plateWidth} height={layout.metrics.lineHeight} rx={3} />
+                      <text className="ema-label ema-callout" x={4 + plateWidth / 2} y={y + layout.metrics.lineHeight * 0.8} textAnchor="middle">{entry.number}</text>
+                      <text className="ema-legend-text" x={KEY_INDENT} y={y + layout.metrics.lineHeight * 0.8}>{entry.lines.map((line, i) => <tspan key={i} x={KEY_INDENT} dy={i ? layout.metrics.lineHeight : 0}>{line}</tspan>)}</text>
                     </g>
                   );
                 })}
@@ -466,17 +466,17 @@ export function Scene2D(props: Scene2DProps) {
           {selectable.length ? (
             <g role="listbox" aria-label={`Selectable items in ${view.title}`} onKeyDown={roving.onKeyDown}>
               {selectable.map((mark, index) => (
-                <g key={mark.markId} className="eka-handle" role="option" aria-selected={props.selection === mark.markId} aria-label={mark.label}
-                  data-eka-capture="omit" {...roving.itemProps(index)} onKeyDown={event => onHandleKey(event, mark)}
+                <g key={mark.markId} className="ema-handle" role="option" aria-selected={props.selection === mark.markId} aria-label={mark.label}
+                  data-ema-capture="omit" {...roving.itemProps(index)} onKeyDown={event => onHandleKey(event, mark)}
                   onClick={() => props.onSelect?.(props.selection === mark.markId ? null : mark.markId)}>
-                  <circle className="eka-hit" cx={mark.handle![0]} cy={mark.handle![1]} r={12} />
-                  <circle className="eka-focus-ring" cx={mark.handle![0]} cy={mark.handle![1]} r={9} />
+                  <circle className="ema-hit" cx={mark.handle![0]} cy={mark.handle![1]} r={12} />
+                  <circle className="ema-focus-ring" cx={mark.handle![0]} cy={mark.handle![1]} r={9} />
                 </g>
               ))}
             </g>
           ) : null}
           {draggable.map(mark => (
-            <g key={mark.markId} className="eka-handle" data-draggable="true" tabIndex={0} role="button" aria-roledescription="movable point" data-eka-capture="omit"
+            <g key={mark.markId} className="ema-handle" data-draggable="true" tabIndex={0} role="button" aria-roledescription="movable point" data-ema-capture="omit"
               aria-label={`${mark.label}${mark.handleData ? ` at (${formatShown(mark.handleData[0], runtime.locale)}, ${formatShown(mark.handleData[1], runtime.locale)})` : ''}. ${runtime.inert ? `Unavailable: ${runtime.inert}` : 'Arrow keys move it one step; Escape cancels; the exact controls also set it.'}`}
               aria-keyshortcuts="ArrowLeft ArrowRight ArrowUp ArrowDown Escape" aria-disabled={unavailable || undefined}
               onKeyDown={event => onHandleKey(event, mark)} onKeyUp={onHandleKeyUp} onBlur={() => { if (drag.current) finishDrag(false, 'blur'); }}
@@ -500,8 +500,8 @@ export function Scene2D(props: Scene2DProps) {
               onPointerUp={event => { if (drag.current?.pointerId === event.pointerId) finishDrag(true); }}
               onPointerCancel={event => { if (drag.current?.pointerId === event.pointerId) finishDrag(false, 'pointercancel'); }}
               onLostPointerCapture={event => { if (drag.current?.pointerId === event.pointerId) finishDrag(false, 'pointercancel'); }}>
-              <circle className="eka-hit" cx={mark.handle![0]} cy={mark.handle![1]} r={14} />
-              <circle className="eka-focus-ring" cx={mark.handle![0]} cy={mark.handle![1]} r={10} />
+              <circle className="ema-hit" cx={mark.handle![0]} cy={mark.handle![1]} r={14} />
+              <circle className="ema-focus-ring" cx={mark.handle![0]} cy={mark.handle![1]} r={10} />
             </g>
           ))}
           {layout.legend.entries.length ? (
@@ -511,7 +511,7 @@ export function Scene2D(props: Scene2DProps) {
                 return (
                   <g key={entry.markId} role="listitem">
                     <LegendSwatch entry={entry} y={y} />
-                    <text className="eka-legend-text" x={entry.x + 36} y={y} dy="0.32em">{entry.lines.map((line, i) => <tspan key={i} x={entry.x + 36} dy={i ? layout.metrics.lineHeight : '0.32em'}>{line}</tspan>)}</text>
+                    <text className="ema-legend-text" x={entry.x + 36} y={y} dy="0.32em">{entry.lines.map((line, i) => <tspan key={i} x={entry.x + 36} dy={i ? layout.metrics.lineHeight : '0.32em'}>{line}</tspan>)}</text>
                   </g>
                 );
               })}
@@ -519,21 +519,21 @@ export function Scene2D(props: Scene2DProps) {
           ) : null}
         </svg>
       </div>
-      <div className="eka-figure-foot">
+      <div className="ema-figure-foot">
         {props.reserveOutOfView ? (
           // One grid cell holds the line and an invisible copy with the longest text it can show (every data mark and
           // kept run of this view, the largest count), so its height never changes while the run plays.
-          <div className="eka-clip-slot" data-eka-clip-slot="">
+          <div className="ema-clip-slot" data-ema-clip-slot="">
             <OutOfView labels={outOfViewCandidates(view, layout.kept.map(item => item.overlay))} count={OUT_OF_VIEW_COUNT_BOUND} fit={false} sizer />
             {outOfView.length
               ? <OutOfView labels={outOfView.map(item => item.label)} count={clippedCount} fit={!!fitTarget} onInspect={runtime.inspectValues} onFit={() => { if (fitTarget) commitCamera(fitTarget); }} />
-              : <p className="eka-clip-none"><span className="eka-glyph" aria-hidden="true">✓</span> All drawn values are inside the view.</p>}
+              : <p className="ema-clip-none"><span className="ema-glyph" aria-hidden="true">✓</span> All drawn values are inside the view.</p>}
           </div>
         ) : outOfView.length ? (
           <OutOfView labels={outOfView.map(item => item.label)} count={clippedCount} fit={!!fitTarget} onInspect={runtime.inspectValues} onFit={() => { if (fitTarget) commitCamera(fitTarget); }} />
         ) : null}
-        {plan.notes.length ? <ul className="eka-notes" aria-label={`Notes for ${view.title}`}>{plan.notes.map((note, i) => <li key={`${note.markId}:${i}`}>{note.text}</li>)}</ul> : null}
-        <p id={summaryId} className={props.showSummary ? 'eka-description' : 'eka-sr'}>{view.summary}</p>
+        {plan.notes.length ? <ul className="ema-notes" aria-label={`Notes for ${view.title}`}>{plan.notes.map((note, i) => <li key={`${note.markId}:${i}`}>{note.text}</li>)}</ul> : null}
+        <p id={summaryId} className={props.showSummary ? 'ema-description' : 'ema-sr'}>{view.summary}</p>
       </div>
     </figure>
   );
@@ -552,28 +552,28 @@ const OUT_OF_VIEW_HEAD = 'Some values are outside the view';
 /**
  * The out-of-view indicator (report §10.2): what leaves the view and how many coordinates, that the view is not
  * rescaled, Inspect values and Fit to data. As a `sizer` it is an invisible, inert copy that only reserves its height:
- * its words are CSS-generated content (`data-eka-sizer-text`), never text nodes, so no learner channel — DOM text, the
+ * its words are CSS-generated content (`data-ema-sizer-text`), never text nodes, so no learner channel — DOM text, the
  * accessibility tree, selection and copy, a read-out — carries an out-of-view state the card does not show.
  */
 function OutOfView({ labels, count, fit, onInspect, onFit, sizer }: { labels: readonly string[]; count: number; fit: boolean; onInspect?: () => void; onFit?: () => void; sizer?: boolean }) {
   const runtime = useRuntime();
   const detail = `(${labels.join('; ')}; ${formatPlain(count, runtime.locale) || String(count)} ${count === 1 ? 'point' : 'points'}). The view is not rescaled automatically.`;
   if (sizer) return (
-    <div className="eka-clip-sizer" aria-hidden="true" inert data-eka-clip-sizer="">
-      <span className="eka-glyph" data-eka-sizer-text="⇱" />
-      <span className="eka-clip-text"><strong data-eka-sizer-text={OUT_OF_VIEW_HEAD} /><span data-eka-sizer-text={` ${detail}`} /></span>
-      <button type="button" className="eka-button" tabIndex={-1} data-eka-sizer-text="Inspect values" />
-      <button type="button" className="eka-button" tabIndex={-1} data-eka-sizer-text="Fit to data" />
+    <div className="ema-clip-sizer" aria-hidden="true" inert data-ema-clip-sizer="">
+      <span className="ema-glyph" data-ema-sizer-text="⇱" />
+      <span className="ema-clip-text"><strong data-ema-sizer-text={OUT_OF_VIEW_HEAD} /><span data-ema-sizer-text={` ${detail}`} /></span>
+      <button type="button" className="ema-button" tabIndex={-1} data-ema-sizer-text="Inspect values" />
+      <button type="button" className="ema-button" tabIndex={-1} data-ema-sizer-text="Fit to data" />
     </div>
   );
   return (
-    <div className="eka-clip" role="group" aria-label="Values outside the view">
-      <span className="eka-glyph" aria-hidden="true">⇱</span>
-      <span className="eka-clip-text">
+    <div className="ema-clip" role="group" aria-label="Values outside the view">
+      <span className="ema-glyph" aria-hidden="true">⇱</span>
+      <span className="ema-clip-text">
         <strong>{OUT_OF_VIEW_HEAD}</strong> {detail}
       </span>
-      <button type="button" className="eka-button" onClick={onInspect}>Inspect values</button>
-      <button type="button" className="eka-button" aria-disabled={!fit || undefined} onClick={() => { if (fit) onFit?.(); }}>Fit to data</button>
+      <button type="button" className="ema-button" onClick={onInspect}>Inspect values</button>
+      <button type="button" className="ema-button" aria-disabled={!fit || undefined} onClick={() => { if (fit) onFit?.(); }}>Fit to data</button>
     </div>
   );
 }

@@ -13,7 +13,7 @@
  * the actual Study Harness agent path with real credentials is `real-agent-trial`, and this module cannot tell the
  * difference, so the host is responsible for that label. Nothing here sends the record anywhere.
  */
-import { canonicalJSON, sha256 } from '@experiment-kit/core';
+import { canonicalJSON, sha256 } from '@explorable-models/core';
 import { ACTIVITY_TOOL_DESCRIPTORS, type ActivityToolResult } from './activity-tools.js';
 import type { ActivityRelay } from './activity-relay.js';
 import { RelayError } from './relay.js';
@@ -249,7 +249,7 @@ const STEP_LIST = { type: 'array', maxItems: TRIAL_LIMITS.entries, items: { type
  */
 export const AGENT_TRIAL_RECORD_SCHEMA = Object.freeze({
   $schema: 'https://json-schema.org/draft/2020-12/schema',
-  $id: 'https://experiment-kit.dev/schema/study-harness/agent-trial-record-1.json',
+  $id: 'https://explorable-models.dev/schema/study-harness/agent-trial-record-1.json',
   title: 'Study Harness agent trial record (external gate G3, A57)',
   description: 'Sanitized record of a host-agent trial: identifiers, tool names, outcome codes, fixed-vocabulary repairs, G3 step marks, configuration digest and budget usage. It never contains tool inputs, results, messages, learner or study text, or credentials. kind distinguishes a real configured trial from scripted or fixture evidence.',
   type: 'object',

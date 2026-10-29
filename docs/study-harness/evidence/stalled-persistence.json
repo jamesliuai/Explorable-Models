@@ -1,5 +1,5 @@
 {
-  "contract": "experiment-kit.measurement",
+  "contract": "explorable-models.measurement",
   "scenario": "stalled-persistence stage transition (benchmark bench.stalledPersistence)",
   "createdAt": "2026-10-26T23:36:59.541Z",
   "runs": 8,
@@ -28,27 +28,27 @@
       "createdAt": "2026-10-26T21:36:45.326Z",
       "packages": [
         {
-          "name": "@experiment-kit/core",
+          "name": "@explorable-models/core",
           "sha256": "dbd6f58dbf24d974e0b04e23387d12526cba8d69ad1e7ec57578c5b0f737d365"
         },
         {
-          "name": "@experiment-kit/activity",
+          "name": "@explorable-models/activity",
           "sha256": "48e5194b330fdd3d93c8fb8b5a602ca05657040d9a1f1bcfafa4a9b7bd2901b3"
         },
         {
-          "name": "@experiment-kit/catalog",
+          "name": "@explorable-models/catalog",
           "sha256": "70e549f61f00ddecbf251115ddf4d1562b5bd6af4ac5fa4664504b0311659ca8"
         },
         {
-          "name": "@experiment-kit/player",
+          "name": "@explorable-models/player",
           "sha256": "077e87d2e38a7d1cdcd7c48fb9f123ca0cd3e4d8461d87bdda38e5af235d520b"
         },
         {
-          "name": "@experiment-kit/player-3d",
+          "name": "@explorable-models/player-3d",
           "sha256": "77d9c2565e14d1acbee36c0104b6ba69974619546d901db6d54170bdddd00e54"
         },
         {
-          "name": "@experiment-kit/agent",
+          "name": "@explorable-models/agent",
           "sha256": "0b719777ab648a5fa9d14527aef05362d52dd327b77cb3ac86067b81df393735"
         }
       ]
@@ -347,5 +347,11 @@
         "storageAckMs": 0.4000000059604645
       }
     }
-  ]
+  ],
+  "terminologyProjection": {
+    "sourceCommit": "1e2b3d7b796962f4b031257a402ce3db3e0854a1",
+    "sourceBlob": "707cb626ca204cd4265d9cc6b927d3e444e7fa18",
+    "originalSha256": "5f95985b8c3ba9f167386927b36cc58df7c111884f64754d3689ab8b70e658de",
+    "scope": "Terminology-normalized historical evidence. Measurements, outcomes, and original artifact digests are retained from the preceding namespace. This is not verification of current packages or native binaries. The unmodified original bytes remain in the recorded Git blob."
+  }
 }

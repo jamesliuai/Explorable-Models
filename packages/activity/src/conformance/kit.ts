@@ -34,7 +34,7 @@ import {
 } from './result.js';
 
 /** Identity of this kit, recorded in every result (`kit`). */
-export const HOST_CONFORMANCE_KIT = Object.freeze({ name: '@experiment-kit/activity/conformance', version: ADAPTER_VERSION });
+export const HOST_CONFORMANCE_KIT = Object.freeze({ name: '@explorable-models/activity/conformance', version: ADAPTER_VERSION });
 /** The template the G2 sequence opens unless the caller names another with the same stage pattern. */
 export const HOST_CONFORMANCE_DEFAULT_TEMPLATE = Object.freeze({ templateId: 'quadratic-gradient-descent', version: '1.0.0' });
 
@@ -82,7 +82,7 @@ export interface HostConformanceOptions {
   /** Label of the host under test, supplied by the caller (the kit never labels a run `actual-host` by itself). */
   subject: HostConformanceSubject;
   host: HostConformanceIdentity;
-  /** Packed `@experiment-kit/*` tarballs the host mounts (name, version, sha256). */
+  /** Packed `@explorable-models/*` tarballs the host mounts (name, version, sha256). */
   packages: HostConformancePackage[];
   /** The installed catalogue the host serves (its worker factory runs kernels in the caller's environment). */
   catalog: ActivityCatalog;

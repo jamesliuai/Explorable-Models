@@ -23,7 +23,7 @@ import {
   type ActivityRequest, type AdapterDiagnostics, type AdapterOptions, type DeveloperInspection, type DiagnosticExport, type AudienceState, type CapabilityReport, type CommandBase, type CommandFailure, type Diagnostic,
   type DiagnosticCode, type InteractionSummary, type LearnerProjection, type PreparedActivity, type RestoreResult, type StudyHarnessAdapter, type UiState,
   type ValidationReport,
-} from '@experiment-kit/activity';
+} from '@explorable-models/activity';
 import { CaptureError, type CaptureOptions, type CaptureResult } from './capture.js';
 import { mountStudyActivity, type MountedStudyActivity } from './mount.js';
 import { createSurfaceId } from './runtime.js';

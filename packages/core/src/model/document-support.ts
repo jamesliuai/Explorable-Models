@@ -2,7 +2,7 @@
  * Optional schema 2.0 document execution (architecture D3, report §8.1, §16). The model layer reaches the document
  * compiler and interpreter only through this registry, so a runtime that serves installed kernels only — the learner
  * page of the installed catalogue and its kernel worker — does not bundle them. `enableDocumentExecution()`
- * (`./documents.ts`, exported from `@experiment-kit/core/model`) installs them; until it has run in a realm, validating,
+ * (`./documents.ts`, exported from `@explorable-models/core/model`) installs them; until it has run in a realm, validating,
  * identifying, opening or evaluating a manifest whose execution kind is `document` fails with UNSUPPORTED_CAPABILITY
  * instead of being interpreted some other way. Kernel manifests never touch this module's state.
  */

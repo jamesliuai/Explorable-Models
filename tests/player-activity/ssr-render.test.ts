@@ -20,8 +20,8 @@ describe('server-safe import and render (no DOM at module load or render time)',
       for (const state of UI_STATES) {
         const projection = fixtureProjection(fixture, state);
         const html = renderToString(createElement(StudyActivitySurface, { binding: staticBinding(projection), theme: 'light' }));
-        expect(html, `${fixture}/${state}`).toContain('class="eka"');
-        expect(html).toContain(`data-eka-ui-state="${state}"`);
+        expect(html, `${fixture}/${state}`).toContain('class="ema"');
+        expect(html).toContain(`data-ema-ui-state="${state}"`);
         expect(html).not.toContain('fixture-run');
         expect(html).not.toMatch(/<foreignObject|dangerously/);
       }
@@ -58,19 +58,19 @@ describe('server-safe import and render (no DOM at module load or render time)',
     const { StudyActivitySurface } = await import('../../packages/player/src/activity/index');
     const html = renderToString(createElement(StudyActivitySurface, { binding: staticBinding(fixtureProjection('quadratic', 'ready')), theme: 'light' }));
     const textOf = (markup: string) => markup.replace(/<style[\s\S]*?<\/style>/g, ' ').replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
-    const sizers = html.match(/<div class="eka-clip-sizer"[^>]*>[\s\S]*?<\/div>/g) ?? [];
+    const sizers = html.match(/<div class="ema-clip-sizer"[^>]*>[\s\S]*?<\/div>/g) ?? [];
     expect(sizers.length).toBeGreaterThan(0);
     for (const sizer of sizers) {
-      expect(sizer).toMatch(/^<div class="eka-clip-sizer" aria-hidden="true" inert=""/);
+      expect(sizer).toMatch(/^<div class="ema-clip-sizer" aria-hidden="true" inert=""/);
       expect(textOf(sizer)).toBe('');
-      expect(sizer).toContain('data-eka-sizer-text="Some values are outside the view"');
+      expect(sizer).toContain('data-ema-sizer-text="Some values are outside the view"');
     }
     const text = textOf(html);
     expect(text).toContain('All drawn values are inside the view.');
     expect(text).not.toContain('Some values are outside the view');
     // The sizing rule generates the copy's words for layout only, in an element that stays hidden.
     const { ACTIVITY_STYLESHEET } = await import('../../packages/player/src/activity/styles');
-    expect(ACTIVITY_STYLESHEET).toContain('.eka-clip-sizer{visibility:hidden}');
-    expect(ACTIVITY_STYLESHEET).toContain('.eka-clip-sizer [data-eka-sizer-text]::before{content:attr(data-eka-sizer-text)}');
+    expect(ACTIVITY_STYLESHEET).toContain('.ema-clip-sizer{visibility:hidden}');
+    expect(ACTIVITY_STYLESHEET).toContain('.ema-clip-sizer [data-ema-sizer-text]::before{content:attr(data-ema-sizer-text)}');
   });
 });

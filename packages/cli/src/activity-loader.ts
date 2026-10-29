@@ -4,7 +4,7 @@
  * directory).
  *
  * TOOLKIT_ROOT is the directory three levels above this file: the repository root in a checkout, and the package root
- * of the unified `experiment-kit` release tarball, which keeps the same `packages/<name>/src` layout. `@experiment-kit/*`
+ * of the unified `explorable-models` release tarball, which keeps the same `packages/<name>/src` layout. `@explorable-models/*`
  * specifiers resolve to those source entries. Documented fallback: when a source entry is absent (a tree that ships
  * only built packages), the specifier is left to normal `node_modules` resolution of the published package.
  */
@@ -33,13 +33,13 @@ export function toolkitVersion(): string {
 }
 
 const SOURCE_ENTRIES: Readonly<Record<string, string>> = Object.freeze({
-  '@experiment-kit/core': 'packages/core/src/index.ts',
-  '@experiment-kit/core/model': 'packages/core/src/model/index.ts',
-  '@experiment-kit/core/declarative': 'packages/core/src/declarative/index.ts',
-  '@experiment-kit/activity': 'packages/activity/src/index.ts',
-  '@experiment-kit/catalog': 'packages/catalog/src/index.ts',
-  '@experiment-kit/catalog/worker': 'packages/catalog/src/worker.ts',
-  '@experiment-kit/player/activity': 'packages/player/src/activity/index.ts',
+  '@explorable-models/core': 'packages/core/src/index.ts',
+  '@explorable-models/core/model': 'packages/core/src/model/index.ts',
+  '@explorable-models/core/declarative': 'packages/core/src/declarative/index.ts',
+  '@explorable-models/activity': 'packages/activity/src/index.ts',
+  '@explorable-models/catalog': 'packages/catalog/src/index.ts',
+  '@explorable-models/catalog/worker': 'packages/catalog/src/worker.ts',
+  '@explorable-models/player/activity': 'packages/player/src/activity/index.ts',
 });
 
 /** Exact source entries present in this tree (specifier → absolute path). */
@@ -47,13 +47,13 @@ export function sourceEntries(): Record<string, string> {
   return Object.fromEntries(Object.entries(SOURCE_ENTRIES).map(([specifier, relative]) => [specifier, path.join(TOOLKIT_ROOT, relative)]).filter(([, file]) => existsSync(file!)));
 }
 
-/** esbuild resolver for `@experiment-kit/*`: source entries first, else default package resolution (documented fallback). */
+/** esbuild resolver for `@explorable-models/*`: source entries first, else default package resolution (documented fallback). */
 export function toolkitResolver(): Plugin {
   const entries = sourceEntries();
   return {
-    name: 'experiment-kit-toolkit-sources',
+    name: 'explorable-models-toolkit-sources',
     setup(context) {
-      context.onResolve({ filter: /^@experiment-kit\// }, args => entries[args.path] ? { path: entries[args.path]! } : undefined);
+      context.onResolve({ filter: /^@explorable-models\// }, args => entries[args.path] ? { path: entries[args.path]! } : undefined);
     },
   };
 }
@@ -68,7 +68,7 @@ let toolkit: Promise<typeof Toolkit> | null = null;
  */
 export function loadToolkit(): Promise<typeof Toolkit> {
   toolkit ??= (async () => {
-    const directory = await mkdtemp(path.join(tmpdir(), 'experiment-kit-toolkit-'));
+    const directory = await mkdtemp(path.join(tmpdir(), 'explorable-models-toolkit-'));
     try {
       const outfile = path.join(directory, 'toolkit.mjs');
       await build({

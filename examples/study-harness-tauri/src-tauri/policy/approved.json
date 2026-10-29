@@ -4,19 +4,19 @@
   "note": "Host-owned approval for the reference host (conformance fixture). Lifecycle is the installed catalogue status; none of these entries has an independent subject review. The Rust host embeds this file and never approves content requested by the webview.",
   "catalog": [
     {
-      "name": "@experiment-kit/catalog",
+      "name": "@explorable-models/catalog",
       "version": "0.3.0-preview.1",
-      "integrity": "sha512-ruTWOzqv341uxjgwIUGyooqB1kR7Y6v95xm0VnHF5ghGSfHv/3/41k3Z5UqQmsKNZsoddF1pTqewBnFBIsYqKw=="
+      "integrity": "sha512-MGfaLSjquwAC29GObwgyV7LvtRSRHZYVIIx3EQLHSsmMxjXBQ68acJtfwqf/yo7qFH+4TryfXZuVhKQptmucfQ=="
     },
     {
-      "name": "@experiment-kit/activity",
+      "name": "@explorable-models/activity",
       "version": "0.3.0-preview.1",
-      "integrity": "sha512-3z0DDE4+TpVT4G+GCY5SoDKIoWQJ45zuEwt64mbXD1AyMDEKCBI0fgfc72Fk2ivnDxY9tU+OSxI1HNm/xPqH0Q=="
+      "integrity": "sha512-bf1lEnfNihnYQU/M1pd/REXYbZLfvJfeOzUtcC6dVbc7Smc0yoTtKm3oA/MDVzBnychunXuFCYuI1JfQOBU09A=="
     },
     {
-      "name": "@experiment-kit/core",
+      "name": "@explorable-models/core",
       "version": "0.3.0-preview.1",
-      "integrity": "sha512-RImLrEiMjI1TiB0dcWD4guZWayssTgPhuw5WvtJMUKWCYRbfoJRutuozr3KVU/0gwVkvc1Qmn4VwbZFYcrp+yw=="
+      "integrity": "sha512-egwQRp5XdserKbpnbK061YlIY8Gvh1uwNY56lwGqZSS9RXH/xCBon2hPQ4+zQcchaEZFPDPOl7GGF0UI0xYiKg=="
     }
   ],
   "templates": [
@@ -24,12 +24,12 @@
       "template": {
         "templateId": "function-derivative",
         "version": "1.0.0",
-        "digest": "sha256:8906edd91542d30c17ff41aa7b551fbb79a7a6d7d32c607ec39db4e0389a2f94"
+        "digest": "sha256:0ef8d14fad5ae765deae38438b8b9043f887659d0c0c96168f76afc6740020e6"
       },
       "model": {
         "modelId": "function-derivative",
         "version": "1.0.0",
-        "digest": "sha256:bfeaa64ae40e41254f46d193a1aefc1ff9d900664571aba51e26492f1ff778ba"
+        "digest": "sha256:7a7365f9a0661f42f998465050dc95abadbe5cad7fae6fcc2dece3b65447fc1f"
       },
       "title": "Slope of a curve and its derivative",
       "dimension": "2d",
@@ -348,12 +348,12 @@
       "template": {
         "templateId": "linear-transformation",
         "version": "1.0.0",
-        "digest": "sha256:b76adcb12a8931cd3d0629e89beaad6e5920d56619c9fbe238bccffdde0521d3"
+        "digest": "sha256:4d967cfc97163d64edc51de87cc43f0cdffd7df2c170ef7bb06d282ed55a8796"
       },
       "model": {
         "modelId": "linear-transformation",
         "version": "1.0.0",
-        "digest": "sha256:feeb312898a4fda3e38f2743b71f197fe0c91333e9e3921cd8239d98f441a536"
+        "digest": "sha256:556cf36026c7eaf95e03aa1974f3954a77b1209f5405e25b815f9d1f9dc298e2"
       },
       "title": "Matrices as transformations of the plane",
       "dimension": "2d",
@@ -729,12 +729,12 @@
       "template": {
         "templateId": "quadratic-gradient-descent",
         "version": "1.0.0",
-        "digest": "sha256:a6fdb69ad2598e7726de2d3d1d81d986677520eab7b29d48fbe9bc81b72ed8c3"
+        "digest": "sha256:1f18c149e65208e25df11fd2c173b6c4eae89752f526a7ffb3ba6295a88a4bb6"
       },
       "model": {
         "modelId": "quadratic-gradient-descent",
         "version": "1.0.0",
-        "digest": "sha256:5326283f785aed9a4d5fe0ba5ca32e3f03da6e05bb5c084ee3816fea7b41171e"
+        "digest": "sha256:ec2a907540a0807662fd3483f34d0146079297a91cd799bf143b1801fc998f45"
       },
       "title": "Step size in gradient descent",
       "dimension": "2d",
@@ -986,12 +986,12 @@
       "template": {
         "templateId": "quadratic-surface-gradient",
         "version": "1.0.0",
-        "digest": "sha256:be8ee71cf73606c8fa0676a0c83e2f0ea3f6a1d3c77bf13278d30fd23bf95985"
+        "digest": "sha256:fbe01be3bda8b56f18869360e30f7f6dedf596786fa3eb1217d3a90039799f36"
       },
       "model": {
         "modelId": "quadratic-surface-gradient",
         "version": "1.0.0",
-        "digest": "sha256:cf14845fdc52ac67d2bdfca8f2434a15499f0555045882acfc287bcd14381294"
+        "digest": "sha256:bf6c7a28455d5b882d12e287894347d8acf4468db0a6681cb82c780b0ec34963"
       },
       "title": "Gradient on a quadratic surface",
       "dimension": "3d",
@@ -1356,12 +1356,12 @@
       "template": {
         "templateId": "vector-orientation-3d",
         "version": "1.0.0",
-        "digest": "sha256:af54a2ba93d0e1790d4c884d09cdebf9c8e8f48b746f16a79b7998c63179f430"
+        "digest": "sha256:df6de7b7ab572ad15f3fd4cec50302b88d5bda4da1f8a1b3206b5435a5892615"
       },
       "model": {
         "modelId": "vector-orientation-3d",
         "version": "1.0.0",
-        "digest": "sha256:4cbfe83e8927ecf3d0edb8b4f299a13557899f98250c9a697a3620597e834e5f"
+        "digest": "sha256:5406433b6fd86fa353ccb113cc0d6c69af346b74ba0e1021d63d39429a9f32bc"
       },
       "title": "Two vectors in space",
       "dimension": "3d",

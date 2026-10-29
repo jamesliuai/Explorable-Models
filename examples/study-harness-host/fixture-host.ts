@@ -24,10 +24,10 @@ import {
   type DisplayAckRequest, type ExposureGrant, type ExposureIntentRequest, type ExposureReceipt, type ExposureRecord, type HostAck, type HostPolicy,
   type HostContextLineage, type HostPort, type HostRefusalCode, type InteractionEvent, type JournalCursor, type ResponseRef, type SchemaName, type StageReceipt,
   type StageTransitionRequest,
-} from '@experiment-kit/activity';
-import { digest } from '@experiment-kit/core';
+} from '@explorable-models/activity';
+import { digest } from '@explorable-models/core';
 
-export const FIXTURE_STORAGE_KEY = 'experiment-kit.study-harness-fixture.v1';
+export const FIXTURE_STORAGE_KEY = 'explorable-models.study-harness-fixture.v1';
 const TABLES_VERSION = 1;
 const CALL_LOG_LIMIT = 200;
 

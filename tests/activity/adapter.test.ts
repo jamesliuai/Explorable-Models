@@ -5,9 +5,9 @@
  * Host results come from the memory host double (fixture-host results).
  */
 import { afterEach, describe, expect, it } from 'vitest';
-import { artifactIntegrity, templateRef, type ActivityArtifact, type ActivityCatalog, type ReviewRecord } from '@experiment-kit/activity';
-import { createInstalledCatalog } from '@experiment-kit/catalog';
-import { modelIdentity } from '@experiment-kit/core/model';
+import { artifactIntegrity, templateRef, type ActivityArtifact, type ActivityCatalog, type ReviewRecord } from '@explorable-models/activity';
+import { createInstalledCatalog } from '@explorable-models/catalog';
+import { modelIdentity } from '@explorable-models/core/model';
 import {
   ackCurrent, activityGuard, codesOf, enterExplore, expectValidEvents, guards, harness, manifest, MODEL, okOf, op, open, policyFor, requestFor, settled, template, TEMPLATE, until,
   type Harness,

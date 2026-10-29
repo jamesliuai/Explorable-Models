@@ -1,13 +1,13 @@
 /**
  * Card panels: status banner, persistence indicator, pending reveal, values, equations, tables, comparisons and
  * alternatives. Everything is rendered from the projection as escaped text; nothing is formatted from raw model data.
- * Panels that show frame values carry `data-eka-frame-id` of the identified frame they were rendered from, like the
+ * Panels that show frame values carry `data-ema-frame-id` of the identified frame they were rendered from, like the
  * drawings, so every representation of one projection can be checked for coherence.
  */
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
-import type { LearnerProjection, ProjectedAlternative, ProjectedComparison, ProjectedEquation, ProjectedTable, ProjectedValue } from '@experiment-kit/activity';
-import type { FramePosition } from '@experiment-kit/core/model';
-import { unitLabel } from '@experiment-kit/core/model';
+import type { LearnerProjection, ProjectedAlternative, ProjectedComparison, ProjectedEquation, ProjectedTable, ProjectedValue } from '@explorable-models/activity';
+import type { FramePosition } from '@explorable-models/core/model';
+import { unitLabel } from '@explorable-models/core/model';
 import { formatPlain, numeralMinus, valueDisplay } from '../format.js';
 import { COMPARISON_DASH, comparisonGlyph, GLYPH_NAME, markerPath } from '../plan.js';
 import { renderMathInto } from '../math.js';
@@ -44,17 +44,17 @@ export function StatusBanner({ projection, onRecoveryAction }: { projection: Lea
   if (!status || status.placement !== 'banner') return null;
   const actions = status.actions.filter(recovery.available);
   return (
-    <div className="eka-banner" data-tone={status.tone} data-ui-state={status.state} data-cause={status.cause}>
-      <span className="eka-glyph" aria-hidden="true">{status.glyph}</span>
-      <div className="eka-banner-body">
-        <p className="eka-banner-title">{status.title}</p>
+    <div className="ema-banner" data-tone={status.tone} data-ui-state={status.state} data-cause={status.cause}>
+      <span className="ema-glyph" aria-hidden="true">{status.glyph}</span>
+      <div className="ema-banner-body">
+        <p className="ema-banner-title">{status.title}</p>
         {status.message ? <p>{status.message}</p> : null}
         {/* A return/reload the host does not handle is described, not offered as a control that does nothing. */}
-        {!actions.length && status.actions.length && status.recoveryLabel ? <p className="eka-panel-note">{status.recoveryLabel}.</p> : null}
+        {!actions.length && status.actions.length && status.recoveryLabel ? <p className="ema-panel-note">{status.recoveryLabel}.</p> : null}
       </div>
       {actions.length ? (
-        <div className="eka-banner-actions">
-          {actions.map(action => <button key={action} type="button" className={`eka-button${action === 'commit' || action === 'retry' ? ' eka-button-primary' : ''}`} onClick={() => recovery.act(action)}>{actionLabel(status, action)}</button>)}
+        <div className="ema-banner-actions">
+          {actions.map(action => <button key={action} type="button" className={`ema-button${action === 'commit' || action === 'retry' ? ' ema-button-primary' : ''}`} onClick={() => recovery.act(action)}>{actionLabel(status, action)}</button>)}
         </div>
       ) : null}
     </div>
@@ -72,12 +72,12 @@ export function InlineStatus({ projection, causes }: { projection: LearnerProjec
   if (causes && !causes.has(status.cause)) return null;
   const actions = status.actions.filter(recovery.available);
   return (
-    <div className="eka-inline-status" data-tone={status.tone} data-ui-state={status.state} data-cause={status.cause}>
-      <span className="eka-glyph" aria-hidden="true">{status.glyph}</span>
-      <p className="eka-inline-text">{status.cause === 'preview' ? <strong>{status.title}. </strong> : null}{status.message}</p>
+    <div className="ema-inline-status" data-tone={status.tone} data-ui-state={status.state} data-cause={status.cause}>
+      <span className="ema-glyph" aria-hidden="true">{status.glyph}</span>
+      <p className="ema-inline-text">{status.cause === 'preview' ? <strong>{status.title}. </strong> : null}{status.message}</p>
       {actions.length ? (
-        <span className="eka-inline-actions">
-          {actions.map(action => <button key={action} type="button" className="eka-button eka-button-quiet" onClick={() => recovery.act(action)}>{actionLabel(status, action)}</button>)}
+        <span className="ema-inline-actions">
+          {actions.map(action => <button key={action} type="button" className="ema-button ema-button-quiet" onClick={() => recovery.act(action)}>{actionLabel(status, action)}</button>)}
         </span>
       ) : null}
     </div>
@@ -96,15 +96,15 @@ export function PersistenceChip({ projection }: { projection: LearnerProjection 
   const status = presentStatus(projection);
   const retryOffered = status?.placement === 'banner' && status.actions.includes('retry');
   return (
-    <span className="eka-meta">
-      <span className="eka-chip" data-tone={text.tone} data-persistence={persistence} title={text.detail}>
-        <span className="eka-glyph" aria-hidden="true">{text.glyph}</span>
+    <span className="ema-meta">
+      <span className="ema-chip" data-tone={text.tone} data-persistence={persistence} title={text.detail}>
+        <span className="ema-glyph" aria-hidden="true">{text.glyph}</span>
         {/* The label sits in a grid cell that also reserves the widest label (a CSS pseudo-element, not text), so the chip keeps one width. */}
-        <span className="eka-chip-labels"><span className="eka-chip-label">{text.label}</span></span>
-        <span className="eka-sr">. {text.detail}</span>
+        <span className="ema-chip-labels"><span className="ema-chip-label">{text.label}</span></span>
+        <span className="ema-sr">. {text.detail}</span>
       </span>
       {(persistence === 'pending-recovery' || persistence === 'failed') && !retryOffered && projection.status.ui !== 'disposed'
-        ? <button type="button" className="eka-button eka-button-quiet" onClick={() => void runtime.run(() => runtime.binding.retryPersistence({ operationId: runtime.opId() }), 'other')}>Retry saving</button> : null}
+        ? <button type="button" className="ema-button ema-button-quiet" onClick={() => void runtime.run(() => runtime.binding.retryPersistence({ operationId: runtime.opId() }), 'other')}>Retry saving</button> : null}
     </span>
   );
 }
@@ -117,8 +117,8 @@ export function PendingReveal({ projection }: { projection: LearnerProjection })
   const pending = projection.pendingReveal;
   if (!pending || pending.state === 'awaiting-display' || projection.status.ui === 'awaiting-persistence') return null;
   return (
-    <div className="eka-pending" data-state={pending.state}>
-      <span className="eka-glyph" aria-hidden="true">{pending.state === 'failed' ? '!' : '…'}</span>
+    <div className="ema-pending" data-state={pending.state}>
+      <span className="ema-glyph" aria-hidden="true">{pending.state === 'failed' ? '!' : '…'}</span>
       <p>{PENDING_REVEAL_TEXT[pending.state]}{pending.labels.length ? `: ${pending.labels.join(', ')}` : ''}.</p>
     </div>
   );
@@ -130,7 +130,7 @@ function UnitSelect({ value }: { value: ProjectedValue }) {
   const { binding } = runtime;
   if (!value.displayUnits || value.displayUnits.length < 2) return null;
   return (
-    <select className="eka-select eka-select-compact" aria-label={`Unit for ${value.label}`} value={value.unit} aria-disabled={runtime.busy || undefined}
+    <select className="ema-select ema-select-compact" aria-label={`Unit for ${value.label}`} value={value.unit} aria-disabled={runtime.busy || undefined}
       onChange={event => {
         const unit = event.currentTarget.value as ProjectedValue['unit'];
         void runtime.run(() => binding.setDisplayUnit({ operationId: runtime.opId(), expectedPresentationRevision: binding.getProjection().presentationRevision, parameter: value.quantityId, unit }), 'presentation');
@@ -143,29 +143,29 @@ function UnitSelect({ value }: { value: ProjectedValue }) {
 function ValueRow({ value }: { value: ProjectedValue }) {
   const display = valueDisplay(value);
   return (
-    <div className="eka-value-row" data-status={display.status} data-quantity={value.quantityId}>
+    <div className="ema-value-row" data-status={display.status} data-quantity={value.quantityId}>
       <dt>{value.label}</dt>
       <dd>
-        {display.approximate ? <span className="eka-sr">approximately </span> : null}
-        {display.text}{display.unit ? <span className="eka-unit"> {display.unit}</span> : null}
-        {display.approximate ? <span className="eka-badge" aria-hidden="true">≈ approx.</span> : null}
+        {display.approximate ? <span className="ema-sr">approximately </span> : null}
+        {display.text}{display.unit ? <span className="ema-unit"> {display.unit}</span> : null}
+        {display.approximate ? <span className="ema-badge" aria-hidden="true">≈ approx.</span> : null}
         {/* “Undefined” already says what it is; a numerical limit keeps its badge to set it apart from a computed value. */}
-        {display.status === 'numerical-limit' ? <span className="eka-badge">limit</span> : null}
+        {display.status === 'numerical-limit' ? <span className="ema-badge">limit</span> : null}
       </dd>
-      {value.displayUnits && value.displayUnits.length > 1 ? <dd className="eka-value-unit"><UnitSelect value={value} /></dd> : null}
-      {display.reason ? <dd className="eka-value-reason">{display.reason}</dd> : null}
+      {value.displayUnits && value.displayUnits.length > 1 ? <dd className="ema-value-unit"><UnitSelect value={value} /></dd> : null}
+      {display.reason ? <dd className="ema-value-reason">{display.reason}</dd> : null}
     </div>
   );
 }
 
 export function ValuesPanel({ title, values, headingLevel, description, frameId }: { title: string; values: ProjectedValue[]; headingLevel: number; description?: string; frameId?: string | null }) {
-  const headingId = useStableId('eka-values');
+  const headingId = useStableId('ema-values');
   if (!values.length) return null;
   return (
-    <section className="eka-panel" aria-labelledby={headingId} data-eka-panel="values" data-eka-frame-id={frameId ?? undefined} tabIndex={-1}>
-      <Heading level={headingLevel} id={headingId} className="eka-panel-title">{title}</Heading>
-      {description ? <p className="eka-sr">{description}</p> : null}
-      <dl className="eka-values">{values.map(value => <ValueRow key={value.quantityId} value={value} />)}</dl>
+    <section className="ema-panel" aria-labelledby={headingId} data-ema-panel="values" data-ema-frame-id={frameId ?? undefined} tabIndex={-1}>
+      <Heading level={headingLevel} id={headingId} className="ema-panel-title">{title}</Heading>
+      {description ? <p className="ema-sr">{description}</p> : null}
+      <dl className="ema-values">{values.map(value => <ValueRow key={value.quantityId} value={value} />)}</dl>
     </section>
   );
 }
@@ -173,8 +173,8 @@ export function ValuesPanel({ title, values, headingLevel, description, frameId 
 /** One equation: plain text first; KaTeX replaces it once the equation is visible and math loaded without error. */
 function MathEquation({ equation, showPlain }: { equation: ProjectedEquation; showPlain: boolean }) {
   const runtime = useRuntime();
-  const labelId = useStableId('eka-eq');
-  const hintId = useStableId('eka-eq-hint');
+  const labelId = useStableId('ema-eq');
+  const hintId = useStableId('ema-eq-hint');
   const hostRef = useRef<HTMLDivElement>(null);
   const regionRef = useRef<HTMLDivElement>(null);
   const mathRef = useRef<HTMLSpanElement>(null);
@@ -245,30 +245,30 @@ function MathEquation({ equation, showPlain }: { equation: ProjectedEquation; sh
   // and its plain-text form (which wraps) is shown beneath it; text is never shrunk to fit.
   const wide = rendered && overflow;
   return (
-    <div className="eka-equation" ref={hostRef} data-eka-equation={equation.equationId}>
-      <span className="eka-equation-label" id={labelId}>{equation.label}</span>
-      <div className="eka-math" role="group" aria-labelledby={labelId} aria-describedby={wide ? hintId : undefined} ref={regionRef}
+    <div className="ema-equation" ref={hostRef} data-ema-equation={equation.equationId}>
+      <span className="ema-equation-label" id={labelId}>{equation.label}</span>
+      <div className="ema-math" role="group" aria-labelledby={labelId} aria-describedby={wide ? hintId : undefined} ref={regionRef}
         tabIndex={wide ? 0 : undefined} data-overflow={wide || undefined}>
         <span ref={mathRef} hidden={!rendered} />
-        {rendered ? null : <span className="eka-plain">{equation.plain}</span>}
+        {rendered ? null : <span className="ema-plain">{equation.plain}</span>}
       </div>
-      {wide ? <p className="eka-math-hint" id={hintId}><span aria-hidden="true">⇆</span>Wider than this panel: scroll it sideways, or read it as text below.</p> : null}
-      {rendered && (showPlain || wide) ? <p className="eka-plain eka-panel-note" data-eka-plain={equation.equationId}>{equation.plain}</p> : null}
+      {wide ? <p className="ema-math-hint" id={hintId}><span aria-hidden="true">⇆</span>Wider than this panel: scroll it sideways, or read it as text below.</p> : null}
+      {rendered && (showPlain || wide) ? <p className="ema-plain ema-panel-note" data-ema-plain={equation.equationId}>{equation.plain}</p> : null}
     </div>
   );
 }
 
 export function EquationsPanel({ title, equations, headingLevel, frameId }: { title: string; equations: ProjectedEquation[]; headingLevel: number; frameId?: string | null }) {
-  const headingId = useStableId('eka-equations');
+  const headingId = useStableId('ema-equations');
   const [plain, setPlain] = useState(false);
   if (!equations.length) return null;
   return (
-    <section className="eka-panel" aria-labelledby={headingId} data-eka-panel="equations" data-eka-frame-id={frameId ?? undefined}>
-      <div className="eka-nav-row">
-        <Heading level={headingLevel} id={headingId} className="eka-panel-title">{title}</Heading>
-        <button type="button" className="eka-button eka-button-quiet" aria-pressed={plain} onClick={() => setPlain(value => !value)}>Plain text</button>
+    <section className="ema-panel" aria-labelledby={headingId} data-ema-panel="equations" data-ema-frame-id={frameId ?? undefined}>
+      <div className="ema-nav-row">
+        <Heading level={headingLevel} id={headingId} className="ema-panel-title">{title}</Heading>
+        <button type="button" className="ema-button ema-button-quiet" aria-pressed={plain} onClick={() => setPlain(value => !value)}>Plain text</button>
       </div>
-      <div className="eka-equations">{equations.map(equation => <MathEquation key={equation.equationId} equation={equation} showPlain={plain} />)}</div>
+      <div className="ema-equations">{equations.map(equation => <MathEquation key={equation.equationId} equation={equation} showPlain={plain} />)}</div>
     </section>
   );
 }
@@ -286,25 +286,25 @@ function shortenedNote(table: ProjectedTable): string {
 const unavailable = (cells: readonly string[]): boolean => cells.length > 1 && cells.every(cell => cell.startsWith('Not available'));
 
 export function TablePanel({ table, title, headingLevel, regionRef, frameId }: { table: ProjectedTable; title: string; headingLevel: number; regionRef?: (element: HTMLDivElement | null) => void; frameId?: string | null }) {
-  const headingId = useStableId('eka-table');
+  const headingId = useStableId('ema-table');
   return (
-    <section className="eka-panel" aria-labelledby={headingId} data-eka-panel="table" data-eka-frame-id={frameId ?? undefined}>
-      <Heading level={headingLevel} id={headingId} className="eka-panel-title">{title}</Heading>
-      <div className="eka-table-region" role="region" aria-labelledby={headingId} tabIndex={0} ref={regionRef}>
-        <table className="eka-table">
-          <caption className="eka-sr">{table.caption}</caption>
-          <thead><tr>{table.columns.map(column => <th key={column.id} scope="col">{column.label}{column.unitLabel ? <span className="eka-unit"> ({column.unitLabel})</span> : null}</th>)}</tr></thead>
+    <section className="ema-panel" aria-labelledby={headingId} data-ema-panel="table" data-ema-frame-id={frameId ?? undefined}>
+      <Heading level={headingLevel} id={headingId} className="ema-panel-title">{title}</Heading>
+      <div className="ema-table-region" role="region" aria-labelledby={headingId} tabIndex={0} ref={regionRef}>
+        <table className="ema-table">
+          <caption className="ema-sr">{table.caption}</caption>
+          <thead><tr>{table.columns.map(column => <th key={column.id} scope="col">{column.label}{column.unitLabel ? <span className="ema-unit"> ({column.unitLabel})</span> : null}</th>)}</tr></thead>
           <tbody>{table.rows.map(row => unavailable(row.cells)
             // A row without any value (for example where a trace stops) is one full-width note, so its reason wraps
             // instead of widening the first column and pushing the value columns out of view.
-            ? <tr key={row.key} data-eka-row="unavailable"><td className="eka-table-note" colSpan={table.columns.length}>{row.cells[0]}</td></tr>
+            ? <tr key={row.key} data-ema-row="unavailable"><td className="ema-table-note" colSpan={table.columns.length}>{row.cells[0]}</td></tr>
             // A missing observed cell (projection vocabulary `Missing: <reason>`) wraps its reason instead of widening the table.
-            : <tr key={row.key}>{row.cells.map((cell, i) => i === 0 ? <th key={i} scope="row">{numeralMinus(cell)}</th> : <td key={i} className={cell.startsWith('Missing: ') ? 'eka-table-missing' : undefined}>{cell.startsWith('Missing: ') ? cell : numeralMinus(cell)}</td>)}</tr>)}</tbody>
+            : <tr key={row.key}>{row.cells.map((cell, i) => i === 0 ? <th key={i} scope="row">{numeralMinus(cell)}</th> : <td key={i} className={cell.startsWith('Missing: ') ? 'ema-table-missing' : undefined}>{cell.startsWith('Missing: ') ? cell : numeralMinus(cell)}</td>)}</tr>)}</tbody>
         </table>
       </div>
-      {table.truncated || table.rows.length < table.totalRows ? <p className="eka-panel-note">{shortenedNote(table)}</p> : null}
+      {table.truncated || table.rows.length < table.totalRows ? <p className="ema-panel-note">{shortenedNote(table)}</p> : null}
       {/* Observed rows name their source (report §8.5); the projection writes the line from the manifest provenance. */}
-      {table.source ? <p className="eka-panel-note" data-eka-source="observed">{table.source}</p> : null}
+      {table.source ? <p className="ema-panel-note" data-ema-source="observed">{table.source}</p> : null}
     </section>
   );
 }
@@ -320,10 +320,10 @@ function ComparedValue({ value }: { value: ProjectedValue | null }) {
   const display = valueDisplay(value);
   return (
     <>
-      {display.approximate ? <><span aria-hidden="true">≈ </span><span className="eka-sr">approximately </span></> : null}
+      {display.approximate ? <><span aria-hidden="true">≈ </span><span className="ema-sr">approximately </span></> : null}
       {numeralMinus(display.text)}{display.unit ? ` ${display.unit}` : ''}
-      {display.status === 'numerical-limit' ? <span className="eka-badge">limit</span> : null}
-      {display.reason ? <span className="eka-comparison-reason">{display.reason}</span> : null}
+      {display.status === 'numerical-limit' ? <span className="ema-badge">limit</span> : null}
+      {display.reason ? <span className="ema-comparison-reason">{display.reason}</span> : null}
     </>
   );
 }
@@ -341,15 +341,15 @@ export function ComparisonsPanel({ comparisons, canRetain, retainLabel, headingL
   comparisons: ProjectedComparison[]; canRetain: boolean; retainLabel: string; headingLevel: number; currentPosition?: FramePosition | null;
 }) {
   const runtime = useRuntime();
-  const headingId = useStableId('eka-comparisons');
+  const headingId = useStableId('ema-comparisons');
   const { binding } = runtime;
   if (!comparisons.length && !canRetain) return null;
   return (
-    <section className="eka-panel" aria-labelledby={headingId} data-eka-panel="comparisons">
-      <Heading level={headingLevel} id={headingId} className="eka-panel-title">Comparisons</Heading>
+    <section className="ema-panel" aria-labelledby={headingId} data-ema-panel="comparisons">
+      <Heading level={headingLevel} id={headingId} className="ema-panel-title">Comparisons</Heading>
       {comparisons.map(comparison => <KeptRun key={comparison.runId} comparison={comparison} currentPosition={currentPosition ?? null} />)}
       {canRetain ? (
-        <div><button type="button" className="eka-button" aria-disabled={runtime.busy || undefined}
+        <div><button type="button" className="ema-button" aria-disabled={runtime.busy || undefined}
           onClick={() => { if (!runtime.busy) void runtime.run(() => binding.retainComparison({ operationId: runtime.opId(), ...binding.getProjection().guards, label: retainLabel }), 'science'); }}>
           Keep this run to compare</button></div>
       ) : null}
@@ -366,9 +366,9 @@ export function ComparisonsPanel({ comparisons, canRetain, retainLabel, headingL
 function KeptRun({ comparison, currentPosition }: { comparison: ProjectedComparison; currentPosition: FramePosition | null }) {
   const runtime = useRuntime();
   const { binding } = runtime;
-  const boundaryId = useStableId('eka-comparison-boundary');
-  const noteId = useStableId('eka-comparison-note');
-  const reasonId = useStableId('eka-comparison-inert');
+  const boundaryId = useStableId('ema-comparison-boundary');
+  const noteId = useStableId('ema-comparison-note');
+  const reasonId = useStableId('ema-comparison-inert');
   const keptName = `kept run ${comparison.ordinal}`;
   const glyph = comparisonGlyph(comparison.ordinal);
   const keptAt = comparison.positionText;
@@ -380,58 +380,58 @@ function KeptRun({ comparison, currentPosition }: { comparison: ProjectedCompari
   const inert = runtime.inert;
   const unavailable = runtime.busy || runtime.settling || !!inert;
   return (
-    <div className="eka-comparison" data-eka-comparison={comparison.runId} data-eka-comparison-frame-id={comparison.frameId ?? undefined}>
-      <p className="eka-comparison-runs">
-        <svg className="eka-swatch" viewBox="0 0 30 12" width="30" height="12" aria-hidden="true" focusable="false">
-          <line className="eka-role-muted eka-stroke eka-comparison-line" x1="1" x2="29" y1="6" y2="6" strokeWidth={2} strokeDasharray={COMPARISON_DASH} />
-          <path className="eka-role-muted eka-hollow" d={markerPath(glyph, 15, 6, 4)} strokeWidth={1.5} />
+    <div className="ema-comparison" data-ema-comparison={comparison.runId} data-ema-comparison-frame-id={comparison.frameId ?? undefined}>
+      <p className="ema-comparison-runs">
+        <svg className="ema-swatch" viewBox="0 0 30 12" width="30" height="12" aria-hidden="true" focusable="false">
+          <line className="ema-role-muted ema-stroke ema-comparison-line" x1="1" x2="29" y1="6" y2="6" strokeWidth={2} strokeDasharray={COMPARISON_DASH} />
+          <path className="ema-role-muted ema-hollow" d={markerPath(glyph, 15, 6, 4)} strokeWidth={1.5} />
         </svg>
-        Kept run {comparison.ordinal}: <span className="eka-comparison-name">{numeralMinus(comparison.name)}</span>
+        Kept run {comparison.ordinal}: <span className="ema-comparison-name">{numeralMinus(comparison.name)}</span>
       </p>
-      <p className="eka-panel-note">
+      <p className="ema-panel-note">
         {[keptAt ? `Kept at ${keptAt}.` : null, comparison.overlays.length ? `Drawn dashed with ${GLYPH_NAME[glyph]} markers in the plots.` : null].filter(Boolean).join(' ') || ALIGNMENT_TEXT[comparison.alignment]}
       </p>
       {comparison.parameterDifferences.length ? (
-        <table className="eka-diff-table">
-          <caption className="eka-sr">Parameters that differ between the current run and {keptName}</caption>
+        <table className="ema-diff-table">
+          <caption className="ema-sr">Parameters that differ between the current run and {keptName}</caption>
           <thead><tr><th scope="col">Parameter</th><th scope="col">Current run</th><th scope="col">Kept run {comparison.ordinal}</th></tr></thead>
           <tbody>{comparison.parameterDifferences.map(diff => (
             <tr key={diff.parameter}><th scope="row">{diff.label}</th><td>{diff.currentText !== undefined ? numeralMinus(diff.currentText) : '—'}</td><td>{numeralMinus(diff.text)}</td></tr>
           ))}</tbody>
         </table>
-      ) : <p className="eka-diff">{comparison.hiddenDifferences ? 'Settings that are not shown here differ from the current run.' : 'Same parameters as the current run.'}</p>}
-      {comparison.parameterDifferences.length && comparison.hiddenDifferences ? <p className="eka-diff">Settings that are not shown here also differ.</p> : null}
+      ) : <p className="ema-diff">{comparison.hiddenDifferences ? 'Settings that are not shown here differ from the current run.' : 'Same parameters as the current run.'}</p>}
+      {comparison.parameterDifferences.length && comparison.hiddenDifferences ? <p className="ema-diff">Settings that are not shown here also differ.</p> : null}
       {comparison.aligned.length ? (
-        <table className="eka-diff-table" data-eka-comparison-aligned="">
-          <caption className="eka-sr">Both runs at the same iteration n</caption>
+        <table className="ema-diff-table" data-ema-comparison-aligned="">
+          <caption className="ema-sr">Both runs at the same iteration n</caption>
           <thead><tr><th scope="col">At the same n</th><th scope="col">Current run</th><th scope="col">Kept run {comparison.ordinal}</th></tr></thead>
           <tbody>{comparison.aligned.map(row => (
             <tr key={`${row.viewId}:${row.label}`}>
               <th scope="row">{row.label} at n = {row.at}</th>
               <td>{row.current !== null ? numeralMinus(row.current) : 'Not available'}</td>
-              <td>{row.kept !== null ? numeralMinus(row.kept) : <span className="eka-comparison-missing" aria-describedby={explainedBy(row.reason)}>Not available</span>}</td>
+              <td>{row.kept !== null ? numeralMinus(row.kept) : <span className="ema-comparison-missing" aria-describedby={explainedBy(row.reason)}>Not available</span>}</td>
             </tr>
           ))}</tbody>
         </table>
       ) : null}
-      {notes.map((reason, index) => <p key={reason} id={`${noteId}-${index}`} className="eka-panel-note">{reason}</p>)}
+      {notes.map((reason, index) => <p key={reason} id={`${noteId}-${index}`} className="ema-panel-note">{reason}</p>)}
       {comparison.values.length ? (
-        <table className="eka-diff-table" data-eka-comparison-values="">
-          <caption className="eka-sr">Values that differ between the current run{currentAt ? ` at ${currentAt}` : ''} and {keptName}{keptAt ? ` at ${keptAt}` : ''}</caption>
+        <table className="ema-diff-table" data-ema-comparison-values="">
+          <caption className="ema-sr">Values that differ between the current run{currentAt ? ` at ${currentAt}` : ''} and {keptName}{keptAt ? ` at ${keptAt}` : ''}</caption>
           <thead><tr><th scope="col">Value</th><th scope="col">Current run{currentAt && currentAt !== keptAt ? ` (${currentAt})` : ''}</th><th scope="col">Kept run {comparison.ordinal}{keptAt && currentAt !== keptAt ? ` (${keptAt})` : ''}</th></tr></thead>
           <tbody>{comparison.values.map(row => (
             <tr key={row.quantityId}><th scope="row">{row.label}</th><td><ComparedValue value={row.current} /></td><td><ComparedValue value={row.kept} /></td></tr>
           ))}</tbody>
         </table>
       ) : null}
-      {comparison.sameValues ? <p className="eka-panel-note">{comparison.values.length ? `${comparison.sameValues} other shown ${comparison.sameValues === 1 ? 'value is' : 'values are'} the same in both runs.` : 'Every shown value is the same in both runs.'}</p> : null}
-      {boundary ? <p className="eka-comparison-boundary" id={boundaryId}><span className="eka-glyph" aria-hidden="true">!</span>{boundary}</p> : null}
-      <p className="eka-panel-note">{comparison.domainNote}</p>
+      {comparison.sameValues ? <p className="ema-panel-note">{comparison.values.length ? `${comparison.sameValues} other shown ${comparison.sameValues === 1 ? 'value is' : 'values are'} the same in both runs.` : 'Every shown value is the same in both runs.'}</p> : null}
+      {boundary ? <p className="ema-comparison-boundary" id={boundaryId}><span className="ema-glyph" aria-hidden="true">!</span>{boundary}</p> : null}
+      <p className="ema-panel-note">{comparison.domainNote}</p>
       <div>
-        <button type="button" className="eka-button eka-button-quiet" aria-disabled={unavailable || undefined} aria-describedby={inert ? reasonId : undefined}
+        <button type="button" className="ema-button ema-button-quiet" aria-disabled={unavailable || undefined} aria-describedby={inert ? reasonId : undefined}
           onClick={() => { if (!unavailable && !runtime.scienceBusy()) void runtime.run(() => binding.removeComparison({ operationId: runtime.opId(), ...binding.getProjection().guards, runId: comparison.runId }), 'science'); }}>
           Stop comparing with kept run {comparison.ordinal}</button>
-        {inert ? <p className="eka-reason" id={reasonId}><span className="eka-glyph" aria-hidden="true">–</span>{inert}</p> : null}
+        {inert ? <p className="ema-reason" id={reasonId}><span className="ema-glyph" aria-hidden="true">–</span>{inert}</p> : null}
       </div>
     </div>
   );
@@ -446,7 +446,7 @@ export function AlternativesInfo({ alternatives }: { alternatives: ProjectedAlte
       <dl>
         {alternatives.map(alternative => (
           <div key={alternative.alternativeId}>
-            <dt>{alternative.label} <span className="eka-badge">{equivalence[alternative.equivalence]}</span></dt>
+            <dt>{alternative.label} <span className="ema-badge">{equivalence[alternative.equivalence]}</span></dt>
             <dd>{alternative.description}</dd>
           </div>
         ))}

@@ -33,7 +33,7 @@ export function mountStudyActivity(container: HTMLElement, options: MountStudyAc
   if (!ID_PATTERN.test(surfaceId)) throw new TypeError('surfaceId must match ^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$.');
   const doc = container.ownerDocument;
   const element = doc.createElement('div');
-  element.setAttribute('data-experiment-kit-activity', surfaceId);
+  element.setAttribute('data-explorable-models-activity', surfaceId);
   const shadow = element.attachShadow({ mode: 'open' });
   const styles = adoptActivityStyles(shadow, options.assetBase);
   container.appendChild(element);

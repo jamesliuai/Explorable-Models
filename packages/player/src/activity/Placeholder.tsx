@@ -7,7 +7,7 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import type { CSSProperties } from 'react';
 import { createRoot } from 'react-dom/client';
-import { UI_STATUS } from '@experiment-kit/activity';
+import { UI_STATUS } from '@explorable-models/activity';
 import { assetLocations, INTER_FONT_FILES, registerFonts } from './assets.js';
 import { presentStatus } from './status.js';
 import { adoptActivityStyles } from './styles.js';
@@ -40,7 +40,7 @@ const TITLE: Record<StudyActivityPlaceholderProps['state'], string> = { preparin
 /** React entry: the card frame in the `preparing` or `empty` state (same classes, tokens and status vocabulary as the surface). */
 export function StudyActivityPlaceholder(props: StudyActivityPlaceholderProps) {
   const rootRef = useRef<HTMLDivElement>(null);
-  const titleId = useStableId('eka-title');
+  const titleId = useStableId('ema-title');
   const prefersDark = useMediaQuery('(prefers-color-scheme: dark)');
   const reducedMotion = useMediaQuery('(prefers-reduced-motion: reduce)');
   const mode: ThemeMode = props.theme === 'light' || props.theme === 'dark' ? props.theme : prefersDark ? 'dark' : 'light';
@@ -59,17 +59,17 @@ export function StudyActivityPlaceholder(props: StudyActivityPlaceholderProps) {
 
   const status = presentStatus({ status: { ui: props.state, message: UI_STATUS[props.state].message, recovery: null, persistence: 'saved', live: null }, pendingReveal: null })!;
   return (
-    <div ref={rootRef} className="eka" style={variables} lang={props.locale} data-theme={mode} data-layout="auto" data-eka-ui-state={props.state} data-eka-placeholder="">
-      <section className="eka-card" aria-labelledby={titleId} aria-busy={props.state === 'preparing' || undefined}>
-        <header className="eka-header">
-          <div className="eka-heading">
-            <Heading level={props.headingLevel ?? 2} id={titleId} className="eka-title">{props.title ?? TITLE[props.state]}</Heading>
+    <div ref={rootRef} className="ema" style={variables} lang={props.locale} data-theme={mode} data-layout="auto" data-ema-ui-state={props.state} data-ema-placeholder="">
+      <section className="ema-card" aria-labelledby={titleId} aria-busy={props.state === 'preparing' || undefined}>
+        <header className="ema-header">
+          <div className="ema-heading">
+            <Heading level={props.headingLevel ?? 2} id={titleId} className="ema-title">{props.title ?? TITLE[props.state]}</Heading>
           </div>
         </header>
-        <div className="eka-banner" data-tone={status.tone} data-ui-state={status.state} data-cause={status.cause} role="status">
-          <span className="eka-glyph" aria-hidden="true">{status.glyph}</span>
-          <div className="eka-banner-body">
-            <p className="eka-banner-title">{status.title}</p>
+        <div className="ema-banner" data-tone={status.tone} data-ui-state={status.state} data-cause={status.cause} role="status">
+          <span className="ema-glyph" aria-hidden="true">{status.glyph}</span>
+          <div className="ema-banner-body">
+            <p className="ema-banner-title">{status.title}</p>
             {status.message ? <p>{status.message}</p> : null}
           </div>
         </div>
@@ -88,12 +88,12 @@ export interface MountedStudyActivityPlaceholder {
 
 /**
  * Plain-DOM entry: mounts the placeholder card in its own shadow root (like `mountStudyActivity`). The host element
- * carries `data-experiment-kit-activity-placeholder`; dispose it before mounting the activity's surface.
+ * carries `data-explorable-models-activity-placeholder`; dispose it before mounting the activity's surface.
  */
 export function mountStudyActivityPlaceholder(container: HTMLElement, props: StudyActivityPlaceholderProps): MountedStudyActivityPlaceholder {
   if (!container || typeof container.appendChild !== 'function' || !container.ownerDocument) throw new TypeError('mountStudyActivityPlaceholder requires a browser HTMLElement container.');
   const element = container.ownerDocument.createElement('div');
-  element.setAttribute('data-experiment-kit-activity-placeholder', props.state);
+  element.setAttribute('data-explorable-models-activity-placeholder', props.state);
   const shadow = element.attachShadow({ mode: 'open' });
   const styles = adoptActivityStyles(shadow, props.assetBase);
   container.appendChild(element);
@@ -105,7 +105,7 @@ export function mountStudyActivityPlaceholder(container: HTMLElement, props: Stu
     element,
     update(next) {
       if (disposed) return;
-      element.setAttribute('data-experiment-kit-activity-placeholder', next.state);
+      element.setAttribute('data-explorable-models-activity-placeholder', next.state);
       root.render(<StudyActivityPlaceholder {...next} />);
     },
     dispose() {

@@ -1,5 +1,5 @@
 import { createRoot } from 'react-dom/client';
-import { createDocumentInteractionController } from '@experiment-kit/core/declarative';
+import { createDocumentInteractionController } from '@explorable-models/core/declarative';
 import { exhibits } from './catalog';
 import { documents } from './models';
 import { ExampleCard } from './ExampleCard';

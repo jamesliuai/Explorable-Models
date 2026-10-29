@@ -18,7 +18,7 @@ export interface MountedVisualization {
 export function mountVisualization(container: HTMLElement, options: VisualizationSurfaceProps): MountedVisualization {
   if (!container || typeof container.appendChild !== 'function') throw new Error('mountVisualization requires a browser HTMLElement.');
   const element = container.ownerDocument.createElement('div');
-  element.setAttribute('data-experiment-kit-mount', '');
+  element.setAttribute('data-explorable-models-mount', '');
   const shadow = element.attachShadow({ mode: 'open' });
   container.appendChild(element);
   const root = createRoot(shadow);

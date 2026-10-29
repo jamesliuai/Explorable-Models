@@ -1,5 +1,5 @@
-import { DocumentError, DOCUMENT_RUNTIME_VERSION, SESSION_LIMITS, DOCUMENT_SCHEMA, DOCUMENT_LIMITS, EXPRESSION_FUNCTIONS, EXPRESSION_LIMITS, SUPPORTED_DOCUMENT_CAPABILITIES } from '@experiment-kit/core/declarative';
-import type { Candidate, Diagnostic, MutationGuard, SemanticEdit, VisualizationSession } from '@experiment-kit/core/declarative';
+import { DocumentError, DOCUMENT_RUNTIME_VERSION, SESSION_LIMITS, DOCUMENT_SCHEMA, DOCUMENT_LIMITS, EXPRESSION_FUNCTIONS, EXPRESSION_LIMITS, SUPPORTED_DOCUMENT_CAPABILITIES } from '@explorable-models/core/declarative';
+import type { Candidate, Diagnostic, MutationGuard, SemanticEdit, VisualizationSession } from '@explorable-models/core/declarative';
 
 export interface ToolDescriptor { name: string; description: string; inputSchema: Record<string, unknown>; outputSchema: Record<string, unknown> }
 export type VisualizationToolResult = { ok: true; data: unknown } | { ok: false; diagnostics: Diagnostic[] };

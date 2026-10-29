@@ -8,8 +8,8 @@ import {
   validateRecord, validateTemplateSemantics,
   type ActivityCatalog, type ActivityTemplate, type CatalogEntryStatus, type CatalogLoadResult, type Diagnostic, type GroupDigest, type ReviewRecord,
   type TemplateDiscovery, type TemplateRef,
-} from '@experiment-kit/activity';
-import { validateManifest, type ModelIdentity, type ModelKernel, type ModelManifest, type ModelRef } from '@experiment-kit/core/model';
+} from '@explorable-models/activity';
+import { validateManifest, type ModelIdentity, type ModelKernel, type ModelManifest, type ModelRef } from '@explorable-models/core/model';
 import { createMarkList, createReviewRegistry, type DeprecationEntry, type MarkList, type ReviewRegistry, type RevocationEntry } from './registry.js';
 
 export interface InstalledCatalogOptions {

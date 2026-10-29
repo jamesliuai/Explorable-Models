@@ -9,8 +9,8 @@
  * A template's `requires` and a model's `capabilities` name capabilities by exact ID and version; an unknown ID or
  * version is rejected, never approximated by another version.
  */
-import { deepFreeze } from '@experiment-kit/core';
-import type { ModelManifest } from '@experiment-kit/core/model';
+import { deepFreeze } from '@explorable-models/core';
+import type { ModelManifest } from '@explorable-models/core/model';
 import { CONTRACTS, type ActivityTemplate, type CapabilityRef, type Diagnostic } from './contracts.js';
 
 export const CAPABILITY_CONTRACT = CONTRACTS.capability;

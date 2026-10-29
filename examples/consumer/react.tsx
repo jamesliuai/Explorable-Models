@@ -1,5 +1,5 @@
 import { createRoot } from 'react-dom/client';
-import { VisualizationSurface } from '@experiment-kit/player';
+import { VisualizationSurface } from '@explorable-models/player';
 import { setup, guard } from './setup';
 const first = await setup();
 const root = createRoot(document.getElementById('root')!);

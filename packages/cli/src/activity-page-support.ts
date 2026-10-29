@@ -3,8 +3,8 @@
  * activity-preview-page.ts). Trusted toolkit code: the model worker it creates is the bundle's `worker-model.js`, the
  * only place authored kernel code runs.
  */
-import { templateRef, type ActivityCatalog, type ActivityTemplate, type CatalogEntryStatus } from '@experiment-kit/activity';
-import type { validateManifest } from '@experiment-kit/core/model';
+import { templateRef, type ActivityCatalog, type ActivityTemplate, type CatalogEntryStatus } from '@explorable-models/activity';
+import type { validateManifest } from '@explorable-models/core/model';
 
 /** Catalogue status of an authored package: never approved, never reviewed. */
 export const AUTHORED: CatalogEntryStatus = Object.freeze({ lifecycle: 'authored', reviews: [], revoked: false });

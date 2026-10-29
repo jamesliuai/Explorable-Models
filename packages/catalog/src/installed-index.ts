@@ -2,7 +2,7 @@
 // after changing a template, learner copy, model manifest, kernel identity or content loader, run
 // `node scripts/study-harness/generate-catalog-index.mjs`. tests/catalog/lazy.test.ts fails while this file is stale, and
 // createLazyCatalog() refuses content that does not reproduce these digests.
-import { deepFreeze } from '@experiment-kit/core';
+import { deepFreeze } from '@explorable-models/core';
 import type { InstalledIndex } from './index-types.js';
 
 export const INSTALLED_INDEX: InstalledIndex = deepFreeze({
@@ -39,11 +39,11 @@ export const INSTALLED_INDEX: InstalledIndex = deepFreeze({
       "ref": {
         "modelId": "quadratic-gradient-descent",
         "version": "1.0.0",
-        "digest": "sha256:5326283f785aed9a4d5fe0ba5ca32e3f03da6e05bb5c084ee3816fea7b41171e"
+        "digest": "sha256:ec2a907540a0807662fd3483f34d0146079297a91cd799bf143b1801fc998f45"
       },
       "identity": {
-        "digest": "sha256:5326283f785aed9a4d5fe0ba5ca32e3f03da6e05bb5c084ee3816fea7b41171e",
-        "scientificRevision": "sha256:e942314fe3ae98ce588d26cf266aab805f2f4771104159219c8ac13c33c12645",
+        "digest": "sha256:ec2a907540a0807662fd3483f34d0146079297a91cd799bf143b1801fc998f45",
+        "scientificRevision": "sha256:f4b471b6161d842bcbba32bee211c464c279481b42cb5c160d44bee338e5a52d",
         "presentationRevision": "sha256:5dce53f8a1319574ae2fe48436e58404dff4c46dd38a1067c1763765d1cfeeb3"
       },
       "referenceSuiteDigest": "sha256:5e22c857c6557619b9634a0f8791e9567342d517e339883fc0c20b3e9b22c2f2",
@@ -57,11 +57,11 @@ export const INSTALLED_INDEX: InstalledIndex = deepFreeze({
       "ref": {
         "modelId": "function-derivative",
         "version": "1.0.0",
-        "digest": "sha256:bfeaa64ae40e41254f46d193a1aefc1ff9d900664571aba51e26492f1ff778ba"
+        "digest": "sha256:7a7365f9a0661f42f998465050dc95abadbe5cad7fae6fcc2dece3b65447fc1f"
       },
       "identity": {
-        "digest": "sha256:bfeaa64ae40e41254f46d193a1aefc1ff9d900664571aba51e26492f1ff778ba",
-        "scientificRevision": "sha256:e6436111cefe2448afeae498d425491f6b284f66f8141804c55255de793baa93",
+        "digest": "sha256:7a7365f9a0661f42f998465050dc95abadbe5cad7fae6fcc2dece3b65447fc1f",
+        "scientificRevision": "sha256:c706c3ed3446c6afa46cfa74b1556e1dfadb3c467bf5868d38b350930166ac5a",
         "presentationRevision": "sha256:6b7f39443087f6a470fbd39b3cd6ada3d6f62504b1e3bbb1c7044da9bc8a9053"
       },
       "referenceSuiteDigest": "sha256:07404667c68ff04613998c5a4d8e7ce5acf21c53e84cb28d37384fe8a21394f4",
@@ -75,11 +75,11 @@ export const INSTALLED_INDEX: InstalledIndex = deepFreeze({
       "ref": {
         "modelId": "linear-transformation",
         "version": "1.0.0",
-        "digest": "sha256:feeb312898a4fda3e38f2743b71f197fe0c91333e9e3921cd8239d98f441a536"
+        "digest": "sha256:556cf36026c7eaf95e03aa1974f3954a77b1209f5405e25b815f9d1f9dc298e2"
       },
       "identity": {
-        "digest": "sha256:feeb312898a4fda3e38f2743b71f197fe0c91333e9e3921cd8239d98f441a536",
-        "scientificRevision": "sha256:8d5544b2b5e7475d724356541e8ddac8caa0d28c304376787c3f3d232f431fcd",
+        "digest": "sha256:556cf36026c7eaf95e03aa1974f3954a77b1209f5405e25b815f9d1f9dc298e2",
+        "scientificRevision": "sha256:1784fe3fb59af950f7a6ec8e7344a4b53925b046deee2069d1bc727ef7993207",
         "presentationRevision": "sha256:b598bd8b32f1a4c9da32b569c873cfba0160712092556fbc770d7d6a7cb6be8e"
       },
       "referenceSuiteDigest": "sha256:1bcb216bab98b268056748e3e4b53fea6cd393e5487ea35449d602c57a8ed9a5",
@@ -93,11 +93,11 @@ export const INSTALLED_INDEX: InstalledIndex = deepFreeze({
       "ref": {
         "modelId": "vector-orientation-3d",
         "version": "1.0.0",
-        "digest": "sha256:4cbfe83e8927ecf3d0edb8b4f299a13557899f98250c9a697a3620597e834e5f"
+        "digest": "sha256:5406433b6fd86fa353ccb113cc0d6c69af346b74ba0e1021d63d39429a9f32bc"
       },
       "identity": {
-        "digest": "sha256:4cbfe83e8927ecf3d0edb8b4f299a13557899f98250c9a697a3620597e834e5f",
-        "scientificRevision": "sha256:9bb9e1d8faf6a4f6ff99b5ade0e605d266c4bb3049bde95471ae89c54ef1559a",
+        "digest": "sha256:5406433b6fd86fa353ccb113cc0d6c69af346b74ba0e1021d63d39429a9f32bc",
+        "scientificRevision": "sha256:61285ee348b6ad94028b90282cc6f2faf7a9c32aeae193e7276e37acb7dc9746",
         "presentationRevision": "sha256:3a03ab54774c576ca7cb0c8ad65873b2586c0de81014e47440aa00aa15b1ce8b"
       },
       "referenceSuiteDigest": "sha256:ae6ee27be8c85f6c6d209a3a3361f443ea01d8d0d651ccb051b6aa64fa560f02",
@@ -111,11 +111,11 @@ export const INSTALLED_INDEX: InstalledIndex = deepFreeze({
       "ref": {
         "modelId": "quadratic-surface-gradient",
         "version": "1.0.0",
-        "digest": "sha256:cf14845fdc52ac67d2bdfca8f2434a15499f0555045882acfc287bcd14381294"
+        "digest": "sha256:bf6c7a28455d5b882d12e287894347d8acf4468db0a6681cb82c780b0ec34963"
       },
       "identity": {
-        "digest": "sha256:cf14845fdc52ac67d2bdfca8f2434a15499f0555045882acfc287bcd14381294",
-        "scientificRevision": "sha256:515644892b2fc883491e6e6d34f6e650a86ec88a76c9a5cb0d952019d49d5668",
+        "digest": "sha256:bf6c7a28455d5b882d12e287894347d8acf4468db0a6681cb82c780b0ec34963",
+        "scientificRevision": "sha256:3072ed7787d54b53890013aede217082d9b0ab9f3bf2040379cbf13662965030",
         "presentationRevision": "sha256:868aa8fd30ca9161d24c91830ce62769cedb3b61ba5aaa0e88c2d1b81ce8e72f"
       },
       "referenceSuiteDigest": "sha256:4982408532970c0fca1657884b9307956e4f20ee91e0c68cdff00e8b66c2af20",
@@ -131,7 +131,7 @@ export const INSTALLED_INDEX: InstalledIndex = deepFreeze({
       "ref": {
         "templateId": "quadratic-gradient-descent",
         "version": "1.0.0",
-        "digest": "sha256:a6fdb69ad2598e7726de2d3d1d81d986677520eab7b29d48fbe9bc81b72ed8c3"
+        "digest": "sha256:1f18c149e65208e25df11fd2c173b6c4eae89752f526a7ffb3ba6295a88a4bb6"
       },
       "model": {
         "modelId": "quadratic-gradient-descent",
@@ -358,7 +358,7 @@ export const INSTALLED_INDEX: InstalledIndex = deepFreeze({
       "ref": {
         "templateId": "function-derivative",
         "version": "1.0.0",
-        "digest": "sha256:8906edd91542d30c17ff41aa7b551fbb79a7a6d7d32c607ec39db4e0389a2f94"
+        "digest": "sha256:0ef8d14fad5ae765deae38438b8b9043f887659d0c0c96168f76afc6740020e6"
       },
       "model": {
         "modelId": "function-derivative",
@@ -633,7 +633,7 @@ export const INSTALLED_INDEX: InstalledIndex = deepFreeze({
       "ref": {
         "templateId": "linear-transformation",
         "version": "1.0.0",
-        "digest": "sha256:b76adcb12a8931cd3d0629e89beaad6e5920d56619c9fbe238bccffdde0521d3"
+        "digest": "sha256:4d967cfc97163d64edc51de87cc43f0cdffd7df2c170ef7bb06d282ed55a8796"
       },
       "model": {
         "modelId": "linear-transformation",
@@ -927,7 +927,7 @@ export const INSTALLED_INDEX: InstalledIndex = deepFreeze({
       "ref": {
         "templateId": "vector-orientation-3d",
         "version": "1.0.0",
-        "digest": "sha256:af54a2ba93d0e1790d4c884d09cdebf9c8e8f48b746f16a79b7998c63179f430"
+        "digest": "sha256:df6de7b7ab572ad15f3fd4cec50302b88d5bda4da1f8a1b3206b5435a5892615"
       },
       "model": {
         "modelId": "vector-orientation-3d",
@@ -1231,7 +1231,7 @@ export const INSTALLED_INDEX: InstalledIndex = deepFreeze({
       "ref": {
         "templateId": "quadratic-surface-gradient",
         "version": "1.0.0",
-        "digest": "sha256:be8ee71cf73606c8fa0676a0c83e2f0ea3f6a1d3c77bf13278d30fd23bf95985"
+        "digest": "sha256:fbe01be3bda8b56f18869360e30f7f6dedf596786fa3eb1217d3a90039799f36"
       },
       "model": {
         "modelId": "quadratic-surface-gradient",

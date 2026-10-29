@@ -10,7 +10,7 @@ import { readFile, writeFile } from 'node:fs/promises';
 import { relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { register } from 'tsx/esm/api';
-// Resolve @experiment-kit/* to the repository sources (root tsconfig paths) wherever the script is started from — the
+// Resolve @explorable-models/* to the repository sources (root tsconfig paths) wherever the script is started from — the
 // catalogue's `build` script runs it from packages/catalog so every packed catalogue carries an index of its own content.
 const ROOT = fileURLToPath(new URL('../../', import.meta.url));
 const invokedFrom = process.cwd();

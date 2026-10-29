@@ -88,7 +88,7 @@ export interface MemoryHostOptions {
   scheduler?: { setTimeout(callback: () => void, ms: number): unknown };
   /**
    * `test-double` (default): the behaviour the runtime tests rely on. `conformant`: the profile the HostPort
-   * conformance kit (`@experiment-kit/activity/conformance`) is run against — every decision against a request is
+   * conformance kit (`@explorable-models/activity/conformance`) is run against — every decision against a request is
    * reported under the refusal convention (`INVALID_INPUT` with the specific code as `reason`, as the reference host
    * does), a registration claiming a host session revision the host never produced is refused, and a grant outside the
    * activity's policy ceiling, or for anything but the neutral scaffold in an independent task, is refused

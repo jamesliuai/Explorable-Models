@@ -6,10 +6,10 @@ Choose one question, an explicit model, and useful default parameters. A compact
 
 ## Source contract
 
-Create a source bundle with `npm run kit -- init demo --template linear-map`. The compiler accepts only declared local TypeScript/JSON imports and `@experiment-kit/core`; it does not load candidate Vite configs, package hooks, or remote modules.
+Create a source bundle with `npm run models -- init demo --template linear-map`. The compiler accepts only declared local TypeScript/JSON imports and `@explorable-models/core`; it does not load candidate Vite configs, package hooks, or remote modules.
 
 ```ts
-import type { AnalyticModel } from '@experiment-kit/core';
+import type { AnalyticModel } from '@explorable-models/core';
 
 export const model: AnalyticModel = {
   kind: 'parametric',

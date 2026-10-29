@@ -20,9 +20,9 @@
  * keeps its host composer in the host column (outside the card); the generic flow demonstrates the card's response
  * slot (report §10.1).
  */
-import { type ActivityBinding, type CommandOutcome, type LearnerProjection } from '@experiment-kit/activity';
-import { quadraticGradientDescentTemplate as template } from '@experiment-kit/catalog';
-import { mountStudyActivity, type MountedStudyActivity } from '@experiment-kit/player/activity';
+import { type ActivityBinding, type CommandOutcome, type LearnerProjection } from '@explorable-models/activity';
+import { quadraticGradientDescentTemplate as template } from '@explorable-models/catalog';
+import { mountStudyActivity, type MountedStudyActivity } from '@explorable-models/player/activity';
 import { codes, FixtureRuntime, FixtureStepError, LEARNER_TOOLS, type FixtureMessage, type FixtureOptions } from './fixture-runtime';
 
 export { type FixtureMessage, type FixtureOptions, type ProjectionLogEntry } from './fixture-runtime';

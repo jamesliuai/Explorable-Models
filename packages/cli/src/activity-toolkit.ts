@@ -1,13 +1,13 @@
 /**
  * Node-side toolkit facade for the activity authoring commands. The CLI never imports this module directly: it is
  * bundled at run time from the toolkit sources with explicit aliases (activity-loader.ts), so Node resolves
- * `@experiment-kit/*` to the exact source tree that the browser harness bundles, whatever the working directory and
+ * `@explorable-models/*` to the exact source tree that the browser harness bundles, whatever the working directory and
  * whether or not workspace links exist. Everything here is trusted repository code; it never loads authored code.
  */
-import { canonicalJSON, sha256 } from '@experiment-kit/core';
-import { enableDocumentExecution, modelIdentity, validateManifest, type ModelManifest } from '@experiment-kit/core/model';
-import { groupDigests, templateRef, type ActivityTemplate } from '@experiment-kit/activity';
-import { createInstalledCatalog, INSTALLED_KERNELS } from '@experiment-kit/catalog';
+import { canonicalJSON, sha256 } from '@explorable-models/core';
+import { enableDocumentExecution, modelIdentity, validateManifest, type ModelManifest } from '@explorable-models/core/model';
+import { groupDigests, templateRef, type ActivityTemplate } from '@explorable-models/activity';
+import { createInstalledCatalog, INSTALLED_KERNELS } from '@explorable-models/catalog';
 
 export * from './activity-fixtures.js';
 export * from './activity-validation.js';

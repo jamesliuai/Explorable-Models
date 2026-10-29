@@ -7,7 +7,7 @@
  *   gesture (`commit`) creates one new primary run with fresh guards.
  * - A **scratch** session (one retained run) evaluates the tentative values. Scratch runs are never exported and never
  *   become the committed experiment; the displayed tentative frame is identified by `{ previewId, sequence }`.
- * - Previews go through `createPreviewCoordinator` (`@experiment-kit/core/model`): at most one active scratch
+ * - Previews go through `createPreviewCoordinator` (`@explorable-models/core/model`): at most one active scratch
  *   evaluation plus one newest queued value; superseded values are dropped; commit, cancel, seek, suspension and
  *   disposal start a new epoch so a stale reply can never replace a later commit or a restored state.
  * - Optional shared worker budget: every session evaluator runs under a lease (`primary` or `scratch`) from a
@@ -30,7 +30,7 @@ import { DocumentError } from './types.js';
 import type { Diagnostic, DocumentArtifact, DocumentEvaluator, MutationGuard, SessionState, VisualizationDocument, VisualizationSession } from './types.js';
 
 export type InteractionLeasePurpose = 'primary' | 'scratch';
-/** Structural subset of `WorkerBudget` from `@experiment-kit/core/model`; any shared budget instance satisfies it. */
+/** Structural subset of `WorkerBudget` from `@explorable-models/core/model`; any shared budget instance satisfies it. */
 export type InteractionBudget = Pick<WorkerBudget, 'acquire'>;
 
 export interface DocumentInteractionOptions {

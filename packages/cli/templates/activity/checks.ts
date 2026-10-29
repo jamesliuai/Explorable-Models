@@ -1,11 +1,11 @@
 /**
- * Author checks for the scaffold example. They run in the browser checks worker (experiment-kit activity check), each
+ * Author checks for the scaffold example. They run in the browser checks worker (explorable-models activity check), each
  * with a context whose `evaluate(params, position?)` merges `params` over the defaults and evaluates through the same
  * worker-side validation as the runtime. Return `true` to pass, or a string/false/{ passed: false, detail } to fail.
  * Author checks are the author's own assertions; independent reference fixtures belong in fixtures/reference.json or
  * outside the package.
  */
-import type { QuantityResult } from '@experiment-kit/core/model';
+import type { QuantityResult } from '@explorable-models/core/model';
 
 interface Frame { ok: boolean; quantities?: Record<string, QuantityResult> }
 interface CheckContext { defaults(): Record<string, number>; evaluate(params?: Record<string, number>): Frame }

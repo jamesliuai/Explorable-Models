@@ -1,4 +1,4 @@
-import type { CheckSuite, ExperimentDefinition } from '@experiment-kit/core';
+import type { CheckSuite, ExperimentDefinition } from '@explorable-models/core';
 import { definition as definition0 } from './rolling/metadata';
 import { model as model0 } from './rolling/model';
 import { checks as checks0 } from './rolling/checks';

@@ -1,5 +1,5 @@
 /** Artifact creation stays synchronous; readers and restore codecs are optional for prepare/save consumers. */
-import { canonicalJSON } from '@experiment-kit/core';
+import { canonicalJSON } from '@explorable-models/core';
 import type {
   ActivityArtifact, ActivityInstance, ArtifactLineage, AssistanceRef, Diagnostic, ExposureRecord, PresentationSnapshot, ScientificSnapshot,
 } from './contracts.js';

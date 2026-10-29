@@ -1,7 +1,7 @@
 /** Shared React runtime for the learner surface: context, headings, roving focus and element measurement. */
 import { createContext, useCallback, useContext, useLayoutEffect, useRef, useState } from 'react';
 import type { HTMLAttributes, KeyboardEvent, ReactNode, Ref, RefObject } from 'react';
-import type { ActivityBinding, CommandOutcome } from '@experiment-kit/activity';
+import type { ActivityBinding, CommandOutcome } from '@explorable-models/activity';
 import type { AssetLocations } from '../assets.js';
 import type { KatexModule } from '../math.js';
 import type { AnnouncementKind, GestureLane } from '../runtime.js';

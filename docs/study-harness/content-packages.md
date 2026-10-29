@@ -1,6 +1,6 @@
 # Content packages
 
-Five installed activity packages ship through `@experiment-kit/catalog`. Each package contains a pure kernel, a
+Five installed activity packages ship through `@explorable-models/catalog`. Each package contains a pure kernel, a
 model manifest, an activity template with learner copy, accessible alternatives, boundary cases, an independent
 oracle and reference fixtures outside the catalogue, representation and restore tests, capture examples and a
 subject-review packet under `docs/study-harness/review-packets/<id>/`. None has independent human subject review;

@@ -53,7 +53,7 @@ describe('player-3d contract and boundaries', () => {
   it('bundles without Three.js (an external peer) and imports only three and its line addons', async () => {
     const result = await build({
       entryPoints: [join(source, 'index.ts')], bundle: true, write: false, format: 'esm', platform: 'browser', target: 'es2022', metafile: true, logLevel: 'silent',
-      external: ['three', 'three/*', '@experiment-kit/core', '@experiment-kit/core/*'],
+      external: ['three', 'three/*', '@explorable-models/core', '@explorable-models/core/*'],
     });
     const inputs = Object.keys(result.metafile.inputs);
     expect(inputs.some(input => input.includes('node_modules'))).toBe(false);
@@ -65,7 +65,7 @@ describe('player-3d contract and boundaries', () => {
     const result = await build({
       entryPoints: [join(root, 'packages/player/src/activity/index.ts')], bundle: true, splitting: true, outdir: join(root, '.bundle-analysis'), write: false,
       format: 'esm', platform: 'browser', target: 'es2022', jsx: 'automatic', metafile: true, logLevel: 'silent',
-      external: ['react', 'react/jsx-runtime', 'react-dom', 'react-dom/client', '@experiment-kit/*'],
+      external: ['react', 'react/jsx-runtime', 'react-dom', 'react-dom/client', '@explorable-models/*'],
     });
     const outputs = result.metafile.outputs;
     const entry = Object.keys(outputs).find(path => outputs[path]!.entryPoint?.endsWith('packages/player/src/activity/index.ts'))!;

@@ -9,8 +9,8 @@ import { afterEach, describe, expect, it } from 'vitest';
 import {
   groupContentDigest, templateRef, templateWarnings, validateRecord, validateTemplateSemantics,
   type ActivityCatalog, type ActivityTemplate, type CatalogEntryStatus, type HostPolicy, type LearnerProjection, type MarkSpec,
-} from '@experiment-kit/activity';
-import { modelIdentity, type ModelManifest, type ObservationGeometry } from '@experiment-kit/core/model';
+} from '@explorable-models/activity';
+import { modelIdentity, type ModelManifest, type ObservationGeometry } from '@explorable-models/core/model';
 import { fallingBallManifest as manifest, fallingBallTemplate as template, OBSERVED_TEMPLATE_ID, RECORDED_DROPS } from '../../examples/study-harness-observed/content';
 import { activityGuard, guards, harness, okOf, op, open, policyFor, requestFor, settled, type Harness } from './support/adapter-harness';
 

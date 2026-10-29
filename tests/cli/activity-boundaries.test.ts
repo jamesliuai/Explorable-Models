@@ -1,6 +1,6 @@
 /**
  * Static boundary of the activity authoring CLI (report §16, A09): the Node-side modules never load toolkit packages or
- * authored code as values. `@experiment-kit/*` appears there only in type positions; the toolkit reaches Node only
+ * authored code as values. `@explorable-models/*` appears there only in type positions; the toolkit reaches Node only
  * through the run-time bundle of activity-toolkit.ts (activity-loader.ts), and authored files only through esbuild's
  * parser into browser worker bundles. Browser-side entries are listed separately and never import Node built-ins.
  */
@@ -43,11 +43,11 @@ function referencesOf(file: string): Reference[] {
 describe('activity CLI module boundaries', () => {
   const modules = readdirSync(SOURCE).filter(name => name.startsWith('activity-') && name.endsWith('.ts'));
 
-  it('keeps @experiment-kit packages type-only in Node-side modules', () => {
+  it('keeps @explorable-models packages type-only in Node-side modules', () => {
     const nodeSide = modules.filter(name => !BUNDLED.has(name));
     expect(nodeSide).toEqual(expect.arrayContaining(['activity-commands.ts', 'activity-bundle.ts', 'activity-browser.ts', 'activity-files.ts', 'activity-loader.ts', 'activity-scaffold.ts', 'activity-archive.ts', 'activity-packet.ts', 'activity-preview.ts', 'activity-preview-assets.ts']));
     for (const name of nodeSide) {
-      const values = referencesOf(path.join(SOURCE, name)).filter(item => item.specifier.startsWith('@experiment-kit/') && !item.typeOnly);
+      const values = referencesOf(path.join(SOURCE, name)).filter(item => item.specifier.startsWith('@explorable-models/') && !item.typeOnly);
       expect(values, name).toEqual([]);
       // Node-side modules import only relative CLI modules, Node built-ins and third-party tools; never a bundled module as a value.
       const bundled = referencesOf(path.join(SOURCE, name)).filter(item => !item.typeOnly && BUNDLED.has(path.basename(item.specifier).replace(/\.js$/, '.ts')));

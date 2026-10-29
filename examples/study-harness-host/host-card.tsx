@@ -6,13 +6,13 @@
  * while the stage requests a response, nothing otherwise) uses the React entry instead, as here: the public
  * `StudyActivitySurface` rendered into a shadow root this host owns, re-rendered with the current `responseSlot`. The
  * returned handle has the `MountedStudyActivity` shape (element, surfaceId, ready, capture, dispose), and the shadow
- * host carries the same `data-experiment-kit-activity` attribute, so browser helpers address both mounts alike.
+ * host carries the same `data-explorable-models-activity` attribute, so browser helpers address both mounts alike.
  *
  * The composer is host UI: the response text goes to the host tables (`FixtureHost.recordResponse`); the activity only
  * ever receives a response reference (`submitResponseRef`). The composer component keeps its identity while the card
  * re-renders (keyed by the response request), so typed text, focus and the submit status survive projection updates.
  * Its styles are a constructable stylesheet adopted into the shadow root (no style attributes, no inline `<style>`),
- * drawing on the card's documented `--eka-*` host tokens so it follows the card theme.
+ * drawing on the card's documented `--ema-*` host tokens so it follows the card theme.
  */
 import { createRoot } from 'react-dom/client';
 import { flushSync } from 'react-dom';
@@ -21,7 +21,7 @@ import type { FormEvent, Ref } from 'react';
 import {
   adoptActivityStyles, CaptureError, StudyActivitySurface,
   type CaptureOptions, type CaptureResult, type MountedStudyActivity, type StudyActivityHandle, type StudyActivitySurfaceProps,
-} from '@experiment-kit/player/activity';
+} from '@explorable-models/player/activity';
 
 /** A response the host currently requests from the learner (prediction/explanation from the stage, answer in an independent task). */
 export interface ResponseRequest {
@@ -40,14 +40,14 @@ export interface ResponseSlotSource {
 }
 
 const SLOT_STYLES = `
-.fx-slot{display:grid;gap:var(--eka-s2)}
+.fx-slot{display:grid;gap:var(--ema-s2)}
 .fx-slot-label{font-weight:650}
-.fx-slot-textarea{box-sizing:border-box;width:100%;min-height:4.5em;padding:.4em .6em;border:1px solid var(--eka-border-strong);border-radius:calc(var(--eka-radius) - 3px);background:var(--eka-background);color:var(--eka-text);font:inherit;line-height:1.4;resize:vertical}
-.fx-slot-row{display:flex;flex-wrap:wrap;align-items:center;gap:var(--eka-s2)}
-.fx-slot-button{display:inline-flex;align-items:center;min-height:2.25rem;padding:0 .8em;border:1px solid var(--eka-primary);border-radius:calc(var(--eka-radius) - 2px);background:var(--eka-primary);color:var(--eka-on-primary);font:inherit;font-weight:600;cursor:pointer}
+.fx-slot-textarea{box-sizing:border-box;width:100%;min-height:4.5em;padding:.4em .6em;border:1px solid var(--ema-border-strong);border-radius:calc(var(--ema-radius) - 3px);background:var(--ema-background);color:var(--ema-text);font:inherit;line-height:1.4;resize:vertical}
+.fx-slot-row{display:flex;flex-wrap:wrap;align-items:center;gap:var(--ema-s2)}
+.fx-slot-button{display:inline-flex;align-items:center;min-height:2.25rem;padding:0 .8em;border:1px solid var(--ema-primary);border-radius:calc(var(--ema-radius) - 2px);background:var(--ema-primary);color:var(--ema-on-primary);font:inherit;font-weight:600;cursor:pointer}
 .fx-slot-button[aria-disabled=true]{opacity:.6;cursor:not-allowed}
 .fx-slot-status:empty{display:none}
-.fx-slot-status,.fx-slot-note{margin:0;color:var(--eka-text-muted);font-size:.875em}
+.fx-slot-status,.fx-slot-note{margin:0;color:var(--ema-text-muted);font-size:.875em}
 .fx-slot-recorded{margin:0}
 `;
 const slotSheets = new WeakMap<Document, CSSStyleSheet>();
@@ -107,7 +107,7 @@ export function mountHostCard(container: HTMLElement, options: HostCardOptions):
   const surfaceId = options.surfaceId;
   const doc = container.ownerDocument;
   const element = doc.createElement('div');
-  element.setAttribute('data-experiment-kit-activity', surfaceId);
+  element.setAttribute('data-explorable-models-activity', surfaceId);
   element.setAttribute('data-fx-host-card', '');
   const shadow = element.attachShadow({ mode: 'open' });
   // Component styles before the first render (no unstyled flash), then the host's slot styles.

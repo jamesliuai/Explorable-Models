@@ -15,12 +15,12 @@
  * as advanced by the host's response transaction) and the closed state instead, so the adapter never diverges from
  * the host's own revision counter.
  */
-import { canonicalJSON, deepFreeze } from '@experiment-kit/core';
+import { canonicalJSON, deepFreeze } from '@explorable-models/core';
 import {
   checkParameters, clampForPreview, constraintReferences, convert, createModelSession, initialPosition, isModelError, jsonDataErrors,
   type FramePosition, type ModelFrame, type ModelGuard, type ModelIdentity, type ModelManifest, type ModelRef, type ModelSession,
   type ModelSessionState, type PositionRequest, type QuantityResult, type UnitId, type WorkerBudget,
-} from '@experiment-kit/core/model';
+} from '@explorable-models/core/model';
 import type {
   ActivityBinding, ActivityDiagnostics, AudienceState, CommandFailure, CommandOutcome, DeveloperInspection, EvaluationMetrics, GestureKind, HostActivityControl,
   LearnerProjection, PreparedActivity,
@@ -49,7 +49,7 @@ import type { ActivityRecords, ArtifactLineage, DisplayEndReason, JournalLoss } 
 import { commandCapacity } from './journal.js';
 
 /** Runtime identity recorded in scientific snapshots and sample provenance. */
-export const MODEL_RUNTIME = Object.freeze({ id: 'experiment-kit.model-runtime', version: '1.0.0' });
+export const MODEL_RUNTIME = Object.freeze({ id: 'explorable-models.model-runtime', version: '1.0.0' });
 const ID = /^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$/;
 const OPERATION_CACHE = 256;
 const PUBLISHED_RING = 16;

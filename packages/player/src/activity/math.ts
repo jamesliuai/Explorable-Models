@@ -6,15 +6,15 @@
  * - source length ≤ `MATH_LIMITS.source` code points is checked before KaTeX is called;
  * - definitional, resource and HTML-extension commands are rejected before KaTeX (defence in depth on top of
  *   `trust: false`), so hostile TeX cannot create links, images, classes or global macros; the list and the bounded
- *   screen are `@experiment-kit/activity`'s `FORBIDDEN_TEX_COMMANDS` / `checkTexSource`, shared with the agent tools;
+ *   screen are `@explorable-models/activity`'s `FORBIDDEN_TEX_COMMANDS` / `checkTexSource`, shared with the agent tools;
  * - KaTeX runs with `trust:false, maxExpand:1000, maxSize:20, throwOnError:true, strict:'ignore',
  *   output:'htmlAndMathml'` and a fresh macro object per render (no shared macro state between equations or activities);
  * - it renders with `katex.render` into a DOM node (never `renderToString` + `innerHTML`), so the output survives a
  *   `style-src 'self'` policy; any error leaves the plain-text form in place.
  */
-import { checkTexSource, FORBIDDEN_TEX_COMMANDS, TEX_RENDER_LIMITS, TEX_SOURCE_LIMIT } from '@experiment-kit/activity';
+import { checkTexSource, FORBIDDEN_TEX_COMMANDS, TEX_RENDER_LIMITS, TEX_SOURCE_LIMIT } from '@explorable-models/activity';
 
-export { codePointLength } from '@experiment-kit/activity';
+export { codePointLength } from '@explorable-models/activity';
 
 /** The bounds of the shared TeX screen and of validation's KaTeX parse (`TEX_RENDER_LIMITS`), so both agree. */
 export const MATH_LIMITS = Object.freeze({ source: TEX_SOURCE_LIMIT, maxExpand: TEX_RENDER_LIMITS.maxExpand, maxSize: TEX_RENDER_LIMITS.maxSize });

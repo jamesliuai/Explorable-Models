@@ -3,7 +3,7 @@
  * on-demand chunk for `createLazyCatalog`, which verifies it against the installed index before serving it. Data only:
  * the kernel that evaluates the model is bundled in the catalogue worker, not here.
  */
-import { deepFreeze } from '@experiment-kit/core';
+import { deepFreeze } from '@explorable-models/core';
 import type { InstalledContent } from './types.js';
 import { quadraticSurfaceGradientManifest } from '../models/quadratic-surface-gradient.js';
 import { quadraticSurfaceGradientTemplate } from '../templates/quadratic-surface-gradient.js';

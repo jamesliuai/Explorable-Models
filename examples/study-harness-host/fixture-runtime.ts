@@ -16,12 +16,12 @@ import {
   archivalView, createStudyHarnessAdapter,
   type ActivityArtifact, type ArchivalView, type ActivityBinding, type ActivityTemplate, type AudienceState, type Diagnostic, type ExposureRecord, type HostPolicy,
   type InteractionEvent, type LearnerProjection, type PreparedActivity, type StudyHarnessAdapter, type ToolOperation,
-} from '@experiment-kit/activity';
-import { createInstalledCatalog, type InstalledCatalog } from '@experiment-kit/catalog';
+} from '@explorable-models/activity';
+import { createInstalledCatalog, type InstalledCatalog } from '@explorable-models/catalog';
 import {
   archivalLabels, mountArchivalRecord, mountStudyActivity, mountStudyActivityPlaceholder, type CaptureResult, type MountedArchivalRecord, type MountedStudyActivity, type MountedStudyActivityPlaceholder, type SpatialRendererModule,
   type SurfaceDiagnostic,
-} from '@experiment-kit/player/activity';
+} from '@explorable-models/player/activity';
 import { FixtureHost, type CrashPoint, type HostResponse, type InjectionPoint } from './fixture-host';
 import { fixtureWorkerFactory, workerStats } from './fixture-worker';
 
@@ -430,7 +430,7 @@ export abstract class FixtureRuntime<Snapshot> {
     const projection = binding.getProjection();
     if (projection.pendingReveal && projection.pendingReveal.state !== 'failed') return `a reveal is ${projection.pendingReveal.state}`;
     if (projection.status.persistence === 'saving') return 'journal events are being saved';
-    const shown = this.surface?.element.shadowRoot?.querySelector<HTMLElement>('[data-eka-projection]')?.dataset.ekaProjection;
+    const shown = this.surface?.element.shadowRoot?.querySelector<HTMLElement>('[data-ema-projection]')?.dataset.emaProjection;
     if (shown !== undefined && shown !== projection.projectionId && projection.status.ui !== 'suspended') return 'the card has not rendered the current projection';
     for (const record of this.state()?.exposures ?? []) {
       if (record.displayStatus === 'displayed' && !record.uncertainty && !this.host.displayAcked(prepared.activityId, record.exposureId)) return `the display acknowledgement of ${record.exposureId} is not persisted yet`;

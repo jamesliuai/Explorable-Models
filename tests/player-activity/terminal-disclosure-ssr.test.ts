@@ -44,7 +44,7 @@ describe('rendered terminal outcome with the trace hidden (R02)', () => {
       const divergent = await freeExploreAt(2, index), convergent = await freeExploreAt(0.25, index);
       for (const projection of [divergent, convergent]) {
         const html = render(projection);
-        expect(html).toContain('class="eka-panel eka-nav"');
+        expect(html).toContain('class="ema-panel ema-nav"');
         for (const text of OUTCOME) expect(html).not.toContain(text);
       }
       const card = (projection: LearnerProjection) => textOf(render({ ...projection, controls: [] }));
@@ -70,13 +70,13 @@ describe('rendered independent card and comparisons (R02, R10)', () => {
   it('an independent card whose scaffold keeps no position group renders no navigation and no retained run', async () => {
     const h = make();
     const opened = await keptThenChanged(h);
-    expect(render(opened.learner.getProjection())).toContain('data-eka-panel="comparisons"');
+    expect(render(opened.learner.getProjection())).toContain('data-ema-panel="comparisons"');
     const policy = h.host.amendPolicy({ independentTask: { active: true, taskRef: 'task-new-curvature', permittedTools: ['inspect.learner'], neutralScaffold: ['landscape', 'start'] } });
     okOf(await opened.control.enterIndependentTask({ operationId: op(), taskRef: 'task-new-curvature', policy }));
     await settled(h);
     const html = render(opened.learner.getProjection());
-    expect(html).not.toContain('eka-nav');
-    expect(html).not.toContain('data-eka-panel="comparisons"');
+    expect(html).not.toContain('ema-nav');
+    expect(html).not.toContain('data-ema-panel="comparisons"');
     for (const text of ['Iterations', 'Play', 'Restart', 'End of the computed run', 'Kept run', 'same settings', 'Same parameters']) expect(textOf(html)).not.toContain(text);
   });
 

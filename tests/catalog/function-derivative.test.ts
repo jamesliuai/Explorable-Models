@@ -10,11 +10,11 @@ import { fileURLToPath } from 'node:url';
 import { afterEach, describe, expect, it } from 'vitest';
 import {
   groupContentDigest, groupDigests, templateDigest, templateRef, validateRecord, validateTemplateSemantics, type ActivityTemplate,
-} from '@experiment-kit/activity';
+} from '@explorable-models/activity';
 import {
   checkParameters, clampForPreview, createModelSession, evaluateRequest, isUnitId, ModelError, modelIdentity, UNITS, validateManifest,
   type GeometryResult, type ModelGuard, type ModelManifest, type ModelSession,
-} from '@experiment-kit/core/model';
+} from '@explorable-models/core/model';
 import { FUNCTION_DERIVATIVE_COPY as COPY } from '../../packages/catalog/src/copy/function-derivative';
 import {
   FUNCTION_DERIVATIVE_CURVATURES, FUNCTION_DERIVATIVE_CURVE, FUNCTION_DERIVATIVE_DOMAIN, FUNCTION_DERIVATIVE_KERNEL_ID, FUNCTION_DERIVATIVE_KERNEL_VERSION,
@@ -280,7 +280,7 @@ describe('function-derivative content boundaries (report §12.6)', () => {
 
   it('keeps the kernel module free of templates, copy, manifests and DOM', () => {
     const source = readFileSync(SOURCES[0]!, 'utf8');
-    expect([...source.matchAll(/from\s+'([^']+)'/g)].map(match => match[1])).toEqual(['@experiment-kit/core/model']);
+    expect([...source.matchAll(/from\s+'([^']+)'/g)].map(match => match[1])).toEqual(['@explorable-models/core/model']);
     expect(source).not.toMatch(/\b(document|window|React|fetch|Math\.random|Date\.now)\b/);
   });
 });

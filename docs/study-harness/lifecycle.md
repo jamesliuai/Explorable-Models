@@ -12,10 +12,10 @@ how the 3D renderer avoids the one engine difference found (WebKit's count of lo
 
 | Layer | Authority | Scheduling |
 | --- | --- | --- |
-| Activity (`@experiment-kit/activity`) | one activity controller per activity, owning one guarded `ModelSession` | commands run in call order; journal appends never contact the host directly: one flush per turn (microtask) |
-| Model session (`@experiment-kit/core/model`) | primary slot (committed run, navigation, playback) and scratch slot (previews) | previews through `createPreviewCoordinator`: at most one active evaluation plus one newest queued value; superseded values resolve `null`; a new epoch (commit, cancel, navigation, suspension, disposal) discards late replies |
-| Document controller (`@experiment-kit/core/declarative`) | `createDocumentInteractionController`: primary session + scratch session (created on the first preview) | the same preview coordinator; identified tentative frames `{ previewId, sequence, baseRunId }`; examples (`examples/showcase`, `examples/hinged-rod`) use it |
-| Learner surface (`@experiment-kit/player/activity`) | renders projections; never computes | no animation loop in 2D; `requestAnimationFrame` only while a capture waits for the current projection to reach the DOM |
+| Activity (`@explorable-models/activity`) | one activity controller per activity, owning one guarded `ModelSession` | commands run in call order; journal appends never contact the host directly: one flush per turn (microtask) |
+| Model session (`@explorable-models/core/model`) | primary slot (committed run, navigation, playback) and scratch slot (previews) | previews through `createPreviewCoordinator`: at most one active evaluation plus one newest queued value; superseded values resolve `null`; a new epoch (commit, cancel, navigation, suspension, disposal) discards late replies |
+| Document controller (`@explorable-models/core/declarative`) | `createDocumentInteractionController`: primary session + scratch session (created on the first preview) | the same preview coordinator; identified tentative frames `{ previewId, sequence, baseRunId }`; examples (`examples/showcase`, `examples/hinged-rod`) use it |
+| Learner surface (`@explorable-models/player/activity`) | renders projections; never computes | no animation loop in 2D; `requestAnimationFrame` only while a capture waits for the current projection to reach the DOM |
 
 Timers owned by the runtime, all cleared on completion, suspension or disposal:
 

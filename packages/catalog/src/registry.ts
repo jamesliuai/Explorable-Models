@@ -5,9 +5,9 @@
  * names templateId + version + contentDigest (the template digest). Any change to the reviewed mathematics,
  * interpretation or content therefore leaves the changed entry unreviewed. A hash establishes identity, not truth.
  */
-import { validateRecord, type Diagnostic, type ReviewRecord } from '@experiment-kit/activity';
-import { canonicalJSON, deepFreeze } from '@experiment-kit/core';
-import { S, validateJson } from '@experiment-kit/core/model';
+import { validateRecord, type Diagnostic, type ReviewRecord } from '@explorable-models/activity';
+import { canonicalJSON, deepFreeze } from '@explorable-models/core';
+import { S, validateJson } from '@explorable-models/core/model';
 
 export type ReviewSubject = ReviewRecord['subject'];
 export interface ReviewResolution {

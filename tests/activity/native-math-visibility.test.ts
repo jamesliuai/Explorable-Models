@@ -7,7 +7,7 @@ class ObserverDouble {
   observe(_element: Element) {}
   emit(target: Element, isIntersecting: boolean, time: number) { this.callback([{ target, isIntersecting, time } as IntersectionObserverEntry], this as unknown as IntersectionObserver); }
 }
-const equation = () => ({ classList: { contains: (name: string) => name === 'eka-equation' } }) as unknown as Element;
+const equation = () => ({ classList: { contains: (name: string) => name === 'ema-equation' } }) as unknown as Element;
 const audit = () => auditedMathObserver(ObserverDouble as unknown as typeof IntersectionObserver);
 const base = () => ({ auditInstalled: true, firstVisibleAt: null as number | null,
   equations: [{ observed: true, firstVisibleAt: null as number | null, rendered: false }], resources: [] as { name: string; startTime: number }[], registeredFaces: 0 });

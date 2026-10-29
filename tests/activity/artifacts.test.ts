@@ -12,7 +12,7 @@ import {
   backupArtifact, cursor, displayedExposure, predictInstance, quadraticPresentation, quadraticScientific, snapshotArtifact, uncertainExposure,
 } from '../../packages/activity/fixtures-src/exemplars.js';
 
-const RUNTIME = { id: 'experiment-kit-activity', version: '0.3.0-preview.1' };
+const RUNTIME = { id: 'explorable-models-activity', version: '0.3.0-preview.1' };
 /** The parts the exemplar backup was assembled from. */
 const parts = (overrides: Partial<ArtifactParts> = {}): ArtifactParts => ({
   kind: 'backup', artifactId: 'artifact-0001', runtime: RUNTIME, instance: { ...predictInstance, stage: { id: 'explore', enteredAtSequence: 15 }, activityRevision: 4 },
@@ -156,7 +156,7 @@ describe('artifact verification: corruption, truncation and missing data (A49)',
   it('refuses other contracts, versions and legacy formats without relabelling them', () => {
     expect(verifyArtifact(predictInstance)).toMatchObject({ ok: false, diagnostics: [{ code: 'UNSUPPORTED_ARTIFACT', message: 'The record is a different contract than an activity artifact.' }] });
     expect(verifyArtifact({ ...backupArtifact, schemaVersion: '2.0' })).toMatchObject({ ok: false, diagnostics: [{ code: 'UNSUPPORTED_ARTIFACT', path: '$.schemaVersion' }] });
-    const legacy = { format: 'experiment-kit-document', version: '2.0', runtimeVersion: '0.2.0-preview.1', document: {} };
+    const legacy = { format: 'explorable-models-document', version: '2.0', runtimeVersion: '0.2.0-preview.1', document: {} };
     expect(verifyArtifact(legacy)).toMatchObject({ ok: false, diagnostics: [{ code: 'UNSUPPORTED_ARTIFACT', message: 'The record is a legacy-document-artifact and needs its own reader.' }] });
   });
 

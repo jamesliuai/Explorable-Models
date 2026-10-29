@@ -1,5 +1,5 @@
 /**
- * `experiment-kit activity preview` smoke test (report §15.2). The spec starts the preview server for an authoring
+ * `explorable-models activity preview` smoke test (report §15.2). The spec starts the preview server for an authoring
  * package (the CLI scaffold with an unused group, a view no stage shows, data outside the graph's bounds, a crowded root
  * label and an equation KaTeX cannot parse), opens the page, checks that the author view and the learner view both render, switches the stage with
  * the stage selector and checks the diagnostics panel. Screenshots: desktop, 390 px and 320 px, dark scheme.
@@ -12,15 +12,15 @@ import { mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { expect, test, type Page } from '@playwright/test';
-import type { ActivityTemplate } from '@experiment-kit/activity';
-import type { ModelManifest } from '@experiment-kit/core/model';
+import type { ActivityTemplate } from '@explorable-models/activity';
+import type { ModelManifest } from '@explorable-models/core/model';
 import { scaffoldActivity } from '../../packages/cli/src/activity-scaffold';
 import { readActivityPackage } from '../../packages/cli/src/activity-files';
 import { loadToolkit } from '../../packages/cli/src/activity-loader';
 import { startActivityPreview, type PreviewSession } from '../../packages/cli/src/activity-preview';
 import type { PreviewState } from '../../packages/cli/src/activity-preview-page';
 
-const SHOTS = '/tmp/experiment-kit-playwright/activity-preview';
+const SHOTS = '/tmp/explorable-models-playwright/activity-preview';
 mkdirSync(SHOTS, { recursive: true });
 
 async function diagnosticPackage(directory: string): Promise<void> {
@@ -50,7 +50,7 @@ async function diagnosticPackage(directory: string): Promise<void> {
 let work: string;
 let session: PreviewSession;
 test.beforeAll(async () => {
-  work = await mkdtemp(path.join(tmpdir(), 'experiment-kit-preview-spec-'));
+  work = await mkdtemp(path.join(tmpdir(), 'explorable-models-preview-spec-'));
   await diagnosticPackage(path.join(work, 'diagnostic-preview'));
   const started = await startActivityPreview({ directory: path.join(work, 'diagnostic-preview') });
   if (!started.ok) throw new Error(`The preview did not start: ${JSON.stringify(started.report)}`);
@@ -79,12 +79,12 @@ const codes = (page: Page) => page.locator('[data-preview="diagnostics"] li[data
  */
 async function showEquations(page: Page): Promise<void> {
   for (const lane of ['author', 'learner'] as const) {
-    const host = page.locator(`[data-preview="${lane}-surface"] [data-experiment-kit-activity]`);
-    await host.locator('.eka-equations').scrollIntoViewIfNeeded();
+    const host = page.locator(`[data-preview="${lane}-surface"] [data-explorable-models-activity]`);
+    await host.locator('.ema-equations').scrollIntoViewIfNeeded();
     await expect.poll(async () => {
       const state = await page.evaluate(() => window.__activityPreview!.state()) as PreviewState;
       const fallbacks = state.diagnostics[lane].filter(item => item.code === 'MATH_FALLBACK').length;
-      return fallbacks > 0 && await host.locator('.eka-math .eka-plain').count() === fallbacks;
+      return fallbacks > 0 && await host.locator('.ema-math .ema-plain').count() === fallbacks;
     }, { timeout: 8_000 }).toBe(true);
   }
   await page.evaluate(() => window.scrollTo(0, 0));
@@ -99,7 +99,7 @@ test('opens the author and learner views, switches stage through the host and li
   await expect(author.getByRole('heading', { name: 'Author view' })).toBeVisible();
   await expect(learner.getByRole('heading', { name: 'Learner view' })).toBeVisible();
   // Both lanes mount the real learner surface; at the prediction stage only the author view draws the root.
-  const authorSurface = author.locator('[data-experiment-kit-activity]'), learnerSurface = learner.locator('[data-experiment-kit-activity]');
+  const authorSurface = author.locator('[data-explorable-models-activity]'), learnerSurface = learner.locator('[data-explorable-models-activity]');
   await expect(authorSurface.locator('svg').first()).toBeVisible();
   await expect(learnerSurface.locator('svg').first()).toBeVisible();
   await expect(authorSurface.getByText('Root (x_r, 0)', { exact: true })).toBeVisible();

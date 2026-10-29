@@ -8,7 +8,7 @@ import { afterEach, describe, expect, it } from 'vitest';
 import {
   classifyHostFailure, HOST_REFUSAL_CODES, HOST_REFUSAL_PATH, hostRefusal, isHostRefusal, isHostRefusalDiagnostic,
   type ActivityInstance, type HostPort, type StageTransitionRequest,
-} from '@experiment-kit/activity';
+} from '@explorable-models/activity';
 import { activityGuard, ackCurrent, codesOf, enterExplore, guards, harness, okOf, op, open, requestFor, settled, type Harness } from './support/adapter-harness.js';
 import { MemoryHost, MemoryHostError } from './support/memory-host.js';
 

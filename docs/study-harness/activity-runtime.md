@@ -1,6 +1,6 @@
 # Activity runtime specification
 
-Normative implementation notes for `@experiment-kit/activity`. Types: `packages/activity/src/contracts.ts` (records)
+Normative implementation notes for `@explorable-models/activity`. Types: `packages/activity/src/contracts.ts` (records)
 and `packages/activity/src/api.ts` (runtime API). Report sections are cited as §n.
 
 ## 1 Construction and authority (§5.3, D5)
@@ -512,7 +512,7 @@ failures, and accepts both of those requests; the core restore, authority, indep
 also run against the `conformant` profile (`tests/activity/conformant-profile.test.ts`), with setups a conforming host
 accepts (the host produces the session revision a restore names, and ends the independent task in its policy before it
 reopens instructional work). The host-agnostic HostPort conformance kit
-(`runHostPortConformance`, `@experiment-kit/activity/conformance`; [external gates G2](external-gates.md#g2-actual-study-harness-integration-a54))
+(`runHostPortConformance`, `@explorable-models/activity/conformance`; [external gates G2](external-gates.md#g2-actual-study-harness-integration-a54))
 checks a host for this convention, idempotency, durable-before-return and the other `HostPort` semantics through the real
 adapter.
 

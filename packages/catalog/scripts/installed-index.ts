@@ -1,5 +1,5 @@
 /**
- * Builds the installed index of `@experiment-kit/catalog` (src/installed-index.ts, read by `createLazyCatalog`) from the
+ * Builds the installed index of `@explorable-models/catalog` (src/installed-index.ts, read by `createLazyCatalog`) from the
  * installed content through the eager catalogue, so every reference, identity and discovery entry is computed from
  * content — never written by hand — and only content that passes the catalogue's own validation is indexed.
  * Used by scripts/study-harness/generate-catalog-index.mjs (write / --check) and tests/catalog/lazy.test.ts. Not part of
@@ -44,7 +44,7 @@ export function renderInstalledIndex(index: InstalledIndex): string {
     '// after changing a template, learner copy, model manifest, kernel identity or content loader, run',
     '// `node scripts/study-harness/generate-catalog-index.mjs`. tests/catalog/lazy.test.ts fails while this file is stale, and',
     '// createLazyCatalog() refuses content that does not reproduce these digests.',
-    "import { deepFreeze } from '@experiment-kit/core';",
+    "import { deepFreeze } from '@explorable-models/core';",
     "import type { InstalledIndex } from './index-types.js';",
     '',
     `export const INSTALLED_INDEX: InstalledIndex = deepFreeze(${JSON.stringify(index, null, 2)} as InstalledIndex);`,

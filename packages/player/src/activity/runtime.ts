@@ -2,8 +2,8 @@
  * Surface runtime helpers without React: identifiers, rate-limited announcements and the preview gesture controller
  * that maps pointer/keyboard/exact gestures onto guarded binding commands (report §9, A39–A40).
  */
-import type { ActivityBinding, CommandOutcome, Diagnostic, GestureKind, LearnerProjection, ProjectedStatus, UiState } from '@experiment-kit/activity';
-import { CLOSED_MESSAGE } from '@experiment-kit/activity';
+import type { ActivityBinding, CommandOutcome, Diagnostic, GestureKind, LearnerProjection, ProjectedStatus, UiState } from '@explorable-models/activity';
+import { CLOSED_MESSAGE } from '@explorable-models/activity';
 import { formatPosition } from './format.js';
 import { presentStatus, PRESENTED_BY } from './status.js';
 

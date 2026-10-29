@@ -3,8 +3,8 @@
  * and the fixture host, mounting learner cards with `mountStudyActivity` (a shadow root per card). The catalogue's own
  * kernel module worker is used unchanged. `window.consumer` exposes the host steps to the packed-consumer driver.
  */
-import { createLazyCatalog } from '@experiment-kit/catalog';
-import { createStudyHarnessVisualizer, mountStudyActivity } from '@experiment-kit/player/activity';
+import { createLazyCatalog } from '@explorable-models/catalog';
+import { createStudyHarnessVisualizer, mountStudyActivity } from '@explorable-models/player/activity';
 import { ConsumerHost } from './host';
 import { exposeConsumer } from './page';
 import { ConsumerSession, type CardMounter } from './session';

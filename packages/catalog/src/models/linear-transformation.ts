@@ -2,7 +2,7 @@
  * Model manifest for a 2×2 matrix acting on the plane (report §12.2). Data only; the installed kernel
  * `linear-transformation@1.0.0` evaluates it in the catalogue worker.
  */
-import type { ModelManifest, ModelParameterDefinition, ModelQuantityDefinition } from '@experiment-kit/core/model';
+import type { ModelManifest, ModelParameterDefinition, ModelQuantityDefinition } from '@explorable-models/core/model';
 import {
   LINEAR_DOMAIN, LINEAR_EIGEN_CATEGORIES, LINEAR_EIGEN_LINE_HALF_LENGTH, LINEAR_GRID, LINEAR_KERNEL_ID, LINEAR_KERNEL_VERSION, LINEAR_ORIENTATIONS,
 } from '../kernels/linear-transformation.js';
@@ -37,7 +37,7 @@ const scalar = (label: string, symbol: string, meaning: string, signConvention?:
   ({ label, symbol, shape: { kind: 'scalar' }, dimension: 'dimensionless', unit: 'dimensionless', meaning, ...(signConvention ? { signConvention } : {}) });
 
 export const linearTransformationManifest: ModelManifest = {
-  contract: 'experiment-kit.model-manifest',
+  contract: 'explorable-models.model-manifest',
   schemaVersion: '1.0',
   modelId: 'linear-transformation',
   version: '1.0.0',

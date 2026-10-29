@@ -14,7 +14,7 @@ import { releaseIdentity, toolVersions, writeHistoryRecord } from './study-harne
 const root = fileURLToPath(new URL('../', import.meta.url));
 const out = path.join(root, 'release/preview'); await mkdir(out, { recursive: true });
 const scratch = await mkdtemp(path.join(tmpdir(), 'experiment-packed-consumer-'));
-const screenshots = '/tmp/experiment-kit-preview'; await mkdir(screenshots, { recursive: true });
+const screenshots = '/tmp/explorable-models-preview'; await mkdir(screenshots, { recursive: true });
 const manifest = JSON.parse(await readFile(path.join(root,'package.json'),'utf8'));
 // npm ci may cache tarballs without package metadata. Exercise a real first install
 // with an isolated cache, rather than relying on the maintainer's warmed registry cache.
@@ -29,12 +29,12 @@ try {
     // Generated contract fixtures (fixtures/contracts/**) are schema test data whose names may contain "session"
     // (host-session revision cases); every other *session*.json file is treated as a local session artifact.
     if(inventory.some(file=>/(^|\/)(\.env|\.git|\.codex|node_modules)(\/|$)/.test(file)||(!file.startsWith('fixtures/contracts/')&&/(^|\/)[^/]*session[^/]*\.json$/.test(file)))) throw new Error(`${name}: forbidden local artifact`);
-    const bytes=await readFile(path.join(out,packed.filename)); packages.push({name:`@experiment-kit/${name}`,file:packed.filename,sha256:createHash('sha256').update(bytes).digest('hex'),integrity:packed.integrity,bytes:bytes.length,files:inventory.length});
+    const bytes=await readFile(path.join(out,packed.filename)); packages.push({name:`@explorable-models/${name}`,file:packed.filename,sha256:createHash('sha256').update(bytes).digest('hex'),integrity:packed.integrity,bytes:bytes.length,files:inventory.length});
   }
   await cp(path.join(root,'examples/consumer'),scratch,{recursive:true});
   await writeFile(path.join(scratch,'package.json'),JSON.stringify({private:true,type:'module',dependencies:Object.fromEntries([...packages.map(p=>[p.name,`file:${path.join(out,p.file)}`]),['react',manifest.dependencies.react],['react-dom',manifest.dependencies['react-dom']]]),devDependencies:{vite:manifest.devDependencies.vite}}));
   run('npm',['install','--ignore-scripts','--no-audit','--no-fund']);
-  run(process.execPath,['--input-type=module','-e',"await import('@experiment-kit/core/declarative'); await import('@experiment-kit/player'); await import('@experiment-kit/agent'); if(globalThis.window || globalThis.document) throw new Error('Unexpected DOM globals');"]);
+  run(process.execPath,['--input-type=module','-e',"await import('@explorable-models/core/declarative'); await import('@explorable-models/player'); await import('@explorable-models/agent'); if(globalThis.window || globalThis.document) throw new Error('Unexpected DOM globals');"]);
   run('npm',['exec','vite','build']);
   const dist=path.join(scratch,'dist');
   const assets=await readdir(path.join(dist,'assets')); const sizes=[];

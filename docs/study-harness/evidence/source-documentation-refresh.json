@@ -4,10 +4,10 @@
   "pipelineRunId": "2026-10-29T05-29-41.307Z",
   "scope": "Supplemental documentation/source-archive refresh after complete candidate verification (see the pipeline record for original or audited resumed execution provenance). The pipeline history and its original source archive are preserved. The recorded runtime/test/build source scope, six scoped runtime tarballs and native binaries are unchanged. The refreshed unified source archive includes byte-checked reconciled handoff documents and three verification captures plus six README showcase images and passed package-release clean-install, SDK build, worker, gallery and authoring checks.",
   "original": {
-    "path": "release/study-harness/artifacts/2026-10-29T05-29-41.307Z/experiment-kit-0.3.0-preview.1.tgz",
+    "path": "release/study-harness/artifacts/2026-10-29T05-29-41.307Z/explorable-models-0.3.0-preview.1.tgz",
     "sha256": "sha256:64f30fa66776d8e855941517de45cacfbe6f55bfa1334506f88e4e63bdb3d6e1",
     "manifest": {
-      "package": "experiment-kit-0.3.0-preview.1.tgz",
+      "package": "explorable-models-0.3.0-preview.1.tgz",
       "version": "0.3.0-preview.1",
       "createdAt": "2026-10-29T05:53:40.974Z",
       "source": {
@@ -53,11 +53,11 @@
     }
   },
   "refreshed": {
-    "path": "release/experiment-kit-0.3.0-preview.1.tgz",
+    "path": "release/explorable-models-0.3.0-preview.1.tgz",
     "sha256": "sha256:a4da8f840c4ffc85aad6cf4620f7cc2c406fa4d9a1d46bc39d794089023455c6",
     "bytes": 18540226,
     "manifest": {
-      "package": "experiment-kit-0.3.0-preview.1.tgz",
+      "package": "explorable-models-0.3.0-preview.1.tgz",
       "version": "0.3.0-preview.1",
       "createdAt": "2026-10-29T06:31:16.622Z",
       "source": {
@@ -230,33 +230,33 @@
   "runtimePackManifestSha256": "ba0e78e61ab08420c48657c0f45eb261c18b10d9394a3a48c85d5d88b2aa3394",
   "tarballs": [
     {
-      "name": "@experiment-kit/core",
-      "path": "release/study-harness/packages/experiment-kit-core-0.3.0-preview.1.tgz",
+      "name": "@explorable-models/core",
+      "path": "release/study-harness/packages/explorable-models-core-0.3.0-preview.1.tgz",
       "sha256": "b4b7b8a602e3908882ea9ccc34b6c288224fccd1dae1c12ef5846e7b6c7c4dd1"
     },
     {
-      "name": "@experiment-kit/activity",
-      "path": "release/study-harness/packages/experiment-kit-activity-0.3.0-preview.1.tgz",
+      "name": "@explorable-models/activity",
+      "path": "release/study-harness/packages/explorable-models-activity-0.3.0-preview.1.tgz",
       "sha256": "63beb9982b0683b650c5425fe2089f152d80f503b6f705fd576693f66c6313d5"
     },
     {
-      "name": "@experiment-kit/catalog",
-      "path": "release/study-harness/packages/experiment-kit-catalog-0.3.0-preview.1.tgz",
+      "name": "@explorable-models/catalog",
+      "path": "release/study-harness/packages/explorable-models-catalog-0.3.0-preview.1.tgz",
       "sha256": "0138850db9ae2115dcc7d9fb94b14e793153862b0626930d65f4411303f09134"
     },
     {
-      "name": "@experiment-kit/player",
-      "path": "release/study-harness/packages/experiment-kit-player-0.3.0-preview.1.tgz",
+      "name": "@explorable-models/player",
+      "path": "release/study-harness/packages/explorable-models-player-0.3.0-preview.1.tgz",
       "sha256": "21b3f1d6543c48c1c7735a624d1da5c706193782c79bbd5f5e5fceeaf09d7bad"
     },
     {
-      "name": "@experiment-kit/player-3d",
-      "path": "release/study-harness/packages/experiment-kit-player-3d-0.3.0-preview.1.tgz",
+      "name": "@explorable-models/player-3d",
+      "path": "release/study-harness/packages/explorable-models-player-3d-0.3.0-preview.1.tgz",
       "sha256": "0de6c36733b8182b5ab9e21ed31cace1cbcac5e326bfa2d8b1fb70ca8b729f77"
     },
     {
-      "name": "@experiment-kit/agent",
-      "path": "release/study-harness/packages/experiment-kit-agent-0.3.0-preview.1.tgz",
+      "name": "@explorable-models/agent",
+      "path": "release/study-harness/packages/explorable-models-agent-0.3.0-preview.1.tgz",
       "sha256": "223b69a085e8bd192241da1c32c6c67caa45f5aaf18c578c9bc5ceac3e1e820c"
     }
   ],
@@ -273,5 +273,11 @@
     }
   ],
   "log": "release/study-harness/logs/2026-10-29T05-29-41.307Z/documentation-source-refresh.log",
-  "published": false
+  "published": false,
+  "terminologyProjection": {
+    "sourceCommit": "1e2b3d7b796962f4b031257a402ce3db3e0854a1",
+    "sourceBlob": "54e075394a093ee84147c3bcb53e4a25711ade49",
+    "originalSha256": "d53ec9fb559e7f98d8c8fb1132817f98cb8730b77e2d784747ec5e32f9104ac5",
+    "scope": "Terminology-normalized historical evidence. Measurements, outcomes, and original artifact digests are retained from the preceding namespace. This is not verification of current packages or native binaries. The unmodified original bytes remain in the recorded Git blob."
+  }
 }

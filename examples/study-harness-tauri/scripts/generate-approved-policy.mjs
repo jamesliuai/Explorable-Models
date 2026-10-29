@@ -12,7 +12,7 @@ import { createHash } from 'node:crypto';
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { createInstalledCatalog } from '@experiment-kit/catalog';
+import { createInstalledCatalog } from '@explorable-models/catalog';
 
 const appRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const out = path.join(appRoot, 'src-tauri/policy/approved.json');
@@ -71,7 +71,7 @@ const body = {
   schema: 'study-harness-reference.approved-policy/1',
   generatedBy: 'examples/study-harness-tauri/scripts/generate-approved-policy.mjs',
   note: 'Host-owned approval for the reference host (conformance fixture). Lifecycle is the installed catalogue status; none of these entries has an independent subject review. The Rust host embeds this file and never approves content requested by the webview.',
-  catalog: [locked('@experiment-kit/catalog'), locked('@experiment-kit/activity'), locked('@experiment-kit/core')],
+  catalog: [locked('@explorable-models/catalog'), locked('@explorable-models/activity'), locked('@explorable-models/core')],
   templates,
 };
 const text = `${JSON.stringify(body, null, 2)}\n`;

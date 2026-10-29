@@ -1,4 +1,4 @@
-import { mountVisualization } from '@experiment-kit/player';
+import { mountVisualization } from '@explorable-models/player';
 import { setup, guard, createPreset, createVisualizationSession } from './setup';
 const first = await setup();
 const second = await setup(true);

@@ -7,7 +7,7 @@
 import {
   BLOCKED_INSTRUCTION, HOST_SUSPENDED_MESSAGE, TERMINAL_TEXT, UI_STATUS, VALUE_STATUS_TEXT,
   type LearnerProjection, type PresentationSnapshot, type ProjectedComparison, type ProjectedControl, type ProjectedMark, type ProjectedValue, type ProjectedView, type UiState,
-} from '@experiment-kit/activity';
+} from '@explorable-models/activity';
 
 export type FixtureName = 'quadratic' | 'geometry' | 'spatial' | 'long' | 'extreme' | 'comparison';
 export const FIXTURES: readonly FixtureName[] = ['quadratic', 'geometry', 'spatial', 'long', 'extreme', 'comparison'];

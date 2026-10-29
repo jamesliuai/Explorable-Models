@@ -14,7 +14,7 @@ import { CRASH_POINTS, REQUIRED_SCENARIOS, SCENARIO_CHAINS, parseOnly, scenarioK
 import { BUILD_RECORD_SCHEMA, HOST_SOURCE_INPUTS, buildRecordPath, changeList, createBuildRecord, hostSourceDigest, noBuildProblems, sourceChanges, tarballSet, treeDigest } from '../../examples/study-harness-tauri/scripts/build-record.mjs';
 
 const root = fileURLToPath(new URL('../../', import.meta.url));
-const PACK = ['core', 'activity', 'catalog', 'player', 'player-3d'].map((name, index) => ({ name: `@experiment-kit/${name}`, version: '0.3.0-preview.1', sha256: String(index + 1).repeat(64), integrity: `sha512-${index}` }));
+const PACK = ['core', 'activity', 'catalog', 'player', 'player-3d'].map((name, index) => ({ name: `@explorable-models/${name}`, version: '0.3.0-preview.1', sha256: String(index + 1).repeat(64), integrity: `sha512-${index}` }));
 const SHA = { release: 'e'.repeat(64), conformance: 'c'.repeat(64) };
 const installed = { packages: PACK };
 const onDisk = (overrides = {}) => Object.fromEntries(NATIVE_APPS.map(kind => [kind, { executable: `examples/${kind}/app`, recorded: SHA[kind], present: true, matches: true, ...overrides[kind] }]));
@@ -144,8 +144,8 @@ test('R07: evidence must say which tarballs each app was built from, and they mu
   assert.match(result.reason, /does not record which tarballs the packaged release app was built from/);
   // A --no-build run after installing a new pack would have recorded the new tarballs for binaries built from the old.
   const old = fullEvidence();
-  old.builds.conformance.packed.packages = old.builds.conformance.packed.packages.map(item => item.name === '@experiment-kit/player' ? { ...item, sha256: '9'.repeat(64) } : item);
-  assert.match(evaluate(old).reason, /packaged conformance app was built from other tarballs \(@experiment-kit\/player\)/);
+  old.builds.conformance.packed.packages = old.builds.conformance.packed.packages.map(item => item.name === '@explorable-models/player' ? { ...item, sha256: '9'.repeat(64) } : item);
+  assert.match(evaluate(old).reason, /packaged conformance app was built from other tarballs \(@explorable-models\/player\)/);
   const fewer = fullEvidence();
   fewer.builds.release.packed.packages = fewer.builds.release.packed.packages.slice(1);
   assert.match(evaluate(fewer).reason, /does not record which tarballs the packaged release app was built from/);
@@ -179,8 +179,8 @@ test('--no-build reuses an app only while its build record describes the executa
     assert.deepEqual(noBuildProblems(ok), []);
     assert.match(noBuildProblems({ ...ok, record: null })[0], /no build record next to the app/);
     assert.match(noBuildProblems({ ...ok, executableSha256: 'd'.repeat(64) }).join(), /not the one the build record describes/);
-    const newer = { ...packed, packages: PACK.map(item => item.name === '@experiment-kit/core' ? { ...item, sha256: '0'.repeat(64) } : item) };
-    assert.match(noBuildProblems({ ...ok, packed: newer }).join(), /installed tarballs \(packed-artifacts\.json\) differ from those the app was built from \(@experiment-kit\/core built 111111111111, installed 000000000000\)/);
+    const newer = { ...packed, packages: PACK.map(item => item.name === '@explorable-models/core' ? { ...item, sha256: '0'.repeat(64) } : item) };
+    assert.match(noBuildProblems({ ...ok, packed: newer }).join(), /installed tarballs \(packed-artifacts\.json\) differ from those the app was built from \(@explorable-models\/core built 111111111111, installed 000000000000\)/);
     writeFileSync(path.join(dist, 'assets', 'main.js'), 'console.log(2)');
     assert.match(noBuildProblems({ ...ok, distDigest: treeDigest(dist) }).join(), /frontend dist .* is not the one the app embeds/);
     assert.equal(buildRecordPath({ targetDir: '/t', product: 'P' }), path.join('/t', 'release/bundle/macos', 'P.build-record.json'));

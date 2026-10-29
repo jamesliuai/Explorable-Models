@@ -19,7 +19,7 @@ for (const entry of manifest.files.filter(item => item.file.endsWith('.tgz'))) {
 
 const temporary = await mkdtemp(path.join(tmpdir(), 'explorable-models-artifacts-'));
 const subpath = 'nested-preview';
-const screenshots = '/tmp/experiment-kit-public-preview';
+const screenshots = '/tmp/explorable-models-public-preview';
 await mkdir(screenshots, { recursive: true });
 let server, browser;
 try {
@@ -63,13 +63,13 @@ try {
   await page.screenshot({ path: `${screenshots}/guide-mobile-390.png`, fullPage: true });
   for (const route of ['gallery.html', '?experiment=linear-map&embed=1']) {
     await page.goto(base + route);
-    await page.waitForFunction(() => Boolean(window.__EXPERIMENT_KIT__));
+    await page.waitForFunction(() => Boolean(window.__EXPLORABLE_MODELS__));
   }
   // A v1 download must reopen through the new default entry without a query string.
   await page.goto(`${base}?experiment=linear-map`);
-  await page.waitForFunction(() => Boolean(window.__EXPERIMENT_KIT__));
+  await page.waitForFunction(() => Boolean(window.__EXPLORABLE_MODELS__));
   await page.evaluate(async () => {
-    const api = window.__EXPERIMENT_KIT__;
+    const api = window.__EXPLORABLE_MODELS__;
     const state = await api.request({ method: 'state' });
     await api.request({ method: 'command', args: { type: 'set_parameters', parameters: { a: 2, b: 0.5, x: -1, y: 2 }, expectedRunVersion: state.run.version, expectedActiveRunId: state.activeRunId } });
   });
@@ -85,7 +85,7 @@ try {
   }
   await page.goto(`${server.url}/reopened/`);
   await page.getByRole('status').filter({ hasText: 'Saved state restored as a new run.' }).waitFor();
-  const restored = await page.evaluate(() => window.__EXPERIMENT_KIT__.request({ method: 'inspect' }));
+  const restored = await page.evaluate(() => window.__EXPLORABLE_MODELS__.request({ method: 'inspect' }));
   if (restored.parameters.a !== 2 || JSON.stringify(restored.quantities['point.output'].value) !== '[-1,2]') throw new Error('Downloaded v1 state did not reopen through the default entry.');
   await page.goto(`${base}agent.html`);
   await page.waitForFunction(() => Boolean(window.__COMPOSITION_STUDIO__));

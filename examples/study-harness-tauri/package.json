@@ -1,5 +1,5 @@
 {
-  "name": "@experiment-kit/study-harness-tauri-reference",
+  "name": "@explorable-models/study-harness-tauri-reference",
   "version": "0.1.0",
   "private": true,
   "type": "module",
@@ -21,11 +21,11 @@
     "lint:rust": "cargo clippy --manifest-path src-tauri/Cargo.toml --locked --all-targets -- -D warnings && cargo clippy --manifest-path src-tauri/Cargo.toml --locked --all-targets --features conformance -- -D warnings"
   },
   "dependencies": {
-    "@experiment-kit/activity": "file:../../release/study-harness/packages/experiment-kit-activity-0.3.0-preview.1.tgz",
-    "@experiment-kit/catalog": "file:../../release/study-harness/packages/experiment-kit-catalog-0.3.0-preview.1.tgz",
-    "@experiment-kit/core": "file:../../release/study-harness/packages/experiment-kit-core-0.3.0-preview.1.tgz",
-    "@experiment-kit/player": "file:../../release/study-harness/packages/experiment-kit-player-0.3.0-preview.1.tgz",
-    "@experiment-kit/player-3d": "file:../../release/study-harness/packages/experiment-kit-player-3d-0.3.0-preview.1.tgz",
+    "@explorable-models/activity": "file:../../release/study-harness/packages/explorable-models-activity-0.3.0-preview.1.tgz",
+    "@explorable-models/catalog": "file:../../release/study-harness/packages/explorable-models-catalog-0.3.0-preview.1.tgz",
+    "@explorable-models/core": "file:../../release/study-harness/packages/explorable-models-core-0.3.0-preview.1.tgz",
+    "@explorable-models/player": "file:../../release/study-harness/packages/explorable-models-player-0.3.0-preview.1.tgz",
+    "@explorable-models/player-3d": "file:../../release/study-harness/packages/explorable-models-player-3d-0.3.0-preview.1.tgz",
     "@tauri-apps/api": "2.12.4",
     "react": "19.3.1",
     "react-dom": "19.3.1",

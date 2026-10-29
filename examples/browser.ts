@@ -1,4 +1,4 @@
-import { WorkerExecutor, type CheckSuite, type ExperimentDefinition, type ModelExecutor } from '@experiment-kit/core';
+import { WorkerExecutor, type CheckSuite, type ExperimentDefinition, type ModelExecutor } from '@explorable-models/core';
 import { definition as definition0 } from './rolling/metadata';
 import { checks as checks0 } from './rolling/checks';
 import modelCard0 from './rolling/model.md?raw';

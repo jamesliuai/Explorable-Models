@@ -4,7 +4,7 @@
 //! stable `{ code, message }` values that never echo field names or values. There is no path, filesystem, shell,
 //! network, credential or generic command.
 //!
-//! The ten `HostPort` commands (the nine required methods and the optional `getActivityRecords`) follow the HostPort refusal convention of `@experiment-kit/activity` (`errors.rs`): a
+//! The ten `HostPort` commands (the nine required methods and the optional `getActivityRecords`) follow the HostPort refusal convention of `@explorable-models/activity` (`errors.rs`): a
 //! host decision rejects with `POLICY_DENIED`, `POLICY_EXPIRED`, `CONTENT_REVOKED`, `STALE_POLICY_REVISION` or
 //! `INVALID_INPUT` (the specific host code as `reason`), so the adapter does not retry it; storage failures keep
 //! `PERSISTENCE_FAILED` / `INTEGRITY_FAILURE` and are retryable. Host-owned commands report the specific code.

@@ -36,8 +36,8 @@ test('the document surface adopts its stylesheet (no style element) in the page 
   await page.getByRole('combobox').selectOption('triangle');
   await expect(page.getByRole('status').first()).toContainText('Editable composition loaded');
   const inDocument = await page.evaluate(() => {
-    const surface = document.querySelector<HTMLElement>('[data-ek-surface]')!;
-    const sheets = document.adoptedStyleSheets.filter(sheet => [...sheet.cssRules].some(rule => rule.cssText.startsWith('[data-ek-surface]')));
+    const surface = document.querySelector<HTMLElement>('[data-em-surface]')!;
+    const sheets = document.adoptedStyleSheets.filter(sheet => [...sheet.cssRules].some(rule => rule.cssText.startsWith('[data-em-surface]')));
     const button = surface.querySelector('button')!;
     return { styleElements: surface.querySelectorAll('style').length + (surface.parentElement?.querySelectorAll(':scope > style').length ?? 0), sheets: sheets.length, minHeight: getComputedStyle(button).minHeight, background: getComputedStyle(surface).backgroundColor };
   });
@@ -52,12 +52,12 @@ test('the document surface adopts its stylesheet (no style element) in the page 
     const first = mountVisualization(host, { session: studio.session });
     const second = mountVisualization(host, { session: studio.session });
     const shadow = first.element.shadowRoot!;
-    const surfaceRules = (root: ShadowRoot) => root.adoptedStyleSheets.filter(sheet => [...sheet.cssRules].some(rule => rule.cssText.startsWith('[data-ek-surface]'))).length;
-    const button = shadow.querySelector('[data-ek-surface] button')!;
+    const surfaceRules = (root: ShadowRoot) => root.adoptedStyleSheets.filter(sheet => [...sheet.cssRules].some(rule => rule.cssText.startsWith('[data-em-surface]'))).length;
+    const button = shadow.querySelector('[data-em-surface] button')!;
     const result = {
       styleElements: shadow.querySelectorAll('style').length, sheets: surfaceRules(shadow), secondSheets: surfaceRules(second.element.shadowRoot!),
       sameSheet: shadow.adoptedStyleSheets[0] === second.element.shadowRoot!.adoptedStyleSheets[0], minHeight: getComputedStyle(button).minHeight,
-      documentSheets: document.adoptedStyleSheets.filter(sheet => [...sheet.cssRules].some(rule => rule.cssText.startsWith('[data-ek-surface]'))).length,
+      documentSheets: document.adoptedStyleSheets.filter(sheet => [...sheet.cssRules].some(rule => rule.cssText.startsWith('[data-em-surface]'))).length,
     };
     first.dispose(); second.dispose(); host.remove();
     return { ...result, afterDispose: surfaceRules(shadow) };

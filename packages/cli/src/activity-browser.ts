@@ -57,7 +57,7 @@ export class ActivityBrowser {
       await page.goto(`${this.server.url}/capture.html`, { waitUntil: 'load' });
       await page.waitForFunction(() => Boolean(window.__activityCapture?.ready), undefined, { timeout: 15000 });
       const result = await page.evaluate(json => window.__activityCapture!.capture(json), JSON.stringify(input)) as StageCaptureOutcome['result'];
-      const png = result.ok ? await page.locator('[data-experiment-kit-activity]').screenshot({ animations: 'disabled', timeout: 20000 }) : null;
+      const png = result.ok ? await page.locator('[data-explorable-models-activity]').screenshot({ animations: 'disabled', timeout: 20000 }) : null;
       return { result, png, pageErrors };
     } finally { await page.close(); }
   }

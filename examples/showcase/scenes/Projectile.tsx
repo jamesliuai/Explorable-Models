@@ -1,4 +1,4 @@
-import type { SessionState } from '@experiment-kit/core/declarative';
+import type { SessionState } from '@explorable-models/core/declarative';
 import { Arrow, C, fmt, FrameSvg, n, point, seriesPath, type XY } from './shared';
 export function Projectile({ state }: { state: SessionState }) {
   const f = state.frame!, range = n(f, 'range'), apex = n(f, 'apex');

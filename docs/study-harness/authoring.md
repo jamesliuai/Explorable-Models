@@ -1,8 +1,8 @@
 # Activity authoring: packages and commands
 
 Report §8.1, §12.6, §15.2 and §16; acceptance rows A09 (CLI side), A30 (review packets) and A56. This is the authoring
-workflow for Study Harness activity templates: `experiment-kit activity <command>`. It complements the installed
-catalogue (`@experiment-kit/catalog`), whose kernels are trusted repository code. Authored kernels and checks are
+workflow for Study Harness activity templates: `explorable-models activity <command>`. It complements the installed
+catalogue (`@explorable-models/catalog`), whose kernels are trusted repository code. Authored kernels and checks are
 candidate code: Node only parses and bundles them, and they run only in browser module workers.
 
 Nothing in this workflow reviews content. Every package reports lifecycle `authored`; schema validation, reference
@@ -16,33 +16,33 @@ archives).
 
 | File | Required | Content |
 | --- | --- | --- |
-| `model.json` | yes | `ModelManifest` (`experiment-kit.model-manifest` 1.0): an `execution` of kind `kernel` (authored in `kernel.ts`, or an installed kernel ID and version) or `document` (bounded schema 2.0 document) |
+| `model.json` | yes | `ModelManifest` (`explorable-models.model-manifest` 1.0): an `execution` of kind `kernel` (authored in `kernel.ts`, or an installed kernel ID and version) or `document` (bounded schema 2.0 document) |
 | `template.json` | yes | `ActivityTemplate` (`study-harness.activity-template` 1.0) whose `model` reference carries the exact model digest |
 | `kernel.ts` | for authored kernels | Pure kernel exporting `kernel` (see §2); may import relative `.ts`/`.json` files of the package |
 | `checks.ts` | no | Author checks exporting `checks` (see §3); run in the checks worker |
 | `copy.md` | recommended | Every learner-visible string with its intent, for reviewers |
-| `fixtures/reference.json` | recommended | Reference fixtures (`experiment-kit.reference-fixtures` 1.0, §4). May live outside the package: pass `--fixtures <path>` |
-| `fixtures/boundaries.json` | no | Declared boundary cases (`experiment-kit.boundary-cases` 1.0, §5) |
-| `authoring.json` | recommended | `experiment-kit.authoring-package` 1.0: lifecycle `authored` and the recorded relation to the installed catalogue (§6) |
+| `fixtures/reference.json` | recommended | Reference fixtures (`explorable-models.reference-fixtures` 1.0, §4). May live outside the package: pass `--fixtures <path>` |
+| `fixtures/boundaries.json` | no | Declared boundary cases (`explorable-models.boundary-cases` 1.0, §5) |
+| `authoring.json` | recommended | `explorable-models.authoring-package` 1.0: lifecycle `authored` and the recorded relation to the installed catalogue (§6) |
 | `review/` | generated | Captures and the review packet written by `capture` and `review-packet` |
-| `.experiment-kit/` | generated | The last working candidate (`check`); never packaged |
+| `.explorable-models/` | generated | The last working candidate (`check`); never packaged |
 
 ### Import allowlist
 
 `kernel.ts`, `checks.ts` and every file they import may use only:
 
 - relative imports of `.ts` and `.json` files inside the package (no escaping the directory, no generated folders);
-- `import type { … } from '@experiment-kit/core/model'` (types are erased; a value import is refused).
+- `import type { … } from '@explorable-models/core/model'` (types are erased; a value import is refused).
 
 Refused, with file and line: Node built-ins (`node:fs`), npm packages (`react`), other toolkit entries, value imports
-from `@experiment-kit/core/model`, dynamic `import()`, `require(…)` and `import x = require(…)`. The rule is checked by
+from `@explorable-models/core/model`, dynamic `import()`, `require(…)` and `import x = require(…)`. The rule is checked by
 parsing (TypeScript AST) in `validate`, and again inside the bundler before esbuild sees a file. The candidate's
 `tsconfig.json`, `package.json` scripts and build configuration are never read.
 
 ## 2 Kernels
 
 ```ts
-import type { KernelInput, KernelOutput, ModelKernel, QuantityResult } from '@experiment-kit/core/model';
+import type { KernelInput, KernelOutput, ModelKernel, QuantityResult } from '@explorable-models/core/model';
 import model from './model.json';
 
 function evaluate({ params }: KernelInput): KernelOutput {
@@ -110,11 +110,11 @@ assertions and are reported as such; they are not independent reference evidence
 
 ## 4 Reference fixtures
 
-`experiment-kit.reference-fixtures` 1.0 (`packages/cli/src/activity-fixtures.ts` holds the schema):
+`explorable-models.reference-fixtures` 1.0 (`packages/cli/src/activity-fixtures.ts` holds the schema):
 
 ```json
 {
-  "contract": "experiment-kit.reference-fixtures", "version": "1.0", "suiteId": "my-line:0.1.0",
+  "contract": "explorable-models.reference-fixtures", "version": "1.0", "suiteId": "my-line:0.1.0",
   "model": { "modelId": "my-line", "version": "0.1.0" },
   "author": "…", "review": "No independent human subject reviewer has approved these cases.", "semantics": "…",
   "derivedFrom": null, "notCovered": [],
@@ -146,7 +146,7 @@ assertions and are reported as such; they are not independent reference evidence
 
 ## 5 Boundary cases
 
-`experiment-kit.boundary-cases` 1.0: `{ id, label, rationale, params, position?, expect?: { outcome?, statuses? } }`.
+`explorable-models.boundary-cases` 1.0: `{ id, label, rationale, params, position?, expect?: { outcome?, statuses? } }`.
 Parameters are merged over the defaults. `boundaries` evaluates the declared cases and generated domain probes (each
 parameter at its minimum, maximum and just outside them; first, last and one-past-last index) and classifies each
 frame as `valid`, `undefined`, `numerical-limit`, `out-of-domain` (refused before evaluation) or `worker-error`.
@@ -216,7 +216,7 @@ All commands print a JSON report and exit 1 on failure. Node never imports autho
 | `scaffold <dir> [--id <id>]` | Copies the example package (`packages/cli/templates/activity`: a line with an authored kernel, checks, fixtures and boundary cases) and assigns new IDs and digests |
 | `scaffold <dir> --from <installedTemplateId> [--kernel copy\|installed]` | Exploratory copy of an installed package with a NEW template ID, version 0.1.0 and lifecycle `authored`. `copy` (default) copies the installed kernel source into `kernel.ts` under a new kernel and model ID; `installed` keeps the exact installed model. Converts the installed reference suite into `fixtures/reference.json` (with `derivedFrom`) and derives boundary cases from its non-valid expectations |
 | `validate <dir> [--fixtures <path>]` | Data only: model and template schemas and semantics, the template warnings below, scenario values over the defaults against every coupled constraint, execution source, import allowlist, relation, fixtures and boundary files |
-| `check <dir> [--timeout <ms>]` | Validates, bundles, and in Chromium (external network blocked) loads the checks worker, evaluates the defaults and every scenario through the runtime's worker client, and runs the author checks. A pass stores the last working candidate (`.experiment-kit/last-good/`: files, digests, time); a failure leaves it untouched and reports it |
+| `check <dir> [--timeout <ms>]` | Validates, bundles, and in Chromium (external network blocked) loads the checks worker, evaluates the defaults and every scenario through the runtime's worker client, and runs the author checks. A pass stores the last working candidate (`.explorable-models/last-good/`: files, digests, time); a failure leaves it untouched and reports it |
 | `reference <dir> [--fixtures <path>]` | Runs the fixtures against worker-evaluated frames; per-case pass/fail with provenance, tolerances and the first problems |
 | `boundaries <dir>` | Declared boundary cases and generated probes with their outcome classification |
 | `capture <dir> [--stage <id>\|--all-stages] [--width] [--theme] [--fonts] [--index]` | For each stage: prepares the activity through the adapter with the browser integration fixture host (author-preview policy whose ceiling is every group), has the host authorize the stage's solution-bearing groups through the persist-before-reveal path, mounts `StudyActivitySurface` with the learner binding and writes `<stage>.png` (card screenshot), `<stage>.svg` (the surface's pure-SVG capture of the primary view) and `<stage>.txt` (projection-only companion). Each stage record lists the surface diagnostics (`LABEL_CALLOUT`, `LABEL_OVERLAP`, `CLIPPED`, `MATH_FALLBACK`, …). Default output `review/captures/` |
@@ -242,12 +242,12 @@ It is a warning, like label and clipping diagnostics, because learners still get
 form; the TeX-safe symbols declared in `model.json` are parsed too and reported the same way at
 `$.parameters.<id>.symbol` / `$.quantities.<id>.symbol`. Sources the hostile-TeX screen refuses are not parsed (the
 semantic check already reports them as errors). The helpers are `templateTexSources`, `manifestTexSources` and
-`texParseDiagnostics` in `@experiment-kit/activity`, which take the parser as an argument so the learner entry never
+`texParseDiagnostics` in `@explorable-models/activity`, which take the parser as an argument so the learner entry never
 bundles it. The five installed templates and models parse cleanly (`tests/activity/text-safety.test.ts`).
 
 ### Template warnings
 
-`validate` (and `preview`) report two warning codes from `templateWarnings` in `@experiment-kit/activity`, once the
+`validate` (and `preview`) report two warning codes from `templateWarnings` in `@explorable-models/activity`, once the
 template has no semantic errors. They are warnings: the package still validates and prepares, and the adapter's
 `validateTemplateSemantics` is unchanged. Orphaned references (a stage, view, mark, control, equation, scenario or
 alternative naming an ID that does not exist) remain `INVALID_REFERENCE` errors. Each stage is read as the most
@@ -279,7 +279,7 @@ template's stages and the host's exposure grants, as in a host that permits the 
 
 ### Preview
 
-`experiment-kit activity preview` validates the package, resolves the learner policy (a refused `--policy` stops it
+`explorable-models activity preview` validates the package, resolves the learner policy (a refused `--policy` stops it
 with `stage: "policy"` before anything is served), bundles the fixed preview page
 (`packages/cli/src/activity-preview-page.ts`) with the model worker, writes `preview-input.json` next to it and serves
 the bundle on `127.0.0.1` (an available port, or `--port`) with the CLI's content security policy: no remote
@@ -332,7 +332,7 @@ Installed packets live in `docs/study-harness/review-packets/<templateId>/` and 
 
 ```sh
 for id in quadratic-gradient-descent function-derivative linear-transformation vector-orientation-3d quadratic-surface-gradient; do
-  npm run kit -- activity review-packet --installed "$id" --out "docs/study-harness/review-packets/$id" --index 4
+  npm run models -- activity review-packet --installed "$id" --out "docs/study-harness/review-packets/$id" --index 4
 done
 ```
 
@@ -361,7 +361,7 @@ authoring.
 ## 10 Toolkit resolution and packed trees
 
 The CLI resolves `TOOLKIT_ROOT` three directories above `packages/cli/src`: the repository root, or the root of the
-unified `experiment-kit` release, which keeps the same layout. `@experiment-kit/*` resolve to
+unified `explorable-models` release, which keeps the same layout. `@explorable-models/*` resolve to
 `packages/<name>/src` entries there, for the browser bundles and for the Node-side toolkit (bundled at run time, so the
 working directory, workspace links and tsconfig paths do not matter). Documented fallbacks:
 
@@ -373,13 +373,13 @@ working directory, workspace links and tsconfig paths do not matter). Documented
 - stage captures need `examples/study-harness-host/fixture-host.ts` and fail with `TOOLKIT_INCOMPLETE` otherwise.
 
 `tests/cli/activity-packed.test.ts` runs the executable from an unrelated directory against a copy of that layout
-with no `@experiment-kit` links and no tsconfig. The release pipeline's clean install remains the authoritative check.
+with no `@explorable-models` links and no tsconfig. The release pipeline's clean install remains the authoritative check.
 
 ## 11 Repair cases
 
 | Diagnostic | Typical cause | Repair |
 | --- | --- | --- |
-| `INVALID_IMPORT` (kernel.ts line n) | `import { x } from '@experiment-kit/core/model'` | `import type { x } …`, or copy the helper into the package |
+| `INVALID_IMPORT` (kernel.ts line n) | `import { x } from '@explorable-models/core/model'` | `import type { x } …`, or copy the helper into the package |
 | `INVALID_REFERENCE` model.json `$.referenceSuite.digest` | fixtures edited after binding | set the digest `validate` prints (the scientific revision changes), or restore the fixtures |
 | `CONFLICT` template.json `$.version` | edited an installed template in place | new `templateId` (exploratory) or new `version` (reviewed-template edit, new review) |
 | `CONFLICT` model.json `$.execution.kernelId` | authored kernel reuses an installed kernel ID | give the kernel and model a new ID |

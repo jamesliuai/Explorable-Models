@@ -20,10 +20,10 @@
  */
 import { mkdirSync } from 'node:fs';
 import { expect, test, type Locator, type Page } from '@playwright/test';
-import type { CommandOutcome } from '@experiment-kit/activity';
+import type { CommandOutcome } from '@explorable-models/activity';
 import type { LifecycleFixture } from '../../examples/study-harness-host/lifecycle';
 
-const SHOTS = '/tmp/experiment-kit-playwright/study-lifecycle';
+const SHOTS = '/tmp/explorable-models-playwright/study-lifecycle';
 mkdirSync(SHOTS, { recursive: true });
 const PAGE = '/examples/study-harness-host/lifecycle.html';
 
@@ -211,7 +211,7 @@ function instrumentGraphics(): void {
   window.__graphics = {
     counts: () => {
       let connected = 0, surfaces = 0;
-      everyRoot(root => { connected += root.querySelectorAll('canvas').length; surfaces += root.querySelectorAll('[data-experiment-kit-activity]').length; });
+      everyRoot(root => { connected += root.querySelectorAll('canvas').length; surfaces += root.querySelectorAll('[data-explorable-models-activity]').length; });
       const live = [...listeners].filter(([, entry]) => {
         const target = entry.target.deref();
         return !!target && (target === window || target instanceof MediaQueryList || (target instanceof Node && target.isConnected));
@@ -245,7 +245,7 @@ const ui = (page: Page, activityId: string) => page.evaluate(id => window.lifecy
 async function quietWindow(page: Page, activityId: string, ms: number) {
   return page.evaluate(async ({ id, ms }) => {
     const before = window.__lifecycle.counts();
-    const root = document.querySelector(`.lf-card[data-activity-id="${id}"] [data-experiment-kit-activity]`)?.shadowRoot;
+    const root = document.querySelector(`.lf-card[data-activity-id="${id}"] [data-explorable-models-activity]`)?.shadowRoot;
     let mutations = 0;
     const observer = new MutationObserver(records => { mutations += records.length; });
     if (root) observer.observe(root, { subtree: true, childList: true, attributes: true, characterData: true });
@@ -488,7 +488,7 @@ test.describe('study activity lifecycle (A41–A43)', () => {
       await new Promise(resolve => window.setTimeout(resolve, 500));
       const open = [...f.cards.keys()];
       const states = Array.from({ length: 101 }, (_, index) => 'diagnostics' in f.adapter.getState(`stress-${index}`, 'host'));
-      return { elapsed, open, closedEverywhere: states.every(Boolean), hostActivities: f.host.activities().length, surfaces: document.querySelectorAll('[data-experiment-kit-activity]').length, pageWorkers: { created: f.workers.created, terminated: f.workers.terminated } };
+      return { elapsed, open, closedEverywhere: states.every(Boolean), hostActivities: f.host.activities().length, surfaces: document.querySelectorAll('[data-explorable-models-activity]').length, pageWorkers: { created: f.workers.created, terminated: f.workers.terminated } };
     });
     const end = await counts(page);
     const created = end.workers.created - baseline.workers.created;
@@ -561,7 +561,7 @@ test.describe('study activity lifecycle (A41–A43)', () => {
       f.workers.flush();
       const committed = await commit;
       await settle();
-      results.evaluate = { codes: codes(committed), atDisposal: notified - beforeClose, notificationsAfter: evaluating.notifications - notified, eventsAfter: f.host.events('dispose-evaluate').length - eventsAtDispose, ui: evaluating.learner.getProjection().status.ui, surface: !!document.querySelector('[data-experiment-kit-activity="surface-dispose-evaluate"]') };
+      results.evaluate = { codes: codes(committed), atDisposal: notified - beforeClose, notificationsAfter: evaluating.notifications - notified, eventsAfter: f.host.events('dispose-evaluate').length - eventsAtDispose, ui: evaluating.learner.getProjection().status.ui, surface: !!document.querySelector('[data-explorable-models-activity="surface-dispose-evaluate"]') };
 
       // save: dispose while the host save is outstanding.
       const saving = await f.open({ activityId: 'dispose-save', template: 'derivative', container: 'stress' });
@@ -610,7 +610,7 @@ test.describe('study activity lifecycle (A41–A43)', () => {
       const lateOutcome = await late;
       f.close('dispose-capture');
       await settle();
-      results.capture = { immediate, late: lateOutcome, lateSettledAfterDispose: settledAt >= disposedAt, surfaces: document.querySelectorAll('[data-experiment-kit-activity]').length };
+      results.capture = { immediate, late: lateOutcome, lateSettledAfterDispose: settledAt >= disposedAt, surfaces: document.querySelectorAll('[data-explorable-models-activity]').length };
       results.end = { live: window.__lifecycle.counts().workers.live, open: [...f.cards.keys()] };
       return results;
     });
@@ -650,10 +650,10 @@ test.describe('study activity lifecycle (A41–A43)', () => {
      */
     const remount = async (id: string, reducedMotion: 'reduce' | 'no-preference') => {
       const before = (await graphics()).contexts.created;
-      await page.evaluate(key => { window.lifecycleFixture.cards.get(key)!.mounted!.element.shadowRoot!.querySelector('[data-ek3-root]')!.setAttribute('data-test-replaced', ''); }, id);
+      await page.evaluate(key => { window.lifecycleFixture.cards.get(key)!.mounted!.element.shadowRoot!.querySelector('[data-em3-root]')!.setAttribute('data-test-replaced', ''); }, id);
       await page.emulateMedia({ reducedMotion });
       await page.waitForFunction(key => {
-        const root = window.lifecycleFixture.cards.get(key)?.mounted?.element.shadowRoot?.querySelector('[data-ek3-root]');
+        const root = window.lifecycleFixture.cards.get(key)?.mounted?.element.shadowRoot?.querySelector('[data-em3-root]');
         return !!root && !root.hasAttribute('data-test-replaced');
       }, id, { timeout: 20_000 });
       await page.evaluate(key => window.lifecycleFixture.spatialReady(key), id);

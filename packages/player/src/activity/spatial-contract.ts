@@ -1,11 +1,11 @@
 /**
  * Contract between the 2D learner surface and an optional spatial renderer (report §13, A44). The surface never
- * imports a renderer: the host supplies `spatialLoader`, typically `() => import('@experiment-kit/player-3d')`, and
+ * imports a renderer: the host supplies `spatialLoader`, typically `() => import('@explorable-models/player-3d')`, and
  * the renderer receives the same authorized `ProjectedView` that the 2D projection fallback draws. Camera and
  * selection changes are presentation only; the renderer reports them and the surface serializes them through the
  * activity binding with presentation-revision guards. Types only: this module has no runtime code.
  */
-import type { Camera3D, ProjectedView } from '@experiment-kit/activity';
+import type { Camera3D, ProjectedView } from '@explorable-models/activity';
 
 export interface SpatialPresentation {
   /** Serialized camera for this view (null = the authored default). */
@@ -41,7 +41,7 @@ export interface SpatialMountOptions {
    */
   describeAlternative?(): string;
   /**
-   * Limits of the `spatial-3d@1.0` capability record (`SPATIAL_3D_CAPABILITY.limits` in @experiment-kit/activity) that
+   * Limits of the `spatial-3d@1.0` capability record (`SPATIAL_3D_CAPABILITY.limits` in @explorable-models/activity) that
    * the renderer enforces per view and per frame, each up to its own maximum.
    */
   limits?: { vertices?: number; indices?: number; fieldSamples?: number; labels?: number; textureSize?: number; drawCallsPerFrame?: number };

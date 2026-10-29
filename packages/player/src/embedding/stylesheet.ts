@@ -15,7 +15,7 @@ const PACKAGED = typeof __EKP_PACKAGE_BUILD__ === 'boolean' && __EKP_PACKAGE_BUI
 const STYLESHEET_FILE = './surface.css';
 /**
  * Packaged stylesheet asset, used only where constructable stylesheets are missing. Not a literal URL on purpose:
- * hosts that rebundle the package and need the fallback pass `assetBase` (as for `@experiment-kit/player/activity`).
+ * hosts that rebundle the package and need the fallback pass `assetBase` (as for `@explorable-models/player/activity`).
  */
 const packagedStylesheet = (): string | null => PACKAGED ? new URL(STYLESHEET_FILE, import.meta.url).href : null;
 

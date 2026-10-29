@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import {
   defaultParameters, validateEvaluation, validateManifest, validateParameters, validateViews,
   type CheckSuite, type Evaluation, type NumericValue,
-} from '@experiment-kit/core';
+} from '@explorable-models/core';
 import { experiments, getExperiment } from '../../examples';
 import { model as rolling, defaults as rollingDefaults, BODY_TYPES } from '../../examples/rolling/model';
 import { model as linear, defaults as linearDefaults } from '../../examples/linear-map/model';

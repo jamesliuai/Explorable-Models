@@ -6,7 +6,7 @@
  * test workers.
  */
 import { afterEach, describe, expect, it } from 'vitest';
-import type { InteractionEvent, LearnerProjection } from '@experiment-kit/activity';
+import type { InteractionEvent, LearnerProjection } from '@explorable-models/activity';
 import {
   ackCurrent, activityGuard, authorizeExploration, codesOf, enterExplore, guards, harness, okOf, op, open, policyFor, requestFor, settled, template, type Harness, type Opened,
 } from './support/adapter-harness.js';

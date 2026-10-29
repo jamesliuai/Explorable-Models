@@ -4,7 +4,7 @@
  * parser. Scanning parses text; it never evaluates it. The same scan backs the bundler's import policy.
  *
  * Import allowlist for authored code: relative `.ts`/`.json` files inside the package, and type-only imports from
- * `@experiment-kit/core/model`. Everything else — Node built-ins, npm packages, other toolkit entries, value imports,
+ * `@explorable-models/core/model`. Everything else — Node built-ins, npm packages, other toolkit entries, value imports,
  * dynamic `import()`, `require` and `import x = require()` — is rejected before any bundling.
  */
 import { createHash } from 'node:crypto';
@@ -19,8 +19,8 @@ export const PACKAGE_TEXT_FILES = ['copy.md'] as const;
 export const AUTHORED_ENTRIES = ['kernel.ts', 'checks.ts'] as const;
 export const SOURCE_LIMITS = Object.freeze({ fileBytes: 2 * 1024 * 1024, totalBytes: 2 * 1024 * 1024, files: 128, fixtureBytes: 8 * 1024 * 1024 });
 /** Generated and private directories that never count as package source. */
-export const IGNORED_DIRECTORIES = ['.experiment-kit', 'node_modules', '.git'] as const;
-const TYPE_ONLY_MODULE = '@experiment-kit/core/model';
+export const IGNORED_DIRECTORIES = ['.explorable-models', 'node_modules', '.git'] as const;
+const TYPE_ONLY_MODULE = '@explorable-models/core/model';
 
 export const sha256File = (bytes: string | Uint8Array): string => `sha256:${createHash('sha256').update(bytes).digest('hex')}`;
 
@@ -125,7 +125,7 @@ export async function authoredSources(root: string, entry: string): Promise<Auth
     if (rel.endsWith('.json')) continue;
     for (const record of importsOf(file, text)) {
       const violation = importViolation(record);
-      if (violation) { diagnostics.push({ severity: 'error', code: 'INVALID_IMPORT', file: rel, path: `line ${record.line}`, message: violation, recovery: 'Keep authored model and check code self-contained: relative .ts/.json files and `import type` from @experiment-kit/core/model only.' }); continue; }
+      if (violation) { diagnostics.push({ severity: 'error', code: 'INVALID_IMPORT', file: rel, path: `line ${record.line}`, message: violation, recovery: 'Keep authored model and check code self-contained: relative .ts/.json files and `import type` from @explorable-models/core/model only.' }); continue; }
       if (!relative(record.specifier)) continue;
       const resolved = await resolveInside(root, file, record.specifier);
       if ('problem' in resolved) diagnostics.push({ severity: 'error', code: 'INVALID_IMPORT', file: rel, path: `line ${record.line}`, message: resolved.problem });
@@ -148,7 +148,7 @@ export interface ActivityPackage {
  */
 export async function readActivityPackage(directory: string, options: { fixturesPath?: string } = {}): Promise<ActivityPackage> {
   let root: string;
-  try { root = await realpath(directory); } catch { throw new CliError('NOT_FOUND', `Package directory not found: ${directory}`, 'Run experiment-kit activity scaffold <directory> to create one.'); }
+  try { root = await realpath(directory); } catch { throw new CliError('NOT_FOUND', `Package directory not found: ${directory}`, 'Run explorable-models activity scaffold <directory> to create one.'); }
   if (!(await lstat(root)).isDirectory()) throw new CliError('INVALID_SOURCE', `Not a directory: ${directory}`);
   const files: Record<string, string> = {};
   for (const name of [...PACKAGE_JSON_FILES, ...PACKAGE_TEXT_FILES]) {

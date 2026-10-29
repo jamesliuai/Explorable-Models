@@ -44,7 +44,7 @@ async function reachable(entry: string): Promise<{ files: Set<string>; external:
 describe('learner entry boundaries (A01, A44, report §4.1, §16)', () => {
   it('keeps every relative import inside the activity entry and every external import on the allow-list', async () => {
     const files = await sourceFiles(root);
-    const allowed = new Set(['react', 'react-dom', 'react-dom/client', '@experiment-kit/activity', '@experiment-kit/core/model']);
+    const allowed = new Set(['react', 'react-dom', 'react-dom/client', '@explorable-models/activity', '@explorable-models/core/model']);
     for (const file of files) {
       const text = await code(file);
       for (const match of text.matchAll(STATIC_IMPORT)) {
@@ -65,7 +65,7 @@ describe('learner entry boundaries (A01, A44, report §4.1, §16)', () => {
       // A typeof import() type reference and the actual import may name the same local module.
       const found = [...new Set([...text.matchAll(DYNAMIC_IMPORT)].map(match => match[1]))];
       if (found.length) dynamic[relative(root, file)] = found;
-      expect(text, relative(root, file)).not.toMatch(/from\s+['"](three|katex|@experiment-kit\/player-3d|playwright|@playwright\/test|@modelcontextprotocol\/[^'"]*|@experiment-kit\/cli|@experiment-kit\/agent|node:[^'"]+)['"]/);
+      expect(text, relative(root, file)).not.toMatch(/from\s+['"](three|katex|@explorable-models\/player-3d|playwright|@playwright\/test|@modelcontextprotocol\/[^'"]*|@explorable-models\/cli|@explorable-models\/agent|node:[^'"]+)['"]/);
       expect(text, relative(root, file)).not.toMatch(/\.\.\/(App|main|agent-gallery|public|index)\b/);
     }
     expect(dynamic).toEqual({
@@ -80,7 +80,7 @@ describe('learner entry boundaries (A01, A44, report §4.1, §16)', () => {
     expect([...graph.files].map(file => relative(root, file)).sort()).toEqual(expect.arrayContaining(['StudyActivitySurface.tsx', 'mount.tsx', 'components/Scene2D.tsx', 'components/Spatial.tsx', 'capture.ts', 'math.ts']));
     expect([...graph.files].map(file => relative(root, file))).not.toEqual(expect.arrayContaining(['capture-renderer.ts']));
     expect([...graph.files].map(file => relative(root, file))).not.toEqual(expect.arrayContaining(['math-font-urls.ts']));
-    expect([...graph.external].sort()).toEqual(['@experiment-kit/activity', '@experiment-kit/core/model', 'react', 'react-dom', 'react-dom/client']);
+    expect([...graph.external].sort()).toEqual(['@explorable-models/activity', '@explorable-models/core/model', 'react', 'react-dom', 'react-dom/client']);
   });
 
   it('uses no HTML injection, parsed style attributes, eval or dynamic function construction (§16, N4, N5)', async () => {
@@ -95,8 +95,8 @@ describe('learner entry boundaries (A01, A44, report §4.1, §16)', () => {
   });
 
   it('ships a stylesheet with container queries, reduced motion and no external resources', () => {
-    expect(ACTIVITY_STYLESHEET).toMatch(/@container eka-card \(max-width:360px\)/);
-    expect(ACTIVITY_STYLESHEET).toMatch(/@container eka-card \(min-width:800px\)/);
+    expect(ACTIVITY_STYLESHEET).toMatch(/@container ema-card \(max-width:360px\)/);
+    expect(ACTIVITY_STYLESHEET).toMatch(/@container ema-card \(min-width:800px\)/);
     expect(ACTIVITY_STYLESHEET).toMatch(/prefers-reduced-motion:reduce/);
     expect(ACTIVITY_STYLESHEET).not.toMatch(/@import|url\(|https?:/);
   });

@@ -228,6 +228,7 @@ function nativeBaseline(root, parent, checkpoint) {
 
 export function auditResume({ root = ROOT, parentPath, checkpointPath, planPath }) {
   const historyFile = path.resolve(root, parentPath), parentBytes = readFileSync(historyFile), envelope = JSON.parse(parentBytes);
+  assert(!envelope.terminologyProjection, 'Terminology-normalized historical evidence cannot be resumed; use the original evidence bytes or a fresh full run');
   const historyRelative = path.relative(root, historyFile).split(path.sep).join('/');
   assert([`${EVIDENCE}/history/verification-`, `${OUT}/history/verification-`].some(prefix => historyRelative.startsWith(prefix)) && relativePath(historyRelative), 'Parent must be an append-only verification-history path');
   assert(envelope.schema === 'study-harness.evidence-history/1' && envelope.kind === 'verification', 'Parent must be immutable verification history');

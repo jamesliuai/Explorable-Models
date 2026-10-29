@@ -1,6 +1,6 @@
 # Subject-review packet: Gradient on a quadratic surface
 
-> Prepared automatically by `experiment-kit activity review-packet` (toolkit 0.3.0-preview.1) for a human subject reviewer.
+> Prepared automatically by `explorable-models activity review-packet` (toolkit 0.3.0-preview.1) for a human subject reviewer.
 > It is engineering evidence, **not** a subject review, an accessibility certification or evidence of learning benefit.
 > Catalogue status of this exact version: **reference-checked** — no independent human review is recorded.
 > The reviewer sign-off at the end is empty; an engineering agent cannot sign it.
@@ -10,10 +10,10 @@
 | Item | Value |
 | --- | --- |
 | Template | quadratic-surface-gradient@1.0.0 |
-| Template digest | `sha256:be8ee71cf73606c8fa0676a0c83e2f0ea3f6a1d3c77bf13278d30fd23bf95985` |
+| Template digest | `sha256:fbe01be3bda8b56f18869360e30f7f6dedf596786fa3eb1217d3a90039799f36` |
 | Model | quadratic-surface-gradient@1.0.0 |
-| Model digest | `sha256:cf14845fdc52ac67d2bdfca8f2434a15499f0555045882acfc287bcd14381294` |
-| Scientific revision | `sha256:515644892b2fc883491e6e6d34f6e650a86ec88a76c9a5cb0d952019d49d5668` |
+| Model digest | `sha256:bf6c7a28455d5b882d12e287894347d8acf4468db0a6681cb82c780b0ec34963` |
+| Scientific revision | `sha256:3072ed7787d54b53890013aede217082d9b0ab9f3bf2040379cbf13662965030` |
 | Presentation revision | `sha256:868aa8fd30ca9161d24c91830ce62769cedb3b61ba5aaa0e88c2d1b81ce8e72f` |
 | Reference suite bound by the model | quadratic-surface-gradient:1.0.0 `sha256:4982408532970c0fca1657884b9307956e4f20ee91e0c68cdff00e8b66c2af20` |
 | Reference fixture file | `tests/reference/fixtures/activities/quadratic-surface-gradient.json` `sha256:4982408532970c0fca1657884b9307956e4f20ee91e0c68cdff00e8b66c2af20` |
@@ -112,7 +112,7 @@ Suite `quadratic-surface-gradient:1.0.0` for quadratic-surface-gradient@1.0.0: *
 - Author of the cases: Cases derived by hand from f(x, y) = (a·x² + 2b·x·y + c·y²)/2 where the results are exact rationals, with irrational values (|∇f|, direction) and non-dyadic inputs computed by exact rational arithmetic in tests/reference/oracles/quadratic-surface-gradient.ts, which shares no code with the catalogue kernel. The three exact-tie cases (2026-10-26) take their expectations from that oracle; they were added, and every point tolerance set to 0, when the kernel (1.1.0) began computing point values exactly. Prepared by an engineering agent.
 - Review statement of the fixture: No independent human subject reviewer has approved these cases. Automated agreement is engineering evidence only.
 - Semantics: f(x, y) = (a·x² + 2b·x·y + c·y²)/2 and ∇f = (a·x + b·y, b·x + c·y) for the exact rational values of the double inputs, each reported value rounded once to the nearest double (ties to even). Coefficients are admissible when fl(fl(a·c) − fl(b·b)) > 0 (minimum exclusive), which implies exact a·c − b² > 0. The direction ∇f/|∇f| is undefined (ZERO_GRADIENT) exactly when p = (0, 0). A positive value that rounds to 0 is a numerical limit (UNDERFLOW); a value or vector component below 2⁻¹⁰²² is valid with an UNDERFLOW approximation. The arrow scale s is the first of the listed scales with s·M ≤ 0.45, M the longest gradient on the 9 × 9 field grid. Surface samples (i − 20)/10, field samples (i − 4)/2 and section samples (i − 40)/20 are exact grid coordinates rounded once; contour points are any doubles at the stated directions with f = L within the case tolerance.
-- Converted from `tests/reference/fixtures/activities/quadratic-surface-gradient.json` `sha256:4982408532970c0fca1657884b9307956e4f20ee91e0c68cdff00e8b66c2af20` (suite quadratic-surface-gradient:1.0.0): Converted by experiment-kit activity tooling: case IDs, labels, provenance, parameters and tolerances copied unchanged; quantity expectations restated as experiment-kit.reference-fixtures 1.0 expectations.
+- Converted from `tests/reference/fixtures/activities/quadratic-surface-gradient.json` `sha256:4982408532970c0fca1657884b9307956e4f20ee91e0c68cdff00e8b66c2af20` (suite quadratic-surface-gradient:1.0.0): Converted by explorable-models activity tooling: case IDs, labels, provenance, parameters and tolerances copied unchanged; quantity expectations restated as explorable-models.reference-fixtures 1.0 expectations.
 - Not compared by this runner: Surface, section and field grids, contour levels and the perpendicularity of contours to the gradient direction are checked by tests/reference/activities/quadratic-surface-gradient.test.ts.
 - Quantities without any expectation in this suite: `point`, `minimum.location`, `minimum.value`.
 
@@ -227,7 +227,7 @@ Each stage was prepared through the activity adapter with the browser integratio
 
 Instruction: Look at the surface and at the contour view. Each contour line joins points where f has the same value. Turn or reset the 3D view to compare them; turning the view never changes the surface or the point.
 
-Revealed by the host for this stage: nothing (no solution-bearing groups). Review notice shown: “Reference-checked; no independent subject review”. Projection `sha256:376c69d3c64ab1dc1492c799566cb82592ab8e4aba030f0d6ad0a3c9ffeed5e2`, frame `sha256:0b2a0d0124e506719fb1f1d5aa5af47beca712257d60f77ab7ffa1bc19a43146`.
+Revealed by the host for this stage: nothing (no solution-bearing groups). Review notice shown: “Reference-checked; no independent subject review”. Projection `sha256:55ad53104dba34bd2348241f956d754cd974f9b15af4ef39dbece11423e60506`, frame `sha256:6eaaa15be1d64cbf6462288b8bb30eca16b8f7fb99c77f6c6d5bcc5a794448bb`.
 
 ![Gradient on a quadratic surface, stage orient](captures/orient.png)
 
@@ -241,7 +241,7 @@ Instruction: Before the gradient is shown, make a prediction about it at the mar
 
 Host-owned prediction request: At the marked point p, in which direction do you expect f to increase fastest, and how do you expect that direction to sit relative to the contour line through p? (task family surface-gradient-prediction)
 
-Revealed by the host for this stage: nothing (no solution-bearing groups). Review notice shown: “Reference-checked; no independent subject review”. Projection `sha256:fe189972ec9b68fde5e29b929dbf85a48431ef8d3f72c6b1455832b90db97272`, frame `sha256:7cd8a1a1e2d48c0d069e86049aa92b479a6dfa22826eb2c1c2096d0f2fc57f50`.
+Revealed by the host for this stage: nothing (no solution-bearing groups). Review notice shown: “Reference-checked; no independent subject review”. Projection `sha256:43c5e08b5f8af98c9768ac74faac564e7d45ceb36b95fac38638f273e4f786a4`, frame `sha256:8f9de7ec58537088f06f541a4d7c5e8eecfcff78b4c1e2357f8dd1458b07f0ff`.
 
 ![Gradient on a quadratic surface, stage predict](captures/predict.png)
 
@@ -253,7 +253,7 @@ Equations: 0 of 3 rendered with KaTeX, 3 shown as plain text.
 
 Instruction: Once the gradient at p is shown as an arrow and as values, move p by dragging it in the contour view, with the arrow keys or by typing coordinates, and compare the arrow with the contour lines and with your prediction.
 
-Revealed by the host for this stage: gradient, gradient-drawing, gradient-values. Review notice shown: “Reference-checked; no independent subject review”. Projection `sha256:55fe26a45bdd96070ed1a859bf261c3384bf3b83c337c950b18a9325720e0de6`, frame `sha256:2942c109d8d1c9009938fb66292306a543c7fcd384477fd2fcdfaf4e78163fd4`.
+Revealed by the host for this stage: gradient, gradient-drawing, gradient-values. Review notice shown: “Reference-checked; no independent subject review”. Projection `sha256:e56c50abf041ae6a37a911b42e209bb95104482b31d3039232cacd71efb989e4`, frame `sha256:a36031edb84bdf1af0ac9eba7a2e661adfc14f6cd06b084908a0372996ebc997`.
 
 ![Gradient on a quadratic surface, stage explore-point](captures/explore-point.png)
 
@@ -265,7 +265,7 @@ Equations: 0 of 7 rendered with KaTeX, 7 shown as plain text.
 
 Instruction: Once arrows for the gradient at a grid of points are shown, change a, b and c as well as the point, and compare how the arrows and the contour lines change together.
 
-Revealed by the host for this stage: gradient, gradient-drawing, gradient-values, field, minimum, minimum-values. Review notice shown: “Reference-checked; no independent subject review”. Projection `sha256:7086ff8e789a03b9a2f28c5fdce1616b6385dc513a60072e4ded5ca0a185740f`, frame `sha256:1a8c1c87f6a565e3b408e61e7a154f64975860bb04a56cbf950ecddd886acc14`.
+Revealed by the host for this stage: gradient, gradient-drawing, gradient-values, field, minimum, minimum-values. Review notice shown: “Reference-checked; no independent subject review”. Projection `sha256:1514530b5fae85d4ff53569454cdbc57a44f764d6df087265a5858533a786cbc`, frame `sha256:5c6f1463dd67806278c6430f9ecd3502d00da113a3c69e2a5817539738005b86`.
 
 ![Gradient on a quadratic surface, stage explore-field](captures/explore-field.png)
 
@@ -279,7 +279,7 @@ Instruction: Explain in your own words how the gradient at a point is related to
 
 Host-owned explanation request: How is the gradient at a point related to the contour line through that point, and how do a, b and c change the arrows? (task family surface-gradient-explanation)
 
-Revealed by the host for this stage: gradient, gradient-drawing, gradient-values, field, minimum, minimum-values. Review notice shown: “Reference-checked; no independent subject review”. Projection `sha256:06afa6758274fd94cb7dc525293c3c02cf0a8674ac54d7176696176ca033ab1c`, frame `sha256:860cc50276ebdd6d4b3adc63f3968ab8dc2642139368cf8261b83935ef73b5f7`.
+Revealed by the host for this stage: gradient, gradient-drawing, gradient-values, field, minimum, minimum-values. Review notice shown: “Reference-checked; no independent subject review”. Projection `sha256:64ee403dcebeac88049f75ddd4fbe0d6b8a654d5f89a48eaec2c176fd0be0d3c`, frame `sha256:f169784ca1f8711a79c9acc8812097c96bab8e70b8aadc8a75898fe64e90ef56`.
 
 ![Gradient on a quadratic surface, stage explain](captures/explain.png)
 
@@ -291,7 +291,7 @@ Equations: 0 of 8 rendered with KaTeX, 8 shown as plain text.
 
 Instruction: This activity is closed.
 
-Revealed by the host for this stage: nothing (no solution-bearing groups). Review notice shown: “Reference-checked; no independent subject review”. Projection `sha256:38f9d7baf1a475b70bb1d09219615e61cb0cb07a89fecec16b9edd75e3a3ca02`, frame `sha256:7d032eaa12fa31ab2aa31c2abfe8e1c28401459e9332d1234133e449da6d4abe`.
+Revealed by the host for this stage: nothing (no solution-bearing groups). Review notice shown: “Reference-checked; no independent subject review”. Projection `sha256:b4b599c5f5dfd7c2956d260a1620c9f1a1f1adc2202608ed4e207b5c1a832256`, frame `sha256:96a5001616f62cbe7b48c1558f294878921e5ac1007f65ed54f8d104e9fd17dd`.
 
 ![Gradient on a quadratic surface, stage closed](captures/closed.png)
 
@@ -301,7 +301,7 @@ Files: [PNG](captures/closed.png) · [companion text](captures/closed.txt) · no
 
 Instruction: Explore freely: change a, b, c and the point, turn the 3D view, and compare the arrows, the contour lines and the cross-sections.
 
-Revealed by the host for this stage: gradient, gradient-drawing, gradient-values, field, minimum, minimum-values. Review notice shown: “Reference-checked; no independent subject review”. Projection `sha256:71c874a561b215fe4be6e78d1c73f39af95304700c59a221a14f1b8a182f1012`, frame `sha256:1b4dc6ac0bb3302cfde7fca7b485bc636352c542d2b3e7b5a077573abbb653ee`.
+Revealed by the host for this stage: gradient, gradient-drawing, gradient-values, field, minimum, minimum-values. Review notice shown: “Reference-checked; no independent subject review”. Projection `sha256:cbfeba3a47f22dbe20dc1a8d7058fb5206840434681f6272c2a92d007fde39ef`, frame `sha256:adbfa5d7136d94541c2fb8953ead28f94a85be451285de5489cc5c3da01bfb7a`.
 
 ![Gradient on a quadratic surface, stage free-explore](captures/free-explore.png)
 
@@ -369,6 +369,6 @@ reference-suite digest listed under “Exact identity”; a review of any other 
 ## Regenerate
 
 ```sh
-experiment-kit activity review-packet --installed quadratic-surface-gradient --out docs/study-harness/review-packets/quadratic-surface-gradient --width 720 --theme light --index 4
+explorable-models activity review-packet --installed quadratic-surface-gradient --out docs/study-harness/review-packets/quadratic-surface-gradient --width 720 --theme light --index 4
 ```
 

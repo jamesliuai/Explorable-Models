@@ -9,8 +9,8 @@
  */
 import { fileURLToPath } from 'node:url';
 import { describe, expect, it } from 'vitest';
-import { checkParameters, modelIdentity, MODEL_WORKER_TIMEOUT_MS, validateManifest, type KernelInput, type ModelManifest } from '@experiment-kit/core/model';
-import { INSTALLED_KERNELS, INSTALLED_MODELS, INSTALLED_TEMPLATES } from '@experiment-kit/catalog';
+import { checkParameters, modelIdentity, MODEL_WORKER_TIMEOUT_MS, validateManifest, type KernelInput, type ModelManifest } from '@explorable-models/core/model';
+import { INSTALLED_KERNELS, INSTALLED_MODELS, INSTALLED_TEMPLATES } from '@explorable-models/catalog';
 import { meteredKernel } from './support/work-meter';
 
 const KERNEL_SOURCE = (id: string) => fileURLToPath(new URL(`../../packages/catalog/src/kernels/${id}.ts`, import.meta.url));

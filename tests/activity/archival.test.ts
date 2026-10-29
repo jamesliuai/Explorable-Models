@@ -5,8 +5,8 @@
  * restricted-content leak scan; teacher and host views list the saved values. Fixture-host results with test workers.
  */
 import { afterEach, describe, expect, it } from 'vitest';
-import { archivalView, artifactIntegrity, createStudyHarnessAdapter, type ActivityArtifact, type ArchivalView } from '@experiment-kit/activity';
-import { createInstalledCatalog } from '@experiment-kit/catalog';
+import { archivalView, artifactIntegrity, createStudyHarnessAdapter, type ActivityArtifact, type ArchivalView } from '@explorable-models/activity';
+import { createInstalledCatalog } from '@explorable-models/catalog';
 import {
   enterExplore, guards, harness, manifest, okOf, op, open, presentationGuard, settled, template, type Harness, type Opened,
 } from './support/adapter-harness.js';

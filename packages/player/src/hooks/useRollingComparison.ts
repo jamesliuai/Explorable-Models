@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { ExperimentRuntime, type RunFrame, type ScalarParams } from '@experiment-kit/core';
+import { ExperimentRuntime, type RunFrame, type ScalarParams } from '@explorable-models/core';
 import type { ExperimentEntry } from '../types';
 export function useRollingComparison(entry:ExperimentEntry,parameters:ScalarParams|undefined,frame:RunFrame|undefined,enabled:boolean,override?:ScalarParams) {
  const [runtime,setRuntime]=useState<ExperimentRuntime>();

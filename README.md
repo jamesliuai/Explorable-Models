@@ -130,8 +130,8 @@ Build the six local packages with `npm run pack:study-harness`, then install the
 covers package hashes, peer dependencies, and the `HostPort` implementation.
 
 ```ts
-import { createInstalledCatalog } from '@experiment-kit/catalog';
-import { createStudyHarnessVisualizer } from '@experiment-kit/player/activity';
+import { createInstalledCatalog } from '@explorable-models/catalog';
+import { createStudyHarnessVisualizer } from '@explorable-models/player/activity';
 
 const catalog = createInstalledCatalog({
   reviews: hostReviewRecords,
@@ -152,7 +152,7 @@ if (opened.ok) {
   const surface = visualizer.mount(
     document.querySelector('#activity')!,
     opened.prepared,
-    { spatialLoader: () => import('@experiment-kit/player-3d') },
+    { spatialLoader: () => import('@explorable-models/player-3d') },
   );
   await surface.ready;
 }
@@ -169,7 +169,7 @@ for lifecycle, workers, capture, and content security policy.
 Start from an installed activity:
 
 ```sh
-npm run kit -- activity scaffold my-activity --from quadratic-gradient-descent
+npm run models -- activity scaffold my-activity --from quadratic-gradient-descent
 ```
 
 Then validate the package, run its worker-backed checks and independent references, capture its stages, and prepare
@@ -204,7 +204,7 @@ See [release verification](docs/release.md#verify-a-study-harness-release) for p
 
 ### Verification and scope
 
-The recorded SDK candidate passed **19/19 effective gates** in run `2026-10-29T05-29-41.307Z`: six affected gates were
+The recorded SDK candidate before the namespace rename passed **19/19 effective gates** in run `2026-10-29T05-29-41.307Z`: six affected gates were
 rerun and thirteen unchanged passing results were reused with audited provenance. That record includes 2,319 unit
 tests, 208 Chromium browser tests, and 356 Firefox/WebKit passes with two documented touch-input skips.
 
@@ -213,9 +213,14 @@ These are measurements on one macOS machine. The supported packaged drag scope i
 improvement objective. Dependency ceilings remain 250,000 B gzip for the activity entry and 180,000 B for the retained
 2D consumer. [Measurements and methods](docs/study-harness/performance.md).
 
+The namespace has since changed to `@explorable-models/*`, and the command is `explorable-models`
+(`npm run models` in this checkout). Previous namespace and command aliases are intentionally unsupported.
+The [current rename verification](docs/study-harness/evidence/namespace-rename.json) records the package, CLI, unit,
+browser, clean-consumer, and frontend checks separately from those historical package and binary measurements.
+
 The README and gallery captures were refreshed after that candidate verification. The
 [handoff](docs/study-harness/README.md), [requirement ledger](docs/study-harness/requirement-ledger.md), and
-[immutable verification record](docs/study-harness/evidence/history/verification-2026-10-29T05-56-31.791Z.json)
+[historical verification record](docs/study-harness/evidence/history/verification-2026-10-29T05-56-31.791Z.json)
 retain the exact scope and provenance. Commit-specific CI results belong to their own run.
 
 Actual Study Harness integration, independent subject review, manual assistive-technology and intended-user checks,
@@ -236,6 +241,5 @@ evidence; they do not establish those approvals.
 | [Changelog](CHANGELOG.md) | Changes in the current preview |
 | [Security](SECURITY.md) | Threat model and reporting |
 
-The project was originally called Experiment Kit. The `@experiment-kit/*` package names and `experiment-kit` CLI
-retain that name for compatibility. MIT licensed; see [LICENSE](LICENSE) and
-[third-party notices](THIRD_PARTY_NOTICES.md).
+Packages use the `@explorable-models/*` namespace and the `explorable-models` CLI. MIT licensed; see [LICENSE](LICENSE)
+and [third-party notices](THIRD_PARTY_NOTICES.md).

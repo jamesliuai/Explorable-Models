@@ -1,5 +1,10 @@
 # Study Harness visualization subsystem: handoff index
 
+> **Namespace rename.** Measurements and release records below describe the candidate before the breaking namespace
+> change. JSON copies with a `terminologyProjection` field normalize names for this checkout and identify their
+> unmodified original Git blob. They do not verify the current package hashes or native binaries. Current rename
+> checks are recorded separately; historical full-release results are not relabelled as a new release pass.
+
 This index is the entry point for engineers who integrate, review or continue the Study Harness visualization
 subsystem. The [implementation report](../study-harness-visualizer-implementation-report.md) is the specification. The
 pages below record how this repository implements it, the evidence produced so far, and what remains open.
@@ -15,11 +20,11 @@ procedure remains open; actual host approval and learning outcomes require exter
 
 | Claim | What it requires | Current state |
 | --- | --- | --- |
-| **Engineering complete** | Every implementation and automated acceptance gate passes against exact package hashes, including the packaged reference host and failure recovery | **All automated repository gates pass for this candidate.** Release run `2026-10-29T05-29-41.307Z` passed 19/19 gates; packaged run `full-2026-10-29T05:53:42.866Z` passed 168/168 checks with the console unlocked. Ledger: 55 verified, 3 external-gate, 1 implemented, 1 partially-external. A51 retains the unperformed owner-run network-disabled procedure. Engineering scope is qualified by that remainder; approval for real Study Harness use remains separate. |
+| **Engineering complete** | Every implementation and automated acceptance gate passes against exact package hashes, including the packaged reference host and failure recovery | The candidate before the breaking namespace rename passed 19/19 effective gates and 168/168 packaged checks. These results are historical. The renamed implementation has its own [focused verification record](evidence/namespace-rename.json); fresh full native/performance/release identities remain to be established for distribution. Ledger: 52 verified, 4 implemented, 3 external-gate, 1 partially-external. A51 also retains the owner-run network-disabled procedure. |
 | **Approved for Study Harness use** | The actual host integration passes, the selected activity versions have subject review, and intended-user and assistive-technology checks have been performed | **Not established.** No installed activity has an independent human subject review, so the highest catalogue status is `reference-checked`. No manual assistive-technology or intended-user session has been run, and the real Study Harness application has not run the conformance sequence ([external gates](external-gates.md) G1, G2, G4). The reference host cannot establish this status. |
 | **Learning benefit evaluated** | Study Harness's delayed independent-performance comparison | **Not evaluated.** This is an application-level research outcome (G6), not a library test result. |
 
-Run `2026-10-29T05-29-41.307Z` is an audited resume of failed full run `2026-10-29T04-04-18.057Z`: 6 affected gates were executed again and 13 unchanged passing gates retain their original execution times, logs and provenance. The six SDK tarballs are byte-identical. Only the reviewed verification setup, tests and tooling changed. The failed parent record is preserved; this is complete effective gate coverage, not a claim that all gates ran afresh in one uninterrupted run.
+Run `2026-10-29T05-29-41.307Z` is an audited resume of failed full run `2026-10-29T04-04-18.057Z`: 6 affected gates were executed again and 13 unchanged passing gates retain their original execution times, logs and provenance. Within that historical resumed run, the six SDK tarballs were byte-identical. Only the reviewed verification setup, tests and tooling changed. The failed parent record is preserved; this is complete effective gate coverage, not a claim that all gates ran afresh in one uninterrupted run.
 
 Automated checks, reference agreement and visual polish are engineering evidence. They are not scientific review,
 accessibility certification or evidence of learning benefit.
@@ -35,7 +40,7 @@ accessibility certification or evidence of learning benefit.
 | Native evidence | [evidence/native-spike.md](evidence/native-spike.md) ([JSON](evidence/native-spike.json)), [evidence/native-conformance.md](evidence/native-conformance.md) ([JSON](evidence/native-conformance.json)), [evidence/host-conformance-reference-fixture.json](evidence/host-conformance-reference-fixture.json) | Spike results, the packaged conformance run with binary and tarball hashes, the effective CSP and per-scenario checks, and the HostPort conformance kit's record for the reference host (template form, `reference-fixture-host`) |
 | Content packages | [content-packages.md](content-packages.md) | The five installed activities, their domains, conventions, and undefined and boundary states |
 | Review packets | [review-packets/README.md](review-packets/README.md) | Per-template subject-review packets for a human reviewer. Every sign-off section is empty. |
-| Authoring | [authoring.md](authoring.md) | `experiment-kit activity` commands, package format, import allowlist, worker-only execution of authored code |
+| Authoring | [authoring.md](authoring.md) | `explorable-models activity` commands, package format, import allowlist, worker-only execution of authored code |
 | Agent tools | [agent-tools.md](agent-tools.md), [activity-tool-schemas.json](activity-tool-schemas.json) | Policy-scoped activity tools, the scope model, disclosure rules, the relay, and repair cases |
 | Compatibility | [compatibility.md](compatibility.md) | Compatibility matrix by format and version, read/write rules, [migration examples](compatibility.md#4-migration-examples), [support policy](compatibility.md#5-support-policy), [rollback procedure](compatibility.md#6-rollback-procedure) |
 | Lifecycle | [lifecycle.md](lifecycle.md) | Scheduling, timers, worker-pool policy (dispose on release), suspension and resume, counts measured by the lifecycle tests |
@@ -59,13 +64,13 @@ accessibility certification or evidence of learning benefit.
 | Reference host and instructions | [`examples/study-harness-tauri`](../../examples/study-harness-tauri/README.md) | — | present |
 | Requirement ledger | [requirement-ledger.md](requirement-ledger.md) ([JSON](requirement-ledger.json)) | `npm run ledger` | present |
 | Machine-readable verification results | `release/study-harness/verification.json` (latest run; every gate, exact counts, tarball sha256 set, source and lock identity) with append-only copies in `release/study-harness/history/` and, for full runs, `docs/study-harness/evidence/history/` (created by the first full run); `release/preview/verification.json`, `package-evidence.json`, `cross-browser-evidence.json`; [`evidence/native-conformance.json`](evidence/native-conformance.json), [`evidence/consumer.json`](evidence/consumer.json), [`evidence/performance.json`](evidence/performance.json) | `npm run release:study-harness`; `npm run release:preview`; `npm run test:native`; `npm run verify:consumer`; `npm run benchmark` | candidate run `2026-10-29T05-29-41.307Z` passed with audited reuse; commit-specific CI runs retain their own source identity and scope |
-| Numerical reference reports | `tests/reference/fixtures/activities/` with oracles in `tests/reference/oracles/`; per-case results in each review packet's `packet.json` | `npm test`; `npm run kit -- activity reference` | present |
-| Representative captures | stage captures in `review-packets/<templateId>/` and [`evidence/native-spike-captures/`](evidence/native-spike-captures) | `npm run kit -- activity review-packet --installed <id>` | present; the spatial templates are captured through the 2D projection fallback |
+| Numerical reference reports | `tests/reference/fixtures/activities/` with oracles in `tests/reference/oracles/`; per-case results in each review packet's `packet.json` | `npm test`; `npm run models -- activity reference` | present |
+| Representative captures | stage captures in `review-packets/<templateId>/` and [`evidence/native-spike-captures/`](evidence/native-spike-captures) | `npm run models -- activity review-packet --installed <id>` | present; the spatial templates are captured through the 2D projection fallback |
 | Performance and resource evidence | [evidence/performance.md](evidence/performance.md) ([JSON](evidence/performance.json); every run, failed ones included, also in `evidence/history/performance-*.json` with its source commit, dirty flag and lock digest), budgets in [evidence/consumer.md](evidence/consumer.md); [lifecycle.md §4](lifecycle.md#4-measured-counts) (lifecycle counts, dev server); 2D consumer p50/p95 workloads in `release/preview/package-evidence.json` | `npm run benchmark`; `npm run verify:consumer`; `tests/browser/study-lifecycle.spec.ts`; `npm run verify:packages` | one desktop machine in Chromium, with packaged WKWebView measurements recorded separately; not low-end-device or host-level guarantees |
 | Migration fixtures | [`packages/activity/fixtures/migrations/`](../../packages/activity/fixtures/migrations/README.md) | `tests/activity/migrations.test.ts` | present |
 | Clean-consumer evidence | [evidence/consumer.json](evidence/consumer.json) (the six packed tarballs in a clean install, production build, CSP flows, budgets); `release/preview/package-evidence.json` (2D consumer); `release/release-manifest.json` (unified tarball with source commit, dirty flag, lock digest and Node version; A56 activity authoring); `examples/study-harness-tauri/packed-artifacts.json` (tarballs installed into the reference host) | `npm run verify:consumer`; `npm run verify:packages`; `npm run release`; `install-packed.mjs` | generated per run; the release pipeline checks that each names the same tarball sha256 set |
 | Study Harness tarballs | `release/study-harness/packages/` and `manifest.json` (generated, not committed) | `npm run pack:study-harness` (the release pipeline packs once and every gate uses that pack) | generated per run |
-| Review packets | [review-packets/](review-packets/README.md) | `npm run kit -- activity review-packet --installed <id>` | present; unsigned |
+| Review packets | [review-packets/](review-packets/README.md) | `npm run models -- activity review-packet --installed <id>` | present; unsigned |
 
 ## 3 Integrate into Study Harness
 
@@ -164,10 +169,10 @@ lockfile sha256 and the Node version. In the host application:
 2. Check each tarball's sha256 against `manifest.json`. Install with an isolated, empty npm cache and
    `--ignore-scripts`. `examples/study-harness-tauri/scripts/install-packed.mjs` does both and records the installed
    identities.
-3. Peer dependencies: `react` and `react-dom` (`>=18.3.1 <20`). `@experiment-kit/activity` is an optional peer of
-   `@experiment-kit/player`, but it is required when you import `@experiment-kit/player/activity`. `three@0.186.1` is a
-   peer of `@experiment-kit/player-3d`; install it only if you load spatial activities.
-4. Load `@experiment-kit/player-3d` only through a dynamic `import()` in `spatialLoader`. That keeps Three.js out of
+3. Peer dependencies: `react` and `react-dom` (`>=18.3.1 <20`). `@explorable-models/activity` is an optional peer of
+   `@explorable-models/player`, but it is required when you import `@explorable-models/player/activity`. `three@0.186.1` is a
+   peer of `@explorable-models/player-3d`; install it only if you load spatial activities.
+4. Load `@explorable-models/player-3d` only through a dynamic `import()` in `spatialLoader`. That keeps Three.js out of
    the 2D path.
 5. Ship the license files from `dist/activity/` with the application ([third-party notices](../../THIRD_PARTY_NOTICES.md)).
 
@@ -188,7 +193,7 @@ lockfile sha256 and the Node version. In the host application:
    honest unseen, uncertain or displayed records, one reveal record and receipt, and no duplicate reveal or prediction
    events. The reference runner's crash points are `intent-before-commit`, `intent-after-commit`,
    `intent-after-reply`, `display-ack-before-commit` and (interrupted save) `save-before-commit`.
-5. **HostPort conformance kit.** Run `runHostPortConformance` (`@experiment-kit/activity/conformance`) against your
+5. **HostPort conformance kit.** Run `runHostPortConformance` (`@explorable-models/activity/conformance`) against your
    `HostPort` with your host hooks ([G2](external-gates.md#g2-actual-study-harness-integration-a54)); it checks the
    §3.1 semantics at every step of the sequence and returns the result record in the template form.
 6. **Record** the application commit, binary hash, platform and per-step results in

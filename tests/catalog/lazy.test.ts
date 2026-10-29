@@ -7,8 +7,8 @@
  */
 import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
-import { createStudyHarnessAdapter, templateDiscovery, type ReviewRecord } from '@experiment-kit/activity';
-import { createInstalledCatalog, createLazyCatalog, INSTALLED_INDEX, INSTALLED_KERNEL_SOURCE, INSTALLED_KERNELS, INSTALLED_TEMPLATES } from '@experiment-kit/catalog';
+import { createStudyHarnessAdapter, templateDiscovery, type ReviewRecord } from '@explorable-models/activity';
+import { createInstalledCatalog, createLazyCatalog, INSTALLED_INDEX, INSTALLED_KERNEL_SOURCE, INSTALLED_KERNELS, INSTALLED_TEMPLATES } from '@explorable-models/catalog';
 import { INSTALLED_INDEX_PATH, buildInstalledIndex, renderInstalledIndex } from '../../packages/catalog/scripts/installed-index.js';
 import { CONTENT_LOADERS } from '../../packages/catalog/src/content/loaders.js';
 import { harness, open, policyFor, requestFor, settled } from '../activity/support/adapter-harness.js';

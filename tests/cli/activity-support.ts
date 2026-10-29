@@ -1,5 +1,5 @@
 /**
- * Shared helpers for the activity authoring CLI tests: run `experiment-kit activity …` in-process and parse its JSON
+ * Shared helpers for the activity authoring CLI tests: run `explorable-models activity …` in-process and parse its JSON
  * report, temporary directories, and small JSON edits of scaffolded packages.
  */
 import { mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
@@ -33,7 +33,7 @@ export async function activity<T = Record<string, unknown>>(...args: string[]): 
 }
 
 export async function temporaryDirectory(prefix: string): Promise<{ path: string; dispose(): Promise<void> }> {
-  const directory = await mkdtemp(path.join(tmpdir(), `experiment-kit-${prefix}-`));
+  const directory = await mkdtemp(path.join(tmpdir(), `explorable-models-${prefix}-`));
   return { path: directory, dispose: () => rm(directory, { recursive: true, force: true }) };
 }
 

@@ -1,6 +1,6 @@
 # Subject-review packet: Matrices as transformations of the plane
 
-> Prepared automatically by `experiment-kit activity review-packet` (toolkit 0.3.0-preview.1) for a human subject reviewer.
+> Prepared automatically by `explorable-models activity review-packet` (toolkit 0.3.0-preview.1) for a human subject reviewer.
 > It is engineering evidence, **not** a subject review, an accessibility certification or evidence of learning benefit.
 > Catalogue status of this exact version: **reference-checked** — no independent human review is recorded.
 > The reviewer sign-off at the end is empty; an engineering agent cannot sign it.
@@ -10,10 +10,10 @@
 | Item | Value |
 | --- | --- |
 | Template | linear-transformation@1.0.0 |
-| Template digest | `sha256:b76adcb12a8931cd3d0629e89beaad6e5920d56619c9fbe238bccffdde0521d3` |
+| Template digest | `sha256:4d967cfc97163d64edc51de87cc43f0cdffd7df2c170ef7bb06d282ed55a8796` |
 | Model | linear-transformation@1.0.0 |
-| Model digest | `sha256:feeb312898a4fda3e38f2743b71f197fe0c91333e9e3921cd8239d98f441a536` |
-| Scientific revision | `sha256:8d5544b2b5e7475d724356541e8ddac8caa0d28c304376787c3f3d232f431fcd` |
+| Model digest | `sha256:556cf36026c7eaf95e03aa1974f3954a77b1209f5405e25b815f9d1f9dc298e2` |
+| Scientific revision | `sha256:1784fe3fb59af950f7a6ec8e7344a4b53925b046deee2069d1bc727ef7993207` |
 | Presentation revision | `sha256:b598bd8b32f1a4c9da32b569c873cfba0160712092556fbc770d7d6a7cb6be8e` |
 | Reference suite bound by the model | linear-transformation:1.0.0 `sha256:1bcb216bab98b268056748e3e4b53fea6cd393e5487ea35449d602c57a8ed9a5` |
 | Reference fixture file | `tests/reference/fixtures/activities/linear-transformation.json` `sha256:1bcb216bab98b268056748e3e4b53fea6cd393e5487ea35449d602c57a8ed9a5` |
@@ -113,7 +113,7 @@ Suite `linear-transformation:1.0.0` for linear-transformation@1.0.0: **24 of 24 
 - Author of the cases: Reference cases from the implementation report §12.2 (identity, nonaxis rotation, nonsymmetric shear, reflection, singular collapse, zero matrix, zero vector) and boundary cases added for this catalogue. Values were derived by hand as closed forms and evaluated with plain double arithmetic, except where a case says otherwise; every case is cross-checked against tests/reference/oracles/linear-transformation.ts, an exact rational oracle that shares no code with the catalogue kernel.
 - Review statement of the fixture: No independent human subject reviewer has approved these cases. Automated agreement is engineering evidence only.
 - Semantics: Column-vector convention: M = [[m11, m12], [m21, m22]] acts by M·v, so M·e₁ = (m11, m21) is the first column and M·e₂ = (m12, m22) the second. Every value concerns the matrix with exactly the stored double entries: det M = m11·m22 − m12·m21, area scale |det M| ≥ 0, orientation from the exact sign of det M (preserved > 0, reversed < 0, collapsed = 0), rank 0/1/2, Δ = (tr M)² − 4·det M, eigen category from the exact sign of Δ and whether M = λ·I (two-real, repeated-scalar, repeated-defective, complex). Eigenvalues are listed λ₁ ≥ λ₂ with multiplicity; eigen-directions are unit vectors whose first nonzero component is positive. The report case [[1, 2], [2, 4]] lies outside the declared entry domain [−3, 3] (m22 = 4); it is represented by [[0.5, 1], [1, 2]], which has the same rank, image line and eigen-directions.
-- Converted from `tests/reference/fixtures/activities/linear-transformation.json` `sha256:1bcb216bab98b268056748e3e4b53fea6cd393e5487ea35449d602c57a8ed9a5` (suite linear-transformation:1.0.0): Converted by experiment-kit activity tooling: case IDs, labels, provenance, parameters and tolerances copied unchanged; quantity expectations restated as experiment-kit.reference-fixtures 1.0 expectations.
+- Converted from `tests/reference/fixtures/activities/linear-transformation.json` `sha256:1bcb216bab98b268056748e3e4b53fea6cd393e5487ea35449d602c57a8ed9a5` (suite linear-transformation:1.0.0): Converted by explorable-models activity tooling: case IDs, labels, provenance, parameters and tolerances copied unchanged; quantity expectations restated as explorable-models.reference-fixtures 1.0 expectations.
 - Not compared by this runner: The unit-square image polygon (vertices and degeneracy) is checked by tests/reference/activities/linear-transformation.test.ts.
 - Quantities without any expectation in this suite: `basis.e1`, `basis.e2`, `vector.v`.
 
@@ -238,7 +238,7 @@ Each stage was prepared through the activity adapter with the browser integratio
 
 Instruction: Vectors are columns and M acts by M·v. The first column of M is where e₁ = (1, 0) lands and the second column is where e₂ = (0, 1) lands. The grid, the unit square, e₁, e₂, their images and the test vector v are shown; the transformed plane is not shown yet.
 
-Revealed by the host for this stage: nothing (no solution-bearing groups). Review notice shown: “Reference-checked; no independent subject review”. Projection `sha256:ab0703662c82725dd1696e5659b0f816eecc4de21177f7e335f7dbf24095b62b`, frame `sha256:8f103fb02d8d304ba0dfe1d98cb5e015ef00eeaea0c11d78abefa37d8b204111`.
+Revealed by the host for this stage: nothing (no solution-bearing groups). Review notice shown: “Reference-checked; no independent subject review”. Projection `sha256:3b5aabcd9baaa40d1dd0edda297c20611a1798781dac1fc6016844ed332872ed`, frame `sha256:a45234bb66694a2a910e1886dd10e5199e7b3d6ca19468f1fb635ffc1d5034ac`.
 
 ![Matrices as transformations of the plane, stage prepare](captures/prepare.png)
 
@@ -252,7 +252,7 @@ Instruction: The arrows Me₁ and Me₂ are the columns of the matrix shown. Bef
 
 Host-owned prediction request: For this matrix, will M keep the counterclockwise order of e₁ and e₂, reverse it, or flatten the plane onto a line or a point? Which directions through the origin, if any, will M map onto their own line? (task family linear-transformation-prediction)
 
-Revealed by the host for this stage: nothing (no solution-bearing groups). Review notice shown: “Reference-checked; no independent subject review”. Projection `sha256:05a001b113e964116d23835661ec587dc29f3647590d9b70acb1dfc47e1dee72`, frame `sha256:f81edb57661c5e728636aaec2f5a8cce2b574a5e8f3446727014f85e5f826bc2`.
+Revealed by the host for this stage: nothing (no solution-bearing groups). Review notice shown: “Reference-checked; no independent subject review”. Projection `sha256:257b6287fb1d1a6a3aa214bf78f741b50530a454a52015df13c5f0f6217d97d6`, frame `sha256:f4c9a88d1f1678297075e27a31bf4f370ec1ac95a05198498724ffdbec7bbf26`.
 
 ![Matrices as transformations of the plane, stage predict](captures/predict.png)
 
@@ -264,7 +264,7 @@ Equations: 2 of 2 rendered with KaTeX.
 
 Instruction: Change the matrix entries or type exact values, and watch the transformed grid, the image of the unit square, Mv, the determinant and the area scale. Compare what you see with your prediction.
 
-Revealed by the host for this stage: transformed, image-vector, determinant, collapse, determinant-values. Review notice shown: “Reference-checked; no independent subject review”. Projection `sha256:678b3851cdbecd00edef38cd2f69f1c1d71e0353fb357c342e0eb88acc902c9c`, frame `sha256:b683ee3501514a72777fe85361ea6aaf507dff55fd6ba21977d39c60f913a41d`.
+Revealed by the host for this stage: transformed, image-vector, determinant, collapse, determinant-values. Review notice shown: “Reference-checked; no independent subject review”. Projection `sha256:0b788f9f918aa7865e29a1f6e113d33dac0120cd6ae40b73e5e254f480e4e2cf`, frame `sha256:37ec21d00a24373eb6deaf504aa95bf5e990fc7cb03a8328c5112ea6241ac2fe`.
 
 ![Matrices as transformations of the plane, stage explore](captures/explore.png)
 
@@ -276,7 +276,7 @@ Equations: 4 of 4 rendered with KaTeX.
 
 Instruction: Now look for directions that M maps onto their own line through the origin. Compare matrices with two such directions, exactly one, every direction, and none.
 
-Revealed by the host for this stage: transformed, image-vector, determinant, collapse, determinant-values, eigen, eigen-lines, eigen-values. Review notice shown: “Reference-checked; no independent subject review”. Projection `sha256:57777b9f4b390a9bf285beb6ada9d955e2c8b24014702fc13d2d3d44235974bd`, frame `sha256:27fcf82f2ada6179a101b1a56464500383ac4456e3823370b529b2d124319120`.
+Revealed by the host for this stage: transformed, image-vector, determinant, collapse, determinant-values, eigen, eigen-lines, eigen-values. Review notice shown: “Reference-checked; no independent subject review”. Projection `sha256:ad72e1b045c1b986d79f700b68c893b53e5851325c3f3e0e9e957f171eb27593`, frame `sha256:d832b84a1beb82fb8feef78f381ebebc877c17e9ba85ea2b0bd5149b75c642c8`.
 
 ![Matrices as transformations of the plane, stage explore-eigen](captures/explore-eigen.png)
 
@@ -290,7 +290,7 @@ Instruction: Explain in your own words how the matrix entries determine orientat
 
 Host-owned explanation request: How do the columns of M and its determinant tell you whether orientation is kept or reversed, how areas scale and whether the plane collapses? When does a matrix have no real unchanged direction, exactly one, or every direction? (task family linear-transformation-explanation)
 
-Revealed by the host for this stage: transformed, image-vector, determinant, collapse, determinant-values, eigen, eigen-lines, eigen-values. Review notice shown: “Reference-checked; no independent subject review”. Projection `sha256:e4f93a26ee79fb138e5e9906135214e28ff5944b956e7932f21b133ed1cc1934`, frame `sha256:766cf5d2ab74085f5b6f30f51ccfb8d2ea10f9e515a594fcc65fc0d8cd2544b0`.
+Revealed by the host for this stage: transformed, image-vector, determinant, collapse, determinant-values, eigen, eigen-lines, eigen-values. Review notice shown: “Reference-checked; no independent subject review”. Projection `sha256:e455f5ba659e75923b365f6be8a3ef229474438552357dc9e9bef796ff926d6f`, frame `sha256:2aa136b6c3f07c3196e409b171020248745bf7e0b415a72dd8d9569e87a113a1`.
 
 ![Matrices as transformations of the plane, stage explain](captures/explain.png)
 
@@ -302,7 +302,7 @@ Equations: 6 of 6 rendered with KaTeX.
 
 Instruction: This activity is closed.
 
-Revealed by the host for this stage: nothing (no solution-bearing groups). Review notice shown: “Reference-checked; no independent subject review”. Projection `sha256:534633ad753259b94049d8dac885c6de538dda82331a8a540d77aa6b94a867bb`, frame `sha256:9169c9eec08e4cf5a46fd92f7f01382e3180b3556621ad422698b6bc287c325a`.
+Revealed by the host for this stage: nothing (no solution-bearing groups). Review notice shown: “Reference-checked; no independent subject review”. Projection `sha256:2cdd06e8c66fdee05d64db096985519703aeb7ecf6fdd3c59859c28e456ae45f`, frame `sha256:fcbd483114c5a43e48ba5006904cc6f2bdda9036be3e89a05030c0ce537de0b8`.
 
 ![Matrices as transformations of the plane, stage closed](captures/closed.png)
 
@@ -312,7 +312,7 @@ Files: [PNG](captures/closed.png) · [companion text](captures/closed.txt) · no
 
 Instruction: Explore freely: change the matrix and the test vector, try the scenarios, and compare the determinant, the area scale and the unchanged directions.
 
-Revealed by the host for this stage: transformed, image-vector, determinant, collapse, determinant-values, eigen, eigen-lines, eigen-values. Review notice shown: “Reference-checked; no independent subject review”. Projection `sha256:d4438acbcd0478bb03693a781cb253bbb19b9db45da3b0c5c23f247fbc7cc06d`, frame `sha256:dc9014c21a555edbca73727d4411764444bc84562dfae79f87a119f00899e98e`.
+Revealed by the host for this stage: transformed, image-vector, determinant, collapse, determinant-values, eigen, eigen-lines, eigen-values. Review notice shown: “Reference-checked; no independent subject review”. Projection `sha256:54c3cd0068664cc3dfd6c7bf45e51658fa68f3dc9a4a9470b2a286901311c2eb`, frame `sha256:9a74a3844ded72ab4fb13b416637b0e5ba4baefd456877937339258dad0c2d78`.
 
 ![Matrices as transformations of the plane, stage free-explore](captures/free-explore.png)
 
@@ -376,6 +376,6 @@ reference-suite digest listed under “Exact identity”; a review of any other 
 ## Regenerate
 
 ```sh
-experiment-kit activity review-packet --installed linear-transformation --out docs/study-harness/review-packets/linear-transformation --width 720 --theme light --index 4
+explorable-models activity review-packet --installed linear-transformation --out docs/study-harness/review-packets/linear-transformation --width 720 --theme light --index 4
 ```
 

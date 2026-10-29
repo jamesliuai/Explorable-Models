@@ -1,8 +1,8 @@
 /**
  * Activity authoring from a packed toolkit tree (A56): the unified release keeps the `packages/<name>/src` layout and
- * installs no workspace links, so `@experiment-kit/*` must resolve from TOOLKIT_ROOT sources, not from monorepo
- * `node_modules/@experiment-kit` links or the repository's tsconfig paths. This builds that layout in a temporary
- * directory (sources copied, third-party dependencies linked, no `@experiment-kit` packages, no tsconfig.json) and runs
+ * installs no workspace links, so `@explorable-models/*` must resolve from TOOLKIT_ROOT sources, not from monorepo
+ * `node_modules/@explorable-models` links or the repository's tsconfig paths. This builds that layout in a temporary
+ * directory (sources copied, third-party dependencies linked, no `@explorable-models` packages, no tsconfig.json) and runs
  * the real executable from an unrelated working directory. The release pipeline's clean npm install remains the
  * authoritative clean-install check.
  */
@@ -26,7 +26,7 @@ describe('activity commands from a packed toolkit tree', () => {
   let tree: string, elsewhere: string;
   const cli = async (...args: string[]) => {
     try {
-      const { stdout } = await run(process.execPath, [path.join(tree, 'packages/cli/bin/experiment-kit.mjs'), ...args], { cwd: elsewhere, maxBuffer: 32 * 1024 * 1024, env: { ...process.env, NODE_OPTIONS: '' } });
+      const { stdout } = await run(process.execPath, [path.join(tree, 'packages/cli/bin/explorable-models.mjs'), ...args], { cwd: elsewhere, maxBuffer: 32 * 1024 * 1024, env: { ...process.env, NODE_OPTIONS: '' } });
       return { code: 0, stdout, report: stdout.trim().startsWith('{') ? JSON.parse(stdout) as Record<string, unknown> : null };
     } catch (error) {
       const failure = error as { code?: number; stdout?: string; stderr?: string };
@@ -36,20 +36,20 @@ describe('activity commands from a packed toolkit tree', () => {
 
   beforeAll(async () => {
     work = await temporaryDirectory('activity-packed');
-    tree = path.join(work.path, 'experiment-kit');
+    tree = path.join(work.path, 'explorable-models');
     elsewhere = path.join(work.path, 'author-project');
     await mkdir(elsewhere, { recursive: true });
-    for (const relative of COPIED) await cp(path.join(repository, relative), path.join(tree, relative), { recursive: true, filter: source => !/[\\/](dist|node_modules|\.experiment-kit)([\\/]|$)/.test(source) });
+    for (const relative of COPIED) await cp(path.join(repository, relative), path.join(tree, relative), { recursive: true, filter: source => !/[\\/](dist|node_modules|\.explorable-models)([\\/]|$)/.test(source) });
     await mkdir(path.join(tree, 'node_modules'));
     for (const entry of await readdir(path.join(repository, 'node_modules'))) {
-      if (entry === '@experiment-kit' || entry === '.vite' || entry === '.cache') continue;
+      if (entry === '@explorable-models' || entry === '.vite' || entry === '.cache') continue;
       await symlink(path.join(repository, 'node_modules', entry), path.join(tree, 'node_modules', entry));
     }
   }, 60_000);
   afterAll(async () => { await work.dispose(); });
 
   it('has no workspace links or tsconfig paths to lean on', () => {
-    expect(existsSync(path.join(tree, 'node_modules/@experiment-kit'))).toBe(false);
+    expect(existsSync(path.join(tree, 'node_modules/@explorable-models'))).toBe(false);
     expect(existsSync(path.join(tree, 'tsconfig.json'))).toBe(false);
     expect(existsSync(path.join(elsewhere, 'tsconfig.json'))).toBe(false);
   });

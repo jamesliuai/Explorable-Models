@@ -1,6 +1,6 @@
 /** Installed activity templates (deep-frozen data). New activity packages append their template here. */
-import type { ActivityTemplate } from '@experiment-kit/activity';
-import { deepFreeze } from '@experiment-kit/core';
+import type { ActivityTemplate } from '@explorable-models/activity';
+import { deepFreeze } from '@explorable-models/core';
 import { functionDerivativeTemplate } from './function-derivative.js';
 import { linearTransformationTemplate } from './linear-transformation.js';
 import { quadraticGradientDescentTemplate } from './quadratic-gradient-descent.js';

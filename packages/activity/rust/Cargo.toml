@@ -3,7 +3,7 @@ name = "study-harness-contracts"
 version = "0.1.0"
 edition = "2021"
 rust-version = "1.85"
-description = "Validates Study Harness activity records against the JSON Schemas emitted by @experiment-kit/activity."
+description = "Validates Study Harness activity records against the JSON Schemas emitted by @explorable-models/activity."
 license = "MIT"
 publish = false
 

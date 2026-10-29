@@ -1,7 +1,7 @@
 /**
- * `@experiment-kit/player/activity`: the Study Harness learner surface and `createStudyHarnessVisualizer` (the six report
+ * `@explorable-models/player/activity`: the Study Harness learner surface and `createStudyHarnessVisualizer` (the six report
  * operations around the activity adapter). This entry renders authorized
- * `LearnerProjection`s from an `ActivityBinding` only. It does not import Three.js, `@experiment-kit/player-3d`, the
+ * `LearnerProjection`s from an `ActivityBinding` only. It does not import Three.js, `@explorable-models/player-3d`, the
  * studio/gallery, Playwright, CLI or provider SDKs; KaTeX is reached only through the default lazy `mathLoader`, and
  * the spatial renderer only through a host-supplied `spatialLoader`.
  */

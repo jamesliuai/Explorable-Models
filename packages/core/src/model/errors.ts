@@ -1,6 +1,6 @@
 /**
  * Structured model errors. Codes are the subset of the Study Harness diagnostic vocabulary
- * (`@experiment-kit/activity` `DiagnosticCode`) that the model layer can produce, plus `WORKER_PROTOCOL` for a worker
+ * (`@explorable-models/activity` `DiagnosticCode`) that the model layer can produce, plus `WORKER_PROTOCOL` for a worker
  * reply that violates the message protocol (adapters may present it as a worker failure). Messages never contain
  * parameter values, hidden quantities or stack traces.
  */

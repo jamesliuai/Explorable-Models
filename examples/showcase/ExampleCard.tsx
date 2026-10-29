@@ -1,5 +1,5 @@
 import { useId, useSyncExternalStore } from 'react';
-import type { DocumentInteractionController } from '@experiment-kit/core/declarative';
+import type { DocumentInteractionController } from '@explorable-models/core/declarative';
 import type { Exhibit } from './catalog';
 import { Parameter, Timeline } from './Controls';
 import * as Scenes from './scenes';

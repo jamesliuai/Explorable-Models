@@ -63,9 +63,9 @@ jobs:
             release/study-harness/history/
             release/study-harness/logs/
             release/study-harness/packages/manifest.json
-            /tmp/experiment-kit-final-verification/
-            /tmp/experiment-kit-playwright/
-            /tmp/experiment-kit-public-preview/
+            /tmp/explorable-models-final-verification/
+            /tmp/explorable-models-playwright/
+            /tmp/explorable-models-public-preview/
           if-no-files-found: ignore
           retention-days: 7
 

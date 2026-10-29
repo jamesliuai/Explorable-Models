@@ -84,10 +84,10 @@ const CONFORMANCE_COMMANDS = ['conformance_scenario', 'conformance_report', 'con
 const RELEASE_FORBIDDEN = [...CONFORMANCE_COMMANDS, 'allow-conformance', 'SH_CRASH_AT', 'SH_REPORT_OUT', 'SH_SCENARIO', ...CRASH_POINTS, 'std::process::abort()'];
 const BUILDS = {
   conformance: {
-    targetDir: path.join(tauriDir, 'target/conformance'), product: 'StudyHarnessReferenceConformance', identifier: 'dev.experimentkit.studyharness.reference.conformance',
+    targetDir: path.join(tauriDir, 'target/conformance'), product: 'StudyHarnessReferenceConformance', identifier: 'dev.explorablemodels.studyharness.reference.conformance',
     args: ['--features', 'conformance', '--config', 'src-tauri/tauri.conformance.conf.json'], dist: path.join(appRoot, '.conformance-out/dist'),
   },
-  release: { targetDir: path.join(tauriDir, 'target'), product: 'StudyHarnessReference', identifier: 'dev.experimentkit.studyharness.reference', args: [], dist: path.join(appRoot, 'dist') },
+  release: { targetDir: path.join(tauriDir, 'target'), product: 'StudyHarnessReference', identifier: 'dev.explorablemodels.studyharness.reference', args: [], dist: path.join(appRoot, 'dist') },
 };
 const home = homedir();
 const redact = (value) => {
@@ -103,7 +103,7 @@ const osVersion = spawnSync('sw_vers', ['-productVersion'], { encoding: 'utf8' }
 const IDENTITY_ENV = { SH_SOURCE_COMMIT: source.commit ?? '', SH_SOURCE_DIRTY: source.dirty === false ? '0' : '1', SH_OS_VERSION: osVersion };
 const sha256File = (file) => sha256(readFileSync(file));
 const log = (text) => console.log(`[conformance] ${text}`);
-/** Canonical JSON as `canonicalJSON` in @experiment-kit/core for the plain JSON the host stores (sorted keys). */
+/** Canonical JSON as `canonicalJSON` in @explorable-models/core for the plain JSON the host stores (sorted keys). */
 const canonical = (value) => Array.isArray(value) ? `[${value.map(canonical).join(',')}]`
   : value && typeof value === 'object' ? `{${Object.keys(value).sort().map((key) => `${JSON.stringify(key)}:${canonical(value[key])}`).join(',')}}` : JSON.stringify(value);
 const digest = (value) => `sha256:${sha256(canonical(value))}`;
@@ -370,9 +370,9 @@ async function releaseScenario(builds) {
     const urls = [...new Set([...text.matchAll(/https?:\/\/[A-Za-z0-9._~:/?#@!$&'*+,;=%-]+/g)].map((match) => match[0].replace(/[`'",;)\\]+$/, '')))];
     const classify = (url) => /^http:\/\/www\.w3\.org\//.test(url) ? 'XML/SVG/MathML namespace identifier (never fetched)'
       : /^https:\/\/json-schema\.org\/draft\/2020-12\/schema/.test(url) ? 'JSON Schema $schema identifier (never fetched)'
-        : /^https:\/\/experiment-kit\.invalid\//.test(url) ? 'schema $id under the reserved .invalid name (never fetched)'
+        : /^https:\/\/explorable-models\.invalid\//.test(url) ? 'schema $id under the reserved .invalid name (never fetched)'
           : /^https:\/\/react\.dev\/errors\//.test(url) ? 'React production error-message text (never fetched)'
-            : /^https:\/\/experiment-kit\.dev\/schema\//.test(url) ? 'JSON Schema $id of the host conformance result template (identifier, never fetched; conformance build only)'
+            : /^https:\/\/explorable-models\.dev\/schema\//.test(url) ? 'JSON Schema $id of the host conformance result template (identifier, never fetched; conformance build only)'
               : url === 'https://jcgt.org/published/0007/04/01/' ? 'literature citation in a Three.js GLSL shader comment inside the lazy 3D chunk (never fetched)'
                 : /^https:\/\/remote\.invalid\//.test(url) ? 'deliberate CSP negative probe (reserved .invalid name; conformance build only)'
                   : 'UNEXPECTED';
@@ -729,7 +729,7 @@ async function restoreScenario(restart) {
 }
 
 /**
- * The host-agnostic HostPort conformance kit (`@experiment-kit/activity/conformance`) run in the packaged conformance app
+ * The host-agnostic HostPort conformance kit (`@explorable-models/activity/conformance`) run in the packaged conformance app
  * against the Rust reference host (labelled `reference-fixture-host`). Its result record is checked here against the
  * docs template file (with the packed kit's checker, after confirming the kit's embedded schema equals that file) and
  * written next to the evidence.
@@ -745,8 +745,8 @@ async function hostPortKitScenario() {
   // The record is checked here against the docs template file itself with the packed kit's checker (from the tarball
   // installed in this app), after confirming that the kit's embedded schema is exactly that template.
   const schema = JSON.parse(readFileSync(path.join(repoRoot, 'docs/study-harness/templates/host-conformance-result.schema.json'), 'utf8'));
-  const packedKit = await import(pathToFileURL(path.join(appRoot, 'node_modules/@experiment-kit/activity/dist/conformance/index.js')).href);
-  const { schemaErrors } = await import(pathToFileURL(path.join(appRoot, 'node_modules/@experiment-kit/core/dist/model/index.js')).href);
+  const packedKit = await import(pathToFileURL(path.join(appRoot, 'node_modules/@explorable-models/activity/dist/conformance/index.js')).href);
+  const { schemaErrors } = await import(pathToFileURL(path.join(appRoot, 'node_modules/@explorable-models/core/dist/model/index.js')).href);
   const sameSchema = isDeepStrictEqual(JSON.parse(JSON.stringify(packedKit.HOST_CONFORMANCE_RESULT_JSON_SCHEMA)), schema);
   const templateErrors = schemaErrors(kit.result, schema);
   checks.add('kit-result-conforms-to-template', sameSchema && templateErrors.length === 0 && kit.problems.length === 0, { sameSchema, templateErrors, kitProblems: kit.problems });

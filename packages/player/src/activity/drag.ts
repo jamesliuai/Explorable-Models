@@ -1,6 +1,6 @@
 /** Point drags move through canonical scene coordinates; controls and their step grids use selected display units. */
-import type { ProjectedControl, ProjectedControlRef } from '@experiment-kit/activity';
-import { convert, isCompatible, UNIT_IDS, UNITS, type UnitId } from '@experiment-kit/core/model';
+import type { ProjectedControl, ProjectedControlRef } from '@explorable-models/activity';
+import { convert, isCompatible, UNIT_IDS, UNITS, type UnitId } from '@explorable-models/core/model';
 
 type DragControl = Pick<ProjectedControl, 'step' | 'integer' | 'displayUnit'>;
 type DragRange = Pick<ProjectedControlRef, 'min' | 'max'>;

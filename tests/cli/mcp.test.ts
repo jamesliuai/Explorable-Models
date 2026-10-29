@@ -11,7 +11,7 @@ describe('MCP protocol contract',()=>{
   it('negotiates the official protocol, publishes typed tools, and operates the real browser runtime',async()=>{
     const project=await compileProject(path.resolve('examples/base-rates'));const browser=await BrowserSession.create(project);
     const server=createMcpServer({request:(method,args)=>browser.request(method,args),capture:async()=>({error:{code:'UNSUPPORTED_CAPABILITY',message:'Capture is tested through CLI integration.'}}),activate:async()=>({error:{code:'UNSUPPORTED_CAPABILITY',message:'Activation is tested through runtime integration.'}})});
-    const client=new Client({name:'experiment-kit-protocol-test',version:'1.0.0'});const [a,b]=InMemoryTransport.createLinkedPair();
+    const client=new Client({name:'explorable-models-protocol-test',version:'1.0.0'});const [a,b]=InMemoryTransport.createLinkedPair();
     try{
       await server.connect(a);await client.connect(b);
       const list=await client.listTools();expect(list.tools.map(t=>t.name)).toEqual(['describe','inspect','create_run','command','sample','compare','checkpoint','capture','verify','activate_revision']);expect(list.tools.every(t=>t.inputSchema&&t.outputSchema)).toBe(true);

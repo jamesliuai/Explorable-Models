@@ -1,6 +1,6 @@
 # Player design
 
-The full primary-screen concept is retained outside the source tree at the task's visualization path, `experiment-kit-concept.png`. It sets the player composition; the diagrams themselves are semantic SVG and Three.js views computed from model frames.
+The full primary-screen concept is retained outside the source tree at the task's visualization path, `explorable-models-concept.png`. It sets the player composition; the diagrams themselves are semantic SVG and Three.js views computed from model frames.
 
 White background, cool gray diagram surface, navy text, blue primary quantity and teal comparison. Header 64px; navigation rail 228px; content gutter 28px. A two-thirds scene and one-third controls layout collapses to a single column below 1000px. Inter typography; 32px/1.2 heading, 14px body, 12–13px labels. Hairline borders, 5–8px radii, visible blue focus rings, restrained 18px outline icons.
 

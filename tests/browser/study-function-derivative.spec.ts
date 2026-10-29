@@ -11,7 +11,7 @@
  */
 import { writeFileSync } from 'node:fs';
 import { expect, test, type Page } from '@playwright/test';
-import type { LearnerProjection } from '@experiment-kit/activity';
+import type { LearnerProjection } from '@explorable-models/activity';
 import { arrowTo, card, control, expectAccessible, focusKey, openFixture, overflow, pngSize, projection, respond, settle, tabTo } from './support/study-harness';
 import {
   countPointer, drawnView, drive, exact, expectAbsent, expectPresent, inCard, num, pressHost, respondByKeyboard, rowText, scenario, shot, SHOTS_2D, valueOf,
@@ -87,7 +87,7 @@ test.describe('function and derivative activity (generic fixture host)', () => {
     await expectAbsent(page, markers(DERIVATIVE_GROUPS), 'explore-derivative before reveal', { quantities: quantities(DERIVATIVE_GROUPS) });
     for (const group of DERIVATIVE_GROUPS) await drive(page, 'reveal', group);
     await expectPresent(page, ['Graph of the derivative f′', 'Shape of the graph', 'Vertex position', 'Secant slope for h ≠ 0'], 'explore-derivative after reveal');
-    await expect(card(page).locator('figure[data-eka-figure="derivative-plot"]')).toBeVisible();
+    await expect(card(page).locator('figure[data-ema-figure="derivative-plot"]')).toBeVisible();
     await expectAccessible(page, 'explore-derivative');
     await shot(page, 'fd-explore-derivative');
 
@@ -115,7 +115,7 @@ test.describe('function and derivative activity (generic fixture host)', () => {
     expect(slopeOf(segment(shown, 'tangent-line')!)).toBeCloseTo(1.5, 12);
     expect(slopeOf(segment(shown, 'secant-line')!)).toBeCloseTo(1.5, 12);
     expect(shown.status.ui).not.toBe('undefined');
-    await expect(card(page).locator('.eka-banner[data-ui-state="undefined"]')).toHaveCount(0);
+    await expect(card(page).locator('.ema-banner[data-ui-state="undefined"]')).toHaveCount(0);
 
     // Constant: slope 0 everywhere, stationary, no vertex.
     await scenario(page, await scenarioLabel(page, 'level-line'));
@@ -216,7 +216,7 @@ test.describe('function and derivative activity (generic fixture host)', () => {
     await slider.focus();
     const mid = (await diagnostics()).length;
     await page.keyboard.press('ArrowRight');
-    await expect(control(page, 'h').locator('.eka-error')).toHaveText('!The second point Q is at x = p + h, which must stay inside the plotted domain from −5 to 5.');
+    await expect(control(page, 'h').locator('.ema-error')).toHaveText('!The second point Q is at x = p + h, which must stay inside the plotted domain from −5 to 5.');
     await settle(page);
     expect(await controlValue(page, 'h')).toBe(0.5);
     expect((await projection(page)).guards.expectedRunId).toBe(run);
@@ -225,7 +225,7 @@ test.describe('function and derivative activity (generic fixture host)', () => {
 
     // Coupled constraint in a scenario request: the same check refuses a scenario whose override puts Q outside.
     const scenarioCodes = await page.evaluate(async () => {
-      const fixture = window.studyHarnessFixture as unknown as { state(): { instance: import('@experiment-kit/activity').ActivityInstance }; adapter: import('@experiment-kit/activity').StudyHarnessAdapter };
+      const fixture = window.studyHarnessFixture as unknown as { state(): { instance: import('@explorable-models/activity').ActivityInstance }; adapter: import('@explorable-models/activity').StudyHarnessAdapter };
       const state = fixture.state();
       const instance = state.instance;
       const report = await fixture.adapter.validate({
@@ -288,7 +288,7 @@ test.describe('function and derivative activity (generic fixture host)', () => {
     await expect(card(page).getByRole('table').first()).toBeVisible();
 
     await pressHost(page, 'data-fx-transition', 'explore-derivative');
-    await expect(card(page).locator('figure[data-eka-figure="derivative-plot"]')).toBeVisible();
+    await expect(card(page).locator('figure[data-ema-figure="derivative-plot"]')).toBeVisible();
     await pressHost(page, 'data-fx-transition', 'explain');
     await respondByKeyboard(page, 'The derivative graph records the tangent slope at every x.');
     await pressHost(page, 'data-fx-action', 'close');
@@ -303,9 +303,9 @@ test.describe('function and derivative activity (generic fixture host)', () => {
     const toggle = card(page).getByRole('button', { name: 'Table of f(x)' });
     await toggle.click();
     await expect(toggle).toHaveAttribute('aria-pressed', 'true');
-    const table = card(page).locator('[data-eka-panel="table"]').filter({ hasText: 'Table of f(x)' });
+    const table = card(page).locator('[data-ema-panel="table"]').filter({ hasText: 'Table of f(x)' });
     await expect(table.locator('thead th')).toHaveText(['x', 'f(x)']);
-    await expect(table.locator('.eka-panel-note')).toHaveText('Showing 135 of 401 rows: every 3rd sample and the last one, so the whole range is covered.');
+    await expect(table.locator('.ema-panel-note')).toHaveText('Showing 135 of 401 rows: every 3rd sample and the last one, so the whole range is covered.');
     const rows = await table.locator('tbody tr').evaluateAll(items => items.map(row => [...row.children].map(cell => cell.textContent ?? '')));
     const shown = await projection(page);
     const curve = mark(shown, 'function-curve')!.geometry as { kind: 'polyline2'; segments: { points: number[][] }[] };
@@ -329,7 +329,7 @@ test.describe('function and derivative activity (generic fixture host)', () => {
     const errors = await openFixture(page, `${TEMPLATE}&mode=free`);
     await scenario(page, await scenarioLabel(page, 'curve-down'));
     await card(page).getByRole('button', { name: 'Table of f(x)' }).click();
-    const table = card(page).locator('[data-eka-panel="table"]').filter({ hasText: 'Table of f′(x)' });
+    const table = card(page).locator('[data-ema-panel="table"]').filter({ hasText: 'Table of f′(x)' });
     await expect(table.locator('thead th')).toHaveText(['x', 'f′(x)']);
     const rows = await table.locator('tbody tr').evaluateAll(items => items.map(row => [...row.children].map(cell => cell.textContent ?? '')));
     const shown = await projection(page);
@@ -361,15 +361,15 @@ test.describe('function and derivative activity (generic fixture host)', () => {
     // The drawing shows both lines and both points with their labels.
     const plot = await drawnView(page, 'function-plot');
     expect(plot.labels).toEqual(expect.arrayContaining(['P', 'Q']));
-    await expect(card(page).locator('figure[data-eka-figure="function-plot"] .eka-marks path.eka-role-accent.eka-stroke')).toHaveCount(1);
-    await expect(card(page).locator('figure[data-eka-figure="function-plot"] .eka-marks path.eka-role-secondary.eka-stroke')).toHaveCount(1);
+    await expect(card(page).locator('figure[data-ema-figure="function-plot"] .ema-marks path.ema-role-accent.ema-stroke')).toHaveCount(1);
+    await expect(card(page).locator('figure[data-ema-figure="function-plot"] .ema-marks path.ema-role-secondary.ema-stroke')).toHaveCount(1);
     expect(errors).toEqual([]);
   });
 
   test('alternative text-description: generated summaries name only visible content and visible values', async ({ page, context }) => {
     const errors = await openFixture(page, TEMPLATE);
     await card(page).getByRole('button', { name: 'Text description' }).click();
-    const description = card(page).locator('figure[data-eka-figure="function-plot"] .eka-description');
+    const description = card(page).locator('figure[data-ema-figure="function-plot"] .ema-description');
     await expect(description).toBeVisible();
     await expect(description).toContainText('Graph of f. Shows Graph of f; Probe point P = (p, f(p)).');
     for (const marker of markers([...SLOPE_GROUPS, ...DERIVATIVE_GROUPS])) await expect(description).not.toContainText(marker);
@@ -377,8 +377,8 @@ test.describe('function and derivative activity (generic fixture host)', () => {
     const free = await context.newPage();
     const freeErrors = await openFixture(free, `${TEMPLATE}&mode=free`);
     await card(free).getByRole('button', { name: 'Text description' }).click();
-    await expect(card(free).locator('figure[data-eka-figure="function-plot"] .eka-description')).toContainText('Tangent line at P; Secant line through P and Q');
-    await expect(card(free).locator('figure[data-eka-figure="derivative-plot"] .eka-description')).toContainText('Graph of the derivative f′');
+    await expect(card(free).locator('figure[data-ema-figure="function-plot"] .ema-description')).toContainText('Tangent line at P; Secant line through P and Q');
+    await expect(card(free).locator('figure[data-ema-figure="derivative-plot"] .ema-description')).toContainText('Graph of the derivative f′');
     expect([...errors, ...freeErrors]).toEqual([]);
   });
 
@@ -437,7 +437,7 @@ test.describe('function and derivative activity (generic fixture host)', () => {
       const surface = visualizer.mount(container, prepared.prepared, { onError: event => events.push(event.kind === 'state' ? `state:${event.state}` : `diagnostic:${event.diagnostic.code}`) });
       await surface.ready;
       const root = surface.element.shadowRoot!;
-      const title = root.querySelector('.eka-title')?.textContent;
+      const title = root.querySelector('.ema-title')?.textContent;
       const learner = visualizer.getState(activityId, 'learner');
       const capture = await surface.capture({ format: 'svg' });
       const summary = visualizer.summarizeInteraction(activityId, { audience: 'tutor' });
@@ -485,14 +485,14 @@ test.describe('function and derivative activity (generic fixture host)', () => {
       const facts = await overflow(page);
       expect(facts, configuration.name).toMatchObject({ page: false, card: false, offenders: [] });
       if (configuration.width) expect(Math.abs(facts.cardWidth - configuration.width), `card width ${configuration.width}`).toBeLessThanOrEqual(2);
-      const cardBox = (await card(page).locator('.eka').first().boundingBox())!;
+      const cardBox = (await card(page).locator('.ema').first().boundingBox())!;
       for (const target of [control(page, 'p').getByRole('slider'), control(page, 'p').getByRole('textbox'), control(page, 'p').getByRole('button', { name: 'Apply' })]) {
         const box = (await target.boundingBox())!;
         expect(box.x + box.width, `${configuration.name}: right edge`).toBeLessThanOrEqual(cardBox.x + cardBox.width + 1);
         expect(box.height, `${configuration.name}: target height`).toBeGreaterThanOrEqual(24);
       }
-      if (configuration.name === 'dark') await expect(card(page).locator('.eka')).toHaveAttribute('data-theme', 'dark');
-      if (configuration.name.startsWith('text-200')) expect(await card(page).locator('.eka-title').evaluate(element => parseFloat(getComputedStyle(element).fontSize))).toBeGreaterThan(30);
+      if (configuration.name === 'dark') await expect(card(page).locator('.ema')).toHaveAttribute('data-theme', 'dark');
+      if (configuration.name.startsWith('text-200')) expect(await card(page).locator('.ema-title').evaluate(element => parseFloat(getComputedStyle(element).fontSize))).toBeGreaterThan(30);
       expect(await rowText(page, 'secant.difference')).toBe('0.0025');
       if (['container-320', 'desktop', 'dark', 'text-200'].includes(configuration.name)) await expectAccessible(page, configuration.name);
       await shot(page, `fd-${configuration.name}`);

@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { RotateCcw, RotateCw } from 'lucide-react';
-import type { RunFrame, ScalarParams, ViewState } from '@experiment-kit/core';
+import type { RunFrame, ScalarParams, ViewState } from '@explorable-models/core';
 import { vector, scalar } from '../utils';
 export default function Rolling3D({frame,parameters:p,camera,onCamera}:{frame:RunFrame;parameters:ScalarParams;camera?:ViewState['camera'];onCamera:(camera:NonNullable<ViewState['camera']>)=>void}) {
  const ref=useRef<HTMLDivElement>(null);const live=useRef<{body:THREE.Group;render:()=>void;controls:OrbitControls;camera:THREE.PerspectiveCamera;reset:()=>void}|undefined>(undefined);const [error,setError]=useState('');

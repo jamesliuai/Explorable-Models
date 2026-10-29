@@ -16,10 +16,10 @@ The product is an embedded 2D explanation toolkit. The host supplies authenticat
 
 | Entry | Purpose | Import environment |
 | --- | --- | --- |
-| `@experiment-kit/core` | Existing 1.0 model/runtime contract | Node or browser; authored code still runs in workers |
-| `@experiment-kit/core/declarative` | 2.0 documents, session, presets, limits, validation | Import is SSR-safe; default session construction needs browser Worker |
-| `@experiment-kit/player` | React surface, imperative mount, supported scene export | Import is SSR-safe; mounting is client-only |
-| `@experiment-kit/agent` | Tool descriptors, executor, scoped relay | Host-neutral; execution targets an authorized browser session |
+| `@explorable-models/core` | Existing 1.0 model/runtime contract | Node or browser; authored code still runs in workers |
+| `@explorable-models/core/declarative` | 2.0 documents, session, presets, limits, validation | Import is SSR-safe; default session construction needs browser Worker |
+| `@explorable-models/player` | React surface, imperative mount, supported scene export | Import is SSR-safe; mounting is client-only |
+| `@explorable-models/agent` | Tool descriptors, executor, scoped relay | Host-neutral; execution targets an authorized browser session |
 | Legacy CLI | Trusted local TypeScript compilation, MCP, full-surface capture/export | Node plus Chromium |
 
 2D consumers must not load Three.js, the CLI compiler, Playwright, or a model-provider SDK. The player uses React and ReactDOM as peer dependencies, including for its imperative DOM API. The plain-DOM API means no React code is required from the host; it does not mean the runtime is dependency-free.

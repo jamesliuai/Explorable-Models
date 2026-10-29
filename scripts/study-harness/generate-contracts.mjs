@@ -1,6 +1,6 @@
 // Emits the authoritative activity contract schemas (packages/activity/src/schemas.ts) as JSON Schema 2020-12 files
 // for TypeScript, Rust and host consumers, and the shared TS/Rust contract fixtures:
-//   packages/activity/schema/<name>.schema.json  one file per contract/message plus experiment-kit.model-manifest
+//   packages/activity/schema/<name>.schema.json  one file per contract/message plus explorable-models.model-manifest
 //   packages/activity/schema/index.json          file list, per-file sha256, canonical digests and data limits
 //   packages/activity/schema/frozen-1.0.json     digest lock for version 1.0 (written once, never rewritten)
 //   packages/activity/fixtures/contracts/<valid|invalid>/<short-name>/<case>.json
@@ -36,7 +36,7 @@ const entries = SCHEMA_NAMES.map(name => {
 files.set('schema/index.json', json({
   generatedBy: 'scripts/study-harness/generate-contracts.mjs',
   draft: 'https://json-schema.org/draft/2020-12/schema',
-  notes: 'Schemas are authoritative for shape and bounds; semantic cross-references are checked by @experiment-kit/activity validate*Semantics. dataLimits (bytes counted as in core jsonDataErrors, nesting depth, node count, and rejection of __proto__/prototype/constructor keys) are applied before schema traversal by both validators.',
+  notes: 'Schemas are authoritative for shape and bounds; semantic cross-references are checked by @explorable-models/activity validate*Semantics. dataLimits (bytes counted as in core jsonDataErrors, nesting depth, node count, and rejection of __proto__/prototype/constructor keys) are applied before schema traversal by both validators.',
   contracts: entries,
 }));
 for (const { path, fixture } of buildFixtures()) files.set(`fixtures/contracts/${path}`, fixtureText(fixture));
@@ -45,7 +45,7 @@ const lock = {
   version: '1.0',
   notes: 'Digest lock: a 1.0 schema may never change. Publish changes under a new schema version with its own lock and keep a reader for 1.0.',
   schemas: Object.fromEntries(entries.filter(entry => entry.version === '1.0').map(entry => [entry.name, entry.digest])),
-  baseline: { 'experiment-kit.document-2.0': schemaDigest(DOCUMENT_SCHEMA) },
+  baseline: { 'explorable-models.document-2.0': schemaDigest(DOCUMENT_SCHEMA) },
 };
 
 const read = async path => { try { return await readFile(join(packageRoot, path), 'utf8'); } catch { return null; } };

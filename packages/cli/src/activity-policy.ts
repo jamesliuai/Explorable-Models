@@ -18,8 +18,8 @@
 import {
   CONTRACTS, templateRef, timestampMs, validatePolicySemantics, validateRecord,
   type ActivityTemplate, type HostPolicy, type TemplateRef, type ToolOperation,
-} from '@experiment-kit/activity';
-import type { ModelRef } from '@experiment-kit/core/model';
+} from '@explorable-models/activity';
+import type { ModelRef } from '@explorable-models/core/model';
 import type { AuthorDiagnostic } from './activity-validation.js';
 
 /** Tools of the derived learner policy: the learner surface's operations, the host's reveal requests and summaries. */

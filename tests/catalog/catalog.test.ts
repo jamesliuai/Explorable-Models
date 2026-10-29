@@ -5,14 +5,14 @@ import { fileURLToPath } from 'node:url';
 import { describe, expect, it, vi } from 'vitest';
 import {
   groupDigests, templateDigest, templateRef, validateRecord, validateTemplateSemantics, type ActivityTemplate, type ReviewRecord,
-} from '@experiment-kit/activity';
-import { labelWording, modelIdentity, validateManifest, type ModelManifest } from '@experiment-kit/core/model';
+} from '@explorable-models/activity';
+import { labelWording, modelIdentity, validateManifest, type ModelManifest } from '@explorable-models/core/model';
 import {
   createInstalledCatalog, createReviewRegistry, createRevocationList, functionDerivativeKernel, INSTALLED_KERNELS, INSTALLED_MODELS, INSTALLED_TEMPLATES,
   linearTransformationKernel, quadraticGradientDescentKernel, quadraticGradientDescentManifest as manifest, quadraticGradientDescentTemplate as template,
   quadraticSurfaceGradientKernel, vectorOrientationKernel,
-} from '@experiment-kit/catalog';
-import type { WorkerReply } from '@experiment-kit/core/model';
+} from '@explorable-models/catalog';
+import type { WorkerReply } from '@explorable-models/core/model';
 
 const root = fileURLToPath(new URL('../../', import.meta.url));
 const FIXTURE = join(root, 'tests/reference/fixtures/activities/quadratic-gradient-descent.json');
@@ -105,7 +105,7 @@ describe('installed catalogue (report §5.2, A05)', () => {
     const global = globalThis as { self?: unknown };
     const previous = global.self;
     global.self = scope;
-    try { await import('@experiment-kit/catalog/worker'); } finally { global.self = previous; }
+    try { await import('@explorable-models/catalog/worker'); } finally { global.self = previous; }
     expect(listeners).toHaveLength(1);
     for (const model of INSTALLED_MODELS) {
       const params = Object.fromEntries(Object.entries(model.parameters).map(([id, definition]) => [id, definition.default]));
@@ -385,8 +385,8 @@ describe('catalogue content boundaries (report §12.6)', () => {
   it('keeps the kernel worker free of templates, copy and manifests', () => {
     const read = (path: string) => readFileSync(join(root, 'packages/catalog/src', path), 'utf8');
     const imports = (source: string) => [...source.matchAll(/from\s+'([^']+)'/g)].map(match => match[1]);
-    expect(imports(read('worker.ts'))).toEqual(['@experiment-kit/core/model', './kernels/loaders.js']);
+    expect(imports(read('worker.ts'))).toEqual(['@explorable-models/core/model', './kernels/loaders.js']);
     for (const file of readdirSync(join(root, 'packages/catalog/src/kernels')))
-      for (const target of imports(read(`kernels/${file}`))) expect(target, file).toMatch(/^(@experiment-kit\/core\/model|\.\/[a-z0-9-]+\.js)$/);
+      for (const target of imports(read(`kernels/${file}`))) expect(target, file).toMatch(/^(@explorable-models\/core\/model|\.\/[a-z0-9-]+\.js)$/);
   });
 });

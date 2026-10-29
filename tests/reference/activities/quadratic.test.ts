@@ -1,8 +1,8 @@
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { describe, expect, it } from 'vitest';
-import { checkParameters, evaluateRequest, type GeometryResult, type KernelOutput, type ModelManifest, type QuantityResult } from '@experiment-kit/core/model';
-import { QUADRATIC_MAX_INDEX, quadraticGradientDescentKernel as kernel, quadraticGradientDescentManifest as manifest } from '@experiment-kit/catalog';
+import { checkParameters, evaluateRequest, type GeometryResult, type KernelOutput, type ModelManifest, type QuantityResult } from '@explorable-models/core/model';
+import { QUADRATIC_MAX_INDEX, quadraticGradientDescentKernel as kernel, quadraticGradientDescentManifest as manifest } from '@explorable-models/catalog';
 import fixtureJson from '../fixtures/activities/quadratic-gradient-descent.json';
 import {
   cmp, CURVE, curveSamplePosition, declaredProduct, DOMAIN, exactQuantity, exactStatus, expectedNumber, fromDouble, lastFiniteIndex, MAX_FINITE, mul,

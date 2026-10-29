@@ -9,7 +9,7 @@
 import { afterEach, describe, expect, it } from 'vitest';
 import { createElement } from 'react';
 import { renderToString } from 'react-dom/server';
-import { createInstalledCatalog, INSTALLED_TEMPLATES } from '@experiment-kit/catalog';
+import { createInstalledCatalog, INSTALLED_TEMPLATES } from '@explorable-models/catalog';
 import type { ActivityBinding, LearnerProjection } from '../../packages/activity/src/index';
 import { WORKER_RECOVERY_ATTEMPTS } from '../../packages/activity/src/controller';
 import { StudyActivitySurface } from '../../packages/player/src/activity/index';
@@ -36,8 +36,8 @@ function staticBinding(projection: LearnerProjection): ActivityBinding {
   });
 }
 const between = (html: string, start: string, end: string): string => { const from = html.indexOf(start); return from < 0 ? '' : html.slice(from, end ? html.indexOf(end, from + start.length) : undefined); };
-const banner = (html: string): string => /<div class="eka-banner"[\s\S]*?<\/div><\/div>/.exec(html)?.[0] ?? '';
-const comparisons = (html: string): string => between(html, 'data-eka-panel="comparisons"', '</section>');
+const banner = (html: string): string => /<div class="ema-banner"[\s\S]*?<\/div><\/div>/.exec(html)?.[0] ?? '';
+const comparisons = (html: string): string => between(html, 'data-ema-panel="comparisons"', '</section>');
 
 describe('exhausted worker recovery (R18, report §9 bounded recovery, §10.4)', () => {
   async function exhausted(): Promise<{ opened: Awaited<ReturnType<typeof open>>; projection: LearnerProjection }> {
@@ -161,12 +161,12 @@ describe('comparison panel reasons (R26 A11/A34; R39 one statement per reason)',
     expect(row.kept.status).toBe('undefined');
     expect(row.kept.reason).toContain('rank 2');
     const html = comparisons(render(opened.learner));
-    const values = between(html, 'data-eka-comparison-values', '</table>');
+    const values = between(html, 'data-ema-comparison-values', '</table>');
     const cells = [...values.matchAll(/<tr><th scope="row">([^<]*)<\/th><td>([\s\S]*?)<\/td><td>([\s\S]*?)<\/td><\/tr>/g)].find(match => match[1]!.startsWith('Collapse'))!;
     expect(cells, 'collapse row').toBeTruthy();
     // The kept cell says Undefined and gives the reason (never a bare word, never a number).
     expect(text(cells[3]!)).toBe(`Undefined ${row.kept.reason}`);
-    expect(cells[3]).toContain('class="eka-comparison-reason"');
+    expect(cells[3]).toContain('class="ema-comparison-reason"');
   });
 
   it('a value beyond the representable range keeps its limit badge and reason in the values table', async () => {
@@ -187,9 +187,9 @@ describe('comparison panel reasons (R26 A11/A34; R39 one statement per reason)',
     expect(limited.length).toBeGreaterThan(0);
     const html = comparisons(render(opened.learner));
     for (const value of limited) {
-      const cells = [...between(html, 'data-eka-comparison-values', '</table>').matchAll(/<tr><th scope="row">([^<]*)<\/th><td>([\s\S]*?)<\/td><td>([\s\S]*?)<\/td><\/tr>/g)].find(match => match[1] === value.label)!;
+      const cells = [...between(html, 'data-ema-comparison-values', '</table>').matchAll(/<tr><th scope="row">([^<]*)<\/th><td>([\s\S]*?)<\/td><td>([\s\S]*?)<\/td><\/tr>/g)].find(match => match[1] === value.label)!;
       expect(cells, value.label).toBeTruthy();
-      expect(cells[3]).toContain('<span class="eka-badge">limit</span>');
+      expect(cells[3]).toContain('<span class="ema-badge">limit</span>');
       expect(text(cells[3]!)).toContain(value.kept.reason!);
     }
   });
@@ -211,9 +211,9 @@ describe('comparison panel reasons (R26 A11/A34; R39 one statement per reason)',
     const html = comparisons(render(opened.learner));
     // Once in the whole panel, including screen-reader-only text.
     expect(text(html).split(sentence).length - 1).toBe(1);
-    const boundaryId = /<p class="eka-comparison-boundary" id="([^"]+)"/.exec(html)?.[1];
+    const boundaryId = /<p class="ema-comparison-boundary" id="([^"]+)"/.exec(html)?.[1];
     expect(boundaryId).toBeTruthy();
-    const missing = [...html.matchAll(/<span class="eka-comparison-missing"([^>]*)>Not available<\/span>/g)];
+    const missing = [...html.matchAll(/<span class="ema-comparison-missing"([^>]*)>Not available<\/span>/g)];
     expect(missing.length).toBeGreaterThan(0);
     for (const cell of missing) expect(cell[1]).toContain(`aria-describedby="${boundaryId}"`);
   });

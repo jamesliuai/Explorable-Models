@@ -10,7 +10,7 @@ import { afterEach, describe, expect, it } from 'vitest';
 import {
   COMPARISON_NAMES, describeProjection, navigationVisibility, numericalLimitShown, PLAYBACK_LIMIT_NOTICE, positionGroupIds, TERMINAL_TEXT, UI_STATUS, VALUE_STATUS_TEXT,
   type ActivityBinding, type HostPolicy, type LearnerProjection,
-} from '@experiment-kit/activity';
+} from '@explorable-models/activity';
 import {
   ackCurrent, activityGuard, codesOf, enterExplore, guards, harness, manifest, okOf, op, open, requestFor, settled, template, until, type Harness, type Opened,
 } from './support/adapter-harness.js';

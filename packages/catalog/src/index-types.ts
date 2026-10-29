@@ -1,6 +1,6 @@
 /** Shape of the generated installed index (`./installed-index.ts`), the eager part of `createLazyCatalog`. */
-import type { TemplateDiscovery, TemplateRef } from '@experiment-kit/activity';
-import type { ModelIdentity, ModelRef } from '@experiment-kit/core/model';
+import type { TemplateDiscovery, TemplateRef } from '@explorable-models/activity';
+import type { ModelIdentity, ModelRef } from '@explorable-models/core/model';
 import type { KernelIdentity } from './catalog.js';
 
 export interface IndexedModelEntry {

@@ -1,6 +1,6 @@
 /**
  * BROWSER INTEGRATION FIXTURE — kernel worker factory for the fixture page. Workers are the real catalogue module
- * workers created by the catalogue's own `createWorker` (`@experiment-kit/catalog` worker entry). The fixture only
+ * workers created by the catalogue's own `createWorker` (`@explorable-models/catalog` worker entry). The fixture only
  * counts them and, as fault-injection aids of this page only, can delay delivery of every worker reply to the main
  * thread by a fixed number of milliseconds (late-reply tests, `?workerDelay=`) or drop the next replies
  * (`workerFaults.drop`, worker-recovery tests: the evaluator's watchdog then times out and terminates the worker);

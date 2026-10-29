@@ -14,13 +14,13 @@ try {
  const page=await context.newPage();const errors=[];page.on('pageerror',e=>errors.push(e.message));
  for(const id of Object.keys(inventory.experiments)){
   await page.goto(`${server.url}/?experiment=${id}`);
-  await page.waitForFunction(()=>!!window.__EXPERIMENT_KIT__);
-  const report=await page.evaluate(()=>window.__EXPERIMENT_KIT__.request({method:'verify'}));
+  await page.waitForFunction(()=>!!window.__EXPLORABLE_MODELS__);
+  const report=await page.evaluate(()=>window.__EXPLORABLE_MODELS__.request({method:'verify'}));
   if(!report.passed)throw new Error(`${id}: quantitative worker checks failed: ${JSON.stringify(report)}`);
   if(report.definitionRevision!==inventory.experiments[id].definitionRevision)throw new Error(`${id}: source and runtime revision mismatch.`);
-  const state=await page.evaluate(()=>window.__EXPERIMENT_KIT__.request({method:'checkpoint'}));
-  const fresh=await context.newPage();await fresh.goto(`${server.url}/?experiment=${id}`);await fresh.waitForFunction(()=>!!window.__EXPERIMENT_KIT__);
-  const restored=await fresh.evaluate(async snapshot=>{const api=window.__EXPERIMENT_KIT__;const s=await api.request({method:'state'});return api.request({method:'command',args:{type:'restore',snapshot,expectedRunVersion:s.run.version,expectedActiveRunId:s.activeRunId}});},state);
+  const state=await page.evaluate(()=>window.__EXPLORABLE_MODELS__.request({method:'checkpoint'}));
+  const fresh=await context.newPage();await fresh.goto(`${server.url}/?experiment=${id}`);await fresh.waitForFunction(()=>!!window.__EXPLORABLE_MODELS__);
+  const restored=await fresh.evaluate(async snapshot=>{const api=window.__EXPLORABLE_MODELS__;const s=await api.request({method:'state'});return api.request({method:'command',args:{type:'restore',snapshot,expectedRunVersion:s.run.version,expectedActiveRunId:s.activeRunId}});},state);
   if(restored.error||JSON.stringify(restored.state.run.parameters)!==JSON.stringify(state.parameters))throw new Error(`${id}: fresh-process restore failed.`);
   await fresh.close();reports.push(report);console.log(`${id}: ${report.results.length} cases passed; fresh state restored with external requests blocked.`);
  }
@@ -39,8 +39,8 @@ try {
    await fresh.close();documentReports.push({id:entry.id,documentRevision:entry.documentRevision,worker:'passed',freshRestore:'passed'});
   }
   await page.getByRole('combobox').selectOption('wave');await page.waitForFunction(()=>window.__COMPOSITION_STUDIO__.session.getState().document?.id==='wave');
-  await mkdir('/tmp/experiment-kit-preview',{recursive:true});
-  for(const width of [1440,1024,390]){await page.setViewportSize({width,height:1000});await page.screenshot({path:`/tmp/experiment-kit-preview/production-studio-${width}.png`,fullPage:true});if(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1))throw new Error('Production studio overflow');}
+  await mkdir('/tmp/explorable-models-preview',{recursive:true});
+  for(const width of [1440,1024,390]){await page.setViewportSize({width,height:1000});await page.screenshot({path:`/tmp/explorable-models-preview/production-studio-${width}.png`,fullPage:true});if(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1))throw new Error('Production studio overflow');}
   console.log(`${documentReports.length} declarative documents restored in fresh production sessions; external requests blocked.`);
  }
  if(errors.length)throw new Error(errors.join('\n'));

@@ -1,6 +1,6 @@
 /** Installed model manifests (deep-frozen data). New activity packages append their manifest here. */
-import { deepFreeze } from '@experiment-kit/core';
-import type { ModelManifest } from '@experiment-kit/core/model';
+import { deepFreeze } from '@explorable-models/core';
+import type { ModelManifest } from '@explorable-models/core/model';
 import { functionDerivativeManifest } from './function-derivative.js';
 import { linearTransformationManifest } from './linear-transformation.js';
 import { quadraticGradientDescentManifest } from './quadratic-gradient-descent.js';

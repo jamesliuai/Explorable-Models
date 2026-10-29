@@ -17,7 +17,7 @@
  * (a nonzero A far below 1) is `numerical-limit`/`OVERFLOW`. The sampled curves are drawing aids evaluated in double
  * precision; tangent and secant lines are drawn from correctly rounded endpoints.
  */
-import type { GeometryResult, KernelInput, KernelOutput, ModelKernel, QuantityResult, Vec2 } from '@experiment-kit/core/model';
+import type { GeometryResult, KernelInput, KernelOutput, ModelKernel, QuantityResult, Vec2 } from '@explorable-models/core/model';
 
 export const FUNCTION_DERIVATIVE_KERNEL_ID = 'function-derivative';
 export const FUNCTION_DERIVATIVE_KERNEL_VERSION = '1.0.0';

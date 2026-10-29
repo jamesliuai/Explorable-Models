@@ -1,5 +1,5 @@
 /**
- * `experiment-kit activity preview <dir> | --installed <templateId>` (report §15.2): the author preview and the learner
+ * `explorable-models activity preview <dir> | --installed <templateId>` (report §15.2): the author preview and the learner
  * preview side by side, served on 127.0.0.1 only. Node reads and validates data, resolves the learner policy and
  * writes `preview-input.json` next to the fixed preview page; every adapter, kernel and surface runs in the browser
  * page, and authored model code runs only in the page's module worker (activity-bundle.ts). The server sends the CLI's
@@ -14,8 +14,8 @@ import { readActivityPackage, stableJSON } from './activity-files.js';
 import { BundleError, buildBundle, type BuiltBundle, type ExecutionSource } from './activity-bundle.js';
 import { loadToolkit, toolkitVersion } from './activity-loader.js';
 import { serveStatic, type StaticServer } from './server.js';
-import type { ActivityTemplate, HostPolicy } from '@experiment-kit/activity';
-import type { ModelManifest, ModelRef } from '@experiment-kit/core/model';
+import type { ActivityTemplate, HostPolicy } from '@explorable-models/activity';
+import type { ModelManifest, ModelRef } from '@explorable-models/core/model';
 import type { AuthorDiagnostic } from './activity-validation.js';
 import type { PolicyCheck, PolicyContext } from './activity-policy.js';
 import type { BlockedPreviewInput, PreviewInput } from './activity-preview-page.js';
@@ -98,7 +98,7 @@ async function subjectOf(options: PreviewOptions): Promise<Subject | { blocked: 
       base: { command: 'preview', installed: entry.template.templateId, template: entry.templateRef, model: entry.modelRef, lifecycle: entry.lifecycle },
     };
   }
-  if (!options.directory) throw new CliError('INVALID_PARAMETER', 'preview needs a package directory or --installed <templateId>.', 'Run experiment-kit activity --help.');
+  if (!options.directory) throw new CliError('INVALID_PARAMETER', 'preview needs a package directory or --installed <templateId>.', 'Run explorable-models activity --help.');
   const pkg = await readActivityPackage(options.directory, { fixturesPath: options.fixtures });
   const validation = tk.validatePackage(pkg.snapshot);
   const base = { command: 'preview', package: pkg.root, template: validation.template, model: validation.model, lifecycle: validation.lifecycle, relation: validation.relation, execution: validation.execution };

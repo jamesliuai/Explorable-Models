@@ -174,8 +174,8 @@ async function main2d(page, base) {
   // Equations render lazily once on screen: show each card once so KaTeX and its styles are loaded before measuring.
   for (const id of [quadratic, derivative, linear]) await page.evaluate(async activityId => {
     await window.bench.scrollTo(activityId);
-    const root = document.querySelector(`[data-activity-id="${activityId}"] [data-experiment-kit-activity]`)?.shadowRoot;
-    root?.querySelector('[data-eka-panel="equations"]')?.scrollIntoView({ block: 'center' });
+    const root = document.querySelector(`[data-activity-id="${activityId}"] [data-explorable-models-activity]`)?.shadowRoot;
+    root?.querySelector('[data-ema-panel="equations"]')?.scrollIntoView({ block: 'center' });
     await new Promise(resolve => setTimeout(resolve, 400));
   }, id);
   await page.evaluate(() => window.bench.scrollTo('quadratic'));
@@ -488,7 +488,7 @@ async function main() {
     },
     method: {
       statistics: budgets.performance.statistics, paint: 'requestAnimationFrame callback followed by a MessageChannel task (after the frame\'s rendering work)',
-      commit: 'learner-binding command call → paint of the first frame whose DOM (data-eka-projection) shows the projection with the new committed frame; worker = evaluate postMessage → reply; render = projection publication → DOM commit; paint = DOM commit → paint; storageAck = first journal append started after the command → host acknowledgement',
+      commit: 'learner-binding command call → paint of the first frame whose DOM (data-ema-projection) shows the projection with the new committed frame; worker = evaluate postMessage → reply; render = projection publication → DOM commit; paint = DOM commit → paint; storageAck = first journal append started after the command → host acknowledgement',
       inputAck: 'input event timeStamp (real pointer drag sent by Playwright at a 60 Hz pacing) → paint of the frame whose control output shows that value or a later one',
       frameRate: 'requestAnimationFrame cadence between the first and last input of a drag; dropped frames = Σ(round(Δ/refresh) − 1) against the idle refresh interval; preview update rate = distinct tentative frames painted per second',
       instrumentation: 'Worker construction/messages/termination, timers, intervals, animation frames, window/document/MediaQueryList listeners and attachShadow, counted by phase by an init script installed before any page script',

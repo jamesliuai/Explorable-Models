@@ -6,7 +6,7 @@
  * TypeScript verifier (`verifyArtifact`) and the Rust reference host (`verify_integrity`) must both reach the declared
  * decision for every file. Expectations and reasons are declared here by hand, independently of either verifier.
  */
-import { canonicalJSON, sha256 } from '@experiment-kit/core';
+import { canonicalJSON, sha256 } from '@explorable-models/core';
 import type { ActivityArtifact, IntegrityEntry } from '../src/contracts.js';
 import { CONTRACTS } from '../src/contracts.js';
 import type { ContractFixture, FixtureFile } from './cases.js';

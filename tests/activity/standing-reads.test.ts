@@ -6,7 +6,7 @@
  * names why (`standing`). Fixture-host results with in-process test workers.
  */
 import { afterEach, describe, expect, it } from 'vitest';
-import type { AudienceState } from '@experiment-kit/activity';
+import type { AudienceState } from '@explorable-models/activity';
 import { codesOf, enterExplore, guards, harness, okOf, op, open, policyFor, settled, type Harness, type Opened } from './support/adapter-harness.js';
 
 let current: Harness | null = null;

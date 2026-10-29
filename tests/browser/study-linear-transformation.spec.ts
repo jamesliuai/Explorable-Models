@@ -11,7 +11,7 @@
  */
 import { writeFileSync } from 'node:fs';
 import { expect, test, type Page } from '@playwright/test';
-import type { LearnerProjection } from '@experiment-kit/activity';
+import type { LearnerProjection } from '@explorable-models/activity';
 import { arrowTo, card, control, expectAccessible, focusKey, openFixture, overflow, pngSize, projection, respond, settle, tabTo } from './support/study-harness';
 import {
   countPointer, drawnView, drive, exact, expectAbsent, expectPresent, inCard, num, pressHost, respondByKeyboard, rowText, scenario, shot, SHOTS_2D,
@@ -143,7 +143,7 @@ test.describe('matrices as transformations of the plane (generic fixture host)',
       'Me₁, the first column of M: zero vector (no direction), drawn as a dot.', 'Image Mv of the test vector: zero vector (no direction), drawn as a dot.',
     ]));
     // Zero vectors are dots: no arrow (and so no arrowhead) for the columns or Mv.
-    expect(plane.arrows.filter(arrow => arrow.role === 'eka-role-secondary')).toEqual([]);
+    expect(plane.arrows.filter(arrow => arrow.role === 'ema-role-secondary')).toEqual([]);
     expect(plane.labels.some(label => label.includes('zero vector'))).toBe(true);
     await shot(page, 'lt-zero-matrix');
 
@@ -152,8 +152,8 @@ test.describe('matrices as transformations of the plane (generic fixture host)',
     expect(pair(await rowText(page, 'vector.v'))).toEqual([0, 0]);
     plane = await drawnView(page, 'plane');
     expect(plane.labels).toContain('v, Mv (zero vector)');
-    expect(plane.arrows.filter(arrow => arrow.role === 'eka-role-positive')).toEqual([]);
-    expect(plane.arrows.filter(arrow => arrow.role === 'eka-role-secondary').every(arrow => arrow.head)).toBe(true);
+    expect(plane.arrows.filter(arrow => arrow.role === 'ema-role-positive')).toEqual([]);
+    expect(plane.arrows.filter(arrow => arrow.role === 'ema-role-secondary').every(arrow => arrow.head)).toBe(true);
     await shot(page, 'lt-zero-vector');
     expect(errors).toEqual([]);
   });
@@ -228,7 +228,7 @@ test.describe('matrices as transformations of the plane (generic fixture host)',
     const errors = await openFixture(page, `${TEMPLATE}&mode=free`);
     await scenario(page, await scenarioLabel(page, 'shear'));
     await card(page).getByRole('button', { name: 'Vector table' }).click();
-    const table = card(page).locator('[data-eka-panel="table"]').filter({ hasText: 'Vector coordinates' });
+    const table = card(page).locator('[data-ema-panel="table"]').filter({ hasText: 'Vector coordinates' });
     await expect(table.locator('thead th')).toHaveText(['Quantity', 'Value', 'Unit']);
     const rows = Object.fromEntries(await table.locator('tbody tr').evaluateAll(items => items.map(row => [row.children[0]!.textContent ?? '', row.children[1]!.textContent ?? ''])));
     const shown = await projection(page);
@@ -252,7 +252,7 @@ test.describe('matrices as transformations of the plane (generic fixture host)',
     const errors = await openFixture(page, `${TEMPLATE}&mode=free`);
     await scenario(page, await scenarioLabel(page, 'rotation-30'));
     await card(page).getByRole('button', { name: 'Vector table' }).click();
-    const table = card(page).locator('[data-eka-panel="table"]').filter({ hasText: 'Transformed grid lines' });
+    const table = card(page).locator('[data-ema-panel="table"]').filter({ hasText: 'Transformed grid lines' });
     await expect(table.locator('thead th')).toHaveText(['Segment', 'Start x', 'Start y', 'End x', 'End y']);
     const rows = await table.locator('tbody tr').evaluateAll(items => items.map(row => [...row.children].map(cell => cell.textContent ?? '')));
     const shown = await projection(page);
@@ -275,7 +275,7 @@ test.describe('matrices as transformations of the plane (generic fixture host)',
   test('alternative text-description: generated summaries name only visible marks and values', async ({ page }) => {
     const errors = await openFixture(page, TEMPLATE);
     await card(page).getByRole('button', { name: 'Text description' }).click();
-    const description = card(page).locator('figure[data-eka-figure="plane"] .eka-description');
+    const description = card(page).locator('figure[data-ema-figure="plane"] .ema-description');
     await expect(description).toContainText('The plane under M. Shows Reference grid lines x = k and y = k; Unit square before the transformation; Basis vector e₁; Basis vector e₂; Me₁, the first column of M; Me₂, the second column of M; Test vector v.');
     for (const marker of markers([...TRANSFORMED, ...EIGEN])) await expect(description).not.toContainText(marker);
     expect(errors).toEqual([]);
@@ -319,22 +319,22 @@ test.describe('matrices as transformations of the plane (generic fixture host)',
       const facts = await overflow(page);
       expect(facts, configuration.name).toMatchObject({ page: false, card: false, offenders: [] });
       if (configuration.width) expect(Math.abs(facts.cardWidth - configuration.width), `card width ${configuration.width}`).toBeLessThanOrEqual(2);
-      const cardBox = (await card(page).locator('.eka').first().boundingBox())!;
+      const cardBox = (await card(page).locator('.ema').first().boundingBox())!;
       for (const target of [control(page, 'm11').getByRole('slider'), control(page, 'm11').getByRole('textbox'), control(page, 'm11').getByRole('button', { name: 'Apply' })]) {
         const box = (await target.boundingBox())!;
         expect(box.x + box.width, `${configuration.name}: right edge`).toBeLessThanOrEqual(cardBox.x + cardBox.width + 1);
         expect(box.height, `${configuration.name}: target height`).toBeGreaterThanOrEqual(24);
       }
       // Equal aspect for the plane: one unit is as long on x as on y.
-      const ratio = await card(page).locator('svg[data-eka-view-id="plane"]').evaluate(svg => {
+      const ratio = await card(page).locator('svg[data-ema-view-id="plane"]').evaluate(svg => {
         // Pixels per unit from the tick labels: x ticks are centred under the axis, y ticks end-anchored beside it.
         const value = (text: string) => Number(text.replace(/−/g, '-'));
-        const ticks = [...svg.querySelectorAll('text.eka-tick')].map(text => ({ anchor: text.getAttribute('text-anchor'), x: Number(text.getAttribute('x')), y: Number(text.getAttribute('y')), value: value(text.textContent ?? '') }));
+        const ticks = [...svg.querySelectorAll('text.ema-tick')].map(text => ({ anchor: text.getAttribute('text-anchor'), x: Number(text.getAttribute('x')), y: Number(text.getAttribute('y')), value: value(text.textContent ?? '') }));
         const scale = (items: typeof ticks, coordinate: 'x' | 'y') => Math.abs((items.at(-1)![coordinate] - items[0]![coordinate]) / (items.at(-1)!.value - items[0]!.value));
         return scale(ticks.filter(tick => tick.anchor === 'middle'), 'x') / scale(ticks.filter(tick => tick.anchor === 'end'), 'y');
       });
       expect(ratio, `${configuration.name}: equal aspect`).toBeCloseTo(1, 1);
-      if (configuration.name === 'dark') await expect(card(page).locator('.eka')).toHaveAttribute('data-theme', 'dark');
+      if (configuration.name === 'dark') await expect(card(page).locator('.ema')).toHaveAttribute('data-theme', 'dark');
       expect(await rowText(page, 'orientation')).toBe('reversed');
       if (['container-320', 'desktop', 'dark', 'text-200'].includes(configuration.name)) await expectAccessible(page, configuration.name);
       await shot(page, `lt-${configuration.name}`);

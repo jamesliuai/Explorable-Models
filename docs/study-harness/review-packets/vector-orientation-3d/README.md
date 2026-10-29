@@ -1,6 +1,6 @@
 # Subject-review packet: Two vectors in space
 
-> Prepared automatically by `experiment-kit activity review-packet` (toolkit 0.3.0-preview.1) for a human subject reviewer.
+> Prepared automatically by `explorable-models activity review-packet` (toolkit 0.3.0-preview.1) for a human subject reviewer.
 > It is engineering evidence, **not** a subject review, an accessibility certification or evidence of learning benefit.
 > Catalogue status of this exact version: **reference-checked** — no independent human review is recorded.
 > The reviewer sign-off at the end is empty; an engineering agent cannot sign it.
@@ -10,10 +10,10 @@
 | Item | Value |
 | --- | --- |
 | Template | vector-orientation-3d@1.0.0 |
-| Template digest | `sha256:af54a2ba93d0e1790d4c884d09cdebf9c8e8f48b746f16a79b7998c63179f430` |
+| Template digest | `sha256:df6de7b7ab572ad15f3fd4cec50302b88d5bda4da1f8a1b3206b5435a5892615` |
 | Model | vector-orientation-3d@1.0.0 |
-| Model digest | `sha256:4cbfe83e8927ecf3d0edb8b4f299a13557899f98250c9a697a3620597e834e5f` |
-| Scientific revision | `sha256:9bb9e1d8faf6a4f6ff99b5ade0e605d266c4bb3049bde95471ae89c54ef1559a` |
+| Model digest | `sha256:5406433b6fd86fa353ccb113cc0d6c69af346b74ba0e1021d63d39429a9f32bc` |
+| Scientific revision | `sha256:61285ee348b6ad94028b90282cc6f2faf7a9c32aeae193e7276e37acb7dc9746` |
 | Presentation revision | `sha256:3a03ab54774c576ca7cb0c8ad65873b2586c0de81014e47440aa00aa15b1ce8b` |
 | Reference suite bound by the model | vector-orientation-3d:1.0.0 `sha256:ae6ee27be8c85f6c6d209a3a3361f443ea01d8d0d651ccb051b6aa64fa560f02` |
 | Reference fixture file | `tests/reference/fixtures/activities/vector-orientation-3d.json` `sha256:ae6ee27be8c85f6c6d209a3a3361f443ea01d8d0d651ccb051b6aa64fa560f02` |
@@ -112,7 +112,7 @@ Suite `vector-orientation-3d:1.0.0` for vector-orientation-3d@1.0.0: **33 of 33 
 - Author of the cases: Reference cases for report §12.4 (handedness, parallel, antiparallel, orthogonal, oblique and zero vectors) plus tolerance-boundary and numerical-limit cases. Integer cases are derived by hand; every stored value is the output of the exact oracle tests/reference/oracles/vector-orientation-3d.ts, which shares no code with the catalogue kernel.
 - Review statement of the fixture: No independent human subject reviewer has approved these cases. Automated agreement is engineering evidence only.
 - Semantics: Right-handed frame (e_x × e_y = e_z). Inputs are the exact values of IEEE-754 doubles. u·v, the components of u×v = (u_y v_z − u_z v_y, u_z v_x − u_x v_z, u_x v_y − u_y v_x) and the lengths |u|, |v|, |u×v| are exact values rounded once to the nearest double (ties to even). θ = atan2(|u×v|, u·v) ∈ [0, π] in radians; undefined (ZERO_VECTOR) when u or v is the zero vector. The unit direction of u×v is undefined (NO_CROSS_DIRECTION) exactly when u×v = 0. Relationship with τ = 1/10¹² exactly: parallel or antiparallel when |u×v|² ≤ τ²·|u|²·|v|² (by the sign of u·v), orthogonal when (u·v)² ≤ τ²·|u|²·|v|², oblique otherwise, undefined-zero-vector when a vector is zero. The angle arc is drawn exactly when u×v ≠ 0 and θ is representable; otherwise it is empty with a reason.
-- Converted from `tests/reference/fixtures/activities/vector-orientation-3d.json` `sha256:ae6ee27be8c85f6c6d209a3a3361f443ea01d8d0d651ccb051b6aa64fa560f02` (suite vector-orientation-3d:1.0.0): Converted by experiment-kit activity tooling: case IDs, labels, provenance, parameters and tolerances copied unchanged; quantity expectations restated as experiment-kit.reference-fixtures 1.0 expectations.
+- Converted from `tests/reference/fixtures/activities/vector-orientation-3d.json` `sha256:ae6ee27be8c85f6c6d209a3a3361f443ea01d8d0d651ccb051b6aa64fa560f02` (suite vector-orientation-3d:1.0.0): Converted by explorable-models activity tooling: case IDs, labels, provenance, parameters and tolerances copied unchanged; quantity expectations restated as explorable-models.reference-fixtures 1.0 expectations.
 - Not compared by this runner: The angle-arc flag and the exact geometry of u, v and their projections are checked by tests/reference/activities/vector-orientation-3d.test.ts.
 
 | Case | Label | Provenance | Tolerance | Result |
@@ -236,7 +236,7 @@ Each stage was prepared through the activity adapter with the browser integratio
 
 Instruction: Get oriented: turn the 3D view or use the orientation presets, find the positive x, y and z axes, and compare the view with the three flat projections.
 
-Revealed by the host for this stage: nothing (no solution-bearing groups). Review notice shown: “Reference-checked; no independent subject review”. Projection `sha256:804441b0ccd450ddc2fcbe03df67a67a4f9fd0a4975b48757f3498756c3c5a17`, frame `sha256:9857e17eb39fa72d6de38c31cabde963b947d0755c709e5a0b4aee249f969adf`.
+Revealed by the host for this stage: nothing (no solution-bearing groups). Review notice shown: “Reference-checked; no independent subject review”. Projection `sha256:b2520248b7efad67da5454f4a27c4edaa1664d591c1ebeaffd25dff4d80dc323`, frame `sha256:48f6b7a9bfee86c604f3a75b385d658a1de94b21504d91c431856353de31fe1d`.
 
 ![Two vectors in space, stage orient](captures/orient.png)
 
@@ -248,7 +248,7 @@ Instruction: Before any angle or product is shown, look at u and v in space and 
 
 Host-owned prediction request: Is the angle between u and v acute, a right angle or obtuse? What sign do you expect for u·v, and which way do you expect u × v to point? (task family vector-orientation-prediction)
 
-Revealed by the host for this stage: nothing (no solution-bearing groups). Review notice shown: “Reference-checked; no independent subject review”. Projection `sha256:361b00d7f5c5f110c9851d0a28e48dad2215d1cb11dd5a05297c3c66c097377e`, frame `sha256:46afbc0d03fc484f907e8af2f0b0dabc66cebdcf3bf4ef1b583fed96652d5d1d`.
+Revealed by the host for this stage: nothing (no solution-bearing groups). Review notice shown: “Reference-checked; no independent subject review”. Projection `sha256:794c17f43f0b09d655c59a66748b9e633d69f1355a1cdc3e44b07adcf361140c`, frame `sha256:5a5832b12c1eee26ce93524f3d8526a708509236c35068f0eecfa5cb4e8ffc09`.
 
 ![Two vectors in space, stage predict](captures/predict.png)
 
@@ -258,7 +258,7 @@ Files: [PNG](captures/predict.png) · [SVG of space](captures/predict.svg) · [c
 
 Instruction: Change the components of u and v and watch the angle θ, the dot product u·v and the relationship. Compare what you see with your prediction.
 
-Revealed by the host for this stage: angle-dot, angle-arc, dot-values. Review notice shown: “Reference-checked; no independent subject review”. Projection `sha256:79200cb9e023835baebdac859c31750fb609049ee669ca9bcb8065e956ad8571`, frame `sha256:f731910fb86cb210981c7446a05df3a9a6d3516dd8b0644d2455351b00ac8176`.
+Revealed by the host for this stage: angle-dot, angle-arc, dot-values. Review notice shown: “Reference-checked; no independent subject review”. Projection `sha256:6ade1ccfb33474beb62d34c5a2d096d0653537799245c2fea52f7df66598a5c0`, frame `sha256:e96a4b4b00a84a4d3f451b22d73db50ef6de9d79a3fe0b2359d7124691348eb8`.
 
 ![Two vectors in space, stage explore-angle](captures/explore-angle.png)
 
@@ -270,7 +270,7 @@ Equations: 0 of 4 rendered with KaTeX, 4 shown as plain text.
 
 Instruction: Once the cross product u × v is shown as well, change u and v, swap their order and compare its direction and length with the angle between them.
 
-Revealed by the host for this stage: angle-dot, angle-arc, dot-values, cross, cross-drawing, cross-values. Review notice shown: “Reference-checked; no independent subject review”. Projection `sha256:58a1c4d6a036435a393be23710af309e849071a11657333a24425415a076575a`, frame `sha256:6d5a9c66a29fbccced7f9ded86c9b57d5fadf78ecfbdb5da60a10ebe99ead038`.
+Revealed by the host for this stage: angle-dot, angle-arc, dot-values, cross, cross-drawing, cross-values. Review notice shown: “Reference-checked; no independent subject review”. Projection `sha256:c3854806f2d9b85feb0256832ee278305b5000b8b16532b7cc8e81d2ae92ad53`, frame `sha256:336e5c38ac7f2e8b4d530d142fe1458c4ae430c2a721dd692ddb4480f81bd343`.
 
 ![Two vectors in space, stage explore-cross](captures/explore-cross.png)
 
@@ -284,7 +284,7 @@ Instruction: Explain in your own words how the directions of u and v determine t
 
 Host-owned explanation request: How do the directions of u and v determine the sign of u·v, the size of θ and the direction and length of u × v? (task family vector-orientation-explanation)
 
-Revealed by the host for this stage: angle-dot, angle-arc, dot-values, cross, cross-drawing, cross-values. Review notice shown: “Reference-checked; no independent subject review”. Projection `sha256:bf5622797d84193867e07e955b76640a853b49b0b067316f643e1c35b0a9db0f`, frame `sha256:6367289c820e476004352cde5d35072b1c7f598d2151a11445e86923b75a80c2`.
+Revealed by the host for this stage: angle-dot, angle-arc, dot-values, cross, cross-drawing, cross-values. Review notice shown: “Reference-checked; no independent subject review”. Projection `sha256:598bdd3824b1c42df76d1e6f77ba23839a2917a8bdc3eb4369c428da8a8beab7`, frame `sha256:72c7de1621ac9167a6920e597f110ea298227ace6be2a2fb9ecc4380746ab9da`.
 
 ![Two vectors in space, stage explain](captures/explain.png)
 
@@ -296,7 +296,7 @@ Equations: 0 of 9 rendered with KaTeX, 9 shown as plain text.
 
 Instruction: This activity is closed.
 
-Revealed by the host for this stage: nothing (no solution-bearing groups). Review notice shown: “Reference-checked; no independent subject review”. Projection `sha256:b858a90cf5e4e95add30fd3e571eadf13ba2d03d1e86fc890d5fd9c73a29b1a3`, frame `sha256:bcf4479ae9d38a5e54754354e88fc5454e7f13153c4e954d93f3d403114ebe56`.
+Revealed by the host for this stage: nothing (no solution-bearing groups). Review notice shown: “Reference-checked; no independent subject review”. Projection `sha256:5ad6405f30a61bf1573a7863be697008520e6e735c4bc6960a78c99d5134e5c6`, frame `sha256:6a0a65a933520c2958286d309b0bcba2a10351cdaec29bb4b83d0e2aa9cee669`.
 
 ![Two vectors in space, stage closed](captures/closed.png)
 
@@ -306,7 +306,7 @@ Files: [PNG](captures/closed.png) · [companion text](captures/closed.txt) · no
 
 Instruction: Explore freely: change both vectors, use the scenarios, turn the 3D view and compare the projections and values.
 
-Revealed by the host for this stage: angle-dot, angle-arc, dot-values, cross, cross-drawing, cross-values. Review notice shown: “Reference-checked; no independent subject review”. Projection `sha256:ffbf7ec9ff72dd53a58c83a83edd4a049e755854c750bf0990ec3a0d5c989c31`, frame `sha256:b40c5aaf9ac55156f3366ca9594ea5a17ff8851cce3c874702cfba454aadf5f4`.
+Revealed by the host for this stage: angle-dot, angle-arc, dot-values, cross, cross-drawing, cross-values. Review notice shown: “Reference-checked; no independent subject review”. Projection `sha256:9d21547507e979dc0fa6f1185335a4e2478efde134e7931e780359674a7df787`, frame `sha256:72a4d6b00cd39aa76db6e109791a191837aab8f94dec1924734205cab576aae2`.
 
 ![Two vectors in space, stage free-explore](captures/free-explore.png)
 
@@ -367,6 +367,6 @@ reference-suite digest listed under “Exact identity”; a review of any other 
 ## Regenerate
 
 ```sh
-experiment-kit activity review-packet --installed vector-orientation-3d --out docs/study-harness/review-packets/vector-orientation-3d --width 720 --theme light --index 4
+explorable-models activity review-packet --installed vector-orientation-3d --out docs/study-harness/review-packets/vector-orientation-3d --width 720 --theme light --index 4
 ```
 

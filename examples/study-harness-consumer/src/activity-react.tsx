@@ -7,9 +7,9 @@
 import { useSyncExternalStore } from 'react';
 import { createPortal, flushSync } from 'react-dom';
 import { createRoot } from 'react-dom/client';
-import { createStudyHarnessAdapter, type ActivityBinding } from '@experiment-kit/activity';
-import { createLazyCatalog } from '@experiment-kit/catalog';
-import { StudyActivitySurface, type StudyActivityHandle } from '@experiment-kit/player/activity';
+import { createStudyHarnessAdapter, type ActivityBinding } from '@explorable-models/activity';
+import { createLazyCatalog } from '@explorable-models/catalog';
+import { StudyActivitySurface, type StudyActivityHandle } from '@explorable-models/player/activity';
 import { ConsumerHost } from './host';
 import { exposeConsumer } from './page';
 import { ConsumerSession, type CardHandle, type CardMounter } from './session';

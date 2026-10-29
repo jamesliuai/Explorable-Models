@@ -7,9 +7,9 @@ import path from 'node:path';
 
 describe('declarative stdio MCP authoring (scripted protocol integration)', () => {
   it('creates, revises, operates, saves and reopens in a blank browser worker session without a source project', async () => {
-    const directory = await mkdtemp(path.join(tmpdir(), 'experiment-kit-mcp-empty-'));
-    const client = new Client({ name: 'experiment-kit-document-test', version: '1.0.0' });
-    const transport = new StdioClientTransport({ command: process.execPath, args: [path.resolve('packages/cli/bin/experiment-kit.mjs'), 'mcp-document'], cwd: directory, stderr: 'pipe' });
+    const directory = await mkdtemp(path.join(tmpdir(), 'explorable-models-mcp-empty-'));
+    const client = new Client({ name: 'explorable-models-document-test', version: '1.0.0' });
+    const transport = new StdioClientTransport({ command: process.execPath, args: [path.resolve('packages/cli/bin/explorable-models.mjs'), 'mcp-document'], cwd: directory, stderr: 'pipe' });
     let diagnostics = ''; transport.stderr?.on('data', chunk => { diagnostics += String(chunk); });
     let operation = 0;
     try {

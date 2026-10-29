@@ -8,9 +8,9 @@ import { describe, expect, it } from 'vitest';
 import {
   capabilityDiagnostics, capabilityRecord, DISCRETE_ITERATION_CAPABILITY, INSTALLED_CAPABILITIES, SPATIAL_3D_CAPABILITY, SPATIAL_3D_LIMITS, spatialViewWork,
   validateRecord, validateTemplateSemantics, type ActivityTemplate, type MarkSpec,
-} from '@experiment-kit/activity';
-import { modelIdentity, type ModelManifest } from '@experiment-kit/core/model';
-import { quadraticSurfaceGradientManifest, quadraticSurfaceGradientTemplate, vectorOrientationManifest, vectorOrientationTemplate } from '@experiment-kit/catalog';
+} from '@explorable-models/activity';
+import { modelIdentity, type ModelManifest } from '@explorable-models/core/model';
+import { quadraticSurfaceGradientManifest, quadraticSurfaceGradientTemplate, vectorOrientationManifest, vectorOrientationTemplate } from '@explorable-models/catalog';
 import { harness, op, requestFor } from './support/adapter-harness';
 
 /** A template/manifest pair with an edited manifest whose template references it exactly (so only the edit is judged). */

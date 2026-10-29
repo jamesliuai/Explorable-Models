@@ -9,8 +9,8 @@ import { build } from 'esbuild';
 import { createSessionRelay } from '../../packages/agent/dist/index.js';
 
 const root = resolve(fileURLToPath(new URL('../..', import.meta.url)));
-const directory = await mkdtemp(join(tmpdir(), 'experiment-kit-relay-'));
-await build({ absWorkingDir: root, entryPoints: { browser: 'examples/host-relay/browser.ts', 'document-worker': 'packages/core/src/declarative/document-worker.ts' }, outdir: directory, bundle: true, format: 'esm', target: 'es2022', platform: 'browser', minify: false, define: { 'process.env.NODE_ENV': '"production"' }, alias: { '@experiment-kit/core/declarative': resolve(root, 'packages/core/src/declarative/index.ts'), '@experiment-kit/agent': resolve(root, 'packages/agent/src/index.ts'), '@experiment-kit/player': resolve(root, 'packages/player/src/public.ts') } });
+const directory = await mkdtemp(join(tmpdir(), 'explorable-models-relay-'));
+await build({ absWorkingDir: root, entryPoints: { browser: 'examples/host-relay/browser.ts', 'document-worker': 'packages/core/src/declarative/document-worker.ts' }, outdir: directory, bundle: true, format: 'esm', target: 'es2022', platform: 'browser', minify: false, define: { 'process.env.NODE_ENV': '"production"' }, alias: { '@explorable-models/core/declarative': resolve(root, 'packages/core/src/declarative/index.ts'), '@explorable-models/agent': resolve(root, 'packages/agent/src/index.ts'), '@explorable-models/player': resolve(root, 'packages/player/src/public.ts') } });
 const token = randomBytes(24).toString('hex');
 const principal = 'local-demo-user';
 const sessions = new Map();
@@ -71,7 +71,7 @@ const server = createServer(async (request, response) => {
     else json(response, 404, { error: 'Unknown route.' });
   } catch (error) { json(response, 400, { error: error instanceof Error ? error.message : String(error) }); }
 });
-const port = Number(process.env.EXPERIMENT_KIT_RELAY_PORT ?? 8788);
+const port = Number(process.env.EXPLORABLE_MODELS_RELAY_PORT ?? 8788);
 server.listen(port, '127.0.0.1', () => { const address = server.address(); console.log(`Scripted relay demo (loopback only): http://127.0.0.1:${address.port}/#${token}`); });
 const shutdown = async () => { relay.dispose(); for (const session of sessions.values()) if (session.poll) { clearTimeout(session.poll.timeout); json(session.poll.response, 503, { error: 'Server shutting down.' }); } server.closeAllConnections(); server.close(); await rm(directory, { recursive: true, force: true }); };
 process.once('SIGINT', () => { void shutdown(); }); process.once('SIGTERM', () => { void shutdown(); });

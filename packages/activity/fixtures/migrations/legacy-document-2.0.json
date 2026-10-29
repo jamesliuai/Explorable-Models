@@ -1,5 +1,5 @@
 {
-  "format": "experiment-kit-document",
+  "format": "explorable-models-document",
   "version": "2.0",
   "runtimeVersion": "0.2.0-preview.1",
   "document": {
@@ -107,7 +107,7 @@
     "presentationRevision": "sha256:6398433e6d2123c0625eb37e810dfea4db3a2f8675176f08ee7a7ca8058819cd"
   },
   "run": {
-    "id": "2cd72cfc-d1ea-4e17-b39e-3d224c51e9d1",
+    "id": "c4a19564-bc4e-44ba-9f07-48ea939f3722",
     "version": 0,
     "params": {
       "n": 100

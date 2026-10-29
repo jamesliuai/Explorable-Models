@@ -1,6 +1,6 @@
 # Artifact migration fixtures
 
-Inputs and expected outputs for `migrateArtifact` and `verifyArtifact` (`@experiment-kit/activity`, report §14,
+Inputs and expected outputs for `migrateArtifact` and `verifyArtifact` (`@explorable-models/activity`, report §14,
 requirement A49). They are fixture data for compatibility tests, not teaching content and not real learner records.
 `tests/activity/migrations.test.ts` checks that the deterministic files below are current and regenerates every file
 with `UPDATE_MIGRATION_FIXTURES=1 npx vitest run tests/activity/migrations.test.ts`.

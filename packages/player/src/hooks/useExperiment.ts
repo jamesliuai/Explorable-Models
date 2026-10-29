@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { ExperimentRuntime, type RuntimeState, type RuntimeCommand, type ScalarParams, type TimeDomain } from '@experiment-kit/core';
+import { ExperimentRuntime, type RuntimeState, type RuntimeCommand, type ScalarParams, type TimeDomain } from '@explorable-models/core';
 import type { ExperimentEntry } from '../types';
 export function useExperiment(entry:ExperimentEntry) {
  const [runtime,setRuntime]=useState<ExperimentRuntime>();

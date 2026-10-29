@@ -18,7 +18,7 @@ import { toolkitVersion } from './activity-loader.js';
 
 const help = (): string => `Explorable Models ${toolkitVersion()} — reproducible interactive explanations
 
-Usage: experiment-kit <command> [directory] [options]
+Usage: explorable-models <command> [directory] [options]
 
   init <directory>      Copy a standalone example's editable source
   dev [directory]       Build and serve an authenticated local preview
@@ -39,7 +39,7 @@ Usage: experiment-kit <command> [directory] [options]
   serve <directory>     Serve an exported artifact locally
   activity <command>    Study Harness activity authoring: scaffold, validate, check,
                         reference, boundaries, capture, preview, review-packet, package
-                        (experiment-kit activity --help)
+                        (explorable-models activity --help)
 
 Options:
   --template <name>     rolling, linear-map (default), base-rates, riemann-sums, oscillator
@@ -91,9 +91,9 @@ export async function main(argv = process.argv.slice(2)): Promise<void> {
     for (const name of SOURCE_FILES) if (await exists(path.join(templateDirectory, name))) contents[name] = await readBounded(path.join(templateDirectory, name));
     if (!contents['experiment.json'] || !contents['model.ts']) throw new CliError('INVALID_SOURCE', `Template ${template} is incomplete.`);
     await ensureEmptyDestination(directory);
-    for (const [name, text] of Object.entries(contents)) await writeFile(path.join(directory, name), text.replaceAll(/(['"])\.\.\/\.\.\/packages\/core\/src\/(?:types|index)\1/g, "'@experiment-kit/core'"));
-    await writeFile(path.join(directory, 'README.md'), `# ${template} experiment\n\nEdit model.ts for mathematics, experiment.json for the public contract, views.json for semantic bindings, checks.ts for author assertions, and model.md for assumptions.\n\nRun from your Explorable Models installation:\n\n\`\`\`sh\nexperiment-kit dev ${JSON.stringify(directory)}\nexperiment-kit verify ${JSON.stringify(directory)}\nexperiment-kit export ${JSON.stringify(directory)} --out ./exported-experiment --zip\n\`\`\`\n\nUse exact run and definition guards from inspect before agent mutations. Candidate models execute in a dedicated browser worker, not the CLI process. Only trusted local authoring is supported.\n`);
-    await emit({ directory, template, files: Object.keys(contents), next: `experiment-kit dev ${JSON.stringify(directory)}` }); return;
+    for (const [name, text] of Object.entries(contents)) await writeFile(path.join(directory, name), text.replaceAll(/(['"])\.\.\/\.\.\/packages\/core\/src\/(?:types|index)\1/g, "'@explorable-models/core'"));
+    await writeFile(path.join(directory, 'README.md'), `# ${template} experiment\n\nEdit model.ts for mathematics, experiment.json for the public contract, views.json for semantic bindings, checks.ts for author assertions, and model.md for assumptions.\n\nRun from your Explorable Models installation:\n\n\`\`\`sh\nexplorable-models dev ${JSON.stringify(directory)}\nexplorable-models verify ${JSON.stringify(directory)}\nexplorable-models export ${JSON.stringify(directory)} --out ./exported-experiment --zip\n\`\`\`\n\nUse exact run and definition guards from inspect before agent mutations. Candidate models execute in a dedicated browser worker, not the CLI process. Only trusted local authoring is supported.\n`);
+    await emit({ directory, template, files: Object.keys(contents), next: `explorable-models dev ${JSON.stringify(directory)}` }); return;
   }
   if (command === 'serve') {
     const server = await serveStatic(directory, { port }); process.stdout.write(`Explorable Models: ${server.url}\n`); await stopOnSignal(() => server.close()); return;
@@ -102,7 +102,7 @@ export async function main(argv = process.argv.slice(2)): Promise<void> {
   if (command === 'dev') {
     const project = await compileProject(directory, { player: true });
     let coordinator: Awaited<ReturnType<typeof createCoordinator>> | undefined;
-    const connectionFile = path.resolve(values.session ?? path.join(directory, '.experiment-kit-session.json'));
+    const connectionFile = path.resolve(values.session ?? path.join(directory, '.explorable-models-session.json'));
     try {
       const validation = await BrowserSession.create(project); let report: unknown;
       try { report = await validation.checked('verify'); } finally { await validation.close(); }
@@ -127,7 +127,7 @@ export async function main(argv = process.argv.slice(2)): Promise<void> {
     } finally { await browser?.close(); await project.dispose(); }
     return;
   }
-  if (!['mcp','describe','inspect','sample','command','checkpoint','compare','capture','activate'].includes(command)) throw new CliError('INVALID_COMMAND', `Unknown command: ${command}`, 'Run experiment-kit --help.');
+  if (!['mcp','describe','inspect','sample','command','checkpoint','compare','capture','activate'].includes(command)) throw new CliError('INVALID_COMMAND', `Unknown command: ${command}`, 'Run explorable-models --help.');
   if (['command','compare','activate'].includes(command) && !values.session) throw new CliError('INVALID_PARAMETER', `${command} requires --session so it targets a persistent player.`);
   const service = await openService(directory, values.session);
   try {

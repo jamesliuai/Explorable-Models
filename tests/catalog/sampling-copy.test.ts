@@ -4,13 +4,13 @@
  * kernel's sample count, grid or domain without updating the copy fails here.
  */
 import { afterEach, describe, expect, it } from 'vitest';
-import { templateRef, type LearnerProjection } from '@experiment-kit/activity';
+import { templateRef, type LearnerProjection } from '@explorable-models/activity';
 import {
   FIELD_GRID, FUNCTION_DERIVATIVE_COPY, FUNCTION_DERIVATIVE_CURVE, SECTION_SAMPLES, SURFACE_GRADIENT_COPY, SURFACE_GRID,
   functionDerivativeKernel, functionDerivativeManifest, functionDerivativeTemplate, quadraticGradientDescentKernel, quadraticGradientDescentManifest,
   quadraticSurfaceGradientKernel, quadraticSurfaceGradientManifest, quadraticSurfaceGradientTemplate,
-} from '@experiment-kit/catalog';
-import { modelIdentity, type GeometryResult, type ModelManifest } from '@experiment-kit/core/model';
+} from '@explorable-models/catalog';
+import { modelIdentity, type GeometryResult, type ModelManifest } from '@explorable-models/core/model';
 import { QUADRATIC_CURVE } from '../../packages/catalog/src/kernels/quadratic-gradient-descent';
 import { harness, open, policyFor, requestFor, settled, type Harness } from '../activity/support/adapter-harness';
 

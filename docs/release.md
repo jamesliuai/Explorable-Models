@@ -8,7 +8,7 @@ verification pipeline. None of them publishes, tags, signs or deploys anything.
 | Study Harness library tarballs | `npm run pack:study-harness` (`node scripts/study-harness/pack.mjs`) | `release/study-harness/packages/`: the core, activity, catalog, player, player-3d and agent tarballs, plus `manifest.json` with sha256, integrity, source commit and lock digest. See the [handoff](study-harness/README.md#33-package-from-tarballs). |
 | Study Harness release verification | `npm run release:study-harness` | Packs once, runs every gate against those tarballs and writes `release/study-harness/verification.json` (see [below](#verify-a-study-harness-release)). |
 | Declarative libraries and static site | `npm run release:preview` | `release/preview/`: the core, activity, player and agent tarballs, the site archive and verification evidence. The procedure dates from the 0.2 preview; see [preview operations](preview-operations.md). `node scripts/verify-preview.mjs --from-pipeline` derives the preview's verification from a release pipeline run instead of running the gates again (CI does this). |
-| Unified source/CLI toolkit | `npm run release` | `release/experiment-kit-<version>.tgz` and `release/release-manifest.json` (described below) |
+| Unified source/CLI toolkit | `npm run release` | `release/explorable-models-<version>.tgz` and `release/release-manifest.json` (described below) |
 
 The unified release package is a TypeScript toolkit plus its prebuilt static site. It retains the following, so that
 the fixed authoring compiler and the activity commands can resolve their trusted sources:
@@ -28,11 +28,11 @@ npm run build
 node scripts/package-release.mjs
 ```
 
-Packaging writes `release/experiment-kit-0.3.0-preview.1.tgz` and `release/release-manifest.json`. The script stages only declared source roots and allowed file types, promotes the compiler/browser dependencies required at runtime, removes workspace and private-package settings, generates a distributable lock, and builds the gallery in that staged dependency context.
+Packaging writes `release/explorable-models-0.3.0-preview.1.tgz` and `release/release-manifest.json`. The script stages only declared source roots and allowed file types, promotes the compiler/browser dependencies required at runtime, removes workspace and private-package settings, generates a distributable lock, and builds the gallery in that staged dependency context.
 
 The package includes `npm-shrinkwrap.json` because npm deliberately excludes `package-lock.json` from published tarballs. Gallery and CLI definition identities use the same exact lock bytes and runtime/player source digest. A normal source checkout uses its package lock instead. The package declares no installation lifecycle scripts of its own.
 
-Before packing, the script verifies every gallery experiment in Chromium with external network requests blocked, checks fresh-instance state restoration, and includes the reports and upstream playback license texts in `dist`. It then checks `npm pack --dry-run`, verifies the file inventory excludes local credentials and session bridges, creates the tarball, extracts it into a fresh temporary directory, runs `npm ci --ignore-scripts`, starts the executable, runs a quantitative check through the actual Chromium worker, and checks gallery/CLI revision agreement. In an unrelated directory it then runs `experiment-kit activity scaffold --from quadratic-gradient-descent`, `validate`, `check` (in a browser worker), `reference` and `review-packet` against the installed tree only (A56). Finally it builds the standalone SDK. The release manifest records hashes, size, file count, and these results. Nothing is published to an npm registry or a hosting provider.
+Before packing, the script verifies every gallery experiment in Chromium with external network requests blocked, checks fresh-instance state restoration, and includes the reports and upstream playback license texts in `dist`. It then checks `npm pack --dry-run`, verifies the file inventory excludes local credentials and session bridges, creates the tarball, extracts it into a fresh temporary directory, runs `npm ci --ignore-scripts`, starts the executable, runs a quantitative check through the actual Chromium worker, and checks gallery/CLI revision agreement. In an unrelated directory it then runs `explorable-models activity scaffold --from quadratic-gradient-descent`, `validate`, `check` (in a browser worker), `reference` and `review-packet` against the installed tree only (A56). Finally it builds the standalone SDK. The release manifest records hashes, size, file count, and these results. Nothing is published to an npm registry or a hosting provider.
 
 `release/release-manifest.json` also identifies what it was made from: `source` (commit and whether the working tree
 was dirty), `packageLock` (sha256 of the workspace `package-lock.json`; the shrinkwrap's own digest is in
@@ -167,24 +167,24 @@ failed and immutable. The latest summary can point to the new record; partial se
 Extract the tarball and work inside its `package` directory:
 
 ```sh
-tar -xzf experiment-kit-0.3.0-preview.1.tgz
+tar -xzf explorable-models-0.3.0-preview.1.tgz
 cd package
 npm ci
 npx playwright install chromium
-npm run kit -- init my-experiment --template rolling
-npm run kit -- dev my-experiment
+npm run models -- init my-experiment --template rolling
+npm run models -- dev my-experiment
 ```
 
 Or install the local tarball into another project:
 
 ```sh
-npm install /absolute/path/to/experiment-kit-0.3.0-preview.1.tgz
+npm install /absolute/path/to/explorable-models-0.3.0-preview.1.tgz
 npx playwright install chromium
-npx experiment-kit init lesson --template linear-map
-npx experiment-kit verify lesson
+npx explorable-models init lesson --template linear-map
+npx explorable-models verify lesson
 ```
 
-The executable is named `experiment-kit`. Node.js 22.12 or newer is required. Chromium is a one-time local authoring/test dependency; exported learners do not install Node, Chromium, or an AI client. The prebuilt `dist` directory can be hosted as a static gallery. Custom exports are built with `experiment-kit export <source> --out <directory> --zip` and served over HTTP.
+The executable is named `explorable-models`. Node.js 22.12 or newer is required. Chromium is a one-time local authoring/test dependency; exported learners do not install Node, Chromium, or an AI client. The prebuilt `dist` directory can be hosted as a static gallery. Custom exports are built with `explorable-models export <source> --out <directory> --zip` and served over HTTP.
 
 ## Release meaning
 

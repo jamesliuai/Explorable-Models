@@ -40,7 +40,7 @@ describe('inert states (G43)', () => {
     const projection = fixtureProjection('quadratic', 'suspended');
     expect(projection.controls.some(control => control.mode === 'interactive')).toBe(true);
     const html = render(projection);
-    const sliders = tags(html, /type="range"/), entries = tags(html, /class="eka-input"/).filter(tag => !/eka-goto/.test(tag));
+    const sliders = tags(html, /type="range"/), entries = tags(html, /class="ema-input"/).filter(tag => !/ema-goto/.test(tag));
     expect(sliders.length).toBeGreaterThan(0);
     for (const tag of [...sliders, ...entries]) expect(tag, tag).toMatch(/aria-disabled="true"|readOnly=""|readonly=""/);
     for (const tag of sliders) expect(tag).toContain('aria-disabled="true"');
@@ -49,10 +49,10 @@ describe('inert states (G43)', () => {
     const navButtons = tags(nav, /./);
     expect(navButtons.length).toBeGreaterThanOrEqual(5);
     for (const tag of navButtons) expect(tag, tag).toMatch(/aria-disabled="true"/);
-    const scenarioButtons = tags(section(html, 'class="eka-scenarios"'), /<button/);
+    const scenarioButtons = tags(section(html, 'class="ema-scenarios"'), /<button/);
     expect(scenarioButtons.length).toBeGreaterThan(0);
     for (const tag of scenarioButtons) expect(tag, tag).toContain('aria-disabled="true"');
-    const reset = tags(section(html, 'data-eka-action="reset-experiment"'), /<button/);
+    const reset = tags(section(html, 'data-ema-action="reset-experiment"'), /<button/);
     expect(reset).toHaveLength(1);
     expect(reset[0]).toContain('aria-disabled="true"');
     expect(html.split('Paused by the host.').length - 1).toBeGreaterThanOrEqual(projection.controls.length + 2);
@@ -75,18 +75,18 @@ describe('inert states (G43)', () => {
       expect(projection.stage.response, state).toBeUndefined();
       const html = render(projection);
       expect(html, state).not.toContain('aria-label="Iteration controls"');
-      expect(html, state).not.toContain('class="eka-pending"');
-      expect(html, state).not.toContain('class="eka-response"');
+      expect(html, state).not.toContain('class="ema-pending"');
+      expect(html, state).not.toContain('class="ema-response"');
       expect(html, state).not.toMatch(/<input|type="range"/);
-      expect(html.match(/class="eka-banner"/g) ?? [], state).toHaveLength(1);
+      expect(html.match(/class="ema-banner"/g) ?? [], state).toHaveLength(1);
     }
   });
 
   it('contentless states have a focusable heading as their focus target', () => {
     for (const state of ['preparing', 'disposed'] as UiState[]) {
       const html = render(fixtureProjection('quadratic', state));
-      expect(html, state).toMatch(/<h[2-6][^>]*class="eka-title"[^>]*tabindex="-1"|<h[2-6][^>]*tabindex="-1"[^>]*class="eka-title"/i);
-      expect(html, state).not.toContain('class="eka-instruction"');
+      expect(html, state).toMatch(/<h[2-6][^>]*class="ema-title"[^>]*tabindex="-1"|<h[2-6][^>]*tabindex="-1"[^>]*class="ema-title"/i);
+      expect(html, state).not.toContain('class="ema-instruction"');
     }
   });
 });
@@ -95,7 +95,7 @@ describe('Reset experiment (G26)', () => {
   it('is offered, enabled and described while a control is interactive; absent when every control is fixed', () => {
     const ready = fixtureProjection('quadratic', 'ready');
     const html = render(ready);
-    const reset = tags(section(html, 'data-eka-action="reset-experiment"'), /<button/);
+    const reset = tags(section(html, 'data-ema-action="reset-experiment"'), /<button/);
     expect(reset).toHaveLength(1);
     expect(reset[0]).not.toContain('aria-disabled');
     expect(html).toContain('Starts a new run from the starting values. Earlier work stays recorded.');

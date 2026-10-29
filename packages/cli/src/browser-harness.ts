@@ -29,9 +29,9 @@ export async function startHarness(definition: ExperimentDefinition): Promise<vo
     requestAnimationFrame(time => { void animate(time); });
     const authorSuite = () => new Promise<CheckSuite | null>((resolve, reject) => {
       const id = crypto.randomUUID();
-      const onMessage = (event: MessageEvent) => { if (event.data?.namespace !== 'experiment-kit-checks' || event.data.id !== id) return; clearTimeout(timer); worker.removeEventListener('message', onMessage); event.data.error ? reject(event.data.error) : resolve(event.data.result as CheckSuite | null); };
+      const onMessage = (event: MessageEvent) => { if (event.data?.namespace !== 'explorable-models-checks' || event.data.id !== id) return; clearTimeout(timer); worker.removeEventListener('message', onMessage); event.data.error ? reject(event.data.error) : resolve(event.data.result as CheckSuite | null); };
       const timer = setTimeout(() => { worker.removeEventListener('message', onMessage); reject({ code: 'TIMEOUT', message: 'Author check suite did not respond within 3 seconds.' }); }, 3000);
-      worker.addEventListener('message', onMessage); worker.postMessage({ namespace: 'experiment-kit-checks', id });
+      worker.addEventListener('message', onMessage); worker.postMessage({ namespace: 'explorable-models-checks', id });
     });
     api.request = async ({ method, args = {} }) => {
       try {

@@ -1,6 +1,6 @@
-import { createVisualizationSession, createPreset } from '@experiment-kit/core/declarative';
-import type { VisualizationSession } from '@experiment-kit/core/declarative';
-import { createVisualizationTools } from '@experiment-kit/agent';
+import { createVisualizationSession, createPreset } from '@explorable-models/core/declarative';
+import type { VisualizationSession } from '@explorable-models/core/declarative';
+import { createVisualizationTools } from '@explorable-models/agent';
 export { createPreset, createVisualizationSession };
 export const guard = (session: VisualizationSession) => { const state = session.getState(); return { sessionId: session.id, expectedVersion: state.version, ...(state.run ? { expectedRunId: state.run.id } : {}), operationId: crypto.randomUUID(), origin: 'agent' as const }; };
 export async function setup(override = false) {

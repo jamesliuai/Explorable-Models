@@ -17,9 +17,9 @@ import { afterEach, describe, expect, it } from 'vitest';
 import {
   createStudyHarnessAdapter, formatNumber, TERMINAL_TEXT, UI_STATUS,
   type ActivityArtifact, type ActivityTemplate, type ExposureRecord, type HostPolicy, type LearnerProjection, type StudyHarnessAdapter,
-} from '@experiment-kit/activity';
-import { createInstalledCatalog, INSTALLED_KERNELS, INSTALLED_MODELS, INSTALLED_TEMPLATES } from '@experiment-kit/catalog';
-import { convert, evaluateRequest, type FramePosition, type ModelManifest, type PositionRequest } from '@experiment-kit/core/model';
+} from '@explorable-models/activity';
+import { createInstalledCatalog, INSTALLED_KERNELS, INSTALLED_MODELS, INSTALLED_TEMPLATES } from '@explorable-models/catalog';
+import { convert, evaluateRequest, type FramePosition, type ModelManifest, type PositionRequest } from '@explorable-models/core/model';
 import { ackCurrent, activityGuard, expectValidEvents, harness, okOf, op, open, policyFor, settled, until, type Harness, type Opened } from './support/adapter-harness.js';
 import { MemoryHost } from './support/memory-host.js';
 

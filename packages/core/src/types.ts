@@ -1,4 +1,4 @@
-/** Public, JSON-compatible Experiment Kit 0.1 contract. All physical numbers use SI. */
+/** Public, JSON-compatible Explorable Models 0.1 contract. All physical numbers use SI. */
 export const RUNTIME_VERSION = '0.1.0';
 export const SCHEMA_VERSION = '1.0';
 export const DEFAULT_RATE_HZ = 120;

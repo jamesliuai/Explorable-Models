@@ -4,13 +4,13 @@
  * mutation runs, and stage-by-stage captures. The packet is engineering evidence prepared by a tool. It is not a
  * review: the sign-off section is empty, and an engineering agent cannot sign it.
  */
-import type { ActivityTemplate, GroupDigest, TemplateRef } from '@experiment-kit/activity';
-import type { ModelIdentity, ModelManifest, ModelRef } from '@experiment-kit/core/model';
+import type { ActivityTemplate, GroupDigest, TemplateRef } from '@explorable-models/activity';
+import type { ModelIdentity, ModelManifest, ModelRef } from '@explorable-models/core/model';
 import type { Mutation, ReferenceSuite, Tolerance } from './activity-fixtures.js';
 import type { Relation, AuthoringRecord } from './activity-validation.js';
 import type { SourceDigest } from './activity-bundle.js';
 
-export const PACKET_CONTRACT = 'experiment-kit.review-packet' as const;
+export const PACKET_CONTRACT = 'explorable-models.review-packet' as const;
 
 /**
  * One geometry of the default frame as `check` reports it: kind, element count, the declared sampling of sampled curves
@@ -103,7 +103,7 @@ export function packetMarkdown(input: PacketInput): string {
   const solution = new Set(template.groups.filter(group => group.solutionBearing).map(group => group.id));
   push(`# Subject-review packet: ${template.title}`, '');
   push(
-    `> Prepared automatically by ${code('experiment-kit activity review-packet')} (toolkit ${input.toolkitVersion}) for a human subject reviewer.`,
+    `> Prepared automatically by ${code('explorable-models activity review-packet')} (toolkit ${input.toolkitVersion}) for a human subject reviewer.`,
     '> It is engineering evidence, **not** a subject review, an accessibility certification or evidence of learning benefit.',
     `> Catalogue status of this exact version: **${input.lifecycle}**${input.reviewScope.length ? ` (host-trusted review scope: ${input.reviewScope.join('; ')})` : ' — no independent human review is recorded'}.`,
     '> The reviewer sign-off at the end is empty; an engineering agent cannot sign it.', '');
@@ -252,7 +252,7 @@ export function packetMarkdown(input: PacketInput): string {
 /** packet.json: the same facts as data (no images). */
 export function packetData(input: PacketInput): Record<string, unknown> {
   return {
-    contract: PACKET_CONTRACT, version: '1.0', kind: input.kind, generator: { tool: 'experiment-kit activity review-packet', toolkitVersion: input.toolkitVersion, browser: input.browser, regenerate: input.regenerate },
+    contract: PACKET_CONTRACT, version: '1.0', kind: input.kind, generator: { tool: 'explorable-models activity review-packet', toolkitVersion: input.toolkitVersion, browser: input.browser, regenerate: input.regenerate },
     status: { lifecycle: input.lifecycle, reviewScope: input.reviewScope, subjectReview: 'none-recorded', signOff: null, statement: 'Engineering evidence prepared by a tool; not a subject review. An engineering agent cannot sign this packet.' },
     identity: { template: input.identity.template, model: input.identity.model, modelIdentity: input.identity.modelIdentity, groups: input.identity.groups },
     relation: input.relation, recordedRelation: input.recordedRelation, execution: input.execution,

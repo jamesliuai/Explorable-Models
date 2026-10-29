@@ -3,7 +3,7 @@
  * checked before deep traversal), then the authoritative schema. Diagnostics never echo input values: messages are
  * fixed text and paths contain only identifier-shaped keys (other keys are redacted).
  */
-import { jsonDataErrors, schemaErrors, type JsonSchema } from '@experiment-kit/core/model';
+import { jsonDataErrors, schemaErrors, type JsonSchema } from '@explorable-models/core/model';
 import type {
   ActivityArtifact, ActivityInstance, ActivityRecords, ActivityRequest, ActivityTemplate, AppendResult, AssistanceReceipt, AssistanceRequest, Diagnostic,
   DisplayAckRequest, ExposureIntentRequest, ExposureReceipt, ExposureRecord, HostAck, HostPolicy, InteractionEvent, InteractionSummary,
@@ -42,7 +42,7 @@ export interface SchemaTypes {
   'study-harness.activity-lookup-request': { activityId: string };
   'study-harness.host-ack': HostAck & { artifactDigest?: string };
   'study-harness.activity-records': ActivityRecords;
-  'experiment-kit.model-manifest': ModelManifest;
+  'explorable-models.model-manifest': ModelManifest;
 }
 // Compile-time check that SchemaTypes covers exactly the schema names.
 type Exact<A, B> = [A] extends [B] ? [B] extends [A] ? true : never : never;

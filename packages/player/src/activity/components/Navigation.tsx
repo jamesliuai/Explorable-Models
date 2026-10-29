@@ -10,7 +10,7 @@
  * command or gesture completion is in flight.
  */
 import { useState } from 'react';
-import type { LearnerProjection, ProjectedNavigation, PositionRequest } from '@experiment-kit/activity';
+import type { LearnerProjection, ProjectedNavigation, PositionRequest } from '@explorable-models/activity';
 import { formatPosition, parseDraft } from '../format.js';
 import { Heading, useRoving, useRuntime, useStableId } from './context.js';
 
@@ -31,8 +31,8 @@ function PlayFaces({ shown }: { shown: keyof typeof PLAY_FACES }) {
   const [spareIcon, spareLabel] = PLAY_FACES[shown === 'play' ? 'pause' : 'play'];
   return (
     <>
-      <span className="eka-play-face"><span aria-hidden="true">{icon}</span>{label}</span>
-      <span className="eka-play-face eka-play-spare" aria-hidden="true"><span>{spareIcon}</span>{spareLabel}</span>
+      <span className="ema-play-face"><span aria-hidden="true">{icon}</span>{label}</span>
+      <span className="ema-play-face ema-play-spare" aria-hidden="true"><span>{spareIcon}</span>{spareLabel}</span>
     </>
   );
 }
@@ -40,12 +40,12 @@ function PlayFaces({ shown }: { shown: keyof typeof PLAY_FACES }) {
 export function Navigation({ navigation, frame, headingLevel }: { navigation: ProjectedNavigation; frame: LearnerProjection['frame']; headingLevel: number }) {
   const runtime = useRuntime();
   const { binding } = runtime;
-  const headingId = useStableId('eka-nav');
-  const inputId = useStableId('eka-goto');
-  const errorId = useStableId('eka-goto-error');
-  const terminalId = useStableId('eka-nav-end');
-  const inertId = useStableId('eka-nav-inert');
-  const reasonBase = useStableId('eka-nav-why');
+  const headingId = useStableId('ema-nav');
+  const inputId = useStableId('ema-goto');
+  const errorId = useStableId('ema-goto-error');
+  const terminalId = useStableId('ema-nav-end');
+  const inertId = useStableId('ema-nav-inert');
+  const reasonBase = useStableId('ema-nav-why');
   const [draft, setDraft] = useState('');
   const [error, setError] = useState<string | null>(null);
   const roving = useRoving(5, 'horizontal');
@@ -101,60 +101,60 @@ export function Navigation({ navigation, frame, headingLevel }: { navigation: Pr
   };
 
   return (
-    <section className="eka-panel eka-nav" aria-labelledby={headingId} data-eka-frame-id={frame?.frameId}>
-      <div className="eka-nav-row">
-        <Heading level={headingLevel} id={headingId} className="eka-panel-title">{index ? 'Iterations' : 'Time'}</Heading>
-        <output className="eka-position" aria-live="off">{formatPosition(navigation, runtime.locale)}</output>
+    <section className="ema-panel ema-nav" aria-labelledby={headingId} data-ema-frame-id={frame?.frameId}>
+      <div className="ema-nav-row">
+        <Heading level={headingLevel} id={headingId} className="ema-panel-title">{index ? 'Iterations' : 'Time'}</Heading>
+        <output className="ema-position" aria-live="off">{formatPosition(navigation, runtime.locale)}</output>
       </div>
-      <div className="eka-toolbar" role="toolbar" aria-label={`${index ? 'Iteration' : 'Time'} controls`} onKeyDown={roving.onKeyDown}>
-        <button type="button" className="eka-button" {...roving.itemProps(0)} aria-disabled={off('start') || undefined} aria-describedby={describedBy('start')}
+      <div className="ema-toolbar" role="toolbar" aria-label={`${index ? 'Iteration' : 'Time'} controls`} onKeyDown={roving.onKeyDown}>
+        <button type="button" className="ema-button" {...roving.itemProps(0)} aria-disabled={off('start') || undefined} aria-describedby={describedBy('start')}
           onClick={() => science('start', () => binding.navigate({ operationId: runtime.opId(), ...guards(), position: start }))}>
           <span aria-hidden="true">⏮</span>{index ? 'n = 0' : 'Start'}
         </button>
-        <button type="button" className="eka-button" {...roving.itemProps(1)} aria-label={`Back one ${index ? 'iteration' : 'step'}`} aria-disabled={off('back') || undefined} aria-describedby={describedBy('back')}
+        <button type="button" className="ema-button" {...roving.itemProps(1)} aria-label={`Back one ${index ? 'iteration' : 'step'}`} aria-disabled={off('back') || undefined} aria-describedby={describedBy('back')}
           onClick={() => science('back', () => binding.step({ operationId: runtime.opId(), ...guards(), delta: -1 }))}>
           <span aria-hidden="true">‹</span>Back
         </button>
-        <button type="button" className="eka-button" {...roving.itemProps(2)} aria-label={`Next ${index ? 'iteration' : 'step'}`} aria-disabled={off('next') || undefined} aria-describedby={describedBy('next')}
+        <button type="button" className="ema-button" {...roving.itemProps(2)} aria-label={`Next ${index ? 'iteration' : 'step'}`} aria-disabled={off('next') || undefined} aria-describedby={describedBy('next')}
           onClick={() => science('next', () => binding.step({ operationId: runtime.opId(), ...guards(), delta: 1 }))}>
           Next<span aria-hidden="true">›</span>
         </button>
         {navigation.playing ? (
-          <button type="button" className="eka-button eka-play" {...roving.itemProps(3)} aria-disabled={!!inert || undefined} aria-describedby={inert ? inertId : undefined}
+          <button type="button" className="ema-button ema-play" {...roving.itemProps(3)} aria-disabled={!!inert || undefined} aria-describedby={inert ? inertId : undefined}
             onClick={() => { if (!inert) void runtime.run(() => binding.pause({ operationId: runtime.opId(), ...guards() }), 'science'); }}>
             <PlayFaces shown="pause" />
           </button>
         ) : (
-          <button type="button" className="eka-button eka-play" {...roving.itemProps(3)} aria-disabled={off('play') || undefined} aria-describedby={describedBy('play')}
+          <button type="button" className="ema-button ema-play" {...roving.itemProps(3)} aria-disabled={off('play') || undefined} aria-describedby={describedBy('play')}
             onClick={() => science('play', () => binding.play({ operationId: runtime.opId(), ...guards() }))}>
             <PlayFaces shown="play" />
           </button>
         )}
-        <button type="button" className="eka-button" {...roving.itemProps(4)} aria-disabled={off('restart') || undefined} aria-describedby={describedBy('restart')}
+        <button type="button" className="ema-button" {...roving.itemProps(4)} aria-disabled={off('restart') || undefined} aria-describedby={describedBy('restart')}
           onClick={() => science('restart', () => binding.restartPlayback({ operationId: runtime.opId(), ...guards() }))}>
           <span aria-hidden="true">↻</span>Restart
         </button>
       </div>
-      {frame?.terminal ? <p className="eka-terminal" id={terminalId}>End of the computed run{frame.terminalDetail ? `: ${frame.terminalDetail}` : '.'}</p> : null}
-      {inert ? <p className="eka-reason" id={inertId}><span className="eka-glyph" aria-hidden="true">–</span>{inert}</p> : null}
+      {frame?.terminal ? <p className="ema-terminal" id={terminalId}>End of the computed run{frame.terminalDetail ? `: ${frame.terminalDetail}` : '.'}</p> : null}
+      {inert ? <p className="ema-reason" id={inertId}><span className="ema-glyph" aria-hidden="true">–</span>{inert}</p> : null}
       {/* Reasons that come and go with the learner's own steps are announced, not shown, so the panel keeps its height while
           the learner previews, commits or plays (G40): a preview (explained under the controls in use; it always shows
           n = 0) and being at the start (the readout says n = 0). Lasting reasons of this part of the activity are visible. */}
       {groups.some(group => !TRANSIENT(group.text)) ? (
-        <p className="eka-panel-note eka-nav-reasons">
+        <p className="ema-panel-note ema-nav-reasons">
           {groups.filter(group => !TRANSIENT(group.text)).map(group => <span key={group.id} id={group.id}>{`${group.buttons.map(button => names[button]).join(', ')}: ${group.text}. `}</span>)}
         </p>
       ) : null}
-      {groups.filter(group => TRANSIENT(group.text)).map(group => <span key={group.id} id={group.id} className="eka-sr">{`${group.buttons.map(button => names[button]).join(', ')}: ${group.text}.`}</span>)}
-      <div className="eka-exact">
+      {groups.filter(group => TRANSIENT(group.text)).map(group => <span key={group.id} id={group.id} className="ema-sr">{`${group.buttons.map(button => names[button]).join(', ')}: ${group.text}.`}</span>)}
+      <div className="ema-exact">
         <label htmlFor={inputId}>Go to {index ? 'n =' : 't ='}</label>
-        <input id={inputId} className="eka-input" type="text" inputMode={index ? 'numeric' : 'decimal'} autoComplete="off" value={draft} placeholder={index ? '0' : '0.0'}
+        <input id={inputId} className="ema-input" type="text" inputMode={index ? 'numeric' : 'decimal'} autoComplete="off" value={draft} placeholder={index ? '0' : '0.0'}
           readOnly={!!inert} aria-disabled={!!inert || undefined}
           aria-invalid={error ? true : undefined} aria-describedby={[error ? errorId : null, describedBy('go') ?? null].filter(Boolean).join(' ') || undefined}
           onChange={event => setDraft(event.currentTarget.value)} onKeyDown={event => { if (event.key === 'Enter' && !event.nativeEvent.isComposing) { event.preventDefault(); go(); } }} />
-        <button type="button" className="eka-button" aria-disabled={off('go') || undefined} aria-describedby={describedBy('go')} onClick={go}>Go</button>
+        <button type="button" className="ema-button" aria-disabled={off('go') || undefined} aria-describedby={describedBy('go')} onClick={go}>Go</button>
       </div>
-      {error ? <p className="eka-error" id={errorId}><span className="eka-glyph" aria-hidden="true">!</span>{error}</p> : null}
+      {error ? <p className="ema-error" id={errorId}><span className="ema-glyph" aria-hidden="true">!</span>{error}</p> : null}
     </section>
   );
 }

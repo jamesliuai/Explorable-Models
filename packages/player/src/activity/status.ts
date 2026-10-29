@@ -12,8 +12,8 @@
  *   own indicator with Inspect values and Fit to data) and a routine notice — so nothing is inserted above a control
  *   that is being dragged, stepped with the keyboard or toggled between Play and Pause.
  */
-import type { LearnerProjection, ProjectedStatus, UiState } from '@experiment-kit/activity';
-import { CLOSED_MESSAGE, TERMINAL_TEXT } from '@experiment-kit/activity';
+import type { LearnerProjection, ProjectedStatus, UiState } from '@explorable-models/activity';
+import { CLOSED_MESSAGE, TERMINAL_TEXT } from '@explorable-models/activity';
 
 export type Tone = 'info' | 'success' | 'warning' | 'error' | 'neutral';
 export type RecoveryAction = 'retry' | 'commit' | 'cancel' | 'return' | 'reload';

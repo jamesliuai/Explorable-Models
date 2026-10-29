@@ -194,3 +194,9 @@ test('derived preview records retain resumed/reused provenance without executing
   assert.equal(chromium.execution, 'reused'); assert.equal(chromium.startedAt, '2026-10-29T04:00:00Z'); assert.deepEqual(chromium.reusedFrom, origin);
   assert.equal(derived.results.find(row => row.command === 'npm run test:cross-browser').execution, 'rerun');
 });
+
+test('terminology-normalized historical copies cannot become resumed release evidence', t => {
+  const root=directory(t),parentPath='docs/study-harness/evidence/history/verification-projected.json';
+  put(root,parentPath,JSON.stringify({schema:'study-harness.evidence-history/1',kind:'verification',record:fullParent(),terminologyProjection:{sourceCommit:'original'}}));
+  assert.throws(()=>auditResume({root,parentPath,checkpointPath:'unused.json',planPath:'unused-plan.json'}),/Terminology-normalized historical evidence cannot be resumed/);
+});

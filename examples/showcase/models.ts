@@ -1,4 +1,4 @@
-import type { ParameterSpec, QuantitySpec, VisualizationDocument } from '@experiment-kit/core/declarative';
+import type { ParameterSpec, QuantitySpec, VisualizationDocument } from '@explorable-models/core/declarative';
 
 const p = (label: string, value: number, min: number, max: number, step: number, unit = '', dimension?: string): ParameterSpec => ({ label, value, min, max, step, unit, ...(dimension ? { dimension } : {}) });
 const q = (expression: QuantitySpec['expression'], label: string, unit = '', dimension?: string): QuantitySpec => ({ expression, label, unit, ...(dimension ? { dimension } : {}) });

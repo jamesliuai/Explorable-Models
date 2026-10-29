@@ -7,9 +7,9 @@
  */
 import type {
   ActivityArtifact, ActivityBinding, ActivityRequest, CommandBase, CommandFailure, CommandOutcome, LearnerProjection, PreparedActivity, RestoreResult,
-} from '@experiment-kit/activity';
-import type { InstalledCatalog, LazyInstalledCatalog } from '@experiment-kit/catalog';
-import type { CaptureOptions, CaptureResult, SurfaceDiagnostic } from '@experiment-kit/player/activity';
+} from '@explorable-models/activity';
+import type { InstalledCatalog, LazyInstalledCatalog } from '@explorable-models/catalog';
+import type { CaptureOptions, CaptureResult, SurfaceDiagnostic } from '@explorable-models/player/activity';
 import type { ConsumerHost } from './host';
 
 /** A mounted learner card, whichever way the entry mounts it (plain DOM or React). */
@@ -83,7 +83,7 @@ export class ConsumerSession {
   surfaceRoot(activityId: string): HTMLElement | null {
     const card = this.card(activityId);
     const scope: ParentNode = card.card.element.shadowRoot ?? card.card.element;
-    return scope.querySelector<HTMLElement>(`[data-eka-surface="${card.card.surfaceId}"]`);
+    return scope.querySelector<HTMLElement>(`[data-ema-surface="${card.card.surfaceId}"]`);
   }
   summary(activityId: string): CardSummary {
     const card = this.card(activityId), projection = card.learner.getProjection();
@@ -214,7 +214,7 @@ export class ConsumerSession {
     for (;;) {
       const projection = this.projection(activityId);
       const inFlight = this.options.host.calls().some(call => call.activityId === activityId && call.settledAt === null);
-      const rendered = this.surfaceRoot(activityId)?.dataset.ekaProjection === projection.projectionId;
+      const rendered = this.surfaceRoot(activityId)?.dataset.emaProjection === projection.projectionId;
       if (!projection.pendingReveal && projection.status.persistence === 'saved' && !inFlight && rendered) return this.summary(activityId);
       if (performance.now() - start > timeoutMs) {
         throw new Error(`${activityId} did not settle: reveal=${projection.pendingReveal?.state ?? 'none'} persistence=${projection.status.persistence} inFlight=${inFlight} rendered=${rendered}`);

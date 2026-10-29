@@ -11,9 +11,9 @@ import {
   classifyRecord, groupDigests, templateRef, validateInstanceSemantics, validatePolicySemantics, validateRecord, validateTemplateSemantics,
   type ActivityInstance, type HostPolicy, type InteractionEvent, type InteractionSummary, type QuantityResult, type ScientificSnapshot,
   type SchemaName, type StageTransitionRequest,
-} from '@experiment-kit/activity';
-import { evaluateRequest, modelIdentity, type ModelManifest } from '@experiment-kit/core/model';
-import { INSTALLED_KERNELS, quadraticGradientDescentManifest as manifest, quadraticGradientDescentTemplate as template } from '@experiment-kit/catalog';
+} from '@explorable-models/activity';
+import { evaluateRequest, modelIdentity, type ModelManifest } from '@explorable-models/core/model';
+import { INSTALLED_KERNELS, quadraticGradientDescentManifest as manifest, quadraticGradientDescentTemplate as template } from '@explorable-models/catalog';
 import { rustDecisions } from '../activity/support/rust.js';
 
 const identity = modelIdentity(manifest);
@@ -72,12 +72,12 @@ const transition: StageTransitionRequest = {
 const last = frames.at(-1)!.data;
 const scientific: ScientificSnapshot = {
   contract: 'study-harness.scientific-snapshot', schemaVersion: '1.0', model: MODEL, scientificRevision: identity.scientificRevision,
-  runtime: { id: 'experiment-kit.model-runtime', version: '1.0.0' }, runId: 'run-0001', params: last.params, position: last.position, terminal: last.terminal.reached, comparisons: [],
+  runtime: { id: 'explorable-models.model-runtime', version: '1.0.0' }, runId: 'run-0001', params: last.params, position: last.position, terminal: last.terminal.reached, comparisons: [],
 };
 
 const RECORDS: [string, SchemaName, unknown][] = [
   ['template', 'study-harness.activity-template', template],
-  ['manifest', 'experiment-kit.model-manifest', manifest],
+  ['manifest', 'explorable-models.model-manifest', manifest],
   ['instance', 'study-harness.activity-instance', instance],
   ['policy', 'study-harness.host-policy', policy],
   ['stage-transition', 'study-harness.stage-transition-request', transition],

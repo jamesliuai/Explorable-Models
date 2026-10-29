@@ -7,7 +7,7 @@
  * opened restricted or read-only. Unknown and future versions are refused with a recovery path; legacy schema 2.0
  * document artifacts and schema 1.0 exports are routed to their retained runtimes and never relabelled.
  */
-import { canonicalJSON, sha256 } from '@experiment-kit/core';
+import { canonicalJSON, sha256 } from '@explorable-models/core';
 import type { ActivityArtifact, Diagnostic, DiagnosticCode, ExposureRecord } from './contracts.js';
 import { ACTIVITY_SCHEMA_VERSION, CONTRACTS } from './contracts.js';
 import { INTEGRITY_FIELDS, artifactIntegrity } from './identity.js';

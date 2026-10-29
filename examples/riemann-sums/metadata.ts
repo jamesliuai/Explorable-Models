@@ -1,4 +1,4 @@
-import type { ExperimentDefinition, Manifest, ViewDefinition } from '@experiment-kit/core';
+import type { ExperimentDefinition, Manifest, ViewDefinition } from '@explorable-models/core';
 import manifestData from './experiment.json';
 import viewsData from './views.json';
 import { revisions } from '../revisions';

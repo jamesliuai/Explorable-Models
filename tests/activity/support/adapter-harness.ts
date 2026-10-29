@@ -7,9 +7,9 @@ import {
   createStudyHarnessAdapter, groupDigests, templateRef, validateRecord,
   type ActivityBinding, type ActivityCatalog, type ActivityRequest, type ActivityTemplate, type AdapterOptions, type CatalogEntryStatus, type CommandOutcome,
   type HostActivityControl, type HostPolicy, type HostPort, type InteractionEvent, type LearnerProjection, type MarkSpec, type PreparedActivity, type StudyHarnessAdapter,
-} from '@experiment-kit/activity';
-import { createInstalledCatalog, INSTALLED_KERNELS, quadraticGradientDescentManifest as manifest, quadraticGradientDescentTemplate as template, type InstalledCatalogOptions } from '@experiment-kit/catalog';
-import { modelIdentity } from '@experiment-kit/core/model';
+} from '@explorable-models/activity';
+import { createInstalledCatalog, INSTALLED_KERNELS, quadraticGradientDescentManifest as manifest, quadraticGradientDescentTemplate as template, type InstalledCatalogOptions } from '@explorable-models/catalog';
+import { modelIdentity } from '@explorable-models/core/model';
 import { expect } from 'vitest';
 import { inlineWorkers, until, type WorkerGroup } from '../../core/support/inline-worker.js';
 import { rectangleKernel, rectangleManifest } from '../../core/support/model-fixtures.js';

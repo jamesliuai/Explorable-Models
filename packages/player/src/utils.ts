@@ -1,4 +1,4 @@
-import type { RunFrame, CheckSuite } from '@experiment-kit/core';
+import type { RunFrame, CheckSuite } from '@explorable-models/core';
 export const scalar = (frame: RunFrame | undefined, id: string, fallback = 0): number => {
  const v=frame?.quantities[id]?.value; return typeof v==='number' ? v : fallback;
 };
@@ -22,7 +22,7 @@ export async function loadChecksFromWorker(createWorker:()=>Worker):Promise<Chec
   const id=crypto.randomUUID();const done=()=>{clearTimeout(timer);worker.terminate();};
   const timer=setTimeout(()=>{done();reject(new Error('Author checks did not respond within 3 seconds.'));},3000);
   worker.onerror=()=>{done();reject(new Error('Author checks worker failed.'));};
-  worker.onmessage=e=>{if(e.data?.namespace!=='experiment-kit-checks'||e.data.id!==id)return;done();if(e.data.error)reject(new Error(e.data.error.message??'Author checks failed.'));else resolve(e.data.result?{...e.data.result,provenance:'author'}:null);};
-  worker.postMessage({namespace:'experiment-kit-checks',id});
+  worker.onmessage=e=>{if(e.data?.namespace!=='explorable-models-checks'||e.data.id!==id)return;done();if(e.data.error)reject(new Error(e.data.error.message??'Author checks failed.'));else resolve(e.data.result?{...e.data.result,provenance:'author'}:null);};
+  worker.postMessage({namespace:'explorable-models-checks',id});
  });
 }

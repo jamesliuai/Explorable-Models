@@ -3,7 +3,7 @@
 //! Validates records against the same JSON Schema files the TypeScript package emits
 //! (`packages/activity/schema/*.schema.json`, embedded at compile time), with draft 2020-12 semantics, no format
 //! assertions and the linear-time `regex` engine (schema patterns are ASCII-only). Before schema traversal it applies
-//! the same data limits as the TypeScript validator (`jsonDataErrors` in `@experiment-kit/core/model`): payload bytes
+//! the same data limits as the TypeScript validator (`jsonDataErrors` in `@explorable-models/core/model`): payload bytes
 //! counted identically, nesting depth, node count, and rejection of `__proto__`, `prototype` and `constructor` keys.
 //! Shared fixtures in `packages/activity/fixtures/contracts` must produce the same decision in both languages.
 //!
@@ -52,7 +52,7 @@ pub const SCHEMAS: &[(&str, &str)] = embedded![
     "study-harness.activity-lookup-request",
     "study-harness.host-ack",
     "study-harness.activity-records",
-    "experiment-kit.model-manifest",
+    "explorable-models.model-manifest",
 ];
 
 /// The generated index (file list, digests and per-contract data limits).
@@ -123,7 +123,7 @@ pub fn data_limits(contract: &str) -> Option<DataLimits> {
     contracts().get(contract).map(|entry| entry.limits)
 }
 
-/// Mirrors `jsonDataErrors` in `@experiment-kit/core/model`: identical byte accounting (strings: UTF-8 length + 2;
+/// Mirrors `jsonDataErrors` in `@explorable-models/core/model`: identical byte accounting (strings: UTF-8 length + 2;
 /// numbers: 24; null/booleans: 5; object entries: UTF-8 key length + 3; array entries: 1), depth counted from the root
 /// at 0, every visited value counted as a node, and reserved keys rejected.
 pub fn data_errors(value: &Value, limits: DataLimits) -> Option<String> {

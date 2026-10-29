@@ -49,7 +49,7 @@ test('segments get a machine-readable reporter without changing the documented c
   const [cross] = splitScript(scripts['test:cross-browser']);
   const playwright = instrument(cross, { reportFile: '/p.json', playwrightOutput: '/o' });
   assert.equal(playwright.runner, 'playwright');
-  assert.equal(playwright.env.EXPERIMENT_KIT_CROSS_BROWSER, '1');
+  assert.equal(playwright.env.EXPLORABLE_MODELS_CROSS_BROWSER, '1');
   assert.equal(playwright.env.PLAYWRIGHT_JSON_OUTPUT_FILE, '/p.json');
   assert.ok(playwright.argv.includes('--reporter=list,json') && playwright.argv.includes('--output=/o'));
   const [nodeTest] = splitScript(scripts['test:release']);
@@ -89,7 +89,7 @@ test('exact counts are parsed from vitest, Playwright, node --test, cargo and ts
 test('test:cross-browser runs every Study Harness spec, composition and embedding in Firefox and WebKit (G73)', () => {
   const [tokens] = splitScript(scripts['test:cross-browser']);
   assert.equal(runnerOf(tokens), 'playwright');
-  assert.ok(tokens.includes('EXPERIMENT_KIT_CROSS_BROWSER=1'));
+  assert.ok(tokens.includes('EXPLORABLE_MODELS_CROSS_BROWSER=1'));
   const listed = tokens.filter(token => token.endsWith('.spec.ts'));
   assert.deepEqual([...listed].sort(), [...CROSS_BROWSER_SPECS].sort());
   // Every study spec in tests/browser is listed: a new one cannot silently stay Chromium-only.
@@ -97,12 +97,12 @@ test('test:cross-browser runs every Study Harness spec, composition and embeddin
   for (const spec of studySpecs) assert.ok(listed.includes(spec), `${spec} is not in test:cross-browser`);
   // The variable selects exactly the Firefox and WebKit projects.
   const config = readFileSync(path.join(root, 'playwright.config.ts'), 'utf8');
-  assert.match(config, /EXPERIMENT_KIT_CROSS_BROWSER \? \[\s*\{ name: 'firefox', use: \{ \.\.\.devices\['Desktop Firefox'\] \} \},\s*\{ name: 'webkit', use: \{ \.\.\.devices\['Desktop Safari'\] \} \},\s*\]/);
+  assert.match(config, /EXPLORABLE_MODELS_CROSS_BROWSER \? \[\s*\{ name: 'firefox', use: \{ \.\.\.devices\['Desktop Firefox'\] \} \},\s*\{ name: 'webkit', use: \{ \.\.\.devices\['Desktop Safari'\] \} \},\s*\]/);
   assert.deepEqual([...CROSS_BROWSER_ENGINES], ['firefox', 'webkit']);
 });
 
 test('the cross-browser record gives per-engine, per-spec counts with versions and the reason for every skip (G73, A53)', () => {
-  // Captured from `EXPERIMENT_KIT_CROSS_BROWSER=1 playwright test study-projection.spec.ts study-interaction.spec.ts -g …`.
+  // Captured from `EXPLORABLE_MODELS_CROSS_BROWSER=1 playwright test study-projection.spec.ts study-interaction.spec.ts -g …`.
   const report = JSON.parse(fixture('playwright-cross-browser-report.json'));
   const counts = parsePlaywrightReport(report);
   assert.deepEqual({ total: counts.total, passed: counts.passed, failed: counts.failed, skipped: counts.skipped }, { total: 6, passed: 4, failed: 0, skipped: 2 });
@@ -190,7 +190,7 @@ test('environment gaps are machine-checked reasons, never passes', () => {
   assert.match(missingRequirement('firefox', environment), /firefox is not installed/);
 });
 
-const PACK = [{ name: '@experiment-kit/core', sha256: 'a'.repeat(64) }, { name: '@experiment-kit/activity', sha256: 'b'.repeat(64) }];
+const PACK = [{ name: '@explorable-models/core', sha256: 'a'.repeat(64) }, { name: '@explorable-models/activity', sha256: 'b'.repeat(64) }];
 const check = (id, result, locked) => ({ id, result, ...(locked === undefined ? {} : { displayDependent: true, displayContext: { windowVisibleAtStart: 'hidden', visibilityChanges: [], consoleLock: { atLaunch: locked, atExit: locked, changes: [] } } }) });
 const SHA = { release: '1'.repeat(64), conformance: '2'.repeat(64) };
 /** The reference host sources both apps were built from, still in the tree (build-record.mjs hostSourceDigest). */
@@ -211,7 +211,7 @@ const ON_DISK = Object.fromEntries(NATIVE_APPS.map(kind => [kind, { executable: 
 const OTHERS = REQUIRED_SCENARIOS.length - 1;
 
 test('packaged-host evidence counts for this pack only, and display checks not run while locked stay not run', () => {
-  assert.deepEqual(compareTarballs(PACK, [{ name: '@experiment-kit/core', sha256: 'c'.repeat(64) }]).mismatches, [{ name: '@experiment-kit/core', recorded: 'c'.repeat(64), pack: 'a'.repeat(64) }]);
+  assert.deepEqual(compareTarballs(PACK, [{ name: '@explorable-models/core', sha256: 'c'.repeat(64) }]).mismatches, [{ name: '@explorable-models/core', recorded: 'c'.repeat(64), pack: 'a'.repeat(64) }]);
   const installed = { packages: PACK };
   const binaries = ON_DISK;
   const passing = evaluateNativeEvidence({ evidence: nativeEvidence([check('a', 'pass'), check('b', 'pass', false)]), packedArtifacts: installed, pack: PACK, sources: SOURCES, binaries });
@@ -224,7 +224,7 @@ test('packaged-host evidence counts for this pack only, and display checks not r
   assert.equal(evaluateNativeEvidence({ evidence: nativeEvidence([check('a', 'fail'), check('b', 'not-run-environment', true)]), packedArtifacts: installed, pack: PACK, sources: SOURCES, binaries }).status, STATUS.fail);
   const other = evaluateNativeEvidence({ evidence: { ...nativeEvidence([check('a', 'pass')]), packed: { packages: [{ ...PACK[0], sha256: 'd'.repeat(64) }, PACK[1]] } }, packedArtifacts: installed, pack: PACK, sources: SOURCES, binaries });
   assert.equal(other.status, STATUS.fail);
-  assert.match(other.reason, /produced from other tarballs \(@experiment-kit\/core\)/);
+  assert.match(other.reason, /produced from other tarballs \(@explorable-models\/core\)/);
   assert.match(evaluateNativeEvidence({ evidence: nativeEvidence([check('a', 'pass')]), packedArtifacts: { packages: [] }, pack: PACK, sources: SOURCES, binaries }).reason, /does not have this pack installed/);
   assert.match(evaluateNativeEvidence({ evidence: nativeEvidence([check('a', 'pass')]), packedArtifacts: installed, pack: PACK, sources: SOURCES, binaries: { ...ON_DISK, release: { ...ON_DISK.release, matches: false } } }).reason, /release executable differs/);
   assert.match(evaluateNativeEvidence({ evidence: null, packedArtifacts: installed, pack: PACK, sources: SOURCES }).reason, /no packaged-host evidence/);
@@ -265,7 +265,7 @@ test('source identity reads the commit and dirty state; a missing git checkout i
 
 test('release manifests identify their source commit, dirty flag, lock digest and Node version (G78)', () => {
   // The 0.3.0-preview.1 manifest shape before G78: tarball hash and validation flags only.
-  const before = { package: 'experiment-kit-0.3.0-preview.1.tgz', version: '0.3.0-preview.1', sha256: `sha256:${'e'.repeat(64)}`, validation: { npmPackDryRun: 'passed' } };
+  const before = { package: 'explorable-models-0.3.0-preview.1.tgz', version: '0.3.0-preview.1', sha256: `sha256:${'e'.repeat(64)}`, validation: { npmPackDryRun: 'passed' } };
   assert.deepEqual(missingReleaseIdentity(before), ['source commit and dirty flag', 'package-lock sha256', 'node version']);
   const identity = releaseIdentity(root);
   assert.deepEqual(missingReleaseIdentity({ ...before, ...identity }), []);

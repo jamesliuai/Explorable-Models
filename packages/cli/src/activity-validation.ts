@@ -1,5 +1,5 @@
 /**
- * `experiment-kit activity validate`: pure-data validation of an authoring package (report §15.2). Runs in Node through
+ * `explorable-models activity validate`: pure-data validation of an authoring package (report §15.2). Runs in Node through
  * the bundled toolkit (activity-toolkit.ts) and never executes authored code: kernel.ts and checks.ts are only parsed
  * by the CLI's import scan. Checks, in order: JSON parsing, the model manifest (schema, semantics, default
  * admissibility), the activity template (schema, cross-references, units, disclosure, accessible equivalents; then, as
@@ -9,20 +9,20 @@
  * catalogue (a reviewed-template edit versus a new exploratory composition; A08), the recorded authoring metadata, the
  * reference fixtures and their binding to the model's reference suite, and the declared boundary cases.
  */
-import { canonicalJSON, sha256 } from '@experiment-kit/core';
+import { canonicalJSON, sha256 } from '@explorable-models/core';
 import {
   checkParameters, isModelError, modelIdentity, validateManifest,
   type ModelIdentity, type ModelManifest, type ModelRef,
-} from '@experiment-kit/core/model';
+} from '@explorable-models/core/model';
 import {
   groupDigests, manifestTexSources, templateRef, templateTexSources, templateWarnings, texParseDiagnostics, validateRecord, validateTemplateSemantics,
   type ActivityTemplate, type GroupDigest, type TemplateRef, type TexParser,
-} from '@experiment-kit/activity';
+} from '@explorable-models/activity';
 import katex from 'katex';
-import { INSTALLED_KERNELS, INSTALLED_MODELS, INSTALLED_TEMPLATES } from '@experiment-kit/catalog';
+import { INSTALLED_KERNELS, INSTALLED_MODELS, INSTALLED_TEMPLATES } from '@explorable-models/catalog';
 import { validateBoundarySet, validateReferenceSuite, type BoundarySet, type ReferenceSuite } from './activity-fixtures.js';
 
-export const AUTHORING_CONTRACT = 'experiment-kit.authoring-package' as const;
+export const AUTHORING_CONTRACT = 'explorable-models.authoring-package' as const;
 export const PACKAGE_FILES = Object.freeze({
   model: 'model.json', template: 'template.json', authoring: 'authoring.json', kernel: 'kernel.ts', checks: 'checks.ts', copy: 'copy.md',
   reference: 'fixtures/reference.json', boundaries: 'fixtures/boundaries.json',
@@ -96,7 +96,7 @@ export function templateDiagnostics(template: ActivityTemplate, manifest: ModelM
 function parse(files: Record<string, string>, name: string, out: AuthorDiagnostic[], required: boolean): unknown {
   const text = files[name];
   if (text === undefined) {
-    if (required) out.push(error('NOT_FOUND', name, '$', `${name} is missing.`, `Create ${name}; run experiment-kit activity scaffold for a complete starting point.`));
+    if (required) out.push(error('NOT_FOUND', name, '$', `${name} is missing.`, `Create ${name}; run explorable-models activity scaffold for a complete starting point.`));
     return undefined;
   }
   try { return JSON.parse(text); } catch (failure) {
@@ -137,7 +137,7 @@ export function validatePackage(snapshot: PackageSnapshot): ValidationOutcome {
   // Model manifest.
   let manifest: ModelManifest | null = null;
   if (rawModel !== undefined) {
-    const record = validateRecord('experiment-kit.model-manifest', rawModel);
+    const record = validateRecord('explorable-models.model-manifest', rawModel);
     if (!record.ok) for (const item of record.diagnostics) out.push(error(item.code, PACKAGE_FILES.model, item.path, item.message, item.recovery));
     else {
       try {
@@ -214,7 +214,7 @@ export function validatePackage(snapshot: PackageSnapshot): ValidationOutcome {
       if (record.lifecycle !== 'authored')
         out.push(error('REVIEW_UNVERIFIED', PACKAGE_FILES.authoring, '$.lifecycle', `A package cannot declare its own lifecycle (${String(record.lifecycle)}); review status comes only from host-trusted review records.`, 'Set lifecycle to "authored".'));
     }
-  } else out.push(warning('NOT_FOUND', PACKAGE_FILES.authoring, '$', 'authoring.json is missing, so the package does not record whether it is a template edit or a new composition.', 'Run experiment-kit activity scaffold, or add an authoring.json record.'));
+  } else out.push(warning('NOT_FOUND', PACKAGE_FILES.authoring, '$', 'authoring.json is missing, so the package does not record whether it is a template edit or a new composition.', 'Run explorable-models activity scaffold, or add an authoring.json record.'));
   if (template) {
     const { relation, conflict } = templateRelation(template, record?.relation.derivedFrom ?? null);
     outcome.relation = relation;

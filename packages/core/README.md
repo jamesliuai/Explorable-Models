@@ -1,9 +1,9 @@
-# @experiment-kit/core
+# @explorable-models/core
 
 Dependency-free TypeScript contracts and runtime for inspectable analytical and parametric experiments. The same validated frame drives visible marks, numerical values, agent inspection, and snapshots.
 
 ```ts
-import { ExperimentRuntime, WorkerExecutor } from '@experiment-kit/core';
+import { ExperimentRuntime, WorkerExecutor } from '@explorable-models/core';
 
 const executor = new WorkerExecutor(
   new Worker(new URL('./model.worker.ts', import.meta.url), { type: 'module' }),
@@ -19,7 +19,7 @@ const snapshot = runtime.checkpoint('At one second');
 The worker entry imports only the model and SDK:
 
 ```ts
-import { exposeModelWorker } from '@experiment-kit/core';
+import { exposeModelWorker } from '@explorable-models/core';
 import model from './model.js';
 exposeModelWorker(model);
 ```
@@ -50,25 +50,25 @@ This release supports trusted local authoring and reviewed static bundles. A wor
 
 ## Build
 
-From the repository root: `npm run build --workspace @experiment-kit/core`. This produces ESM JavaScript, TypeScript declarations, and source maps with no runtime dependencies. `npm pack --workspace @experiment-kit/core` creates the distributable tarball.
+From the repository root: `npm run build --workspace @explorable-models/core`. This produces ESM JavaScript, TypeScript declarations, and source maps with no runtime dependencies. `npm pack --workspace @explorable-models/core` creates the distributable tarball.
 
 ## Declarative preview
 
-Since `0.2.0-preview.1`, the package preserves the legacy main entry and provides `@experiment-kit/core/declarative`: schema 2.0, bounded AST expressions, datasets, editable presets, document identities, and browser-worker sessions. The schema 2.0 contract and document runtime `0.2.0-preview.1` are unchanged in `0.3.0-preview.1`, which adds `createDocumentInteractionController`, the shared preview-coalescing controller used by the showcase and hinged-rod examples. Importing this subpath is SSR-safe; its default evaluator needs a browser Worker. `@experiment-kit/core/document-worker` is the worker entry for explicit bundler overrides and is marked side-effectful so bundlers retain its listener.
+Since `0.2.0-preview.1`, the package preserves the legacy main entry and provides `@explorable-models/core/declarative`: schema 2.0, bounded AST expressions, datasets, editable presets, document identities, and browser-worker sessions. The schema 2.0 contract and document runtime `0.2.0-preview.1` are unchanged in `0.3.0-preview.1`, which adds `createDocumentInteractionController`, the shared preview-coalescing controller used by the showcase and hinged-rod examples. Importing this subpath is SSR-safe; its default evaluator needs a browser Worker. `@explorable-models/core/document-worker` is the worker entry for explicit bundler overrides and is marked side-effectful so bundlers retain its listener.
 
 Use `createVisualizationSession`, `createPreset`, `DOCUMENT_SCHEMA`, and `DOCUMENT_LIMITS` from that subpath. Keep schema 1.0 snapshots in their original legacy workflow; v2 rejects incompatible artifacts. Unit labels do not perform conversions. Review status remains unreviewed. The repository's `docs/embedding.md` and `docs/declarative-authoring.md` provide complete integration examples.
 
-## Model contract (`@experiment-kit/core/model`)
+## Model contract (`@explorable-models/core/model`)
 
 Model manifest 1.0 describes an installed, versioned model: canonical-unit parameters with domains and admissibility, quantities with shapes, units, meanings and sign conventions, bounded geometry, coupled constraints, interpretation, limits and sources. Execution is either an installed pure kernel (`kernelId@kernelVersion`, `discrete` with an integer `maxIndex` or `static`) or a schema 2.0 document. Requests carry IDs and data only, never source.
 
 ```ts
 // Worker entry (bundled with the installed kernels).
-import { serveModelWorker } from '@experiment-kit/core/model';
+import { serveModelWorker } from '@explorable-models/core/model';
 serveModelWorker(self, [quadraticKernel]);
 
 // Main thread.
-import { createModelSession, createWorkerBudget } from '@experiment-kit/core/model';
+import { createModelSession, createWorkerBudget } from '@explorable-models/core/model';
 const budget = createWorkerBudget({ maxWorkers: 4, workerFactory: () => new Worker(kernelWorkerUrl, { type: 'module' }) });
 const session = createModelSession({ budget, ownerId: 'activity-1' });
 const guard = () => ({ sessionId: session.id, expectedVersion: session.getState().version, expectedRunId: session.getState().run?.id ?? null, operationId: crypto.randomUUID() });

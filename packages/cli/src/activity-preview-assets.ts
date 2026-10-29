@@ -1,5 +1,5 @@
 /**
- * Static files of the `experiment-kit activity preview` page (written into the preview bundle by activity-bundle.ts).
+ * Static files of the `explorable-models activity preview` page (written into the preview bundle by activity-bundle.ts).
  * The page loads only same-origin files under the CLI's content security policy: no inline script, no remote fonts,
  * stylesheets or images. The page chrome follows the system colour scheme unless `--theme` fixes it.
  */

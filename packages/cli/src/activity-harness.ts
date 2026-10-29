@@ -4,7 +4,7 @@
  * mutation batches run in `worker-checks.js`. Comparisons with reference fixtures use the toolkit's fixture module.
  * Driven by the CLI through `window.__activityAuthor.request(method, json)`.
  */
-import { createModelEvaluator, toDiagnostics, validateManifest, type GeometryResult, type ModelEvaluator, type ModelManifest, type PositionRequest } from '@experiment-kit/core/model';
+import { createModelEvaluator, toDiagnostics, validateManifest, type GeometryResult, type ModelEvaluator, type ModelManifest, type PositionRequest } from '@explorable-models/core/model';
 import {
   classifyOutcome, domainProbes, mutationsFor, pointPosition, pointProblems, rejectionProblems, statusMismatches, statusText, uncoveredQuantities,
   type BoundaryCase, type BoundaryOutcome, type Mutation, type PointOutcome, type ReferenceSuite,

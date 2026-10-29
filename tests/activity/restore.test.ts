@@ -5,8 +5,8 @@
  * preview is saved separately and never becomes the experiment; restore starts paused and re-emits no reveals.
  */
 import { afterEach, describe, expect, it } from 'vitest';
-import { artifactIntegrity, createStudyHarnessAdapter, type ActivityArtifact, type ExposureRecord, type HostPort, type StudyHarnessAdapter } from '@experiment-kit/activity';
-import { createInstalledCatalog } from '@experiment-kit/catalog';
+import { artifactIntegrity, createStudyHarnessAdapter, type ActivityArtifact, type ExposureRecord, type HostPort, type StudyHarnessAdapter } from '@explorable-models/activity';
+import { createInstalledCatalog } from '@explorable-models/catalog';
 import {
   activityGuard, authorizeExploration, codesOf, enterExplore, expectValidEvents, guards, harness, okOf, op, open, policyFor, presentationGuard, settled, template, until,
   type Harness, type Opened,

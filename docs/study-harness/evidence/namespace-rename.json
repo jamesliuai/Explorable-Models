@@ -1,0 +1,111 @@
+{
+  "schema": "explorable-models.namespace-rename/1",
+  "createdAt": "2026-10-29T07:18:46.007Z",
+  "scope": "Breaking project identity rename, with no previous namespace or CLI aliases. This is focused rename verification, not a new full release/performance/native-binary certification.",
+  "status": "pass",
+  "releaseEvidence": false,
+  "sourceBase": "1e2b3d7b796962f4b031257a402ce3db3e0854a1",
+  "sourceWorkingTree": "uncommitted at verification; the containing Git commit records the published source",
+  "identity": {
+    "project": "Explorable Models",
+    "packageNamespace": "@explorable-models",
+    "cli": "explorable-models",
+    "npmCommand": "npm run models",
+    "nativeIdentifierPrefix": "dev.explorablemodels",
+    "previousAliasesAccepted": false
+  },
+  "checks": {
+    "typecheck": "pass",
+    "unit": {
+      "passed": 2319,
+      "failed": 0
+    },
+    "browser": {
+      "engine": "Chromium",
+      "passed": 208,
+      "failed": 0
+    },
+    "releaseAndDocumentation": {
+      "passed": 72,
+      "failed": 0
+    },
+    "productionConsumer": {
+      "passed": 22,
+      "failed": 0,
+      "plainGzipBytes": 247861,
+      "reactGzipBytes": 246413
+    },
+    "contractSchemas": 28,
+    "reviewPackets": 5,
+    "packageBuilds": 6,
+    "nativeFrontendProduction": "pass",
+    "nativeFrontendConformance": "pass",
+    "activeTextFilesScanned": 1408,
+    "remainingPriorNameMatches": 0
+  },
+  "artifacts": {
+    "packages": [
+      {
+        "name": "@explorable-models/core",
+        "file": "explorable-models-core-0.3.0-preview.1.tgz",
+        "sha256": "4012a599af0943d849810d2a69899736e890bbb73902bbebde4f4661b649b431"
+      },
+      {
+        "name": "@explorable-models/activity",
+        "file": "explorable-models-activity-0.3.0-preview.1.tgz",
+        "sha256": "df034f089245cbc1245e9521ea0f5a76103a7532c496d904f6d7c11d9ebdfa25"
+      },
+      {
+        "name": "@explorable-models/catalog",
+        "file": "explorable-models-catalog-0.3.0-preview.1.tgz",
+        "sha256": "17785a1defdbc385d4e4e8414074f58c9a2bf1cbdab0212f9b3480a469374859"
+      },
+      {
+        "name": "@explorable-models/player",
+        "file": "explorable-models-player-0.3.0-preview.1.tgz",
+        "sha256": "e08d3e108fd32e00e9d5bce8162bd46f9a9dfb16ea3fa79c7659817a49d4bb38"
+      },
+      {
+        "name": "@explorable-models/player-3d",
+        "file": "explorable-models-player-3d-0.3.0-preview.1.tgz",
+        "sha256": "bb8710116a5b5f4ff447b812d0c5f191c8d16845a0f67f9f9ccd98af4061fc51"
+      },
+      {
+        "name": "@explorable-models/agent",
+        "file": "explorable-models-agent-0.3.0-preview.1.tgz",
+        "sha256": "d713b3eae4407af59087fee820d7194bd1e414e33832e394eb312daa36f538d7"
+      }
+    ],
+    "sourceArchive": {
+      "file": "explorable-models-0.3.0-preview.1.tgz",
+      "sha256": "sha256:4f4cf59cafd0c3204f1ce2bb39e6591715835ff569dfe304b5fc2700ff44fbbc",
+      "validation": {
+        "npmPackDryRun": "passed",
+        "freshExtraction": "passed",
+        "npmCiIgnoreScripts": "passed",
+        "executableHelp": "passed",
+        "browserWorkerVerify": "passed",
+        "galleryCliIdentity": "matched",
+        "sdkBuild": "passed",
+        "galleryExperiments": 5,
+        "galleryChecks": 31,
+        "galleryFreshStateRestore": "passed",
+        "galleryExternalNetwork": "blocked",
+        "activityAuthoring": {
+          "scaffold": "passed",
+          "validate": "passed",
+          "check": "passed",
+          "reference": "55 cases passed",
+          "reviewPacket": "passed"
+        }
+      }
+    }
+  },
+  "notRerun": {
+    "fullReleasePipeline": true,
+    "nativeBinaryConformance": true,
+    "crossBrowserFirefoxWebKit": true,
+    "performanceBenchmark": true
+  },
+  "history": "Historical measurement copies with terminologyProjection identify the unmodified original Git blob. They cannot be used as resumable original release evidence. No published Git history was rewritten."
+}

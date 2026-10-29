@@ -1,10 +1,10 @@
 # Explorable Models player (0.3.0-preview.1, unreleased)
 
-The default entry (`@experiment-kit/player`) is an embeddable 2D surface for the version 2 declarative contract. The
-`./activity` entry is the Study Harness learner surface; see [its section](#study-harness-learner-surface-experiment-kitplayeractivity). The host owns authentication, the agent, session lifetime, storage, application navigation and error reporting. The default entry has no gallery, Three.js, compiler, model-provider SDK, fonts or network fetches. React and React DOM are peer dependencies, including for imperative mounting.
+The default entry (`@explorable-models/player`) is an embeddable 2D surface for the version 2 declarative contract. The
+`./activity` entry is the Study Harness learner surface; see [its section](#study-harness-learner-surface-explorable-modelsplayeractivity). The host owns authentication, the agent, session lifetime, storage, application navigation and error reporting. The default entry has no gallery, Three.js, compiler, model-provider SDK, fonts or network fetches. React and React DOM are peer dependencies, including for imperative mounting.
 
 ```sh
-npm install @experiment-kit/core@0.3.0-preview.1 @experiment-kit/player@0.3.0-preview.1 react react-dom
+npm install @explorable-models/core@0.3.0-preview.1 @explorable-models/player@0.3.0-preview.1 react react-dom
 ```
 
 These names and versions identify the local preview artifacts. They are not published on npm, and publication is a separate, owner-controlled release step. Until then, install the matching packed tarballs (`npm run verify:packages` writes them to `release/preview/`; `node scripts/study-harness/pack.mjs` writes the Study Harness set to `release/study-harness/packages/`).
@@ -12,8 +12,8 @@ These names and versions identify the local preview artifacts. They are not publ
 ## React
 
 ```tsx
-import { createVisualizationSession, createPreset } from '@experiment-kit/core/declarative';
-import { VisualizationSurface } from '@experiment-kit/player';
+import { createVisualizationSession, createPreset } from '@explorable-models/core/declarative';
+import { VisualizationSurface } from '@explorable-models/player';
 
 const session = await createVisualizationSession(); // browser module worker
 const mutation = () => {
@@ -33,7 +33,7 @@ Create the session in a browser effect or client entry, never during server rend
 ## Plain DOM
 
 ```ts
-import { mountVisualization } from '@experiment-kit/player';
+import { mountVisualization } from '@explorable-models/player';
 const surface = mountVisualization(document.querySelector('#visualization')!, { session });
 // Multiple containers and sessions remain independent.
 const frozen = surface.exportSceneSvg('plot'); // use an actual scene/plot view ID
@@ -75,14 +75,14 @@ Controls have labels, exact entry, visible focus and keyboard activation. Animat
 
 The package is a preview. General 3D, numerical solvers, arbitrary renderers, automatic label layout and full-page capture are outside this entry point. Legacy gallery artifacts keep their separate API. This surface does not silently reinterpret them.
 
-## Study Harness learner surface (`@experiment-kit/player/activity`)
+## Study Harness learner surface (`@explorable-models/player/activity`)
 
-A separate entry for Study Harness activities. It renders only the `LearnerProjection` that an `ActivityBinding` from `@experiment-kit/activity` publishes. It never receives a model, a document or hidden content, and every interaction goes back through guarded binding commands. The entry does not import Three.js, `@experiment-kit/player-3d`, the studio, Playwright, the CLI or provider SDKs. KaTeX is a lazy chunk, loaded only when an equation becomes visible.
+A separate entry for Study Harness activities. It renders only the `LearnerProjection` that an `ActivityBinding` from `@explorable-models/activity` publishes. It never receives a model, a document or hidden content, and every interaction goes back through guarded binding commands. The entry does not import Three.js, `@explorable-models/player-3d`, the studio, Playwright, the CLI or provider SDKs. KaTeX is a lazy chunk, loaded only when an equation becomes visible.
 
-`@experiment-kit/activity` is an optional peer dependency of this package because the default entry does not use it; hosts that import `@experiment-kit/player/activity` must install it, since the entry imports it at runtime (`createStudyHarnessVisualizer` constructs the adapter).
+`@explorable-models/activity` is an optional peer dependency of this package because the default entry does not use it; hosts that import `@explorable-models/player/activity` must install it, since the entry imports it at runtime (`createStudyHarnessVisualizer` constructs the adapter).
 
 ```tsx
-import { StudyActivitySurface, adoptActivityStyles, mountStudyActivity } from '@experiment-kit/player/activity';
+import { StudyActivitySurface, adoptActivityStyles, mountStudyActivity } from '@explorable-models/player/activity';
 
 const binding = prepared.binding('learner', surfaceId); // host-constructed; the actor is fixed
 
@@ -91,7 +91,7 @@ const surface = mountStudyActivity(container, {
   binding, theme: 'system', fonts: 'bundled',
   nextAction: { label: 'Submit prediction', onSelect: submit }, // host-owned
   responseSlot: <HostComposer />,                                // host-owned prediction/explanation UI
-  spatialLoader: () => import('@experiment-kit/player-3d'),      // optional; 3D activities only
+  spatialLoader: () => import('@explorable-models/player-3d'),      // optional; 3D activities only
   onDiagnostic: report,
 });
 await surface.ready;
@@ -108,7 +108,7 @@ that want a single object (report §5.3). It takes the adapter options (`catalog
 `surfaceDefaults` (theme, tokens, fonts, assets, loaders, callbacks) and an optional `mountSurface`.
 
 ```ts
-import { createStudyHarnessVisualizer } from '@experiment-kit/player/activity';
+import { createStudyHarnessVisualizer } from '@explorable-models/player/activity';
 
 const visualizer = createStudyHarnessVisualizer({ catalog, host, surfaceDefaults: { theme: 'system', fonts: 'bundled' } });
 visualizer.getCapabilities();                       // installed templates, controls, alternatives, limits, review scope

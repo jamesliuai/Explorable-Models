@@ -2,7 +2,7 @@
   "$schema": "../node_modules/@tauri-apps/cli/config.schema.json",
   "productName": "StudyHarnessReference",
   "version": "0.1.0",
-  "identifier": "dev.experimentkit.studyharness.reference",
+  "identifier": "dev.explorablemodels.studyharness.reference",
   "build": {
     "beforeBuildCommand": "npm run build:web",
     "frontendDist": "../dist"

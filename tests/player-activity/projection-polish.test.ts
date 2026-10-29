@@ -186,7 +186,7 @@ describe('coincident labels and comparisons', () => {
     // The panel names the kept run by its differing parameters' symbols (G44), not by the label it was kept under.
     expect(comparison.name).toBe(`η = ${eta}`);
     const html = render(opened);
-    expect(html).toContain(`Kept run 1: <span class="eka-comparison-name">η = ${eta}</span>`);
+    expect(html).toContain(`Kept run 1: <span class="ema-comparison-name">η = ${eta}</span>`);
     expect(html).toMatch(/<th scope="col">Current run<\/th><th scope="col">Kept run 1<\/th>/);
   });
 });

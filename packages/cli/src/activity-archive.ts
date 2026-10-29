@@ -1,5 +1,5 @@
 /**
- * `experiment-kit activity package <dir>`: validates the package, then writes a reproducible archive (zip or tgz) of
+ * `explorable-models activity package <dir>`: validates the package, then writes a reproducible archive (zip or tgz) of
  * exactly the authoring files, with an integrity manifest (`package-manifest.json`) listing every file's byte length and
  * sha256 and the definition identities (template digest, model digest and scientific revision, reference-suite
  * digest, authored-source digests). Identical inputs produce identical archive bytes: sorted entries, fixed
@@ -13,7 +13,7 @@ import { listPackageFiles, sha256File, stableJSON } from './activity-files.js';
 import type { ActivityPackage } from './activity-files.js';
 import type { ValidationOutcome } from './activity-validation.js';
 
-export const PACKAGE_MANIFEST_CONTRACT = 'experiment-kit.activity-package' as const;
+export const PACKAGE_MANIFEST_CONTRACT = 'explorable-models.activity-package' as const;
 /** Files the archive may carry (relative paths); authored sources reached by kernel.ts/checks.ts are added explicitly. */
 const INCLUDED = /^(model\.json|template\.json|authoring\.json|copy\.md|kernel\.ts|checks\.ts|fixtures\/[A-Za-z0-9._-]+\.json|review\/[A-Za-z0-9._/-]+\.(md|json|png|svg|txt))$/;
 
@@ -78,7 +78,7 @@ function tar(entries: { name: string; data: Uint8Array }[]): Uint8Array {
 export interface ArchiveResult { archive: string; format: 'zip' | 'tgz'; sha256: string; bytes: number; manifest: PackageManifest; manifestDigest: string; excluded: string[] }
 
 export async function packageActivity(pkg: ActivityPackage, validation: ValidationOutcome, options: { out: string; format: 'zip' | 'tgz'; toolkitVersion: string }): Promise<{ bytes: Uint8Array; result: Omit<ArchiveResult, 'archive'> }> {
-  if (!validation.ok || !validation.template || !validation.model) throw new CliError('VALIDATION_FAILED', 'The package does not validate; nothing was packaged.', 'Run experiment-kit activity validate and fix every error first.');
+  if (!validation.ok || !validation.template || !validation.model) throw new CliError('VALIDATION_FAILED', 'The package does not validate; nothing was packaged.', 'Run explorable-models activity validate and fix every error first.');
   const authored = new Set([...Object.keys(pkg.authored.kernel?.files ?? {}), ...Object.keys(pkg.authored.checks?.files ?? {})]);
   const listed = await listPackageFiles(pkg.root);
   const included = listed.filter(file => INCLUDED.test(file) || authored.has(file));

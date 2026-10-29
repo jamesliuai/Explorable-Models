@@ -75,7 +75,7 @@
     "executableSha256": "e499fc96d25c1dda31a4282c758831ac13b8cdfa582c69232f4281b6a7db125c",
     "executableBytes": 9715504,
     "infoPlistSha256": "0a74ea131ff1128de00d43097c87299e9d856c7eab83410aa93296a8248eb397",
-    "bundleIdentifier": "dev.experimentkit.studyharness.reference",
+    "bundleIdentifier": "dev.explorablemodels.studyharness.reference",
     "bundleVersion": "0.0.0",
     "minimumSystemVersion": "13.0",
     "codesign": {
@@ -1211,13 +1211,13 @@
     "appDataCopyMatchesSpikeOut": true
   },
   "native": {
-    "appDataReportPath": "~/Library/Application Support/dev.experimentkit.studyharness.reference/native-spike-report.json",
+    "appDataReportPath": "~/Library/Application Support/dev.explorablemodels.studyharness.reference/native-spike-report.json",
     "configuredCsp": "default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' blob:; font-src 'self'; connect-src 'self' ipc:; worker-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'; object-src 'none'",
     "debugAssertions": false,
     "executable": "~/Documents/ChatGPT/stem_visualization/examples/study-harness-tauri/src-tauri/target/release/bundle/macos/StudyHarnessReference.app/Contents/MacOS/study-harness-reference",
     "forbiddenCommandExecuted": false,
     "freezePrototype": true,
-    "identifier": "dev.experimentkit.studyharness.reference",
+    "identifier": "dev.explorablemodels.studyharness.reference",
     "packageVersion": "0.0.0",
     "pid": 85849,
     "productName": "StudyHarnessReference",
@@ -1228,5 +1228,11 @@
     "withGlobalTauri": false,
     "workerScriptCsp": "default-src 'none'; script-src 'self'; connect-src 'self'"
   },
-  "watchdog": null
+  "watchdog": null,
+  "terminologyProjection": {
+    "sourceCommit": "1e2b3d7b796962f4b031257a402ce3db3e0854a1",
+    "sourceBlob": "45e21652e9efa6e33344b166a9beb079791430a9",
+    "originalSha256": "50c7dce14f3b6f1c31f3cb3e9cfaffc1b73c93dc96b458c68ee3cb62ffdbaa27",
+    "scope": "Terminology-normalized historical evidence. Measurements, outcomes, and original artifact digests are retained from the preceding namespace. This is not verification of current packages or native binaries. The unmodified original bytes remain in the recorded Git blob."
+  }
 }

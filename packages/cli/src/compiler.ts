@@ -37,7 +37,7 @@ export function modelImportPolicy(sourceDirectory: string, extraSource: Record<s
   const candidateRoot = path.resolve(sourceDirectory);
   const coreRoot = path.join(TOOLKIT_ROOT, 'packages/core/src');
   return {
-    name: 'experiment-kit-import-policy',
+    name: 'explorable-models-import-policy',
     setup(build) {
       build.onLoad({ filter: /\.(?:ts|json)$/ }, async args => {
         if (!args.path.startsWith(candidateRoot + path.sep)) return undefined;
@@ -52,11 +52,11 @@ export function modelImportPolicy(sourceDirectory: string, extraSource: Record<s
         return { contents: text, loader: 'ts', resolveDir: path.dirname(args.path) };
       });
       build.onResolve({ filter: /.*/ }, async args => {
-        if (args.path === '@experiment-kit/core') return { path: CORE_ENTRY };
+        if (args.path === '@explorable-models/core') return { path: CORE_ENTRY };
         if (args.path === 'kit:model') return { path: path.join(candidateRoot, 'model.ts') };
         if (args.path === 'kit:checks') return { path: path.join(candidateRoot, 'checks.ts') };
         if (args.importer.startsWith(coreRoot + path.sep)) return undefined;
-        if (!args.path.startsWith('.')) throw new CliError('INVALID_IMPORT', `Model imports must be relative TypeScript/JSON files or @experiment-kit/core: ${args.path}`);
+        if (!args.path.startsWith('.')) throw new CliError('INVALID_IMPORT', `Model imports must be relative TypeScript/JSON files or @explorable-models/core: ${args.path}`);
         const base = path.resolve(args.resolveDir, args.path);
         const alternatives = [base, `${base}.ts`, `${base}.json`, base.replace(/\.js$/, '.ts')];
         let resolved: string | undefined;
@@ -82,12 +82,12 @@ export async function compileProject(sourceDirectory: string, options: { player?
   } catch (error) { throw new CliError('INVALID_SOURCE', `Experiment schema failed: ${error instanceof Error ? error.message : String(error)}`); }
   const dependencyLock = await readDependencyLock();
   const runtimeIdentity = await getRuntimeIdentity();
-  const staging = await mkdtemp(path.join(tmpdir(), 'experiment-kit-'));
+  const staging = await mkdtemp(path.join(tmpdir(), 'explorable-models-'));
   const output = path.join(staging, 'bundle');
   await mkdir(output);
   try {
     const hasChecks = Boolean(source['checks.ts']);
-    const workerSource = `import { exposeModelWorker } from '@experiment-kit/core';\nimport * as modelModule from 'kit:model';\n${hasChecks ? "import * as checkModule from 'kit:checks';" : 'const checkModule = {};'}\nconst model = modelModule.default ?? modelModule.model;\nif (!model || typeof model.evaluate !== 'function') throw new Error('model.ts must export model or a default AnalyticModel');\nexposeModelWorker(model);\nself.addEventListener('message', ({data}) => { if(data?.namespace === 'experiment-kit-checks') { try { const suite = checkModule.default ?? checkModule.checks ?? checkModule.suite ?? null; self.postMessage({namespace:'experiment-kit-checks', id:data.id, result:suite}); } catch(e) { self.postMessage({namespace:'experiment-kit-checks',id:data.id,error:{code:'MODEL_ERROR',message:String(e)}}); } } });`;
+    const workerSource = `import { exposeModelWorker } from '@explorable-models/core';\nimport * as modelModule from 'kit:model';\n${hasChecks ? "import * as checkModule from 'kit:checks';" : 'const checkModule = {};'}\nconst model = modelModule.default ?? modelModule.model;\nif (!model || typeof model.evaluate !== 'function') throw new Error('model.ts must export model or a default AnalyticModel');\nexposeModelWorker(model);\nself.addEventListener('message', ({data}) => { if(data?.namespace === 'explorable-models-checks') { try { const suite = checkModule.default ?? checkModule.checks ?? checkModule.suite ?? null; self.postMessage({namespace:'explorable-models-checks', id:data.id, result:suite}); } catch(e) { self.postMessage({namespace:'explorable-models-checks',id:data.id,error:{code:'MODEL_ERROR',message:String(e)}}); } } });`;
     await esbuild({ stdin: { contents: workerSource, resolveDir: sourceRoot, sourcefile: 'toolkit-worker-entry.ts', loader: 'ts' }, bundle: true, format: 'esm', platform: 'browser', target: 'es2022', outfile: path.join(output, 'model-worker.js'), plugins: [modelImportPolicy(sourceRoot, source)], logLevel: 'silent', sourcemap: false, tsconfigRaw: { compilerOptions: { verbatimModuleSyntax: false } } });
     if (Object.keys(source).length > 128 || Object.values(source).reduce((total, text) => total + Buffer.byteLength(text), 0) > 2 * 1024 * 1024) throw new CliError('RESOURCE_LIMIT', 'Experiment source and imported helpers exceed 128 files or 2 MiB.');
     const revision = definitionRevision({ manifest, views, source: canonical(source), dependencyLock, runtimeIdentity });
@@ -108,7 +108,7 @@ async function buildPlayer(staging: string, output: string, definition: Experime
   const entryDirectory = path.join(staging, 'player'); await mkdir(entryDirectory);
   const workerFile = path.join(output, 'model-worker.js');
   const registry = path.join(entryDirectory, 'registry.ts');
-  await writeFile(registry, `import { WorkerExecutor } from ${JSON.stringify(CORE_ENTRY)};\nconst definition = ${JSON.stringify(definition)};\nconst makeWorker=()=>new Worker(new URL(${JSON.stringify(workerFile)},import.meta.url),{type:'module'});\nconst loadChecks=()=>new Promise((resolve,reject)=>{const worker=makeWorker();const id=crypto.randomUUID();const timer=setTimeout(()=>{worker.terminate();reject(new Error('Author checks timed out'));},3000);worker.addEventListener('message',({data})=>{if(data?.namespace!=='experiment-kit-checks'||data.id!==id)return;clearTimeout(timer);worker.terminate();if(data.error)reject(new Error(data.error.message));else resolve(data.result?{...data.result,provenance:'author'}:null);});worker.postMessage({namespace:'experiment-kit-checks',id});});\nexport const experimentEntries = [{id:definition.manifest.id,definition,loadChecks,createExecutor:()=>new WorkerExecutor(makeWorker(),definition.manifest)}];\nexport default experimentEntries;`);
+  await writeFile(registry, `import { WorkerExecutor } from ${JSON.stringify(CORE_ENTRY)};\nconst definition = ${JSON.stringify(definition)};\nconst makeWorker=()=>new Worker(new URL(${JSON.stringify(workerFile)},import.meta.url),{type:'module'});\nconst loadChecks=()=>new Promise((resolve,reject)=>{const worker=makeWorker();const id=crypto.randomUUID();const timer=setTimeout(()=>{worker.terminate();reject(new Error('Author checks timed out'));},3000);worker.addEventListener('message',({data})=>{if(data?.namespace!=='explorable-models-checks'||data.id!==id)return;clearTimeout(timer);worker.terminate();if(data.error)reject(new Error(data.error.message));else resolve(data.result?{...data.result,provenance:'author'}:null);});worker.postMessage({namespace:'explorable-models-checks',id});});\nexport const experimentEntries = [{id:definition.manifest.id,definition,loadChecks,createExecutor:()=>new WorkerExecutor(makeWorker(),definition.manifest)}];\nexport default experimentEntries;`);
   await writeFile(path.join(entryDirectory, 'index.html'), `<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><meta name="description" content="An offline-ready Explorable Models interactive explanation"><title>Explorable Models</title></head><body><div id="root"></div><script type="module" src=${JSON.stringify(path.join(TOOLKIT_ROOT, 'packages/player/src/main.tsx'))}></script></body></html>`);
-  await viteBuild({ configFile: false, root: entryDirectory, publicDir: false, base: './', logLevel: 'silent', resolve: { alias: { '@experiment-kit/core': CORE_ENTRY, '@experiment-kit/examples': registry } }, esbuild: { jsx: 'automatic' }, build: { outDir: output, emptyOutDir: false, target: 'es2022', sourcemap: false }, worker: { format: 'es' } });
+  await viteBuild({ configFile: false, root: entryDirectory, publicDir: false, base: './', logLevel: 'silent', resolve: { alias: { '@explorable-models/core': CORE_ENTRY, '@explorable-models/examples': registry } }, esbuild: { jsx: 'automatic' }, build: { outDir: output, emptyOutDir: false, target: 'es2022', sourcemap: false }, worker: { format: 'es' } });
 }

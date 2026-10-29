@@ -29,10 +29,10 @@ The new authoring path supports bounded analytical/parametric expressions, expli
 | Automated boundary review regressions | `tests/core/session-review.test.ts`, `tests/agent/review.test.ts` |
 | Browser representation, keyboard and exact-frame checks | `tests/browser/composition.spec.ts`, `embedding-renderer.spec.ts`, `player.spec.ts` |
 | Scoped HTTP demo | `examples/host-relay/`; 15 correlated scripted calls, save/reopen, two retained comparisons |
-| Actual stdio-to-browser authoring | `tests/cli/document-mcp.test.ts`; `experiment-kit mcp-document` |
+| Actual stdio-to-browser authoring | `tests/cli/document-mcp.test.ts`; `explorable-models mcp-document` |
 | Optional provider integration | `examples/host-relay/openai-agent.mjs`; mock transport tests only, no credentialed API run |
 
-Reference fixtures are separate from candidate examples, but were produced during engineering work by agents; no independent human review is asserted. Separate-agent code review found and fixed concrete defects, but remains automated review. Screenshots and local logs are in `/tmp/experiment-kit-preview/` and `/tmp/experiment-kit-*`, outside distributions.
+Reference fixtures are separate from candidate examples, but were produced during engineering work by agents; no independent human review is asserted. Separate-agent code review found and fixed concrete defects, but remains automated review. Screenshots and local logs are in `/tmp/explorable-models-preview/` and `/tmp/explorable-models-*`, outside distributions.
 
 The baseline before changes passed typechecking, 123 tests and 12 Chromium browser tests. A sandboxed first attempt failed to bind loopback; rerunning with authorized loopback access passed. Final expanded counts and timestamps are in `verification.json`, so stale baseline counts are not presented as candidate evidence.
 
@@ -92,7 +92,7 @@ The owner selected **Explorable Models**, repository **https://github.com/jamesl
 
 The studio now opens at the site root, with `/agent.html` retained as an alias, `/gallery.html` for the legacy gallery, and `/guide.html` for a readable preview guide. Existing query-based experiment/embed/capture links and v1 startup snapshots retain their legacy entry behavior. All reusable libraries and the separate CLI package use the `preview` publish tag. The CI workflow runs the full local packaging/check pipeline and retains artifacts, with read-only repository access and no deployment/publication job.
 
-`npm run release:preview` also runs release-integrity regressions and verifies the actual site ZIP at a nested path, including hashes, default/legacy routes, exact controls, scientific-state preservation, mobile/boundary views, and browser errors. Exact refreshed counts and package hashes are generated into `verification.json`; packaged-site smoke evidence/screenshots are under `/tmp/experiment-kit-public-preview/`. The previous verified candidate is retained separately under `release/archive/`.
+`npm run release:preview` also runs release-integrity regressions and verifies the actual site ZIP at a nested path, including hashes, default/legacy routes, exact controls, scientific-state preservation, mobile/boundary views, and browser errors. Exact refreshed counts and package hashes are generated into `verification.json`; packaged-site smoke evidence/screenshots are under `/tmp/explorable-models-public-preview/`. The previous verified candidate is retained separately under `release/archive/`.
 
 The owner authorized the initial source commit and push. The final source inventory includes release-integrity tests and excludes generated output, dependencies, local credentials, and session bridges. CI results and downloadable preview evidence are tied to the exact pushed commit. Public maintainer/security contact details and npm ownership remain open for later package/website publication; `npm run preflight:public` reports those decisions without blocking source commits. No npm publication, website deployment, release tag, public package smoke check, or external human/agent trial is claimed. The [handoff](public-preview-handoff.md) records the remaining work.
 

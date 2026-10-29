@@ -10,8 +10,8 @@
  * host, about rendering or about learning.
  */
 import { afterEach, describe, expect, it } from 'vitest';
-import type { ActivityTemplate, HostPolicy, LearnerProjection, ProjectedMark } from '@experiment-kit/activity';
-import { createInstalledCatalog, INSTALLED_TEMPLATES } from '@experiment-kit/catalog';
+import type { ActivityTemplate, HostPolicy, LearnerProjection, ProjectedMark } from '@explorable-models/activity';
+import { createInstalledCatalog, INSTALLED_TEMPLATES } from '@explorable-models/catalog';
 import { ackCurrent, activityGuard, guards, harness, okOf, op, open, policyFor, settled, until, type Harness, type Opened } from './support/adapter-harness.js';
 
 const disposers: (() => void)[] = [];

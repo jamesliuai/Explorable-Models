@@ -13,7 +13,7 @@
  * - Embeds fonts as `data:` only when bundled fonts are in use; rasterizes PNG through a `blob:` image onto a canvas
  *   bounded to `CAPTURE_LIMITS`.
  */
-import type { LearnerProjection, ProjectedView } from '@experiment-kit/activity';
+import type { LearnerProjection, ProjectedView } from '@explorable-models/activity';
 import type { AssetLocations } from './assets.js';
 import { formatPosition, valueDisplay } from './format.js';
 
@@ -102,7 +102,7 @@ export function companionText(projection: LearnerProjection, view: ProjectedView
 export interface CaptureContext {
   /** The surface's own root (its shadow root or root element); the only place searched. */
   root: ParentNode;
-  /** Element whose computed `--eka-*` tokens give the capture colours. */
+  /** Element whose computed `--ema-*` tokens give the capture colours. */
   themeElement: Element;
   surfaceId: string;
   projection: LearnerProjection;

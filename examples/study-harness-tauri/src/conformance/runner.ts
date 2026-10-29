@@ -5,8 +5,8 @@
 // own controls (host buttons by DOM click, the composer inside the card, the card's camera button) and the learner
 // binding (preview gesture, navigation), observes the card, and writes a report through the test-only command.
 // It never reads host records directly: the driver reads the SQLite store after each process ends.
-import type { ExposureRecord, LearnerProjection } from '@experiment-kit/activity';
-import { HOST_CONFORMANCE_STEPS, runHostPortConformance, type HostConformanceHooks, type HostConformanceRun } from '@experiment-kit/activity/conformance';
+import type { ExposureRecord, LearnerProjection } from '@explorable-models/activity';
+import { HOST_CONFORMANCE_STEPS, runHostPortConformance, type HostConformanceHooks, type HostConformanceRun } from '@explorable-models/activity/conformance';
 import packed from '../../packed-artifacts.json';
 import type { ReferenceHostApp } from '../app';
 import { call, onCall, type CallRecord } from '../native-bridge';
@@ -277,7 +277,7 @@ async function restartScenario(app: ReferenceHostApp, report: Report): Promise<v
     }
     // Camera (presentation state): attempted in both cases; while hidden a refusal is recorded instead of failing the run.
     const camera = await report.step('camera-zoom-in', async () => {
-      const figure = cardRoot(app).querySelector('[data-eka-figure="landscape"]');
+      const figure = cardRoot(app).querySelector('[data-ema-figure="landscape"]');
       const zoom = figure && [...figure.querySelectorAll<HTMLButtonElement>('button')].find(item => item.getAttribute('aria-label') === 'Zoom in');
       if (!zoom) throw new Error('no Zoom in control on the landscape figure');
       zoom.click();
@@ -301,7 +301,7 @@ async function restartScenario(app: ReferenceHostApp, report: Report): Promise<v
       return null;
     })) return report.write('failed');
     report.data.after = captureState(app);
-    report.data.afterUi = toJson({ ui: projection(app).status.ui, banner: cardRoot(app).querySelector('.eka-banner[data-ui-state]')?.getAttribute('data-ui-state') ?? null });
+    report.data.afterUi = toJson({ ui: projection(app).status.ui, banner: cardRoot(app).querySelector('.ema-banner[data-ui-state]')?.getAttribute('data-ui-state') ?? null });
     if (windowVisible()) report.probes.push(...await captureProbes(app.surface!, 'restart-after', renderTimeout()));
     if (!await report.step('independent-task', async () => {
       await clickHost(app, 'independent-task');
@@ -310,7 +310,7 @@ async function restartScenario(app: ReferenceHostApp, report: Report): Promise<v
       const root = cardRoot(app);
       return {
         views: projection(app).views.map(view => view.viewId), visibleGroups: visible(app), controls: projection(app).controls.map(control => control.parameter),
-        traceFigureInDom: !!root.querySelector('[data-eka-figure="trace-plot"]'), landscapeInDom: !!root.querySelector('[data-eka-figure="landscape"]'),
+        traceFigureInDom: !!root.querySelector('[data-ema-figure="trace-plot"]'), landscapeInDom: !!root.querySelector('[data-ema-figure="landscape"]'),
         cardText: (root.textContent ?? '').slice(0, 600),
       };
     })) return report.write('failed');
@@ -439,7 +439,7 @@ async function saveCrashScenario(app: ReferenceHostApp, report: Report): Promise
 }
 
 /**
- * The host-agnostic HostPort conformance kit (`@experiment-kit/activity/conformance`, external gate G2) run inside the
+ * The host-agnostic HostPort conformance kit (`@explorable-models/activity/conformance`, external gate G2) run inside the
  * packaged app against the Rust reference host through `NativeHostPort`, labelled `reference-fixture-host`. Its restart
  * hook drops the host and opens the same SQLite store again (`conformance_reopen_store`: the restart rule runs, as on a
  * relaunch); its interruption hook arms an in-process simulated fault at the named crash point (`conformance_fault`:
@@ -529,7 +529,7 @@ const released = (stats: Record<string, Json> | null): boolean => !!stats && sta
 /**
  * Every installed template opened through the host: each prepares by evaluating its kernel in the catalogue worker,
  * which loads that kernel's own module on first use (a same-origin dynamic `import()` from the module worker under the
- * production and worker CSPs). The two spatial templates then render through the packed `@experiment-kit/player-3d`
+ * production and worker CSPs). The two spatial templates then render through the packed `@explorable-models/player-3d`
  * chunk in WKWebView: frames counted, then renderer resources released when the card goes away. Rendering needs a
  * visible window; while WebKit reports it hidden the spatial probes are recorded as not run.
  */
@@ -560,16 +560,16 @@ async function templatesScenario(app: ReferenceHostApp, report: Report): Promise
     if (template.dimension !== '3d') continue;
     report.probes.push(await probe(`spatial-render:${template.templateId}`, async () => {
       const root = cardRoot(app);
-      const host = root.querySelector<HTMLElement>('[data-eka-spatial]');
+      const host = root.querySelector<HTMLElement>('[data-ema-spatial]');
       if (!host) return { status: 'fail', summary: 'the card shows no spatial view', details: {} };
-      const viewId = host.dataset.ekaSpatial!;
+      const viewId = host.dataset.emaSpatial!;
       if (!windowVisible()) return { status: 'info', summary: 'not run: the window was not visible to WebKit (console session locked or display asleep)', details: { visibilityState: document.visibilityState } };
       host.scrollIntoView({ block: 'center' });
       const record = () => spatialRecords().find(item => item.viewId === viewId && item.disposedAtMs === null);
       try {
-        await until(() => host.dataset.ekaSpatialState === 'ready' && (record()?.stats()?.frames ?? 0) > 0, 'rendered spatial frames', 20_000);
+        await until(() => host.dataset.emaSpatialState === 'ready' && (record()?.stats()?.frames ?? 0) > 0, 'rendered spatial frames', 20_000);
       } catch {
-        return { status: 'fail', summary: `no rendered frame (state ${host.dataset.ekaSpatialState ?? 'none'})`, details: { state: host.dataset.ekaSpatialState ?? null, stats: statsOf(record()) } };
+        return { status: 'fail', summary: `no rendered frame (state ${host.dataset.emaSpatialState ?? 'none'})`, details: { state: host.dataset.emaSpatialState ?? null, stats: statsOf(record()) } };
       }
       const first = statsOf(record());
       await delay(800);
@@ -579,7 +579,7 @@ async function templatesScenario(app: ReferenceHostApp, report: Report): Promise
       return {
         status: 'pass',
         summary: `${first?.frames} frames rendered (then ${later?.frames} after 0.8 s idle, on-demand rendering), ${first?.drawCalls} draw calls, ${first?.geometries} geometries, ${first?.vertices} vertices`,
-        details: { viewId, state: host.dataset.ekaSpatialState ?? null, first, later, canvas: canvas ? { width: (canvas as HTMLCanvasElement).width, height: (canvas as HTMLCanvasElement).height } : null },
+        details: { viewId, state: host.dataset.emaSpatialState ?? null, first, later, canvas: canvas ? { width: (canvas as HTMLCanvasElement).width, height: (canvas as HTMLCanvasElement).height } : null },
       };
     }, 30_000));
   }
@@ -724,7 +724,7 @@ async function restoreScenario(app: ReferenceHostApp, report: Report): Promise<v
     await call('conformance_withdraw_approval', { templateId: 'quadratic-gradient-descent' });
     await clickHost(app, 'reopen', instructional.activityId);
     await until(() => app.getSnapshot().archival !== null, 'the archival record');
-    const element = document.querySelector<HTMLElement>('#card [data-experiment-kit-archival]');
+    const element = document.querySelector<HTMLElement>('#card [data-explorable-models-archival]');
     const shadow = element?.shadowRoot ?? null;
     return {
       archival: toJson(app.getSnapshot().archival), cardState: document.getElementById('card')?.dataset.hostCard ?? null, surfaceMounted: !!app.surface,

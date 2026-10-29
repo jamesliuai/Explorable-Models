@@ -4,11 +4,11 @@
  * produced with it are fixture-host results, not evidence about the Study Harness host or a real agent.
  */
 import { expect } from 'vitest';
-import { TOOL_OPERATIONS, type ActivityBinding, type HostPolicy, type PreparedActivity, type ToolOperation } from '@experiment-kit/activity';
+import { TOOL_OPERATIONS, type ActivityBinding, type HostPolicy, type PreparedActivity, type ToolOperation } from '@explorable-models/activity';
 import {
   ACTIVITY_TOOL_MESSAGES, ACTIVITY_TOOL_REASONS, createActivityTools,
   type ActivityToolAudience, type ActivityToolContext, type ActivityToolResult, type ActivityTools, type VisualizationTools,
-} from '@experiment-kit/agent';
+} from '@explorable-models/agent';
 import { harness, manifest, policyFor, settled, template, type Harness } from '../../activity/support/adapter-harness.js';
 
 export const ACTIVITY_ID = 'act-quadratic-1';

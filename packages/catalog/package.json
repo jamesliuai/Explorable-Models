@@ -1,5 +1,5 @@
 {
-  "name": "@experiment-kit/catalog",
+  "name": "@explorable-models/catalog",
   "version": "0.3.0-preview.1",
   "description": "Installed, versioned Study Harness model and activity catalogue with pure kernels and a worker entry.",
   "type": "module",
@@ -46,7 +46,7 @@
     "url": "https://github.com/jamesliuai/Explorable-Models/issues"
   },
   "dependencies": {
-    "@experiment-kit/core": "0.3.0-preview.1",
-    "@experiment-kit/activity": "0.3.0-preview.1"
+    "@explorable-models/core": "0.3.0-preview.1",
+    "@explorable-models/activity": "0.3.0-preview.1"
   }
 }

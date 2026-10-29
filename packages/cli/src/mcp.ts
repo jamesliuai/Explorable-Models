@@ -16,16 +16,16 @@ const guards = { expectedRunVersion: z.number().int().nonnegative(), expectedAct
 const resultSchema = { result: z.unknown() };
 const format = (result: unknown) => ({ content: [{ type: 'text' as const, text: JSON.stringify(result) }], structuredContent: { result }, ...(result && typeof result === 'object' && 'error' in result ? { isError: true } : {}) });
 export function createMcpServer(service: AgentService): McpServer {
-  const server = new McpServer({ name: 'experiment-kit', version: '0.1.0' });
+  const server = new McpServer({ name: 'explorable-models', version: '0.1.0' });
   const resources: { uri: string; bytes: number; remove(): void }[] = [];
-  server.registerResource('result-index', 'experiment-kit://results/index', { title: 'Retained result resources', description: 'Bounded full precision data retained in this MCP session.', mimeType: 'application/json' }, async () => ({ contents: [{ uri: 'experiment-kit://results/index', mimeType: 'application/json', text: JSON.stringify(resources.map(({uri,bytes})=>({uri,bytes}))) }] }));
+  server.registerResource('result-index', 'explorable-models://results/index', { title: 'Retained result resources', description: 'Bounded full precision data retained in this MCP session.', mimeType: 'application/json' }, async () => ({ contents: [{ uri: 'explorable-models://results/index', mimeType: 'application/json', text: JSON.stringify(resources.map(({uri,bytes})=>({uri,bytes}))) }] }));
   const bounded = (result: unknown) => {
     const serialized = JSON.stringify(result);
     const bytes = Buffer.byteLength(serialized);
     if (bytes <= 96 * 1024) return format(result);
     if (bytes > 8 * 1024 * 1024) return format({ error: { code: 'RESOURCE_LIMIT', message: 'The result exceeds the 8 MiB resource limit.', recovery: 'Request fewer sample times or quantities.' } });
     while (resources.length >= 16 || resources.reduce((total, item) => total + item.bytes, 0) + bytes > 16 * 1024 * 1024) resources.shift()?.remove();
-    const id = randomUUID(); const uri = `experiment-kit://results/${id}`;
+    const id = randomUUID(); const uri = `explorable-models://results/${id}`;
     const resource = server.registerResource(`result-${id}`, uri, { title: 'Experiment result data', description: 'Exact bounded JSON data from a sampled, compared, or checked experiment. Retained for this MCP session; save it for durable storage.', mimeType: 'application/json' }, async () => ({ contents: [{ uri, mimeType: 'application/json', text: serialized }] }));
     resources.push({ uri, bytes, remove: () => resource.remove() });
     const object = result as Record<string, unknown>;

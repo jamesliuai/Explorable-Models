@@ -22,9 +22,9 @@
  * Every driver call is serialized and resolves after the host round trip and the display acknowledgement have settled
  * (`settle()`); host refusals resolve with `ok: false` and the adapter's diagnostic codes.
  */
-import type { ActivityBinding, ActivityTemplate, CommandOutcome, HostPolicy, LearnerProjection, StageSpec } from '@experiment-kit/activity';
-import { INSTALLED_TEMPLATES } from '@experiment-kit/catalog';
-import type { MountedStudyActivity } from '@experiment-kit/player/activity';
+import type { ActivityBinding, ActivityTemplate, CommandOutcome, HostPolicy, LearnerProjection, StageSpec } from '@explorable-models/activity';
+import { INSTALLED_TEMPLATES } from '@explorable-models/catalog';
+import type { MountedStudyActivity } from '@explorable-models/player/activity';
 import type { CrashPoint } from './fixture-host';
 import { codes, FixtureRuntime, FixtureStepError, type FixtureMessage, type FixtureOptions } from './fixture-runtime';
 import { mountHostCard, type ResponseRequest, type ResponseSlotSource } from './host-card';

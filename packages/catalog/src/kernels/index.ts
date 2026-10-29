@@ -2,7 +2,7 @@
  * Installed pure kernels. This module imports no templates, copy or manifests so the worker entry stays small.
  * New activity packages append their kernel here.
  */
-import type { ModelKernel } from '@experiment-kit/core/model';
+import type { ModelKernel } from '@explorable-models/core/model';
 import { functionDerivativeKernel } from './function-derivative.js';
 import { linearTransformationKernel } from './linear-transformation.js';
 import { quadraticGradientDescentKernel } from './quadratic-gradient-descent.js';

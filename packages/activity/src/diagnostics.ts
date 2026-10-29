@@ -1,12 +1,12 @@
 /**
- * Bridge from model-layer diagnostics (`@experiment-kit/core/model`) to the activity vocabulary. Core codes are the
+ * Bridge from model-layer diagnostics (`@explorable-models/core/model`) to the activity vocabulary. Core codes are the
  * subset of {@link DiagnosticCode} that the model layer produces, plus `WORKER_PROTOCOL` for a worker reply that broke
  * the message protocol. The activity vocabulary reports worker failures only as `WORKER_ERROR` or `WORKER_TIMEOUT`
  * (D10), so `WORKER_PROTOCOL` is presented as `WORKER_ERROR`; an event or summary carrying the core code would fail
  * the `operation.failed` payload schema. The compile-time check below fails when core gains a code this vocabulary
  * does not define.
  */
-import type { ModelDiagnosticCode } from '@experiment-kit/core/model';
+import type { ModelDiagnosticCode } from '@explorable-models/core/model';
 import type { Diagnostic, DiagnosticCode, HostRefusalCode } from './contracts.js';
 import { HOST_REFUSAL_CODES } from './contracts.js';
 import { DIAGNOSTIC_CODES } from './schemas.js';

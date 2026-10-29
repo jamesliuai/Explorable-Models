@@ -1,8 +1,8 @@
-//! Stable host error codes (the `DiagnosticCode` vocabulary of `@experiment-kit/activity`). The webview receives only
+//! Stable host error codes (the `DiagnosticCode` vocabulary of `@explorable-models/activity`). The webview receives only
 //! `{ code, message }` (plus `reason` on a HostPort refusal) with a fixed sentence per code: no field names, no input
 //! values and no storage details.
 //!
-//! **HostPort refusal convention** (`@experiment-kit/activity`): a `HostPort` method that refuses a request as a host
+//! **HostPort refusal convention** (`@explorable-models/activity`): a `HostPort` method that refuses a request as a host
 //! decision rejects with one of `POLICY_DENIED`, `POLICY_EXPIRED`, `CONTENT_REVOKED`, `STALE_POLICY_REVISION` or
 //! `INVALID_INPUT`, and the adapter does not retry it; any other rejection is a retryable persistence failure. The
 //! HostPort commands report their errors through [`HostError::host_port`]: a host decision is reported under its

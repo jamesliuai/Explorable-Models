@@ -20,7 +20,7 @@
       "status": "verified",
       "implementation": [
         "tests/activity/boundaries.test.ts: boundary rows built from a TypeScript-parsed import graph for core, the activity adapter, the host conformance kit (packages/activity/src/conformance), the catalogue, the learner surface (packages/player/src/activity, with player-3d, KaTeX and three lazy-only), the legacy 2D player entry, player-3d (core types only) and the agent tools and relays. Every row forbids browser storage; every visualization row forbids Tauri APIs, filesystem libraries, provider clients and credential stores; a row whose entries match no file fails instead of being skipped.",
-        "packages/player-3d/src imports only three, three/addons/lines/* and @experiment-kit/core types",
+        "packages/player-3d/src imports only three, three/addons/lines/* and @explorable-models/core types",
         "packages/player-3d/build.mjs fails if Three.js source is bundled or the bundle reaches files outside src/"
       ],
       "verification": [
@@ -30,7 +30,7 @@
         "tests/activity/boundaries.test.ts “the agent row rejects a provider SDK, credential store, native API, filesystem or network call added to packages/agent/src”",
         "tests/activity/boundaries.test.ts “spatial renderer depends on core types only”",
         "tests/player-3d/contract.test.ts (bundle import list; no HTML injection, style attributes, eval, foreignObject, loaders, textures or custom shaders)",
-        "tests/cli/activity-boundaries.test.ts “keeps @experiment-kit packages type-only in Node-side modules”"
+        "tests/cli/activity-boundaries.test.ts “keeps @explorable-models packages type-only in Node-side modules”"
       ],
       "evidence": [],
       "externalDependency": null,
@@ -214,7 +214,7 @@
       "status": "verified",
       "implementation": [
         "packages/core/src/model/protocol.ts and packages/core/src/model/evaluator.ts (installed IDs and data only are posted to workers)",
-        "packages/cli/src/activity-files.ts (TypeScript-AST import allowlist: relative .ts/.json and type-only @experiment-kit/core/model; refuses node:*, npm packages, value imports, dynamic import and require)",
+        "packages/cli/src/activity-files.ts (TypeScript-AST import allowlist: relative .ts/.json and type-only @explorable-models/core/model; refuses node:*, npm packages, value imports, dynamic import and require)",
         "packages/cli/src/activity-bundle.ts (esbuild allowlist plugin; fixed toolkit worker entries; the candidate's tsconfig, scripts and config are never read)",
         "packages/cli/src/activity-worker.ts, activity-harness.ts and packages/cli/src/activity-browser.ts (authored kernels and checks run only in Chromium module workers on loopback; external requests aborted; worker CSP connect-src 'none')",
         "packages/cli/src/activity-preview-page.ts (preview: the model runs only in the page's module worker)"
@@ -264,7 +264,7 @@
         "docs/study-harness/evidence/history/verification-2026-10-29T05-56-31.791Z.json"
       ],
       "externalDependency": null,
-      "notes": "Verified for the documented unit and identity contract: draggable axes require the parameter canonical unit; pointer displacements convert into selected display units before snapping; computed document quantities and coordinates carry coherent scales; U+FEFF/U+1680 insertions change scientific identity. Regression coverage includes both axes, centimetres/metres, degrees/radians, observed columns, scaled ratios and overflowed scale inference. Document agreement and scientific projection stay behind the explicit document capability; public synchronous document hashes are unchanged, and incomplete capability registries refuse explicitly."
+      "notes": "Verified for the documented unit and identity contract: draggable axes require the parameter canonical unit; pointer displacements convert into selected display units before snapping; computed document quantities and coordinates carry coherent scales; U+FEFF/U+1680 insertions change scientific identity. Regression coverage includes both axes, centimetres/metres, degrees/radians, observed columns, scaled ratios and overflowed scale inference. Document agreement and scientific projection stay behind the explicit document capability; public synchronous document hashes are unchanged, and incomplete capability registries refuse explicitly. The unpublished schema lock records the deliberate breaking namespace amendment; earlier namespace aliases are not supported."
     },
     {
       "id": "A11",
@@ -325,7 +325,7 @@
       "status": "verified",
       "implementation": [
         "packages/core/src/model/frame.ts (frameId) and packages/core/src/model/protocol.ts (seriesToPolyline splits at missing samples; observed series are never joined)",
-        "packages/activity/src/projection.ts (every representation and comparison overlay is built from its identified frame) and packages/player/src/activity/components/Scene2D.tsx, Panels.tsx and Spatial.tsx (data-eka-frame-id on every representation)",
+        "packages/activity/src/projection.ts (every representation and comparison overlay is built from its identified frame) and packages/player/src/activity/components/Scene2D.tsx, Panels.tsx and Spatial.tsx (data-ema-frame-id on every representation)",
         "packages/activity/src/controller.ts sample(): separately authorized, standing-checked sampling that returns provenance without changing learner state"
       ],
       "verification": [
@@ -611,7 +611,7 @@
       "status": "verified",
       "implementation": [
         "packages/activity/src/controller.ts (beginPreview/updatePreview/commitPreview/cancelPreview; exploration scope required; preview.observed sampling within the 8 KiB event limit; previews end when a stage, reveal, policy or fixed control removes their authorization)",
-        "packages/player/src/activity (data-eka-frame-id on every representation; tentative frames marked as preview)"
+        "packages/player/src/activity (data-ema-frame-id on every representation; tentative frames marked as preview)"
       ],
       "verification": [
         "tests/activity/exposure.test.ts “requires an exploration scope; pointer moves never call the host; cancel keeps exposure and commits nothing”",
@@ -1308,7 +1308,7 @@
       "workPackages": [
         "W12"
       ],
-      "status": "verified",
+      "status": "implemented",
       "implementation": [
         "examples/study-harness-tauri/src-tauri/build.rs (AppManifest lists production commands only; conformance commands only under CARGO_FEATURE_CONFORMANCE)",
         "examples/study-harness-tauri/src-tauri/capabilities/main-window.json (grants exactly the production commands); the conformance capability lives in tauri.conformance.conf.json and leaves a probe command ungranted",
@@ -1327,7 +1327,7 @@
         "docs/study-harness/evidence/history/native-conformance-2026-10-29T05-56-31.432Z.json"
       ],
       "externalDependency": null,
-      "notes": "Fresh release and conformance apps passed their separate ACL/command-scope checks in full-2026-10-29T05:53:42.866Z. --no-build with a release chain now refuses before launching or writing evidence because shared last-build schemas cannot prove two scopes; full runs rebuild and snapshot each ACL. Revoked archival records require exactly the host's Return to the session action."
+      "notes": "Fresh release and conformance apps passed their separate ACL/command-scope checks in full-2026-10-29T05:53:42.866Z. --no-build with a release chain now refuses before launching or writing evidence because shared last-build schemas cannot prove two scopes; full runs rebuild and snapshot each ACL. Revoked archival records require exactly the host's Return to the session action. Breaking namespace rename: earlier package/binary measurements are historical. Current renamed source is checked separately; a new full release/native/performance run must establish identities for a distribution candidate."
     },
     {
       "id": "A53",
@@ -1360,7 +1360,7 @@
       ],
       "status": "external-gate",
       "implementation": [
-        "packages/activity/src/conformance (host-agnostic HostPort conformance kit, @experiment-kit/activity/conformance: the twelve-step G2 sequence, result records labelled actual-host / reference-fixture-host / memory-fixture-host)",
+        "packages/activity/src/conformance (host-agnostic HostPort conformance kit, @explorable-models/activity/conformance: the twelve-step G2 sequence, result records labelled actual-host / reference-fixture-host / memory-fixture-host)",
         "docs/study-harness/templates/host-conformance-result.md and docs/study-harness/templates/host-conformance-result.schema.json (G2 result template; not-run kept distinct from pass)",
         "docs/study-harness/external-gates.md G2 and docs/study-harness/README.md §3 (HostPort checklist, CSP and worker rules, packaging from tarballs, conformance sequence)"
       ],
@@ -1452,7 +1452,7 @@
       "workPackages": [
         "W14"
       ],
-      "status": "verified",
+      "status": "implemented",
       "implementation": [
         "scripts/study-harness/benchmark.mjs and scripts/study-harness/benchmark-evidence.mjs (§18 workloads on the packed production consumer in Chromium; p50/p95 and sample counts; worker, render, paint and storage acknowledgement reported separately)",
         "scripts/study-harness/verify-consumer.mjs and docs/study-harness/budgets.json (180,000 B legacy 2D and 250,000 B activity-entry gzip ceilings kept; first freezes for lazy math, fonts, 3D and catalogue content)",
@@ -1478,7 +1478,7 @@
         "docs/study-harness/evidence/history/verification-2026-10-29T05-56-31.791Z.json"
       ],
       "externalDependency": null,
-      "notes": "Production consumer and raw-result benchmark gate passed for the final six-package pack in 2026-10-29T05-29-41.307Z; every recorded failed commit and any unacknowledged input in the hardware-GPU orbit target fail verification, and persisted verdicts are recomputed. Software-WebGL orbit latency remains reported-only. Optional document agreement/projection stay opt-in; capture rendering, migration reading and bundled-math font metadata load on demand, with their distribution costs recorded under lazy.other. Native ESM dependency loading replaces optional preload hints; the static/worker graph measurement and 250,000-byte ceiling are unchanged. Report §18's explicit packaged scope decision is in budgets.json, performance.md §3b and architecture D14: support the existing 30 fps usable floor/cadence in macOS WKWebView; retain 60 fps as an improvement objective, separately measured and never silently declared met. Low-end devices and whole-host launch/memory targets are not established."
+      "notes": "Production consumer and raw-result benchmark gate passed for the final six-package pack in 2026-10-29T05-29-41.307Z; every recorded failed commit and any unacknowledged input in the hardware-GPU orbit target fail verification, and persisted verdicts are recomputed. Software-WebGL orbit latency remains reported-only. Optional document agreement/projection stay opt-in; capture rendering, migration reading and bundled-math font metadata load on demand, with their distribution costs recorded under lazy.other. Native ESM dependency loading replaces optional preload hints; the static/worker graph measurement and 250,000-byte ceiling are unchanged. Report §18's explicit packaged scope decision is in budgets.json, performance.md §3b and architecture D14: support the existing 30 fps usable floor/cadence in macOS WKWebView; retain 60 fps as an improvement objective, separately measured and never silently declared met. Low-end devices and whole-host launch/memory targets are not established. Breaking namespace rename: earlier package/binary measurements are historical. Current renamed source is checked separately; a new full release/native/performance run must establish identities for a distribution candidate."
     },
     {
       "id": "A59",
@@ -1486,7 +1486,7 @@
       "workPackages": [
         "W14"
       ],
-      "status": "verified",
+      "status": "implemented",
       "implementation": [
         "scripts/study-harness/release-pipeline.mjs (npm run release:study-harness: one complete pack; every §20.1 and Study Harness gate with machine-readable counts; tarball identity checks; release/study-harness/verification.json plus append-only history)",
         "scripts/study-harness/evidence-identity.mjs (source commit, dirty flag, lock digest, tool versions, platform; append-only history records)",
@@ -1503,7 +1503,7 @@
         "docs/study-harness/evidence/history/verification-2026-10-29T05-56-31.791Z.json"
       ],
       "externalDependency": null,
-      "notes": "Audited resumed full-candidate verification 2026-10-29T05-29-41.307Z: 19 of 19 effective gates pass, no failures, exclusions, blocked gates or environment gaps, with exact tarball and binary hashes. Run `2026-10-29T05-29-41.307Z` is an audited resume of failed full run `2026-10-29T04-04-18.057Z`: 6 affected gates were executed again and 13 unchanged passing gates retain their original execution times, logs and provenance. The six SDK tarballs are byte-identical. Only the reviewed verification setup, tests and tooling changed. The failed parent record is preserved; this is complete effective gate coverage, not a claim that all gates ran afresh in one uninterrupted run. That verification was recorded from an uncommitted working tree based on 910c03a3ef278532024df6ffedc878572e8dc093; hashes identify the tested SDK candidate. Source publication and the subsequent README gallery refresh do not relabel that historical evidence. Commit-specific CI runs retain their own identity and scope; this record does not establish a Linux result."
+      "notes": "Audited resumed full-candidate verification 2026-10-29T05-29-41.307Z: 19 of 19 effective gates pass, no failures, exclusions, blocked gates or environment gaps, with exact tarball and binary hashes. Run `2026-10-29T05-29-41.307Z` is an audited resume of failed full run `2026-10-29T04-04-18.057Z`: 6 affected gates were executed again and 13 unchanged passing gates retain their original execution times, logs and provenance. The six SDK tarballs are byte-identical. Only the reviewed verification setup, tests and tooling changed. The failed parent record is preserved; this is complete effective gate coverage, not a claim that all gates ran afresh in one uninterrupted run. That verification was recorded from an uncommitted working tree based on 910c03a3ef278532024df6ffedc878572e8dc093; hashes identify the tested SDK candidate. Source publication and the subsequent README gallery refresh do not relabel that historical evidence. Commit-specific CI runs retain their own identity and scope; this record does not establish a Linux result. Breaking namespace rename: earlier package/binary measurements are historical. Current renamed source is checked separately; a new full release/native/performance run must establish identities for a distribution candidate."
     },
     {
       "id": "A60",

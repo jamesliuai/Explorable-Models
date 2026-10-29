@@ -12,8 +12,8 @@
  * square, Mv, determinant, area, orientation, rank, collapse line, eigen data and the equations that substitute them)
  * is solution-bearing.
  */
-import type { ActivityTemplate, ContentGroup, MarkSpec, ScenarioSpec, StageSpec } from '@experiment-kit/activity';
-import { modelIdentity } from '@experiment-kit/core/model';
+import type { ActivityTemplate, ContentGroup, MarkSpec, ScenarioSpec, StageSpec } from '@explorable-models/activity';
+import { modelIdentity } from '@explorable-models/core/model';
 import { LINEAR_COPY as COPY } from '../copy/linear-transformation.js';
 import { linearTransformationManifest as manifest } from '../models/linear-transformation.js';
 

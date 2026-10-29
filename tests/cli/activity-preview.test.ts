@@ -224,7 +224,7 @@ describe('activity authoring diagnostics, learner captures and preview', () => {
       expect(await tab.locator('[data-preview="blocked"]').textContent()).toMatch(/does not validate \(3 errors\)/);
       const panel = await tab.locator('[data-preview="diagnostics"] li[data-code]').evaluateAll(items => items.map(item => item.getAttribute('data-code')));
       expect(panel.sort()).toEqual(errors);
-      expect(await tab.locator('[data-experiment-kit-activity]').count()).toBe(0);
+      expect(await tab.locator('[data-explorable-models-activity]').count()).toBe(0);
     } finally {
       await browser?.close();
       await session.close();
@@ -277,8 +277,8 @@ describe('activity authoring diagnostics, learner captures and preview', () => {
       expect(strings(state.author.projection).filter(value => SOLUTION_IDS.includes(value)).sort()).toEqual(expect.arrayContaining(['root', 'root-marker', 'root-rule']));
       expect(state.author.route.map(step => step.kind)).toEqual(['prepared', 'reveal']);
       expect(state.groups.find(group => group.groupId === 'root')).toMatchObject({ solutionBearing: true, staged: 'absent', learner: 'absent', reason: 'not in this stage' });
-      expect(await tab.locator('[data-preview="author-surface"] [data-experiment-kit-activity]').count()).toBe(1);
-      expect(await tab.locator('[data-preview="learner-surface"] [data-experiment-kit-activity]').count()).toBe(1);
+      expect(await tab.locator('[data-preview="author-surface"] [data-explorable-models-activity]').count()).toBe(1);
+      expect(await tab.locator('[data-preview="learner-surface"] [data-explorable-models-activity]').count()).toBe(1);
 
       // The stage selector moves both lanes through host-authorized transitions with receipts.
       state = await tab.evaluate(() => window.__activityPreview!.selectStage('explore')) as PreviewState;
@@ -291,7 +291,7 @@ describe('activity authoring diagnostics, learner captures and preview', () => {
 
       // The diagnostics panel lists the template warnings and both surfaces' diagnostics for this stage. KaTeX loads only
       // for equations in view, so each lane's equations are scrolled into view first.
-      for (const lane of ['author', 'learner']) await tab.locator(`[data-preview="${lane}-surface"] .eka-equations`).scrollIntoViewIfNeeded();
+      for (const lane of ['author', 'learner']) await tab.locator(`[data-preview="${lane}-surface"] .ema-equations`).scrollIntoViewIfNeeded();
       await expect.poll(async () => (await tab.evaluate(() => window.__activityPreview!.state()) as PreviewState).diagnostics.learner.map(item => item.code).sort(), { timeout: 10_000 })
         .toEqual(['CLIPPED', 'LABEL_CALLOUT', 'MATH_FALLBACK']);
       await expect.poll(async () => (await tab.evaluate(() => window.__activityPreview!.state()) as PreviewState).diagnostics.author.map(item => item.code).sort(), { timeout: 10_000 })

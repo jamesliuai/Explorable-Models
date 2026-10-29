@@ -2,7 +2,7 @@
  * Model manifest for the quadratic surface f(x, y) = (a·x² + 2b·x·y + c·y²)/2 and its gradient (report §12.5). Data
  * only; the installed kernel `quadratic-surface-gradient@1.1.0` evaluates it in the catalogue worker.
  */
-import type { ModelGeometryDefinition, ModelManifest, ModelParameterDefinition, ModelQuantityDefinition } from '@experiment-kit/core/model';
+import type { ModelGeometryDefinition, ModelManifest, ModelParameterDefinition, ModelQuantityDefinition } from '@explorable-models/core/model';
 import {
   ARROW_MAX_LENGTH, ARROW_SCALES, CONTOUR_LEVELS, CONTOUR_SAMPLES, FIELD_GRID, SECTION_SAMPLES, SURFACE_GRADIENT_DOMAIN, SURFACE_GRADIENT_KERNEL_ID,
   SURFACE_GRADIENT_KERNEL_VERSION, SURFACE_GRID,
@@ -44,7 +44,7 @@ const geometry = (kind: ModelGeometryDefinition['kind'], label: string, coordina
 const ARROW_NOTE = `drawn at length s·|∇f(p)| with the arrow scale s (quantity arrow.scale), the same scale as the gradient field; its direction is exact`;
 
 export const quadraticSurfaceGradientManifest: ModelManifest = {
-  contract: 'experiment-kit.model-manifest',
+  contract: 'explorable-models.model-manifest',
   schemaVersion: '1.0',
   modelId: 'quadratic-surface-gradient',
   version: '1.0.0',

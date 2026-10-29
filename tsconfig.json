@@ -23,43 +23,43 @@
     ],
     "baseUrl": ".",
     "paths": {
-      "@experiment-kit/core/model": [
+      "@explorable-models/core/model": [
         "packages/core/src/model/index.ts"
       ],
-      "@experiment-kit/activity": [
+      "@explorable-models/activity": [
         "packages/activity/src/index.ts"
       ],
-      "@experiment-kit/activity/conformance": [
+      "@explorable-models/activity/conformance": [
         "packages/activity/src/conformance/index.ts"
       ],
-      "@experiment-kit/catalog": [
+      "@explorable-models/catalog": [
         "packages/catalog/src/index.ts"
       ],
-      "@experiment-kit/catalog/worker": [
+      "@explorable-models/catalog/worker": [
         "packages/catalog/src/worker.ts"
       ],
-      "@experiment-kit/player/activity": [
+      "@explorable-models/player/activity": [
         "packages/player/src/activity/index.ts"
       ],
-      "@experiment-kit/player-3d": [
+      "@explorable-models/player-3d": [
         "packages/player-3d/src/index.ts"
       ],
-      "@experiment-kit/core": [
+      "@explorable-models/core": [
         "packages/core/src/index.ts"
       ],
-      "@experiment-kit/examples": [
+      "@explorable-models/examples": [
         "examples/browser.ts"
       ],
-      "@experiment-kit/player": [
+      "@explorable-models/player": [
         "packages/player/src/public.ts"
       ],
-      "@experiment-kit/core/declarative": [
+      "@explorable-models/core/declarative": [
         "packages/core/src/declarative/index.ts"
       ],
-      "@experiment-kit/agent": [
+      "@explorable-models/agent": [
         "packages/agent/src/index.ts"
       ],
-      "@experiment-kit/core/document-worker": [
+      "@explorable-models/core/document-worker": [
         "packages/core/src/declarative/document-worker.ts"
       ]
     }

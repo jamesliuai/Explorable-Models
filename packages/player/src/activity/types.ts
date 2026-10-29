@@ -1,6 +1,6 @@
-/** Public types of `@experiment-kit/player/activity`. */
+/** Public types of `@explorable-models/player/activity`. */
 import type { ReactNode } from 'react';
-import type { ActivityBinding, Diagnostic } from '@experiment-kit/activity';
+import type { ActivityBinding, Diagnostic } from '@explorable-models/activity';
 import type { KatexModule } from './math.js';
 import type { SpatialRendererModule } from './spatial-contract.js';
 import type { ThemePreference, ThemeTokens } from './theme.js';
@@ -41,7 +41,7 @@ export interface StudyActivitySurfaceProps {
   nextAction?: NextAction;
   /** Lazy KaTeX loader (default: dynamic `import('katex')`). */
   mathLoader?: () => Promise<KatexModule>;
-  /** Lazy spatial renderer loader, e.g. `() => import('@experiment-kit/player-3d')`; absent → 2D projection + table. */
+  /** Lazy spatial renderer loader, e.g. `() => import('@explorable-models/player-3d')`; absent → 2D projection + table. */
   spatialLoader?: () => Promise<SpatialRendererModule>;
   /** `system` (default) uses the platform UI font and loads no font files; `bundled` registers Inter and KaTeX fonts. */
   fonts?: 'bundled' | 'system';

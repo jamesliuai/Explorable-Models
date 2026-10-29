@@ -1,5 +1,5 @@
 /**
- * `experiment-kit activity check` (report §15.2, §16, A09): authored kernels and checks are bundled under the import
+ * `explorable-models activity check` (report §15.2, §16, A09): authored kernels and checks are bundled under the import
  * allowlist and evaluated only in browser module workers. A hostile kernel with top-level side effects cannot reach
  * Node and fails safely in the worker; failed edits keep the last working candidate.
  */
@@ -64,7 +64,7 @@ describe('activity check runs authored code only in browser workers', () => {
     const marker = path.join(work.path, 'hostile-marker.txt');
     const original = await readFile(path.join(line, 'kernel.ts'), 'utf8');
     await writeFile(path.join(line, 'kernel.ts'), [
-      "import type { ModelKernel } from '@experiment-kit/core/model';",
+      "import type { ModelKernel } from '@explorable-models/core/model';",
       "import model from './model.json';",
       'const g = globalThis as unknown as Record<string, any>;',
       `try { g.require?.('node:fs')?.writeFileSync(${JSON.stringify(marker)}, 'require'); } catch { /* not available */ }`,
@@ -90,7 +90,7 @@ describe('activity check runs authored code only in browser workers', () => {
     const original = await readFile(path.join(line, 'kernel.ts'), 'utf8');
     const variants = [
       { source: `import { writeFileSync } from 'node:fs';\nwriteFileSync(${JSON.stringify(marker)}, 'x');\n`, message: /node:fs/ },
-      { source: "import { checkParameters } from '@experiment-kit/core/model';\nvoid checkParameters;\n", message: /type-only/ },
+      { source: "import { checkParameters } from '@explorable-models/core/model';\nvoid checkParameters;\n", message: /type-only/ },
       { source: "import react from 'react';\nvoid react;\n", message: /react/ },
       { source: "import outside from '../outside.json';\nvoid outside;\n", message: /escapes the package|does not resolve/ },
     ];

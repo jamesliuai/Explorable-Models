@@ -2,8 +2,8 @@
  * Activity identities: exact template digest and per-group content digests used by exposure grants.
  * A digest establishes identity, not correctness or review status.
  */
-import { canonicalJSON, sha256 } from '@experiment-kit/core';
-import type { ModelManifest } from '@experiment-kit/core/model';
+import { canonicalJSON, sha256 } from '@explorable-models/core';
+import type { ModelManifest } from '@explorable-models/core/model';
 import type { ActivityArtifact, ActivityTemplate, GroupDigest, GroupKind, TemplateRef } from './contracts.js';
 
 const hash = (value: unknown): string => 'sha256:' + sha256(canonicalJSON(value));

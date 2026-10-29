@@ -1,5 +1,5 @@
 /** On-demand SVG/PNG rendering for an authorized, committed surface capture. */
-import type { LearnerProjection, ProjectedView } from '@experiment-kit/activity';
+import type { LearnerProjection, ProjectedView } from '@explorable-models/activity';
 import { base64, fontFaceCss, fontsForText, INTER_FONT_FILES } from './assets.js';
 import { formatPosition, valueDisplay } from './format.js';
 import { labelMetrics, wrapText } from './labels.js';
@@ -40,7 +40,7 @@ export function inlineSceneSvg(source: SVGSVGElement): string {
   const remove: Element[] = [];
   sources.forEach((element, index) => {
     const target = clones[index];
-    if (element.getAttribute('data-eka-capture') === 'omit' || element.localName === 'foreignObject') { remove.push(target); return; }
+    if (element.getAttribute('data-ema-capture') === 'omit' || element.localName === 'foreignObject') { remove.push(target); return; }
     const style = view.getComputedStyle(element);
     if (style.display === 'none' || style.visibility === 'hidden') { remove.push(target); return; }
     for (const property of INLINE_PROPERTIES) {
@@ -93,8 +93,8 @@ export function composeCaptureSvg(input: ComposeInput): { svg: string; width: nu
   const height = Math.ceil(y + pad);
   const out = input.outputSize ?? { width, height };
   const svg = [
-    `<svg xmlns="http://www.w3.org/2000/svg" width="${out.width}" height="${out.height}" viewBox="0 0 ${width} ${height}" role="img" aria-labelledby="eka-capture-title eka-capture-desc">`,
-    `<title id="eka-capture-title">${escapeXml(input.title)}</title><desc id="eka-capture-desc">${escapeXml(input.summary)}</desc>`,
+    `<svg xmlns="http://www.w3.org/2000/svg" width="${out.width}" height="${out.height}" viewBox="0 0 ${width} ${height}" role="img" aria-labelledby="ema-capture-title ema-capture-desc">`,
+    `<title id="ema-capture-title">${escapeXml(input.title)}</title><desc id="ema-capture-desc">${escapeXml(input.summary)}</desc>`,
     `<metadata>${escapeXml(JSON.stringify(input.metadata))}</metadata>`,
     input.fontFaces ? `<style>${input.fontFaces.replace(/</g, '')}</style>` : '',
     `<rect x="0" y="0" width="${width}" height="${height}" fill="${escapeXml(input.colors.background)}"/>`,
@@ -164,8 +164,8 @@ export async function captureView(ctx: CaptureContext, options: CaptureOptions):
   const metadata = captureMetadata(ctx.surfaceId, projection, view.viewId);
   let scene: ComposeInput['scene'] = null;
   if (GRAPHICAL.has(view.kind)) {
-    const element = [...ctx.root.querySelectorAll<SVGSVGElement>('svg[data-eka-view-id]')].find(svg =>
-      svg.dataset.ekaSurfaceId === ctx.surfaceId && svg.dataset.ekaProjectionId === projection.projectionId && svg.dataset.ekaViewId === view.viewId);
+    const element = [...ctx.root.querySelectorAll<SVGSVGElement>('svg[data-ema-view-id]')].find(svg =>
+      svg.dataset.emaSurfaceId === ctx.surfaceId && svg.dataset.emaProjectionId === projection.projectionId && svg.dataset.emaViewId === view.viewId);
     if (!element) {
       throw view.kind === 'scene3d'
         ? new CaptureError('CAPTURE_REJECTED', 'This view is shown in 3D, which is not captured.', 'Show the 2D projection of this view, then capture.')
@@ -181,7 +181,7 @@ export async function captureView(ctx: CaptureContext, options: CaptureOptions):
   const fontFaces = await embeddedFonts(ctx, [projection.title, view.title, ...textLines, footer, scene?.svg ?? ''].join(' '));
   const input: ComposeInput = {
     metadata, title: `${projection.title} — ${view.title}`, summary: view.summary, scene, textLines, footer,
-    colors: { background: token('--eka-background', '#ffffff'), text: token('--eka-text', '#17212b'), muted: token('--eka-text-muted', '#4a5866'), border: token('--eka-border', '#c9d2db') },
+    colors: { background: token('--ema-background', '#ffffff'), text: token('--ema-text', '#17212b'), muted: token('--ema-text-muted', '#4a5866'), border: token('--ema-border', '#c9d2db') },
     fontFamily: style.fontFamily || 'system-ui, sans-serif', fontFaces,
   };
   const composed = composeCaptureSvg(input);

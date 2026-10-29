@@ -13,7 +13,7 @@
     "signed": false
   },
   "kit": {
-    "name": "@experiment-kit/activity/conformance",
+    "name": "@explorable-models/activity/conformance",
     "version": "0.3.0-preview.1"
   },
   "limitations": [
@@ -25,27 +25,27 @@
   ],
   "packages": [
     {
-      "name": "@experiment-kit/core",
+      "name": "@explorable-models/core",
       "sha256": "b4b7b8a602e3908882ea9ccc34b6c288224fccd1dae1c12ef5846e7b6c7c4dd1",
       "version": "0.3.0-preview.1"
     },
     {
-      "name": "@experiment-kit/activity",
+      "name": "@explorable-models/activity",
       "sha256": "63beb9982b0683b650c5425fe2089f152d80f503b6f705fd576693f66c6313d5",
       "version": "0.3.0-preview.1"
     },
     {
-      "name": "@experiment-kit/catalog",
+      "name": "@explorable-models/catalog",
       "sha256": "0138850db9ae2115dcc7d9fb94b14e793153862b0626930d65f4411303f09134",
       "version": "0.3.0-preview.1"
     },
     {
-      "name": "@experiment-kit/player",
+      "name": "@explorable-models/player",
       "sha256": "21b3f1d6543c48c1c7735a624d1da5c706193782c79bbd5f5e5fceeaf09d7bad",
       "version": "0.3.0-preview.1"
     },
     {
-      "name": "@experiment-kit/player-3d",
+      "name": "@explorable-models/player-3d",
       "sha256": "0de6c36733b8182b5ab9e21ed31cace1cbcac5e326bfa2d8b1fb70ca8b729f77",
       "version": "0.3.0-preview.1"
     }
@@ -443,5 +443,11 @@
       "outcome": "pass"
     }
   },
-  "subject": "reference-fixture-host"
+  "subject": "reference-fixture-host",
+  "terminologyProjection": {
+    "sourceCommit": "1e2b3d7b796962f4b031257a402ce3db3e0854a1",
+    "sourceBlob": "e42d538b101f07bc67274428b556a9f295005bc5",
+    "originalSha256": "d5425bb5f487a2dbc27300b233764852a819e9cfd8aae928d2764e1e60fcca85",
+    "scope": "Terminology-normalized historical evidence. Measurements, outcomes, and original artifact digests are retained from the preceding namespace. This is not verification of current packages or native binaries. The unmodified original bytes remain in the recorded Git blob."
+  }
 }

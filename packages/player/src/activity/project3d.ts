@@ -4,8 +4,8 @@
  * selects two of the three supplied display coordinates; it never evaluates the model. The coordinate table that
  * accompanies it lists the full 3D values, because a projection alone does not carry all spatial information.
  */
-import type { ProjectedMark, ProjectedView } from '@experiment-kit/activity';
-import type { GeometryResult } from '@experiment-kit/core/model';
+import type { ProjectedMark, ProjectedView } from '@explorable-models/activity';
+import type { GeometryResult } from '@explorable-models/core/model';
 import { formatShown } from './format.js';
 import { END_ON_ARROWS, END_ON_SEGMENTS, type EndOnArrow } from './plan.js';
 
@@ -135,7 +135,7 @@ const missing = (mark: ProjectedMark, reason: string | undefined): string =>
 /**
  * Row names are learner text (report §10.4, §11): the mark's label, and a segment's ID only where the 3D drawing shows
  * that ID — the segments of a directed `segments` mark, or several directed segments, named at their tips (the rule of
- * `namesSegments` in `@experiment-kit/player-3d`, which this package does not import; tests/player-activity/
+ * `namesSegments` in `@explorable-models/player-3d`, which this package does not import; tests/player-activity/
  * coordinate-table.test.ts checks that the two agree). The segments of an undirected mark carry no name in the
  * drawing, so they are listed by their order. A positioned mark with several coordinates names each by a word, never
  * by a property key.
