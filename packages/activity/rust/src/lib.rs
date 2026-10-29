@@ -11,6 +11,8 @@
 //! shape, bounds and authority checks on data it receives. Error strings name the location and the failed keyword
 //! only; they never echo input values.
 
+pub mod canonical;
+
 use std::collections::BTreeMap;
 use std::sync::OnceLock;
 
