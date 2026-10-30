@@ -3,8 +3,13 @@ import { createDocumentInteractionController } from '@explorable-models/core/dec
 import { exhibits } from './catalog';
 import { documents } from './models';
 import { ExampleCard } from './ExampleCard';
-import '@fontsource-variable/inter';
 import './style.css';
+
+// Warm charcoal by default; ?theme=light or ?theme=system (follows the platform setting) selects the light palette.
+const requestedTheme = new URLSearchParams(location.search).get('theme');
+const prefersLight = typeof matchMedia === 'function' && matchMedia('(prefers-color-scheme: light)').matches;
+document.documentElement.dataset.theme = requestedTheme === 'light' || (requestedTheme === 'system' && prefersLight) ? 'light' : 'dark';
+const themeQuery = requestedTheme === 'light' || requestedTheme === 'system' ? `&theme=${requestedTheme}` : '';
 
 const root = createRoot(document.getElementById('root')!);
 const requested = new URLSearchParams(location.search).get('example');
@@ -16,7 +21,7 @@ createDocumentInteractionController(documents[exhibit.id]).then(async controller
   if (exhibit.id === 'projectile') await controller.seek(controller.getSnapshot().rendered.frame!.endTime! * .28);
   root.render(<div className="ex-page">
     <header className="ex-header"><a href="./">Explorable Models</a><span>Example collection</span></header>
-    <nav className="ex-navigation" aria-label="Examples">{exhibits.map(item => <a href={`?example=${item.id}`} key={item.id} aria-current={item.id === exhibit.id ? 'page' : undefined}>{item.nav}</a>)}</nav>
+    <nav className="ex-navigation" aria-label="Examples">{exhibits.map(item => <a href={`?example=${item.id}${themeQuery}`} key={item.id} aria-current={item.id === exhibit.id ? 'page' : undefined}>{item.nav}</a>)}</nav>
     <main><div className="ex-user-message">{exhibit.prompt}</div><p className="ex-answer">{exhibit.answer}</p><ExampleCard exhibit={exhibit} controller={controller} /></main>
     <footer className="ex-footer"><span>Six models. Six ways to explore.</span><a href="./hinged-rod.html">The hinged-rod example ↗</a></footer>
   </div>);

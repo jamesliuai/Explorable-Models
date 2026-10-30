@@ -7,3 +7,12 @@ The activity package carries its Rust validator and shared canonical JSON/digest
 Application ownership stays in the companion core: responses, grades, policies, grants, separate display acknowledgements, immutable assistance conditions, ordered journal records, artifacts, recovery and review scheduling. The learner surface uses workers and lazily loaded 3D. The companion starts the public prediction stage because it already presents orientation and captures answers in its single composer. Presentation camera changes remain separate from scientific parameters and performance evidence.
 
 The consuming unit uses quadratic descent, function/derivative and quadratic-surface activities. Other catalog capabilities remain supported by the adapter. This is disclosed provisional personal use of reference-checked activities. It does not establish independent subject review, real tutor quality, intended-user or assistive-technology acceptance, scientific approval, or learning benefit. Native screenshot failures in the companion environment remain unrun pixel checks, separate from its browser screenshots and native AX interactions.
+
+Presentation (2026-10-29): the companion's design language (warm charcoal, hairlines, neutral primary action, Palatino
+for teaching prose) is now the toolkit's own default presentation rather than host styling. The companion should mount
+its side-pane card with the public `variant: 'embedded'` option (its lesson column owns the prompt and composer) and
+`theme: 'dark'`, passing tokens only where its surfaces differ; no shadow-DOM overrides or patched player copies. Package
+versions stay `0.3.0-preview.1`; consume the new set by its clean source commit and tarball hashes. This presentation pass
+ran typecheck, affected unit tests and desktop screenshots only; the browser suite and release pipeline were deferred by
+the owner and remain open.
+

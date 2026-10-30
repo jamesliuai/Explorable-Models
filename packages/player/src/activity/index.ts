@@ -17,10 +17,10 @@ export type {
   StudyHarnessSurface, StudyHarnessVisualizer, StudyHarnessVisualizerOptions, SurfaceDefaults, SurfaceErrorEvent, SurfaceErrorState, SurfaceMounter,
   VisualizerSurfaceOptions,
 } from './visualizer.js';
-export type { NextAction, StudyActivityHandle, StudyActivitySurfaceProps, SurfaceDiagnostic, SurfaceDiagnosticCode } from './types.js';
+export type { NextAction, StudyActivityHandle, StudyActivitySurfaceProps, SurfaceDiagnostic, SurfaceDiagnosticCode, SurfaceVariant } from './types.js';
 export { ACTIVITY_STYLESHEET, adoptActivityStyles } from './styles.js';
 export {
-  BUNDLED_FONT_STACK, COLOR_TOKENS, CONTRAST_RULES, contrastRatio, DARK_TOKENS, DEFAULT_TOKENS, LIGHT_TOKENS, parseColor, resolveTheme, ROLE_TOKENS,
+  BUNDLED_FONT_STACK, COLOR_TOKENS, CONTRAST_RULES, contrastRatio, DARK_TOKENS, DEFAULT_TOKENS, LIGHT_TOKENS, parseColor, PROSE_FONT_STACK, resolveTheme, ROLE_TOKENS,
   SYSTEM_FONT_STACK, tokenVariables,
 } from './theme.js';
 export type { ColorToken, RejectedToken, ResolvedTheme, ThemeMode, ThemePreference, ThemeTokens } from './theme.js';

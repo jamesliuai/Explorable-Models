@@ -12,16 +12,16 @@ export function Forces({ state }: { state: SessionState }) {
   return <FrameSvg state={state} description={`${slip ? 'The block accelerates downhill' : 'The block is held at rest'}. Weight ${fmt(n(f, 'weight'))} N, normal force ${fmt(n(f, 'normal'))} N, friction ${fmt(n(f, 'resistance'))} N. All force arrows share the same scale.`}>
     <text x="150" y="35" textAnchor="middle" className="panel-label">ON THE RAMP</text><text x="435" y="35" textAnchor="middle" className="panel-label">FREE-BODY DIAGRAM</text>
     <line x1="290" y1="65" x2="290" y2="325" stroke={C.grid} />
-    <path d={`M38 305 L${end.join(' ')} L${end[0]} 305 Z`} fill="#f0f3f6" stroke="#b9c4ce" strokeWidth="1.5" />
-    <line x1="38" y1="305" x2={end[0]} y2={end[1]} stroke="#8898a7" strokeWidth="3" />
-    <polygon data-testid="ramp-block" points={corners.map(p => p.join(',')).join(' ')} fill="#dbe9f5" stroke={C.blue} strokeWidth="2" />
+    <path d={`M38 305 L${end.join(' ')} L${end[0]} 305 Z`} fill="var(--ex-ground,#f0f3f6)" stroke="var(--ex-axis,#b9c4ce)" strokeWidth="1.5" />
+    <line x1="38" y1="305" x2={end[0]} y2={end[1]} stroke="var(--ex-axis-strong,#8898a7)" strokeWidth="3" />
+    <polygon data-testid="ramp-block" points={corners.map(p => p.join(',')).join(' ')} fill="var(--ex-blue-soft,#dbe9f5)" stroke={C.blue} strokeWidth="2" />
     <text x="38" y="346" fill={C.muted}>θ = {fmt(state.run!.params.angle, 1)}°</text>
     <Arrow from={origin} to={weight} color={C.violet} testId="weight-force" /><text x={weight[0] + 17} y={weight[1] + 5} fill={C.violet}>mg</text>
     <Arrow from={origin} to={normal} color={C.blue} testId="normal-force" /><text x={normal[0] - 12} y={normal[1] - 12} textAnchor="end" fill={C.blue}>N</text>
     <Arrow from={origin} to={friction} color={C.amber} testId="friction-force" />{n(f, 'resistance') > 0 ? <text x={friction[0] + 12} y={friction[1] - 10} fill={C.amber}>f</text> : null}
-    <circle cx={origin[0]} cy={origin[1]} r="6" fill={C.ink} stroke="white" strokeWidth="2" />
+    <circle cx={origin[0]} cy={origin[1]} r="6" fill={C.ink} stroke="var(--ex-panel,#ffffff)" strokeWidth="2" />
     <text x="435" y="354" textAnchor="middle" className="scene-note">Vector balance · ΣF = ma</text>
-    <rect x="38" y="375" width="524" height="28" rx="6" fill={slip ? '#eaf5f3' : '#f2eef8'} />
+    <rect x="38" y="375" width="524" height="28" rx="6" fill={slip ? 'var(--ex-teal-soft,#eaf5f3)' : 'var(--ex-violet-soft,#f2eef8)'} />
     <text x="300" y="394" textAnchor="middle" fill={slip ? C.teal : C.violet} className="scene-status">{slip ? `Sliding · net force ${fmt(n(f, 'net'))} N downhill` : 'Static equilibrium · friction balances the downhill pull'}</text>
   </FrameSvg>;
 }

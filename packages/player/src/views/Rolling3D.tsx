@@ -10,7 +10,9 @@ export default function Rolling3D({frame,parameters:p,camera,onCamera}:{frame:Ru
  useEffect(()=>{
   if(!ref.current)return;const host=ref.current;let renderer:THREE.WebGLRenderer;
   try{renderer=new THREE.WebGLRenderer({antialias:true,alpha:true});}catch{setError('3D is unavailable in this browser. The 2D view and quantities show the complete experiment.');return;}
-  renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.setClearColor(0xf4f8fc,1);host.appendChild(renderer.domElement);
+  // Scene colours follow the page theme (the gallery's --g-* custom properties), with the light palette as fallback.
+  const themed=(name:string,fallback:string)=>new THREE.Color(getComputedStyle(host).getPropertyValue(name).trim()||fallback);
+  renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.setClearColor(themed('--g-3d-bg','#f4f8fc'),1);host.appendChild(renderer.domElement);
   renderer.domElement.setAttribute('aria-label','Orbitable rolling body. Camera buttons provide an alternative to dragging.');
   const scene=new THREE.Scene();const cam=new THREE.PerspectiveCamera(36,1,.01,200);const l=Number(p.length),a=Number(p.incline),r=Number(p.radius);
   const target=new THREE.Vector3(l*Math.cos(a)/2,l*Math.sin(a)/2,0);
@@ -21,13 +23,13 @@ export default function Rolling3D({frame,parameters:p,camera,onCamera}:{frame:Ru
   // calculating the frustum or drawing the first frame.
   controls.update();
   scene.add(new THREE.AmbientLight(0xffffff,2));const light=new THREE.DirectionalLight(0xffffff,3);light.position.set(-3,8,6);scene.add(light);
-  const ramp=new THREE.Mesh(new THREE.BoxGeometry(l,.045,Math.max(.7,r*3.5)),new THREE.MeshStandardMaterial({color:0xdce6f0,roughness:.9}));ramp.position.copy(target).add(new THREE.Vector3(-Math.sin(a)*.0225,-Math.cos(a)*.0225,0));ramp.rotation.z=-a;scene.add(ramp);
-  const edges=new THREE.LineSegments(new THREE.EdgesGeometry(ramp.geometry),new THREE.LineBasicMaterial({color:0x90a5bc}));ramp.add(edges);
-  const body=new THREE.Group();const material=new THREE.MeshStandardMaterial({color:0x2874f0,roughness:.45,metalness:.02});let shape:THREE.BufferGeometry;
+  const ramp=new THREE.Mesh(new THREE.BoxGeometry(l,.045,Math.max(.7,r*3.5)),new THREE.MeshStandardMaterial({color:themed('--g-3d-ramp','#dce6f0'),roughness:.9}));ramp.position.copy(target).add(new THREE.Vector3(-Math.sin(a)*.0225,-Math.cos(a)*.0225,0));ramp.rotation.z=-a;scene.add(ramp);
+  const edges=new THREE.LineSegments(new THREE.EdgesGeometry(ramp.geometry),new THREE.LineBasicMaterial({color:themed('--g-axis','#90a5bc')}));ramp.add(edges);
+  const body=new THREE.Group();const material=new THREE.MeshStandardMaterial({color:themed('--g-blue','#2874f0'),roughness:.45,metalness:.02});let shape:THREE.BufferGeometry;
   if(p.bodyType==='hoop'){shape=new THREE.TorusGeometry(r*.91,r*.09,12,64);}else if(p.bodyType==='cylinder'){shape=new THREE.CylinderGeometry(r,r,r*1.1,48);shape.rotateX(Math.PI/2);}else{shape=new THREE.SphereGeometry(r,40,24);}
   const mesh=new THREE.Mesh(shape,material);body.add(mesh);
-  if(p.bodyType==='shell'){material.transparent=true;material.opacity=.35;const wire=new THREE.LineSegments(new THREE.WireframeGeometry(new THREE.SphereGeometry(r,12,8)),new THREE.LineBasicMaterial({color:0x1765c9}));body.add(wire);}
-  const mark=new THREE.Mesh(new THREE.TorusGeometry(r*1.003,.009,8,72),new THREE.MeshBasicMaterial({color:0xddeaff}));body.add(mark);
+  if(p.bodyType==='shell'){material.transparent=true;material.opacity=.35;const wire=new THREE.LineSegments(new THREE.WireframeGeometry(new THREE.SphereGeometry(r,12,8)),new THREE.LineBasicMaterial({color:themed('--g-blue','#1765c9')}));body.add(wire);}
+  const mark=new THREE.Mesh(new THREE.TorusGeometry(r*1.003,.009,8,72),new THREE.MeshBasicMaterial({color:themed('--g-blue-soft','#ddeaff')}));body.add(mark);
   const meridian=mark.clone();meridian.rotation.y=Math.PI/2;body.add(meridian);
   const spoke=new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(0,0,r*.98),new THREE.Vector3(r*.85,0,r*.53)]),new THREE.LineBasicMaterial({color:0xffffff}));body.add(spoke);scene.add(body);
   const axes=new THREE.AxesHelper(.35);axes.position.set(-.2,-.12,0);scene.add(axes);

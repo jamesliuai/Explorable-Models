@@ -15,7 +15,7 @@ import { BUNDLED_FONT_STACK, resolveTheme, tokenVariables, type ThemeMode } from
 import type { StudyActivitySurfaceProps } from './types.js';
 import { Heading, useStableId } from './components/context.js';
 
-export interface StudyActivityPlaceholderProps extends Pick<StudyActivitySurfaceProps, 'theme' | 'tokens' | 'headingLevel' | 'locale' | 'fonts' | 'assetBase'> {
+export interface StudyActivityPlaceholderProps extends Pick<StudyActivitySurfaceProps, 'theme' | 'tokens' | 'headingLevel' | 'locale' | 'fonts' | 'assetBase' | 'variant'> {
   /** `preparing` while the host prepares or restores an activity; `empty` where no activity is open. */
   state: 'preparing' | 'empty';
   /** Card title (for example the activity title the host is opening); a neutral title when omitted. */
@@ -59,7 +59,7 @@ export function StudyActivityPlaceholder(props: StudyActivityPlaceholderProps) {
 
   const status = presentStatus({ status: { ui: props.state, message: UI_STATUS[props.state].message, recovery: null, persistence: 'saved', live: null }, pendingReveal: null })!;
   return (
-    <div ref={rootRef} className="ema" style={variables} lang={props.locale} data-theme={mode} data-layout="auto" data-ema-ui-state={props.state} data-ema-placeholder="">
+    <div ref={rootRef} className="ema" style={variables} lang={props.locale} data-theme={mode} data-layout="auto" data-variant={props.variant === 'embedded' ? 'embedded' : 'standalone'} data-ema-ui-state={props.state} data-ema-placeholder="">
       <section className="ema-card" aria-labelledby={titleId} aria-busy={props.state === 'preparing' || undefined}>
         <header className="ema-header">
           <div className="ema-heading">

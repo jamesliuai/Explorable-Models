@@ -15,13 +15,15 @@ export interface SpatialTheme {
   axes: [string, string, string];
 }
 
+// The learner surface's default palettes (`@explorable-models/player/activity` LIGHT_TOKENS / DARK_TOKENS, 0.3 warm-neutral
+// presentation), repeated here so the renderer has no runtime dependency on the player package.
 const LIGHT = {
-  background: '#ffffff', surface: '#f5f7f9', text: '#17212b', textMuted: '#4a5866', border: '#c9d2db', borderStrong: '#7a8692',
-  primary: '#1d5fa6', secondary: '#6a4c9c', accent: '#a8501a', muted: '#66727f', positive: '#1b7340', negative: '#b3261e', warning: '#7f5600', reference: '#38444f',
+  background: '#fbfaf7', surface: '#f3f2ee', text: '#1f1e1c', textMuted: '#57544d', border: '#dedbd3', borderStrong: '#8b877e',
+  primary: '#255f9e', secondary: '#6a4e9f', accent: '#a5521f', muted: '#6f6b63', positive: '#2c6e3f', negative: '#b0392b', warning: '#7b5800', reference: '#3e3b36',
 };
 const DARK = {
-  background: '#121820', surface: '#19212b', text: '#e7edf3', textMuted: '#aab6c2', border: '#3a4756', borderStrong: '#6f7d8c',
-  primary: '#79b3f2', secondary: '#bba1ec', accent: '#f0a467', muted: '#93a0ad', positive: '#6cce93', negative: '#ff8f86', warning: '#e5bb57', reference: '#cad4de',
+  background: '#1a1a19', surface: '#212120', text: '#edebe6', textMuted: '#bdbab3', border: '#31312e', borderStrong: '#77746d',
+  primary: '#86b2e6', secondary: '#b9a1e4', accent: '#e8975c', muted: '#99958d', positive: '#8cc79a', negative: '#e58a7b', warning: '#dcae62', reference: '#d2cec6',
 };
 type Palette = typeof LIGHT;
 const ROLES = ['primary', 'secondary', 'accent', 'muted', 'positive', 'negative', 'warning', 'reference'] as const;

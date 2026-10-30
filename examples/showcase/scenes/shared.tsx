@@ -2,7 +2,8 @@ import { useId } from 'react';
 import type { ReactNode } from 'react';
 import type { DocumentFrame, SeriesPoint, SessionState } from '@explorable-models/core/declarative';
 export type XY = [number, number];
-export const C = { teal: '#09877c', blue: '#477caf', amber: '#b8791d', violet: '#8660cb', ink: '#233344', muted: '#6e7c8c', grid: '#e9edf1' };
+// Data colours follow the page theme (style.css --ex-*); the fallbacks are the light palette.
+export const C = { teal: 'var(--ex-teal,#1c6f68)', blue: 'var(--ex-blue,#255f9e)', amber: 'var(--ex-amber,#99600d)', violet: 'var(--ex-violet,#6a4e9f)', ink: 'var(--ex-ink,#1f1e1c)', muted: 'var(--ex-muted,#57544d)', grid: 'var(--ex-grid,#ebe9e3)' };
 export const fmt = (value: number, digits = 2) => value !== 0 && Math.abs(value) < .5 * 10 ** -digits ? value.toExponential(2) : value.toLocaleString('en-US', { minimumFractionDigits: digits, maximumFractionDigits: digits });
 export function n(f: DocumentFrame, id: string): number {
   const v = f.quantities[id]; if (v?.status !== 'valid' || typeof v.value !== 'number') throw new Error(v?.reason ?? `${id} unavailable`); return v.value;

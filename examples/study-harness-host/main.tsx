@@ -23,6 +23,8 @@
  *   ?revoke=1                   revoke the host policy right after the activity opens
  *   ?workerDelay=<ms>           delay every kernel-worker reply (late-reply tests); window.studyHarnessFixture.workerFaults.drop drops replies
  *   ?width=320|390|640|960      learner card container width; ?theme=light|dark|system; ?text=200; ?fonts=bundled|system
+ *   ?variant=embedded|standalone  card presentation (default embedded: this page already shows the prompt and composer;
+ *                               the browser specs open `standalone`, the card's self-contained presentation)
  */
 import { createRoot } from 'react-dom/client';
 import { useEffect, useRef, useState, useSyncExternalStore } from 'react';
@@ -64,6 +66,7 @@ const options: FixtureOptions = {
   workerDelayMs: Math.min(10_000, Math.max(0, Number(params.get('workerDelay')) || 0)),
   theme: (['light', 'dark', 'system'] as const).find(value => value === params.get('theme')) ?? 'system',
   fonts: params.get('fonts') === 'system' ? 'system' : 'bundled',
+  variant: params.get('variant') === 'standalone' ? 'standalone' : 'embedded',
   spatialLoader: params.get('spatial') === '1' ? loadSpatial : null,
 };
 if (options.theme !== 'system') document.documentElement.dataset.theme = options.theme;

@@ -22,7 +22,7 @@ import { Heading, useStableId } from './components/context.js';
 import { formatShown } from './format.js';
 import { adoptActivityStyles } from './styles.js';
 import { resolveTheme, tokenVariables, type ThemeMode, type ThemeTokens } from './theme.js';
-import type { NextAction } from './types.js';
+import type { NextAction, SurfaceVariant } from './types.js';
 
 /**
  * Learner-facing names for a learner or tutor record, supplied by the host from the exact saved template it holds (see
@@ -53,6 +53,8 @@ export interface ArchivalRecordProps {
   labels?: ArchivalLabels;
   /** Host-owned return action (for example `Return to the session`); without it the record offers no control. */
   returnAction?: NextAction;
+  /** `standalone` (default) or `embedded` frame, as for the learner surface; presentation only. */
+  variant?: SurfaceVariant;
 }
 
 const STAGE_NAMES: Record<StageKind, string> = { prepare: 'Getting started', predict: 'Prediction', explore: 'Exploration', explain: 'Explanation', closed: 'Closed' };
@@ -85,7 +87,7 @@ const nameOf = (names: Readonly<Record<string, string>> | undefined, id: string)
 };
 
 /** Read-only record of a saved activity (see module comment). */
-export function ArchivalRecord({ view, headingLevel = 2, theme = 'light', tokens, locale, labels, returnAction }: ArchivalRecordProps) {
+export function ArchivalRecord({ view, headingLevel = 2, theme = 'light', tokens, locale, labels, returnAction, variant }: ArchivalRecordProps) {
   const rootRef = useRef<HTMLElement>(null);
   const titleId = useStableId('ema-archival');
   const stateId = useStableId('ema-archival-state');
@@ -134,14 +136,14 @@ export function ArchivalRecord({ view, headingLevel = 2, theme = 'light', tokens
     return [...names, ...(unnamed ? [names.length ? `${count(unnamed, 'other part', 'other parts')} of the activity` : `${count(unnamed, 'part', 'parts')} of the activity`] : [])].join(', ');
   };
   return (
-    <section ref={rootRef} className="ema" data-theme={theme} lang={locale} style={variables} aria-labelledby={titleId} data-ema-archival={view.artifact.artifactId} data-audience={view.audience}>
+    <section ref={rootRef} className="ema" data-theme={theme} data-variant={variant === 'embedded' ? 'embedded' : 'standalone'} lang={locale} style={variables} aria-labelledby={titleId} data-ema-archival={view.artifact.artifactId} data-audience={view.audience}>
       <div className="ema-card">
         <header className="ema-header">
           <div className="ema-heading">
             <Heading level={headingLevel} id={titleId} className="ema-title">{!full && named?.title ? `${named.title} — saved, read-only` : 'Saved activity — read-only record'}</Heading>
             <p className="ema-subtitle">Nothing is calculated again and no other model is used in its place.</p>
           </div>
-          <div className="ema-meta"><span className="ema-chip">Read-only</span></div>
+          <div className="ema-meta"><span className="ema-chip" data-tone="neutral">Read-only</span></div>
         </header>
         <section className="ema-panel" aria-labelledby={stateId}>
           <Heading level={sub} id={stateId} className="ema-panel-title">What was saved</Heading>

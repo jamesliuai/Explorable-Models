@@ -30,9 +30,19 @@ export interface ThemeTokens {
   reference: string;
   focus: string;
   error: string;
-  /** Text drawn on `primary` (the host-owned next action). */
+  /** Text drawn on `primary` where a surface fills a shape with the primary mark colour. */
   onPrimary: string;
+  /**
+   * Fill of the one primary action (a host's next action, Apply in a banner, a return action). Neutral by default
+   * (light on dark, dark on light): colour is reserved for data and meaningful states, not for buttons.
+   */
+  action: string;
+  /** Text drawn on `action`. */
+  onAction: string;
+  /** Interface font: controls, labels, values, diagram text. */
   fontFamily: string;
+  /** Teaching prose (activity title and stage instruction): a book serif that sits beside typeset mathematics. */
+  proseFamily: string;
   monoFamily: string;
   /** Base text size; relative units keep 200 % text resizing working. */
   fontSize: string;
@@ -45,7 +55,7 @@ export interface ThemeTokens {
 
 export const COLOR_TOKENS = [
   'background', 'surface', 'surfaceStrong', 'border', 'borderStrong', 'text', 'textMuted', 'primary', 'secondary', 'accent', 'muted',
-  'positive', 'negative', 'warning', 'reference', 'focus', 'error', 'onPrimary',
+  'positive', 'negative', 'warning', 'reference', 'focus', 'error', 'onPrimary', 'action', 'onAction',
 ] as const satisfies readonly (keyof ThemeTokens)[];
 export type ColorToken = typeof COLOR_TOKENS[number];
 
@@ -54,19 +64,28 @@ export const ROLE_TOKENS = ['primary', 'secondary', 'accent', 'muted', 'positive
 
 export const SYSTEM_FONT_STACK = "system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif";
 export const BUNDLED_FONT_STACK = `'Inter Variable', ${SYSTEM_FONT_STACK}`;
+/**
+ * Default `proseFamily`. Palatino comes first because it carries the subscripts and Greek letters used in teaching text
+ * (x₀, η); a generic system serif may lack them and fall back to mismatched glyphs.
+ */
+export const PROSE_FONT_STACK = "Palatino, 'Palatino Linotype', 'Book Antiqua', ui-serif, Georgia, serif";
 const MONO_STACK = "ui-monospace, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace";
 
-const SHARED = { fontFamily: SYSTEM_FONT_STACK, monoFamily: MONO_STACK, fontSize: '0.9375rem', radius: '8px', space: '0.5rem', motionDuration: '140ms' };
+const SHARED = { fontFamily: SYSTEM_FONT_STACK, proseFamily: PROSE_FONT_STACK, monoFamily: MONO_STACK, fontSize: '0.9375rem', radius: '7px', space: '0.5rem', motionDuration: '140ms' };
 
+/**
+ * Warm-neutral palettes (0.3 presentation): quiet surfaces, hairline separators and a neutral primary action, with
+ * colour kept for the data roles and meaningful states. Every pair in `CONTRAST_RULES` passes in both palettes.
+ */
 export const LIGHT_TOKENS: Readonly<ThemeTokens> = Object.freeze({
-  background: '#ffffff', surface: '#f5f7f9', surfaceStrong: '#e9eef3', border: '#c9d2db', borderStrong: '#7a8692', text: '#17212b', textMuted: '#4a5866',
-  primary: '#1d5fa6', secondary: '#6a4c9c', accent: '#a8501a', muted: '#66727f', positive: '#1b7340', negative: '#b3261e', warning: '#7f5600',
-  reference: '#38444f', focus: '#1a62c7', error: '#b3261e', onPrimary: '#ffffff', ...SHARED,
+  background: '#fbfaf7', surface: '#f3f2ee', surfaceStrong: '#e8e6e0', border: '#dedbd3', borderStrong: '#8b877e', text: '#1f1e1c', textMuted: '#57544d',
+  primary: '#255f9e', secondary: '#6a4e9f', accent: '#a5521f', muted: '#6f6b63', positive: '#2c6e3f', negative: '#b0392b', warning: '#7b5800',
+  reference: '#3e3b36', focus: '#1f1e1c', error: '#b0392b', onPrimary: '#ffffff', action: '#1f1e1c', onAction: '#fbfaf7', ...SHARED,
 });
 export const DARK_TOKENS: Readonly<ThemeTokens> = Object.freeze({
-  background: '#121820', surface: '#19212b', surfaceStrong: '#222c38', border: '#3a4756', borderStrong: '#6f7d8c', text: '#e7edf3', textMuted: '#aab6c2',
-  primary: '#79b3f2', secondary: '#bba1ec', accent: '#f0a467', muted: '#93a0ad', positive: '#6cce93', negative: '#ff8f86', warning: '#e5bb57',
-  reference: '#cad4de', focus: '#8cc4ff', error: '#ff8f86', onPrimary: '#0d1620', ...SHARED,
+  background: '#1a1a19', surface: '#212120', surfaceStrong: '#2a2a28', border: '#31312e', borderStrong: '#77746d', text: '#edebe6', textMuted: '#bdbab3',
+  primary: '#86b2e6', secondary: '#b9a1e4', accent: '#e8975c', muted: '#99958d', positive: '#8cc79a', negative: '#e58a7b', warning: '#dcae62',
+  reference: '#d2cec6', focus: '#edebe6', error: '#e58a7b', onPrimary: '#141413', action: '#edebe6', onAction: '#141413', ...SHARED,
 });
 export const DEFAULT_TOKENS: Readonly<Record<ThemeMode, Readonly<ThemeTokens>>> = Object.freeze({ light: LIGHT_TOKENS, dark: DARK_TOKENS });
 
@@ -89,6 +108,8 @@ export const CONTRAST_RULES: readonly { token: ColorToken; against: readonly Col
   { token: 'muted', against: ['background', 'surface'], min: 3 },
   { token: 'reference', against: ['background', 'surface'], min: 3 },
   { token: 'onPrimary', against: ['primary'], min: 4.5 },
+  { token: 'action', against: ['background', 'surface'], min: 3 },
+  { token: 'onAction', against: ['action'], min: 4.5 },
 ]);
 
 export type Rgb = [number, number, number];
@@ -135,7 +156,7 @@ const FONT_PATTERN = /^[A-Za-z0-9 ,'"_-]{1,200}$/;
 
 function validateScalar(token: keyof ThemeTokens, value: unknown): string | null {
   if (typeof value !== 'string') return 'not a string';
-  if (token === 'fontFamily' || token === 'monoFamily') return FONT_PATTERN.test(value) ? null : 'font families may contain only letters, digits, spaces, quotes, commas, hyphens and underscores';
+  if (token === 'fontFamily' || token === 'monoFamily' || token === 'proseFamily') return FONT_PATTERN.test(value) ? null : 'font families may contain only letters, digits, spaces, quotes, commas, hyphens and underscores';
   const rule = LENGTH_RULES[token];
   if (!rule) return 'unknown token';
   const match = /^(\d+(?:\.\d+)?)([a-z]+)$/.exec(value.trim());

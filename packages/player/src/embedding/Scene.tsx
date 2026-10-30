@@ -64,7 +64,8 @@ export function Scene({ view, state, actions, precision, locale }: SceneProps) {
   const coords = ([a, b]: XY): XY => [x(a), y(b)];
   const problems = new Set<string>();
   const seriesLabels: { label: string; color: string; dash?: string }[] = [];
-  const colors = ['#15718d', '#b04d27', '#7557a6', '#28835f', '#9c6d13'];
+  // Theme-aware default data colours (surface styles define --em-series-*); the fallbacks keep exported SVG coloured.
+  const colors = ['var(--em-series-1,#255f9e)', 'var(--em-series-2,#a5521f)', 'var(--em-series-3,#6a4e9f)', 'var(--em-series-4,#2c6e3f)', 'var(--em-series-5,#7b5800)'];
   let colorIndex = 0;
   const dash = (mark: MarkSpec) => state.selection === (mark.semanticId ?? mark.id) ? '5 3' : mark.style?.dash === 'dashed' ? '8 5' : mark.style?.dash === 'dotted' ? '2 5' : undefined;
   const quantity = (mark: MarkSpec, key: string) => {
@@ -203,17 +204,17 @@ export function Scene({ view, state, actions, precision, locale }: SceneProps) {
     <svg ref={svgElement} className="em-scene" data-view-id={view.id} data-session-version={state.version} data-run-id={state.run?.id} data-frame-time={frame.time} data-document-revision={state.identity?.documentRevision} viewBox={`0 0 ${canvasWidth} ${canvasHeight}`} role="group" aria-labelledby={`${uid}-title ${uid}-description`}>
       <title id={`${uid}-title`}>{view.title}</title><desc id={`${uid}-description`}>{view.description ?? 'Interactive visualization.'} {equalAspect ? 'Equal coordinate aspect ratio.' : 'Axes have independent scales.'} {log ? 'Logarithmic axes.' : 'Linear axes.'} Select an object with Enter or Space. Exact parameter controls are above the visualization.</desc>
       <defs><clipPath id={`${uid}-clip`}><rect x={left} y={top} width={innerWidth} height={innerHeight} /></clipPath></defs>
-      <rect x={left} y={top} width={innerWidth} height={innerHeight} fill="var(--em-bg,#fff)" stroke="var(--em-border,#ced8e1)" />
-      {ticks.map(t => <g key={t} fill="var(--em-muted,#526375)" fontFamily="system-ui,sans-serif" fontSize="12">
-        <line x1={left + t * innerWidth} y1={top} x2={left + t * innerWidth} y2={top + innerHeight} stroke="var(--em-border,#ced8e1)" strokeOpacity=".45" />
-        <line x1={left} y1={top + t * innerHeight} x2={left + innerWidth} y2={top + t * innerHeight} stroke="var(--em-border,#ced8e1)" strokeOpacity=".45" />
+      <rect x={left} y={top} width={innerWidth} height={innerHeight} fill="var(--em-bg,#fbfaf7)" stroke="var(--em-border,#dedbd3)" />
+      {ticks.map(t => <g key={t} fill="var(--em-muted,#57544d)" fontFamily="system-ui,sans-serif" fontSize="12">
+        <line x1={left + t * innerWidth} y1={top} x2={left + t * innerWidth} y2={top + innerHeight} stroke="var(--em-border,#dedbd3)" strokeOpacity=".45" />
+        <line x1={left} y1={top + t * innerHeight} x2={left + innerWidth} y2={top + t * innerHeight} stroke="var(--em-border,#dedbd3)" strokeOpacity=".45" />
         <text x={left + t * innerWidth} y={top + innerHeight + 21} textAnchor="middle">{formatNumber(undoAxis(minX + t * spanX), Math.min(precision, 4), locale)}</text>
         <text x={left - 9} y={top + innerHeight - t * innerHeight + 4} textAnchor="end">{formatNumber(undoAxis(minY + t * spanY), Math.min(precision, 4), locale)}</text>
       </g>)}
       <g clipPath={`url(#${uid}-clip)`}>{marks}</g>
-      <text x={left + innerWidth / 2} y={baseHeight - 37} textAnchor="middle" fill="var(--em-muted,#526375)" fontFamily="system-ui,sans-serif" fontSize="13">{view.xLabel ?? 'x'}{log ? ' (log scale)' : ''}</text>
-      <text x="17" y={top + innerHeight / 2} transform={`rotate(-90 17 ${top + innerHeight / 2})`} textAnchor="middle" fill="var(--em-muted,#526375)" fontFamily="system-ui,sans-serif" fontSize="13">{view.yLabel ?? 'y'}{log ? ' (log scale)' : ''}</text>
-      {seriesLabels.map((entry, i) => <g key={i} transform={`translate(${20 + i % legendColumns * ((canvasWidth - 40) / legendColumns)},${baseHeight - 14 + Math.floor(i / legendColumns) * 22})`}><title>{entry.label}</title><line x1="0" y1="-4" x2="20" y2="-4" stroke={entry.color} strokeWidth="3" strokeDasharray={entry.dash} /><text x="27" fill="var(--em-ink,#172b3d)" fontFamily="system-ui,sans-serif" fontSize="12">{entry.label.length > 18 ? `${entry.label.slice(0, 17)}…` : entry.label}</text></g>)}
+      <text x={left + innerWidth / 2} y={baseHeight - 37} textAnchor="middle" fill="var(--em-muted,#57544d)" fontFamily="system-ui,sans-serif" fontSize="13">{view.xLabel ?? 'x'}{log ? ' (log scale)' : ''}</text>
+      <text x="17" y={top + innerHeight / 2} transform={`rotate(-90 17 ${top + innerHeight / 2})`} textAnchor="middle" fill="var(--em-muted,#57544d)" fontFamily="system-ui,sans-serif" fontSize="13">{view.yLabel ?? 'y'}{log ? ' (log scale)' : ''}</text>
+      {seriesLabels.map((entry, i) => <g key={i} transform={`translate(${20 + i % legendColumns * ((canvasWidth - 40) / legendColumns)},${baseHeight - 14 + Math.floor(i / legendColumns) * 22})`}><title>{entry.label}</title><line x1="0" y1="-4" x2="20" y2="-4" stroke={entry.color} strokeWidth="3" strokeDasharray={entry.dash} /><text x="27" fill="var(--em-ink,#1f1e1c)" fontFamily="system-ui,sans-serif" fontSize="12">{entry.label.length > 18 ? `${entry.label.slice(0, 17)}…` : entry.label}</text></g>)}
     </svg>
     <div className="em-toolbar" aria-label={`${view.title} view controls`}>
       <button type="button" onClick={() => setCamera(c => ({ ...c, zoom: Math.min(100, c.zoom * 1.4) }))} aria-label={`Zoom in ${view.title}`}>+</button>

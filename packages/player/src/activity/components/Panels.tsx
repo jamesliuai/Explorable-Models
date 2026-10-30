@@ -11,7 +11,7 @@ import { unitLabel } from '@explorable-models/core/model';
 import { formatPlain, numeralMinus, valueDisplay } from '../format.js';
 import { COMPARISON_DASH, comparisonGlyph, GLYPH_NAME, markerPath } from '../plan.js';
 import { renderMathInto } from '../math.js';
-import { chipPersistence, PENDING_REVEAL_TEXT, PERSISTENCE_TEXT, presentStatus, type RecoveryAction, type StatusCause, type StatusPresentation } from '../status.js';
+import { chipPersistence, PENDING_REVEAL_TEXT, PERSISTENCE_TEXT, presentStatus, ROUTINE_PERSISTENCE, type RecoveryAction, type StatusCause, type StatusPresentation } from '../status.js';
 import { Heading, useRuntime, useStableId, type LayoutAnchor } from './context.js';
 
 /** Runs one recovery action of the presented status. */
@@ -85,9 +85,10 @@ export function InlineStatus({ projection, causes }: { projection: LearnerProjec
 }
 
 /**
- * Persistence chip: agrees with the banner (a reveal being recorded reads “Saving…”, one the host did not record “Not
- * saved yet”), keeps one width for every label so the header never reflows when it changes, and offers “Retry saving”
- * only when no banner offers a retry already.
+ * Persistence indicator: agrees with the banner (a reveal being recorded reads “Saving…”, one the host did not record
+ * “Not saved yet”) and offers “Retry saving” only when no banner offers a retry already. Routine states (`saved`,
+ * `saving`) stay readable by assistive technology but are not shown, so routine saves never draw the eye; a change that
+ * is not saved yet, or failed, is shown as plain text with its glyph and tone (no pill).
  */
 export function PersistenceChip({ projection }: { projection: LearnerProjection }) {
   const runtime = useRuntime();
@@ -95,12 +96,12 @@ export function PersistenceChip({ projection }: { projection: LearnerProjection 
   const text = PERSISTENCE_TEXT[persistence];
   const status = presentStatus(projection);
   const retryOffered = status?.placement === 'banner' && status.actions.includes('retry');
+  const routine = ROUTINE_PERSISTENCE.has(persistence);
   return (
     <span className="ema-meta">
-      <span className="ema-chip" data-tone={text.tone} data-persistence={persistence} title={text.detail}>
+      <span className={routine ? 'ema-chip ema-sr' : 'ema-chip'} data-tone={text.tone} data-persistence={persistence} title={routine ? undefined : text.detail}>
         <span className="ema-glyph" aria-hidden="true">{text.glyph}</span>
-        {/* The label sits in a grid cell that also reserves the widest label (a CSS pseudo-element, not text), so the chip keeps one width. */}
-        <span className="ema-chip-labels"><span className="ema-chip-label">{text.label}</span></span>
+        <span className="ema-chip-label">{text.label}</span>
         <span className="ema-sr">. {text.detail}</span>
       </span>
       {(persistence === 'pending-recovery' || persistence === 'failed') && !retryOffered && projection.status.ui !== 'disposed'

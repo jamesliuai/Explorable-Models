@@ -46,7 +46,9 @@ declare global { interface Window { studyHarnessFixture: Fixture } }
 export async function openFixture(page: Page, query = ''): Promise<string[]> {
   const errors: string[] = [];
   page.on('pageerror', error => errors.push(error.message));
-  await page.goto(`/study-harness.html${query}`);
+  // The page shows the embedded card by default; these specs exercise the standalone card unless a query says otherwise.
+  const variant = /[?&]variant=/.test(query) ? '' : `${query ? '&' : '?'}variant=standalone`;
+  await page.goto(`/study-harness.html${query}${variant}`);
   await page.waitForFunction(() => document.body.dataset.fixtureReady === 'true');
   await settle(page);
   return errors;

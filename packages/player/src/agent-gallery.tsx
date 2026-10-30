@@ -6,6 +6,11 @@ import { createVisualizationTools } from '@explorable-models/agent';
 import { VisualizationSurface } from '@explorable-models/player';
 import './agent-gallery.css';
 
+// Warm charcoal by default; ?theme=light or ?theme=system (follows the platform setting) selects the light palette.
+const requestedTheme = new URLSearchParams(location.search).get('theme');
+const studioTheme: 'light' | 'dark' = requestedTheme === 'light' || (requestedTheme === 'system' && typeof matchMedia === 'function' && matchMedia('(prefers-color-scheme: light)').matches) ? 'light' : 'dark';
+document.documentElement.dataset.theme = studioTheme;
+
 function guard(session: VisualizationSession): MutationGuard {
   const state = session.getState();
   return { sessionId: session.id, expectedVersion: state.version, ...(state.run ? { expectedRunId: state.run.id } : {}), operationId: crypto.randomUUID(), origin: 'host' };
@@ -87,7 +92,7 @@ function Studio() {
       </div>
       <p id="revision-demo-note" className="studio-demo-note">The revision demo is scripted. Explore without an account or AI connection; save downloads a file.</p>
       <p className="studio-status" role="status">{message}</p>
-      <section id="composition" aria-label="Editable composition">{session ? <VisualizationSurface session={session}/> : <div className="studio-loading">Preparing the first composition…</div>}</section>
+      <section id="composition" aria-label="Editable composition">{session ? <VisualizationSurface session={session} theme={studioTheme}/> : <div className="studio-loading">Preparing the first composition…</div>}</section>
       <footer className="studio-footer"><strong>Inspectable by design.</strong><p>Copy the public document to author your own composition. Presets use the same primitives available to your agent. These examples are unreviewed; technical checks do not establish scientific review or learning efficacy.</p><a href="./guide.html#scope">Preview scope and limitations</a> · <a href="./gallery.html">Open the experiment gallery →</a></footer>
     </main>
   </>;

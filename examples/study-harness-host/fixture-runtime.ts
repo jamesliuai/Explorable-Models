@@ -38,6 +38,8 @@ export interface FixtureOptions {
   workerDelayMs: number;
   theme: 'light' | 'dark' | 'system';
   fonts: 'bundled' | 'system';
+  /** Card presentation (`?variant=`): `embedded` (default; this page plays the host's prompt and composer) or `standalone`. */
+  variant: 'standalone' | 'embedded';
   /** Lazy spatial renderer for `scene3d` views (`?spatial=1`); null leaves the card's 2D projection fallback. */
   spatialLoader: (() => Promise<SpatialRendererModule>) | null;
 }
@@ -182,7 +184,7 @@ export abstract class FixtureRuntime<Snapshot> {
     // Learner-facing names from the selected template (ignored by the record for another template version) and the
     // host's return action (fixture: no navigation, the request is logged).
     this.archivalMount = this.container ? mountArchivalRecord(this.container, archived.view, {
-      theme, headingLevel: 2, labels: archivalLabels(this.template),
+      theme, headingLevel: 2, labels: archivalLabels(this.template), variant: this.options.variant,
       returnAction: { label: 'Return to the session', onSelect: () => this.note('The archival record asked to return to the session (fixture: no navigation).') },
     }) : null;
     this.note(`The saved activity could not be reopened (${outcome.diagnostics.map(item => item.code).join(', ')}); its archival read-only record is shown.`);
@@ -246,13 +248,13 @@ export abstract class FixtureRuntime<Snapshot> {
   /** Shows the learner card frame in `preparing` (or `empty`) until `attach` mounts the activity's surface. */
   protected showPlaceholder(state: 'preparing' | 'empty'): void {
     if (!this.container || this.surface) return;
-    const props = { state, title: this.template.title, theme: this.options.theme, fonts: this.options.fonts, headingLevel: 2 as const };
+    const props = { state, title: this.template.title, theme: this.options.theme, fonts: this.options.fonts, headingLevel: 2 as const, variant: this.options.variant };
     if (this.placeholder) this.placeholder.update(props); else this.placeholder = mountStudyActivityPlaceholder(this.container, props);
   }
   /** Options every fixture card receives (theme, fonts, spatial loader, diagnostics and recovery handling). */
   protected cardOptions(binding: ActivityBinding, surfaceId: string) {
     return {
-      binding, surfaceId, theme: this.options.theme, fonts: this.options.fonts, headingLevel: 2 as const,
+      binding, surfaceId, theme: this.options.theme, fonts: this.options.fonts, headingLevel: 2 as const, variant: this.options.variant,
       ...(this.options.spatialLoader ? { spatialLoader: this.options.spatialLoader } : {}),
       onDiagnostic: (diagnostic: SurfaceDiagnostic) => { this.diagnostics.push(diagnostic); if (this.diagnostics.length > 200) this.diagnostics.shift(); },
       onRecoveryAction: (action: 'return' | 'reload') => { if (action === 'reload') location.reload(); else this.note('The card asked to return to the session (fixture: no navigation).'); },

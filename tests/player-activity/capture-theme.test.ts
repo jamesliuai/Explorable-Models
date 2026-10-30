@@ -157,7 +157,7 @@ describe('theme tokens (report §10.1: host tokens cannot hide meaningful states
 
   it('rejects a background that would make the default text or status colours unreadable', () => {
     const { tokens, rejected } = resolveTheme('light', { background: '#222222' });
-    expect(tokens.background).toBe('#ffffff');
+    expect(tokens.background).toBe(DEFAULT_TOKENS.light.background);
     expect(rejected[0].token).toBe('background');
     const dark = resolveTheme('dark', { background: '#000000', surface: '#0a0a0a' });
     expect(dark.rejected).toEqual([]);

@@ -3,6 +3,7 @@ import type { LearnerProjection, ProjectedView } from '@explorable-models/activi
 import { base64, fontFaceCss, fontsForText, INTER_FONT_FILES } from './assets.js';
 import { formatPosition, valueDisplay } from './format.js';
 import { labelMetrics, wrapText } from './labels.js';
+import { LIGHT_TOKENS } from './theme.js';
 import { CAPTURE_LIMITS, CaptureError, captureRejection, captureSize, companionText, type CaptureContext, type CaptureMetadata, type CaptureOptions, type CaptureResult } from './capture.js';
 
 const GRAPHICAL = new Set<ProjectedView['kind']>(['plot2d', 'scene2d', 'scene3d']);
@@ -181,7 +182,7 @@ export async function captureView(ctx: CaptureContext, options: CaptureOptions):
   const fontFaces = await embeddedFonts(ctx, [projection.title, view.title, ...textLines, footer, scene?.svg ?? ''].join(' '));
   const input: ComposeInput = {
     metadata, title: `${projection.title} — ${view.title}`, summary: view.summary, scene, textLines, footer,
-    colors: { background: token('--ema-background', '#ffffff'), text: token('--ema-text', '#17212b'), muted: token('--ema-text-muted', '#4a5866'), border: token('--ema-border', '#c9d2db') },
+    colors: { background: token('--ema-background', LIGHT_TOKENS.background), text: token('--ema-text', LIGHT_TOKENS.text), muted: token('--ema-text-muted', LIGHT_TOKENS.textMuted), border: token('--ema-border', LIGHT_TOKENS.border) },
     fontFamily: style.fontFamily || 'system-ui, sans-serif', fontFaces,
   };
   const composed = composeCaptureSvg(input);

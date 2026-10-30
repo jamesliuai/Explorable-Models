@@ -34,7 +34,7 @@ import { awaitRenderedProjection, captureRejection, loadCaptureView, CaptureErro
 import { formatPlain } from './format.js';
 import { defaultMathLoader, type KatexModule } from './math.js';
 import { createAnnouncer, createOperationId, createSurfaceId, failureAnnouncement, GestureLane, INERT_STATES, liveScope, projectionAnnouncements, scopeHolds, type AnnouncementKind, type AnnouncementMemory, type Announcer, type LiveScope } from './runtime.js';
-import { CONTENTLESS_STATES, PRESENTED_BY, type StatusCause } from './status.js';
+import { chipPersistence, CONTENTLESS_STATES, PRESENTED_BY, ROUTINE_PERSISTENCE, type StatusCause } from './status.js';
 import { adoptActivityStyles } from './styles.js';
 import { BUNDLED_FONT_STACK, resolveTheme, tokenVariables, type ThemeMode } from './theme.js';
 import type { StudyActivityHandle, StudyActivitySurfaceProps, SurfaceDiagnostic } from './types.js';
@@ -375,6 +375,8 @@ export function StudyActivitySurface(props: StudyActivitySurfaceProps & Internal
   const ui = projection.status.ui;
   const level = props.headingLevel ?? 2;
   const contentless = CONTENTLESS_STATES.has(ui);
+  const embedded = props.variant === 'embedded';
+  const variant = embedded ? 'embedded' : 'standalone';
   const graphical = projection.views.filter(view => GRAPHICAL.has(view.kind));
   const valueViews = projection.views.filter(view => view.kind === 'values');
   const equationViews = projection.views.filter(view => view.kind === 'equation');
@@ -392,11 +394,32 @@ export function StudyActivitySurface(props: StudyActivitySurfaceProps & Internal
   // A refused command whose cause the status already presents (a worker failure, saving, permissions) is not repeated.
   const errorPresented = commandErrorCode !== null && (PRESENTED_BY[commandErrorCode] ?? []).includes(ui);
   const sections = controlSections(projection.controls);
+  // Routine saving is not shown on the card (the chip stays readable by assistive technology); a change that is not
+  // saved yet, or failed to save, is shown. An embedded card then has no visible header row at all.
+  const routinePersistence = ROUTINE_PERSISTENCE.has(chipPersistence(projection));
+  const quietHeader = embedded && !contentless && routinePersistence;
+  const canRetain = projection.stage.kind === 'explore' && committedFrame && projection.context === 'instructional' && !inert;
+
+  // Secondary tools: in place on a standalone card, gathered in one disclosure on an embedded card.
+  const alternatives = graphical.length && (tableViews.length || descriptionAlternative || tableAlternative) ? (
+    <div className="ema-alternatives">
+      <div className="ema-toolbar" role="group" aria-label="Also show">
+        {tableViews.length ? <button type="button" className="ema-button" aria-pressed={showTables} onClick={() => setShowTables(value => !value)}>{tableAlternative?.label ?? 'Table'}</button> : null}
+        {/* The toggle always shows the generated view summaries, so it is named for that, not after the first description alternative. */}
+        <button type="button" className="ema-button" aria-pressed={showText} onClick={() => setShowText(value => !value)}>Text description</button>
+      </div>
+      <AlternativesInfo alternatives={projection.alternatives} />
+    </div>
+  ) : null;
+  const reset = someInteractive ? <ResetExperiment previewActive={projection.preview !== null} /> : null;
+  const comparisons = <ComparisonsPanel comparisons={projection.comparisons} canRetain={canRetain} retainLabel={retainLabel} headingLevel={level + 1} currentPosition={projection.frame?.position ?? null} />;
+  const readValues = contentless ? null : <button type="button" className="ema-button" onClick={() => announce(binding.describeCurrentValues(), 'request')}>Read current values</button>;
+  const keptRuns = projection.comparisons.length;
 
   return (
     <RuntimeContext.Provider value={runtime}>
       <div
-        ref={rootRef} className="ema" style={variables} lang={locale} data-theme={mode} data-layout={projection.presentation.layout}
+        ref={rootRef} className="ema" style={variables} lang={locale} data-theme={mode} data-layout={projection.presentation.layout} data-variant={variant}
         data-ema-surface={surfaceId} data-ema-projection={projection.projectionId} data-ema-ui-state={ui}
         onFocus={event => { lastFocus.current = event.target; }}
         onBlur={event => { if (!rootRef.current?.contains(event.relatedTarget as Node | null)) lastFocus.current = null; }}
@@ -405,8 +428,9 @@ export function StudyActivitySurface(props: StudyActivitySurfaceProps & Internal
         onPointerLeave={() => { pointer.current = null; }} onPointerCancel={() => { pointer.current = null; }}
       >
         <section className="ema-card" aria-labelledby={titleId}>
-          <header className="ema-header">
-            <div className="ema-heading">
+          <header className={quietHeader ? 'ema-header ema-sr' : 'ema-header'}>
+            {/* An embedded card keeps its title as the accessible heading; the host already shows the lesson. */}
+            <div className={embedded && !contentless ? 'ema-heading ema-sr' : 'ema-heading'}>
               <Heading level={level} id={titleId} className="ema-title" ref={headingRef} tabIndex={-1}>{projection.title}</Heading>
               {projection.context === 'independent' ? <span className="ema-subtitle">Independent task</span> : null}
             </div>
@@ -430,41 +454,44 @@ export function StudyActivitySurface(props: StudyActivitySurfaceProps & Internal
                   : <GraphicalView key={view.viewId} view={view} projection={projection} showText={showText} headingLevel={level + 1} />)}
                 {projection.navigation ? <Navigation navigation={projection.navigation} frame={projection.frame} headingLevel={level + 1} /> : null}
                 {projection.navigation ? <InlineStatus projection={projection} causes={NAVIGATION_NOTICES} /> : null}
-                {graphical.length && (tableViews.length || descriptionAlternative || tableAlternative) ? (
-                  <div className="ema-alternatives">
-                    <div className="ema-toolbar" role="group" aria-label="Also show">
-                      {tableViews.length ? <button type="button" className="ema-button" aria-pressed={showTables} onClick={() => setShowTables(value => !value)}>{tableAlternative?.label ?? 'Table'}</button> : null}
-                      {/* The toggle always shows the generated view summaries, so it is named for that, not after the first description alternative. */}
-                      <button type="button" className="ema-button" aria-pressed={showText} onClick={() => setShowText(value => !value)}>Text description</button>
-                    </div>
-                    <AlternativesInfo alternatives={projection.alternatives} />
-                  </div>
-                ) : null}
+                {embedded ? null : alternatives}
                 {tablesVisible ? tableViews.map((view, index) => (
                   <TablePanel key={view.viewId} table={view.table!} title={view.title} headingLevel={level + 1} frameId={projection.frame?.frameId ?? null} regionRef={index === 0 ? element => { tableRegion.current = element; } : undefined} />
                 )) : null}
               </div> : null}
               <div className="ema-side">
                 {projection.controls.length ? (
-                  <section className="ema-panel" aria-label="Controls" data-ema-frame-id={projection.frame?.frameId}>
+                  <section className="ema-panel" aria-label="Controls" data-ema-panel="controls" data-ema-frame-id={projection.frame?.frameId}>
                     {sections.map(section => section.section ? (
                       <ControlSection key={section.section.id} section={section.section} headingLevel={level + 1}>
                         {section.controls.map(control => <ParameterControl key={control.parameter} control={control} activePreviewId={projection.preview?.previewId ?? null} />)}
                       </ControlSection>
                     ) : section.controls.map(control => <ParameterControl key={control.parameter} control={control} activePreviewId={projection.preview?.previewId ?? null} />))}
                     <InlineStatus projection={projection} causes={projection.navigation ? CONTROL_NOTICES : undefined} />
-                    {someInteractive ? <ResetExperiment previewActive={projection.preview !== null} /> : null}
+                    {embedded ? null : reset}
                   </section>
                 ) : null}
                 {projection.scenarios.length ? <Scenarios scenarios={projection.scenarios} title="Scenarios" headingLevel={level + 1} /> : null}
                 {valueViews.map(view => <ValuesPanel key={view.viewId} title={view.title} values={view.values} headingLevel={level + 1} frameId={projection.frame?.frameId ?? null} />)}
                 {graphical.filter(view => view.values.length).map(view => <ValuesPanel key={`${view.viewId}:values`} title={`${view.title}: values`} values={view.values} headingLevel={level + 1} frameId={projection.frame?.frameId ?? null} />)}
                 {[...equationViews, ...graphical.filter(view => view.equations.length)].map(view => <EquationsPanel key={`${view.viewId}:equations`} title={view.title} equations={view.equations} headingLevel={level + 1} frameId={projection.frame?.frameId ?? null} />)}
-                <ComparisonsPanel comparisons={projection.comparisons} canRetain={projection.stage.kind === 'explore' && committedFrame && projection.context === 'instructional' && !inert} retainLabel={retainLabel} headingLevel={level + 1} currentPosition={projection.frame?.position ?? null} />
+                {embedded ? null : comparisons}
               </div>
             </div>
           )}
-          {!contentless && (projection.stage.response || props.responseSlot) ? (
+          {!contentless && embedded ? (
+            // One disclosure for everything that is not the drawing, its primary parameters or the essential values.
+            <details className="ema-more" data-ema-more="">
+              <summary>More tools{keptRuns ? ` · ${keptRuns} kept ${keptRuns === 1 ? 'run' : 'runs'}` : ''}</summary>
+              <div className="ema-more-body">
+                {alternatives}
+                {reset}
+                {comparisons}
+                <div className="ema-toolbar">{readValues}</div>
+              </div>
+            </details>
+          ) : null}
+          {!contentless && (props.responseSlot || (projection.stage.response && !embedded)) ? (
             <section className="ema-response" aria-label={projection.stage.response ? (projection.stage.response.kind === 'prediction' ? 'Your prediction' : 'Your explanation') : 'Your response'}>
               {projection.stage.response ? <p className="ema-panel-title">{projection.stage.response.prompt}</p> : null}
               {props.responseSlot}
@@ -473,7 +500,7 @@ export function StudyActivitySurface(props: StudyActivitySurfaceProps & Internal
           <footer className="ema-footer">
             <p className="ema-review">{projection.reviewNotice}</p>
             <div className="ema-footer-actions">
-              {contentless ? null : <button type="button" className="ema-button" onClick={() => announce(binding.describeCurrentValues(), 'request')}>Read current values</button>}
+              {embedded ? null : readValues}
               {props.nextAction ? (
                 <>
                   {props.nextAction.status ? <span className="ema-next-status" role="status">{props.nextAction.status}</span> : null}

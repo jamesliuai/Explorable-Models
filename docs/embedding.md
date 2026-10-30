@@ -254,6 +254,52 @@ hostSessionRevision })`, where `hostSessionRevision` is the session revision you
 activity adopts it; it never advances the host's counter itself). Corrections, disputes and deletions go through
 `updateResponseRef` the same way; `observeHostSessionRevision` follows a revision you advanced elsewhere.
 
+### Presentation: variants, theme and fonts (0.3)
+
+The 0.3 presentation replaces the earlier white/cool-blue/Inter look with a warm-neutral one shared by the learner
+card, the 3D renderer's controls, the schema 2.0 surface, the gallery and the example collection: warm surfaces,
+hairline separators instead of nested boxes, small radii (`radius` 7px; inner elements 5px), no pills, a neutral
+primary action, the platform UI font for controls and diagram text, and a book serif for teaching prose. Colour is kept
+for data roles and meaningful states, each with a non-colour cue. It is a presentation change only: models, frames,
+commands, exposure and display acknowledgements, artifacts and contracts are unchanged ([design](design.md)).
+
+- **`variant`** (`'standalone' | 'embedded'`, default `standalone`) on `StudyActivitySurfaceProps`, so also in
+  `surfaceDefaults`, `visualizer.mount` options and `mountStudyActivity`; `mountStudyActivityPlaceholder` and
+  `ArchivalRecord`/`mountArchivalRecord` accept it too. `embedded` is for a host that shows the lesson prompt and
+  composer itself (for example a study workspace's side pane): the activity title stays the accessible heading but is
+  visually hidden while there is content, the stage instruction is one compact muted line (it remains the focus target
+  when a control disappears), the stage response prompt appears only together with a `responseSlot`, the outer border is
+  dropped, and Table/Text description, Reset experiment, kept-run comparisons and Read current values move into one
+  “More tools” disclosure after the drawing, primary parameters, scenarios, values and equations. Hidden content is
+  still absent from the projection, not styled away; a closed disclosure only holds tools and kept-run details.
+- **Quiet saving.** Routine persistence (`saved`, `saving`) is not shown in either variant; the persistence text stays
+  readable by assistive technology. “Not saved yet” and “Not saved” stay visible as plain text with a glyph, a tone and
+  “Retry saving” when no banner offers a retry.
+- **Tokens.** `DARK_TOKENS` is warm charcoal (`background #1a1a19`, `surface #212120`, `surfaceStrong #2a2a28`,
+  `border #31312e`, `borderStrong #77746d`, `text #edebe6`, `textMuted #bdbab3`); `LIGHT_TOKENS` is its warm off-white
+  counterpart. New tokens: `action` and `onAction` fill and label the one primary action (light on dark, dark on light;
+  rule: `onAction` on `action` ≥ 4.5:1, `action` on `background`/`surface` ≥ 3:1), and `proseFamily` (default
+  `PROSE_FONT_STACK`: Palatino, Palatino Linotype, Book Antiqua, ui-serif, Georgia, serif) for the title, the standalone
+  instruction and text descriptions. `primary` remains a data (mark) colour. Overrides of the new tokens are validated
+  like every other token and rejected with `TOKEN_REJECTED` when unsafe.
+- **Fonts.** `fonts: 'system'` (default) loads no font files: controls use the platform font, and typeset math uses
+  KaTeX fonts only where the host document already registers them (a host that imports `katex/dist/katex.min.css`).
+  `fonts: 'bundled'` registers the packaged KaTeX fonts and Inter; add `tokens: { fontFamily: SYSTEM_FONT_STACK }` to keep
+  the platform UI font while math uses the packaged KaTeX fonts. Fonts are fetched only when text uses them.
+- **Light, dark and system** themes all remain supported; hosts can still override any token. The example pages
+  (`showcase.html`, `gallery.html`, `index.html`/`agent.html`, `guide.html`) open in warm charcoal; add `?theme=light` or
+  `?theme=system`. `study-harness.html` shows the card `embedded` by default (`?variant=standalone` for the
+  self-contained card; the browser specs open it that way).
+
+A study host beside its own lesson column would typically use:
+
+```ts
+createStudyHarnessVisualizer({
+  catalog, host,
+  surfaceDefaults: { variant: 'embedded', theme: 'dark', fonts: 'system' },  // tokens only where its surfaces differ
+});
+```
+
 ### Interaction and accessibility
 
 The card follows report §9–§11; these rules are tested in `tests/browser/study-interaction.spec.ts` (fixture-host
@@ -359,9 +405,10 @@ These rules are tested in `tests/browser/study-presentation.spec.ts` and `tests/
   projection's message (never repeating the title), a tone that matches the cause and at most one recovery control: an
   in-flight reveal says it is saving and offers nothing; a reveal or display acknowledgement the host did not record
   says “Not saved yet” and offers one retry; a worker failure is one error banner (the refused command is not repeated
-  in a second banner); a closed activity is titled closed. The persistence chip agrees with the banner (never “Saved”
-  beside a saving or failed banner), keeps one width for every label and offers “Retry saving” only when no banner
-  does. A pending reveal is named in the banner, not in a second row.
+  in a second banner); a closed activity is titled closed. The persistence text agrees with the banner (never “Saved”
+  beside a saving or failed banner), is visible only when a change is not saved yet or failed to save (routine saving
+  stays readable by assistive technology but is not shown), and offers “Retry saving” only when no banner does. A
+  pending reveal is named in the banner, not in a second row.
 - **A still card.** Transient states are shown in place, never as a banner above the content: a tentative preview
   dashes the figures, renames their subtitle and shows “Previewing a change, not applied yet” with Apply and Cancel
   under the controls; playback shows Pause in place of Play (one width); a 2D figure reports data outside its range

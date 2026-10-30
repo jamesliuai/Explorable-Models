@@ -386,7 +386,7 @@ test.describe('preparing placeholder and the real-fixture state sweep (G45, repo
         }
       }).observe(document, { subtree: true, childList: true });
     });
-    await page.goto('/study-harness.html?delay=register:2500');
+    await page.goto('/study-harness.html?delay=register:2500&variant=standalone');
     const placeholder = page.locator('[data-fx-card] [data-explorable-models-activity-placeholder]');
     await expect(placeholder).toHaveCount(1);
     const frame = placeholder.locator('.ema');

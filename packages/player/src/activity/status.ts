@@ -190,6 +190,13 @@ export const PERSISTENCE_TEXT: Record<ProjectedStatus['persistence'], { label: s
   failed: { label: 'Not saved', tone: 'error', glyph: '×', detail: 'The host could not record recent changes. They are kept here; the host needs to act.' },
 };
 
+/**
+ * Persistence states that are routine and therefore not shown on the card (0.3 presentation): the chip stays in the
+ * accessibility tree, but a quiet workspace does not confirm every routine save visually. A change that is not saved
+ * yet or that failed to save stays visible, with its retry.
+ */
+export const ROUTINE_PERSISTENCE: ReadonlySet<ProjectedStatus['persistence']> = new Set<ProjectedStatus['persistence']>(['saved', 'saving']);
+
 export const PENDING_REVEAL_TEXT: Record<NonNullable<LearnerProjection['pendingReveal']>['state'], string> = {
   requesting: 'Waiting for the host to record this before showing it',
   'awaiting-display': 'Showing',

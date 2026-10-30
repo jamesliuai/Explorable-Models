@@ -17,6 +17,33 @@ and learning benefit are separate claims, and neither is established ([status](d
 
 Run `2026-10-29T05-29-41.307Z` is an audited resume of failed full run `2026-10-29T04-04-18.057Z`: 6 affected gates were executed again and 13 unchanged passing gates retain their original execution times, logs and provenance. The six SDK tarballs are byte-identical. Only the reviewed verification setup, tests and tooling changed. The failed parent record is preserved; this is complete effective gate coverage, not a claim that all gates ran afresh in one uninterrupted run.
 
+### Presentation update (2026-10-29, same version)
+
+Presentation-only change; the package versions stay `0.3.0-preview.1`, so a packed set is identified by its clean
+source commit and the SHA-256 of each tarball (`release/study-harness/packages/manifest.json`). Models, frames, guarded
+commands, exposure and display acknowledgements, journals, artifacts, schemas and the native validator are unchanged;
+saved artifacts restore as before.
+
+- Warm-neutral default palettes for the learner surface (`DARK_TOKENS` warm charcoal, `LIGHT_TOKENS` warm off-white),
+  the 3D renderer's control styles and fallback palette, the schema 2.0 surface (`--em-*`, plus theme-aware default series
+  colours `--em-series-*`), the experiment gallery, the composition studio and guide, and the example collection.
+  Hairlines instead of nested boxes, radii 5/7px, no pills, neutral pressed toggles, a 2px focus ring.
+- New public theme tokens `action`/`onAction` (the neutral primary action; contrast rules `onAction`/`action` ≥ 4.5:1
+  and `action`/`background`,`surface` ≥ 3:1) and `proseFamily` (`PROSE_FONT_STACK`, exported) for teaching prose.
+  `primary` remains a data colour only.
+- New public option `variant: 'standalone' | 'embedded'` on `StudyActivitySurfaceProps` (and therefore
+  `surfaceDefaults`, `mount` options and `mountStudyActivity`), on `mountStudyActivityPlaceholder` and on
+  `ArchivalRecord`/`mountArchivalRecord`; exported type `SurfaceVariant`. See
+  [embedding](docs/embedding.md#presentation-variants-theme-and-fonts-03).
+- Routine persistence (`saved`, `saving`) is no longer shown visually (it stays in the accessibility tree); unsaved and
+  failed states stay visible. The persistence text no longer reserves a constant width (`ema-chip-labels` removed).
+- The demo pages open in warm charcoal (`?theme=light|system` to change it); `study-harness.html` shows the embedded card
+  by default (`?variant=standalone`; the browser-spec helper opens the standalone card).
+- Verification for this update: `npm run typecheck`, the affected Vitest files (player activity theme/status/SSR/
+  presentation/visualizer tests, the player-3d tests and a new `tests/player-activity/variant-presentation.test.ts`) and
+  desktop Chromium screenshots. By the owner's direction `npm run test:browser`, the cross-browser specs and the full
+  release pipeline were deferred for this pass and are not claimed.
+
 ### Added
 
 **New packages and entries**
