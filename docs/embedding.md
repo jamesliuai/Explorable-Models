@@ -272,6 +272,10 @@ commands, exposure and display acknowledgements, artifacts and contracts are unc
   dropped, and Table/Text description, Reset experiment, kept-run comparisons and Read current values move into one
   “More tools” disclosure after the drawing, primary parameters, scenarios, values and equations. Hidden content is
   still absent from the projection, not styled away; a closed disclosure only holds tools and kept-run details.
+- **`instruction`** (string, optional): host wording for the stage instruction line, trimmed to 400 characters. Use it
+  when the host fixes parameters that differ from the template's illustrative wording (for example a lesson that opens
+  the quadratic activity at `a = 3` while the template text mentions `a = 2`), or to tie the card to the host's lesson.
+  Inert cards keep the projection's neutral line; it changes no permission, value or record.
 - **Quiet saving.** Routine persistence (`saved`, `saving`) is not shown in either variant; the persistence text stays
   readable by assistive technology. “Not saved yet” and “Not saved” stay visible as plain text with a glyph, a tone and
   “Retry saving” when no banner offers a retry.

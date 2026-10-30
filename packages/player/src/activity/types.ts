@@ -47,6 +47,13 @@ export interface StudyActivitySurfaceProps {
   tokens?: Partial<ThemeTokens>;
   /** `standalone` (default) or `embedded`; see {@link SurfaceVariant}. Presentation only. */
   variant?: SurfaceVariant;
+  /**
+   * Host wording for the stage instruction line (presentation only; trimmed, at most 400 characters). Use it when the
+   * host fixes parameters that differ from the template's illustrative wording or ties the card to its own lesson.
+   * Inert cards (suspended, stale policy, unsupported, awaiting persistence, disposed) keep the projection's neutral
+   * line. It changes no permission, value or record; the projection's instruction stays in the capture companion text.
+   */
+  instruction?: string;
   /** Heading level of the activity title (default 2); view headings use the next level. */
   headingLevel?: 2 | 3 | 4 | 5 | 6;
   /** Locale for numbers the surface formats itself (ticks, index); defaults to the projection's presentation locale. */

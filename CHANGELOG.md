@@ -35,6 +35,9 @@ saved artifacts restore as before.
   `surfaceDefaults`, `mount` options and `mountStudyActivity`), on `mountStudyActivityPlaceholder` and on
   `ArchivalRecord`/`mountArchivalRecord`; exported type `SurfaceVariant`. See
   [embedding](docs/embedding.md#presentation-variants-theme-and-fonts-03).
+- New public option `instruction` on `StudyActivitySurfaceProps`: host wording for the stage instruction line
+  (presentation only; inert cards keep the neutral line), so a host that opens an activity at its own task's values does
+  not show the template's illustrative numbers.
 - Routine persistence (`saved`, `saving`) is no longer shown visually (it stays in the accessibility tree); unsaved and
   failed states stay visible. The persistence text no longer reserves a constant width (`ema-chip-labels` removed).
 - The demo pages open in warm charcoal (`?theme=light|system` to change it); `study-harness.html` shows the embedded card

@@ -55,6 +55,15 @@ describe('surface variants', () => {
     expect(text(await render(predicting))).toContain('Predict the next iterate.');
   });
 
+  it('lets the host replace the stage instruction wording, except on an inert card', async () => {
+    const projection = fixtureProjection('quadratic', 'ready');
+    const html = text(await render(projection, { variant: 'embedded', instruction: 'Test your prediction with a = 3.' }));
+    expect(html).toContain('Test your prediction with a = 3.');
+    expect(html).not.toContain(projection.stage.instruction);
+    const suspended = { ...projection, status: { ...projection.status, ui: 'suspended' as const, message: 'Paused while hidden.' } } as LearnerProjection;
+    expect(text(await render(suspended, { variant: 'embedded', instruction: 'Test your prediction with a = 3.' }))).not.toContain('Test your prediction with a = 3.');
+  });
+
   it('shows the heading of a contentless card in either variant', async () => {
     const html = await render(fixtureProjection('quadratic', 'preparing'), { variant: 'embedded' });
     expect(html).toMatch(/<div class="ema-heading">/);

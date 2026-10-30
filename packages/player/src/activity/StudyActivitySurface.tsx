@@ -388,7 +388,8 @@ export function StudyActivitySurface(props: StudyActivitySurfaceProps & Internal
   const mainContent = graphical.length > 0 || projection.navigation !== null || (tablesVisible && tableViews.length > 0);
   const committedFrame = projection.frame?.kind === 'committed';
   // Under a stale policy or for unsupported content the projection itself carries a neutral instruction and no prompt.
-  const instruction = projection.stage.instruction;
+  const hostInstruction = typeof props.instruction === 'string' ? [...props.instruction.trim()].slice(0, 400).join('') : '';
+  const instruction = hostInstruction && !inert ? hostInstruction : projection.stage.instruction;
   const someInteractive = projection.controls.some(control => control.mode === 'interactive');
   const retainLabel = keptRunLabel(projection.controls, locale);
   // A refused command whose cause the status already presents (a worker failure, saving, permissions) is not repeated.
