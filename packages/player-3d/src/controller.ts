@@ -119,7 +119,14 @@ export class SpatialController {
   private readonly lights = createLights();
   private readonly sharedResources: ResourceGroup;
   private readonly axesResources: ResourceGroup;
-  private readonly contentResources: ResourceGroup;
+  private contentResources: ResourceGroup;
+  /**
+   * The previous content build after a rebuild, released once its replacement has rendered. Three.js shares a compiled
+   * shader program among materials with the same parameters and destroys it when its last user is disposed, so
+   * disposing the old materials before the new ones drew made every committed change recompile and relink them.
+   */
+  private retiredContent: ResourceGroup | null = null;
+  private contentDrawn = false;
   private readonly shared: SharedGeometries;
   private axes: BuiltAxes | null = null;
   private content: BuiltScene | null = null;
@@ -140,6 +147,7 @@ export class SpatialController {
   private disposed = false;
   private width = 0;
   private height = 0;
+  private pixelRatio = 0;
   private frames = 0;
   private frameHandle: number | null = null;
   private commitTimer: number | null = null;
@@ -212,10 +220,11 @@ export class SpatialController {
   resize(width: number, height: number, pixelRatio: number): void {
     if (this.disposed) return;
     const w = Math.max(0, Math.floor(width)), h = Math.max(0, Math.floor(height));
-    if (w === this.width && h === this.height) return;
-    this.width = w; this.height = h;
+    const ratio = Math.min(2, Math.max(1, pixelRatio || 1));
+    if (w === this.width && h === this.height && ratio === this.pixelRatio) return;
+    this.width = w; this.height = h; this.pixelRatio = ratio;
     if (w > 0 && h > 0) {
-      this.renderer.setPixelRatio(Math.min(2, Math.max(1, pixelRatio || 1)));
+      this.renderer.setPixelRatio(ratio);
       this.renderer.setSize(w, h, false);
       this.applyResolution();
     }
@@ -310,6 +319,8 @@ export class SpatialController {
     if (this.tween) this.advanceTween();
     const camera = this.updateCamera();
     this.renderer.render(this.scene, camera);
+    this.contentDrawn = true;
+    if (this.retiredContent) { this.retiredContent.release(); this.retiredContent = null; }
     // Draw calls of this frame (Three.js resets the counter per render); bounded by the plan's per-frame budget.
     this.lastDrawCalls = this.renderer.info.render?.calls ?? null;
     this.frames++;
@@ -468,7 +479,13 @@ export class SpatialController {
 
   private rebuildContent(): void {
     if (this.content) this.scene.remove(this.content.group);
-    this.contentResources.release();
+    // A build that never drew compiled nothing and goes at once; the last drawn build waits for the next frame.
+    if (this.contentDrawn || !this.retiredContent) {
+      this.retiredContent?.release();
+      this.retiredContent = this.contentResources;
+    } else this.contentResources.release();
+    this.contentResources = new ResourceGroup(this.registry);
+    this.contentDrawn = false;
     this.content = buildContent(this.plan, this.frame, this.theme, this.contentResources, this.shared, { wireframe: this.wireframe });
     this.scene.add(this.content.group);
     this.applyResolution();

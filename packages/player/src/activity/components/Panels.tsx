@@ -195,18 +195,29 @@ function MathEquation({ equation, showPlain }: { equation: ProjectedEquation; sh
     if (kept) runtimeRef.current.keepAnchor(kept);
   }, [rendered, overflow]);
 
+  // The latest formula: substituted values change it on every frame of a drag or playback.
+  const equationRef = useRef(equation);
+  equationRef.current = equation;
+  const katexRef = useRef<Parameters<typeof renderMathInto>[0] | null>(null);
+  const typeset = (target: HTMLElement) => {
+    const current = runtimeRef.current, latest = equationRef.current;
+    const result = renderMathInto(katexRef.current!, target, latest.tex);
+    if (result.ok) { if (!renderedRef.current) anchor.current ??= current.layoutAnchor(); setRendered(true); }
+    else {
+      setRendered(false);
+      current.report({ source: 'surface', code: 'MATH_FALLBACK', message: `Equation “${latest.label}” is shown as plain text: ${result.detail}`, path: `equations.${latest.equationId}` });
+    }
+  };
   useEffect(() => {
     const host = hostRef.current, target = mathRef.current;
     if (!host || !target) return;
     let cancelled = false;
-    setRendered(false);
     const start = () => {
       const current = runtimeRef.current;
       Promise.all([current.loadMath(), current.mathStyles(host)]).then(([katex]) => {
         if (cancelled || current.disposed()) return;
-        const result = renderMathInto(katex, target, equation.tex);
-        if (result.ok) { if (!renderedRef.current) anchor.current ??= current.layoutAnchor(); setRendered(true); }
-        else current.report({ source: 'surface', code: 'MATH_FALLBACK', message: `Equation “${equation.label}” is shown as plain text: ${result.detail}`, path: `equations.${equation.equationId}` });
+        katexRef.current = katex;
+        typeset(target);
       }).catch(error => {
         if (cancelled || current.disposed()) return;
         current.report({ source: 'surface', code: 'MATH_ASSETS_UNAVAILABLE', message: `Math rendering is unavailable, so equations are shown as plain text (${error instanceof Error ? error.message : 'load failed'}).` });
@@ -217,7 +228,13 @@ function MathEquation({ equation, showPlain }: { equation: ProjectedEquation; sh
     const observer = new IntersectionObserver(entries => { if (entries.some(entry => entry.isIntersecting)) { observer.disconnect(); start(); } });
     observer.observe(host);
     return () => { cancelled = true; observer.disconnect(); };
-  }, [equation.tex, equation.label, equation.equationId]);
+  }, []);
+  // Once KaTeX is loaded, a changed formula is typeset before paint: it no longer drops back to plain text (changing
+  // the panel's height and focusability) for a frame and waits for a new visibility callback on every value change.
+  useLayoutEffect(() => {
+    const target = mathRef.current;
+    if (katexRef.current && target) typeset(target);
+  }, [equation.tex]);
 
   // A horizontally scrolling equation must be reachable by keyboard (WCAG 2.1.1); width, fonts and text size can change.
   useEffect(() => {

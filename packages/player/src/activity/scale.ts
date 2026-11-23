@@ -139,9 +139,16 @@ export function fitFrame(domain: Bounds2, plot: Rect, equalAspect: boolean): Plo
 }
 
 /** Natural plot height for a width: geometry keeps its declared aspect within readable limits; charts use a fixed ratio. */
-export function plotHeight(width: number, domain: Bounds2, equalAspect: boolean, fontPx: number): number {
-  const min = Math.max(180, fontPx * 12), max = Math.max(min, Math.min(520, fontPx * 34));
-  const natural = equalAspect ? width * (domain[3] - domain[2]) / (domain[1] - domain[0]) : width * 0.62;
+/**
+ * Proportions of a drawing on an embedded card, which sits inside a lesson column: `compact` (the leading drawing: wider
+ * than tall, never taller than a screenful), `strip` (a further drawing under it, such as a trace) or `pair` (one of
+ * several further drawings shown side by side).
+ */
+export type PlotSize = 'compact' | 'strip' | 'pair';
+export function plotHeight(width: number, domain: Bounds2, equalAspect: boolean, fontPx: number, size?: PlotSize): number {
+  const min = size === 'strip' ? Math.max(150, fontPx * 10) : Math.max(180, fontPx * 12);
+  const max = Math.max(min, size === 'strip' || size === 'pair' ? Math.min(300, fontPx * 19) : size ? Math.min(400, fontPx * 26) : Math.min(520, fontPx * 34));
+  const natural = equalAspect ? width * (domain[3] - domain[2]) / (domain[1] - domain[0]) : width * (size === 'strip' ? 0.34 : size ? 0.56 : 0.62);
   return Math.round(Math.min(max, Math.max(min, natural)));
 }
 

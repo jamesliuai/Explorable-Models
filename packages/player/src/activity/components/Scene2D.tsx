@@ -28,7 +28,7 @@ import { clippedData, comparisonGlyph, comparisonMarks, DASH, labelObstacles, ma
 import { PreviewGesture } from '../runtime.js';
 import {
   boundsOf, CAMERA_LIMITS, cameraDomain, fitCamera, fitFrame, fitTicks, niceTicks, panCamera, plotHeight, translateCamera,
-  validBounds, zoomCamera, type Bounds2, type Point,
+  validBounds, zoomCamera, type Bounds2, type PlotSize, type Point,
 } from '../scale.js';
 import { Heading, useElementWidth, useRoving, useRuntime, useStableId } from './context.js';
 
@@ -61,6 +61,8 @@ export interface Scene2DProps {
    * below it (report §10.1, §10.2). Without it the indicator appears only while data are out of view.
    */
   reserveOutOfView?: boolean;
+  /** Proportions on an embedded card (see `plotHeight`); a standalone card leaves it out. */
+  size?: PlotSize;
 }
 /** One kept run's marks for this view (projected from its own identified frame; see `ProjectedComparison.overlays`). */
 export interface Scene2DOverlay { runId: string; ordinal: number; name: string; frameId: string | null; marks: readonly ProjectedMark[] }
@@ -116,6 +118,25 @@ function LegendSwatch({ entry, y }: { entry: LegendEntry; y: number }) {
   );
 }
 
+/**
+ * An embedded card's legend: the same swatches and names as the drawn legend, listed over the drawing's corner and shown
+ * while the learner points at or focuses the figure. It stays in the accessibility tree whether shown or not.
+ */
+function KeyOverlay({ items }: { items: readonly Omit<LegendEntry, 'x' | 'y' | 'lines'>[] }) {
+  return (
+    <ul className="ema-key" aria-label="Legend" data-ema-capture="omit">
+      {items.map(item => (
+        <li key={item.markId}>
+          <svg className="ema-key-swatch" width={30} height={12} viewBox="0 0 30 12" aria-hidden="true">
+            <LegendSwatch entry={{ ...item, x: 0, y: 0, lines: [item.label] }} y={6} />
+          </svg>
+          <span>{item.label}</span>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
 export function Scene2D(props: Scene2DProps) {
   const { view, onCamera, controls, overlays } = props;
   const runtime = useRuntime();
@@ -161,7 +182,7 @@ export function Scene2D(props: Scene2DProps) {
     const right = 14;
     const fit = (left: number) => {
       const plotWidth = Math.max(80, width - left - right);
-      const plotHeightPx = plotHeight(plotWidth, domain, view.equalAspect, fontPx);
+      const plotHeightPx = plotHeight(plotWidth, domain, view.equalAspect, fontPx, props.size);
       const frame = fitFrame(domain, { x: left, y: top, width: plotWidth, height: plotHeightPx }, view.equalAspect);
       return { plotWidth, plotHeightPx, frame, yTicks: fitTicks(frame.domain[2], frame.domain[3], plotHeightPx, () => tickMetrics.lineHeight, fontPx * 1.2) };
     };
@@ -191,13 +212,18 @@ export function Scene2D(props: Scene2DProps) {
         style: { role: 'muted' as const, dash: 'dashed' as const, weight: 'regular' as const, marker: comparisonGlyph(overlay.ordinal) },
       })),
     ];
-    const legendTop = top + plotHeightPx + tickPx * 1.9 + (xTitle.length ? xTitle.length * metrics.lineHeight + 4 : 0) + 6;
+    const belowPlot = top + plotHeightPx + tickPx * 1.9 + (xTitle.length ? xTitle.length * metrics.lineHeight + 4 : 0) + 6;
     const legend = layoutLegend(legendItems, width - 8, metrics);
-    const keyTop = legendTop + legend.height + (legend.entries.length ? 6 : 0);
     const key = layoutLabelKey(placed.callouts, width - 8, metrics, KEY_INDENT);
-    const height = Math.ceil(keyTop + key.height + (key.entries.length ? 6 : 0));
-    return { frame, xTicks, yTicks, plan, placed, legend, legendTop, key, keyTop, height, xTitle, yTitle, metrics, tickPx, kept };
-  }, [view, baseBounds, camera, width, fontPx, runtime.locale, overlays]);
+    const legendRows = legend.height + (legend.entries.length ? 6 : 0), keyRows = key.height + (key.entries.length ? 6 : 0);
+    // An embedded card shows its legend over the drawing on demand (KeyOverlay): the callout key comes first and the
+    // drawn legend lies below the shown height, outside the view box, where only a capture (which keeps it) reaches.
+    const legendTop = runtime.embedded ? belowPlot + keyRows : belowPlot;
+    const keyTop = runtime.embedded ? belowPlot : belowPlot + legendRows;
+    const height = Math.ceil(belowPlot + legendRows + keyRows);
+    const shownHeight = runtime.embedded ? Math.ceil(belowPlot + keyRows) : height;
+    return { frame, xTicks, yTicks, plan, placed, legend, legendItems, legendTop, key, keyTop, height, shownHeight, xTitle, yTitle, metrics, tickPx, kept };
+  }, [view, baseBounds, camera, width, fontPx, runtime.locale, runtime.embedded, props.size, overlays]);
 
   const { frame, plan, placed } = layout;
   // Label collisions for authors (report §15.2): an overlap that remains, and a label shown as a numbered callout.
@@ -236,7 +262,7 @@ export function Scene2D(props: Scene2DProps) {
   const svgPoint = (clientX: number, clientY: number): Point => {
     const svg = svgRef.current!;
     const rect = svg.getBoundingClientRect();
-    return [(clientX - rect.left) * width / rect.width, (clientY - rect.top) * layout.height / rect.height];
+    return [(clientX - rect.left) * width / rect.width, (clientY - rect.top) * layout.shownHeight / rect.height];
   };
 
   // Wheel zoom only with Ctrl/⌘ (trackpad pinch) or while the plot has focus, so page scrolling is never hijacked.
@@ -395,7 +421,8 @@ export function Scene2D(props: Scene2DProps) {
       </div>
       <div className="ema-figure-body" ref={bodyRef}>
         <svg
-          ref={svgRef} className="ema-plot" viewBox={`0 0 ${width} ${layout.height}`} width={width} height={layout.height}
+          ref={svgRef} className="ema-plot" viewBox={`0 0 ${width} ${layout.shownHeight}`} width={width} height={layout.shownHeight}
+          data-ema-capture-height={layout.shownHeight !== layout.height ? layout.height : undefined}
           role="group" aria-labelledby={props.titleId} aria-describedby={summaryId}
           data-ema-view-id={props.captureViewId ?? undefined} data-ema-surface-id={props.captureViewId ? runtime.surfaceId : undefined}
           data-ema-projection-id={props.captureViewId ? props.projectionId : undefined} data-ema-frame-id={props.captureViewId ? props.frameId ?? '' : undefined}
@@ -505,11 +532,11 @@ export function Scene2D(props: Scene2DProps) {
             </g>
           ))}
           {layout.legend.entries.length ? (
-            <g role="list" aria-label="Legend">
+            <g role={runtime.embedded ? undefined : 'list'} aria-label={runtime.embedded ? undefined : 'Legend'} aria-hidden={runtime.embedded || undefined}>
               {layout.legend.entries.map(entry => {
                 const y = layout.legendTop + entry.y + layout.metrics.lineHeight * 0.6;
                 return (
-                  <g key={entry.markId} role="listitem">
+                  <g key={entry.markId} role={runtime.embedded ? undefined : 'listitem'}>
                     <LegendSwatch entry={entry} y={y} />
                     <text className="ema-legend-text" x={entry.x + 36} y={y} dy="0.32em">{entry.lines.map((line, i) => <tspan key={i} x={entry.x + 36} dy={i ? layout.metrics.lineHeight : '0.32em'}>{line}</tspan>)}</text>
                   </g>
@@ -518,9 +545,13 @@ export function Scene2D(props: Scene2DProps) {
             </g>
           ) : null}
         </svg>
+        {runtime.embedded && layout.legendItems.length ? <KeyOverlay items={layout.legendItems} /> : null}
+        {runtime.embedded && outOfView.length ? (
+          <OutOfView labels={outOfView.map(item => item.label)} count={clippedCount} fit={!!fitTarget} onInspect={runtime.inspectValues} onFit={() => { if (fitTarget) commitCamera(fitTarget); }} compact />
+        ) : null}
       </div>
       <div className="ema-figure-foot">
-        {props.reserveOutOfView ? (
+        {runtime.embedded ? null : props.reserveOutOfView ? (
           // One grid cell holds the line and an invisible copy with the longest text it can show (every data mark and
           // kept run of this view, the largest count), so its height never changes while the run plays.
           <div className="ema-clip-slot" data-ema-clip-slot="">
@@ -532,7 +563,13 @@ export function Scene2D(props: Scene2DProps) {
         ) : outOfView.length ? (
           <OutOfView labels={outOfView.map(item => item.label)} count={clippedCount} fit={!!fitTarget} onInspect={runtime.inspectValues} onFit={() => { if (fitTarget) commitCamera(fitTarget); }} />
         ) : null}
-        {plan.notes.length ? <ul className="ema-notes" aria-label={`Notes for ${view.title}`}>{plan.notes.map((note, i) => <li key={`${note.markId}:${i}`}>{note.text}</li>)}</ul> : null}
+        {/* How the drawing approximates the model (sampling, joins, omitted values): available, folded out of the way. */}
+        {plan.notes.length && !runtime.embedded ? (
+          <details className="ema-figure-notes">
+            <summary>About this drawing</summary>
+            <ul className="ema-notes" aria-label={`Notes for ${view.title}`}>{plan.notes.map((note, i) => <li key={`${note.markId}:${i}`}>{note.text}</li>)}</ul>
+          </details>
+        ) : null}
         <p id={summaryId} className={props.showSummary ? 'ema-description' : 'ema-sr'}>{view.summary}</p>
       </div>
     </figure>
@@ -555,7 +592,7 @@ const OUT_OF_VIEW_HEAD = 'Some values are outside the view';
  * its words are CSS-generated content (`data-ema-sizer-text`), never text nodes, so no learner channel — DOM text, the
  * accessibility tree, selection and copy, a read-out — carries an out-of-view state the card does not show.
  */
-function OutOfView({ labels, count, fit, onInspect, onFit, sizer }: { labels: readonly string[]; count: number; fit: boolean; onInspect?: () => void; onFit?: () => void; sizer?: boolean }) {
+function OutOfView({ labels, count, fit, onInspect, onFit, sizer, compact }: { labels: readonly string[]; count: number; fit: boolean; onInspect?: () => void; onFit?: () => void; sizer?: boolean; compact?: boolean }) {
   const runtime = useRuntime();
   const detail = `(${labels.join('; ')}; ${formatPlain(count, runtime.locale) || String(count)} ${count === 1 ? 'point' : 'points'}). The view is not rescaled automatically.`;
   if (sizer) return (
@@ -567,10 +604,11 @@ function OutOfView({ labels, count, fit, onInspect, onFit, sizer }: { labels: re
     </div>
   );
   return (
-    <div className="ema-clip" role="group" aria-label="Values outside the view">
+    <div className="ema-clip" role="group" aria-label="Values outside the view" data-compact={compact || undefined}>
       <span className="ema-glyph" aria-hidden="true">⇱</span>
-      <span className="ema-clip-text">
-        <strong>{OUT_OF_VIEW_HEAD}</strong> {detail}
+      {/* Over an embedded card's drawing the detail is read by assistive technology and shown as a tooltip. */}
+      <span className="ema-clip-text" title={compact ? detail : undefined}>
+        <strong>{OUT_OF_VIEW_HEAD}</strong> {compact ? <span className="ema-sr">{detail}</span> : detail}
       </span>
       <button type="button" className="ema-button" onClick={onInspect}>Inspect values</button>
       <button type="button" className="ema-button" aria-disabled={!fit || undefined} onClick={() => { if (fit) onFit?.(); }}>Fit to data</button>

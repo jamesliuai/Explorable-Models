@@ -9,8 +9,17 @@ import type { ProjectedControl, ProjectedNavigation, ProjectedValue } from '@exp
 export const MINUS = '−';
 const SUPERSCRIPT: Record<string, string> = { '0': '⁰', '1': '¹', '2': '²', '3': '³', '4': '⁴', '5': '⁵', '6': '⁶', '7': '⁷', '8': '⁸', '9': '⁹', '-': '⁻' };
 
+// A render formats dozens of tick labels and readouts; constructing a formatter costs far more than reusing one.
+const formats = new Map<string, Intl.NumberFormat>();
 const numberFormat = (locale: string | undefined, options: Intl.NumberFormatOptions): Intl.NumberFormat => {
-  try { return new Intl.NumberFormat(locale, options); } catch { return new Intl.NumberFormat('en', options); }
+  const key = `${locale ?? ''}|${JSON.stringify(options)}`;
+  let format = formats.get(key);
+  if (!format) {
+    try { format = new Intl.NumberFormat(locale, options); } catch { format = new Intl.NumberFormat('en', options); }
+    if (formats.size >= 64) formats.delete(formats.keys().next().value!);
+    formats.set(key, format);
+  }
+  return format;
 };
 const typographicMinus = (text: string) => text.replace(/^-/, MINUS).replace(/-(?=\d)/g, MINUS);
 

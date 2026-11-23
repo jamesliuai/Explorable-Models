@@ -12,6 +12,7 @@ import type {
 import { ACTIVITY_SCHEMA_VERSION, CONTRACTS, SUMMARY_LIMITS } from './contracts.js';
 import { LIMITS } from './schemas.js';
 import { validateRecord } from './validator.js';
+import { journaledEvents } from './journaled.js';
 
 export const SUMMARIZER_VERSION = '1.0.0';
 /**
@@ -127,9 +128,10 @@ function checkInput(input: SummaryInput): Diagnostic[] {
   if (input.reviewNotice !== undefined && (typeof input.reviewNotice !== 'string' || codePoints(input.reviewNotice) > LIMITS.label)) out.push(invalid('$.reviewNotice', `reviewNotice must be a string of at most ${LIMITS.label} characters.`));
   const bySequence = new Map<number, string>();
   for (const [list, name] of [[input.events, 'events'], [input.pending, 'pending']] as const) {
+    // Revalidating a journal's thousands of events on every tutor request took tens to hundreds of milliseconds.
+    const validated = journaledEvents.has(list);
     list.forEach((event, index) => {
-      const checked = validateRecord(CONTRACTS.event, event);
-      if (!checked.ok) { out.push(invalid(`$.${name}[${index}]`, 'The event does not match the interaction event schema.')); return; }
+      if (!validated && !validateRecord(CONTRACTS.event, event).ok) { out.push(invalid(`$.${name}[${index}]`, 'The event does not match the interaction event schema.')); return; }
       if (event.activityId !== input.instance.activityId) out.push(invalid(`$.${name}[${index}].activityId`, 'The event belongs to another activity.'));
       const known = bySequence.get(event.sequence);
       if (known !== undefined && known !== event.eventId) out.push(invalid(`$.${name}[${index}].sequence`, 'Two different events carry the same sequence.'));

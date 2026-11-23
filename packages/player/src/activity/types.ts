@@ -1,6 +1,6 @@
 /** Public types of `@explorable-models/player/activity`. */
 import type { ReactNode } from 'react';
-import type { ActivityBinding, Diagnostic } from '@explorable-models/activity';
+import type { ActivityBinding, Diagnostic, StageKind } from '@explorable-models/activity';
 import type { KatexModule } from './math.js';
 import type { SpatialRendererModule } from './spatial-contract.js';
 import type { ThemePreference, ThemeTokens } from './theme.js';
@@ -32,7 +32,11 @@ export interface SurfaceDiagnostic {
  *   stage instruction is one compact line, the stage response prompt is left to the host unless a `responseSlot` is
  *   passed, and secondary tools (alternative representations, Reset experiment, kept-run comparisons, Read current
  *   values) are gathered in one “More tools” disclosure, so the drawing, the primary parameters and the essential values
- *   come first. Nothing about what is computed, permitted, recorded or acknowledged changes between variants.
+ *   come first. The card keeps one column: the leading drawing at full width (further drawings as a strip, or side by
+ *   side), its view tools, legend and 3D camera controls shown over it while the learner points at or focuses it, then
+ *   the parameters in a compact grid with each exact value in place of its read-out and the reasons they are fixed stated
+ *   once, then the readouts in one quiet row. Hints, axis keys, drawing notes and the review notice stay with assistive
+ *   technology. Nothing about what is computed, permitted, recorded or acknowledged changes between variants.
  */
 export type SurfaceVariant = 'standalone' | 'embedded';
 
@@ -52,8 +56,10 @@ export interface StudyActivitySurfaceProps {
    * host fixes parameters that differ from the template's illustrative wording or ties the card to its own lesson.
    * Inert cards (suspended, stale policy, unsupported, awaiting persistence, disposed) keep the projection's neutral
    * line. It changes no permission, value or record; the projection's instruction stays in the capture companion text.
+   * A host that words each stage itself passes one line per stage kind (`{ predict: '…', explore: '…' }`); a stage kind
+   * it leaves out keeps the projection's instruction.
    */
-  instruction?: string;
+  instruction?: string | Readonly<Partial<Record<StageKind, string>>>;
   /** Heading level of the activity title (default 2); view headings use the next level. */
   headingLevel?: 2 | 3 | 4 | 5 | 6;
   /** Locale for numbers the surface formats itself (ticks, index); defaults to the projection's presentation locale. */

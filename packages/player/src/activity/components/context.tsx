@@ -17,6 +17,11 @@ export interface SurfaceRuntime {
   fonts: 'bundled' | 'system';
   locations: AssetLocations;
   reducedMotion: boolean;
+  /**
+   * The host presents the lesson around the card (`variant: 'embedded'`): views keep their secondary chrome (view
+   * tools, legend, drawing notes) out of the way until the learner reaches for it. Presentation only.
+   */
+  embedded?: boolean;
   /** A scientific command is in flight; scientific buttons are inert until it settles (no double submission). */
   busy: boolean;
   /**

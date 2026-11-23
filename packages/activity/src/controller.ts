@@ -47,6 +47,7 @@ import { computeControlModes, computeVisibility, navigationVisibility, solutionG
 import type { AssistanceSnapshot } from './api.js';
 import type { ActivityRecords, ArtifactLineage, DisplayEndReason, JournalLoss } from './contracts.js';
 import { commandCapacity } from './journal.js';
+import { journaledEvents } from './journaled.js';
 
 /** Runtime identity recorded in scientific snapshots and sample provenance. */
 export const MODEL_RUNTIME = Object.freeze({ id: 'explorable-models.model-runtime', version: '1.0.0' });
@@ -133,6 +134,8 @@ export interface ControllerContext {
 interface OperationEntry {
   fingerprint: string; outcome: unknown; settled: boolean; retryable: boolean; value?: unknown; forgotten?: boolean;
   release?: ((value: Record<string, unknown>) => boolean)[];
+  /** A preview tick's success, kept without its projection; a replay returns the current projection. */
+  live?: boolean;
 }
 
 export interface RestoredState {
@@ -669,6 +672,7 @@ export function createActivityController(ctx: ControllerContext): ActivityContro
       if (previous.fingerprint !== fingerprint) return output(failure(diag('OPERATION_CONFLICT', '$.operationId', 'This operation ID was already used with different arguments.', 'Use a new operation ID for a different request.')));
       // A transient failure keeps its fingerprint: the identical request runs again (resuming a kept authorization).
       if (previous.forgotten) return output(failure(diag('NOT_FOUND', '$.operationId', 'The outcome of this operation was released when the host forgot the activity\'s cached copies.', 'Use a new operation ID.')));
+      if (previous.live && projection) return { ok: true, projection } as T;
       if (!previous.retryable) return previous.outcome as T | Fail;
       operations.delete(input.operationId);
     }
@@ -701,8 +705,12 @@ export function createActivityController(ctx: ControllerContext): ActivityContro
       entry.outcome = promise;
       return promise as T;
     }
-    entry.outcome = finish(result);
-    return entry.outcome as T | Fail;
+    const outcome = finish(result);
+    entry.outcome = outcome;
+    // Every pointer move is a separate updatePreview operation. Caching each success with its projection kept up to
+    // OPERATION_CACHE full projections and their frame geometry alive through a drag (tens of megabytes).
+    if (name === 'updatePreview' && isRecord(outcome) && outcome.ok === true) { entry.outcome = undefined; entry.value = undefined; entry.live = true; }
+    return outcome as T | Fail;
   }
   const ok = (): CommandOutcome => ({ ok: true, projection: publish() });
   function gate(actor: Actor, tool: ToolOperation | null, options: { compute?: boolean } = {}): Diagnostic | null {
@@ -1065,17 +1073,21 @@ export function createActivityController(ctx: ControllerContext): ActivityContro
     if (!shown || shown.frameId === null) return;
     const operationId = internalOp();
     const monotonicMs = Math.max(0, ctx.clock.monotonic() - ctx.origin);
+    let changed = false;
     for (const record of exposures.awaitingDisplay()) {
       if (!record.groups.every(group => shown.groups.has(group.groupId) && digests[group.groupId] === group.contentDigest)) continue;
       if (record.scope === 'exploration' && shown.frameKind !== 'tentative') continue;
       const displayed = exposures.markDisplayed(record.exposureId, { projectionDigest, frameId: shown.frameId, monotonicMs });
       if (!displayed) continue;
+      changed = true;
       displayedHere.add(record.exposureId);
       emit('reveal.displayed', { exposureId: record.exposureId, receiptId: record.receiptId, projectionDigest, frameId: shown.frameId, surfaceId }, actor, operationId, [authorizedEvents.get(record.exposureId)]);
       persistAck(displayed);
     }
-    if (pendingReveal?.state === 'awaiting-display' && !exposures.awaitingDisplay().some(record => record.scope !== 'exploration')) pendingReveal = null;
-    schedulePublish();
+    if (pendingReveal?.state === 'awaiting-display' && !exposures.awaitingDisplay().some(record => record.scope !== 'exploration')) { pendingReveal = null; changed = true; }
+    // Surfaces acknowledge every frame they paint; only an acknowledgement that changed something republishes, rather
+    // than rebuilding and re-hashing an unchanged projection once more per frame.
+    if (changed) schedulePublish();
   }
 
   // ---- host authorization protocol ----------------------------------------------------------------------------
@@ -1378,9 +1390,13 @@ export function createActivityController(ctx: ControllerContext): ActivityContro
         track.updates++;
         track.params = params;
         track.clamped = clamped.length > 0;
+        const unchanged = !track.refused && notice === (track.clamped ? 'The value was adjusted to the allowed range.' : null);
         track.refused = false;
         notice = track.clamped ? 'The value was adjusted to the allowed range.' : null;
         pumpPreview(track);
+        // The accepted value shows with its tentative frame, which publishes when it arrives. Building the projection
+        // here as well, on every pointer move, mostly found it unchanged; the next turn's publish covers the rest.
+        if (unchanged && projection) { schedulePublish(); return { ok: true, projection }; }
         return ok();
       }),
       commitPreview: raw => async('commitPreview', raw, async input => {
@@ -2810,8 +2826,11 @@ export function createActivityController(ctx: ControllerContext): ActivityContro
       // Teacher summaries are authorized by the policy, so they end with it (revocation, expiry by host time).
       const standing = readStanding();
       if (standing && audience === 'teacher') return failure(standing);
+      const events = outbox.acknowledgedEvents(), pending = outbox.pendingEvents();
+      journaledEvents.add(events);
+      journaledEvents.add(pending);
       const result = trySummarize({
-        events: outbox.acknowledgedEvents(), pending: outbox.pendingEvents(), trimmedBefore: outbox.trimmedBefore() + forgottenEvents, instance: currentInstance(),
+        events, pending, trimmedBefore: outbox.trimmedBefore() + forgottenEvents, instance: currentInstance(),
         template, manifest, exposures: exposures.all().map(record => structuredClone(record)), audience,
         // Through the journal's last sequence by default, so events released by `forget` are reported as omitted.
         ...(options.fromSequence !== undefined ? { fromSequence: options.fromSequence } : {}), toSequence: options.toSequence ?? lastSequence(),

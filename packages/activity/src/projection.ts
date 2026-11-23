@@ -36,6 +36,8 @@ import { geometryReadable, markVisible, navigationVisibility, visibleQuantityIds
 
 /** Maximum rendered table rows; longer tables keep the first and last half and report the total. */
 export const TABLE_ROW_LIMIT = 200;
+/** A table row whose cells are formatted on demand. */
+type LazyRow = { key: string; cells: () => string[] };
 /** Significant digits for learner-facing numerals (readouts, substituted equations, comparison values). */
 export const DISPLAY_PRECISION = 4;
 /**
@@ -394,29 +396,30 @@ export function projectLearnerView(input: ProjectionInput): LearnerProjection {
   /** Table cell numeral: every digit of a safe integer, otherwise {@link TABLE_PRECISION} significant digits. */
   const cell = (n: number) => formatNumber(n, { precision: TABLE_PRECISION, locale, exactIntegers: true });
   /** One row per geometry element; every row has exactly one cell per column of {@link geometryColumns}. */
-  function geometryRows(geometry: GeometryResult): { key: string; cells: string[] }[] {
+  /** Table rows of a geometry; cells are formatted only for the rows {@link capRows} keeps. */
+  function geometryRows(geometry: GeometryResult): LazyRow[] {
     const coords = (point: readonly number[]) => point.map(cell);
     switch (geometry.kind) {
       case 'points2': case 'points3': {
         const width = geometry.kind === 'points3' ? 3 : 2;
         return geometry.points.map(point => ({
-          key: point.id, cells: point.at ? coords(point.at) : [`Not available: ${(point.reason ?? 'no value').slice(0, 200)}`, ...Array<string>(width - 1).fill('Not available')],
+          key: point.id, cells: () => point.at ? coords(point.at) : [`Not available: ${(point.reason ?? 'no value').slice(0, 200)}`, ...Array<string>(width - 1).fill('Not available')],
         }));
       }
       case 'polyline2': case 'polyline3':
-        return geometry.segments.flatMap((segment, s) => (segment.points as readonly (readonly number[])[]).map((point, p) => ({ key: `s${s}p${p}`, cells: coords(point) })));
+        return geometry.segments.flatMap((segment, s) => (segment.points as readonly (readonly number[])[]).map((point, p) => ({ key: `s${s}p${p}`, cells: () => coords(point) })));
       case 'segments2': case 'segments3':
-        return geometry.segments.map(segment => ({ key: segment.id, cells: [segment.id, ...coords(segment.from), ...coords(segment.to)] }));
+        return geometry.segments.map(segment => ({ key: segment.id, cells: () => [segment.id, ...coords(segment.from), ...coords(segment.to)] }));
       case 'polygon2':
-        return geometry.vertices.map((vertex, v) => ({ key: `v${v}`, cells: coords(vertex) }));
+        return geometry.vertices.map((vertex, v) => ({ key: `v${v}`, cells: () => coords(vertex) }));
       case 'vector-field2': case 'vector-field3':
-        return geometry.samples.map((sample, s) => ({ key: `f${s}`, cells: [...coords(sample.at), ...coords(sample.vector)] }));
+        return geometry.samples.map((sample, s) => ({ key: `f${s}`, cells: () => [...coords(sample.at), ...coords(sample.vector)] }));
       case 'surface-grid':
-        return geometry.z.map((z, i) => ({ key: `g${i}`, cells: [cell(geometry.xs[i % geometry.xs.length]!), cell(geometry.ys[Math.floor(i / geometry.xs.length)]!), z === null ? 'Not available' : cell(z)] }));
+        return geometry.z.map((z, i) => ({ key: `g${i}`, cells: () => [cell(geometry.xs[i % geometry.xs.length]!), cell(geometry.ys[Math.floor(i / geometry.xs.length)]!), z === null ? 'Not available' : cell(z)] }));
       // Every observed row in dataset order, numbered from 1; a missing cell says so with its reason (never 0, never filled in).
       case 'observations2':
         return geometry.points.map(point => ({
-          key: `o${point.row}`, cells: [String(point.row + 1), ...point.values.map(v => v === null ? `Missing: ${(point.reason ?? 'not recorded').slice(0, 200)}` : cell(v))],
+          key: `o${point.row}`, cells: () => [String(point.row + 1), ...point.values.map(v => v === null ? `Missing: ${(point.reason ?? 'not recorded').slice(0, 200)}` : cell(v))],
         }));
     }
   }
@@ -453,14 +456,16 @@ export function projectLearnerView(input: ProjectionInput): LearnerProjection {
    * Caps rows at {@link TABLE_ROW_LIMIT}. A sampled curve keeps every `step`-th sample and the last one (the whole domain
    * stays covered at a coarser spacing); other tables keep the first and last half (start and current end of a trace).
    */
-  const capRows = (rows: { key: string; cells: string[] }[], curve = false): Pick<ProjectedTable, 'rows' | 'truncated' | 'totalRows' | 'shortened'> => {
-    if (rows.length <= TABLE_ROW_LIMIT) return { rows, truncated: false, totalRows: rows.length };
+  const capRows = (rows: LazyRow[], curve = false): Pick<ProjectedTable, 'rows' | 'truncated' | 'totalRows' | 'shortened'> => {
+    // Rows are formatted after they are chosen: a sampled curve can have several times the rows a table keeps.
+    const format = (kept: LazyRow[]) => kept.map(row => ({ key: row.key, cells: row.cells() }));
+    if (rows.length <= TABLE_ROW_LIMIT) return { rows: format(rows), truncated: false, totalRows: rows.length };
     if (curve) {
       const step = Math.ceil((rows.length - 1) / (TABLE_ROW_LIMIT - 1));
       const kept = rows.filter((_, index) => index % step === 0 || index === rows.length - 1);
-      return { rows: kept, truncated: true, totalRows: rows.length, shortened: { kind: 'every', step } };
+      return { rows: format(kept), truncated: true, totalRows: rows.length, shortened: { kind: 'every', step } };
     }
-    return { rows: [...rows.slice(0, TABLE_ROW_LIMIT / 2), ...rows.slice(rows.length - TABLE_ROW_LIMIT / 2)], truncated: true, totalRows: rows.length, shortened: { kind: 'ends' } };
+    return { rows: format([...rows.slice(0, TABLE_ROW_LIMIT / 2), ...rows.slice(rows.length - TABLE_ROW_LIMIT / 2)]), truncated: true, totalRows: rows.length, shortened: { kind: 'ends' } };
   };
   function projectTable(view: ViewSpec): ProjectedTable | undefined {
     if (view.kind !== 'table') return undefined;
@@ -474,7 +479,7 @@ export function projectLearnerView(input: ProjectionInput): LearnerProjection {
         ...(origin ? { origin } : {}), ...(geometry.kind === 'observations2' ? { source: observationSource(geometry) } : {}),
       };
     }
-    const rows = (view.quantities ?? []).map(id => value(id)).filter((item): item is ProjectedValue => item !== null).map(item => ({ key: item.quantityId, cells: [item.label, item.text, item.status === 'valid' ? item.unitLabel : ''] }));
+    const rows = (view.quantities ?? []).map(id => value(id)).filter((item): item is ProjectedValue => item !== null).map(item => ({ key: item.quantityId, cells: () => [item.label, item.text, item.status === 'valid' ? item.unitLabel : ''] }));
     return { caption: view.title, columns: [{ id: 'quantity', label: 'Quantity', unitLabel: '' }, { id: 'value', label: 'Value', unitLabel: '' }, { id: 'unit', label: 'Unit', unitLabel: '' }], ...capRows(rows) };
   }
 

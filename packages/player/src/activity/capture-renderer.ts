@@ -29,6 +29,12 @@ const escapeXml = (text: string) => text.replace(/[<>&"']/g, c => ({ '<': '&lt;'
 const INLINE_PROPERTIES = ['fill', 'fill-opacity', 'stroke', 'stroke-width', 'stroke-opacity', 'stroke-dasharray', 'stroke-linecap', 'stroke-linejoin', 'opacity', 'font-family', 'font-size', 'font-weight', 'font-style', 'text-anchor', 'dominant-baseline', 'paint-order'];
 const DROP_ATTRIBUTES = /^(class|tabindex|style|aria-selected|aria-roledescription|aria-keyshortcuts|aria-describedby|aria-labelledby|focusable|on.*|data-.*)$/i;
 
+/** Height a capture of a rendered scene SVG covers: its view box, or more when the card shows less than it draws. */
+function sceneHeight(svg: SVGSVGElement): number {
+  const full = Number(svg.getAttribute('data-ema-capture-height'));
+  return Number.isFinite(full) && full > 0 ? full : svg.viewBox.baseVal.height || svg.getBoundingClientRect().height;
+}
+
 /**
  * Clones a rendered scene SVG with its computed presentation inlined as attributes; drops focus/hit helpers, hidden
  * elements, foreignObject and interactive attributes.
@@ -51,9 +57,11 @@ export function inlineSceneSvg(source: SVGSVGElement): string {
     for (const attribute of [...target.attributes]) if (DROP_ATTRIBUTES.test(attribute.name)) target.removeAttribute(attribute.name);
   });
   for (const element of remove) element.remove();
-  const width = source.viewBox.baseVal.width || source.getBoundingClientRect().width, height = source.viewBox.baseVal.height || source.getBoundingClientRect().height;
+  const width = source.viewBox.baseVal.width || source.getBoundingClientRect().width, height = sceneHeight(source);
   clone.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
   clone.setAttribute('width', String(width)); clone.setAttribute('height', String(height));
+  // An embedded card's legend lies below its shown height; the capture extends the view box to keep it.
+  if (width && height) clone.setAttribute('viewBox', `0 0 ${width} ${height}`);
   const serialized = new (view as Window & typeof globalThis).XMLSerializer().serializeToString(clone);
   return serialized.replace(/<foreignObject[\s\S]*?<\/foreignObject>/gi, '');
 }
@@ -172,7 +180,7 @@ export async function captureView(ctx: CaptureContext, options: CaptureOptions):
         ? new CaptureError('CAPTURE_REJECTED', 'This view is shown in 3D, which is not captured.', 'Show the 2D projection of this view, then capture.')
         : new CaptureError('NOT_READY', 'The surface has not finished showing this view.', 'Wait until the view is visible, then capture.');
     }
-    const width = element.viewBox.baseVal.width, height = element.viewBox.baseVal.height;
+    const width = element.viewBox.baseVal.width, height = sceneHeight(element);
     scene = { svg: inlineSceneSvg(element), width, height };
   }
   const style = (ctx.themeElement.ownerDocument.defaultView ?? window).getComputedStyle(ctx.themeElement);

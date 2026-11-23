@@ -39,10 +39,11 @@ import { adoptActivityStyles } from './styles.js';
 import { BUNDLED_FONT_STACK, resolveTheme, tokenVariables, type ThemeMode } from './theme.js';
 import type { StudyActivityHandle, StudyActivitySurfaceProps, SurfaceDiagnostic } from './types.js';
 import { Heading, RuntimeContext, useRuntime, useStableId, type CommandScope, type LayoutAnchor, type SurfaceRuntime } from './components/context.js';
-import { ParameterControl, ResetExperiment, Scenarios } from './components/Controls.js';
+import { ParameterControl, ResetExperiment, Scenarios, sharedControlReasons } from './components/Controls.js';
 import { Navigation } from './components/Navigation.js';
 import { AlternativesInfo, ComparisonsPanel, EquationsPanel, InlineStatus, PendingReveal, PersistenceChip, StatusBanner, TablePanel, ValuesPanel } from './components/Panels.js';
 import { Scene2D, type Scene2DOverlay } from './components/Scene2D.js';
+import type { PlotSize } from './scale.js';
 import { SpatialView } from './components/Spatial.js';
 
 const GRAPHICAL = new Set<ProjectedView['kind']>(['plot2d', 'scene2d', 'scene3d']);
@@ -221,7 +222,7 @@ export function StudyActivitySurface(props: StudyActivitySurfaceProps & Internal
   }, [binding, report, announce]);
 
   const runtime = useMemo<SurfaceRuntime>(() => ({
-    binding, surfaceId, locale, headingLevel: props.headingLevel ?? 2, fonts, locations, reducedMotion, busy: busyCount > 0,
+    binding, surfaceId, locale, headingLevel: props.headingLevel ?? 2, fonts, locations, reducedMotion, embedded: props.variant === 'embedded', busy: busyCount > 0,
     scienceBusy: () => scienceCount.current > 0 || lane.busy, settling, lane, inert,
     disposed: () => disposed.current,
     opId: createOperationId,
@@ -263,7 +264,7 @@ export function StudyActivitySurface(props: StudyActivitySurfaceProps & Internal
     inspectValues: () => { setShowTables(true); setInspectRequest(count => count + 1); },
     layoutAnchor,
     keepAnchor,
-  }), [binding, surfaceId, locale, props.headingLevel, fonts, locations, reducedMotion, busyCount, settling, lane, inert, report, announce, fail, props.spatialLoader, layoutAnchor, keepAnchor]);
+  }), [binding, surfaceId, locale, props.headingLevel, fonts, locations, reducedMotion, props.variant, busyCount, settling, lane, inert, report, announce, fail, props.spatialLoader, layoutAnchor, keepAnchor]);
 
   // Component styles in whatever root this renders into (shadow root or document); reference-counted.
   useLayoutEffect(() => {
@@ -388,13 +389,17 @@ export function StudyActivitySurface(props: StudyActivitySurfaceProps & Internal
   const mainContent = graphical.length > 0 || projection.navigation !== null || (tablesVisible && tableViews.length > 0);
   const committedFrame = projection.frame?.kind === 'committed';
   // Under a stale policy or for unsupported content the projection itself carries a neutral instruction and no prompt.
-  const hostInstruction = typeof props.instruction === 'string' ? [...props.instruction.trim()].slice(0, 400).join('') : '';
+  const hostWording = typeof props.instruction === 'string' ? props.instruction : props.instruction?.[projection.stage.kind];
+  const hostInstruction = typeof hostWording === 'string' ? [...hostWording.trim()].slice(0, 400).join('') : '';
   const instruction = hostInstruction && !inert ? hostInstruction : projection.stage.instruction;
   const someInteractive = projection.controls.some(control => control.mode === 'interactive');
   const retainLabel = keptRunLabel(projection.controls, locale);
   // A refused command whose cause the status already presents (a worker failure, saving, permissions) is not repeated.
   const errorPresented = commandErrorCode !== null && (PRESENTED_BY[commandErrorCode] ?? []).includes(ui);
   const sections = controlSections(projection.controls);
+  // An embedded card states why controls are unavailable once, above them, instead of under each one.
+  const reasonGroups = embedded ? sharedControlReasons(projection.controls, inert) : [];
+  const quietReasons = new Set(reasonGroups.flatMap(group => group.parameters));
   // Routine saving is not shown on the card (the chip stays readable by assistive technology); a change that is not
   // saved yet, or failed to save, is shown. An embedded card then has no visible header row at all.
   const routinePersistence = ROUTINE_PERSISTENCE.has(chipPersistence(projection));
@@ -413,6 +418,9 @@ export function StudyActivitySurface(props: StudyActivitySurfaceProps & Internal
     </div>
   ) : null;
   const reset = someInteractive ? <ResetExperiment previewActive={projection.preview !== null} /> : null;
+  const drawing = (view: ProjectedView, size?: PlotSize) => view.kind === 'scene3d'
+    ? <SpatialView key={view.viewId} view={view} projection={projection} controls={projection.controls} showSummary={showText} headingLevel={level + 1} />
+    : <GraphicalView key={view.viewId} view={view} projection={projection} showText={showText} headingLevel={level + 1} size={size} />;
   const comparisons = <ComparisonsPanel comparisons={projection.comparisons} canRetain={canRetain} retainLabel={retainLabel} headingLevel={level + 1} currentPosition={projection.frame?.position ?? null} />;
   const readValues = contentless ? null : <button type="button" className="ema-button" onClick={() => announce(binding.describeCurrentValues(), 'request')}>Read current values</button>;
   const keptRuns = projection.comparisons.length;
@@ -450,9 +458,22 @@ export function StudyActivitySurface(props: StudyActivitySurfaceProps & Internal
           {contentless ? null : (
             <div className="ema-workspace" data-single={mainContent ? undefined : 'true'}>
               {mainContent ? <div className="ema-main">
-                {graphical.map(view => view.kind === 'scene3d'
-                  ? <SpatialView key={view.viewId} view={view} projection={projection} controls={projection.controls} showSummary={showText} headingLevel={level + 1} />
-                  : <GraphicalView key={view.viewId} view={view} projection={projection} showText={showText} headingLevel={level + 1} />)}
+                {embedded ? (
+                  // The first drawing leads at full width; the others follow as a strip, or side by side when there are two
+                  // or more, so a card with several views stays within a lesson column.
+                  <>
+                    {graphical.slice(0, 1).map(view => drawing(view, 'compact'))}
+                    {graphical.length > 1 ? (
+                      <div className="ema-views" data-paired={graphical.length > 2 || undefined}>
+                        {graphical.slice(1).map((view, index, rest) => {
+                          // Paired drawings fill rows of two; an odd one out takes the whole row as a strip.
+                          const alone = rest.length === 1 || (rest.length % 2 === 1 && index === rest.length - 1);
+                          return <div key={view.viewId} className="ema-view-cell" data-wide={alone || undefined}>{drawing(view, alone ? 'strip' : 'pair')}</div>;
+                        })}
+                      </div>
+                    ) : null}
+                  </>
+                ) : graphical.map(view => drawing(view))}
                 {projection.navigation ? <Navigation navigation={projection.navigation} frame={projection.frame} headingLevel={level + 1} /> : null}
                 {projection.navigation ? <InlineStatus projection={projection} causes={NAVIGATION_NOTICES} /> : null}
                 {embedded ? null : alternatives}
@@ -463,11 +484,12 @@ export function StudyActivitySurface(props: StudyActivitySurfaceProps & Internal
               <div className="ema-side">
                 {projection.controls.length ? (
                   <section className="ema-panel" aria-label="Controls" data-ema-panel="controls" data-ema-frame-id={projection.frame?.frameId}>
+                    {reasonGroups.map(group => <p key={group.text} className="ema-reason ema-shared-reason" aria-hidden="true"><span className="ema-glyph">–</span>{group.text}</p>)}
                     {sections.map(section => section.section ? (
                       <ControlSection key={section.section.id} section={section.section} headingLevel={level + 1}>
-                        {section.controls.map(control => <ParameterControl key={control.parameter} control={control} activePreviewId={projection.preview?.previewId ?? null} />)}
+                        {section.controls.map(control => <ParameterControl key={control.parameter} control={control} activePreviewId={projection.preview?.previewId ?? null} quietReason={quietReasons.has(control.parameter)} />)}
                       </ControlSection>
-                    ) : section.controls.map(control => <ParameterControl key={control.parameter} control={control} activePreviewId={projection.preview?.previewId ?? null} />))}
+                    ) : section.controls.map(control => <ParameterControl key={control.parameter} control={control} activePreviewId={projection.preview?.previewId ?? null} quietReason={quietReasons.has(control.parameter)} />))}
                     <InlineStatus projection={projection} causes={projection.navigation ? CONTROL_NOTICES : undefined} />
                     {embedded ? null : reset}
                   </section>
@@ -498,7 +520,8 @@ export function StudyActivitySurface(props: StudyActivitySurfaceProps & Internal
               {props.responseSlot}
             </section>
           ) : null}
-          <footer className="ema-footer">
+          {/* An embedded card's host states the review status beside it; assistive technology still reads it here. */}
+          {embedded && !props.nextAction ? <p className="ema-review ema-sr">{projection.reviewNotice}</p> : <footer className="ema-footer">
             <p className="ema-review">{projection.reviewNotice}</p>
             <div className="ema-footer-actions">
               {embedded ? null : readValues}
@@ -510,7 +533,7 @@ export function StudyActivitySurface(props: StudyActivitySurfaceProps & Internal
                 </>
               ) : null}
             </div>
-          </footer>
+          </footer>}
           <div className="ema-sr" role="status" aria-live="polite" aria-atomic="true">{liveText}</div>
         </section>
       </div>
@@ -518,7 +541,7 @@ export function StudyActivitySurface(props: StudyActivitySurfaceProps & Internal
   );
 }
 
-function GraphicalView({ view, projection, showText, headingLevel }: { view: ProjectedView; projection: LearnerProjection; showText: boolean; headingLevel: number }) {
+function GraphicalView({ view, projection, showText, headingLevel, size }: { view: ProjectedView; projection: LearnerProjection; showText: boolean; headingLevel: number; size?: PlotSize }) {
   const titleId = useStableId('ema-view');
   const runtime = useRuntime();
   const camera = projection.presentation.views[view.viewId]?.camera;
@@ -527,7 +550,7 @@ function GraphicalView({ view, projection, showText, headingLevel }: { view: Pro
     <Scene2D
       view={view} captureViewId={view.viewId} projectionId={projection.projectionId} frameId={projection.frame?.frameId ?? null} titleId={titleId}
       camera={camera?.kind === '2d' ? camera : null} selection={projection.presentation.selection} controls={projection.controls} showSummary={showText} headingLevel={headingLevel}
-      tentative={projection.frame?.kind === 'tentative'} overlays={comparisonOverlays(projection, view.viewId)}
+      tentative={projection.frame?.kind === 'tentative'} overlays={comparisonOverlays(projection, view.viewId)} size={size}
       // Stepping and playback change the drawing without a gesture on it: its out-of-view line keeps its place (S3).
       reserveOutOfView={projection.navigation !== null}
       onCamera={next => void runtime.run(() => next ? runtime.binding.setCamera({ ...guard(), viewId: view.viewId, camera: next }) : runtime.binding.resetView({ ...guard(), viewId: view.viewId }), 'presentation')}
@@ -540,12 +563,17 @@ function GraphicalView({ view, projection, showText, headingLevel }: { view: Pro
 const NAVIGATION_NOTICES: ReadonlySet<StatusCause> = new Set<StatusCause>(['playing', 'paused']);
 const CONTROL_NOTICES: ReadonlySet<StatusCause> = new Set<StatusCause>(['preview', 'ready']);
 
+// Shared when there is nothing to overlay, so Scene2D's layout memo (which depends on `overlays`) is not defeated by a
+// fresh empty array on every render.
+const NO_OVERLAYS: Scene2DOverlay[] = [];
 /** Kept-run overlays of one 2D view, in comparison order (each run drawn with its own marker shape). */
 function comparisonOverlays(projection: LearnerProjection, viewId: string): Scene2DOverlay[] {
-  return projection.comparisons.flatMap(comparison => {
+  if (!projection.comparisons.length) return NO_OVERLAYS;
+  const overlays = projection.comparisons.flatMap(comparison => {
     const overlay = comparison.overlays.find(item => item.viewId === viewId);
     return overlay?.marks.length ? [{ runId: comparison.runId, ordinal: comparison.ordinal, name: comparison.name, frameId: comparison.frameId, marks: overlay.marks }] : [];
   });
+  return overlays.length ? overlays : NO_OVERLAYS;
 }
 
 /**

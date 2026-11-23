@@ -1270,7 +1270,8 @@ test.describe('3D views at 390 px and in dark mode', () => {
         expect(view.viewport.width).toBeGreaterThan(200);
         if (configuration.id === 'dark') {
           await expect(card(page).locator('.ema')).toHaveAttribute('data-theme', 'dark');
-          expect(await viewport3d(page).evaluate(element => getComputedStyle(element).backgroundColor)).toBe('rgb(25, 33, 43)');
+          // The dark theme's surface token (#212120 in the warm-neutral palette).
+          expect(await viewport3d(page).evaluate(element => getComputedStyle(element).backgroundColor)).toBe('rgb(33, 33, 32)');
         }
         await expectAccessible(page, `${name} ${configuration.id}`);
         await shot(page, `${name}-${configuration.id}`);

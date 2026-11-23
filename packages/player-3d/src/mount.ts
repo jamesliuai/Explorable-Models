@@ -221,8 +221,10 @@ export function mount(element: HTMLElement, options: SpatialMountOptions): Spati
     perspectiveButton.setAttribute('aria-pressed', String(orbit.projection === 'perspective'));
     zoomIn.setAttribute('aria-disabled', String(orbit.zoom >= CAMERA_LIMITS.maxZoom));
     zoomOut.setAttribute('aria-disabled', String(orbit.zoom <= CAMERA_LIMITS.minZoom));
-    viewport.setAttribute('aria-label', `${view.title}: ${describeOrbit(orbit)}`);
   };
+  // The focused viewport's accessible name changes only when a camera move settles; renaming it on every drag frame
+  // (about 60 times a second) makes screen readers chatter.
+  const nameViewport = (orbit: Orbit) => viewport.setAttribute('aria-label', `${view.title}: ${describeOrbit(orbit)}`);
 
   const buildLabels = (plan: SpatialPlan) => {
     labelsLayer.replaceChildren();
@@ -327,6 +329,7 @@ export function mount(element: HTMLElement, options: SpatialMountOptions): Spati
         onOrbit: (orbit, committed) => {
           updateToolbar(orbit);
           if (committed) {
+            nameViewport(orbit);
             const text = describeOrbit(orbit);
             live.textContent = text === lastAnnounced ? `${text} ` : text;
             lastAnnounced = text;
@@ -348,6 +351,7 @@ export function mount(element: HTMLElement, options: SpatialMountOptions): Spati
     wireframeButton.hidden = !controller.hasSurface;
     wireframeButton.setAttribute('aria-pressed', String(controller.wireframeOn));
     updateToolbar(controller.getOrbit());
+    nameViewport(controller.getOrbit());
     // A new controller starts `ready` without reporting it: state it here, so after Try again the overlay hides and the
     // surface learns that the 3D view is back (it would otherwise keep showing `failed`).
     setState(controller.currentStatus, null);
@@ -399,6 +403,19 @@ export function mount(element: HTMLElement, options: SpatialMountOptions): Spati
       controller?.resize(box.width, box.height, win.devicePixelRatio);
     })).observe(viewport);
   }
+  // Moving the window to a display of another pixel density changes devicePixelRatio without resizing the view, which
+  // left the canvas blurry (or rendering at four times the needed fill) until the next resize.
+  const watchDensity = () => {
+    const density = win.matchMedia?.(`(resolution: ${win.devicePixelRatio}dppx)`);
+    if (!density) return;
+    const remove = lifecycle.listen(density, 'change', () => {
+      remove();
+      const rect = viewport.getBoundingClientRect();
+      controller?.resize(rect.width, rect.height, win.devicePixelRatio);
+      watchDensity();
+    });
+  };
+  watchDensity();
   let themeFrame: number | null = null;
   const refreshTheme = () => {
     if (themeFrame !== null) return;
@@ -487,8 +504,23 @@ export function mount(element: HTMLElement, options: SpatialMountOptions): Spati
     const focused = viewport === (viewport.getRootNode() as Document | ShadowRoot).activeElement;
     if (!focused && !event.ctrlKey) return;
     event.preventDefault();
-    if (event.deltaY) controller.zoomBy(event.deltaY < 0 ? CAMERA_LIMITS.zoomStep : 1 / CAMERA_LIMITS.zoomStep);
+    if (!event.deltaY) return;
+    // Zoom follows the scroll distance. A trackpad sends many small deltas plus momentum, which a fixed step per event
+    // turned into a jump to the zoom limit; one mouse-wheel notch still zooms by at most one step.
+    const pixels = event.deltaY * (event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? viewport.clientHeight : 1);
+    const step = Math.log(CAMERA_LIMITS.zoomStep);
+    controller.zoomBy(Math.exp(Math.min(step, Math.max(-step, (-pixels * step) / 100))));
   }, { passive: false });
+  // Safari and WKWebView report a trackpad pinch as gesture events (with a cumulative scale), not as ctrl+wheel.
+  let pinch = 1;
+  lifecycle.listen<Event & { scale?: number }>(viewport, 'gesturestart', event => { event.preventDefault(); pinch = 1; });
+  lifecycle.listen<Event & { scale?: number }>(viewport, 'gesturechange', event => {
+    event.preventDefault();
+    const scale = event.scale ?? 0;
+    if (!(scale > 0)) return;
+    controller.zoomBy(scale / pinch);
+    pinch = scale;
+  });
 
   try {
     start();

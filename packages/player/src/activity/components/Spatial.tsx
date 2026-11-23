@@ -109,11 +109,15 @@ export function SpatialView({ view, projection, controls, showSummary, headingLe
     }
     return () => { instance.current?.dispose(); instance.current = null; setStatus({ status: 'ready', message: null }); };
   }, [module, fallback, view.viewId, runtime.reducedMotion]);
-  useEffect(() => { instance.current?.update(view, presentation); }, [view, presentation, equivalence]);
+  // Before paint, so the 3D view shows the same frame as the 2D views and values rather than one frame behind them.
+  useLayoutEffect(() => { instance.current?.update(view, presentation); }, [view, presentation, equivalence]);
 
   const active = !!module && !fallback;
   const unavailable = active && UNAVAILABLE.has(status.status);
-  const projected = useMemo(() => projectView(view, plane), [view, plane]);
+  const showFallback = !active || showProjection || unavailable;
+  // The 2D projection is drawn only while the fallback is shown; projecting it on every frame behind an active 3D view
+  // was wasted work.
+  const projected = useMemo(() => (showFallback ? projectView(view, plane) : null), [showFallback, view, plane]);
   const planeSelector = (
     <div className="ema-segmented" role="toolbar" aria-label="Projection plane" onKeyDown={roving.onKeyDown}>
       {PROJECTION_PLANES.map((candidate, index) => (
@@ -121,7 +125,6 @@ export function SpatialView({ view, projection, controls, showSummary, headingLe
       ))}
     </div>
   );
-  const showFallback = !active || showProjection || unavailable;
   return (
     <div className="ema-main" data-ema-spatial={view.viewId} data-ema-spatial-state={active ? status.status : 'fallback'} ref={rootRef}>
       {active ? (
@@ -143,7 +146,7 @@ export function SpatialView({ view, projection, controls, showSummary, headingLe
           <p>{fallback ?? (seen ? 'Loading the 3D view…' : 'The 3D view loads when it is on screen.')} {equivalence}</p>
         </div>
       )}
-      {showFallback ? (
+      {showFallback && projected ? (
         <>
           <Scene2D
             view={projected} captureViewId={view.viewId} projectionId={projection.projectionId} frameId={projection.frame?.frameId ?? null}

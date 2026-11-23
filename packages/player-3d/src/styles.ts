@@ -10,13 +10,13 @@ export const SPATIAL_STYLESHEET = String.raw`
 .ema-spatial:has(>.em3){overflow:visible;min-height:0;background:transparent}
 .em3 [hidden]{display:none!important}
 .em3{display:grid;gap:var(--ema-s1,.25rem);min-width:0;color:var(--ema-text,#1f1e1c)}
-.em3-toolbar{display:flex;flex-wrap:wrap;align-items:center;gap:var(--ema-s1,.25rem)}
-.em3-button{display:inline-flex;align-items:center;justify-content:center;min-height:2rem;min-width:2rem;padding:0 .7em;border:1px solid var(--ema-border-strong,#8b877e);border-radius:5px;background:var(--ema-surface,#f3f2ee);color:var(--ema-text,#1f1e1c);font:inherit;font-size:.8125em;font-weight:500;line-height:1.2;cursor:pointer}
+.em3-toolbar{display:flex;flex-wrap:wrap;align-items:center;gap:4px}
+.em3-button{display:inline-flex;align-items:center;justify-content:center;min-height:1.75rem;min-width:1.75rem;padding:0 .75em;border:1px solid var(--ema-border,#dedbd3);border-radius:999px;background:var(--ema-surface,#f3f2ee);color:var(--ema-text,#1f1e1c);font:inherit;font-size:.75em;font-weight:550;line-height:1.2;cursor:pointer;transition:background-color .14s ease,border-color .14s ease}
 .em3-button:hover{background:var(--ema-surface-strong,#e8e6e0)}
-.em3-button[aria-pressed=true]{background:var(--ema-surface-strong,#e8e6e0);border-color:var(--ema-text,#1f1e1c);box-shadow:inset 0 -2px 0 var(--ema-text,#1f1e1c)}
+.em3-button[aria-pressed=true]{background:color-mix(in srgb,var(--ema-action,#1f1e1c) 18%,var(--ema-surface,#f3f2ee));border-color:color-mix(in srgb,var(--ema-action,#1f1e1c) 50%,transparent);box-shadow:none}
 .em3-button:focus-visible{outline:2px solid var(--ema-focus,#1f1e1c);outline-offset:2px}
-.em3-sep{width:1px;align-self:stretch;margin:2px 2px;background:var(--ema-border,#dedbd3)}
-.em3-viewport{position:relative;width:100%;aspect-ratio:4/3;min-height:15rem;max-height:34rem;overflow:hidden;border-radius:5px;background:var(--ema-surface,#f3f2ee);touch-action:pan-y;cursor:grab;user-select:none;-webkit-user-select:none}
+.em3-sep{width:1px;align-self:stretch;margin:4px 4px;background:var(--ema-border,#dedbd3)}
+.em3-viewport{position:relative;width:100%;aspect-ratio:4/3;min-height:15rem;max-height:34rem;overflow:hidden;border-radius:12px;border:1px solid var(--ema-border,#dedbd3);background:var(--ema-surface,#f3f2ee);touch-action:pan-y;cursor:grab;user-select:none;-webkit-user-select:none}
 .em3-viewport[data-dragging=true]{cursor:grabbing}
 .em3-viewport:focus-visible{outline:2px solid var(--ema-focus,#1f1e1c);outline-offset:2px}
 .em3-canvas{display:block;width:100%;height:100%}

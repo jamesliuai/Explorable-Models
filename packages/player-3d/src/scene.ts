@@ -54,6 +54,23 @@ export interface BuiltScene {
 const UP = new Vector3(0, 1, 0);
 const color = (value: string): Color => new Color(value);
 
+/**
+ * Height ramps for sampled surfaces: low to high reads as deep indigo → blue → teal → mint on dark backgrounds and a
+ * deeper version of the same hues on light ones. The surface's shape (and its labelled axes) still carries the
+ * height; the ramp only makes it easier to read at a glance.
+ */
+const HEIGHT_RAMP_DARK = ['#3b2f8f', '#3d63d6', '#2f9fe0', '#22c3c9', '#3fe0a6', '#c7f27a'];
+const HEIGHT_RAMP_LIGHT = ['#2e2a8a', '#2f56c4', '#1f88c9', '#14a3a8', '#1aae7a', '#86c23a'];
+function isDark(theme: SpatialTheme): boolean {
+  const c = color(theme.background);
+  return 0.2126 * c.r + 0.7152 * c.g + 0.0722 * c.b < 0.35;
+}
+function rampColor(ramp: readonly string[], t: number, target: Color): Color {
+  const x = Math.min(1, Math.max(0, t)) * (ramp.length - 1);
+  const i = Math.min(ramp.length - 2, Math.floor(x));
+  return target.copy(color(ramp[i]!)).lerp(color(ramp[i + 1]!), x - i);
+}
+
 class Builder {
   readonly group = new Group();
   readonly lineMaterials: LineMaterial[] = [];
@@ -215,8 +232,21 @@ export function buildContent(plan: SpatialPlan, frame: ViewFrame, theme: Spatial
     geometry.setIndex(new BufferAttribute(index, 1));
     geometry.computeVertexNormals();
     const tint = roleColor(theme, surface.style.role);
+    // Colour each vertex by its height within the surface (the data z), so the landscape reads at a glance.
+    const dark = isDark(theme);
+    const ramp = dark ? HEIGHT_RAMP_DARK : HEIGHT_RAMP_LIGHT;
+    let low = Infinity, high = -Infinity;
+    for (const vertex of surface.vertices) { low = Math.min(low, vertex[2]); high = Math.max(high, vertex[2]); }
+    const span = high - low > 1e-12 ? high - low : 1;
+    const colors = new Float32Array(surface.vertices.length * 3);
+    const shade = new Color();
+    surface.vertices.forEach((vertex, i) => {
+      rampColor(ramp, (vertex[2] - low) / span, shade);
+      colors[i * 3] = shade.r; colors[i * 3 + 1] = shade.g; colors[i * 3 + 2] = shade.b;
+    });
+    geometry.setAttribute('color', new BufferAttribute(colors, 3));
     const material = resources.add('material', new MeshLambertMaterial({
-      color: color(tint), side: DoubleSide, transparent: true, opacity: 0.72, polygonOffset: true, polygonOffsetFactor: 1, polygonOffsetUnits: 1,
+      color: 0xffffff, vertexColors: true, side: DoubleSide, transparent: true, opacity: 0.86, polygonOffset: true, polygonOffsetFactor: 1, polygonOffsetUnits: 1,
     }));
     const mesh = new Mesh(geometry, material);
     mesh.name = `surface:${surface.markId}`;
@@ -224,7 +254,8 @@ export function buildContent(plan: SpatialPlan, frame: ViewFrame, theme: Spatial
     b.group.add(mesh);
     const pairs: number[] = [];
     for (let i = 0; i < surface.edges.length; i += 2) pairs.push(...b.world(surface.vertices[surface.edges[i]!]!), ...b.world(surface.vertices[surface.edges[i + 1]!]!));
-    const wire = b.lines(pairs, options.wireframe ? tint : theme.borderStrong, options.wireframe ? 1.25 : 1, 'solid', `surface-wire:${surface.markId}`, options.wireframe ? 1 : 0.8);
+    // A light mesh over the coloured surface: grid lines that trace the shape without boxing it in.
+    const wire = b.lines(pairs, options.wireframe ? tint : dark ? '#ffffff' : '#0b0b10', options.wireframe ? 1.25 : 1, 'solid', `surface-wire:${surface.markId}`, options.wireframe ? 1 : dark ? 0.16 : 0.18);
     if (wire) surfaces.push({ markId: surface.markId, mesh, wire });
   }
 
@@ -335,8 +366,9 @@ export function buildAxes(frame: ViewFrame, theme: SpatialTheme, resources: Reso
 
 /** Ambient plus a camera-attached directional light (shading follows the view, so the surface shape stays legible). */
 export function createLights(): { ambient: AmbientLight; key: DirectionalLight } {
-  const ambient = new AmbientLight(0xffffff, 1.6);
-  const key = new DirectionalLight(0xffffff, 1.4);
+  // A softer fill and a stronger key light give the coloured surface clear form without washing out its hues.
+  const ambient = new AmbientLight(0xffffff, 1.15);
+  const key = new DirectionalLight(0xffffff, 1.9);
   key.position.set(0.4, 0.8, 1);
   return { ambient, key };
 }

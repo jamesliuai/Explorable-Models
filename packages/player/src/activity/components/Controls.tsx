@@ -42,7 +42,39 @@ const draftText = (value: number, locale?: string) => {
   return decimalSeparator(locale) === ',' ? text.replace('.', ',') : text;
 };
 
-export function ParameterControl({ control, activePreviewId }: { control: ProjectedControl; activePreviewId: string | null }) {
+/** Why a control cannot be changed right now, or null when it can. */
+export function controlReason(control: ProjectedControl, inert: string | null): string | null {
+  return inert ?? control.disabledReason ?? (control.mode === 'fixed' ? 'Fixed in this part of the activity.' : null);
+}
+
+const listed = (labels: readonly string[]): string => labels.length < 2 ? labels.join('') : `${labels.slice(0, -1).join(', ')} and ${labels[labels.length - 1]}`;
+/**
+ * On an embedded card with more than one control: why controls cannot be changed, stated once above them and grouped by
+ * reason in the controls' own names (“Curvature a and Starting position x₀ are fixed in this part of the activity.”).
+ * Each control keeps its own reason for assistive technology.
+ */
+export function sharedControlReasons(controls: readonly ProjectedControl[], inert: string | null): { text: string; parameters: string[] }[] {
+  if (controls.length < 2) return [];
+  const groups = new Map<string, ProjectedControl[]>();
+  for (const control of controls) {
+    const reason = controlReason(control, inert);
+    if (reason) groups.set(reason, [...(groups.get(reason) ?? []), control]);
+  }
+  return [...groups].map(([reason, members]) => {
+    const rest = /^This value is /.test(reason) ? reason.slice('This value is '.length) : null;
+    const text = inert || !rest ? reason
+      : members.length === controls.length ? `These values are ${rest}`
+      : `${listed(members.map(member => member.label))} ${members.length === 1 ? 'is' : 'are'} ${rest}`;
+    return { text, parameters: members.map(member => member.parameter) };
+  });
+}
+
+/**
+ * One parameter. On an embedded card (`runtime.embedded`) it is one compact unit: the label with its description as a
+ * tooltip, the exact value in place of the read-out (Apply appears once a different value is typed), then the slider;
+ * the hint and a reason shared with the other controls stay with assistive technology.
+ */
+export function ParameterControl({ control, activePreviewId, quietReason = false }: { control: ProjectedControl; activePreviewId: string | null; quietReason?: boolean }) {
   const runtime = useRuntime();
   const { binding, locale } = runtime;
   const ids = { label: useStableId('ema-control'), hint: useStableId('ema-hint'), reason: useStableId('ema-reason'), error: useStableId('ema-error'), input: useStableId('ema-input') };
@@ -69,7 +101,8 @@ export function ParameterControl({ control, activePreviewId }: { control: Projec
   }), [binding, control.parameter, lane]);
 
   const disabled = control.mode === 'fixed' || !!control.disabledReason || runtime.busy || !!runtime.inert;
-  const reason = runtime.inert ?? control.disabledReason ?? (control.mode === 'fixed' ? 'Fixed in this part of the activity.' : null);
+  const reason = controlReason(control, runtime.inert);
+  const embedded = !!runtime.embedded;
   const shown = sliderDraft ?? control.previewValue ?? control.value;
   const tentative = sliderDraft !== null || control.previewValue !== undefined;
   const unit = control.unitLabel ? ` ${control.unitLabel}` : '';
@@ -146,13 +179,36 @@ export function ParameterControl({ control, activePreviewId }: { control: Projec
   };
 
   const describedBy = [ids.hint, reason ? ids.reason : null, error ? ids.error : null].filter(Boolean).join(' ');
+  // The exact field: its own row on a standalone card, in place of the read-out on an embedded one.
+  const exact = control.exact ? (
+    <>
+      <label className="ema-sr" htmlFor={ids.input}>Exact value for {control.label}{unit ? ` in ${control.unitLabel}` : ''}</label>
+      <input
+        id={ids.input} className="ema-input" type="text" inputMode="decimal" autoComplete="off" spellCheck={false} value={embedded && !dirty ? formatShown(shown, locale) : draft}
+        readOnly={disabled} aria-disabled={disabled || undefined} data-tentative={(embedded && tentative && !dirty) || undefined} aria-invalid={error ? true : undefined} aria-describedby={describedBy}
+        onChange={event => { setDraft(event.currentTarget.value); setDirty(true); }}
+        onFocus={embedded ? event => { if (!disabled) event.currentTarget.select(); } : undefined}
+        onCompositionStart={() => { composing.current = true; }} onCompositionEnd={() => { composing.current = false; }}
+        onKeyDown={onDraftKeyDown}
+      />
+      {control.displayUnits.length > 1 ? (
+        <select className="ema-select" aria-label={`Unit for ${control.label}`} value={control.displayUnit} aria-disabled={runtime.busy || undefined}
+          onChange={event => { const unitId = event.currentTarget.value as ProjectedControl['displayUnit']; void runtime.run(() => binding.setDisplayUnit({ operationId: runtime.opId(), expectedPresentationRevision: binding.getProjection().presentationRevision, parameter: control.parameter, unit: unitId }), 'presentation'); }}>
+          {control.displayUnits.map(unitId => <option key={unitId} value={unitId}>{unitLabel(unitId, true)}{unitLabel(unitId) ? ` (${unitLabel(unitId)})` : ''}</option>)}
+        </select>
+      ) : control.unitLabel ? <span className="ema-unit">{control.unitLabel}</span> : null}
+      {embedded && !dirty ? null : <button type="button" className="ema-button" aria-disabled={disabled || runtime.settling || undefined} onClick={() => void apply()}>Apply</button>}
+    </>
+  ) : null;
   return (
     <div className="ema-control" role="group" aria-labelledby={ids.label} data-parameter={control.parameter}>
       <div className="ema-control-head">
-        <span className="ema-control-label" id={ids.label}>{control.label}</span>
-        <output className="ema-control-value" data-tentative={tentative || undefined} aria-live="off">
-          {formatShown(shown, locale)}{unit}{tentative ? <span className="ema-badge">preview</span> : null}
-        </output>
+        <span className="ema-control-label" id={ids.label} title={embedded ? control.description : undefined}>{control.label}</span>
+        {embedded && control.exact ? <div className="ema-exact" data-inline="">{exact}</div> : (
+          <output className="ema-control-value" data-tentative={tentative || undefined} aria-live="off">
+            {formatShown(shown, locale)}{unit}{tentative ? <span className="ema-badge">preview</span> : null}
+          </output>
+        )}
       </div>
       {control.slider ? (
         <input
@@ -187,28 +243,10 @@ export function ParameterControl({ control, activePreviewId }: { control: Projec
           onBlur={() => { if (gesture.active && (pressing.current === null || pressing.current !== pointerId.current)) void finish(false, 'blur'); }}
         />
       ) : null}
-      {control.exact ? (
-        <div className="ema-exact">
-          <label className="ema-sr" htmlFor={ids.input}>Exact value for {control.label}{unit ? ` in ${control.unitLabel}` : ''}</label>
-          <input
-            id={ids.input} className="ema-input" type="text" inputMode="decimal" autoComplete="off" spellCheck={false} value={draft}
-            readOnly={disabled} aria-disabled={disabled || undefined} aria-invalid={error ? true : undefined} aria-describedby={describedBy}
-            onChange={event => { setDraft(event.currentTarget.value); setDirty(true); }}
-            onCompositionStart={() => { composing.current = true; }} onCompositionEnd={() => { composing.current = false; }}
-            onKeyDown={onDraftKeyDown}
-          />
-          {control.displayUnits.length > 1 ? (
-            <select className="ema-select" aria-label={`Unit for ${control.label}`} value={control.displayUnit} aria-disabled={runtime.busy || undefined}
-              onChange={event => { const unitId = event.currentTarget.value as ProjectedControl['displayUnit']; void runtime.run(() => binding.setDisplayUnit({ operationId: runtime.opId(), expectedPresentationRevision: binding.getProjection().presentationRevision, parameter: control.parameter, unit: unitId }), 'presentation'); }}>
-              {control.displayUnits.map(unitId => <option key={unitId} value={unitId}>{unitLabel(unitId, true)}{unitLabel(unitId) ? ` (${unitLabel(unitId)})` : ''}</option>)}
-            </select>
-          ) : control.unitLabel ? <span className="ema-unit">{control.unitLabel}</span> : null}
-          <button type="button" className="ema-button" aria-disabled={disabled || runtime.settling || undefined} onClick={() => void apply()}>Apply</button>
-        </div>
-      ) : null}
-      {reason ? <p className="ema-reason" id={ids.reason}><span className="ema-glyph" aria-hidden="true">–</span>{reason}</p> : null}
+      {control.exact && !embedded ? <div className="ema-exact">{exact}</div> : null}
+      {reason ? <p className={quietReason ? 'ema-reason ema-sr' : 'ema-reason'} id={ids.reason}><span className="ema-glyph" aria-hidden="true">–</span>{reason}</p> : null}
       {error ? <p className="ema-error" id={ids.error}><span className="ema-glyph" aria-hidden="true">!</span>{error}</p> : null}
-      <p className="ema-control-hint" id={ids.hint}>{control.description} Range {formatShown(control.min, locale)} to {formatShown(control.max, locale)}{unit}.</p>
+      <p className={embedded ? 'ema-control-hint ema-sr' : 'ema-control-hint'} id={ids.hint}>{control.description} Range {formatShown(control.min, locale)} to {formatShown(control.max, locale)}{unit}.</p>
     </div>
   );
 }
